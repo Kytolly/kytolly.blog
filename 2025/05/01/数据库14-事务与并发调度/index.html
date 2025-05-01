@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="事务并发某些突发故障可能导致数据库产生不一致的结果；并发执行应用可以提高性能，但是有可能带来数据操作结果不符合预期数据库的更新：  读数据库：将数据库中数据先从磁盘读入内存，然后再将值赋予另一个变量； 写数据库：现将变量的值写入内存，然后再有内存写入磁盘； 数据库更新应该权衡减少在磁盘上的I&#x2F;O&amp;防止数据不一致  概念事务是用户定义的一个数据库操作序列  这些工作是原子的，要么全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库14-事务与并发调度">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%9314-%E4%BA%8B%E5%8A%A1%E4%B8%8E%E5%B9%B6%E5%8F%91%E8%B0%83%E5%BA%A6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="事务并发某些突发故障可能导致数据库产生不一致的结果；并发执行应用可以提高性能，但是有可能带来数据操作结果不符合预期数据库的更新：  读数据库：将数据库中数据先从磁盘读入内存，然后再将值赋予另一个变量； 写数据库：现将变量的值写入内存，然后再有内存写入磁盘； 数据库更新应该权衡减少在磁盘上的I&#x2F;O&amp;防止数据不一致  概念事务是用户定义的一个数据库操作序列  这些工作是原子的，要么全">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.409Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.683Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%9314-%E4%BA%8B%E5%8A%A1%E4%B8%8E%E5%B9%B6%E5%8F%91%E8%B0%83%E5%BA%A6/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%9314-%E4%BA%8B%E5%8A%A1%E4%B8%8E%E5%B9%B6%E5%8F%91%E8%B0%83%E5%BA%A6/","path":"2025/05/01/数据库14-事务与并发调度/","title":"数据库14-事务与并发调度"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据库14-事务与并发调度 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E5%B9%B6%E5%8F%91"><span class="nav-number">1.</span> <span class="nav-text">事务并发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%80%A7ACID"><span class="nav-number">1.3.</span> <span class="nav-text">特性ACID</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E5%B9%B6%E5%8F%91-1"><span class="nav-number">2.</span> <span class="nav-text">事务并发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5-1"><span class="nav-number">2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="nav-number">2.2.</span> <span class="nav-text">隔离级别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%BB%E6%9C%AA%E6%8F%90%E4%BA%A4Read-Uncommitted"><span class="nav-number">2.2.1.</span> <span class="nav-text">读未提交Read Uncommitted</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%BB%E6%8F%90%E4%BA%A4Read-Committed"><span class="nav-number">2.2.2.</span> <span class="nav-text">读提交Read Committed</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E5%A4%8D%E8%AF%BBRepeatable-Read"><span class="nav-number">2.2.3.</span> <span class="nav-text">重复读Repeatable Read</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96Serializable"><span class="nav-number">2.2.4.</span> <span class="nav-text">序列化Serializable</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E4%B8%B2%E8%A1%8C%E5%8C%96%E8%B0%83%E5%BA%A6"><span class="nav-number">3.</span> <span class="nav-text">可串行化调度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5-2"><span class="nav-number">3.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E5%8C%96%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.2.</span> <span class="nav-text">数学化表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E5%86%B2%E7%AA%81"><span class="nav-number">3.3.</span> <span class="nav-text">指令冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E9%A9%B1%E5%9B%BEprecedence-graph"><span class="nav-number">3.4.</span> <span class="nav-text">前驱图precedence graph</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%9314-%E4%BA%8B%E5%8A%A1%E4%B8%8E%E5%B9%B6%E5%8F%91%E8%B0%83%E5%BA%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据库14-事务与并发调度 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库14-事务与并发调度
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="事务并发"><a href="#事务并发" class="headerlink" title="事务并发"></a>事务并发</h2><p>某些突发故障可能导致数据库产生不一致的结果；并发执行应用可以提高性能，但是有可能带来数据操作结果不符合预期<br>数据库的更新：</p>
+<ul>
+<li>读数据库：将数据库中数据先从磁盘读入内存，然后再将值赋予另一个变量；</li>
+<li>写数据库：现将变量的值写入内存，然后再有内存写入磁盘；</li>
+<li>数据库更新应该权衡减少在磁盘上的I&#x2F;O&amp;防止数据不一致</li>
+</ul>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>事务是用户定义的一个数据库操作序列</p>
+<ul>
+<li>这些工作是原子的，要么全做，要么全不做，是不可分割的工作单位；</li>
+<li>一个事务可以是一条SQL语句，一组SQL语句或整个程序</li>
+<li>一个应用程序可以包含事务</li>
+</ul>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>在SQL中可以显式定义</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span> TRANSACTION </span><br><span class="line">	<span class="operator">&lt;</span>SQL1<span class="operator">&gt;</span></span><br><span class="line">	<span class="operator">&lt;</span>…<span class="operator">&gt;</span></span><br><span class="line">	<span class="keyword">COMMIT</span><span class="operator">|</span><span class="keyword">ROLLBACK</span></span><br><span class="line"><span class="keyword">END</span> TRANSACTION</span><br></pre></td></tr></table></figure>
+<p>没有显式定义事务时，DBMS按缺省方式自动划分事务</p>
+<h3 id="特性ACID"><a href="#特性ACID" class="headerlink" title="特性ACID"></a>特性ACID</h3><ul>
+<li>原子性Atomicity：<ul>
+<li>事务的所有操作在数据库中要么全部正确反映，要么全部不反应；</li>
+<li>系统崩溃后，DBMS将恢复或撤销系统崩溃前处于活动状态的事务对数据库产生的影响，从而保证事务的原子性</li>
+<li>事务管理部件处理</li>
+</ul>
+</li>
+<li>一致性Consistency：<ul>
+<li>事务完成时，必须所有数据具有一致的状态；</li>
+<li>一般由开发者确保</li>
+</ul>
+</li>
+<li>隔离性Isolation：<ul>
+<li>当多个事务并发执行时，一个事务的执行不能被其他事务干扰</li>
+<li>解决前面提到的并发执行带来的错误问题</li>
+<li>交错调度的效果应该和某个串行调度结果是一致的</li>
+<li>并发控制部件处理</li>
+</ul>
+</li>
+<li>持续性Durability：<ul>
+<li>一个事务一旦提交，它对数据库中的数据的改变应该是永久性的，即使系统可能出现故障</li>
+<li>恢复管理部件负责</li>
+</ul>
+</li>
+</ul>
+<h2 id="事务并发-1"><a href="#事务并发-1" class="headerlink" title="事务并发"></a>事务并发</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p>并发执行的优点：改善系统的资源利用率，减少短事务的等待时间<br>调度：一个或者多个事务的操作按时间排序的一个序列<br>不受控制的事务调度问题：</p>
+<ul>
+<li>丢失更新</li>
+<li>读脏数据</li>
+<li>不可重复读</li>
+<li>幻读</li>
+</ul>
+<p>原因：事务ACID特性中隔离性被破坏</p>
+<h3 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h3><p>如何实现事务隔离？</p>
+<ul>
+<li>串行：每个事务一次顺序执行</li>
+<li>并行但控制：事务之间并发执行，收到DBMS调整事务调度</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>丢失更新</th>
+<th>读脏数据</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>读未提交</td>
+<td>解决</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>读提交</td>
+<td>解决</td>
+<td>解决</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>重复读</td>
+<td>解决</td>
+<td>解决</td>
+<td>解决</td>
+<td></td>
+</tr>
+<tr>
+<td>序列化</td>
+<td>解决</td>
+<td>解决</td>
+<td>解决</td>
+<td>解决</td>
+</tr>
+</tbody></table>
+<h4 id="读未提交Read-Uncommitted"><a href="#读未提交Read-Uncommitted" class="headerlink" title="读未提交Read Uncommitted"></a>读未提交Read Uncommitted</h4><p>一个事务可以读取另一个未提交事务的数据</p>
+<h4 id="读提交Read-Committed"><a href="#读提交Read-Committed" class="headerlink" title="读提交Read Committed"></a>读提交Read Committed</h4><p>一个事务要等另一个事务提交后才能读取数据</p>
+<h4 id="重复读Repeatable-Read"><a href="#重复读Repeatable-Read" class="headerlink" title="重复读Repeatable Read"></a>重复读Repeatable Read</h4><p>在开始读数据时，不允许修改操作</p>
+<h4 id="序列化Serializable"><a href="#序列化Serializable" class="headerlink" title="序列化Serializable"></a>序列化Serializable</h4><p>最高的事务隔离级别，事务在这个级别下串行化执行，在该级别下性能最低</p>
+<h2 id="可串行化调度"><a href="#可串行化调度" class="headerlink" title="可串行化调度"></a>可串行化调度</h2><h3 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h3><p>事务交叉调度结果与某一个串行调度结果相同<br>调度可串行化意味着保持着数据库的一致性，DBMS需要事务调度管理</p>
+<ul>
+<li>事务并发完全交给操作系统并不可靠</li>
+<li>调度不一定能保持数据库一致</li>
+<li>DBMS对事务运行加以控制，确保一致性</li>
+</ul>
+<h3 id="数学化表示"><a href="#数学化表示" class="headerlink" title="数学化表示"></a>数学化表示</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>简写</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>读READ</td>
+<td>R</td>
+</tr>
+<tr>
+<td>写WRITE</td>
+<td>W</td>
+</tr>
+<tr>
+<td>事务T写数据库元素x</td>
+<td>WT(x)</td>
+</tr>
+<tr>
+<td>事务T读数据库元素x</td>
+<td>RT(x)</td>
+</tr>
+<tr>
+<td>调度（事务序列）</td>
+<td>S &#x3D; ….</td>
+</tr>
+</tbody></table>
+<h3 id="指令冲突"><a href="#指令冲突" class="headerlink" title="指令冲突"></a>指令冲突</h3><p>指令冲突性：调度中两个事务发生冲突，意味着</p>
+<ul>
+<li>必须对同一数据对象进行操作</li>
+<li>两个指令有一个写操作</li>
+</ul>
+<p>冲突等价：对于调度S中属于不同事务的两条操作指令是不冲突的，则可以交换两条指令的执行顺序，得到一个新的调度S‘，称两个调度冲突等价</p>
+<p>冲突可串行化：若一个冲突等价于一个串行调度，则这个调度是冲突可串行化的；</p>
+<ul>
+<li>冲突可串行是可串行性的充分条件</li>
+</ul>
+<p>视图等价：对于同一事务集，若两个调度$S_1$和$S_2$视图等价</p>
+<ul>
+<li>在任何事务保证美俄事务读取相同的值，</li>
+<li>写入数据库最终状态也是一样的；</li>
+</ul>
+<p>视图可串行化：若某个调度视图等价于一个串行调度，则称这个调度是视图可串行化的；</p>
+<ul>
+<li>若调度是冲突可串行化的，则一定是视图可串行化的</li>
+<li>反之未必</li>
+</ul>
+<h3 id="前驱图precedence-graph"><a href="#前驱图precedence-graph" class="headerlink" title="前驱图precedence graph"></a>前驱图precedence graph</h3><p>定义有向前驱图$G(V,E)$</p>
+<ul>
+<li><p>顶点为调度S的事务</p>
+</li>
+<li><p>$T_i\to T_j$表示$T_i$先于$T_j$对应的指令执行，且二者存在某一对冲突指令</p>
+</li>
+<li><p>若前驱图存在环，则调度S不是可串行化的；</p>
+</li>
+<li><p>若前驱图不存在环，表示调度是冲突可串行化的</p>
+</li>
+<li><p>一个拓扑排序意味调度一个等价的串行调度</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%9313-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E4%B8%8E%E5%87%BD%E6%95%B0/" rel="prev" title="数据库13-存储过程与函数">
+                  <i class="fa fa-angle-left"></i> 数据库13-存储过程与函数
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%9315-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E6%8A%80%E6%9C%AF/" rel="next" title="数据库15-数据库恢复技术">
+                  数据库15-数据库恢复技术 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

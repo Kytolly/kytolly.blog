@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="权限以超级管理员的身份执行命令：sudo ; 切换成kytolly用户：su kytolly  ; 切换超级管理员用户: su ; 为password.txt添加可执行权限：chmod +x password.txt; 进程号&#x2F;端口号 查看端口占用 lsof -i &lt;pid&gt;: netstat -ntulp |grep &lt;pid&gt;:   杀死进程 kill &amp;lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinuxShell常识">
+<meta property="og:url" content="http://example.com/2025/05/01/LinuxShell%E5%B8%B8%E8%AF%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="权限以超级管理员的身份执行命令：sudo ; 切换成kytolly用户：su kytolly  ; 切换超级管理员用户: su ; 为password.txt添加可执行权限：chmod +x password.txt; 进程号&#x2F;端口号 查看端口占用 lsof -i &lt;pid&gt;: netstat -ntulp |grep &lt;pid&gt;:   杀死进程 kill &amp;lt">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.474Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.188Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/LinuxShell%E5%B8%B8%E8%AF%86/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/LinuxShell%E5%B8%B8%E8%AF%86/","path":"2025/05/01/LinuxShell常识/","title":"LinuxShell常识"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>LinuxShell常识 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%83%E9%99%90"><span class="nav-number">1.</span> <span class="nav-text">权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E5%8F%B7-%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="nav-number">2.</span> <span class="nav-text">进程号&#x2F;端口号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A8%E5%8F%B7%E4%B8%8A%E7%BD%91"><span class="nav-number">3.</span> <span class="nav-text">拨号上网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">4.</span> <span class="nav-text">重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shell%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%B5%8B%E8%AF%95"><span class="nav-number">5.</span> <span class="nav-text">Shell字符串测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shell%E6%96%87%E4%BB%B6%E6%B5%8B%E8%AF%95"><span class="nav-number">6.</span> <span class="nav-text">Shell文件测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shell%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">7.</span> <span class="nav-text">Shell关系运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shell%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0"><span class="nav-number">8.</span> <span class="nav-text">Shell函数参数</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/LinuxShell%E5%B8%B8%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="LinuxShell常识 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LinuxShell常识
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><p>以超级管理员的身份执行命令：<code>sudo </code>;</p>
+<p>切换成<code>kytolly</code>用户：<code>su kytolly </code> ;</p>
+<p>切换超级管理员用户: <code>su </code>;</p>
+<p>为<code>password.txt</code>添加<strong>可执行</strong>权限：<code>chmod +x password.txt</code>;</p>
+<h3 id="进程号-端口号"><a href="#进程号-端口号" class="headerlink" title="进程号&#x2F;端口号"></a>进程号&#x2F;端口号</h3><ol>
+<li>查看端口占用<ul>
+<li><code>lsof -i &lt;pid&gt;</code>:</li>
+<li><code>netstat -ntulp |grep &lt;pid&gt;</code>:</li>
+</ul>
+</li>
+<li>杀死进程<ul>
+<li><code>kill &lt;pid&gt;</code>:</li>
+</ul>
+</li>
+</ol>
+<h3 id="拨号上网"><a href="#拨号上网" class="headerlink" title="拨号上网"></a>拨号上网</h3><ol>
+<li>配置拨号连接:<code>sudo pppconf</code></li>
+<li>启动拨号连接：<code>pon dsl-provider</code></li>
+<li>断开拨号连接：<code>sudo poff dsl-provider</code></li>
+<li>检查网络通畅：<code>ping 39.156.66.14   ping 8.8.8.8</code></li>
+<li>检查DNS：<code>ping www.baidu.com</code></li>
+</ol>
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p>一般情况下，每个 Unix&#x2F;Linux 命令运行时都会打开三个文件：</p>
+<ul>
+<li>标准输入文件(stdin)：stdin的文件描述符为0，Unix程序默认从stdin读取数据。</li>
+<li>标准输出文件(stdout)：stdout 的文件描述符为1，Unix程序默认向stdout输出数据。</li>
+<li>标准错误文件(stderr)：stderr的文件描述符为2，Unix程序会向stderr流中写入错误信息。</li>
+</ul>
+<p>默认情况下，command &gt; file 将 stdout 重定向到 file，command &lt; file 将stdin 重定向到 file。</p>
+<h3 id="Shell字符串测试"><a href="#Shell字符串测试" class="headerlink" title="Shell字符串测试"></a>Shell字符串测试</h3><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">&#x3D;</td>
+<td align="left">等于则为真</td>
+</tr>
+<tr>
+<td align="left">!&#x3D;</td>
+<td align="left">不相等则为真</td>
+</tr>
+<tr>
+<td align="left">-z 字符串</td>
+<td align="left">字符串的长度为零则为真</td>
+</tr>
+<tr>
+<td align="left">-n 字符串</td>
+<td align="left">字符串的长度不为零则为真</td>
+</tr>
+</tbody></table>
+<h3 id="Shell文件测试"><a href="#Shell文件测试" class="headerlink" title="Shell文件测试"></a>Shell文件测试</h3><table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-e 文件名</td>
+<td align="left">如果文件存在则为真</td>
+</tr>
+<tr>
+<td align="left">-r 文件名</td>
+<td align="left">如果文件存在且可读则为真</td>
+</tr>
+<tr>
+<td align="left">-w 文件名</td>
+<td align="left">如果文件存在且可写则为真</td>
+</tr>
+<tr>
+<td align="left">-x 文件名</td>
+<td align="left">如果文件存在且可执行则为真</td>
+</tr>
+<tr>
+<td align="left">-s 文件名</td>
+<td align="left">如果文件存在且至少有一个字符则为真</td>
+</tr>
+<tr>
+<td align="left">-d 文件名</td>
+<td align="left">如果文件存在且为目录则为真</td>
+</tr>
+<tr>
+<td align="left">-f 文件名</td>
+<td align="left">如果文件存在且为普通文件则为真</td>
+</tr>
+<tr>
+<td align="left">-c 文件名</td>
+<td align="left">如果文件存在且为字符型特殊文件则为真</td>
+</tr>
+<tr>
+<td align="left">-b 文件名</td>
+<td align="left">如果文件存在且为块特殊文件则为真</td>
+</tr>
+</tbody></table>
+<h3 id="Shell关系运算符"><a href="#Shell关系运算符" class="headerlink" title="Shell关系运算符"></a>Shell关系运算符</h3><table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">说明</th>
+<th align="left">举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-eq</td>
+<td align="left">检测两个数是否相等，相等返回 true。</td>
+<td align="left">[ $a -eq $b ] 返回 false。</td>
+</tr>
+<tr>
+<td align="left">-ne</td>
+<td align="left">检测两个数是否不相等，不相等返回 true。</td>
+<td align="left">[ $a -ne $b ] 返回 true。</td>
+</tr>
+<tr>
+<td align="left">-gt</td>
+<td align="left">检测左边的数是否大于右边的，如果是，则返回 true。</td>
+<td align="left">[ $a -gt $b ] 返回 false。</td>
+</tr>
+<tr>
+<td align="left">-lt</td>
+<td align="left">检测左边的数是否小于右边的，如果是，则返回 true。</td>
+<td align="left">[ $a -lt $b ] 返回 true。</td>
+</tr>
+<tr>
+<td align="left">-ge</td>
+<td align="left">检测左边的数是否大于等于右边的，如果是，则返回 true。</td>
+<td align="left">[ $a -ge $b ] 返回 false。</td>
+</tr>
+<tr>
+<td align="left">-le</td>
+<td align="left">检测左边的数是否小于等于右边的，如果是，则返回 true。</td>
+<td align="left">[ $a -le $b ] 返回 true。</td>
+</tr>
+</tbody></table>
+<h3 id="Shell函数参数"><a href="#Shell函数参数" class="headerlink" title="Shell函数参数"></a>Shell函数参数</h3><table>
+<thead>
+<tr>
+<th align="left">参数处理</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">$#</td>
+<td align="left">传递到脚本或函数的参数个数</td>
+</tr>
+<tr>
+<td align="left">$*</td>
+<td align="left">以一个单字符串显示所有向脚本传递的参数</td>
+</tr>
+<tr>
+<td align="left">$$</td>
+<td align="left">脚本运行的当前进程ID号</td>
+</tr>
+<tr>
+<td align="left">$!</td>
+<td align="left">后台运行的最后一个进程的ID号</td>
+</tr>
+<tr>
+<td align="left">$@</td>
+<td align="left">与$*相同，但是使用时加引号，并在引号中返回每个参数。</td>
+</tr>
+<tr>
+<td align="left">$-</td>
+<td align="left">显示Shell使用的当前选项，与set命令功能相同。</td>
+</tr>
+<tr>
+<td align="left">$?</td>
+<td align="left">显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/git%E5%85%A5%E9%97%A8/" rel="prev" title="git入门">
+                  <i class="fa fa-angle-left"></i> git入门
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/vim%E5%85%A5%E9%97%A8/" rel="next" title="vim入门">
+                  vim入门 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="面向过程的系统设计总体设计 首先研究、分析和审查数据流图。从软件的需求规格说明中弄清数 据流加工的过程，对于发现的问题及时解决。 然后根据数据流图决定问题的类型。数据处理问题典型的类型有 两种：变换型和事务型。针对两种不同的类型分别进行分析处理。 由数据流图推导出系统的初始结构图。  利用一些启发式原则来改进系统的初始结构图，直到得到符合要 求的结构图为止。 修改和补充数据词典。  系统结构图模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程7-面向过程的系统设计">
+<meta property="og:url" content="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B7-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="面向过程的系统设计总体设计 首先研究、分析和审查数据流图。从软件的需求规格说明中弄清数 据流加工的过程，对于发现的问题及时解决。 然后根据数据流图决定问题的类型。数据处理问题典型的类型有 两种：变换型和事务型。针对两种不同的类型分别进行分析处理。 由数据流图推导出系统的初始结构图。  利用一些启发式原则来改进系统的初始结构图，直到得到符合要 求的结构图为止。 修改和补充数据词典。  系统结构图模块">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241028110021277.png">
+<meta property="og:image" content="http://example.com/assets/image-20241028110206123.png">
+<meta property="og:image" content="http://example.com/assets/image-20241028110631858.png">
+<meta property="og:image" content="http://example.com/assets/image-20241028111115247.png">
+<meta property="og:image" content="http://example.com/assets/image-20241028111128225.png">
+<meta property="og:image" content="http://example.com/assets/image-20241028111737767.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.510Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.977Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241028110021277.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B7-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B7-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/","path":"2025/05/01/软件工程7-面向过程的系统设计/","title":"软件工程7-面向过程的系统设计"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>软件工程7-面向过程的系统设计 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.</span> <span class="nav-text">面向过程的系统设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.1.</span> <span class="nav-text">总体设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="nav-number">1.1.1.</span> <span class="nav-text">系统结构图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E6%8D%A2%E5%88%86%E6%9E%90"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">变换分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E5%88%86%E6%9E%90"><span class="nav-number">1.1.2.</span> <span class="nav-text">事务分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90"><span class="nav-number">1.1.3.</span> <span class="nav-text">混合结构分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.2.</span> <span class="nav-text">组件设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.2.1.</span> <span class="nav-text">结构化组件设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">1.2.2.</span> <span class="nav-text">流程图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%AC%A6%E5%8F%B7"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">基本符号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E5%8E%9F%E5%88%99"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">绘制原则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%92%E5%9B%BE%EF%BC%88N-S%E5%9B%BE%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">盒图（N-S图）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E8%A1%A8"><span class="nav-number">1.2.4.</span> <span class="nav-text">决策表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PDL-%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">1.2.5.</span> <span class="nav-text">PDL(伪代码)</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B7-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="软件工程7-面向过程的系统设计 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          软件工程7-面向过程的系统设计
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="面向过程的系统设计"><a href="#面向过程的系统设计" class="headerlink" title="面向过程的系统设计"></a>面向过程的系统设计</h1><h2 id="总体设计"><a href="#总体设计" class="headerlink" title="总体设计"></a>总体设计</h2><ul>
+<li>首先研究、分析和审查数据流图。从软件的需求规格说明中弄清数 据流加工的过程，对于发现的问题及时解决。</li>
+<li>然后根据数据流图决定问题的类型。数据处理问题典型的类型有 两种：<strong>变换型和事务型</strong>。针对两种不同的类型分别进行分析处理。</li>
+<li>由数据流图推导出系统的初始结构图。 </li>
+<li>利用一些启发式原则来改进系统的初始结构图，直到得到符合要 求的结构图为止。</li>
+<li>修改和补充数据词典。</li>
+</ul>
+<h3 id="系统结构图"><a href="#系统结构图" class="headerlink" title="系统结构图"></a>系统结构图</h3><h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><ul>
+<li>传入模块：从下属模块取得数据，经过某些处理，再将其传送给上级模块。 它传送的数据流叫做逻辑输入数据流。</li>
+<li>传出模块：从上级模块获得数据，进行某些处理，再将其传送给下属模块。 它传送的数据流叫做逻辑输出数据流。</li>
+<li>变换模块：它从上级模块取得数据，进行特定的处理，转换成其它形式，再 传送回上级模块。它加工的数据流叫做变换数据流。</li>
+<li>协调模块：对所有下属模块进行协调和管理的模块。</li>
+</ul>
+<p><img src="/assets/image-20241028110021277.png" alt="image-20241028110021277"></p>
+<h4 id="变换分析"><a href="#变换分析" class="headerlink" title="变换分析"></a>变换分析</h4><p>变换型数据处理问题的工作过程大致分为三步，即<strong>取得数据，变换数据和给出数据</strong>。 </p>
+<p>相应于取得数据、变换数据、给出数据，变换型系统结构图由输入、中心变换和输出等三部分组成。</p>
+<p> 变换分析方法由以下四步组成： </p>
+<ol>
+<li>重画数据流图；</li>
+<li>区分有效（逻辑）输入、有效（逻辑） 输出和中心变换部分；</li>
+<li>进行一级分解，设计上层模块；</li>
+<li>进行二级分解，设计输入、输出和中心 变换部分的中、下层模块。</li>
+</ol>
+<p>注意：</p>
+<ul>
+<li>在选择模块设计的次序时，必须对 一个模块的全部直接下属模块都设计完 成之后，才能转向另一个模块的下层模 块的设计；</li>
+<li>在设计下层模块时，应考虑模块的 耦合和内聚问题，以提高初始结构图的 质量。</li>
+<li>使用“黑箱”技术: 在设计当前模块时，先把这个模块的所有下层模块定义成“黑 箱”，在设计中利用它们时，暂时不考虑其内部结构和实现。在这一步定义好的“黑 箱”，在下一步就可以对它们进行设计和加工。这样，又会导致更多的“黑箱”。最 后，全部“黑箱”的内容和结构应完全被确定。</li>
+<li>在模块划分时，一个模块的直接下属模块一般在5个左右。如果直接下属模块超过 10个，可设立中间层次。</li>
+<li>如果出现了以下情况，就停止模块的功能分解： <ul>
+<li>模块不能再细分为明显的子任务；</li>
+<li>分解成用户提供的模块或程序库的子程序；</li>
+<li>模块的界面是输入／输出设备传送的信息；</li>
+<li>模块不宜再分解得过小。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/image-20241028110206123.png" alt="image-20241028110206123"></p>
+<h3 id="事务分析"><a href="#事务分析" class="headerlink" title="事务分析"></a>事务分析</h3><p>接受一项事务，根据事务处理的特点和性质，选择分派一个适当的处理单元，然后给出结果。 </p>
+<p>在事务型系统结构图中，事务中心模块按所接受的事务 的类型，选择某一事务处理模块执行。各事务处理模块 并列。每个事务处理模块可能要调用若干个操作模块， 而操作模块又可能调用若干个细节模块。</p>
+<p> 在很多软件应用中，存在某种作业 数据流，它可以引发一个或多个处 理，这些处理能够完成该作业要求 的功能。这种数据流就叫做事务。 </p>
+<p>与变换分析一样，事务分析也是从 分析数据流图开始，自顶向下，逐 步分解，建立系统结构图。</p>
+<p>过程：</p>
+<ol>
+<li>识别事务源：利用数据流图和数据词典，从问题定义和需求分析的结果中，找出各种需要处理的事 务。通常，事务来自物理输入装置。有时，设计人员还必须区别系统的输入、中心加 工和输出中产生的事务。</li>
+<li>规定适当的事务型结构：在确定了该数据流图具有事务型特征之后，根据模块划分理论，建立适当的事务型结 构。</li>
+<li>识别各种事务和它们定义的操作：从问题定义和需求分析中找出的事务及其操作所必需的全部信息，对于系统内部产生 的事务，必须仔细地定义它们的操作。</li>
+<li>注意利用公用模块 在事务分析的过程中，如果不同事务的一些中间模块可由具有类似的语法和语义的若 干个低层模块组成，则可以把这些低层模块构造成公用模块</li>
+<li>对每一事务，或对联系密切的一组事务，建立一个事务处理模块；如果发现在系 统中有类似的事务，可以把它们组成一个事务处理模块；</li>
+<li>对事务处理模块规定它们全部的下层操作模块</li>
+<li>对操作模块规定它们的全部细节模块</li>
+</ol>
+<p><img src="/assets/image-20241028110631858.png" alt="image-20241028110631858"></p>
+<h3 id="混合结构分析"><a href="#混合结构分析" class="headerlink" title="混合结构分析"></a>混合结构分析</h3><p>变换分析是软件系统结构设计的主要方法。</p>
+<p>一般，一个大型的软件系统是变换型结构和事务型结构的混合结构。 </p>
+<p>所以，我们通常利用以变换分析为主、事务分析为辅的方式进行软件结构设计</p>
+<h2 id="组件设计"><a href="#组件设计" class="headerlink" title="组件设计"></a>组件设计</h2><h3 id="结构化组件设计"><a href="#结构化组件设计" class="headerlink" title="结构化组件设计"></a>结构化组件设计</h3><p>组件级设计也称为过程设计，位于数据设计、体系结构设计和接口设计完成之后；</p>
+<p>任何程序总可以用三种结构化的构成元素来设计和实现</p>
+<ul>
+<li>顺序：任何算法规约中的核心处理步骤</li>
+<li>条件：允许根据逻辑情况选择处理的方式</li>
+<li>重复：提供了循环</li>
+</ul>
+<p>详细设计工具可以分为以下三类：</p>
+<ul>
+<li>图形设计符号：流程图、盒图等 </li>
+<li>表格设计符号：决策表等 </li>
+<li>程序设计语言：PDL等</li>
+</ul>
+<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p>利用各种方块图形、线条及箭头等符号来表达解决问题的步骤及进行的顺序；</p>
+<p>流程图是算法的一种表示方式。 </p>
+<p>标准作业流程是企业界常用的一种作业方法，其目的在使每一项作业流程均能清楚呈现，任何人只要看 到流程图，便能一目了然，有助于相关作业人员对整体工作流程的掌握。  </p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>所有流程一目了然，工作人员能掌握全局。</li>
+<li>更换人手时，按图索骥，容易上手。</li>
+<li>所有流程在绘制时，很容易发现疏失之处，可适时予以调整更正，使各项作业更为 严谨。</li>
+</ul>
+<h4 id="基本符号"><a href="#基本符号" class="headerlink" title="基本符号"></a>基本符号</h4><p><img src="/assets/image-20241028111115247.png" alt="image-20241028111115247"></p>
+<p><img src="/assets/image-20241028111128225.png" alt="image-20241028111128225"></p>
+<h4 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h4><ul>
+<li>顺序结构：处理程序顺序进行</li>
+<li>选择结构：包括0二元选择，多重选择，流程依据某些条件，依条件是否成立，分别进行不同处理程序。</li>
+<li>循环结构<ul>
+<li>while-do结构，依据条件是否成立，决定执行的情况。当条件 成立时，不断重复执行处理程序，直到停止执行的条 件成立后，即离开重复执行，至下一个流程。</li>
+<li>do-while结构，：重复执行处理程序，直到条件变成假（false）为止。</li>
+</ul>
+</li>
+</ul>
+<h4 id="绘制原则"><a href="#绘制原则" class="headerlink" title="绘制原则"></a>绘制原则</h4><ul>
+<li>各项步骤有选择或决策结果，如“可&#x2F;否”、“通过&#x2F;不通过”或其他相对文字时，请检查校正流程是否 有遗漏，以避免悬而未决的状况。</li>
+<li>流程图符号绘制排列顺序，为由上而下，由左而右。 </li>
+<li>处理程序可用阿拉伯数字，从1开始，依处理程序排列顺序编号，并以文字依处理程序功能命名。</li>
+<li>相同流程图符号宜大小一致。</li>
+<li>路径符号宜避免互相交叉。</li>
+<li>同一路径符号的指示箭头应只有一个。</li>
+<li>开始符号在流程图中只能出现一次，但结束符号则不限。若流程图能一目了然，则开始符号和结束符号 可省略。 </li>
+<li>选择结构与重复结构的选择或决策条件，文字叙述应简明清晰，路径加注“是”、“否”或其它相对性 文字指示说明。 </li>
+<li>流程图中若有参考到其他已定义流程，可使用已定义处理程序符号，不必重复绘制。</li>
+<li>流程图若一页绘制不下，可以使用分级分页绘制方式，并在处理程序编号上表示其级别</li>
+</ul>
+<h3 id="盒图（N-S图）"><a href="#盒图（N-S图）" class="headerlink" title="盒图（N-S图）"></a>盒图（N-S图）</h3><p>五种基本控制结构有五种图形构件表示：</p>
+<p><img src="/assets/image-20241028111737767.png" alt="image-20241028111737767"></p>
+<h3 id="决策表"><a href="#决策表" class="headerlink" title="决策表"></a>决策表</h3><ul>
+<li>判定表用于表示程序的静态逻辑 </li>
+<li>在判定表中的条件部分给出所有的两分支判断的列表，动作部分给出相应的处理</li>
+<li>要求将程序流程图中的多分支判断都改成两分支判断</li>
+</ul>
+<h3 id="PDL-伪代码"><a href="#PDL-伪代码" class="headerlink" title="PDL(伪代码)"></a>PDL(伪代码)</h3><p> PDL是一种用于描述功能模块的算法设计和加工细节的语言，称为程序设计语言。它是一种伪码。 </p>
+<p>伪码的语法规则分为“外语法”和“内语法”。 </p>
+<ul>
+<li>PDL具有严格的关键字外语法，用于定义控制结构和数据结构</li>
+<li>同时它的表示实际 操作和条件的内语法又是灵活自由的，可使用自然语言的词汇。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B6-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="prev" title="软件工程6-面向对象的系统设计">
+                  <i class="fa fa-angle-left"></i> 软件工程6-面向对象的系统设计
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B8-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/" rel="next" title="软件工程8-软件测试概论">
+                  软件工程8-软件测试概论 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

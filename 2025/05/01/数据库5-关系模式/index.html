@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="关系模式关系数据模型 关系实例 关系实例由命名的若干列和行的表 行也称为元组 元组的数目成为基数 列一般需要命名   关系模式 关系名R，属性列表U，域D，属性到域的映射DOM，属性约束F 可以用五元组$R(U,D,DOM,F)$表示，也可以简单地用三元组$R(U,F)$，二元组$R(U)$表示； 关系必须是规范化的 1NF：关系的每个分量必须是不可分的（不允许表中有表）； 2NF，3NF，BCN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库5-关系模式">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%935-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="关系模式关系数据模型 关系实例 关系实例由命名的若干列和行的表 行也称为元组 元组的数目成为基数 列一般需要命名   关系模式 关系名R，属性列表U，域D，属性到域的映射DOM，属性约束F 可以用五元组$R(U,D,DOM,F)$表示，也可以简单地用三元组$R(U,F)$，二元组$R(U)$表示； 关系必须是规范化的 1NF：关系的每个分量必须是不可分的（不允许表中有表）； 2NF，3NF，BCN">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.416Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.714Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%935-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%935-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F/","path":"2025/05/01/数据库5-关系模式/","title":"数据库5-关系模式"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据库5-关系模式 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">关系模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">关系数据模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.1.1.</span> <span class="nav-text">关系数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E7%9A%84%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="nav-number">1.1.2.</span> <span class="nav-text">关系的三要素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">关系操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BA%A6%E6%9D%9F"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">数据约束</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%935-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据库5-关系模式 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库5-关系模式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h1><h2 id="关系数据模型"><a href="#关系数据模型" class="headerlink" title="关系数据模型"></a>关系数据模型</h2><ul>
+<li>关系实例<ul>
+<li>关系实例由命名的若干列和行的表</li>
+<li>行也称为元组</li>
+<li>元组的数目成为基数</li>
+<li>列一般需要命名</li>
+</ul>
+</li>
+<li>关系模式<ul>
+<li>关系名R，属性列表U，域D，属性到域的映射DOM，属性约束F</li>
+<li>可以用五元组$R(U,D,DOM,F)$表示，也可以简单地用三元组$R(U,F)$，二元组$R(U)$表示；</li>
+<li>关系必须是规范化的<ul>
+<li>1NF：关系的每个分量必须是不可分的（不允许表中有表）；</li>
+<li>2NF，3NF，BCNF：更高级的设计模式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>优点：理论严格，线性结构简单，数据独立性，安全性和完整性；</li>
+<li>缺点：对现实世界表达能力弱，存取对用户透明，查询效率不如NoSQL，只有固定的操作集，不能很好地支持商业规则；</li>
+</ul>
+<h3 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h3><p>关系数据库是 <strong>关系</strong>的有限集合；</p>
+<ul>
+<li>数据库模式：关系模式的集合；</li>
+<li>数据库实例：对应关系实例的集合；</li>
+</ul>
+<p>关系：</p>
+<ul>
+<li><p>关系是笛卡尔积的一个有意义的子集，有对应的关系名；</p>
+</li>
+<li><p>一个关系是一张 <strong>没有重复行</strong>，<strong>重复列</strong> 的二维表；</p>
+<ul>
+<li>实体本身的数据；</li>
+<li>实体之间的联系；</li>
+</ul>
+</li>
+<li><p>元组： 表中的一行，表示一个实体</p>
+<p>属性：表中的一列，有属性名</p>
+<p>域：属性的取值范围</p>
+<p>分量：元组中的属性值</p>
+</li>
+</ul>
+<p>以下是有关术语理论和实践不同的表述：</p>
+<table>
+<thead>
+<tr>
+<th>理论</th>
+<th>实现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>关系</td>
+<td>表</td>
+</tr>
+<tr>
+<td>元组</td>
+<td>记录</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>字段</td>
+</tr>
+<tr>
+<td>分量</td>
+<td>单元格</td>
+</tr>
+</tbody></table>
+<h3 id="关系的三要素"><a href="#关系的三要素" class="headerlink" title="关系的三要素"></a>关系的三要素</h3><ol>
+<li>数据结构</li>
+<li>关系操作</li>
+<li>数据约束</li>
+</ol>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><ol>
+<li><strong>键</strong><ul>
+<li>唯一区分不同元组的属性；</li>
+<li>又称关键字，码；</li>
+</ul>
+</li>
+<li><strong>候选键</strong><ul>
+<li>在关系中能唯一区分确定不同元组的属性；</li>
+<li>包括在候选键的属性称为主属性；</li>
+<li>不包括在候选键的属性称为非主属性；</li>
+</ul>
+</li>
+<li><strong>主键</strong><ul>
+<li>当多个候选键存在时，选定一个作为主键；</li>
+<li>每个关系中，主键是唯一的；</li>
+</ul>
+</li>
+<li><strong>外键</strong><ul>
+<li>在关系中并非键，但在另一个关系中的主键；</li>
+</ul>
+</li>
+</ol>
+<h4 id="关系操作"><a href="#关系操作" class="headerlink" title="关系操作"></a>关系操作</h4><p>关系的操作：集合操作，包括查询，投影，连接，除，并，交，差</p>
+<h4 id="数据约束"><a href="#数据约束" class="headerlink" title="数据约束"></a>数据约束</h4><p>关系的完整性规则：对关系的某种约束条件，保证数据库值的数据的<strong>正确性和一致性</strong>；</p>
+<ul>
+<li><strong>实体完整性</strong>：主键非空；</li>
+<li><strong>参照完整性</strong>：外键要么为空值，要么来自于被参照关系表中的某个原则的主键值；</li>
+<li><strong>用户定义的完整性</strong>：各种商业规则</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%934-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%BC%8F/" rel="prev" title="数据库4-数据模式">
+                  <i class="fa fa-angle-left"></i> 数据库4-数据模式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%936-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%90%86%E8%AE%BA/" rel="next" title="数据库6-关系代数理论">
+                  数据库6-关系代数理论 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

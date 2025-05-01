@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="人工神经网络(ANN)概念人工神经网络（ANN，Artificial Neural Networks）是在人类对大脑神经网络认识理解的基础上，人工构造的能够实现某种功能的神经网络。  它是理论化的人脑神经网络的数学模型，是基于模仿大脑神经网络结构和功能而建立起来的一种信息处理系统。 神经网络结构和工作机理基本上是以人脑的组织结构和活动规律为背景的，它反映了脑的某些基本特征，但并不是要对人脑部分的真">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人工神经网络(ANN)">
+<meta property="og:url" content="http://example.com/2025/05/01/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C(ANN)/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="人工神经网络(ANN)概念人工神经网络（ANN，Artificial Neural Networks）是在人类对大脑神经网络认识理解的基础上，人工构造的能够实现某种功能的神经网络。  它是理论化的人脑神经网络的数学模型，是基于模仿大脑神经网络结构和功能而建立起来的一种信息处理系统。 神经网络结构和工作机理基本上是以人脑的组织结构和活动规律为背景的，它反映了脑的某些基本特征，但并不是要对人脑部分的真">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528092937689.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528092737355.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614075201314.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614182017411.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528094010804.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528102540797.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528110628177.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614184831358.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614190204258.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614190230471.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614191012564.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614191837063.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614192112304.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614192147098.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614192252821.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614192320598.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614192636736.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614192651525.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614192658610.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614193002529.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614193236611.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614193558912.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.351Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.400Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528092937689.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C(ANN)/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C(ANN)/","path":"2025/05/01/人工神经网络(ANN)/","title":"人工神经网络(ANN)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>人工神经网络(ANN) | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-ANN"><span class="nav-number">1.</span> <span class="nav-text">人工神经网络(ANN)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.0.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.0.2.</span> <span class="nav-text">激活函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#M-P%E7%A5%9E%E7%BB%8F%E5%85%83%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.0.3.</span> <span class="nav-text">M-P神经元模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA%EF%BC%88Multi-layer-Perceptron-MLP%EF%BC%89%EF%BC%88%E5%89%8D%E9%A6%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%8CFeedforward-Neural-Network-FNN%EF%BC%89"><span class="nav-number">1.0.4.</span> <span class="nav-text">多层感知机（Multi-layer Perceptron, MLP）（前馈神经网络，Feedforward Neural Network, FNN）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BP-%E8%AF%AF%E5%B7%AE%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD-%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.5.</span> <span class="nav-text">BP(误差反向传播)算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88Convolutional-Neural-Network-CNN%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">卷积神经网络（Convolutional Neural Network, CNN）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88Recurrent-Neural-Network%EF%BC%8CRNN%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">递归神经网络（Recurrent Neural Network，RNN）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89"><span class="nav-number">1.3.</span> <span class="nav-text">计算机视觉</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C(ANN)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="人工神经网络(ANN) | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          人工神经网络(ANN)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="人工神经网络-ANN"><a href="#人工神经网络-ANN" class="headerlink" title="人工神经网络(ANN)"></a>人工神经网络(ANN)</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>人工神经网络（ANN，Artificial Neural Networks）是在人类对大脑神经网络认识理解的基础上，人工构造的能够实现某种功能的神经网络。</p>
+<p> 它是理论化的人脑神经网络的数学模型，是基于模仿大脑神经网络结构和功能而建立起来的一种信息处理系统。</p>
+<p>神经网络结构和工作机理基本上是以人脑的组织结构和活动规律为背景的，它反映了脑的某些基本特征，但并不是要对人脑部分的真正实现，可以说它是某种抽象、简化或模仿。</p>
+<p>  如果将大量功能简单的形式神经元通过一定的拓扑结构组织起来，构成群体并行分布式处理的计算结构，那么这种结构就是人工神经网络，在不引起混淆的情况下，统称为神经网络。</p>
+<p>ANN有三大要素如下：</p>
+<ul>
+<li>神经元的激活规则：主要是指神经元输入到输出之间的映射关系，一般为非线性函数</li>
+<li>网络的拓扑结构：不同神经元之间的连接关系</li>
+<li>学习算法：通过训练数据来学习神经网络的参数</li>
+</ul>
+<h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><p>三种形式：阈值型，S型，伪线性型</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528092937689.png" alt="image-20240528092937689"></p>
+<p>典型的S型函数可取为连续光滑可导的Sigmoid函数：$f(x)&#x3D;\frac{1}{1+e^{-x}}$</p>
+<p>它有一个良好的性质：$f’\left(x\right)&#x3D;f\left(x\right)\left(1-f\left(x\right)\right)$</p>
+<h3 id="M-P神经元模型"><a href="#M-P神经元模型" class="headerlink" title="M-P神经元模型"></a>M-P神经元模型</h3><p>我们将其抽象为多输入单输出得非线性阈值器件，传递函数如下：<br>$$<br>y&#x3D;f\left(\sum_{i&#x3D;1}^nw_ix_i-\theta\right)<br>$$<br>第$i$个突触连接强度为$\omega_i$，$\theta$为神经元阈值，$f$为激活函数</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528092737355.png" alt="image-20240528092737355"></p>
+<h3 id="多层感知机（Multi-layer-Perceptron-MLP）（前馈神经网络，Feedforward-Neural-Network-FNN）"><a href="#多层感知机（Multi-layer-Perceptron-MLP）（前馈神经网络，Feedforward-Neural-Network-FNN）" class="headerlink" title="多层感知机（Multi-layer Perceptron, MLP）（前馈神经网络，Feedforward Neural Network, FNN）"></a>多层感知机（Multi-layer Perceptron, MLP）（前馈神经网络，Feedforward Neural Network, FNN）</h3><p>设置学习率$\eta$,将阈值看作固定输入-1的dummy node；</p>
+<p>将对权重和阈值的学习统一看成权重的调整，迭代过程为：$\omega_i \gets \omega_i+ \eta(y-\hat y)x_i$​;</p>
+<p>学习率$\eta \in (0,1)$控制着算法每一轮迭代中的更新步长，若太大则容易振荡，太小则收敛速度又会过慢.</p>
+<p>但是要解决复杂问题，单层神经网络是不够用的，因此引入<strong>隐层和多层前反馈神经网络</strong>：其中输入层神经元接收外界输入，隐层与输出层神经元对信号进行<br>加工，最终结果由输出层神经元输出；</p>
+<ul>
+<li><p>各神经元分别属于<strong>不同的层</strong>，层内无连接</p>
+</li>
+<li><p>相邻两层之间的神经元全部<strong>两两连接</strong></p>
+</li>
+<li><p>整个网络中<strong>无反馈</strong>，信号从输入层向输出层<strong>单向传播</strong>，可用一个有向无环图表示</p>
+</li>
+</ul>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614075201314.png" alt="image-20240614075201314"></p>
+<p>根据通用近似定理，对于具有线性输出层和至少一个使用“挤压”性质的激活函数的隐藏层组成的前馈神经网络，<strong>只要其隐藏层神经元的数量足够，它可以以任意的精度来近似任何从一个定义在实数空间中的有界闭集函数</strong>。因此神经网络经常被当作一个万能函数使用，进行复杂的特征转换，或者逼近一个复杂的条件分布；</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614182017411.png" alt="image-20240614182017411"></p>
+<p>前馈神经网络如何学习分类器？</p>
+<ul>
+<li>若$g$​为Logistic回归，那么Logistic回归分类器可以看成神经网络的最后一层；</li>
+<li>如果使用softmax回归分类器，相当于网络最后一层设置 C 个神经元，其输出经过softmax函数进行归一化后可以作为每个类的后验概率，$$\hat{\mathbf{y}}&#x3D;\mathrm{softmax}(\mathbf{z}^{(L)})$$</li>
+<li>采用交叉熵损失函数，对于样本(x, y)，其损失函数为$\mathcal{L}(\mathbf{y},\hat{\mathbf{y}})&#x3D;-\mathbf{y}^\mathrm{T}\log\hat{\mathbf{y}}$</li>
+</ul>
+<p>神经网络能够通过训练，改变其内部表示，使<strong>输入－输出变换朝好的方向发展</strong>。训练实质是用同一个训练集的样本反复作用于网络，网络按照一定的训练规则（学习规则或学习算法），<strong>自动调节神经元之间的连接强度或拓扑结构</strong>，当网络的实际输出满足期望的要求，或者趋于稳定，这认为训练圆满结束。神经网络的学习成果蕴含在权值和阈值当中；</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528094010804.png" alt="image-20240528094010804"></p>
+<h3 id="BP-误差反向传播-算法"><a href="#BP-误差反向传播-算法" class="headerlink" title="BP(误差反向传播)算法"></a>BP(误差反向传播)算法</h3><p>对于一个BP网络（BP算法训练的多层前反馈神经网络），参数属性如下：</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528102540797.png" alt="image-20240528102540797"></p>
+<p>连续不断地在相对于误差函数斜率下降的方向上计算网络权值和偏差的变化而逐渐逼近目标的。每一次权值和偏差的变化都与网络误差的影响成正比，并以<strong>反向传播</strong>的方式传递到每一层的。</p>
+<p>对于训练样例$(\mathbf x_k,\mathbf y_k)$,ANN的预测结果为$\hat{\mathbf y}_j^k&#x3D;(\hat{y}_1^k,\hat{y}_2^k,..,\hat{y}_l^k)$</p>
+<p>BP算法的目标是最小化均方误差：<br>$$<br>E_k&#x3D;\frac12\sum_{j&#x3D;1}^l(\hat{y}<em>j^k-y_j^k)^2<br>$$<br>BP算法的策略是基于梯度下降的，也即，以目标的负梯度方向对参数进行调整：<br>$$<br>\Delta w</em>{hj}&#x3D;-\eta\frac{\partial E_k}{\partial w_{hj}}<br>$$<br>数学上：$g_i&#x3D;-\frac{\partial E_k}{\partial\hat{y}<em>j^k}\cdot\frac{\partial\hat{y}<em>j^k}{\partial\beta_j}&#x3D;\hat{y}</em>{j}^{k}(1-\hat{y}</em>{j}^{k})(y_{j}^{k}-\hat{y}_{j}^{k}) $</p>
+<p>得到BP算法的迭代方程：<br>$$<br>\begin{aligned}<br>\Delta w_{hj}&#x3D;&amp;\quad\eta g_jb_h\<br>\Delta\theta_{j} &#x3D;&amp;-\eta g_j\<br>\Delta v_{ih} &#x3D;&amp;\quad\eta e_hx_i\<br>\Delta\gamma_{h} &#x3D;&amp;-\eta e_h<br>\end{aligned}<br>$$<br><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528110628177.png" alt="image-20240528110628177"></p>
+<p>如果取损失函数为结构化风险函数：<br>$$<br>\begin{aligned}\mathcal{R}(W,\mathbf{b})&#x3D;\frac{1}{N}\sum_{n&#x3D;1}^{N}\mathcal{L}(\mathbf{y}^{(n)},\hat{\mathbf{y}}^{(n)})+\frac{1}{2}\lambda|W|_F^2\end{aligned}<br>$$<br>那么梯度下降策略可表示为：<br>$$<br>W^{(l)}\leftarrow W^{(l)}-\alpha\frac{\partial\mathcal{R}(W,\mathbf{b})}{\partial W^{(l)}}\<br>\mathbf{b}^{(l)}\leftarrow\mathbf{b}^{(l)}-\alpha\frac{\partial\mathcal{R}(W,\mathbf{b})}{\partial\mathbf{b}^{(l)}}<br>$$<br>前馈神经网络信息向前（单向）传递，层内节点之间并不连接，适合于处理静态数据分析，如回归、分类等任务；</p>
+<p>对于全连接前馈神经网络来说，有不少缺点：</p>
+<ol>
+<li>容易过拟合；</li>
+<li>训练比较慢，可解释性差;</li>
+<li>权重矩阵参数非常多，不满足局部不变性特征；</li>
+</ol>
+<h2 id="卷积神经网络（Convolutional-Neural-Network-CNN）"><a href="#卷积神经网络（Convolutional-Neural-Network-CNN）" class="headerlink" title="卷积神经网络（Convolutional Neural Network, CNN）"></a>卷积神经网络（Convolutional Neural Network, CNN）</h2><p>卷积神经网络是受生物学上感受野（Receptive Field）的机制而提出的,在视觉神经系统中，一个神经元的感受野是指视网膜上的特定区域，只有这个区域内的刺激才能够激活该神经元;</p>
+<p>二维卷积：对于输入矩阵$A_{m\times m}$,核矩阵$B_{n\times n}$,步幅为$s$,卷积结果$R&#x3D;A*B$是一个阶为$(m-n)&#x2F;s+1$的方阵</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614184831358.png" alt="image-20240614184831358"></p>
+<p>二维卷积有两种不同的方式：</p>
+<ol>
+<li>有效卷积：没有padding</li>
+<li>相同卷积：输入和输出相同</li>
+</ol>
+<p>通常没有零填充的最优数量处于有效卷积和相同卷积中间的某个位置；</p>
+<p>以下是一个图像中的二维卷积的例子：</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614190204258.png" alt="image-20240614190204258"></p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614190230471.png" alt="image-20240614190230471"></p>
+<p>卷积神经网络是针对图像处理设计的特殊的网络结构，相对于前馈神经网络有以下特点：</p>
+<ol>
+<li>参数过多，计算效率低；</li>
+<li>忽略了图像的二维结构；</li>
+<li>依赖于空间上下文；</li>
+<li>不够鲁棒；</li>
+</ol>
+<p>因为卷积神经网络具有平移不变性，因此在图像处理上有独特的优势；</p>
+<p>卷积神经网络包括卷积层，池化层，和全连接层；</p>
+<ul>
+<li><p>卷积层：平移核计算内积；</p>
+</li>
+<li><p>池化层：池化函数使用某一位置的相邻输出的总体统计特征来代替网络在该位置的输出</p>
+<ul>
+<li><p>最大池化（Max Pooling）函数给出相邻矩形区域内的最大值</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614191012564.png" alt="image-20240614191012564"></p>
+</li>
+<li><p>其他常用的池化函数包括相邻矩形区域内的平均值、L2范数以及基于据中心像素距离的加权平均函数</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="递归神经网络（Recurrent-Neural-Network，RNN）"><a href="#递归神经网络（Recurrent-Neural-Network，RNN）" class="headerlink" title="递归神经网络（Recurrent Neural Network，RNN）"></a>递归神经网络（Recurrent Neural Network，RNN）</h2><p>反馈神经网络全部或者部分神经元可以接受来自其它神经元或自身信号的神经网络结构，其拓扑结构可以是网状的，也可以是具有一定层级的，反馈神经网络通常被视为一个动态系统，主要关心其随时间变化的动态过程</p>
+<p>RNN至少包含一个反馈链接的神经网络结构，特别适合处理时序数据，其基本结构如下所示：</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614191837063.png" alt="image-20240614191837063"></p>
+<p>RNN主要模拟的是人脑的记忆，来进行一个反馈的过程；</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614192112304.png" alt="image-20240614192112304"></p>
+<p>按时间顺序展开：</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614192147098.png" alt="image-20240614192147098"></p>
+<p>按时间顺序全节点展开：</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614192252821.png" alt="image-20240614192252821"></p>
+<p>按时间顺序展开（带延迟）</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614192320598.png" alt="image-20240614192320598"></p>
+<h2 id="计算机视觉"><a href="#计算机视觉" class="headerlink" title="计算机视觉"></a>计算机视觉</h2><p>计算机视觉主要研究的是给机器以“看”的能力，眼睛是人类最重要的传感器，超过一半的大脑都会参与视觉功能</p>
+<ul>
+<li><p>从数字化信息中提取信息、识别理解</p>
+</li>
+<li><p>计算机成像学：图像处理等底层视觉，如图像去噪、图像超分辨、图像增强、风格变换</p>
+</li>
+<li><p>图像理解：语义理解等高层视觉，如图像分类、目标检测、人脸识别、语义分割</p>
+</li>
+<li><p>三维视觉</p>
+</li>
+<li><p>视频理解</p>
+</li>
+</ul>
+<p>计算机视觉三大会议：CVPR、ICCV、ECCV</p>
+<p>图像表征说的是把图像用数学和信息的方式进行表达，有助于我们进行统一处理，于机器学习而言，我们需要构建一个映射函数（模型），以实现基于图像的各种计算机视觉应用；</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614192636736.png" alt="image-20240614192636736"></p>
+<p>图像分析：</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614192651525.png" alt="image-20240614192651525"></p>
+<p><strong>图像分类</strong>是根据图像的语义信息将不同类别图像区分开来，是计算机视觉中重要的基本问题，也是图像检测、图像分割、物体跟踪、行为分析等其他高层视觉任务的基础。图像分类在很多领域有广泛应用，包括安防领域的人脸识别和智能视频分析等，交通领域的交通场景识别，互联网领域基于内容的图像检索和相册自动归类，医学领域的图像识别等。</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614192658610.png" alt="image-20240614192658610"></p>
+<p>图像分类的基本流程为：图像数据-特征提取-分类器；</p>
+<p>什么是特征提取？</p>
+<p>从原始的输入的数据中提取有效的、非冗余的、具有代表性的特征。它通常是原始特征的重新组合，以减少数据的维度，提取或整理出有效的特征以提升后续模型的表示能力</p>
+<p>什么是好的特征？</p>
+<ul>
+<li><p>视觉数据复杂多变，同一类物体可能存在不同的形态</p>
+</li>
+<li><p>同一个物体在不同的角度和环境下数据差别也可能很大</p>
+</li>
+<li><p>可重复性，可区分性，准确性，有效性，鲁棒性（稳定性、不变性）</p>
+</li>
+</ul>
+<p>图像学习有多种办法，比如Bag-of-Words，End-to-end learning</p>
+<p>目标检测主要任务是在给定的图片中精确找到物体所在位置，并标注出物体的类别。其模型可以识别一张图片的多个物体，并可以定位出不同物体（给出边界框）</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614193002529.png" alt="image-20240614193002529"></p>
+<p>物体检测有多种办法：Sliding window</p>
+<p>目前主流的目标检测算法主要是基于<strong>深度学习模型</strong>，可以分成两大类：</p>
+<ol>
+<li>Two-stage检测算法，其将检测问题划分为两个阶段，首先产生候选区域（region proposals），然后对候选区域分类（一般还需要对位置精修），这类算法的典型代表是基于region proposal的R-CNN系算法，如R-CNN，Fast R-CNN，Faster R-CNN等</li>
+<li>One-stage检测算法，其不需要region proposal阶段，直接产生物体的类别概率和位置坐标值，比较典型的算法如YOLO、SSD等</li>
+</ol>
+<p>在目标检测中，进行分类和坐标回归之前，需要进行候选区域提取，selective search方法即是一种常用的提取候选区域的方法；</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614193236611.png" alt="image-20240614193236611"></p>
+<p> <strong>R-CNN</strong>是基于region proposal方法的目标检测算法系列开山之作，其先进行区域搜索，然后再对候选区域进行分类</p>
+<p>候选区域（Region Proposal）：基于Selective Search，利用图像中的纹理、边缘、颜色等信息，保证在选取较少窗口(几千甚至几百）的情况下保持较高的召回率（Recall）</p>
+<p>总体来看，R-CNN是非常直观的，就是把检测问题转化为了分类问题，并且采用了CNN模型进行分类，但是效果却很好</p>
+<p>R-CNN缺点：</p>
+<ol>
+<li>训练分为多个阶段，微调网络+训练SVM+训练边框回归器</li>
+<li>训练耗时，占用磁盘空间大：5000张图像产生几百G的特征文件</li>
+<li>速度慢: 使用GPU, VGG16模型处理一张图像需要47s</li>
+<li>测试速度慢：每个候选区域需要运行整个前向CNN计算</li>
+<li>SVM和bounding box回归是事后操作：在SVM和回归过程中CNN特征没有被学习更新</li>
+<li>输入图片的大小必须要固定（224x224、227x227等）</li>
+</ol>
+<p>R-CNN、Fast R-CNN、Faster R-CNN都是two-stage方法，这种方法都有一个共同的特征，即第一个阶段都要产生候选区域(region proposal)，之后再对候选区域进行分类和坐标回归等操作。虽然不同算法产生后选取区域的方法不尽相同，但是其目的都是一致的。</p>
+<p>但是two-stage方法有其固有缺点，即是第一阶段都要进行候选区域提取会消耗很多时间，使目标检测的耗时增加，效率降低。</p>
+<p>因此在此基础上，研究人员对目标检测方法进行了改进，提出了one-stage方法，可以直接对物体的坐标和类别进行回归而不需要进行显式的提取候选区域的过程。</p>
+<p>YOLO（You Only Look Once）是2016年提出一个全新的方法，一次性把一整张图片用到一个神经网络中去。网络把图片分成不同的区域，然后给出每个区域的边框预测和概率，并依据概率大小对所有边框分配权重。最后，设置阈值，只输出得分（概率值）超过阈值的检测结果</p>
+<p>YOLO的目标检测的流程：</p>
+<ul>
+<li>给个一个输入图像，resize图像到448x448，将图像划分成7x7的网格</li>
+<li>对于每个网格，我们都预测2个边框（包括每个边框是目标的置信度以及每个边框区域在多个类别上的概率）</li>
+<li>根据上一步可以预测出7<em>7</em>2个目标窗口，然后根据阈值去除可能性比较低的目标窗口，最后NMS去除冗余窗口即可</li>
+</ul>
+<p>对于每一个cell</p>
+<ul>
+<li>预测B个bounding boxes，每个bounding box有一个confidence score (objectness)</li>
+<li>只预测一个物体</li>
+<li>假设有C个类别，预测分别属于每个类别的概率</li>
+<li>对于PASCAL VOC 2007，有7x7 grid cells, 2 bounding boxes, 以及20个类别</li>
+</ul>
+<p>YOLO网络结构如右图。主要采用了AlexNet。卷积层主要用来提取特征，全连接层主要用来预测类别概率和坐标卷积层之后接了一个4096维的全连接层，然后后边又全连接到一个7<em>7</em>30维的张量上。7*7就是划分的网格数，在每个网格上预测目标两个可能的位置以及这个位置的目标置信度和类别，也就是每个网格预测两个目标，每个目标的信息有4维坐标信息(中心点坐标+长宽)，1个是目标的置信度，还有类别数20(VOC上20个类别)，总共就是(4+1)*2+20 &#x3D; 30维的向量</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614193558912.png" alt="image-20240614193558912"></p>
+<p>总的来看，YOLO具有较强的泛化能力</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Naive%20Bayes%E5%88%86%E7%B1%BB%E5%99%A8/" rel="prev" title="Naive Bayes分类器">
+                  <i class="fa fa-angle-left"></i> Naive Bayes分类器
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%88%86%E7%B1%BB(Classfication)%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/" rel="next" title="分类(Classfication)：前置知识">
+                  分类(Classfication)：前置知识 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

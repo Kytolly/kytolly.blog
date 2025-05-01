@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="PrefaceContentProblemSolution树状数组、线段树、主席树划分树二叉搜索树、$$Treap$$$$Splay$$树WBLTSBTAVL 树B 树，B+ 树替罪羊树Leafy Tree笛卡尔树红黑树、左偏红黑树手指树霍夫曼树$$Chtholly$$树ExampleRemark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构：树相关">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A%E6%A0%91%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="PrefaceContentProblemSolution树状数组、线段树、主席树划分树二叉搜索树、$$Treap$$$$Splay$$树WBLTSBTAVL 树B 树，B+ 树替罪羊树Leafy Tree笛卡尔树红黑树、左偏红黑树手指树霍夫曼树$$Chtholly$$树ExampleRemark">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.305Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.788Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A%E6%A0%91%E7%9B%B8%E5%85%B3/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A%E6%A0%91%E7%9B%B8%E5%85%B3/","path":"2025/05/01/数据结构：树相关/","title":"数据结构：树相关"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据结构：树相关 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Content"><span class="nav-number">2.</span> <span class="nav-text">Content</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem"><span class="nav-number">2.0.1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">2.0.2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E3%80%81%E7%BA%BF%E6%AE%B5%E6%A0%91%E3%80%81%E4%B8%BB%E5%B8%AD%E6%A0%91"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">树状数组、线段树、主席树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%92%E5%88%86%E6%A0%91"><span class="nav-number">2.0.2.2.</span> <span class="nav-text">划分树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E3%80%81-Treap"><span class="nav-number">2.0.2.3.</span> <span class="nav-text">二叉搜索树、$$Treap$$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Splay-%E6%A0%91"><span class="nav-number">2.0.2.4.</span> <span class="nav-text">$$Splay$$树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WBLT"><span class="nav-number">2.0.2.5.</span> <span class="nav-text">WBLT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SBT"><span class="nav-number">2.0.2.6.</span> <span class="nav-text">SBT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AVL-%E6%A0%91"><span class="nav-number">2.0.2.7.</span> <span class="nav-text">AVL 树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-%E6%A0%91%EF%BC%8CB-%E6%A0%91"><span class="nav-number">2.0.2.8.</span> <span class="nav-text">B 树，B+ 树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%BF%E7%BD%AA%E7%BE%8A%E6%A0%91"><span class="nav-number">2.0.2.9.</span> <span class="nav-text">替罪羊树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Leafy-Tree"><span class="nav-number">2.0.2.10.</span> <span class="nav-text">Leafy Tree</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91"><span class="nav-number">2.0.2.11.</span> <span class="nav-text">笛卡尔树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91%E3%80%81%E5%B7%A6%E5%81%8F%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="nav-number">2.0.2.12.</span> <span class="nav-text">红黑树、左偏红黑树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E6%8C%87%E6%A0%91"><span class="nav-number">2.0.2.13.</span> <span class="nav-text">手指树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91"><span class="nav-number">2.0.2.14.</span> <span class="nav-text">霍夫曼树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Chtholly-%E6%A0%91"><span class="nav-number">2.0.2.15.</span> <span class="nav-text">$$Chtholly$$树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">2.0.3.</span> <span class="nav-text">Example</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Remark"><span class="nav-number">3.</span> <span class="nav-text">Remark</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A%E6%A0%91%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据结构：树相关 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构：树相关
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h1><h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><h4 id="树状数组、线段树、主席树"><a href="#树状数组、线段树、主席树" class="headerlink" title="树状数组、线段树、主席树"></a>树状数组、线段树、主席树</h4><h4 id="划分树"><a href="#划分树" class="headerlink" title="划分树"></a>划分树</h4><h4 id="二叉搜索树、-Treap"><a href="#二叉搜索树、-Treap" class="headerlink" title="二叉搜索树、$$Treap$$"></a>二叉搜索树、$$Treap$$</h4><h4 id="Splay-树"><a href="#Splay-树" class="headerlink" title="$$Splay$$树"></a>$$Splay$$树</h4><h4 id="WBLT"><a href="#WBLT" class="headerlink" title="WBLT"></a>WBLT</h4><h4 id="SBT"><a href="#SBT" class="headerlink" title="SBT"></a>SBT</h4><h4 id="AVL-树"><a href="#AVL-树" class="headerlink" title="AVL 树"></a>AVL 树</h4><h4 id="B-树，B-树"><a href="#B-树，B-树" class="headerlink" title="B 树，B+ 树"></a>B 树，B+ 树</h4><h4 id="替罪羊树"><a href="#替罪羊树" class="headerlink" title="替罪羊树"></a>替罪羊树</h4><h4 id="Leafy-Tree"><a href="#Leafy-Tree" class="headerlink" title="Leafy Tree"></a>Leafy Tree</h4><h4 id="笛卡尔树"><a href="#笛卡尔树" class="headerlink" title="笛卡尔树"></a>笛卡尔树</h4><h4 id="红黑树、左偏红黑树"><a href="#红黑树、左偏红黑树" class="headerlink" title="红黑树、左偏红黑树"></a>红黑树、左偏红黑树</h4><h4 id="手指树"><a href="#手指树" class="headerlink" title="手指树"></a>手指树</h4><h4 id="霍夫曼树"><a href="#霍夫曼树" class="headerlink" title="霍夫曼树"></a>霍夫曼树</h4><h4 id="Chtholly-树"><a href="#Chtholly-树" class="headerlink" title="$$Chtholly$$树"></a>$$Chtholly$$树</h4><h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><h1 id="Remark"><a href="#Remark" class="headerlink" title="Remark"></a>Remark</h1>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/UESTC%202023%20Summer%20Training#9%20Div.2%E6%9A%91%E5%81%87%E9%9B%86%E8%AE%AD/" rel="prev" title="">
+                  <i class="fa fa-angle-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E8%B7%B3%E8%A1%A8%EF%BC%9A%E9%9D%99%E6%80%81%E5%8C%BA%E9%97%B4%E6%9C%80%E5%80%BC%E5%8A%A8%E6%80%81%E6%9F%A5%E8%AF%A2/" rel="next" title="跳表：静态区间最值动态查询">
+                  跳表：静态区间最值动态查询 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

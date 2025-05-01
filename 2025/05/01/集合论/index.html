@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="集合基础集合（set）由指定范围内的某些特定对象聚集在一起构成; 指定范围内的每一个对象称为这个集合的元素(element)。 通常用大写字母表示集合,用小写字母表示元素; 集合的三大特征：互异性，确定性，无序性； 描述集合的方法：  枚举法：$A＝{a，b，c，d}$ 隐式法（叙述法）:$P＝{x|P(x)}$ 归纳法 : 基础+归纳+极小性(指出集合的界限)； 递归指定：通过计算规则定义集合中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集合论">
+<meta property="og:url" content="http://example.com/2025/05/01/%E9%9B%86%E5%90%88%E8%AE%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="集合基础集合（set）由指定范围内的某些特定对象聚集在一起构成; 指定范围内的每一个对象称为这个集合的元素(element)。 通常用大写字母表示集合,用小写字母表示元素; 集合的三大特征：互异性，确定性，无序性； 描述集合的方法：  枚举法：$A＝{a，b，c，d}$ 隐式法（叙述法）:$P＝{x|P(x)}$ 归纳法 : 基础+归纳+极小性(指出集合的界限)； 递归指定：通过计算规则定义集合中">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.440Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:23.004Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E9%9B%86%E5%90%88%E8%AE%BA/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E9%9B%86%E5%90%88%E8%AE%BA/","path":"2025/05/01/集合论/","title":"集合论"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>集合论 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">集合基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">集合恒等式</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E9%9B%86%E5%90%88%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="集合论 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          集合论
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:23" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="集合基础"><a href="#集合基础" class="headerlink" title="集合基础"></a>集合基础</h2><p>集合（set）由指定范围内的某些特定对象聚集在一起构成;</p>
+<p>指定范围内的每一个对象称为这个集合的元素(element)。</p>
+<p>通常用大写字母表示集合,用小写字母表示元素;</p>
+<p>集合的三大特征：互异性，确定性，无序性；</p>
+<p>描述集合的方法：</p>
+<ul>
+<li>枚举法：$A＝{a，b，c，d}$</li>
+<li>隐式法（叙述法）:$P＝{x|P(x)}$</li>
+<li>归纳法 : 基础+归纳+极小性(指出集合的界限)；</li>
+<li>递归指定：通过计算规则定义集合中的元素</li>
+<li>文氏图：一般用平面上的圆形或方形表示一个集合，而集合中的元素用小圆点来表示。</li>
+</ul>
+<p>集合和元素的关系</p>
+<ul>
+<li>$a$属于集合$A$，记为$a\in A$;</li>
+<li>$a$不属于集合$A$，记为$a\in A$;</li>
+</ul>
+<p>不含任何元素的集合称作空集，记作$\varnothing$​;</p>
+<p>外延性原理：$A＝B$当且仅当$A$与$B$具有相同的元素，否则，$A\neq B$​。</p>
+<p>集合和集合的关系：</p>
+<ul>
+<li>包含关系$B\subseteq A$：$B\subseteq A$对任意$x$，如$x\in B$，则$x\in A$;</li>
+<li>相等：$B\subseteq A， B\subseteq A \iff A&#x3D;B$</li>
+<li>真包含关系$B\subset A$：对任意$x$，如$x\in B$，则$x\in A$,并且，$\exist y\in A$，但是$y\notin B$</li>
+</ul>
+<p>空集是一切集合的子集,是绝对唯一的；</p>
+<p>全集是指在一个相对固定的范围内，包含此范围内所有元素的集合，是相对唯一的，</p>
+<p>基数：集合$A$中元素的数目称为集合$A$的基数（base number)，记为$|A|$​;</p>
+<p>根据基数是否有限可以将集合分为有限集和无限集；</p>
+<p>把$A$的所有不同子集构成的集合叫做$A$的幂集(power set)，记为$P(A)$或$2^A$;其符号化表示为<br>$$<br>P(A)＝{x|x\subset A}<br>$$<br>设$A，B$是两个集合，若在$A，B$之间存在一一映射的关系：<br>$$<br>ψ：A→B<br>$$<br>则称$A$与$B$是等势的(equipotential)，记为：$A\sim B$</p>
+<p>凡是与<strong>自然数集</strong>合等势的集合，统称为可数集合,基数记作$\aleph_0$；</p>
+<ul>
+<li>有理数集合必是可数集合;</li>
+<li>两个有限集合等势当且仅当它们有相同的元素个数；</li>
+<li>有限集合不和其任何真子集等势；</li>
+<li>可数集合可以和其可数的真子集等势。</li>
+</ul>
+<p>开区间$(0,1)$称为不可数集合,基数记作$\aleph$​;</p>
+<ul>
+<li>凡是与开区间(0,1)等势的集合都是不可数集合;</li>
+<li>$\R$是一个不可数集合</li>
+</ul>
+<h2 id="集合恒等式"><a href="#集合恒等式" class="headerlink" title="集合恒等式"></a>集合恒等式</h2><ol>
+<li><p>等幂律:$A∪A&#x3D;A；A∩A&#x3D;A$； </p>
+</li>
+<li><p>交换律:$A∪A&#x3D;A∪A;A∩A&#x3D;A∩A$</p>
+</li>
+<li><p>结合律:$A∪(B∪C)&#x3D;(A∪B)∪C；  A∩(B∩C)&#x3D;(A∩B)∩C$；</p>
+</li>
+<li><p>恒等律:$A∪\varnothing &#x3D;A；    A∩U&#x3D;A$；    </p>
+</li>
+<li><p>零律:$A∪U&#x3D;U；    A∩\varnothing&#x3D;\varnothing$；</p>
+</li>
+<li><p>分配律:$A∩(B∪C)&#x3D;(A∩B)∪(A∩C), A∪(B∩C)&#x3D;(A∪B)∩(A∪C)$</p>
+</li>
+<li><p>吸收律:$A∩(A∪B)&#x3D;A,    A∪(A∩B)&#x3D;A$； </p>
+</li>
+<li><p>$A - A &#x3D; Φ$；   </p>
+</li>
+<li><p>$A - B &#x3D; A - (A∩B)$；</p>
+</li>
+<li><p>$(A - B) - C &#x3D; A - (B∪C)$；</p>
+</li>
+<li><p>$A∪(B-A) &#x3D; A∪B$；</p>
+</li>
+<li><p>$A - B &#x3D;A∩\overline{B}$  ；</p>
+</li>
+<li><p>否定律：$\overline {\overline A} &#x3D; A$      ；</p>
+</li>
+<li><p>DeMorgan律：$\overline{A \cup B}&#x3D;\overline A \cap \overline B, \overline{A \cap B}&#x3D;\overline A \cup \overline B$；</p>
+</li>
+<li><p>矛盾律： $A∩\overline{A}＝\varnothing$；</p>
+</li>
+<li><p>排中律：$A∪ \overline{A} ＝U$。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E7%BB%84%E5%90%88%E8%AE%A1%E6%95%B0/" rel="prev" title="组合计数">
+                  <i class="fa fa-angle-left"></i> 组合计数
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/golang/" rel="next" title="golang">
+                  golang <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

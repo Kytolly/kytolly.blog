@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Hash技术Background大数据挖掘面临的问题：  高维诅咒：比如K-dTree无法处理高维问题； 存储问题 检索速度问题  Hash技术致力于解决这个问题，也是Hash技术的作用； ContentK-Shingles技术$K$-Shingle：连续$K$​​​个字符一起出现的序列； 通过$K$-shingle技术，可以很方便地将文档存储成一个列表，进行后续操作； 签名矩阵与最小哈希(Min">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hash技术">
+<meta property="og:url" content="http://example.com/2025/05/01/Hash%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hash技术Background大数据挖掘面临的问题：  高维诅咒：比如K-dTree无法处理高维问题； 存储问题 检索速度问题  Hash技术致力于解决这个问题，也是Hash技术的作用； ContentK-Shingles技术$K$-Shingle：连续$K$​​​个字符一起出现的序列； 通过$K$-shingle技术，可以很方便地将文档存储成一个列表，进行后续操作； 签名矩阵与最小哈希(Min">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405271723873.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.357Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.042Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405271723873.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/Hash%E6%8A%80%E6%9C%AF/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/Hash%E6%8A%80%E6%9C%AF/","path":"2025/05/01/Hash技术/","title":"Hash技术"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Hash技术 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hash%E6%8A%80%E6%9C%AF"><span class="nav-number">1.</span> <span class="nav-text">Hash技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">1.1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Content"><span class="nav-number">1.2.</span> <span class="nav-text">Content</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#K-Shingles%E6%8A%80%E6%9C%AF"><span class="nav-number">1.2.1.</span> <span class="nav-text">K-Shingles技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%BE%E5%90%8D%E7%9F%A9%E9%98%B5%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%93%88%E5%B8%8C-MinHashing"><span class="nav-number">1.2.2.</span> <span class="nav-text">签名矩阵与最小哈希(MinHashing)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E6%95%8F%E6%84%9F%E5%93%88%E5%B8%8C-Locality-Sensitive-Hashing"><span class="nav-number">1.2.3.</span> <span class="nav-text">局部敏感哈希(Locality-Sensitive Hashing)</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/Hash%E6%8A%80%E6%9C%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Hash技术 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hash技术
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Hash技术"><a href="#Hash技术" class="headerlink" title="Hash技术"></a>Hash技术</h1><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>大数据挖掘面临的问题：</p>
+<ul>
+<li>高维诅咒：比如K-dTree无法处理高维问题；</li>
+<li>存储问题</li>
+<li>检索速度问题</li>
+</ul>
+<p>Hash技术致力于解决这个问题，也是Hash技术的作用；</p>
+<h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><h3 id="K-Shingles技术"><a href="#K-Shingles技术" class="headerlink" title="K-Shingles技术"></a>K-Shingles技术</h3><p>$K$-Shingle：连续$K$​​​个字符一起出现的序列；</p>
+<p>通过$K$-shingle技术，可以很方便地将文档存储成一个列表，进行后续操作；</p>
+<h3 id="签名矩阵与最小哈希-MinHashing"><a href="#签名矩阵与最小哈希-MinHashing" class="headerlink" title="签名矩阵与最小哈希(MinHashing)"></a>签名矩阵与最小哈希(MinHashing)</h3><p>现有一个矩阵，有$M$列（记录$M$个文档），列的长度$N$也很长；</p>
+<p>我们希望对列C作Hash，转化为签名$Sig(C)$,有如下性质：</p>
+<ul>
+<li>对于两列$C_1,C_2$,相似性$Sim(C_1,C_2)&#x3D;\mathbb P(Sig(C_1)&#x3D;Sig(C_2))$​，解决检索速度问题；</li>
+<li>$Sig(C)$对$C$​​降维，解决存储问题和维度诅咒问题；</li>
+</ul>
+<p>将$C$​表示为长度为$N$的布尔向量，有的元素标记为1，没有标记0，那么计算两个集合(列)的Jaccard相似度：<br>$$<br>Jaccard(C_1.C_2)&#x3D;\frac{|C_1\cap C_2|}{|C_1\cup C_2|}&#x3D;\frac{a}{a+b+c}<br>$$<br>其中两个集合的同一个元素的存在情况有如下四种，分别计数$a,b,c,d$:<br>$$<br>\begin{array}{ccc}<br>cnt&amp; \mathrm{C}<em>{1} &amp; \mathrm{C}</em>{2} \<br>a &amp; 1 &amp; 1 \<br>b &amp; 1 &amp; 0 \<br>c &amp; 0 &amp; 1 \<br>d &amp; 0 &amp; 0<br>\end{array}<br>$$<br>定义最小哈希函数：集合中第一个出现1的索引；</p>
+<p>下图是一个例子，permulation是三个对索引的全排列；</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405271723873.png" alt="image-20240527172325790"></p>
+<p>可以看到，生成签名矩阵并不会对输入矩阵打乱；</p>
+<p>对于两列$C_1,C_2$，事件$A_\pi$表示在随机的索引全排列为$\pi$下，最小哈希值相等$h(C_1)&#x3D;h(C_2)$;</p>
+<p>从索引1开始看到索引$N$，检查列$C_1,C_2$，直到我们第一次发现了1，它只能是type a的情况之于type a,type b,type c，因此$P(A_\pi)$也就是相似性；</p>
+<p>我们准备很多个${1,2,…,N}$​的全排列，对于固定的输入矩阵，最小哈希函数对不同的索引排列将产生不同的行结果,将签名矩阵看成结果的vector;</p>
+<p>我们如何准备这些全排列呢？答案还是哈希。</p>
+<p>对于${1,2,…,N}$的全排列，哈希函数会将这个排列映射成$0,1,…,N-1$的排列;</p>
+<p>注意，我们并不是得出整个索引排列之后，再找那个出现1最早的索引，而是不断的更新签名矩阵：</p>
+<ol>
+<li>初始化签名矩阵$M(i,c)$为无穷大；</li>
+<li>遍历所有行$1,2,…,N$;对固定的行$r$​，遍历所有的列；</li>
+<li>对于固定的列$c$,如果第$r$行有1；</li>
+<li>对每个准备好的Hash函数$h_i$，计算$h_i(r)$​;</li>
+<li>更新$M(i,c)&#x3D;\min{M(i,c),h_i(r)}$​</li>
+</ol>
+<p>一个文档的签名指的是<code>[M(0,c),M(1,c),...]</code></p>
+<h3 id="局部敏感哈希-Locality-Sensitive-Hashing"><a href="#局部敏感哈希-Locality-Sensitive-Hashing" class="headerlink" title="局部敏感哈希(Locality-Sensitive Hashing)"></a>局部敏感哈希(Locality-Sensitive Hashing)</h3><p>我们也许要准备很多个全排列，也就是很多个hash函数，这样才能用大数定律，以频率估计概率，从而估计相似性；</p>
+<p>也就是说，我们的签名矩阵终于能降维到被内存装下了，但是找到相似文档依然不可能线性查找枚举所有可能的文档对，代价是$O(M^2)$​；</p>
+<p>LSH 将原始数据空间中的两个相邻数据点通过相同的映射或投影变换（projection）后，这两个数据点在新的数据空间中仍然相邻的概率很大，而不相邻的数据点被映射到同一个桶的概率很小。也就是说，如果我们对原始数据进行一些hash映射后，我们希望原先相邻的两个数据能够被hash到相同的桶内，具有相同的桶号。这样只需要计算两个数据点的hash值是否在同一个桶里就能判断它们是否大概率相似；</p>
+<p>这和普通的hash的设计带来的蝴蝶效应不同（混沌系统微小初值改变引起巨大变化），它不希望hash冲突；</p>
+<p>但是对LSH来说，目的就是要创造更多的冲突，但本来相似的对象hash完很不相似，或者不相似的的对象hash完映射到一个桶的情况仍不可避免；</p>
+<p>关键要找到这么一个性质的LSH函数，略.</p>
+<p>一个trick：</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/" rel="prev" title="集成学习">
+                  <i class="fa fa-angle-left"></i> 集成学习
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/K-Shingle%E5%A6%82%E4%BD%95%E4%BD%9C%E4%B8%80%E4%B8%AA%E6%96%87%E6%A1%A3%E7%9A%84%E8%A1%A8%E5%BE%81/" rel="next" title="K-Shingle如何作一个文档的表征">
+                  K-Shingle如何作一个文档的表征 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

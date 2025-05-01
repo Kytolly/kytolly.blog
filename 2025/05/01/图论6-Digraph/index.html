@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="图论6-DigraphConceptions有向图(directed graph）$D(V;A)$定义为非空有限顶点集$V$和$V$的有序对(箭头，arcs)形成的有限簇$A$； 箭头的第一个顶点为尾(tail),第二个顶点为头(head)，箭头由尾指向头； 有向图消去方向后得到的无向图称作底图(underlying grapg)； 称$D$为简单有向图(simple digraph)，如果 $D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论6-Digraph">
+<meta property="og:url" content="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA6-Digraph/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="图论6-DigraphConceptions有向图(directed graph）$D(V;A)$定义为非空有限顶点集$V$和$V$的有序对(箭头，arcs)形成的有限簇$A$； 箭头的第一个顶点为尾(tail),第二个顶点为头(head)，箭头由尾指向头； 有向图消去方向后得到的无向图称作底图(underlying grapg)； 称$D$为简单有向图(simple digraph)，如果 $D">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20250113204028589.png">
+<meta property="og:image" content="http://example.com/assets/image-20250113204044553.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.450Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.484Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20250113204028589.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA6-Digraph/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA6-Digraph/","path":"2025/05/01/图论6-Digraph/","title":"图论6-Digraph"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>图论6-Digraph | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA6-Digraph"><span class="nav-number">1.</span> <span class="nav-text">图论6-Digraph</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Conceptions"><span class="nav-number">1.1.</span> <span class="nav-text">Conceptions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Robbin"><span class="nav-number">1.1.1.</span> <span class="nav-text">Theorem(Robbin)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Handshaking-dilemma"><span class="nav-number">1.1.2.</span> <span class="nav-text">Theorem(Handshaking dilemma)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem"><span class="nav-number">1.1.3.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Ghouila-Houri"><span class="nav-number">1.1.4.</span> <span class="nav-text">Theorem(Ghouila-Houri)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tourament"><span class="nav-number">1.1.5.</span> <span class="nav-text">Tourament</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Redei"><span class="nav-number">1.1.6.</span> <span class="nav-text">Theorem(Redei)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Moon"><span class="nav-number">1.1.7.</span> <span class="nav-text">Theorem(Moon)</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA6-Digraph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="图论6-Digraph | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图论6-Digraph
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="图论6-Digraph"><a href="#图论6-Digraph" class="headerlink" title="图论6-Digraph"></a>图论6-Digraph</h1><h2 id="Conceptions"><a href="#Conceptions" class="headerlink" title="Conceptions"></a>Conceptions</h2><p><strong>有向图</strong>(directed graph）$D(V;A)$定义为非空有限顶点集$V$和$V$的有序对(箭头，arcs)形成的有限簇$A$；</p>
+<p>箭头的第一个顶点为<strong>尾</strong>(tail),第二个顶点为<strong>头</strong>(head)，箭头由尾指向头；</p>
+<p>有向图消去方向后得到的无向图称作<strong>底图</strong>(underlying grapg)；</p>
+<p>称$D$为<strong>简单有向图</strong>(simple digraph)，如果 $D$中所有箭头都不一样，且没有自环；</p>
+<p>称两个有向图<strong>同构</strong>(isomorphic)，如果它们的底图同构且箭头保持相同的方向；</p>
+<p>有向图$D$的<strong>邻接矩阵</strong>$A(D)$定义为$A&#x3D;(a_{ij})<em>{n\times n}$,$a</em>{ij}$为$v_i$指向$v_j$的箭头数；</p>
+<p><strong>关联矩阵</strong>$M(D)$定义为$M&#x3D;(m_{ij})<em>{n\times n}$，$m</em>{ij}&#x3D;1$如果$v_i$是$e_j$的尾,$m_{ij}&#x3D;-1$如果$v_i$是$e_j$的头；</p>
+<p>有向图的<strong>迹</strong>是指箭头的有限序列；</p>
+<p>称有向图为弱<strong>连通的</strong>，如果它不能表示为两个有向图的并，当且仅当其底图是连通的；</p>
+<p>称有向图为<strong>强连通的</strong>，如果任何两个顶点$u,v$.均有从$u$到$v$的有向路径；</p>
+<p>有向图的强连通分量是其最大化的强连通子图；</p>
+<p>称图$G$为<strong>可定向的</strong>(orientable)如果图$G$的每个边可以标定方向使得形成的有向图是强连通的；</p>
+<p>称有向图$D$是欧拉图，如果存在闭合迹包含$D$中所有的箭头，这样的迹称作<strong>欧拉迹</strong>；</p>
+<p>对于有向图$D$的顶点$v$,出度(out-degree)$d^+(v)$定义为以$v$为尾的箭头数，入度(in-degree)$d^-(v)$定义为以$v$为头的箭头数；</p>
+<p>称顶点$v$为有向图$D$的<strong>源点</strong>(source)，如果$d^-(v)&#x3D;0$;</p>
+<p>称顶点$v$为有向图$D$的<strong>汇点</strong>(source)，如果$d^+(v)&#x3D;0$;</p>
+<p>称有向图$D$是<strong>哈密顿的</strong>(Hamiltonian)，如果存在一个有向圈包括所有顶点；</p>
+<p>称有向图$D$是<strong>半哈密顿的</strong>(semi-Hamiltonian)，如果存在一个有向路径包括所有顶点；</p>
+<h3 id="Theorem-Robbin"><a href="#Theorem-Robbin" class="headerlink" title="Theorem(Robbin)"></a>Theorem(Robbin)</h3><p>对于连通图$G$，若$G$是可定向的当且仅当$G$是2-边连通的,即每条边至少被一个圈包含；</p>
+<p><strong>proof</strong>:必要性显然，充分性只需按照以下算法标方向即可：</p>
+<ol>
+<li><p>选取任意一个圈$C$,周期性地表明它的边的方向；</p>
+</li>
+<li><p>选取不在$C$中但是和$C$相关联的边$e$；</p>
+<p>$e$不是桥，假设$e$被包含在$C’$中，令$C&#x3D;C’$，回到1；</p>
+</li>
+</ol>
+<h3 id="Theorem-Handshaking-dilemma"><a href="#Theorem-Handshaking-dilemma" class="headerlink" title="Theorem(Handshaking dilemma)"></a>Theorem(Handshaking dilemma)</h3><p>$$<br>\sum_{v\in V(D)}d^+(v)&#x3D;\sum_{v\in V(D)}d^-(v)&#x3D;E(D)<br>$$</p>
+<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><p>连通有向图$D$是欧拉的当且仅当对于$D$中任何顶点$v$均有$d^+(v)&#x3D;d^-(v)$;</p>
+<h3 id="Theorem-Ghouila-Houri"><a href="#Theorem-Ghouila-Houri" class="headerlink" title="Theorem(Ghouila-Houri)"></a>Theorem(Ghouila-Houri)</h3><p>令有向图$D$是具有$n$个顶点的强连通图；如果$d^+(v)\ge \frac{n}{2},d^-(v)\ge \frac{n}{2}$,则$D$是哈密顿的；</p>
+<h3 id="Tourament"><a href="#Tourament" class="headerlink" title="Tourament"></a>Tourament</h3><p>竞赛图(tourament)定义为任何两个顶点都有箭头相连的有向图；</p>
+<h3 id="Theorem-Redei"><a href="#Theorem-Redei" class="headerlink" title="Theorem(Redei)"></a>Theorem(Redei)</h3><p>任何非哈密顿的竞赛图$T$都是半哈密顿的；(竞赛图必有哈密顿路)</p>
+<p><strong>proof</strong>：对顶点数归纳，取$v_n\in T$,由归纳假设，取路径$v_0\to v_1\to \cdots\to v_{n-1}$，若$v_n\to v_0$或$v_{n-1}\to v_n$,直接加在头尾即可；否则存在$i$是最小的满足$v_i\to v_n\to v_{i+1}$的下标，则哈密顿路为$v_0\to v_1\to \cdots v_i\to v_n\to v_{i+1}\to  \cdots\to v_{n-1}$;</p>
+<h3 id="Theorem-Moon"><a href="#Theorem-Moon" class="headerlink" title="Theorem(Moon)"></a>Theorem(Moon)</h3><p>竞赛图$D$都是哈密顿的当且仅当$D$是强连通的；</p>
+<p><strong>proof</strong>:必要性显然，充分性归纳证明更强结论：对于任意$k(3\le k\le n)$，存在长度为$k$的圈；若当前圈之外存在一个顶点对圈既有出边也有入边，找到插入的下标即可得到更长圈；</p>
+<p><img src="/assets/image-20250113204028589.png" alt="image-20250113204028589"></p>
+<p>否则可以划分为对圈只有出边和点集$W$和对圈只有入边的点集$Z$,$W$到$Z$必存在一条入边，考虑去掉圈中一点加入该边即可得到更长圈；</p>
+<p><img src="/assets/image-20250113204044553.png" alt="image-20250113204044553"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%9B%BE%E8%AE%BA5-Coloring/" rel="prev" title="图论5-Coloring">
+                  <i class="fa fa-angle-left"></i> 图论5-Coloring
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%9B%BE%E8%AE%BA7-Network%20flows/" rel="next" title="图论7-Network flows">
+                  图论7-Network flows <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

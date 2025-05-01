@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="数据库设计数据库设计：根据用户需求研制数据库结构的过程  数据库结构设计：针对给定的应用环境，进行数据库的模式和子模式设计，包括概念设计，逻辑设计和物理设计，属于静态模型设计 数据库行为设计：确定数据库用户的行为和动作，属于动态模型设计  设计方法：直观设计，New orleans方法，基于实体-关系的方法，3NF设计方法，面向对象的方法（ODL），辅助软件CASE… 设计过程 需求分析：明确系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库7-数据库设计">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%937-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据库设计数据库设计：根据用户需求研制数据库结构的过程  数据库结构设计：针对给定的应用环境，进行数据库的模式和子模式设计，包括概念设计，逻辑设计和物理设计，属于静态模型设计 数据库行为设计：确定数据库用户的行为和动作，属于动态模型设计  设计方法：直观设计，New orleans方法，基于实体-关系的方法，3NF设计方法，面向对象的方法（ODL），辅助软件CASE… 设计过程 需求分析：明确系统">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.419Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.726Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%937-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%937-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/","path":"2025/05/01/数据库7-数据库设计/","title":"数据库7-数据库设计"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据库7-数据库设计 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.</span> <span class="nav-text">数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E8%BF%87%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">设计过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">概念设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#E-R%E5%9B%BE"><span class="nav-number">2.1.</span> <span class="nav-text">E-R图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E9%87%8F%E5%85%B3%E7%B3%BB%E8%A1%A8%E7%A4%BA"><span class="nav-number">2.2.</span> <span class="nav-text">数量关系表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E5%88%86%E7%B1%BB"><span class="nav-number">2.3.</span> <span class="nav-text">属性分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">设计方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ER%E5%9B%BE%E7%BB%98%E5%88%B6%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.4.1.</span> <span class="nav-text">ER图绘制步骤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">逻辑设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ER%E6%A8%A1%E5%BC%8F%E5%90%91%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.1.</span> <span class="nav-text">ER模式向关系模型的转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E4%BC%98%E5%8C%96"><span class="nav-number">3.2.</span> <span class="nav-text">模式优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">物理设计</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%937-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据库7-数据库设计 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库7-数据库设计
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><p>数据库设计：根据用户需求研制数据库结构的过程</p>
+<ul>
+<li>数据库结构设计：针对给定的应用环境，进行数据库的模式和子模式设计，包括概念设计，逻辑设计和物理设计，属于静态模型设计</li>
+<li>数据库行为设计：确定数据库用户的行为和动作，属于动态模型设计</li>
+</ul>
+<p>设计方法：直观设计，New orleans方法，基于实体-关系的方法，3NF设计方法，面向对象的方法（ODL），辅助软件CASE…</p>
+<h3 id="设计过程"><a href="#设计过程" class="headerlink" title="设计过程"></a>设计过程</h3><ul>
+<li>需求分析：明确系统需要完成的任务</li>
+<li>概念设计：将现实世界抽象地理解和表达</li>
+<li>逻辑设计：概念模型转换具体的数据模型</li>
+<li>物理设计:逻辑模型转化为确定的物理存储结构</li>
+<li>实现阶段:进行数据库的构建工作，包括数据库的应 用程序开发和调试，数据的录入</li>
+<li>运行和维护阶段:数据进行备份和维护，以保证数据库系统的效率</li>
+</ul>
+<h2 id="概念设计"><a href="#概念设计" class="headerlink" title="概念设计"></a>概念设计</h2><p>概念模型：生成能准确反映用户组织和实用信息需求的抽象信息结构</p>
+<ul>
+<li>真实充分地反映现实世界</li>
+<li>易于理解更改和转换</li>
+<li>描述概念模型最常用的工具：实体-关系模型；</li>
+<li>易于转换成关系、网状、层次等各种数据模型</li>
+</ul>
+<p>概念数据模型</p>
+<ul>
+<li>面向用户、面向客观世界的模型</li>
+<li>用来描述现实世界的概念化结构，与具体DBMS无关</li>
+<li>概念数据模型必须转换成逻辑数据模型才能在DBMS中实现</li>
+</ul>
+<h3 id="E-R图"><a href="#E-R图" class="headerlink" title="E-R图"></a>E-R图</h3><p>ER图是一种面向问题的概念模型，只关心现实世界的事物，特征和联系，用简单的图形方式描述显示世界的数据</p>
+<ol>
+<li>实体：用 <strong>矩形框</strong> 表示</li>
+<li>联系：一个或多个实体之间的关联关系，用<strong>菱形</strong>表示 ，用<strong>无向边</strong>连接 </li>
+<li>属性：用<strong>椭圆</strong>表示，现实世界的事物尽量看作属性，属性不能有需要描述的性质，不能与其他实体具有联系；</li>
+</ol>
+<h3 id="数量关系表示"><a href="#数量关系表示" class="headerlink" title="数量关系表示"></a>数量关系表示</h3><ul>
+<li>一对一联系：对于实体A中的每一个实体，实体B中<strong>至多有一个实体</strong>与之联系，反之亦然；<ul>
+<li>完全一对一：$[1]\to [1]$,严格的对应关系；</li>
+<li>不完全一对一：$[0,1]\to [0,1]$</li>
+</ul>
+</li>
+<li>一对多联系：对于实体A中的每一个实体，实体B中<strong>有多个实体</strong>与之联系，对于实体B中的每一个实体，实体A中<strong>至多有一个实体</strong>与之联系；</li>
+<li>多对多联系：对于实体A中的每一个实体，实体B中<strong>有多个实体</strong>与之联系，反之亦然</li>
+</ul>
+<h3 id="属性分类"><a href="#属性分类" class="headerlink" title="属性分类"></a>属性分类</h3><ul>
+<li><p>简单属性&#x2F;复合属性</p>
+</li>
+<li><p>单值属性&#x2F;多值属性：多值属性用<strong>双椭圆</strong>表示，一般需要转化成弱实体，用<strong>双线矩形</strong>表示，其联系用<strong>双菱形框</strong>表示</p>
+</li>
+<li><p>派生属性：通过具有相互依赖的属性推导出来的属性称为派生属性，用<strong>虚线椭圆形</strong>与实体相连</p>
+</li>
+<li><p>空值属性</p>
+</li>
+</ul>
+<h3 id="设计方法"><a href="#设计方法" class="headerlink" title="设计方法"></a>设计方法</h3><ol>
+<li>自顶向下：采用总分方式将大的概念模式逐步分解为更详细的较小划分模式</li>
+<li>逐步扩张：逐步扩张 采用了层状扩展的方式，先定义出用户需求中核心的概念结构，然后在此基础上向 外扩展，逐步将非核心的需求融入到模式中，最终完成系统的概念结构设计</li>
+<li>自底向上：首先构建起局部概念模式，然后再向上组合成全局模式<br>数据抽象：对需求分析阶段收集到的数据进行分类、组织，确定实体，实体的属性和联系数量关系<ol>
+<li>分类：定义某一类概念作为现实世界的彝族对象的类型，抽象了对象值和型之间的语义</li>
+<li>聚集：定义了某一类型的组成成分，抽象了对象内部类型和成分的语义</li>
+<li>概括&#x2F;继承：定义类型之间的某一子集联系，抽象了类型之间的语义</li>
+</ol>
+</li>
+</ol>
+<h4 id="ER图绘制步骤"><a href="#ER图绘制步骤" class="headerlink" title="ER图绘制步骤"></a>ER图绘制步骤</h4><ol>
+<li><p>选择局部应用</p>
+</li>
+<li><p>逐一设计分ER图</p>
+</li>
+<li><p>集成分图，进行合并和修改；</p>
+<ul>
+<li>：实体在不同层抽象成不同的类型，不同的ER图<strong>联系数量关系</strong>不同</li>
+</ul>
+</li>
+</ol>
+<h2 id="逻辑设计"><a href="#逻辑设计" class="headerlink" title="逻辑设计"></a>逻辑设计</h2><ul>
+<li>逻辑设计依赖于实现的DBMS基础</li>
+<li>逻辑设计的任务是为了概念结构设计阶段生成的全局ER图转换成特定DBMS支持的数据模型</li>
+</ul>
+<h3 id="ER模式向关系模型的转换"><a href="#ER模式向关系模型的转换" class="headerlink" title="ER模式向关系模型的转换"></a>ER模式向关系模型的转换</h3><ul>
+<li>实体联系和属性转换成关系的集合表示</li>
+<li>实体-关系模式，实体属性-关系属性，关系的键-实体的键</li>
+<li>联系相连的实体的键转换成关系模式的最佳实践：<ol>
+<li>1:1的联系：与任意一端的关系模式合并</li>
+<li>1:n的联系：既可以独立，也可以和n端合并</li>
+<li>m:n的联系：转换成一个关系模式，需要识别外码</li>
+<li>在ER图中，用下划线表示主码，波浪线表示外码</li>
+</ol>
+</li>
+</ul>
+<h3 id="模式优化"><a href="#模式优化" class="headerlink" title="模式优化"></a>模式优化</h3><p>用关系理论规范化理论对关系数据模型进行优化</p>
+<ul>
+<li>确定范式的使用</li>
+<li>实现规范化</li>
+<li>反范式设计</li>
+</ul>
+<h2 id="物理设计"><a href="#物理设计" class="headerlink" title="物理设计"></a>物理设计</h2><ul>
+<li>存储结构的设计：数据存放的位置，确定系统的配置</li>
+<li>存取方法的设计：<ul>
+<li>聚簇：节省存储空间，提高查询速度</li>
+<li>索引：提高检索速度，避免重复值的记录，保证数据完整性</li>
+<li>基于HASH：计算Hash值获得存取地址</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%936-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%90%86%E8%AE%BA/" rel="prev" title="数据库6-关系代数理论">
+                  <i class="fa fa-angle-left"></i> 数据库6-关系代数理论
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%938-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8C%83%E5%BC%8F/" rel="next" title="数据库8-数据库范式">
+                  数据库8-数据库范式 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

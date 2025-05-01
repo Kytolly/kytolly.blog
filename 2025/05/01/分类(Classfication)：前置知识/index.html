@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="分类(Classfication):前置知识BackgroundContent监督学习vs无监督学习监督学习：分类，回归  对象的类标签已知 通过类标签的指导下学习数据中的模式 利用获取的模式或者模型对新数据进行分类预测  无监督学习:Clustering, Frequent-Patten  数据集中对象的类标记（概念）是未知的； 挖掘潜在的数据内部模式；  生成模型vs判别模型生成模型：希望从数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分类(Classfication)：前置知识">
+<meta property="og:url" content="http://example.com/2025/05/01/%E5%88%86%E7%B1%BB(Classfication)%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="分类(Classfication):前置知识BackgroundContent监督学习vs无监督学习监督学习：分类，回归  对象的类标签已知 通过类标签的指导下学习数据中的模式 利用获取的模式或者模型对新数据进行分类预测  无监督学习:Clustering, Frequent-Patten  数据集中对象的类标记（概念）是未知的； 挖掘潜在的数据内部模式；  生成模型vs判别模型生成模型：希望从数">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.352Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.447Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E5%88%86%E7%B1%BB(Classfication)%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E5%88%86%E7%B1%BB(Classfication)%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/","path":"2025/05/01/分类(Classfication)：前置知识/","title":"分类(Classfication)：前置知识"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>分类(Classfication)：前置知识 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E7%B1%BB-Classfication-%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">分类(Classfication):前置知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">1.1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Content"><span class="nav-number">1.2.</span> <span class="nav-text">Content</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0vs%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.2.1.</span> <span class="nav-text">监督学习vs无监督学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8Bvs%E5%88%A4%E5%88%AB%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">生成模型vs判别模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB%E5%99%A8%E7%9A%84%E8%AF%84%E4%BC%B0"><span class="nav-number">1.2.3.</span> <span class="nav-text">分类器的评估</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">评价指标</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E5%88%86%E7%B1%BB(Classfication)%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="分类(Classfication)：前置知识 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          分类(Classfication)：前置知识
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="分类-Classfication-前置知识"><a href="#分类-Classfication-前置知识" class="headerlink" title="分类(Classfication):前置知识"></a>分类(Classfication):前置知识</h1><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><h3 id="监督学习vs无监督学习"><a href="#监督学习vs无监督学习" class="headerlink" title="监督学习vs无监督学习"></a>监督学习vs无监督学习</h3><p>监督学习：分类，回归</p>
+<ul>
+<li>对象的类标签已知</li>
+<li>通过类标签的指导下学习数据中的模式</li>
+<li>利用获取的模式或者模型对新数据进行分类预测</li>
+</ul>
+<p>无监督学习:Clustering, Frequent-Patten</p>
+<ul>
+<li>数据集中对象的类标记（概念）是未知的；</li>
+<li>挖掘潜在的数据内部模式；</li>
+</ul>
+<h3 id="生成模型vs判别模型"><a href="#生成模型vs判别模型" class="headerlink" title="生成模型vs判别模型"></a>生成模型vs判别模型</h3><p>生成模型：希望从数据中学习出原始的真实数据生成模型。常见的方法是学习数据的联合概率分布。如Naive Bayes,Hidden Markov等。</p>
+<p>判别模型：从数据中学习到不同类概念的区别（划分界限）从而进行分类。如KNN,SVM,ANN,Decision Tree</p>
+<h3 id="分类器的评估"><a href="#分类器的评估" class="headerlink" title="分类器的评估"></a>分类器的评估</h3><p>二分类任务中的混淆矩阵：<br>$$<br>\begin{array}{c|c|c}\hline&amp;\text{预测结果}\\hline\text{真实情况}&amp;\text{正例}&amp;\text{反例}\\hline\text{正例}&amp;TP\text{(真正例)}&amp;FN\text{(假反例)}\\hline\text{反例}&amp;FP\text{(假正例)}&amp;TN\text{(真反例)}\\hline\end{array}<br>$$<br>更详细的解释：</p>
+<ul>
+<li>TP：真正例，被正确分类的正样本</li>
+<li>TN：真负例，被正确分类的负样本</li>
+<li>FP：假正例，被错误分类的负样本</li>
+<li>FN：假负例，被错误分类的正样本</li>
+</ul>
+<h4 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h4><p>查准率&#x2F;精度（precision）为<strong>被分类为正样本中分类正确的比例</strong><br>$$<br>P&#x3D;\frac{TP}{TP+FP}<br>$$<br>查全率&#x2F;敏感度（recall）为<strong>实际为正样本中分类正确的比例</strong><br>$$<br>R&#x3D;\frac{TP}{TP+FN}<br>$$</p>
+<p>准确度&#x2F;识别率（accuracy）为<strong>全体样本中分类正确的比例</strong><br>$$<br>accuracy&#x3D;\frac{TP+TN}{N+P}<br>$$<br>错误率（error）为<strong>全体样本中分类错误的比例</strong><br>$$<br>error &#x3D; \frac{FP+FN}{P+N}<br>$$<br>特效性$specificity&#x3D;\frac{TN}{N}$，灵敏性$sensitivity&#x3D;\frac{TP}{P}$</p>
+<p>F度量<br>$$<br>F&#x3D;\frac{2\times precision \times recall}{precision + recall}<br>$$</p>
+<p>$$<br>F_{\beta}&#x3D;\frac{(1+\beta^2)\times precision \times recall}{\beta^2 \times precision + recall}<br>$$</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C(ANN)/" rel="prev" title="人工神经网络(ANN)">
+                  <i class="fa fa-angle-left"></i> 人工神经网络(ANN)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%86%B3%E7%AD%96%E6%A0%91%E5%88%86%E7%B1%BB%E5%99%A8/" rel="next" title="决策树分类器">
+                  决策树分类器 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

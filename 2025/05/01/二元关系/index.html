@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="关系理论集合定义序偶(ordered pair)：两个元素$x,y$按照一定的次序组成的二元组$&lt;x,y&gt;$；  $&lt;a,b&gt;&#x3D;&lt;c,d&gt;\iff a&#x3D;c,b&#x3D;d$  $n$重有序组：$n$个元素$a_1,a_2,…,a_n$按照一定的次序组成的$n$元组 笛卡尔积(Cartesian product):对于集合$A,B$，笛卡尔积">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二元关系">
+<meta property="og:url" content="http://example.com/2025/05/01/%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="关系理论集合定义序偶(ordered pair)：两个元素$x,y$按照一定的次序组成的二元组$&lt;x,y&gt;$；  $&lt;a,b&gt;&#x3D;&lt;c,d&gt;\iff a&#x3D;c,b&#x3D;d$  $n$重有序组：$n$个元素$a_1,a_2,…,a_n$按照一定的次序组成的$n$元组 笛卡尔积(Cartesian product):对于集合$A,B$，笛卡尔积">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241210220139067.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.436Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.392Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241210220139067.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB/","path":"2025/05/01/二元关系/","title":"二元关系"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>二元关系 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E7%90%86%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">关系理论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">集合定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E5%9B%BE%E5%92%8C%E5%85%B3%E7%B3%BB%E7%9F%A9%E9%98%B5"><span class="nav-number">1.2.</span> <span class="nav-text">关系图和关系矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E8%A1%A8"><span class="nav-number">1.3.</span> <span class="nav-text">关系表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E8%BF%90%E7%AE%97"><span class="nav-number">1.4.</span> <span class="nav-text">复合运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%86%E8%BF%90%E7%AE%97"><span class="nav-number">1.5.</span> <span class="nav-text">逆运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%82%E8%BF%90%E7%AE%97"><span class="nav-number">1.6.</span> <span class="nav-text">幂运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">1.7.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E9%97%AD%E5%8C%85"><span class="nav-number">1.8.</span> <span class="nav-text">关系闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E5%85%B3%E7%B3%BB"><span class="nav-number">1.9.</span> <span class="nav-text">等价关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%85%B3%E7%B3%BB"><span class="nav-number">1.10.</span> <span class="nav-text">序关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">1.11.</span> <span class="nav-text">函数</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="二元关系 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          二元关系
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="关系理论"><a href="#关系理论" class="headerlink" title="关系理论"></a>关系理论</h1><h2 id="集合定义"><a href="#集合定义" class="headerlink" title="集合定义"></a>集合定义</h2><p><strong>序偶</strong>(ordered pair)：两个元素$x,y$按照一定的次序组成的二元组$&lt;x,y&gt;$；</p>
+<ul>
+<li>$&lt;a,b&gt;&#x3D;&lt;c,d&gt;\iff a&#x3D;c,b&#x3D;d$</li>
+</ul>
+<p><strong>$n$重有序组</strong>：$n$个元素$a_1,a_2,…,a_n$按照一定的次序组成的$n$元组</p>
+<p><strong>笛卡尔积</strong>(Cartesian product):对于集合$A,B$，笛卡尔积为如下集合<br>$$<br>A\times B&#x3D;{&lt;x,y&gt;|x\in A\wedge y\in B}<br>$$</p>
+<ul>
+<li>不满足交换律：$A\times B \neq B\times A$，但是$\mid A\times B\mid &#x3D; \mid B\times A\mid &#x3D; |A|\times|B|$</li>
+<li>$A\times(B\cup C)&#x3D;(A\times B)\cup(A\times C)$;</li>
+<li>$A\times(B\cap C)&#x3D;(A\times B)\cap(A\times C)$;</li>
+<li>$A\times B\subseteq C\times D\iff A\sube C,B\sube D$</li>
+</ul>
+<p><strong>关系</strong>(relation):对于非空集合$A,B$, 称$R$是从$A$到$B$的二元关系$R:A\to B$，如果$R$是$A\times B$的一个子集；</p>
+<ul>
+<li>空关系：$R&#x3D;\varnothing$;</li>
+<li>恒等关系：$R&#x3D;I_A&#x3D;{&lt;x,x&gt;|x\in A}$</li>
+<li>全关系：$R&#x3D;A\times B$</li>
+<li>$x$对$y$有关系$R$：$&lt;x,y&gt;\in R\iff xRy$</li>
+<li>所有可能的关系有$2^{|A||B|}$个</li>
+</ul>
+<p><strong>$n$元关系</strong>：$A_1\times…\times A_n$的任意子集；</p>
+<p>对于$A,B$间的二元关系$R\subseteq C\times D\sube A\times B$;</p>
+<p>若$C \sube A,D\sube B$且<br>$$<br>C&#x3D;{x\mid x\in A,\exist y\in B,&lt;x,y&gt;\in R}\<br>D&#x3D;{y\mid y\in B, \exist x\in A, &lt;x,y&gt; \in R}<br>$$<br>定义如下概念：</p>
+<ul>
+<li>前域$A$</li>
+<li>后域$B$</li>
+<li>定义域${\rm dom} R&#x3D;C$</li>
+<li>值域${\rm ran} R&#x3D;D$</li>
+<li>域${\rm fid}R &#x3D;C\cup D$</li>
+</ul>
+<h2 id="关系图和关系矩阵"><a href="#关系图和关系矩阵" class="headerlink" title="关系图和关系矩阵"></a>关系图和关系矩阵</h2><p>关系可以用关系图表示</p>
+<ul>
+<li>若关系定义在不同的集合：用带箭头的二部图表示，由前域指向后域；</li>
+<li>若关系定义在某一个集合：用可能有向图表示，可能有自环和重边；；</li>
+</ul>
+<p>称$\mathbf M_R &#x3D;(m_{ij})<em>{m\times n}$为关系$R$的<strong>关系矩阵</strong>(邻接矩阵)，如果<br>$$<br>m</em>{ij}&#x3D;\begin{cases}1&amp;&lt;a_i,b_j&gt;\in R\0&amp;&lt;a_i,b_j&gt;\notin R \end{cases}<br>$$<br>显然这是一个Bool矩阵，对于$\mathbf A,\mathbf B$是$m\times n$的Bool矩阵：</p>
+<ul>
+<li><p>并<br>$$<br>\mathbf C&#x3D;\mathbf A\vee \mathbf B&#x3D;(c_{ij}),c_{ij}&#x3D;\begin{cases}1&amp;a_{ij}&#x3D;1\vee b_{ij}&#x3D;1\0&amp;  a_{ij}&#x3D;0\wedge b_{ij}&#x3D;0 \end{cases}<br>$$</p>
+</li>
+<li><p>交<br>$$<br>\mathbf C&#x3D;\mathbf A\wedge \mathbf B&#x3D;(c_{ij}),c_{ij}&#x3D;\begin{cases}1&amp;a_{ij}&#x3D;1\wedge b_{ij}&#x3D;1\0&amp;  a_{ij}&#x3D;0\vee b_{ij}&#x3D;0 \end{cases}<br>$$</p>
+</li>
+<li><p>布尔积<br>$$<br>  \mathbf C&#x3D;\mathbf A\odot \mathbf B&#x3D;(c_{ij}),c_{ij}&#x3D;\begin{cases}1&amp;\exist k,a_{ik}&#x3D;b_{kj}&#x3D;1\0&amp;\rm otherwise \end{cases}<br>$$</p>
+</li>
+</ul>
+<h2 id="关系表"><a href="#关系表" class="headerlink" title="关系表"></a>关系表</h2><p>在关系代数理论中，关系可以用二维表表示；</p>
+<p>对于关系$R\sube A_1\times A_2\times \cdots\times A_n$,第$i$个属性代表$A_i$,每一个行&#x2F;表项为$R$中的元素；</p>
+<h2 id="复合运算"><a href="#复合运算" class="headerlink" title="复合运算"></a>复合运算</h2><p>对于非空集合$A,B,C$，$R：A\to B,S:B\to C$,称一个从$A$到$C$的关系是<strong>复合关系</strong>，如果<br>$$<br>R \circ S &#x3D; {&lt;x,z&gt;|x\in A \wedge z\in C\wedge (\exist y)(y\in B\wedge xRy\wedge yRz)}<br>$$</p>
+<ul>
+<li>$\varnothing \circ R&#x3D;R\circ \varnothing&#x3D;\varnothing$</li>
+<li>$(R\circ S)\circ T&#x3D;R\circ(S\circ T)$</li>
+<li>$I_A \circ R&#x3D;R\circ I_B$</li>
+<li>$R\circ (S_1\cup S_2)&#x3D;(R\circ S_1)\cup (R\circ S_2)$</li>
+<li>$R\circ (S_1\cap S_2)\sube(R\circ S_1)\cap (R\circ S_2)$</li>
+<li>$(S_1\cup S_2)\circ R&#x3D;(S_1\circ R)\cup( S_2\circ R)$</li>
+<li>$(S_1\cap S_2)\circ R\sube(S_1\circ R)\cap( S_2\circ R)$</li>
+</ul>
+<h2 id="逆运算"><a href="#逆运算" class="headerlink" title="逆运算"></a>逆运算</h2><p>对于非空集合$A,B$，$R:A\to B$,$R$的<strong>逆关系</strong>是指<br>$$<br>R^{-1}:B\to A&#x3D;{&lt;b,a&gt;|&lt;a,b&gt;\in R}<br>$$</p>
+<ul>
+<li>$(R\circ S)^{-1}&#x3D;S^{-1}\circ R^{-1}$</li>
+<li>$(R\cup S)^{-1}&#x3D;R^{-1}\cup S^{-1}$</li>
+<li>$(R\cap S)^{-1}&#x3D;R^{-1}\cap S^{-1}$</li>
+<li>$(R- S)^{-1}&#x3D;R^{-1}- S^{-1}$</li>
+<li>$\overline R^{-1}&#x3D;\overline {R^{-1}}$</li>
+<li>$S\sube R\iff S^{-1}\sube R^{-1}$</li>
+</ul>
+<p>逆关系的关系矩阵等于原关系的关系矩阵转置；</p>
+<h2 id="幂运算"><a href="#幂运算" class="headerlink" title="幂运算"></a>幂运算</h2><p>对非空集合$A$,定义关系$R\sube A\times A$的$n$次幂如下：</p>
+<ul>
+<li>$R_0&#x3D;I_A$；</li>
+<li>$R^1&#x3D;R$;</li>
+<li>$R^{n+1}&#x3D;R^n\circ R&#x3D;R\circ R^n$</li>
+</ul>
+<p>注意到，幂集$R^n$随着$n$增加呈现递减趋势，得出如下定理：<br>$$<br>\bigcup_{i&#x3D;1}^n R^i&#x3D;\bigcup_{i&#x3D;1}^{|A|}R^i<br>$$<br>proof:只需证明$R^k\sube \bigcup_{i&#x3D;1}^{|A|}R^i$,注意到定义缩减没必要的复合运算即可；</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><p>对于定义在一个集合上的关系，我们考察其自反性，反自反性，对称性，反对称性和传递性；</p>
+<p>如果对$\forall x\in A$，都有$&lt;x,x&gt;\in R$,那么称$R$在 $A$上是自反的，关系图上表现为每个结点有自环，关系矩阵上表现为主对角线上全部为1；</p>
+<ul>
+<li>$R$是自反的$\iff I_A\sube R$</li>
+</ul>
+<p>如果对$\forall x\in A$，都有$&lt;x,x&gt;\notin R$，那么称称$R$在 $A$上是反自反的；关系图上表现为每个结点都没有自环，关系矩阵上表现为主对角线上全部为0；</p>
+<ul>
+<li>$R$是反自反的$\iff R\cap I_A&#x3D;\varnothing$</li>
+</ul>
+<p>如果对$\forall x,y\in A$，都有$&lt;x,y&gt;\in R \iff&lt;y,x&gt;\in R$,那么称$R$在 $A$上是对称的;关系图上表现为任意两个结点要么没有边，要么有两条反向边，关系矩阵上表现为对称矩阵；</p>
+<ul>
+<li>$R$是对称的$\iff R&#x3D;R^{-1}$</li>
+</ul>
+<p>如果对$\forall x,y\in A$，都有$&lt;x,y&gt;\in R\wedge&lt;y,x&gt;\in R \iff x&#x3D;y$,那么称$R$在 $A$上是反对称的;关系图上表现为任意两个结点至多一条边，关系矩阵上表现为矩阵自交为0；</p>
+<ul>
+<li>$R$是反对称的$\iff R\cap R^{-1}\sube I_A$</li>
+</ul>
+<p>设$R$是非空集合$R$上的关系．对$\forall x,y,z\in A$，如果$＜x,y＞\in R,＜y,z＞\in R$，那么$＜x,z＞∈R$，则称关系$R$是传递的;关系图上表现为每个结点有自环，关系矩阵上表现为$r_{ij}&#x3D;r_{jk}&#x3D;1$必有$r_{ik}&#x3D;1$；</p>
+<ul>
+<li>$R$是传递的$\iff R\circ R\sube R$</li>
+</ul>
+<p>对于定义在集合$A$上的二元关系$R,S$,考察其保守性：逆运算和交运算保守性好，并，差和复合运算的保守性差；</p>
+<ul>
+<li>若$R,S$具有自反性，则$R^{-1},R\cup S,R\cap S,R\circ S$具有自反性；</li>
+<li>若$R,S$具有反自反性，则$R^{-1},R\cup S,R\cap S,R- S$具有自反性；</li>
+<li>若$R,S$具有对称性，则$R^{-1},R\cup S,R\cap S,R- S$具有自反性；</li>
+<li>若$R,S$具有反对称性，则$R^{-1},R\cap S,R- S$具有自反性；</li>
+<li>若$R,S$具有传递性，则$R^{-1},,R\cap S$具有传递性；</li>
+</ul>
+<h2 id="关系闭包"><a href="#关系闭包" class="headerlink" title="关系闭包"></a>关系闭包</h2><p>在给定关系添加尽可能少的元素，使关系满足特殊性质，这个过程称为关系闭包；</p>
+<p>形式化说，对于定义在非空集合$A$上的关系$R$，若存在定义在$A$上的另一个关系$R’$,使得$R\sube R’$,且满足</p>
+<ul>
+<li>$R’$是自反的&#x2F;对称的&#x2F;传递的</li>
+<li>对于任何自反的&#x2F;对称的&#x2F;传递的关系$S$,若$R\sube S$,必有$R’\sube S$;</li>
+</ul>
+<p>称$R’$为$R$的自反闭包(reflexive closure)&#x2F;对称闭包(symmetric closure)&#x2F;传递闭包(transitive closure),记作$r(R)&#x2F;s(R)&#x2F;t(R)$;</p>
+<p>闭包运算算法：<br>$$<br>r(R)&#x3D;R\cup I_A\<br>s(R)&#x3D;R\cup R^{-1}\<br>t(R)&#x3D;\bigcup_{i&#x3D;1}^{|A|} R^i<br>$$</p>
+<h2 id="等价关系"><a href="#等价关系" class="headerlink" title="等价关系"></a>等价关系</h2><p>称定义在非空集合$A$上的关系$R$为<strong>等价关系</strong>，若$R$具有自反性，对称性和传递性；</p>
+<p>给定非空集合$A$,称集合$S&#x3D;{S_1,S_2,\cdots,S_n}$构成集合$A$的一个<strong>划分</strong>(partition),$S_i(1\le i\le n)$称作划分的类(class),若</p>
+<ul>
+<li>$S_i\sube A,S_i\neq \varnothing,1\le i\le n;$</li>
+<li>$S_i\cap S_j &#x3D; \varnothing, i\neq j, 1\le i,j\le n;$</li>
+<li>$\bigcup_{i&#x3D;1}^n S_i&#x3D;A;$</li>
+</ul>
+<p>利用等价关系可以将集合划分成互不相交的子集,也即等价类；</p>
+<p>对于定义在集合$A$上的等价关系$R$,对$\forall x\in A$,称集合<br>$$<br>[x]_R&#x3D;{y\mid y  \in A \ \wedge &lt;x,y&gt;\in R}<br>$$<br>是$x$生成的关于$R$的等价类(equivalence)，$x$为该类的代表元(generator);</p>
+<p>简单来说，在等价关系中，所有与$x$有关系的元素处于同一个等价类中，不难观察以下结论成立</p>
+<ul>
+<li>对$\forall x\in A,[x]_R\neq \varnothing;$</li>
+<li>对$\forall x,y\in A$, 若$y\in [x]_R$，则$[x]_R&#x3D;[y]_R$;若$y\notin [x]_R$,则$[x]_R\cap [y]_R&#x3D;\varnothing$;</li>
+<li>$\bigcup_{x\in A}[x]_R &#x3D; A$;</li>
+</ul>
+<p>进一步定义集合$A$关于等价关系$R$的商集$A&#x2F;R$<br>$$<br>A&#x2F;R &#x3D; {[x]_R\mid x\in A}<br>$$<br>商集算法如下：</p>
+<ol>
+<li>若$A$非空，选取$a\in A$,计算$[a]_R$并加入到$A&#x2F;R$中；</li>
+<li>若$[a]_R\neq A$，更新$A\leftarrow A-[a]_R$,回到1；</li>
+</ol>
+<p>显然商集是对$A$的等价划分，由划分也可以生成一种等价关系，如下：</p>
+<p>定集合$A$的一个划分$π&#x3D;{S_1，S_2,\cdots, S_n}$，则由该划分确定的关系<br>$$<br>R&#x3D;\bigcup_{i&#x3D;1}^n (S_i\times S_i)<br>$$<br>是$A$上的等价关系,称该关系$ R$为由划分$π$所导出的等价关系;</p>
+<h2 id="序关系"><a href="#序关系" class="headerlink" title="序关系"></a>序关系</h2><p>称定义在集合$A$上的关系$R$为<strong>拟序关系</strong>，如果$R$是反自反的，反对称的和传递的，记作小于$&lt;$;</p>
+<p>序偶$&lt;A,&lt; &gt;$称为拟序集，改记$&lt;a,b&gt;\in &lt;$为$a&lt; b$,其逆关系大于为$&gt; $也是拟序关系；</p>
+<p>称定义在集合$A$上的关系$R$为<strong>偏序关系</strong>，如果$R$是自反的，反对称的和传递的，记作小于等于$\le$;</p>
+<p>序偶$&lt;A,\le&gt;$称为偏序集，改记$&lt;a,b&gt;\in \le$为$a\le b$,其逆关系大于等于为$\ge $也是偏序关系；</p>
+<p>规定偏序关系对应的哈斯图(Hasse diagram)如下：</p>
+<ul>
+<li>用小圆圈或点表示$ A$中的元素，省掉关系图中所有的自环;</li>
+<li>对于$\forall x，y∈A$，若$x≤y$且$x≠y$，则将$x$画在$y$的下方，可省掉关系图中所有边的箭头;</li>
+<li>对于$\forall x，y∈A$，若$x≤y$且$x≠y$，且$x$与$y$之间不存在$z\in A$，使得$x≤z，z≤y$，则$x$与$y$之 间用一条线相连，否则无线相连;</li>
+</ul>
+<p><img src="/assets/image-20241210220139067.png" alt="image-20241210220139067"></p>
+<p>$&lt;A,\le&gt;$是偏序集，$B$是$ A$的任何一个子集，若存在元素$b∈B$，使得</p>
+<ul>
+<li>对$\forall x\in B$，都有$x≤b$，则称$b$为$B$的最大元; </li>
+<li>对$\forall x\in B$，都有$x≥b$，则称$b$为$B$的最小元; </li>
+<li>对$\forall x\in B$，满足 $x≥b\Rightarrow x&#x3D;b$，则称$b$为$B$的极大元; </li>
+<li>对$\forall x\in B$，满足$x≤b\Rightarrow x&#x3D;b$，则称$b$为$B$的极小元.</li>
+</ul>
+<p>若存在元素$a\in A$，使得 </p>
+<ul>
+<li>对$\forall x\in B$，都有$x≤a$，则称$a$为$B$的上界（upper bound）; </li>
+<li>对$\forall x\in B$，都有$x≥a$，则称$a$为$B$的下界（lower bound）;</li>
+<li>设元素$a’\in A$是$B$的一个上界，对$B$的任何一个上界$a\in A$，若均有$a≥a’$，则称$a’$为$B$的上确界.记为 $a’&#x3D;\sup B$; </li>
+<li>设元素$a’\in A$是$B$的一个下界，对$B$的任何一个下界$a\in A$，若均有$a\ge a’$，则称$a’$为$B$的下确界.记为 $a’&#x3D;\inf B$;</li>
+</ul>
+<p>进一步有以下结论：</p>
+<p>$&lt;A,\le&gt;$是偏序集，$B$是$ A$的任何一个子集</p>
+<ul>
+<li>若最大元$b$存在，则同时是极大元，上界，上确界；若$A$中的一个上界$a\in B$，则$a$是$B$的最大元；</li>
+<li>若最小元$b$存在，则同时是极小元，下界，下确界；若$A$中的一个下界$a\in B$，则$a$是$B$的最小元；</li>
+</ul>
+<p>对于有限子集$B$,最大元&#x2F;最小元若存在，则一定唯一，且是唯一极大元&#x2F;极小元；若上确界&#x2F;下确界存在，则上确界&#x2F;下确界唯一；</p>
+<p>对偏序关系$&lt;A,\le&gt;$来说，若$\forall x,y\in A$，总有$x\le y$或$y\le x$其一成立，则$\le $为<strong>全序关系&#x2F;线序</strong>(linear order)；</p>
+<p>$&lt;A,\le&gt;$为全序集，其哈斯图表现为一条线；</p>
+<p>对偏序关系$&lt;A,\le&gt;$来说，若$A$中任意非空子集均有最小元，则$\le$为<strong>良序关系</strong>(well order)；</p>
+<p>$&lt;A,\le&gt;$为良序集，良序关系一定是偏序关系，反之则不然，良序关系一定是全序关系，反之则不然；</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>称关系$f$为集合$A$到集合$B$的<strong>函数&#x2F;映射</strong>(function&#x2F;mapping)，记作$f:A\to B$,若对于每个$x\in A$,存在唯一的$y\in B$, 使得$&lt;x,y&gt;\in f$;</p>
+<ul>
+<li>定义域${\rm dom}f&#x3D;A$;</li>
+<li>值域${\rm ran}f &#x3D; B$;</li>
+<li>$&lt;x,y&gt;\in f$改记为$y&#x3D;f(x)$,自变量为$x$，函数值为$y$;</li>
+</ul>
+<p>即任意可能的输入集合$A$对应输出集合$B$；</p>
+<p>称$f$是从$A$到$B$的<strong>单射</strong>(injection),若对于$\forall x_1,x_2\in A$,均有$f(x_1)\neq f(x_2)$;</p>
+<p>称$f$是从$A$到$B$的<strong>满射</strong>(surjection)，若${\rm ran}f&#x3D;B$,即对$\forall y\in B$,$\exist x\in A,s.t.y &#x3D; f(x)$；</p>
+<p>称$f$是从$A$到$B$的<strong>双射</strong>(bijection)，若$f$既是单射又是满射；</p>
+<p>当双射$f$定义在$A\to A$上时，称$f$是集合$A$上的<strong>变换</strong>(transform)；</p>
+<p>若函数$f:A\to A\ s.t. \forall x\in A,f(x)&#x3D;x$,称$f$是$A$上的恒等函数$\boldsymbol I_A$;</p>
+<p>若函数$f:A\to B\ s.t.\exist b\in B,\forall x\in A,f(x)&#x3D;b$,称$f$是$A$上的常值函数；</p>
+<p>若定义$A$为全集$U&#x3D;{u_1,u_2,\cdots, u_n}$的一个子集，则子集$A$的特征函数定义为<br>$$<br>f_A(u_i)&#x3D;\begin{cases}<br>1&amp;,u_i\in A;\<br>0&amp;,u_i\notin A.<br>\end{cases}<br>$$<br>若变换$\sigma:A\to A$定义在有限集合上，则称$\sigma$为$A$上的<strong>置换&#x2F;排列</strong>(permutation),$n$称作置换的阶(order),通常如下表示：<br>$$<br>\sigma&#x3D;\left(\begin{array}{c}<br>a_1&amp;a_2&amp;\cdots&amp;a_n\<br>\sigma(a_1)&amp;\sigma(a_2)&amp;\cdots&amp;\sigma(a_n)<br>\end{array}\right)<br>$$<br>不同置换个数为$n!$个；</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="prev" title="基础数据结构与算法">
+                  <i class="fa fa-angle-left"></i> 基础数据结构与算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/" rel="next" title="数理逻辑">
+                  数理逻辑 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

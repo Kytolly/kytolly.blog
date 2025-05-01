@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="题目Leetcode 2788 按分隔符拆分字符串   给你一个字符串数组 words 和一个字符 separator ，请你按 separator 拆分 words 中的每个字符串。  返回一个由拆分后的新字符串组成的字符串数组，不包括空字符串 。 注意 separator 用于决定拆分发生的位置，但它不包含在结果字符串中。 拆分可能形成两个以上的字符串。  结果字符串必须保持初始相同的先后顺序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode2788">
+<meta property="og:url" content="http://example.com/2025/05/01/leetcode2788/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目Leetcode 2788 按分隔符拆分字符串   给你一个字符串数组 words 和一个字符 separator ，请你按 separator 拆分 words 中的每个字符串。  返回一个由拆分后的新字符串组成的字符串数组，不包括空字符串 。 注意 separator 用于决定拆分发生的位置，但它不包含在结果字符串中。 拆分可能形成两个以上的字符串。  结果字符串必须保持初始相同的先后顺序">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.187Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.159Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/leetcode2788/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/leetcode2788/","path":"2025/05/01/leetcode2788/","title":"leetcode2788"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>leetcode2788 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">join方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#split%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">split方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E8%A7%A3%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">列表解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">5.</span> <span class="nav-text">题解</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/leetcode2788/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="leetcode2788 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          leetcode2788
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>Leetcode 2788</p>
+<details><summary>按分隔符拆分字符串</summary>
+
+<ul>
+<li>给你一个字符串数组 words 和一个字符 separator ，请你按 separator 拆分 words 中的每个字符串。 </li>
+<li>返回一个由拆分后的新字符串组成的字符串数组，不包括空字符串 。</li>
+<li>注意<ul>
+<li>separator 用于决定拆分发生的位置，但它不包含在结果字符串中。</li>
+<li>拆分可能形成两个以上的字符串。<br>  结果字符串必须保持初始相同的先后顺序。</li>
+</ul>
+</li>
+</ul>
+<p><strong>提示</strong>：</p>
+<ol>
+<li>1 &lt;&#x3D; words.length &lt;&#x3D; 100</li>
+<li>1 &lt;&#x3D; words[i].length &lt;&#x3D; 20<br>words[i] 中的字符要么是小写英文字母，要么就是字符串 “.,|$#@” 中的字符（不包括引号）</li>
+<li>separator 是字符串 “.,|$#@” 中的某个字符（不包括引号）</li>
+</ol>
+</details>
+
+<p>先来看看原始解答：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">splitWordsBySeparator</span>(<span class="params">self, words: <span class="type">List</span>[<span class="built_in">str</span>], separator: <span class="built_in">str</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">            <span class="variable language_">self</span>.splitWordUnit(word, separator, ans)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">splitWordUnit</span>(<span class="params">self, word: <span class="built_in">str</span>, separator: <span class="built_in">str</span>, ans: <span class="type">List</span>[<span class="built_in">str</span>]</span>):</span><br><span class="line">        tmp = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">for</span> ch <span class="keyword">in</span> word:</span><br><span class="line">            <span class="keyword">if</span> ch != separator:</span><br><span class="line">                tmp += ch</span><br><span class="line">            <span class="keyword">elif</span> tmp != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">                ans.append(tmp)</span><br><span class="line">                tmp = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> tmp != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">            ans.append(tmp)</span><br></pre></td></tr></table></figure>
+<p>下面我们用列表解析和字符串的<code>join</code>和<code>split</code>方法优化我们的题解：</p>
+<h3 id="join方法"><a href="#join方法" class="headerlink" title="join方法"></a>join方法</h3><p>在Python中，<code>join()</code> 是用于将列表或其他可迭代对象的元素连接成一个字符串的方法。它是一个字符串方法，可以在一个分隔符字符串的帮助下将元素连接起来。</p>
+<p><code>join()</code> 方法的语法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">字符串分隔符.join(可迭代对象)</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>字符串分隔符</code> 是一个用于将元素连接起来的字符串，而<code>可迭代对象</code> 是一个包含要连接的元素的列表、元组等。请注意，可迭代对象中的元素必须都是字符串类型。</p>
+<details><summary>下面是一个使用`join()` 方法的示例：</summary>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_list = [<span class="string">&#x27;Hello&#x27;</span>, <span class="string">&#x27;World&#x27;</span>, <span class="string">&#x27;Python&#x27;</span>]</span><br><span class="line">result = <span class="string">&#x27;-&#x27;</span>.join(my_list)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+<p>输出结果是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello-World-Python</span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例中，<code>join()</code> 方法将<code>my_list</code>列表中的三个元素连接成一个新的字符串，并使用指定的分隔符<code>&#39;-&#39;</code>进行分隔。</p>
+</details>
+
+<h3 id="split方法"><a href="#split方法" class="headerlink" title="split方法"></a>split方法</h3><p>在Python中，<code>split()</code> 是用于将字符串分割成子字符串的方法。它可以根据指定的分隔符将一个字符串分割成多个部分，并返回一个包含所有子字符串的列表。</p>
+<p><code>split()</code> 方法的语法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">字符串.split(分隔符, 最大分割次数)</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>字符串</code> 是要分割的字符串，<code>分隔符</code> 是用于确定分割位置的字符串，<code>最大分割次数</code> 是可选参数，用于指定最大的分割次数。如果未指定最大分割次数，则会将字符串全部分割。</p>
+<details><summary>下面是一个使用`split()` 方法的示例：</summary>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_string = <span class="string">&quot;Hello-World-Python&quot;</span></span><br><span class="line">result = my_string.split(<span class="string">&#x27;-&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+<p>输出结果是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#x27;Hello&#x27;, &#x27;World&#x27;, &#x27;Python&#x27;]</span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例中，<code>split()</code> 方法根据指定的分隔符<code>&#39;-&#39;</code>将字符串<code>my_string</code>分割成三个部分，并返回一个包含这三个子字符串的列表。</p>
+<p>另外，还可以使用<code>maxsplit</code>参数来限制分割次数。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">my_string = <span class="string">&quot;apple,banana,orange,grape&quot;</span></span><br><span class="line">result = my_string.split(<span class="string">&#x27;,&#x27;</span>, <span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+<p>输出结果是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#x27;apple&#x27;, &#x27;banana&#x27;, &#x27;orange,grape&#x27;]</span><br></pre></td></tr></table></figure>
+
+<p>在这个示例中，<code>maxsplit</code>参数为2，所以<code>split()</code>方法最多只会分割出两个子字符串。</p>
+</details>
+
+<h3 id="列表解析"><a href="#列表解析" class="headerlink" title="列表解析"></a>列表解析</h3><p>列表解析是一种简洁且强大的方式，用于根据现有列表创建新的列表。它是 Python 提供的一种快速生成列表的方法。</p>
+<p>列表解析的基本语法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[表达式 for 变量 in 可迭代对象 if 条件]</span><br></pre></td></tr></table></figure>
+<p>其中，<code>表达式</code> 是对变量的处理方法，<code>变量</code> 是用于遍历可迭代对象的变量名，<code>可迭代对象</code> 是需要遍历的列表、元组、字符串等，<code>条件</code> 是一个可选项，用于筛选出满足条件的元素。</p>
+<details>
+<summary>下面是一个使用列表解析的示例：</summary>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">squared_numbers = [x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> numbers]</span><br><span class="line"><span class="built_in">print</span>(squared_numbers)</span><br></pre></td></tr></table></figure>
+<p>输出结果是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1, 4, 9, 16, 25]</span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例中，<code>squared_numbers</code> 是通过对 <code>numbers</code> 列表中的每个元素进行平方运算得到的新列表。列表解析中的表达式 <code>x**2</code> 定义了每个元素的处理方法，<code>x</code> 是遍历 <code>numbers</code> 列表时的变量。</p>
+<p>你还可以在列表解析中添加条件来筛选元素。例如，获取列表中所有的偶数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">even_numbers = [x <span class="keyword">for</span> x <span class="keyword">in</span> numbers <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(even_numbers)</span><br></pre></td></tr></table></figure>
+<p>输出结果是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[2, 4]</span><br></pre></td></tr></table></figure>
+<p>在上面的示例中，通过添加条件 <code>x % 2 == 0</code>，只有当元素是偶数时，才会被包含在新列表 <code>even_numbers</code> 中。</p>
+</details>
+
+<p>请注意，添加条件是不能带有<code>else</code>的。</p>
+<p>列表解析还可以嵌套使用，用于处理多维数据。这使得可以更加灵活地生成复杂的数据结构。</p>
+<p>总之，列表解析是一种简洁而强大的方式，用于根据现有列表以及一些条件创建新的列表。它是 Python 中优雅而高效的一种编程技巧。</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>最终的题解可以用一行解决：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">splitWordsBySeparator</span>(<span class="params">self, words: <span class="type">List</span>[<span class="built_in">str</span>], separator: <span class="built_in">str</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        <span class="keyword">return</span> [x <span class="keyword">for</span> x <span class="keyword">in</span> separator.join(words).split(separator) <span class="keyword">if</span> x != <span class="string">&#x27;&#x27;</span>]&lt;u&gt;&lt;/u&gt;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/1547/" rel="prev" title="1547">
+                  <i class="fa fa-angle-left"></i> 1547
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/leetcode2859/" rel="next" title="leetcode2859">
+                  leetcode2859 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

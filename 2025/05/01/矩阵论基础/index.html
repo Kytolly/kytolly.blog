@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="向量表示通常用箭头表示$\vec a$或者$\overrightarrow{AB}$,或者黑体$\boldsymbol a$;  没有绝对的开始位置,$\overrightarrow {AB}&#x3D;B-A$; 具有长度$\mid\mid \vec a\mid\mid$; 具有方向，可以用其单位向量表示：$\hat a&#x3D;\frac{\vec a}{\mid\mid \vec a\mi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="矩阵论基础">
+<meta property="og:url" content="http://example.com/2025/05/01/%E7%9F%A9%E9%98%B5%E8%AE%BA%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="向量表示通常用箭头表示$\vec a$或者$\overrightarrow{AB}$,或者黑体$\boldsymbol a$;  没有绝对的开始位置,$\overrightarrow {AB}&#x3D;B-A$; 具有长度$\mid\mid \vec a\mid\mid$; 具有方向，可以用其单位向量表示：$\hat a&#x3D;\frac{\vec a}{\mid\mid \vec a\mi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241204223826342.png">
+<meta property="og:image" content="http://example.com/assets/image-20241204225414860.png">
+<meta property="og:image" content="http://example.com/assets/image-20241204230111439.png">
+<meta property="og:image" content="http://example.com/assets/image-20241204230156438.png">
+<meta property="og:image" content="http://example.com/assets/image-20241204231225956.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.342Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.831Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241204223826342.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E7%9F%A9%E9%98%B5%E8%AE%BA%E5%9F%BA%E7%A1%80/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E7%9F%A9%E9%98%B5%E8%AE%BA%E5%9F%BA%E7%A1%80/","path":"2025/05/01/矩阵论基础/","title":"矩阵论基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>矩阵论基础 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">向量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.1.</span> <span class="nav-text">表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">加法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E4%B9%98"><span class="nav-number">1.3.</span> <span class="nav-text">点乘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%89%E4%B9%98"><span class="nav-number">1.4.</span> <span class="nav-text">叉乘</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5"><span class="nav-number">2.</span> <span class="nav-text">矩阵</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E7%9F%A9%E9%98%B5%E8%AE%BA%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="矩阵论基础 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          矩阵论基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h2><h3 id="表示"><a href="#表示" class="headerlink" title="表示"></a>表示</h3><p>通常用箭头表示$\vec a$或者$\overrightarrow{AB}$,或者黑体$\boldsymbol a$;</p>
+<ul>
+<li>没有绝对的开始位置,$\overrightarrow {AB}&#x3D;B-A$;</li>
+<li>具有长度$\mid\mid \vec a\mid\mid$;</li>
+<li>具有方向，可以用其单位向量表示：$\hat a&#x3D;\frac{\vec a}{\mid\mid \vec a\mid\mid}$</li>
+</ul>
+<p>通常我们表示单位向量的过程也称为正则化(normalization);</p>
+<p>向量也可以在坐标系上用两个<strong>正交的向量</strong>表示，进而表示成一列形成坐标：<br>$$<br>\boldsymbol A &#x3D;\left( \begin{array}{c} x\y \end{array}\right)\<br>\boldsymbol A^\top &#x3D;\left(\begin{array}{c} x&amp;y \end{array}\right)\<br>\mid\mid \boldsymbol A\mid\mid&#x3D; \sqrt{x^2+y^2}<br>$$</p>
+<h3 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h3><p>向量的加法遵循三角形法则和平行四边形法则</p>
+<p><img src="/assets/image-20241204223826342.png" alt="image-20241204223826342"></p>
+<h3 id="点乘"><a href="#点乘" class="headerlink" title="点乘"></a>点乘</h3><p>点乘(dot product)可以描述向量之间的<strong>方向的相似性</strong>,<strong>投影运算</strong>，<br>$$<br>\vec a \cdot \vec b &#x3D; \mid\mid \vec a\mid\mid \mid\mid \vec b\mid\mid \cos \theta<br>$$<br>两个向量的夹角余弦为<br>$$<br>\cos \theta &#x3D;\frac{\vec a \cdot \vec b}{\mid\mid \vec a\mid\mid \mid\mid \vec b\mid\mid} &#x3D;\hat a\cdot \hat b<br>$$<br>夹角$\theta\in [0,\pi)$为<br>$$<br>\theta &#x3D;\arccos(\hat a\cdot \hat b)<br>$$<br>点乘满足交换律，结合律<br>$$<br>\vec a \cdot \vec b &#x3D; \vec b \cdot \vec a\<br>\vec a \cdot (\vec b + \vec c)&#x3D; \vec a \cdot \vec b + \vec a \cdot \vec c\<br>(k\vec a) \cdot \vec b &#x3D; \vec a \cdot (k\vec b) &#x3D; k(\vec a \cdot \vec b)<br>$$<br>在二维空间中<br>$$<br>\vec a \cdot \vec b &#x3D; \left( \begin{array}{c} x_a\y_a \end{array}\right)\cdot \left( \begin{array}{c} x_b\y_b \end{array}\right) &#x3D; x_ax_b + y_a y_b\<br>$$<br>在三维空间中<br>$$<br>\vec a \cdot \vec b &#x3D; \left( \begin{array}{c} x_a\y_a\z_a \end{array}\right)\cdot \left( \begin{array}{c} x_b\y_b\z_b \end{array}\right) &#x3D; x_ax_b + y_a y_b + z_az_b\<br>$$<br>投影(projection)在图形学上是很常见的运算,投影$\vec b_\perp $和$\vec a$同向；<br>$$<br>\vec b_\perp &#x3D; \hat a \cdot \vec b\<br>\mid\mid \vec b_\perp\mid\mid &#x3D; \mid\mid\vec b\mid\mid \cos \theta<br>$$<br><img src="/assets/image-20241204225414860.png" alt="image-20241204225414860"></p>
+<p>通过投影还可以进行向量的正交分解<br>$$<br>\vec b-\vec b_\perp , \vec b_\perp<br>$$<br>向量点乘的正负可以决定向量是同向(forward)还是反向的(backforward);</p>
+<p><img src="/assets/image-20241204230111439.png" alt="image-20241204230111439"></p>
+<h3 id="叉乘"><a href="#叉乘" class="headerlink" title="叉乘"></a>叉乘</h3><p>两个向量的叉乘的结果均垂直于两个向量，其方向遵循右手螺旋定则(right-hand rule),可以建立三维直角坐标系；</p>
+<p><img src="/assets/image-20241204230156438.png" alt="image-20241204230156438"></p>
+<p>满足<br>$$<br>\mid\mid \vec a \times \vec b \mid\mid &#x3D; \mid\mid \vec a \mid\mid \mid\mid \vec b\mid \mid \sin \varphi<br>$$<br>这里夹角$\varphi \in (-\frac{\pi}{2}, \frac{\pi}{2}]$,表示旋转角；</p>
+<p>向量叉乘仍然满足结合律和分配律，不满足交换律<br>$$<br>\vec a \times \vec b &#x3D; -\vec a \times \vec b \<br>\vec a \times (\vec b + \vec c)&#x3D; \vec a \times \vec b + \vec a \times \vec c\<br>(k\vec a)\times \vec b &#x3D; k(\vec a \times \vec b)\<br>\vec a\times\vec a &#x3D; \vec 0<br>$$<br>代数上，叉乘如下结果<br>$$<br>\vec a \times \vec b &#x3D; \left(<br>\begin{array}{c}<br>y_az_b-y_bz_z\<br>z_ax_b-x_az_b\<br>x_ay_b-y_ax_b<br>\end{array}\right)\<br>&#x3D;\left(<br>\begin{array}{c}<br>0&amp; -z_a&amp; y_a\<br>z_a&amp; 0&amp; -x_a\<br>-y_a&amp; x_a&amp; 0<br>\end{array}\right)\left(<br>\begin{array}{c}<br>x_b\<br>y_b\<br>z_b<br>\end{array}\right)<br>$$<br>在二维空间中计算结果看起来是一个数(结果是它的模)<br>$$<br>\vec a \times \vec b &#x3D; x_ay_b-y_ax_b<br>$$<br>平面上的叉乘一般用于<strong>判断左右</strong>，以及<strong>判断内外</strong></p>
+<p>判断向量$\vec b$在向量$\vec a$的左侧的充要条件<br>$$<br>\vec a\times \vec b &gt;0<br>$$<br>判断点在三角形内部的充要条件<br>$$<br>\overrightarrow {AB} \times \overrightarrow {AP} &gt;0\<br>\overrightarrow {BC} \times \overrightarrow {BP} &gt;0\<br>\overrightarrow {CA} \times \overrightarrow {CP} &gt;0\<br>$$<br><img src="/assets/image-20241204231225956.png" alt="image-20241204231225956"></p>
+<p>结果为0一般考虑为corner case;</p>
+<p>利用叉乘可以<strong>定义一个右手系</strong>；<br>$$<br>\mid\mid \hat i\mid\mid &#x3D; \mid\mid \hat j\mid\mid &#x3D;\mid\mid\hat k\mid\mid &#x3D;1\<br>\hat i\cdot \hat j &#x3D;0 \<br>\hat k &#x3D; \hat i\times \hat j<br>$$<br>对于任意一个向量$\vec p$,有<br>$$<br>\vec p &#x3D; (\vec p\cdot \hat i)\hat i + (\vec p\cdot \hat j)\hat j +(\vec p\cdot \hat k)\hat k<br>$$</p>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p>对于一个$m\times n$矩阵，即有$m$行$n$列；</p>
+<p>加法是平凡的：对应元素相乘；</p>
+<p>矩阵的乘法：对于一个$m\times p$ 的矩阵$\boldsymbol A$和$p\times n$的矩阵$\boldsymbol B$,相乘结果$\boldsymbol C$为<br>$$<br>\boldsymbol C_{ij} &#x3D; \sum_{k &#x3D; 1} ^ p \boldsymbol{A}<em>{ik} \boldsymbol{B}</em>{kj}<br>$$<br>矩阵乘法不满足任何交换律,满足结合律和分配律<br>$$<br>(\boldsymbol A \boldsymbol B) \boldsymbol C &#x3D; \boldsymbol A (\boldsymbol B \boldsymbol C)\<br>(\boldsymbol A + \boldsymbol B) \boldsymbol C &#x3D; \boldsymbol A  \boldsymbol C + \boldsymbol B \boldsymbol C\<br> \boldsymbol C (\boldsymbol A + \boldsymbol B)&#x3D;  \boldsymbol C \boldsymbol A + \boldsymbol C \boldsymbol B </p>
+<p>$$<br>矩阵乘法转置满足<br>$$<br>(AB)^\top &#x3D; B^\top A^\top<br>$$<br>矩阵乘法常常用于<strong>向量的线性变换</strong>,向量通常视为列数为1的矩阵,这里$A^*$称作dual matrix;<br>$$<br>\vec a \cdot \vec b &#x3D; \vec a ^\top \vec b &#x3D; \left( \begin{array}{c} x_a&amp;y_a&amp;z_a \end{array}\right) \left( \begin{array}{c} x_b\y_b\z_b \end{array}\right) \</p>
+<p>\vec a \times \vec b<br>&#x3D;A^* \vec b &#x3D; \left(<br>\begin{array}{c}<br>0&amp; -z_a&amp; y_a\<br>z_a&amp; 0&amp; -x_a\<br>-y_a&amp; x_a&amp; 0<br>\end{array}\right)\left(<br>\begin{array}{c}<br>x_b\<br>y_b\<br>z_b<br>\end{array}\right)<br>$$<br>若矩阵$\boldsymbol A$满秩，则存在逆$\boldsymbol A^{-1}$,这里$$\boldsymbol A \boldsymbol A^{-1} &#x3D; I$$</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Transformation/" rel="prev" title="Transformation">
+                  <i class="fa fa-angle-left"></i> Transformation
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/CMake%E5%85%A5%E9%97%A8/" rel="next" title="CMake入门">
+                  CMake入门 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

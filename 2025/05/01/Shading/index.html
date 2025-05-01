@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="ShadingVisibility绘画算法：从远到近将物体画在屏幕上，近处的物体覆盖远处的对应的图层； 将模型三角光栅化，考虑对三角形按照距离屏幕的深度排序，复杂度为$O(N\log N)$,但是可能存在相互覆盖的环； 引入Z-Buffer(深度缓存):  为每一个像素保存当前的最小深度； 同时维护两个缓存：帧缓存保存颜色值，深度缓存保存深度  算法如下： 123456789Initialize">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shading">
+<meta property="og:url" content="http://example.com/2025/05/01/Shading/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ShadingVisibility绘画算法：从远到近将物体画在屏幕上，近处的物体覆盖远处的对应的图层； 将模型三角光栅化，考虑对三角形按照距离屏幕的深度排序，复杂度为$O(N\log N)$,但是可能存在相互覆盖的环； 引入Z-Buffer(深度缓存):  为每一个像素保存当前的最小深度； 同时维护两个缓存：帧缓存保存颜色值，深度缓存保存深度  算法如下： 123456789Initialize">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241209194451115.png">
+<meta property="og:image" content="http://example.com/assets/image-20241209201146308.png">
+<meta property="og:image" content="http://example.com/assets/image-20241209200203752.png">
+<meta property="og:image" content="http://example.com/assets/image-20241209202325421.png">
+<meta property="og:image" content="http://example.com/assets/image-20241210183253418.png">
+<meta property="og:image" content="http://example.com/assets/image-20241210185959408.png">
+<meta property="og:image" content="http://example.com/assets/image-20241210190324268.png">
+<meta property="og:image" content="http://example.com/assets/image-20241210190526505.png">
+<meta property="og:image" content="http://example.com/assets/image-20241210194556777.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212202923346.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212203915791.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212205128667.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212205708866.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212205906862.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212210254529.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212211136030.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212212116827.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212212234652.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212212336567.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212213314450.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212213843252.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212213856884.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212214340625.png">
+<meta property="og:image" content="http://example.com/assets/image-20241212214424929.png">
+<meta property="og:image" content="http://example.com/assets/image-20241226211043946.png">
+<meta property="og:image" content="http://example.com/assets/image-20241226211905433.png">
+<meta property="og:image" content="http://example.com/assets/image-20241226213536647.png">
+<meta property="og:image" content="http://example.com/assets/image-20241226214350077.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.339Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.280Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241209194451115.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/Shading/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/Shading/","path":"2025/05/01/Shading/","title":"Shading"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Shading | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Shading"><span class="nav-number">1.</span> <span class="nav-text">Shading</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Visibility"><span class="nav-number">1.1.</span> <span class="nav-text">Visibility</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Blinn-Phong-Reflectance-Model"><span class="nav-number">1.2.</span> <span class="nav-text">Blinn-Phong Reflectance Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Diffuse-Term"><span class="nav-number">1.2.1.</span> <span class="nav-text">Diffuse Term</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Specular-Term"><span class="nav-number">1.2.2.</span> <span class="nav-text">Specular Term</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ambient-Term"><span class="nav-number">1.2.3.</span> <span class="nav-text">Ambient Term</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shading-Frequency"><span class="nav-number">1.3.</span> <span class="nav-text">Shading Frequency</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Real-Time-Rendering"><span class="nav-number">1.4.</span> <span class="nav-text">Real Time Rendering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Texture-Map"><span class="nav-number">1.5.</span> <span class="nav-text">Texture Map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Barycentric-Coordinates"><span class="nav-number">1.6.</span> <span class="nav-text">Barycentric Coordinates</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Texture-Mapping"><span class="nav-number">1.7.</span> <span class="nav-text">Texture Mapping</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bilinear-Interpolation"><span class="nav-number">1.7.1.</span> <span class="nav-text">Bilinear Interpolation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mipmap"><span class="nav-number">1.8.</span> <span class="nav-text">Mipmap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anisotropic-Filtering"><span class="nav-number">1.9.</span> <span class="nav-text">Anisotropic Filtering</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EWA-filtering"><span class="nav-number">1.9.1.</span> <span class="nav-text">EWA filtering</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application"><span class="nav-number">1.10.</span> <span class="nav-text">Application</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Environment-Lighting"><span class="nav-number">1.10.0.1.</span> <span class="nav-text">Environment Lighting</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Store-Height-normal"><span class="nav-number">1.10.0.2.</span> <span class="nav-text">Store Height&#x2F;normal</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3D-Procedural-Noise-Solid-Modeling-Volumn-Rendering"><span class="nav-number">1.10.0.3.</span> <span class="nav-text">3D Procedural Noise + Solid Modeling + Volumn Rendering</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/Shading/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Shading | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Shading
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Shading"><a href="#Shading" class="headerlink" title="Shading"></a>Shading</h1><h2 id="Visibility"><a href="#Visibility" class="headerlink" title="Visibility"></a>Visibility</h2><p>绘画算法：从远到近将物体画在屏幕上，近处的物体覆盖远处的对应的图层；</p>
+<p>将模型三角光栅化，考虑对三角形按照距离屏幕的深度排序，复杂度为$O(N\log N)$,但是可能存在相互覆盖的环；</p>
+<p>引入Z-Buffer(深度缓存):</p>
+<ul>
+<li>为每一个像素保存当前的最小深度；</li>
+<li>同时维护两个缓存：帧缓存保存颜色值，深度缓存保存深度</li>
+</ul>
+<p>算法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Initialize depth buffer to ∞ </span><br><span class="line">During rasterization: </span><br><span class="line">for (each triangle T)</span><br><span class="line">	for (each sample (x,y,z) in T)</span><br><span class="line">		if (z &lt; zbuffer[x,y]) // closest sample so far</span><br><span class="line"> 			framebuffer[x,y] = rgb;  // update color</span><br><span class="line"> 			zbuffer[x,y] = z;   // update depth     </span><br><span class="line">		else</span><br><span class="line"> 			; // do nothing, this sample is occluded	</span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/image-20241209194451115.png" alt="image-20241209194451115"></p>
+<p>假设每个三角形平均覆盖常数个像素，则该算法复杂度为$O(N)$;也就是该算法并不是基于排序的，假设每个三角不会在同一个像素用相同的深度，那么这个算法其实和三角形深度无关的；</p>
+<p>Z-Buffer算法是目前最重要的可见性算法，已经在所有的GPU在硬件上实现；缺点是处理不了透明物体；</p>
+<h2 id="Blinn-Phong-Reflectance-Model"><a href="#Blinn-Phong-Reflectance-Model" class="headerlink" title="Blinn-Phong Reflectance Model"></a>Blinn-Phong Reflectance Model</h2><p>在绘画上，使用平行光线或者色块，引入图像的明暗和色彩；</p>
+<p>在图形学上，着色指对物品应用某一种材质的过程；</p>
+<p>最简单的着色模型是Blinn-Phong Reflectance Model;</p>
+<p>观察下图有如下要素</p>
+<ul>
+<li><p>Specular highlights: 高光,一般光线照射到光滑的地方，发生接近于镜面反射的效应；</p>
+</li>
+<li><p>Diffuse reflection: 漫反射，一般光线照射到粗糙的地方,其所有查看方向的表面颜色都相同</p>
+<p><img src="/assets/image-20241209201146308.png" alt="image-20241209201146308"></p>
+</li>
+<li><p>Ambient lighting：环境照明，物体接收到了间接的环境反射光，一般认为是常量；</p>
+</li>
+</ul>
+<p><img src="/assets/image-20241209200203752.png" alt="image-20241209200203752"></p>
+<p>建立局部着色模型(Shading in Local)的输入：给定物体表面上一点Shading Point，考察光照照射在该点的输出，不考虑阴影(Shadow)</p>
+<ul>
+<li>Viewer direction: 观察者看到物体的方向$\hat v$</li>
+<li>Surface normal:物体表面切面法线向量$\hat n$</li>
+<li>Light direction:光线方向$\hat l$</li>
+<li>Surface parameters:物体表面属性，比如颜色，亮度</li>
+</ul>
+<h3 id="Diffuse-Term"><a href="#Diffuse-Term" class="headerlink" title="Diffuse Term"></a>Diffuse Term</h3><p>物理上来说，在物体单位面积上，考虑接受到光线能量应该正比于$\cos \theta &#x3D;\hat l\cdot \hat n$;</p>
+<p><img src="/assets/image-20241209202325421.png" alt="image-20241209202325421"></p>
+<p>这是符合直觉的；</p>
+<ul>
+<li>物体被光照直射，理应接收更多光；</li>
+<li>物体和光照同向就几乎没有光照射上；</li>
+</ul>
+<p>对于一种点光源，光线的能量在某一个时刻集中在一个球壳上(波动性)；<br>$$<br>I_r\cdot 4\pi r^2&#x3D;C<br>$$<br>考虑能量守恒，光线传播越远，能量衰减(light failoff)越多,用光照强度(intensity)定义能量；<br>$$<br>I_r&#x3D;\frac{I_1}{r^2}<br>$$<br>由此建立<strong>漫反射模型</strong><br>$$<br>L_d &#x3D; k_d(\frac{I}{r^2})\max(0,\hat n\cdot \hat l)<br>$$</p>
+<ul>
+<li>$L_d$:某方向上的漫反射光diffusely reflected light;</li>
+<li>$k_d$:扩散系数diffuse soefficient，该点可能吸收一部分光而存在损耗,可以表示成三通道RGB值，就可以定义该点反射出来的颜色；</li>
+<li>$\max(0,\hat n\cdot \hat l)$:不考虑光线从物体下面穿过，不考虑物体透明和折射</li>
+</ul>
+<p>对于漫反射来说，不管从任何方向来看看起来都是一样，上式与$\hat v$无关，这说明此模型的合理性；</p>
+<h3 id="Specular-Term"><a href="#Specular-Term" class="headerlink" title="Specular Term"></a>Specular Term</h3><p>对于高光项，如果光线照射在比较光滑的物体，那么高光反射的光线应该类似于镜面反射，可以用<strong>其半程向量</strong>和法线接近描述;</p>
+<p>Blinn-Phong模型定义半程向量<br>$$<br>\hat h &#x3D; {\rm bisector}(\hat v, \hat l)&#x3D;\frac{\hat v+\hat l}{\mid\mid\hat v+\hat l\mid\mid}<br>$$<br>类似定义高光项<br>$$<br>L_s &#x3D; k_s(\frac{I}{r^2})\max(0, \hat n\cdot \hat h)^p<br>$$</p>
+<ul>
+<li>$L_s$:镜面反射光specularly  reflected  light</li>
+<li>$k_s$:亮度系数specular  coefficient，相对于漫反射项来说很小</li>
+<li>$p$:为解决余弦项容忍度过高的问题，一般取128，提高幂次以符合经验：偏离高光光线一点点就基本看不到了；</li>
+</ul>
+<p><img src="/assets/image-20241210183253418.png" alt="image-20241210183253418"></p>
+<h3 id="Ambient-Term"><a href="#Ambient-Term" class="headerlink" title="Ambient Term"></a>Ambient Term</h3><p>大胆假设环境中任意一点接收到环境光基本为常量，环境光着色不依赖于任何其他事物，真实世界可能未必这样；</p>
+<p>添加常量颜色以考虑忽略的照明并填充黑色阴影,保证没有地方是完全黑的；<br>$$<br>L_a &#x3D; k_aI_a<br>$$</p>
+<ul>
+<li>$L_a$:反射环境光 reflected  ambient light</li>
+<li>$k_a$:环境光系数 ambient  coefficient</li>
+</ul>
+<p>模型输出为三项相加<br>$$<br>\begin{aligned}<br>L&amp;&#x3D;L_a + L_d + L_s\<br>&amp;&#x3D; k_aI_a + k_d(\frac{I}{r^2})\max(0,\hat n\cdot \hat l) +  k_s(\frac{I}{r^2})\max(0, \hat n\cdot \hat h)^p<br>\end{aligned}<br>$$</p>
+<h2 id="Shading-Frequency"><a href="#Shading-Frequency" class="headerlink" title="Shading Frequency"></a>Shading Frequency</h2><p>对于光栅化的图像，可以按照每个三角形面，顶点，和像素为单位进行着色，它们的着色频率并不相同；</p>
+<p>Flat Shading：每一个三角形面对应一个法向量，在光滑面上效果不好；</p>
+<p>Gouraud Shading：跨三角形的顶点进行插值着色，每个三角形顶点对应一个法线</p>
+<p>Phong Shading：在每个三角形上插值法线向量 ，计算每个像素的完整着色模型</p>
+<p>以下是三个方法的对比图</p>
+<p><img src="/assets/image-20241210185959408.png" alt="image-20241210185959408"></p>
+<p>对于光栅化的图形，顶点对应的法线可以用其关联的所有三角形法线平均<br>$$<br>\hat N_v&#x3D; \frac{\sum_{i} \hat N_i}{\mid\mid \sum_i \hat N_i\mid\mid}<br>$$<br><img src="/assets/image-20241210190324268.png" alt="image-20241210190324268"></p>
+<h2 id="Real-Time-Rendering"><a href="#Real-Time-Rendering" class="headerlink" title="Real Time Rendering"></a>Real Time Rendering</h2><p>Pipline如下</p>
+<p><img src="/assets/image-20241210190526505.png" alt="image-20241210190526505"></p>
+<h2 id="Texture-Map"><a href="#Texture-Map" class="headerlink" title="Texture Map"></a>Texture Map</h2><p>我们希望在物体表面上的不同位置的点定义不同属性，观察到任何三维物体的表面是二维的，反过来我们也可以把一张二维图贴在三维物体的表面，我们把这张二维图称为纹理；</p>
+<p>对于纹理图上任意一个点，定义uv坐标系，每一个三角形的顶点对应纹理上的一个坐标$(u,v)$;</p>
+<p><img src="/assets/image-20241210194556777.png" alt="image-20241210194556777"></p>
+<p>一个看起来舒服的纹理，应该看起来上下左右无缝衔接，因为纹理可以被物体重复多次，比如tiled texture；</p>
+<h2 id="Barycentric-Coordinates"><a href="#Barycentric-Coordinates" class="headerlink" title="Barycentric Coordinates"></a>Barycentric Coordinates</h2><p>在三角形内部进行插值的工具是重心坐标，重心坐标可以表示三角形内部的一个顶点，从而在三角形内部实现平滑过渡，常常用于纹理坐标，颜色，法向量的计算；</p>
+<p>对于三角形$\triangle ABC$, 在三角形内部的任意一点，可以表示为三个顶点坐标的线性组合<br>$$<br>(x,y)&#x3D;\alpha A+\beta B + \gamma C\<br>\alpha + \beta + \gamma &#x3D;1<br>$$<br>若点在三角形内，还需满足三个系数非负；若无限制条件，表示点在三角形所在平面内；</p>
+<p><img src="/assets/image-20241212202923346.png" alt="image-20241212202923346"></p>
+<p>进一步，定义有向面积$A_A,A_B,A_C$,定义三角形面积$S_{\triangle ABC}$<br>$$<br>\alpha &#x3D; \frac{A_A}{S_{\triangle ABC}},\beta &#x3D; \frac{A_B}{S_{\triangle ABC}},\gamma &#x3D; \frac{A_C}{S_{\triangle ABC}}<br>$$<br>用叉乘可以如下展开<br>$$<br>\alpha &#x3D; \frac{(y-y_B)(x_C-x_B)-(x-x_B)(y_C-y_B)}{(y_A-y_B)(x_C-x_B)-(x_A-x_B)(y_C-y_B)}\<br>\beta &#x3D; \frac{(y-y_C)(x_A-x_C)-(x-x_C)(y_A-y_C)}{(y_B-y_C)(x_A-x_C)-(x_B-x_C)(y_A-y_C)}\<br>\gamma &#x3D; \frac{(y-y_A)(x_B-x_A)-(x-x_A)(y_B-y_A)}{(y_C-y_A)(x_B-x_A)-(x_C-x_A)(y_B-y_A)}\<br>$$<br>特别的，三角形的重心坐标为$\frac13 A+\frac13B+\frac13C$;</p>
+<p>基于任意一点，可以利用重心坐标，根据顶点的属性值，插值成三角形内部的属性值<br>$$<br>V&#x3D;\alpha V_A+\beta V_B + \gamma V_C<br>$$<br><img src="/assets/image-20241212203915791.png" alt="image-20241212203915791"></p>
+<p>但是在投影变换下，重心坐标不保证发生变化，应该在投影之前计算三维空间下的重心坐标，插值之后再做投影变换；</p>
+<h2 id="Texture-Mapping"><a href="#Texture-Mapping" class="headerlink" title="Texture Mapping"></a>Texture Mapping</h2><p>基本思路为：对每个光栅化屏幕的采样点(通常为像素的中心)，计算对应的纹理的坐标，在纹理上采样，设置样本点的纹理颜色；</p>
+<p>像素在纹理上的采样对应的称为纹理元素(texel);</p>
+<p>在实际应用时，针对不同场景，往往还要作如下优化：</p>
+<h3 id="Bilinear-Interpolation"><a href="#Bilinear-Interpolation" class="headerlink" title="Bilinear Interpolation"></a>Bilinear Interpolation</h3><p><img src="/assets/image-20241212205128667.png" alt="image-20241212205128667"></p>
+<p>假设像素对应的纹理坐标对应红点，我们考虑周围四个像素进行插值；</p>
+<p>定义一维上的线段上的插值<br>$$<br>{\rm lerp}(x,v_0,v_1)&#x3D;v_0 + x(v_1-v_0)<br>$$<br>考虑水平偏移$s$和垂直偏移$t$,可以在水平方向和垂直方向各做插值<br>$$<br>u_0 &#x3D; {\rm lerp}(s,u_{00},u_{10})\<br>u_1 &#x3D; {\rm lerp}(s,u_{01},u_{11})\<br>f(x,y) &#x3D; {\rm lerp} (t,u_0,u_1)<br>$$<br>若取16个纹理格子的方法称作Bicubic,对比如下，解决纹理分辨率过低的问题；</p>
+<p><img src="/assets/image-20241212205708866.png" alt="image-20241212205708866"></p>
+<h2 id="Mipmap"><a href="#Mipmap" class="headerlink" title="Mipmap"></a>Mipmap</h2><p>对于纹理分辨率过大的情况，可能出现锯齿和摩尔纹的问题；</p>
+<p><img src="/assets/image-20241212205906862.png" alt="image-20241212205906862"></p>
+<p>假设像素对应灰色的四边形，其中心为蓝点，在分辨率相对过大的情况下，可能像素覆盖了许多纹素，仅靠中心点的纹素难以描述整个像素的纹理信息，需要解决在纹理走样上的问题；</p>
+<p><img src="/assets/image-20241212210254529.png" alt="image-20241212210254529"></p>
+<p>抛弃采样的思路，我们尝试解决一类范围查询问题：给定平面上的一块像素区域，获得覆盖纹素的平均值；</p>
+<p>引入Mipmap，快速地解决正方形的近似范围查询；</p>
+<p>预处理纹理图像，生成$2\times 2$的卷积图像作为下一层，直到得到单个纹素，带来的额外空间开销为原来的$\frac13$;</p>
+<p><img src="/assets/image-20241212211136030.png" alt="image-20241212211136030"></p>
+<p>利用Mipmap我们只需要关注像素对应的区域在Mipmap的哪一层即可，对于任意一个像素块，可以映射到纹理上的某一区域；</p>
+<p><img src="/assets/image-20241212212116827.png" alt="image-20241212212116827"></p>
+<p>考虑像素中心和其邻居中心的距离为一个像素块长度，那么这个区域也近似为一个映射长度$L$的正方形；</p>
+<p><img src="/assets/image-20241212212234652.png" alt="image-20241212212234652"></p>
+<p><img src="/assets/image-20241212212336567.png" alt="image-20241212212336567"></p>
+<p>映射长度计算如下：<br>$$<br>L&#x3D;\max \left(\sqrt{(\frac{du}{dx})^2+(\frac{dv}{dx})^2},\sqrt{(\frac{du}{dy})^2+(\frac{dv}{dx})^2} \right)<br>$$<br>这个近似正方形的纹理平均值所在层数为<br>$$<br>D&#x3D;\log_2 L<br>$$<br>在这一层像素对应的区域就近似于该层的一个纹素；</p>
+<p>这样的计算代价可能是纹理映射变化不连续，我们考虑下层$\lfloor \log_2L \rfloor$和上一层$\lceil \log_2L \rceil$，进一步作三线性插值(Trilinear Interpolation);</p>
+<p><img src="/assets/image-20241212213314450.png" alt="image-20241212213314450"></p>
+<h2 id="Anisotropic-Filtering"><a href="#Anisotropic-Filtering" class="headerlink" title="Anisotropic Filtering"></a>Anisotropic Filtering</h2><p>使用Mipmap可能会在远处出现过度模糊的问题，可能是近似成正方形区域带来细节丢失严重的问题；</p>
+<p><img src="/assets/image-20241212213843252.png" alt="image-20241212213843252"></p>
+<p>通过各向异性过滤可以缓解Mipmap的问题；</p>
+<p><img src="/assets/image-20241212213856884.png" alt="image-20241212213856884"></p>
+<p>预计算Ripmaps 和总面积表，可以查找轴对齐的矩形区域 ，但是对角线足迹仍然是一个问题，而且带来的开销是原来的3倍；</p>
+<p><img src="/assets/image-20241212214340625.png" alt="image-20241212214340625"></p>
+<h3 id="EWA-filtering"><a href="#EWA-filtering" class="headerlink" title="EWA filtering"></a>EWA filtering</h3><p>通过多次查询，将不规则区域分成若干圆形；</p>
+<ul>
+<li>计算加权平均；</li>
+<li>仍然维护Mipmap 层次结构；</li>
+<li>可以处理不规则的足迹；</li>
+</ul>
+<p><img src="/assets/image-20241212214424929.png" alt="image-20241212214424929"></p>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><p>在现代GPU中，纹理可以看作一块内存+内存上的范围查询，可以将数据引入片段计算，这实际上是一些物理模型应用的上层抽象；</p>
+<ul>
+<li>环境光Environment lighting</li>
+<li>存储微观几何体Store microgeometry</li>
+<li>程序纹理Procedural textures</li>
+<li>实体建模Solid modeling</li>
+<li>体积渲染Volume rendering</li>
+</ul>
+<h4 id="Environment-Lighting"><a href="#Environment-Lighting" class="headerlink" title="Environment Lighting"></a>Environment Lighting</h4><p>我们需要将纹理描述环境光时，会生成一种环境贴图的特殊纹理，用于描述不同方向的光照信息；</p>
+<p>一般认为环境光线来自无穷远处，也就是说，用环境光描述的环境贴图没有深度意义；</p>
+<p>我们可以将环境贴图记录在一个球面上，再将球面展开(类似于地球仪和世界地图)，称作Spherical Map；</p>
+<p>但是Spherical Map潜在问题是靠近极点的位置可能发生扭曲；</p>
+<p>一个改进是利用Cube Map，将光照信息存储在一个立方体上，将立方体展开得到6个图片；</p>
+<p>对应关系如下：</p>
+<p><img src="/assets/image-20241226211043946.png" alt="image-20241226211043946"></p>
+<h4 id="Store-Height-normal"><a href="#Store-Height-normal" class="headerlink" title="Store Height&#x2F;normal"></a>Store Height&#x2F;normal</h4><p>可以用纹理描述物体表面上的凹凸高度变化，生成凹凸&#x2F;法线贴图(Bump&#x2F;Normal mapping),用于虚拟物体的表面几何性质(Fake the detailed geometry);</p>
+<p>将设没有贴图时物体表面为黑线，黄色的曲线为凹凸贴图记录的高度信息，我们需要根据两个信息重新计算切线和梯度；</p>
+<p><img src="/assets/image-20241226211905433.png" alt="image-20241226211905433"></p>
+<p>通过旋转坐标系的办法，我们假设没有贴图表面上一点的法向量为$(0,0,1)$;</p>
+<p>对于贴图上切线，用某个因子衡量贴图对表面的影响程度，对梯度用如下差分作出近似；<br>$$<br>\frac{dp}{du}&#x3D;c_1(h(u+1)-h(u))\<br>\frac{dp}{dv}&#x3D;c_2(h(v+1)-h(v))<br>$$<br>经过贴图修正过后的法线应该是<br>$$<br>\hat n &#x3D; (-\frac{dp}{du},-\frac{dp}{dv}, 1).{\rm normalized()}<br>$$<br>一个更加现代的方法是位移贴图Displacement mapping，实际改变光栅三角形的顶点位置，对比如下，可以看到在边缘处凹凸贴图的Fake之处，它没有改变几何体的形状；</p>
+<p><img src="/assets/image-20241226213536647.png" alt="image-20241226213536647"></p>
+<p>效果更好带来如下代价：模型需要足够细致，使得光栅采样的频率高于纹理变换的频率；</p>
+<h4 id="3D-Procedural-Noise-Solid-Modeling-Volumn-Rendering"><a href="#3D-Procedural-Noise-Solid-Modeling-Volumn-Rendering" class="headerlink" title="3D Procedural Noise + Solid Modeling + Volumn Rendering"></a>3D Procedural Noise + Solid Modeling + Volumn Rendering</h4><p>纹理也可以记录一些三维信息，用噪声描述；</p>
+<p><img src="/assets/image-20241226214350077.png" alt="image-20241226214350077"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Rasterization/" rel="prev" title="Rasterization">
+                  <i class="fa fa-angle-left"></i> Rasterization
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Transformation/" rel="next" title="Transformation">
+                  Transformation <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

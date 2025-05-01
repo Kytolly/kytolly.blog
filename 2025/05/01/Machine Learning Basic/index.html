@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="概念机器学习包括以下三个要素，也是一个学习器必须具备的  算法：  线性方法：$f(x,\theta)&#x3D;w^Tx+b$，比如SVM​ 非线性方法：$f(x,\theta)&#x3D;w^T\phi(x)+b$,比如神经网络   学习准则：一般我们选择最小化期望风险$$\mathcal R(f)&#x3D;\mathbb E_{(x,y)\sim p(x,y)}[\mathcal L(f(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning Basic">
+<meta property="og:url" content="http://example.com/2025/05/01/Machine%20Learning%20Basic/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="概念机器学习包括以下三个要素，也是一个学习器必须具备的  算法：  线性方法：$f(x,\theta)&#x3D;w^Tx+b$，比如SVM​ 非线性方法：$f(x,\theta)&#x3D;w^T\phi(x)+b$,比如神经网络   学习准则：一般我们选择最小化期望风险$$\mathcal R(f)&#x3D;\mathbb E_{(x,y)\sim p(x,y)}[\mathcal L(f(">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.317Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.199Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/Machine%20Learning%20Basic/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/Machine%20Learning%20Basic/","path":"2025/05/01/Machine Learning Basic/","title":"Machine Learning Basic"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Machine Learning Basic | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">基本流程</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/Machine%20Learning%20Basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Machine Learning Basic | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Machine Learning Basic
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>机器学习包括以下三个要素，也是一个学习器必须具备的</p>
+<ul>
+<li><p>算法：</p>
+<ul>
+<li>线性方法：$f(x,\theta)&#x3D;w^Tx+b$，比如SVM​</li>
+<li>非线性方法：$f(x,\theta)&#x3D;w^T\phi(x)+b$,比如神经网络</li>
+</ul>
+</li>
+<li><p>学习准则：一般我们选择最小化期望风险<br>$$<br>\mathcal R(f)&#x3D;\mathbb E_{(x,y)\sim p(x,y)}[\mathcal L(f(x),y)]<br>$$</p>
+</li>
+<li><p>优化方法：比如梯度下降</p>
+</li>
+</ul>
+<p>对于一个好的学习器，其泛化能力比较好，意味着模型能适应不仅仅是训练样本更能很好的适用于新样本；</p>
+<p>一般抽样出来的独立同分布的训练样本越多越有可能学习出一个泛化能力强的模型；</p>
+<h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ol>
+<li><p>数据采集</p>
+<p>所有的机器学习算法都是数据贪婪的，任何一个算法都可以通过增加数据来达到更好的结果，因此第一步数据采集也是最基础、最重要的一步。</p>
+<p>采集方式：爬虫，公开数据集，数据库；</p>
+</li>
+<li><p>数据预处理</p>
+<p>即便数据都在手上，但是因为人为、软件、业务导致的异常数据还是比较多的，比如性别数据的缺失、年龄数据的异常，异常数据对模型是有影响的，因此通常需要进行预处理 。</p>
+<p>预处理问题类型：缺失处理，异常处理（绝对异常，统计异常，上下文异常）</p>
+</li>
+<li><p>特征工程</p>
+<p>特征工程指的是把原始数据转变为模型的训练数据的过程，它的目的就是获取更好的训练数据特征，使得机器学习模型逼近上限。一般来讲，特征工程包含特征选择、特征提取和特征构建。</p>
+<ul>
+<li><p>特征选择:剔除不相关或者冗余的特征，减少有效特征的个数，减少模型训练的时间，提高模型的精确度。</p>
+</li>
+<li><p>特征自身的取值分布：主要通过方差过滤法，比如性别特征，1000个数据，999个是男的，1个是女的，这种特征由于自身过于偏斜，因此是无法对结果起到足够的帮助。</p>
+</li>
+<li><p>特征与目标的相关性：可以通过皮尔逊系数、信息熵增益等来判断，思路是如果一个特征与目标的变化是高度一致的，那么它对于预测目标就是具有很大指导意义的。</p>
+</li>
+<li><p>特征构建：指的是从原始数据中人工的构建新的特征。需要人工的创建它们。这需要花大量的时间去研究真实的数据样本，思考问题的潜在形式和数据结构，同时能够更好地应用到预测模型中。</p>
+</li>
+<li><p>特征组合：例如组合日期、时间两个特征，构建是否为上班时间(工作日的工作时间为1，其他为0)特征，特征组合的目的通常是为了获得更具有表达力、信息量的新特征。</p>
+</li>
+<li><p>特征拆分：将业务上复杂的特征拆分开，比如将登陆特征，拆分为多个维度的登陆次数统计特征，拆分为多个的好处一个是从多个维度表达信息，另一个多个特征可以进行更多的组合。</p>
+</li>
+</ul>
+</li>
+<li><p>模型的构建与调优</p>
+<p>将原始数据映射到特征空间之后，得到比较合理的输入。下一步就是构建合适的预测模型在数据上训练得到对应输入的输出。</p>
+<p>模型选择的一般方法：</p>
+<p>首先我们要对处理好的数据进行分析，判断训练数据有没有类标，若是有类标则应该考虑监督学习的模型，否则可以划分为非监督学习问题。其次分析问题的类型是属于分类问题还是回归问题，当我们确定好问题的类型之后再去选择具体的模型。在模型的实际选择时，通常会考虑尝试不同的模型对数据进行训练，然后比较输出的结果，选择最佳的那个。此外还可以尝试多模型融合，来提高效果。选好模型后是调优问题，可以采用交差验证，观察损失曲线，测试结果曲线等分析原因，调节参数：优化器、学习率、batchsize等。</p>
+</li>
+<li><p>模型的评价</p>
+<p>模型选择是在某个模型类中选择最好的模型，而模型评价对这个最好的模型进行评价。模型评价阶段不做参数调整而是客观地评价模型的预测能力。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Intro/" rel="prev" title="Intro">
+                  <i class="fa fa-angle-left"></i> Intro
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Probabilistic%20Reasoning/" rel="next" title="Probabilistic Reasoning">
+                  Probabilistic Reasoning <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="SQL语言对于SQL语言来说，  以同一种语法结构提供两种使用方法：既是自含式语言，又是嵌入式语言 语言简洁，易学易用，核心功能只需9个动词DDL（数据定义语言）：CREATE、DROP、ALTERDML（数据操纵语言）： SELECT、INSERT、UPDATE、DELETEDCL（数据控制语言）：GRANT、REVOKE  以下式SQL Server的包含的数据类型：    数据类型 功能及特">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库SQL语言">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E8%AF%AD%E8%A8%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SQL语言对于SQL语言来说，  以同一种语法结构提供两种使用方法：既是自含式语言，又是嵌入式语言 语言简洁，易学易用，核心功能只需9个动词DDL（数据定义语言）：CREATE、DROP、ALTERDML（数据操纵语言）： SELECT、INSERT、UPDATE、DELETEDCL（数据控制语言）：GRANT、REVOKE  以下式SQL Server的包含的数据类型：    数据类型 功能及特">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406172012856.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406172040908.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.428Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.760Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406172012856.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E8%AF%AD%E8%A8%80/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E8%AF%AD%E8%A8%80/","path":"2025/05/01/数据库SQL语言/","title":"数据库SQL语言"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据库SQL语言 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E8%AF%AD%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">SQL语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%9B%E5%BB%BA"><span class="nav-number">2.</span> <span class="nav-text">数据库创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BF%AE%E6%94%B9"><span class="nav-number">3.</span> <span class="nav-text">数据库修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%A0%E9%99%A4"><span class="nav-number">4.</span> <span class="nav-text">数据库删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2"><span class="nav-number">5.</span> <span class="nav-text">数据查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%8A%A0"><span class="nav-number">6.</span> <span class="nav-text">数据增加</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%BF%AE%E6%94%B9"><span class="nav-number">7.</span> <span class="nav-text">数据修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4"><span class="nav-number">8.</span> <span class="nav-text">数据删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95"><span class="nav-number">9.</span> <span class="nav-text">索引</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E8%AF%AD%E8%A8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据库SQL语言 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库SQL语言
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="SQL语言"><a href="#SQL语言" class="headerlink" title="SQL语言"></a>SQL语言</h2><p>对于SQL语言来说，</p>
+<ol>
+<li>以同一种语法结构提供两种使用方法：既是自含式语言，又是嵌入式语言</li>
+<li>语言简洁，易学易用，核心功能只需9个动词<br>DDL（数据定义语言）：CREATE、DROP、ALTER<br>DML（数据操纵语言）： SELECT、INSERT、UPDATE、DELETE<br>DCL（数据控制语言）：GRANT、REVOKE</li>
+</ol>
+<p>以下式SQL Server的包含的数据类型：</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>功能及特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>char(n)</td>
+<td>固定长度字符串，长度范围是1～8000，默认值为1。</td>
+</tr>
+<tr>
+<td>nchar(n)</td>
+<td>固定长度Unicode字符串，长度范围是1～4 000，默认值为1。</td>
+</tr>
+<tr>
+<td>varchar(n)</td>
+<td>变长字符串，长度范围是1～8 000，如省略n，则默认最大长度是1。</td>
+</tr>
+<tr>
+<td>nvarchar(n)</td>
+<td>包含n个字符的可变长度Unicode字符数据，n的取值介于1与4000    之间；如省略n，则默认长度是1。</td>
+</tr>
+<tr>
+<td>text</td>
+<td>变长字符数据，最多达到$2^{31}-1$字节，行中存储指向第一个数据    页的指针，实际的文本是以B-树页面存储。</td>
+</tr>
+<tr>
+<td>ntext</td>
+<td>变长Unicode字符数据，最多可达$2^{30}-1$字节，行中存储指向第一个数据页的指针，实际的文本是以B-树页面存储。</td>
+</tr>
+<tr>
+<td>dec(n,m)  decimal(n,m)   numeric(n,m)</td>
+<td>数值型，n是位数，范围是1～38，m是小数点右边的位数，范围是  0～n。可用decimal(n)表示decimal(n,0)；如果用不带参数的decimal时，系统默认表示decimal(38,0)，但是，这时SQL  Server最大可达到28位。推荐decimal使用明确的n，有助于提高程序的清晰度。</td>
+</tr>
+<tr>
+<td>int，integer</td>
+<td>四字节二进制整数，范围是$－2^{31}～2^{31}－1$。</td>
+</tr>
+<tr>
+<td>float(n)</td>
+<td>浮点数，n是尾数位数，范围是1～53。如果n为1～24则指定单精度  （4字节），如果n为25～53则指定双精度（8字节）；注意：可以使用Float本身表示Float(53)。</td>
+</tr>
+<tr>
+<td>Real</td>
+<td>等价于Float(24)，Real列有7位数精度。</td>
+</tr>
+<tr>
+<td>Smalldatetime</td>
+<td>四字节日期和时间，日期范围是～6-6-2079；时间精度是自午夜开始的1分钟之内。</td>
+</tr>
+<tr>
+<td>Datetime</td>
+<td>八字节日期和时间，日期范围是～12-31-9999，时间精度：3.33毫秒之内。</td>
+</tr>
+<tr>
+<td>Binary(n)</td>
+<td>定长二进制数据，长度范围是1～8 000字节，如省略n，则默认值是1。</td>
+</tr>
+<tr>
+<td>Varbinary(n)</td>
+<td>变长二进制数据，长度从1～8 000字节，如省略n，则默认值是1。</td>
+</tr>
+</tbody></table>
+<h2 id="数据库创建"><a href="#数据库创建" class="headerlink" title="数据库创建"></a>数据库创建</h2><p>为了创建数据库，用户必须是系统管理员或者被授权使用<code>CREATE DATABASE</code>语句，语法形式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE &lt;数据库名&gt;</span><br><span class="line">[&lt;On  Primary&gt;     </span><br><span class="line">% 一个数据库可建多个档案文件，主档案文件是会有一个，默认在主档案文件</span><br><span class="line">    ([Name = 系统使用的逻辑名],</span><br><span class="line">    [Filename = 完全限定的NT Server文件名], </span><br><span class="line">    [Size = 文件的初始大小],</span><br><span class="line">    [MaxSize = 最大的文件尺寸],</span><br><span class="line">    [FileGrowth = 系统的扩展文件量])…]</span><br><span class="line">    [&lt;Log On&gt;</span><br><span class="line">    ([Name = 系统使用的逻辑名],</span><br><span class="line">    [Filename = 完全限定的NT Server文件名],</span><br><span class="line">    [Size = 文件的初始大小],</span><br><span class="line">    [FileGrowth = 系统的扩展文件量])]</span><br></pre></td></tr></table></figure>
+
+<p>创建表操作如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE  基表名（</span><br><span class="line">    &lt;列名1&gt; &lt;列类型&gt; &lt;列约束&gt;,</span><br><span class="line">    &lt;列名2&gt; &lt;列类型&gt; &lt;列约束&gt;,</span><br><span class="line">    …</span><br><span class="line">    &lt;列名n&gt; &lt;列类型&gt; &lt;列约束&gt;,</span><br><span class="line">    &lt; 表约束&gt; | [ &#123; PRIMARY KEY | UNIQUE &#125; [ ,…] ]</span><br><span class="line">）</span><br><span class="line">表名形式为：[数据库名[.拥有者.]]表名  </span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> Medicine (</span><br><span class="line">    Mno <span class="type">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    Mname <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">    Mprice <span class="type">DECIMAL</span>(<span class="number">18</span>,<span class="number">2</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">    Munit <span class="type">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;克&#x27;</span>,</span><br><span class="line">    Mtype <span class="type">VARCHAR</span>(<span class="number">10</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406172012856.png" alt="image-20240617201217753"></p>
+<p>常用完整性约束</p>
+<ol>
+<li><p>主码约束：   PRIMARY  KEY</p>
+</li>
+<li><p>唯一性约束：UNIQUE</p>
+</li>
+<li><p>非空值约束：NOT NULL</p>
+</li>
+<li><p>参照完整性约束：Foreign Key？</p>
+<ul>
+<li>含有主键或者唯一性约束列的表为主表（或父表），含有外键的表为从表（或子表）。</li>
+<li>参照完整性：外键约束指定外键的列与主表中主键或者唯一性约束列相关联，也就是说，外键的每一个值至少能在主表的主键或唯一性约束列中找到一个相同的列值。</li>
+<li>外键是在从表上定义，当修改或删除主表的记录，或者在从表上修改或插入数据时，由数据库管理系统自动进行检查。</li>
+</ul>
+<ul>
+<li>在需要命名约束、多列约束或定义外键约束时，必须使用 <code>CONSTRAINT</code> 关键字。在简单约束（如单列主键、唯一约束、检查约束和默认值）中，可以省略 <code>CONSTRAINT</code> 关键字。</li>
+</ul>
+<ul>
+<li><p>以下是外键的一个示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE RecipeMaster (</span><br><span class="line">    Rno VARCHAR(10) PRIMARY KEY,</span><br><span class="line">    Pno VARCHAR(10) NOT NULL,</span><br><span class="line">    Dno VARCHAR(10) NOT NULL,</span><br><span class="line">    DGno VARCHAR(10),</span><br><span class="line">    Rdatetime DATETIME,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">CREATE TABLE RecipeDetail (</span><br><span class="line">    Rno varchar (10) ,</span><br><span class="line">    Mno varchar (10) ,</span><br><span class="line">    Mamount decimal(18, 0),</span><br><span class="line">    CONSTRAINT Rnofk FOREIGN KEY(Rno) REFERENCES RecipeMaster(Rno),</span><br><span class="line">    CONSTRAINT mnofk FOREIGN KEY(Dno) REFERENCES medicine(Mno)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h2 id="数据库修改"><a href="#数据库修改" class="headerlink" title="数据库修改"></a>数据库修改</h2><p>Alter用于修改现有的数据库对象（如表结构、添加或删除列），Alter Database语法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE &lt;数据库名&gt;</span><br><span class="line">[&lt;Add File&gt;</span><br><span class="line">(&lt;Name = 系统使用的逻辑名&gt;,</span><br><span class="line">[Filename = 完全限定的NT Server文件名], </span><br><span class="line">[Size = 文件的初始大小],</span><br><span class="line">[MaxSize = 最大的文件尺寸],</span><br><span class="line">[FileGrowth = 系统的扩展文件量])…]</span><br><span class="line">[&lt;Modify File&gt;</span><br><span class="line">(&lt;Name = 系统使用的逻辑名&gt;,</span><br><span class="line">[Filename = 完全限定的NT Server文件名], </span><br><span class="line">[Size = 文件的初始大小],</span><br><span class="line">[MaxSize    = 最大的文件尺寸],</span><br><span class="line">[FileGrowth = 系统的扩展文件量])…]</span><br><span class="line">[&lt;Remove File&gt; &lt;系统使用文件的逻辑名&gt;,…]</span><br><span class="line">[&lt;Add Log File&gt;</span><br><span class="line">(&lt;Name = 系统使用的逻辑名&gt;,</span><br><span class="line">[Filename = 完全限定的NT Server文件名], </span><br><span class="line">[Size = 文件的初始大小],</span><br><span class="line">[MaxSize = 最大的文件尺寸],</span><br><span class="line">[FileGrowth = 系统的扩展文件量])…]</span><br></pre></td></tr></table></figure>
+
+<p>我们对表的修改通常采用以下语句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 〈基表名〉</span><br><span class="line">    [ ALTER COLUMN &lt;列名&gt; &lt;数据类型&gt;],</span><br><span class="line">    [ ADD  &lt;新列名&gt; &lt;数据类型&gt; &lt;约束规则&gt;],</span><br><span class="line">    [ DROP  &lt;列名&gt;],</span><br><span class="line">    [ DROP  &lt;约束规则&gt;];</span><br><span class="line"></span><br><span class="line">&lt;表名&gt;：要修改的基本表</span><br><span class="line">ADD子句：增加新列和新的完整性约束条件</span><br><span class="line">DROP子句：删除指定的完整性约束条件</span><br><span class="line">ALTER子句：用于修改列名和数据类型</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE RecipeDetail ADD Price Decimal ( 5,3 )</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库删除"><a href="#数据库删除" class="headerlink" title="数据库删除"></a>数据库删除</h2><p>删除数据库的命令格式为： <code>DROP DATABASE</code> 需要删除的数据库名</p>
+<p>我们对表的删除往往采用以下语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE &lt;表名&gt; [RESTRICT|CASCADE];</span><br><span class="line"></span><br><span class="line">RESTRICT：拥有表的对象（Check、Foreign Key、视图、触发器、存储过程、函数等）时禁止删除；</span><br><span class="line">CASCADE：级联删除表的所有对象</span><br><span class="line">不同数据库产品略有执行策略的差别</span><br><span class="line">使用ALTER TABLE语句还可以从表中删除已有的列，但删除列之前，必须删除任何引用该列的约束、缺省表达式、计算列表达式或索引。</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE employees;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h2><p>数据查询通常采用如下格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT [ALL|DISTINCT] &lt;目标列表达式&gt; [，&lt;目标列表达式&gt;] …</span><br><span class="line">	 [INSERT INTO &lt;新表名&gt;]</span><br><span class="line"> FROM &lt;表名或视图名&gt;[， &lt;表名或视图名&gt; ] …</span><br><span class="line"> [ WHERE &lt;条件表达式&gt; ]</span><br><span class="line"> [ GROUP BY &lt;列名1&gt; [ HAVING &lt;条件表达式&gt; ] ]</span><br><span class="line"> [ ORDER BY &lt;列名2&gt; [ ASC|DESC ] ]；	</span><br><span class="line">    SELECT子句：指定要显示的属性列</span><br><span class="line">    FROM子句：指定查询对象(基本表或视图)</span><br><span class="line">    WHERE子句：指定查询条件</span><br><span class="line">    GROUP BY子句：对查询结果按指定列的值分组，该属性列值相等的元组为一个组。通常会在每组中作用集函数。</span><br><span class="line">    HAVING短语：筛选出只有满足指定条件的组</span><br><span class="line">    ORDER BY子句：对查询结果表按指定列值的升序或降序排序</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>最简单例子：查询医生基本信息表中所有医生的所有信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM Doctor</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定列别名：查询显示指定的列，列的显示顺序与SELECT子句后指定的列顺序一致，这与关系代数的投影操作功能一致。查询显示各列的标题可以是列名，也可以改变查询显示列的标题。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT Dname 医生姓名, Dlevel 专业职称 FROM Doctor</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406172040908.png" alt="image-20240617203859195"></p>
+</li>
+<li><p>无重复记录：关键字DISTINCT是合并查询结果中的重复记录，当没有DISTINCT时，表示显示所有记录。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT Ddeptno FROM Doctor</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>条件查询</p>
+<p>在SELECT命令中使用WHERE子句给出查询条件来实现;</p>
+<table>
+<thead>
+<tr>
+<th>运   算 符</th>
+<th>具 体 含 义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;</td>
+<td>等于</td>
+</tr>
+<tr>
+<td>&lt;&gt;或!&#x3D;</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>&lt;&#x3D;或!&gt;</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>&gt;&#x3D;或!&lt;</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td>NOT</td>
+<td>逻辑非，用于选择不满足条件的记录行</td>
+</tr>
+<tr>
+<td>AND</td>
+<td>逻辑与，用于选择同时满足多个条件的记录行</td>
+</tr>
+<tr>
+<td>OR</td>
+<td>逻辑或，用于选择满足任意一个条件的记录行</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>属于集合（或查询返回值构成的集合）</td>
+</tr>
+<tr>
+<td>NOT IN</td>
+<td>不属于集合（或查询返回值构成的集合）</td>
+</tr>
+<tr>
+<td>BETWEEN A AND B</td>
+<td>大于或等于A且小于或等于B</td>
+</tr>
+<tr>
+<td>LIKE</td>
+<td>模式匹配，“%”表示匹配任意多个字符，“-”匹配一个字符</td>
+</tr>
+<tr>
+<td>NOT LIKE</td>
+<td>为LIKE的否定形式</td>
+</tr>
+<tr>
+<td>IS NULL</td>
+<td>为空值</td>
+</tr>
+<tr>
+<td>IS NOT NULL</td>
+<td>为非空值</td>
+</tr>
+</tbody></table>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM Doctor WHERE Dsex=&#x27;男&#x27;</span><br><span class="line">Select * From Doctor Where Dlevel Like &#x27;副%&#x27;</span><br><span class="line">SELECT * FROM Doctor WHERE Dsex=&#x27;男&#x27; AND Dage&lt;=40 </span><br><span class="line">SELECT * FROM Doctor WHERE DDdeptno  IN  (&#x27;102&#x27;,&#x27;103&#x27;,&#x27;201&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用ORDER BY子句查询</p>
+<ul>
+<li><p>通常在查询时，需要按一定顺序显示，可以使用ORDER BY子句列进行排序，ASC和DESC分别表示升序和降序，用户可以任选，系统缺省为升序。</p>
+</li>
+<li><p>如果按多列进行排序，应分别指出用于排序的列名及相关的升序或降序方式，排序方式的先后顺序与ORDER BY后面排序列的顺序一致。即首先由ORDER BY后面的第一列确定顺序，其次由第二列确定顺序，再由第三列确定顺序……依此类推。</p>
+</li>
+<li><p>在SQL SERVER中，空值为最小。</p>
+</li>
+<li><p>例如按照年龄升序查询男医生信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM Doctor WHERE Dsex=&#x27;男&#x27; ORDER BY Dage ASC</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>聚集查询</p>
+<p>统计医生人数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT COUNT(Dno)人数 FROM Doctor</span><br></pre></td></tr></table></figure>
+
+<p>统计平均年龄</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT AVG(年龄) FROM 作者</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多表间的连接查询</p>
+<ul>
+<li><p>多表查询的理论基础是关系运算。</p>
+</li>
+<li><p>多表间的连接运算遵循笛卡尔规则，但“笛卡尔”查询会产生大量的无意义的数据记录。因此，在进行连接时加上一些限制条件，使产生的数据记录是笛卡尔连接结果集的子集。</p>
+</li>
+<li><p>进行连接运算的表，必须存在着有某种关系的公共列，连接运算实际是比较各表的公共列值，如果满足条件的连接产生组合输出行。</p>
+</li>
+<li><p>格式如下,为了避免相同列名出现在同一查询的多个表（或视图）中引起二义性，则需要在列的前面加上限定前缀，可以使用表名或表的别名作为前缀。<br>“表名 别名” 或 “表名AS别名” </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT &lt;查询列表&gt;</span><br><span class="line">[ INTO &lt;新表名&gt; ]</span><br><span class="line">FROM &lt;基表名1|视图名1&gt; [ 别名1 ] [，&lt;基表名2|视图名2&gt; [ 别名2 ]] ……</span><br><span class="line">WHERE &lt;别名1.列名1&gt; 比较运算符 &lt;别名2.列名2&gt;……</span><br><span class="line">[ GROUP BY &lt;分组条件&gt;] </span><br><span class="line">[ HAVING &lt;分组后筛选条件&gt;] </span><br><span class="line">[ ORDER BY &lt;排序列名&gt;[ ASC | DESC ] ]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT &lt;查询列表&gt;</span><br><span class="line">	[ INTO &lt;新表名&gt; ] </span><br><span class="line">	FROM &lt;基表1|视图1&gt; [ AS 别名1 ] </span><br><span class="line">	&#123;&lt; LEFT | RIGHT | FULL &gt; [ OUTER ] JOIN&#125;	</span><br><span class="line">      		&lt;基表2|视图2&gt; [AS 别名2 ] </span><br><span class="line">	ON &lt;连接条件&gt;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>一个自然连接的例子如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT Rno,Pno,D.Dno,Dname,Dsex,Dage,Ddeptno,Dlevel FROM RecipeMaster R, Doctor D WHERE R.Dno=D.Dno</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一个外连接的例子如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT DeptName 部门名称,DName 医生姓名</span><br><span class="line">    FROM Dept left outer join Doctor</span><br><span class="line">    ON Dept.DeptNo=Doctor.Ddeptno</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h2 id="数据增加"><a href="#数据增加" class="headerlink" title="数据增加"></a>数据增加</h2><p>用VALUES插入，格式为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO &lt;基表名&gt; [（&lt;列名表&gt;）] VALUES（&lt;值表&gt;）</span><br><span class="line"></span><br><span class="line">&lt;基表名&gt;是指要插入数据的目标表；</span><br><span class="line">&lt;列名表&gt;是指定目标表的目标列，该参数可以省略；如果省略列名表，表示向目标表所有列插入数据；</span><br><span class="line">&lt;值表&gt;是指定具体要插入的值。</span><br></pre></td></tr></table></figure>
+
+<p>一个例子如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT </span><br><span class="line">INTO Doctor(Dno,Dname,Dsex,Dage,DDeptNO,Dlevel)</span><br><span class="line">VALUES(&#x27;145&#x27;,&#x27;王军&#x27;,&#x27;男&#x27;,28,&#x27;101&#x27;,&#x27;医师&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据修改"><a href="#数据修改" class="headerlink" title="数据修改"></a>数据修改</h2><p>数据修改格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPDATE&lt;基表名&gt;</span><br><span class="line">SET &lt;列名1&gt;=&lt;表达式2&gt;，&lt;列名2&gt;=&lt;表达式2&gt;…</span><br><span class="line">[WHERE &lt;条件表达式&gt;]</span><br></pre></td></tr></table></figure>
+
+<p>一个例子如下：在医院数据库中，将编号为“423”的患者的社会保障号，修改为“20073425”。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPDATE Patient</span><br><span class="line">  SET Pino=&#x27;20073425&#x27;</span><br><span class="line">  WHERE Pno=&#x27;423&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据删除"><a href="#数据删除" class="headerlink" title="数据删除"></a>数据删除</h2><p>数据删除格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM &lt;表名&gt;[WHERE&lt;条件&gt;]</span><br></pre></td></tr></table></figure>
+
+<p>一个例子如下：在医院数据库中，将编号为“423”的患者从系统中删除</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM Patient WHERE Pno=&#x27;423&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>建立索引是加快查询速度的有效手段，索引由DBMS内部实现，属于内模式范畴</p>
+<ul>
+<li>建立索引：DBA或表的属主（即建立表的人）根据需要建立，有些DBMS自动建立以下列上的索引: PRIMARY  KEY和 UNIQUE</li>
+<li>维护索引：DBMS自动完成 </li>
+<li>使用索引：DBMS自动选择是否使用索引以及使用哪些索引</li>
+</ul>
+<p>创建索引格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE [ UNIQUE ] [ CLUSTERED | NONCLUSTERED ] INDEX &lt;索引名&gt;</span><br><span class="line">ON &lt; 基表名 | 视图名&gt; ( 列名[ ASC | DESC ] [ ,...n ] )</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/" rel="prev" title="关系数据模型">
+                  <i class="fa fa-angle-left"></i> 关系数据模型
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%B3%E7%B3%BB%E8%A7%84%E8%8C%83%E5%8C%96%E6%A8%A1%E5%BC%8F%E8%AE%BE%E8%AE%A1/" rel="next" title="数据库关系规范化模式设计">
+                  数据库关系规范化模式设计 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Preface作为暑假集训的第一篇博客，为什么是#4呢？因为终于写出了免于爆零了 ，感慨良多，虽然在赛场上一直卡G（英语不好读不懂题），但明显感觉到卷子的难度正在适应我的水平，而且几何和字符串专题根本做不动，借着这个契机开始整理笔记（感觉学习曲线过于陡峭了）； 赛后补题只补了六道，留坑记录一下；  A:cf245D 1500 二进制B:cf1557B 1100 排序C:cf1338B 1800 构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UESTC 2023 Summer Training#4 Div.2暑假集训">
+<meta property="og:url" content="http://example.com/2023/07/14/UESTC%202023%20Summer%20Training#4%20Div.2%E6%9A%91%E5%81%87%E9%9B%86%E8%AE%AD/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Preface作为暑假集训的第一篇博客，为什么是#4呢？因为终于写出了免于爆零了 ，感慨良多，虽然在赛场上一直卡G（英语不好读不懂题），但明显感觉到卷子的难度正在适应我的水平，而且几何和字符串专题根本做不动，借着这个契机开始整理笔记（感觉学习曲线过于陡峭了）； 赛后补题只补了六道，留坑记录一下；  A:cf245D 1500 二进制B:cf1557B 1100 排序C:cf1338B 1800 构">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202307310222421.png">
+<meta property="article:published_time" content="2023-07-14T15:02:59.000Z">
+<meta property="article:modified_time" content="2023-08-09T17:18:11.278Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="summer training">
+<meta property="article:tag" content="codeforces">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202307310222421.png">
+
+
+<link rel="canonical" href="http://example.com/2023/07/14/UESTC%202023%20Summer%20Training#4%20Div.2%E6%9A%91%E5%81%87%E9%9B%86%E8%AE%AD/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/07/14/UESTC%202023%20Summer%20Training#4%20Div.2%E6%9A%91%E5%81%87%E9%9B%86%E8%AE%AD/","path":"2023/07/14/UESTC 2023 Summer Training#4 Div.2暑假集训/","title":"UESTC 2023 Summer Training#4 Div.2暑假集训"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>UESTC 2023 Summer Training#4 Div.2暑假集训 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A-Restoring-Table"><span class="nav-number">2.</span> <span class="nav-text">#A. Restoring Table</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%BA%90%EF%BC%9ACF245D"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">题源：CF245D</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC-code%EF%BC%9A"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">AC code：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#B-Moamen-and-k-subarrays"><span class="nav-number">3.</span> <span class="nav-text">#B. Moamen and k-subarrays</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%BA%90%EF%BC%9ACF1557B"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">题源：CF1557B</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A-1"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-1"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC-code%EF%BC%9A-1"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">AC code：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-Edge-Weight-Assignment"><span class="nav-number">4.</span> <span class="nav-text">#C. Edge Weight Assignment</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%BA%90%EF%BC%9ACF1338B"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">题源：CF1338B</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A-2"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-2"><span class="nav-number">4.0.0.3.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#D-String-Reversal"><span class="nav-number">5.</span> <span class="nav-text">#D. String Reversal</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%BA%90%EF%BC%9ACF1430E"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">题源：CF1430E</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A-3"><span class="nav-number">5.0.0.2.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-3"><span class="nav-number">5.0.0.3.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC-code%EF%BC%9A-2"><span class="nav-number">5.0.0.4.</span> <span class="nav-text">AC code：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#E-Imbalance-Value-of-a-Tree"><span class="nav-number">6.</span> <span class="nav-text">#E. Imbalance Value of a Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%BA%90%EF%BC%9ACF915F"><span class="nav-number">6.0.0.1.</span> <span class="nav-text">题源：CF915F</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A-4"><span class="nav-number">6.0.0.2.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-4"><span class="nav-number">6.0.0.3.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC-code"><span class="nav-number">6.0.0.4.</span> <span class="nav-text">AC code:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#p-s"><span class="nav-number">6.0.0.5.</span> <span class="nav-text">p.s.</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#F-Make-it-Increasing"><span class="nav-number">7.</span> <span class="nav-text">#F. Make it Increasing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%BA%90%EF%BC%9ACF1668C"><span class="nav-number">7.0.0.1.</span> <span class="nav-text">题源：CF1668C</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A-5"><span class="nav-number">7.0.0.2.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-5"><span class="nav-number">7.0.0.3.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC-code-1"><span class="nav-number">7.0.0.4.</span> <span class="nav-text">AC code:</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#G-Hyper-String"><span class="nav-number">8.</span> <span class="nav-text">#G. Hyper String</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%BA%90%EF%BC%9ACF176D"><span class="nav-number">8.0.0.1.</span> <span class="nav-text">题源：CF176D</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A-6"><span class="nav-number">8.0.0.2.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-6"><span class="nav-number">8.0.0.3.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#H-Multiplication-Table"><span class="nav-number">9.</span> <span class="nav-text">#H. Multiplication Table</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%BA%90%EF%BC%9ACF448D"><span class="nav-number">9.0.0.1.</span> <span class="nav-text">题源：CF448D</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A-7"><span class="nav-number">9.0.0.2.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-7"><span class="nav-number">9.0.0.3.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC-code%EF%BC%9A-3"><span class="nav-number">9.0.0.4.</span> <span class="nav-text">AC code：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Remark"><span class="nav-number">10.</span> <span class="nav-text">Remark</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/14/UESTC%202023%20Summer%20Training#4%20Div.2%E6%9A%91%E5%81%87%E9%9B%86%E8%AE%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="UESTC 2023 Summer Training#4 Div.2暑假集训 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          UESTC 2023 Summer Training#4 Div.2暑假集训
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-07-14 23:02:59" itemprop="dateCreated datePublished" datetime="2023-07-14T23:02:59+08:00">2023-07-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-08-10 01:18:11" itemprop="dateModified" datetime="2023-08-10T01:18:11+08:00">2023-08-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h1><p>作为暑假集训的第一篇博客，<del>为什么是#4呢？因为终于写出了免于爆零了</del> ，感慨良多，虽然在赛场上一直卡<code>G</code>（英语不好读不懂题），但明显感觉到卷子的难度正在适应我的水平，而且几何和字符串专题根本做不动，借着这个契机开始整理笔记（感觉学习曲线过于陡峭了）；</p>
+<p>赛后补题只补了六道，留坑记录一下；</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202307310222421.png"></p>
+<p>A:cf245D 1500 二进制<br>B:cf1557B 1100 排序<br>C:cf1338B 1800 构造<br>D:cf1430E 1900 转换后求逆序对<br>E:cf915F 2400（虚高） 并查集<br>F:cf1668C 1300 暴力，贪心<br>G:cf176D 2100 有些技巧的DP<br>H:cf448D 1800 二分答案</p>
+<h1 id="A-Restoring-Table"><a href="#A-Restoring-Table" class="headerlink" title="#A. Restoring Table"></a>#A. Restoring Table</h1><h4 id="题源：CF245D"><a href="#题源：CF245D" class="headerlink" title="题源：CF245D"></a>题源：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF245D">CF245D</a></h4><h4 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h4><p>给定对称矩阵和规模<code>n</code>,满足如下关系，要求还原数组<code>a</code><br>$$<br>b_{ij}&#x3D;\left{\begin{matrix}-1<br>  &amp; i&#x3D;j\a_{i} &amp; a_{j}<br>  &amp;  i \ne j<br>\end{matrix}\right.<br>$$</p>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><ul>
+<li>对每个<code>b</code>做二进制拆分不难发现还原<code>a</code>只需要对相应下标做按位且运算即可，而且确实如题目所说答案并不唯一；</li>
+<li>本场签到题；</li>
+</ul>
+<h4 id="AC-code："><a href="#AC-code：" class="headerlink" title="AC code："></a>AC code：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="meta">#<span class="keyword">ifdef</span> local</span></span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span> <span class="comment">// local</span></span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> maxn=<span class="number">105</span>;</span><br><span class="line">    <span class="type">int</span> a[maxn];</span><br><span class="line">    <span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="built_in">sizeof</span>(a));</span><br><span class="line">    <span class="type">int</span> b[maxn][maxn];</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            cin&gt;&gt;b[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">        b[j][j]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            a[i]|=b[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i!=<span class="number">1</span>) cout&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">        cout&lt;&lt;a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="B-Moamen-and-k-subarrays"><a href="#B-Moamen-and-k-subarrays" class="headerlink" title="#B. Moamen and k-subarrays"></a>#B. Moamen and k-subarrays</h1><h4 id="题源：CF1557B"><a href="#题源：CF1557B" class="headerlink" title="题源：CF1557B"></a>题源：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1557B">CF1557B</a></h4><h4 id="题意：-1"><a href="#题意：-1" class="headerlink" title="题意："></a>题意：</h4><p>询问能否将长度为<code>n</code>的数组分成<code>k</code>块，重新排列得到顺序；</p>
+<h4 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h4><ul>
+<li>我们考察可以把原数组的若干个数绑定在一起的块，若能重新排列得到顺序，那么块里的数必然在顺序排列中也是相连的；</li>
+<li>如果原数组这样分块后存在（可能不到）<code>k</code>个块，那么把一些好的块打散肯定也是符合题意的；</li>
+<li>考虑原地排序还原下标，依次遍历检查相邻两数能否组块，采用<code>pair</code>输入；</li>
+<li>也是签到题，但是没看榜后面的时间<code>all in G</code>题了<del>（所以这场没有到）</del>；</li>
+</ul>
+<h4 id="AC-code：-1"><a href="#AC-code：-1" class="headerlink" title="AC code："></a>AC code：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">300005</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="meta">#<span class="keyword">ifdef</span> local</span></span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span> <span class="comment">// local</span></span></span><br><span class="line"> </span><br><span class="line">    <span class="type">int</span> t;</span><br><span class="line">    std::cin&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="type">int</span> n,k;</span><br><span class="line">        std::cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">        std::vector&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; &gt; <span class="built_in">v</span>(n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            std::cin&gt;&gt;v[i].first;</span><br><span class="line">            v[i].second=i;</span><br><span class="line">        &#125;</span><br><span class="line">        std::vector&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; &gt; u=v;</span><br><span class="line">        std::<span class="built_in">sort</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> cnt=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(v[i<span class="number">-1</span>].second<span class="number">+1</span>!=v[i].second) cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt&lt;=k) cout&lt;&lt;<span class="string">&quot;YES&quot;</span>&lt;&lt;endl;</span><br><span class="line">        <span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot;NO&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="C-Edge-Weight-Assignment"><a href="#C-Edge-Weight-Assignment" class="headerlink" title="#C. Edge Weight Assignment"></a>#C. Edge Weight Assignment</h1><h4 id="题源：CF1338B"><a href="#题源：CF1338B" class="headerlink" title="题源：CF1338B"></a>题源：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1338B">CF1338B</a></h4><h4 id="题意：-2"><a href="#题意：-2" class="headerlink" title="题意："></a>题意：</h4><p><del>没读；</del></p>
+<h4 id="思路：-2"><a href="#思路：-2" class="headerlink" title="思路："></a>思路：</h4><p><del>没有；</del></p>
+<h1 id="D-String-Reversal"><a href="#D-String-Reversal" class="headerlink" title="#D. String Reversal"></a>#D. String Reversal</h1><h4 id="题源：CF1430E"><a href="#题源：CF1430E" class="headerlink" title="题源：CF1430E"></a>题源：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1430E">CF1430E</a></h4><h4 id="题意：-3"><a href="#题意：-3" class="headerlink" title="题意："></a>题意：</h4><p>将字符串对换成其反串最少的操作次数；</p>
+<h4 id="思路：-3"><a href="#思路：-3" class="headerlink" title="思路："></a>思路：</h4><ul>
+<li>开始陷入误区尝试证明最少的次数是正串和反串逆序对差的绝对值，<del>结果样例都跑不过，换思路</del>；</li>
+<li>直接模拟对换过程，猜想不做故意浪费的操作<del>换回来又换回去</del>即为最小次数；</li>
+<li>建立一个目标数组，即每个字符最终应该到达的下标位置，考虑到有重复字符要做到某种意义的最优应使得对于正串某个字符第<code>i</code>个目标是反串相同字符的第<code>i</code>个；</li>
+<li>对目标数组最终变为自然排列，因而最少的次数就是这个字符串的逆序对个数，归并排序即可；</li>
+<li>这个转化初见，有些巧妙的，留坑归并排序、树状数组的模板整理于此（做这个题时也没学过归并排序，线段树写不下去了思路还是错的就摘了个板子过来还没仔细看看）；</li>
+<li>复杂度 <code>O（n logn)</code> ;</li>
+</ul>
+<h4 id="AC-code：-2"><a href="#AC-code：-2" class="headerlink" title="AC code："></a>AC code：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">200006</span>;</span><br><span class="line">ll ans=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">msort</span><span class="params">(<span class="type">int</span>* tar,<span class="type">int</span>* tmp,<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==r) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="type">int</span> mid=l+((r-l)&gt;&gt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">msort</span>(tar,tmp,l,mid);</span><br><span class="line">    <span class="built_in">msort</span>(tar,tmp,mid<span class="number">+1</span>,r);</span><br><span class="line">    <span class="type">int</span> i=l,j=mid<span class="number">+1</span>,k=l;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=mid&amp;&amp;j&lt;=r)&#123;</span><br><span class="line">        <span class="keyword">if</span>(tar[i]&lt;=tar[j]) tmp[k++]=tar[i++];</span><br><span class="line">        <span class="keyword">else</span> tmp[k++]=tar[j++],ans+=mid-i<span class="number">+1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=mid) tmp[k++]=tar[i++];</span><br><span class="line">    <span class="keyword">while</span>(j&lt;=r) tmp[k++]=tar[j++];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> p=l;p&lt;=r;p++)&#123;</span><br><span class="line">        tar[p]=tmp[p];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> star[maxn],stemp[maxn],ttar[maxn],ttemp[maxn];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="meta">#<span class="keyword">ifdef</span> local</span></span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span> <span class="comment">// local</span></span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    string s;</span><br><span class="line">    cin&gt;&gt;s;</span><br><span class="line">    <span class="comment">//string t=string(s.rbegin(),s.rend());</span></span><br><span class="line">    <span class="built_in">memset</span>(star,<span class="number">0</span>,<span class="built_in">sizeof</span>(star));</span><br><span class="line">    <span class="built_in">memset</span>(stemp,<span class="number">0</span>,<span class="built_in">sizeof</span>(stemp));</span><br><span class="line">    stack&lt;<span class="type">int</span>&gt; buc[<span class="number">26</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> x=s[i]-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        buc[x].<span class="built_in">push</span>(n<span class="number">-1</span>-i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> x=s[i]-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        star[i]=buc[x].<span class="built_in">top</span>();</span><br><span class="line">        buc[x].<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">msort</span>(star,stemp,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="E-Imbalance-Value-of-a-Tree"><a href="#E-Imbalance-Value-of-a-Tree" class="headerlink" title="#E. Imbalance Value of a Tree"></a>#E. Imbalance Value of a Tree</h1><h4 id="题源：CF915F"><a href="#题源：CF915F" class="headerlink" title="题源：CF915F"></a>题源：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF915F">CF915F</a></h4><h4 id="题意：-4"><a href="#题意：-4" class="headerlink" title="题意："></a>题意：</h4><p>给定树<code>T</code>以及树上结点赋点权<code>a[i]</code>，定义<code>I（i，j）</code>为<code>i</code>与<code>j</code>之间的路径经过点最大值与最小值之差，计算<br>$$<br>\sum_{i&#x3D;1}^{n} \sum_{j&#x3D;i}^{n} I(i,j)<br>$$</p>
+<h4 id="思路：-4"><a href="#思路：-4" class="headerlink" title="思路："></a>思路：</h4><ul>
+<li><p>开始采用树上倍增找到<code>lca</code>的做法，但是<code>MLE</code>了，毕竟确实开了很大的数组，而且也感觉会跑不过；</p>
+</li>
+<li><p>但还是见的少了，本题是<code>DSU</code>模板题；</p>
+</li>
+<li><p>首先观察到在树上路径操作，并且经过的边显然只取决于它的端点，考虑将点权转化为边权（<del>常见套路</del>），在考虑最大值问题时为两端点最大值，反之亦然；</p>
+</li>
+<li><p>转化表达式，维护各个最大值和最小值贡献的次数，考虑最大值这一边的问腿，<br>$$<br>\sum_{i&#x3D;1}^{n} \sum_{j&#x3D;i}^{n} I(i,j)&#x3D;\sum_{i&#x3D;1}^{n} \sum_{j&#x3D;i}^{n} \max_{e\in i\longrightarrow j} w_1(e)-\sum_{i&#x3D;1}^{n} \sum_{j&#x3D;i}^{n} \min_{e\in i\longrightarrow j} w_2(e)<br>&#x3D;\sum_{e\in T} w_1(e)p_1(e)-\sum_{e\in T} w_2(e)p_2(e)<br>$$</p>
+</li>
+<li><p><code>p1(e)</code>可以看作由<code>e</code>的权值决定这样路径<code>i~j</code>的条数，很明显权值越小能够能决定的路径数越少；</p>
+</li>
+<li><p>将权值原地排序，用<code>DSU</code>维护边全局信息，两边相连则加入<code>DSU</code>中，对树做路径压缩的<code>DSU</code>总会转化为星状图，所以每次更新将贡献次数传递给父亲并更新<code>DSU</code>的状态就好了，并且开始做的点权转化使得每条边至少可以控制自己两个端点之间的路径（就是自己），所以初始化为<code>1</code>；</p>
+</li>
+<li><p>要加上输入优化，<del>不知道为什么跑出来差别那么大看起来真的输入了很多很多数来卡人</del>，复杂度应该是略大于<code>O(n)</code>，这是由于路径压缩的<code>DSU</code>复杂度是近似常数，<del>所以数据膨胀的飞起</del>；</p>
+</li>
+</ul>
+<h4 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code:"></a>AC code:</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">1000006</span>;</span><br><span class="line">ll a[maxn],f[maxn],p[maxn];</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line">ll ans=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    ll x,y,w;</span><br><span class="line">&#125;e[maxn];</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp1</span><span class="params">(Edge&amp;a,Edge&amp;b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.w&lt;b.w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp0</span><span class="params">(Edge&amp;a,Edge&amp;b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.w&gt;b.w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">find</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (f[x]==x)?x:f[x]=<span class="built_in">find</span>(f[x]);<span class="comment">//路径压缩</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">bool</span> op)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        f[i]=i;</span><br><span class="line">        p[i]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        e[i].w=(op)?<span class="built_in">max</span>(a[e[i].x],a[e[i].y]):<span class="built_in">min</span>(a[e[i].x],a[e[i].y]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(e<span class="number">+1</span>,e+n,op?cmp1:cmp0);</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="meta">#<span class="keyword">ifdef</span> local</span></span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span> <span class="comment">// local</span></span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,a+i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld%lld&quot;</span>,&amp;e[i].x,&amp;e[i].y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">init</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        ll ex=<span class="built_in">find</span>(e[i].x);<span class="comment">//通过并查集等效出去的两端</span></span><br><span class="line">        ll ey=<span class="built_in">find</span>(e[i].y);</span><br><span class="line">        ans+=e[i].w*(p[ex]*p[ey]);</span><br><span class="line">        f[ey]=ex;</span><br><span class="line">        p[ex]+=p[ey];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">init</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        ll ex=<span class="built_in">find</span>(e[i].x);</span><br><span class="line">        ll ey=<span class="built_in">find</span>(e[i].y);</span><br><span class="line">        ans-=e[i].w*(p[ex]*p[ey]);</span><br><span class="line">        f[ey]=ex;</span><br><span class="line">        p[ex]+=p[ey];</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="p-s"><a href="#p-s" class="headerlink" title="p.s."></a>p.s.</h4><p>看的出来对并查集也不是很熟悉，留个坑整理一下；</p>
+<h1 id="F-Make-it-Increasing"><a href="#F-Make-it-Increasing" class="headerlink" title="#F. Make it Increasing"></a>#F. Make it Increasing</h1><h4 id="题源：CF1668C"><a href="#题源：CF1668C" class="headerlink" title="题源：CF1668C"></a>题源：<a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1668/C">CF1668C</a></h4><h4 id="题意：-5"><a href="#题意：-5" class="headerlink" title="题意："></a>题意：</h4><p>给定数组<code>a</code>，零初始化<code>b</code>,找到<code>a[i]b[i]</code>严格递增的数组<code>b</code>，最小化<br>$$<br>\sum_{i&#x3D;1}^{n}|b[i]|<br>$$</p>
+<h4 id="思路：-5"><a href="#思路：-5" class="headerlink" title="思路："></a>思路：</h4><ul>
+<li>想法是活用负数，暴力找到一点置为0，左边为负数右边为正数；</li>
+<li>于是<code>brute force</code>枚举置零的位置，只需要比较当前最优方案即可；</li>
+<li>最优方案是贪心的使得<code>b[i]a[i]</code>从<code>0</code>位置开始看变化的缓慢一点，至少保证能递增的最低限度；</li>
+<li>试图优化了但直接<code>WA</code>了一发，因为找不到确切的<code>i</code>，枚举变化陡峭的点也是在<code>O(n)</code>的，<del>比如1 1  4 5 1 4 重复</del>；</li>
+<li>复杂度$$ O(n^2) $$</li>
+</ul>
+<h4 id="AC-code-1"><a href="#AC-code-1" class="headerlink" title="AC code:"></a>AC code:</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">5005</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="meta">#<span class="keyword">ifdef</span> local</span></span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span> <span class="comment">// local</span></span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    vector&lt;ll&gt;<span class="built_in">a</span>(n<span class="number">+1</span>);</span><br><span class="line">    vector&lt;<span class="type">double</span>&gt;<span class="built_in">k</span>(n<span class="number">+1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cin&gt;&gt;a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// int cnt=0;</span></span><br><span class="line">    <span class="comment">// double km=0;</span></span><br><span class="line">    <span class="comment">// for(int i=2;i&lt;=n;i++)&#123;</span></span><br><span class="line">    <span class="comment">//     k[i]=(a[i]+0.0)/a[i-1];</span></span><br><span class="line">    <span class="comment">//     km=std::max(k[i],km);</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    vector&lt;ll&gt; id;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="comment">//if(k[i]==km) </span></span><br><span class="line">        id.<span class="built_in">push_back</span>(i); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> num=id.<span class="built_in">size</span>();</span><br><span class="line">    ll best=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;num;j++)&#123;</span><br><span class="line">        <span class="type">int</span> pos=id[j];</span><br><span class="line">        ll sum=<span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;ll&gt; <span class="title">b</span><span class="params">(n<span class="number">+1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=pos<span class="number">+1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            b[i]=<span class="built_in">ceil</span>((<span class="number">1.0</span>+b[i<span class="number">-1</span>]*a[i<span class="number">-1</span>])/a[i]);</span><br><span class="line">            sum+=b[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=pos<span class="number">-1</span>;i&gt;=<span class="number">1</span>;i--)&#123;</span><br><span class="line">            b[i]=-<span class="built_in">ceil</span>((<span class="number">1.0</span>-b[i<span class="number">+1</span>]*a[i<span class="number">+1</span>])/a[i]);</span><br><span class="line">            sum-=b[i];</span><br><span class="line">        &#125;</span><br><span class="line">        best=(j==<span class="number">0</span>)?sum:std::<span class="built_in">min</span>(best,sum);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;best&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="G-Hyper-String"><a href="#G-Hyper-String" class="headerlink" title="#G. Hyper String"></a>#G. Hyper String</h1><h4 id="题源：CF176D"><a href="#题源：CF176D" class="headerlink" title="题源：CF176D"></a>题源：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF176D">CF176D</a></h4><h4 id="题意：-6"><a href="#题意：-6" class="headerlink" title="题意："></a>题意：</h4><p><del>没看</del></p>
+<h4 id="思路：-6"><a href="#思路：-6" class="headerlink" title="思路："></a>思路：</h4><p><del>没有</del></p>
+<h1 id="H-Multiplication-Table"><a href="#H-Multiplication-Table" class="headerlink" title="#H. Multiplication Table"></a>#H. Multiplication Table</h1><h4 id="题源：CF448D"><a href="#题源：CF448D" class="headerlink" title="题源：CF448D"></a>题源：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF448D">CF448D</a></h4><h4 id="题意：-7"><a href="#题意：-7" class="headerlink" title="题意："></a>题意：</h4><p>找到<code>m·n</code>的乘法表中非去重非递减第<code>k</code>大的数；</p>
+<h4 id="思路：-7"><a href="#思路：-7" class="headerlink" title="思路："></a>思路：</h4><ul>
+<li>比赛的时候感觉<code>html</code>彻底崩了，读了好几遍题目没有读懂里面几个单词的意思，一直以为是要去重的所以连样例也没读懂但好多人都过了也不懂，反正当时就懵逼的一批这也是掉大分的罪魁祸首（）；</li>
+<li><del>感觉去重的话可能是个超级大容斥加筛法</del>；</li>
+<li>赛后发题源秒懂这就是二分的签到题（）；</li>
+<li>对每次折半询问一个数，在表里算出不大于它的数的个数；</li>
+<li>复杂度<code>O(nlogmn)</code>,<del><a target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/92248">让我们一起学习二分吧</a></del>；</li>
+</ul>
+<h4 id="AC-code：-3"><a href="#AC-code：-3" class="headerlink" title="AC code："></a>AC code：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="meta">#<span class="keyword">ifdef</span> local</span></span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    ll n,m,k;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;m) <span class="built_in">swap</span>(n,m);</span><br><span class="line">    ll l=<span class="number">1</span>,r=m*n;</span><br><span class="line">    <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">        ll tmp=<span class="number">0</span>;</span><br><span class="line">        ll x=l+(r-l)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            tmp+=<span class="built_in">min</span>(m,x/i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(tmp&lt;k) l=x<span class="number">+1</span>;</span><br><span class="line">        <span class="keyword">else</span> r=x;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;l&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Remark"><a href="#Remark" class="headerlink" title="Remark"></a>Remark</h1><ul>
+<li>大概率是过不了线了感觉学的东西已经应付不过来了，如果没有进入的话正好留点时间给自己整理一下；</li>
+<li><del>没爆零就是<code>win</code></del>；</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/summer-training/" rel="tag"># summer training</a>
+              <a href="/tags/codeforces/" rel="tag"># codeforces</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/14/UESTC%202023%20Summer%20Training#5%20Div.2%E6%9A%91%E5%81%87%E9%9B%86%E8%AE%AD%5B%5D/" rel="prev" title="UESTC 2023 Summer Training#5 Div.2暑假集训">
+                  <i class="fa fa-angle-left"></i> UESTC 2023 Summer Training#5 Div.2暑假集训
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/15/%E5%9B%BE%E8%AE%BA%EF%BC%9A%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95%EF%BC%9ADijstra,SPFA%20and%20Floyd/" rel="next" title="图论：最短路相关算法-Dijstra,SPFA and Floyd">
+                  图论：最短路相关算法-Dijstra,SPFA and Floyd <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

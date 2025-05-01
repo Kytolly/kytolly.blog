@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="软件维护概念定义：由于软件产品出现问题 或需要改进，而对代码及相关文档进行 修改，其目的是对现有软件产品进行修 改的同时保持其完整性。 必要性 改正错误； 改善设计； 实现软件的改进； 能与其他系统进行交互； 能够为使用不同的硬件、软件、系统的新性能以及通讯设备等而对软件进行改进； 能够完成遗留程序的移植； 软件推出使用；  成本软件维护阶段一般要消耗软件生命周期中经费开支的大部分； 维护的类型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程10-软件维护技术">
+<meta property="og:url" content="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B10-%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="软件维护概念定义：由于软件产品出现问题 或需要改进，而对代码及相关文档进行 修改，其目的是对现有软件产品进行修 改的同时保持其完整性。 必要性 改正错误； 改善设计； 实现软件的改进； 能与其他系统进行交互； 能够为使用不同的硬件、软件、系统的新性能以及通讯设备等而对软件进行改进； 能够完成遗留程序的移植； 软件推出使用；  成本软件维护阶段一般要消耗软件生命周期中经费开支的大部分； 维护的类型">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241206200957753.png">
+<meta property="og:image" content="http://example.com/assets/image-20241206202546687.png">
+<meta property="og:image" content="http://example.com/assets/image-20241206202936053.png">
+<meta property="og:image" content="http://example.com/assets/image-20241206204309987.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.502Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.938Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241206200957753.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B10-%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4%E6%8A%80%E6%9C%AF/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B10-%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4%E6%8A%80%E6%9C%AF/","path":"2025/05/01/软件工程10-软件维护技术/","title":"软件工程10-软件维护技术"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>软件工程10-软件维护技术 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4"><span class="nav-number">1.</span> <span class="nav-text">软件维护</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%85%E8%A6%81%E6%80%A7"><span class="nav-number">1.1.1.</span> <span class="nav-text">必要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%90%E6%9C%AC"><span class="nav-number">1.1.2.</span> <span class="nav-text">成本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%B4%E6%8A%A4%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.3.</span> <span class="nav-text">维护的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%B4%E6%8A%A4%E6%B4%BB%E5%8A%A8%E7%9A%84%E5%9B%B0%E9%9A%BE%E6%80%A7"><span class="nav-number">1.1.4.</span> <span class="nav-text">维护活动的困难性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%B4%E6%8A%A4%E4%B8%AD%E9%9D%A2%E4%B8%B4%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">维护中面临的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%8A%80%E6%9C%AF"><span class="nav-number">1.3.</span> <span class="nav-text">软件维护模型和技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%90%86%E8%A7%A3"><span class="nav-number">1.3.1.</span> <span class="nav-text">程序理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%86%8D%E5%B7%A5%E7%A8%8B"><span class="nav-number">1.3.2.</span> <span class="nav-text">软件再工程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%9B%BE"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">模型图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%93%E5%AD%98%E7%9B%AE%E5%BD%95%E5%88%86%E6%9E%90"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">库存目录分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E9%87%8D%E6%9E%84"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">文档重构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">逆向工程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">代码重构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%87%8D%E6%9E%84"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">数据重构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%90%91%E5%B7%A5%E7%A8%8B"><span class="nav-number">1.3.2.7.</span> <span class="nav-text">正向工程</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B10-%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4%E6%8A%80%E6%9C%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="软件工程10-软件维护技术 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          软件工程10-软件维护技术
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="软件维护"><a href="#软件维护" class="headerlink" title="软件维护"></a>软件维护</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>定义：由于软件产品出现问题 或需要改进，而对代码及相关文档进行 修改，其目的是对现有软件产品进行修 改的同时保持其完整性。</p>
+<h3 id="必要性"><a href="#必要性" class="headerlink" title="必要性"></a>必要性</h3><ul>
+<li>改正错误；</li>
+<li>改善设计；</li>
+<li>实现软件的改进；</li>
+<li>能与其他系统进行交互；</li>
+<li>能够为使用不同的硬件、软件、系统的新性能以及通讯设备等而对软件进行改进；</li>
+<li>能够完成遗留程序的移植；</li>
+<li>软件推出使用；</li>
+</ul>
+<h3 id="成本"><a href="#成本" class="headerlink" title="成本"></a>成本</h3><p>软件维护阶段一般要消耗软件生命周期中经费开支的大部分；</p>
+<h3 id="维护的类型"><a href="#维护的类型" class="headerlink" title="维护的类型"></a>维护的类型</h3><ul>
+<li><strong>纠错性维护</strong>：在软件交付使用后，因开发时测试的不彻底、不完全，必然会有部分隐藏的错误遗 留到运行阶段。这些隐藏下来的错误在某些特定的使用环境下就会暴露出来，为了识别和纠正软件错误、改正软件性能上的缺陷、排除实施中的误用，应当进行 的诊断和改正错误的过程就叫做纠错性维护。</li>
+<li><strong>适应性维护</strong>：在使用过程中， 外部环境（新的硬、软件配置）或者数据环境（数据库、数据格式、数据输入&#x2F;输出方式、数据存储介质）可能发生变化，为使软件适应这种变化，而去修改软件的过程就叫做适应性维护</li>
+<li><strong>完善性维护</strong>：在软件的使用过程中，用户往往会对软件提出新的功能与性能要求，为了满足这些要求，需要修改或再开发软件，以扩充软件功能、增强软件性能、改进加工效率、提高软件的可维护性，这种情况下进行的维护活动叫做完善性维护。 实践表明，在几种维护活动中，<strong>完善性维护所占的比重最大</strong>，即大部分维护工作是改变和加强软件，而不是纠错。完善性维护不一定是救火式的紧急维修，而可以是有计划、有预谋的一种再开发活动。事实证明，来自用户要求扩充、加强软件功能、性能的维护活动约占整个维护工作 的50％。</li>
+<li><strong>预防性维护</strong>：预防性维护是为了提高软件的可维护性、可靠性等，为以后进一步改进软件打下良 好基础，其定义为：采用先进的软件工程方法对需要维护的软件或软件中的某一部 分（重新）进行设计、编制和测试。</li>
+</ul>
+<p><img src="/assets/image-20241206200957753.png" alt="image-20241206200957753"></p>
+<h3 id="维护活动的困难性"><a href="#维护活动的困难性" class="headerlink" title="维护活动的困难性"></a>维护活动的困难性</h3><ul>
+<li>配置管理工作不到位</li>
+<li>人员变动造成的影响</li>
+<li>许多软件的可读性差</li>
+<li>任务紧、时间急的情况下处理维护请求</li>
+</ul>
+<h2 id="维护中面临的问题"><a href="#维护中面临的问题" class="headerlink" title="维护中面临的问题"></a>维护中面临的问题</h2><p>技术上，问题可能有对程序的理解困难，重新测试，作影响分析，以及软件的可维护性差的问题；</p>
+<p>影响分析的目标：</p>
+<ul>
+<li>决定改变的范围：这对合理计划和完成工作有重要意义</li>
+<li>对完成工作所需的资源进行精确的估计 </li>
+<li>分析改变的费用&#x2F;效益比 </li>
+<li>由于对软件进行变更往往是牵一发而动全身 的，因此如果给出了一个变更，必须考虑到 与之相关的其他复杂情况</li>
+</ul>
+<p>决定软件可维护性的主要因素：可理解性，可测试性，可修改性，可移植性，可重用性</p>
+<p>影响软件可维护性的维护环境因素：软件维护文档，软件运行环境，维护组织，软件维护质量</p>
+<p>管理上，可能包括契合目标的组织，人力资源，过程，如何组织维护活动，外包</p>
+<p>估算费用，可采用如下参数模型<br>$$<br>M&#x3D;P+Ke^{c-d}<br>$$<br>$M$是维护用的总工作量，$P$是生产性工作量，$K$是经验常数，$c$是复杂程度，$d$是维护人员对软件的熟悉程度；</p>
+<p>有时费用也可以由专家判断，根据其他类似的工程类推和工作分解结构；</p>
+<h2 id="软件维护模型和技术"><a href="#软件维护模型和技术" class="headerlink" title="软件维护模型和技术"></a>软件维护模型和技术</h2><p>软件维护 <strong>过程模型</strong>：</p>
+<p><img src="/assets/image-20241206202546687.png" alt="image-20241206202546687"></p>
+<p>软件维护技术包括：程序理解，软件再工程</p>
+<h3 id="程序理解"><a href="#程序理解" class="headerlink" title="程序理解"></a>程序理解</h3><p>主要工具包括代码浏览工具Source Insight…</p>
+<p>程序理解的任务：以软件维护、升级和再工程为目的，在不同的抽象级别上建立基本软件的概念模型，包括从代码本身的模型到基本应用领域的模型，即建立从问题 &#x2F;应用域到程序设计&#x2F;实现域的映射集</p>
+<p>具体包括</p>
+<ul>
+<li><p>通过检查单个的程序设计结构，程序被表示成抽象语法树、符号表或普通源文本</p>
+</li>
+<li><p>尽量做到程序隐含信息的显性表示及程序内部关系的可视化</p>
+</li>
+<li><p>从源代码中提取信息，并存放在通用的数据库中，然后通过查询语言对数据库进行查询</p>
+</li>
+<li><p>检查程序构造过程中的结构关系，明确表示程序组成部分之间的依赖关系。</p>
+</li>
+<li><p>识别程序的高层概念，如标准算法、数据结构、语法及语义匹配等。</p>
+</li>
+<li><p>软件再工程：指对现有软件进行仔细审查和改造，对其进行重 新构造，使之成为一个新的形式，同时包括随之产生的对新形式的实现。</p>
+</li>
+</ul>
+<h3 id="软件再工程"><a href="#软件再工程" class="headerlink" title="软件再工程"></a>软件再工程</h3><h4 id="模型图"><a href="#模型图" class="headerlink" title="模型图"></a>模型图</h4><p>定义：软件再工程（Re-engineering）指对现有软件进行仔细审查和改造，对其进行重 新构造，使之成为一个新的形式，同时包括随之产生的对新形式的实现</p>
+<p><img src="/assets/image-20241206202936053.png" alt="image-20241206202936053"></p>
+<h4 id="库存目录分析"><a href="#库存目录分析" class="headerlink" title="库存目录分析"></a>库存目录分析</h4><p>对软件组织的每个应用系统都进行预防性维护是不现实的，也是不必要的。</p>
+<p>一般说 来，下述3类程序有可能成为预防性的对象：</p>
+<ul>
+<li>该程序将在今后数年内继续维护的对象 </li>
+<li>当前正在成功地使用着该程序 </li>
+<li>可能在最近的将来要对该程序做较大程度的修改或扩充</li>
+</ul>
+<p>应该仔细的分析库存目录，按照业务重要程度、寿命、当前可维护性、预期的修改 次数等标准，把库中的应用小排序，从中选出再工程的侯选者，然后合理地分配再 工程所需要的资源</p>
+<h4 id="文档重构"><a href="#文档重构" class="headerlink" title="文档重构"></a>文档重构</h4><p>老程序固有的特点缺乏文档，根据具体情况可采用下述3种方法之一来处理这个问 题：</p>
+<ol>
+<li>如果一个程序是相对稳定的，正在走向生命的终点，而且可能不会再修改它，则不必为它 建立文档</li>
+<li>为了便于今后的维护，必须更新文档，但是由于资源有限，应该采用“使用时建立文档” 的方法，也就是说，不是一下子把某应用系统的文档全部都重建起来，而是只建立系统中 当前正在修改的那些部分的完整文档。 </li>
+<li>如果某应用系统是用户完成业务工作的关键，而且必须重构全部文档，则仍然应该尽量把 文档工作减少到必需的最小量</li>
+</ol>
+<h4 id="逆向工程"><a href="#逆向工程" class="headerlink" title="逆向工程"></a>逆向工程</h4><p>软件的逆向工程是，分析程序以便在比源程序更高的抽象层次上创建出程序的某种 描述的过程，也就是说，逆向工程是一个<strong>恢复设计结果</strong>的过程。软件逆向工程是分析目标系统，识别系统的 构件及其交互关系，并且通过高层抽象或其他形式来展现目标系统的过程。 对逆向工程而言，抽象的层次、完备性、工具与分析人员协同工作的程度、过程的 方向性等因素是需要考虑的。</p>
+<p><img src="/assets/image-20241206204309987.png" alt="image-20241206204309987"></p>
+<p>逆向工程的主要内容包括</p>
+<ul>
+<li><p>数据的逆向工程:数据的逆向工程发生在不同的抽象层次 ,包括内部数据结构的逆向工程 ，数据库结构的逆向工程 ▪</p>
+<p>对新数据模型实施再工程 </p>
+<ul>
+<li>构造一个初始的对象模型 </li>
+<li>确定候选键 </li>
+<li>精化实验性的类 </li>
+<li>定义一般化关系 </li>
+<li>找出关联关系</li>
+</ul>
+</li>
+<li><p>处理的逆向工程：为了理解过程抽象，需要在不同的抽象级别（系统级、程序级、构件级、模式级和 语句级）分析代码 </p>
+<ul>
+<li>对大型系统，通常用半自动方法完成逆向工程</li>
+<li>使用自动化工具帮助软件工程师理 解现有代码的语义，然后将该过程的结果传递给重构和正向工程工具以完成再工程 过程。</li>
+</ul>
+</li>
+<li><p>用户界面的逆向工程：包括解决以下问题</p>
+<ul>
+<li>界面必须处理的基本动作是什么？ </li>
+<li>系统对这些动作的行为反应的简要描述是什么？ </li>
+<li>有哪些界面的等价概念是相关的？</li>
+</ul>
+</li>
+</ul>
+<p>逆向工程的工具一般包括：</p>
+<ul>
+<li>静态模型逆向工具 ：Rational Rose ，Rigi ， JBPAS </li>
+<li>动态模型逆向工具 ：SCED ，ISVis ， Borland Together</li>
+</ul>
+<h4 id="代码重构"><a href="#代码重构" class="headerlink" title="代码重构"></a>代码重构</h4><p>某些老程序的体系结构比较合理，但是，一些模块的编码方式却是难于理解、测试 和维护的。 </p>
+<p>在这种情况下，可以重构这些模块的代码，通常，代码重构并不修改程序的体系结构，它只关注个体模块的设计细节以及在模 块中定义的局部数据结构。</p>
+<p>如果重构扩展到模块边界之外并涉及软件体系结构，则重构变成了正向工程。 </p>
+<h4 id="数据重构"><a href="#数据重构" class="headerlink" title="数据重构"></a>数据重构</h4><p>对数据体系结构差的程序很难进行适应性和完善性维护，因此，数据体系结构比源 代码对程序的长期生存力有更大的影响。 </p>
+<p>数据重构是一种全范围的再工程活动，由于数据结构对程序体系结构及程序中的算法有很大影响，对数据的修改必然会导 致程序体系结构或代码层的改变</p>
+<h4 id="正向工程"><a href="#正向工程" class="headerlink" title="正向工程"></a>正向工程</h4><p>正向工程也称为革新或改造。 </p>
+<p>正向工程过程应用现代软件工程的概念、原理、技术和方法，重新开发现有的某些 应用系统。 </p>
+<p>在大多数情况下，经过正向工程过程后得出的软件，不仅重新实现了现有系统的功 能，而且增加了新功能，提高了整体性能</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B1-%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/" rel="prev" title="软件工程1-软件过程模型">
+                  <i class="fa fa-angle-left"></i> 软件工程1-软件过程模型
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B11-%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/" rel="next" title="软件工程11-软件管理技术">
+                  软件工程11-软件管理技术 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

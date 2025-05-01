@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="决策树DecisionTree决策树是基于树结构来进行决策的,以二分类任务为例,我们希望从给定训练数据集学得一个模型用以对新示例进行分类,这个把样本分类的任务,可看作对“当前样本属于正类吗?”这个问题的“决策”或“判定”过程.  这恰是人类在面临决策问题时一种很自然的处理机制，著名的例子如下：  学习决策过程中提出的每个判定问题都是对某个属性的“测试”决策过程的最终结论对应了我们所希望的判定结果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="决策树分类器">
+<meta property="og:url" content="http://example.com/2025/05/01/%E5%86%B3%E7%AD%96%E6%A0%91%E5%88%86%E7%B1%BB%E5%99%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="决策树DecisionTree决策树是基于树结构来进行决策的,以二分类任务为例,我们希望从给定训练数据集学得一个模型用以对新示例进行分类,这个把样本分类的任务,可看作对“当前样本属于正类吗?”这个问题的“决策”或“判定”过程.  这恰是人类在面临决策问题时一种很自然的处理机制，著名的例子如下：  学习决策过程中提出的每个判定问题都是对某个属性的“测试”决策过程的最终结论对应了我们所希望的判定结果">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614030412182.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528034907462.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.352Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.445Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614030412182.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E5%86%B3%E7%AD%96%E6%A0%91%E5%88%86%E7%B1%BB%E5%99%A8/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E5%86%B3%E7%AD%96%E6%A0%91%E5%88%86%E7%B1%BB%E5%99%A8/","path":"2025/05/01/决策树分类器/","title":"决策树分类器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>决策树分类器 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91DecisionTree"><span class="nav-number">1.</span> <span class="nav-text">决策树DecisionTree</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E5%86%B3%E7%AD%96%E6%A0%91%E5%88%86%E7%B1%BB%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="决策树分类器 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          决策树分类器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="决策树DecisionTree"><a href="#决策树DecisionTree" class="headerlink" title="决策树DecisionTree"></a>决策树DecisionTree</h3><p>决策树是基于树结构来进行决策的,以二分类任务为例,我们希望从给定训练数据集学得一个模型用以对新示例进行分类,这个把样本分类的任务,可看作对“当前样本属于正类吗?”这个问题的“决策”或“判定”过程. </p>
+<p>这恰是人类在面临决策问题时一种很自然的处理机制，著名的例子如下：</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614030412182.png" alt="image-20240614030412182"></p>
+<p>学习决策过程中提出的每个判定问题都是对某个属性的“测试”决策过程的最终结论对应了我们所希望的判定结果</p>
+<p>每个测试的结果或是导出最终结论，或者导出进一步的判定问题，其考虑范围是在上次决策结果的限定范围之内</p>
+<p>从根结点到每个叶结点的路径对应了一个判定测试序列</p>
+<p>决策树学习的目的是为了产生一棵泛化能力强，即处理未见示例能力强的决策树。</p>
+<p>决策树是从有类标号的训练元组中学习决策树,适合探测式的知识发现，高维数据;</p>
+<ul>
+<li><p>自上而下地分治构造，直到构造到叶子结点，叶子结点的测试条件如下：</p>
+<ul>
+<li><p>当前结点包含的样本全部属于同一类别；</p>
+</li>
+<li><p>当前属性集为空，或所有样本在所有属性上取值相同；</p>
+</li>
+<li><p>当前结点包含的样本集合为空</p>
+</li>
+</ul>
+</li>
+<li><p>分类的启发式方法</p>
+<ul>
+<li>度量：信息增益&#x2F;Gini系数&#x2F;信息增益率</li>
+<li>ID3算法<ul>
+<li>选择最高<strong>信息增益</strong>的属性作为<strong>最具分类能力的属性</strong></li>
+<li>当前样本所需信息熵为<br>$H(D)&#x3D;-\sum_{i} p_i log(p_i)$</li>
+<li>利用属性A来将D分为v个部分$H(D|A)&#x3D;\sum_{j\le v}\frac{|D_j|}{|D|}H(D_j)$</li>
+<li>使用A分支的信息增益<br>$IG(A)&#x3D;H(D)-H(D|A)$</li>
+</ul>
+</li>
+<li>C4.5算法<ul>
+<li>克服划分子集自由一个类的问题，使用规范化信息增益</li>
+<li>划分带来的信息（固有值）$IV_A(D)&#x3D;-\sum_{j\le v}\frac{|D_j|}{|D|}log(\frac{|D_j|}{|D|})$</li>
+<li>规范化<strong>信息增益率</strong>$GainRatio(A) &#x3D; IG(D|A)&#x2F;IV_A(D)$</li>
+</ul>
+</li>
+<li>Cart算法<ul>
+<li><p>Gini指数反映数据量数据分区或训练元组D的不纯度</p>
+</li>
+<li><p>$Gini(D)&#x3D;1-\sum_{i} p_i^2$<br>$p_i$代表元组属于类$C_i$的概率</p>
+</li>
+<li><p>对于D的基于指标A的二元分裂$D_1,D_2$，<br>$Gini_A(D)&#x3D;\frac{|D_1|}{|D|}Gini(D_1)+\frac{|D_2|}{|D|}Gini(D_2)$</p>
+</li>
+<li><p>选择使得不纯度降低的最大化的二元划分$\Delta Gini(A)&#x3D;Gini(D)-Gini_A(D)$</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>算法：</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528034907462.png" alt="image-20240528034907462"></p>
+</li>
+<li><p>如何解决Overfit过拟合？</p>
+<p>训练样本只是真实模型下的一个抽样集，导致模型泛化能力不强；</p>
+<ul>
+<li>增加样本集<ul>
+<li>降低模型复杂度</li>
+<li>Train-Validation—Test</li>
+<li>模型选择：正则项等</li>
+</ul>
+</li>
+<li>设定决策树的最大高度来限制树的生长</li>
+<li>先剪枝：提前终止树的构造<ul>
+<li>节点分裂的度量低于阈值，划分停止</li>
+</ul>
+</li>
+<li>后剪枝：从完全生长的树剪去树枝<ul>
+<li>代价比较大</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>决策树归纳：提取分类规则</p>
+<ul>
+<li>可以提取决策树表示的知识，并以IF-THEN形式的<strong>分类规则</strong>表示</li>
+<li>对从根到树叶的每条路径创建一个规则</li>
+<li>沿着给定路径上的每个属性-值对形成规则前件（”IF”部分）的一个合取项</li>
+<li>叶节点包含类预测，形成规则后件（”THEN”部分）</li>
+<li>IF-THEN规则易于理解，尤其树很大时</li>
+<li>评估：<ul>
+<li>覆盖率：$coverage(R)&#x3D;\frac{n_{cover}}{|D|}$</li>
+<li>准确率：$accuracy(R)&#x3D;\frac{n_{correct}}{n_{cover}}$</li>
+<li>解决多个规则触发的冲突：<ul>
+<li>规模序：按照苛刻性度量</li>
+<li>规则序：根据类的重要性度量</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>在sklrean中默认的划分方式就是gini指数，默认的决策树是CART树；但是gini指数的划分趋向于孤立数据集中数量多的类，将它们分到一个树叶中，而熵偏向于构建一颗平衡的树，也就是数量多的类可能分散到不同的叶子中去了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%88%86%E7%B1%BB(Classfication)%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/" rel="prev" title="分类(Classfication)：前置知识">
+                  <i class="fa fa-angle-left"></i> 分类(Classfication)：前置知识
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA(Support%20Vector%20Machine)/" rel="next" title="支持向量机(Support Vector Machine)">
+                  支持向量机(Support Vector Machine) <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

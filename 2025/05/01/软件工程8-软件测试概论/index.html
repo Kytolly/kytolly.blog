@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="软件测试软件质量保证与测试相关概念软件质量定义：明确表示是否包含功能和性能需求，明确记载开发标准和所有专业开发软件的期望的隐性特点 关键点  软件测试时软件质量测量的基础 缺乏规定的一致性就是缺乏软件的质量 制定标准会定义软件工程发展的标准，引导软件工程经理  软件质量保证质量保证含义：系统地监测评估一个工程的方方面面，以最大限度的提高正在由生产过程中实现的质量的最低标准原则：  适合用途：产品符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程8-软件测试概论">
+<meta property="og:url" content="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B8-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="软件测试软件质量保证与测试相关概念软件质量定义：明确表示是否包含功能和性能需求，明确记载开发标准和所有专业开发软件的期望的隐性特点 关键点  软件测试时软件质量测量的基础 缺乏规定的一致性就是缺乏软件的质量 制定标准会定义软件工程发展的标准，引导软件工程经理  软件质量保证质量保证含义：系统地监测评估一个工程的方方面面，以最大限度的提高正在由生产过程中实现的质量的最低标准原则：  适合用途：产品符">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.511Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.983Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B8-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B8-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/","path":"2025/05/01/软件工程8-软件测试概论/","title":"软件工程8-软件测试概论"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>软件工程8-软件测试概论 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">软件测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F%E4%BF%9D%E8%AF%81%E4%B8%8E%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">软件质量保证与测试相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F"><span class="nav-number">1.1.1.</span> <span class="nav-text">软件质量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F%E4%BF%9D%E8%AF%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">软件质量保证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95-1"><span class="nav-number">1.1.3.</span> <span class="nav-text">软件测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%BC%BA%E9%99%B7"><span class="nav-number">1.1.4.</span> <span class="nav-text">软件缺陷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81Verification-%E7%A1%AE%E8%AE%A4Validation"><span class="nav-number">1.1.5.</span> <span class="nav-text">验证Verification&#x2F;确认Validation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95-%E8%B4%A8%E9%87%8F%E4%BF%9D%E8%AF%81"><span class="nav-number">1.1.6.</span> <span class="nav-text">测试&amp;质量保证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%A8%E9%87%8F-%E5%8F%AF%E9%9D%A0%E6%80%A7"><span class="nav-number">1.1.7.</span> <span class="nav-text">质量&#x2F;可靠性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%AF%95-%E6%B5%8B%E8%AF%95"><span class="nav-number">1.1.8.</span> <span class="nav-text">调试&#x2F;测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.9.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%88%99"><span class="nav-number">1.1.10.</span> <span class="nav-text">原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"><span class="nav-number">1.1.11.</span> <span class="nav-text">测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%9A%84%E8%AF%84%E4%BC%B0%E5%87%86%E5%88%99"><span class="nav-number">1.1.12.</span> <span class="nav-text">软件测试的评估准则</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B8-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="软件工程8-软件测试概论 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          软件工程8-软件测试概论
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="软件测试"><a href="#软件测试" class="headerlink" title="软件测试"></a>软件测试</h1><h2 id="软件质量保证与测试相关概念"><a href="#软件质量保证与测试相关概念" class="headerlink" title="软件质量保证与测试相关概念"></a>软件质量保证与测试相关概念</h2><h3 id="软件质量"><a href="#软件质量" class="headerlink" title="软件质量"></a>软件质量</h3><p>定义：明确表示是否包含功能和性能需求，明确记载开发标准和所有专业开发软件的期望的隐性特点</p>
+<p>关键点</p>
+<ul>
+<li>软件测试时软件质量测量的基础</li>
+<li>缺乏规定的一致性就是缺乏软件的质量</li>
+<li>制定标准会定义软件工程发展的标准，引导软件工程经理</li>
+</ul>
+<h3 id="软件质量保证"><a href="#软件质量保证" class="headerlink" title="软件质量保证"></a>软件质量保证</h3><p>质量保证含义：系统地监测评估一个工程的方方面面，以最大限度的提高正在由生产过程中实现的质量的最低标准<br>原则：</p>
+<ul>
+<li>适合用途：产品符合预期目的</li>
+<li>一次成功：错误产品应该被淘汰</li>
+</ul>
+<p>软件质量保证SQA：</p>
+<ul>
+<li>活动：审查，监督，审核</li>
+<li>过程监控：一个确保采取适当步骤来进行的过程中所遵循的SQA 活动</li>
+<li>审核：用来审查管理、技术和流程，以保证提供的质量和软件产品的状态指示</li>
+</ul>
+<h3 id="软件测试-1"><a href="#软件测试-1" class="headerlink" title="软件测试"></a>软件测试</h3><p>定义：</p>
+<ul>
+<li>在某种指定的条件下对系统或组件操作，观察或记 录结果，对系统或组件的某些方面进行评估的过程。 </li>
+<li>分析软件各项目以检测现有的结果和应有结果之间 的差异（即软件缺陷），并评估软件各项目的特征 的过程。</li>
+</ul>
+<h3 id="软件缺陷"><a href="#软件缺陷" class="headerlink" title="软件缺陷"></a>软件缺陷</h3><ul>
+<li>软件未实现产品说明书的功能；</li>
+<li>未实现产品说明书未明确提及但是应该实现的目标</li>
+<li>产品说明书指明不能出现的错误</li>
+<li>软件实现了产品说明书未提到的功能</li>
+<li>软件难以理解，不易使用，运行缓慢等等最终用户认为不好</li>
+</ul>
+<h3 id="验证Verification-确认Validation"><a href="#验证Verification-确认Validation" class="headerlink" title="验证Verification&#x2F;确认Validation"></a>验证Verification&#x2F;确认Validation</h3><p>验证：保证软件特定开发阶段的输出已经正确完整地实现了<strong>规格说明</strong></p>
+<p>确认：对于每个测试级别，都要检查 开发活动的输出是否满足具体<strong>客户的需求</strong>或与这些特定级别相关的需求</p>
+<p>在实际生产中，开发者参照的规格说明不一定等同于客户的具体需求；</p>
+<h3 id="测试-质量保证"><a href="#测试-质量保证" class="headerlink" title="测试&amp;质量保证"></a>测试&amp;质量保证</h3><ul>
+<li>软件测试人员的目标是尽早找出软件缺 陷，并确保缺陷得以修复</li>
+<li>软件质量保证人员的主要职责是创建和 执行改进软件开发过程并防止软件缺陷 发生的标准和方法</li>
+</ul>
+<h3 id="质量-可靠性"><a href="#质量-可靠性" class="headerlink" title="质量&#x2F;可靠性"></a>质量&#x2F;可靠性</h3><ul>
+<li><p>功能性functionality</p>
+</li>
+<li><p>效率efficiency</p>
+</li>
+<li><p>可移植性portability</p>
+</li>
+<li><p>可靠性reliability：利用平均无故障时间和平均修复时间<br>$$<br>\frac{MTTF}{MTTF+MTTR}<br>$$</p>
+</li>
+<li><p>可维护性maintainability</p>
+</li>
+<li><p>可用性usability</p>
+</li>
+</ul>
+<h3 id="调试-测试"><a href="#调试-测试" class="headerlink" title="调试&#x2F;测试"></a>调试&#x2F;测试</h3><p>共同点：处理软件缺陷和查看代码的过程<br>区别：</p>
+<ul>
+<li>测试的目标是发现软件缺陷的存在</li>
+<li>调试的目标是定位和修复缺陷</li>
+</ul>
+<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>确认系统满足其预期的使用和用户的需要。</li>
+<li>确认解决了所需解决的问题；</li>
+<li>为测试的过程建立责任和可解释性；</li>
+<li>便于及早发现软件和系统的异常；</li>
+<li>及早提供软件和系统的性能评估；</li>
+<li>为管理提供真实信息，以决定在当前状态下发布产品在商业上的风险；</li>
+<li>鉴别出程序在功能等方面的异常集聚之处。</li>
+</ul>
+<h3 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h3><ul>
+<li>穷尽测试是不可能的</li>
+<li>测试无法显示潜伏的软件缺陷</li>
+<li>测试活动应该尽早进行</li>
+<li>软件缺陷具有群聚性</li>
+<li>注意杀虫剂现象：测试用例应该具有某种随机策略</li>
+<li>尽量由独立的测试团队进行测试</li>
+</ul>
+<h3 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h3><p>定义：</p>
+<ul>
+<li>测试输入</li>
+<li>执行条件</li>
+<li>预期结果</li>
+</ul>
+<p>测试用例是为特定的目的开发的，例如执行特定的程序路径与验证指定的需求相符合</p>
+<h3 id="软件测试的评估准则"><a href="#软件测试的评估准则" class="headerlink" title="软件测试的评估准则"></a>软件测试的评估准则</h3><ul>
+<li>覆盖率： 给定一个测试需求集合TR 和一个测试集合T，覆盖率可以定义为T 满足的测试需求占TR 总数 的比例。</li>
+<li>故障插入：用于评价遗留在一个程序中的故障的数量和种类。 具体而言，在测试前被有意地插入一些故障到程序中，在测试执行中，有一部分插入的故障 会因测试而显露出来，但可能一些故障在测试中没有暴露出来，仍存在于程序中。</li>
+<li>变异分值：程 序进行两个或更多个变异，然后用同样的测试用例执行测试，可以评估这些测试用例探测程 序变异间的差异的能力。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B7-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" rel="prev" title="软件工程7-面向过程的系统设计">
+                  <i class="fa fa-angle-left"></i> 软件工程7-面向过程的系统设计
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B9-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF/" rel="next" title="软件工程9-软件测试技术">
+                  软件工程9-软件测试技术 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="数据模型概念数据模型用来抽象、表示和处理现实世界的数据和信息； 数据模型就是现实世界的模拟：  真实地模拟现实世界； 能为人工所理解； 易于在计算机实现；  现实世界中的客观对象抽象为概念，把概念模型转换为某一DBMS支持的数据模型，概念模型是现实世界到机器世界的一个中间层次； 层次 概念模型CDM 面向现实世界建模 主要用来描述现实世界的概念化结构，与具体的DBMS无关； 常用E-R模型表达">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库2-数据模型">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%932-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据模型概念数据模型用来抽象、表示和处理现实世界的数据和信息； 数据模型就是现实世界的模拟：  真实地模拟现实世界； 能为人工所理解； 易于在计算机实现；  现实世界中的客观对象抽象为概念，把概念模型转换为某一DBMS支持的数据模型，概念模型是现实世界到机器世界的一个中间层次； 层次 概念模型CDM 面向现实世界建模 主要用来描述现实世界的概念化结构，与具体的DBMS无关； 常用E-R模型表达">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.413Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.704Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%932-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%932-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/","path":"2025/05/01/数据库2-数据模型/","title":"数据库2-数据模型"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据库2-数据模型 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">数据模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1"><span class="nav-number">1.2.</span> <span class="nav-text">层次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E8%A6%81%E7%B4%A0"><span class="nav-number">1.3.</span> <span class="nav-text">三要素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.4.</span> <span class="nav-text">类型</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%932-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据库2-数据模型 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库2-数据模型
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>数据模型用来抽象、表示和处理现实世界的数据和信息；</p>
+<p>数据模型就是现实世界的模拟：</p>
+<ul>
+<li>真实地模拟现实世界；</li>
+<li>能为人工所理解；</li>
+<li>易于在计算机实现；</li>
+</ul>
+<p>现实世界中的客观对象抽象为概念，把概念模型转换为某一DBMS支持的数据模型，概念模型是现实世界到机器世界的一个中间层次；</p>
+<h2 id="层次"><a href="#层次" class="headerlink" title="层次"></a>层次</h2><ol>
+<li>概念模型CDM<ul>
+<li>面向现实世界建模</li>
+<li>主要用来描述现实世界的概念化结构，与具体的DBMS无关；</li>
+<li>常用E-R模型表达</li>
+</ul>
+</li>
+<li>逻辑模型LDM<ul>
+<li>面向用户建模</li>
+<li>是具体的DBMS所支持的数据模型（网状&#x2F;层次&#x2F;关系&#x2F;面向对象）</li>
+</ul>
+</li>
+<li>物理模型PDM<ul>
+<li>面向具体的DBMS，也面向机器</li>
+<li>描述数据在存储介质上的组织结构</li>
+</ul>
+</li>
+</ol>
+<h2 id="三要素"><a href="#三要素" class="headerlink" title="三要素"></a>三要素</h2><ol>
+<li>数据结构<ul>
+<li>与数据类型、内容、性质有关的对象，如关系模型中的域、属性、关系等</li>
+<li>与数据之间联系有关的对象</li>
+<li>数据结构是对系统静态特征的描述</li>
+</ul>
+</li>
+<li>数据操作<ul>
+<li>数据操作是指对数据库中各种对象的实例允许执行的操作的集合，包括操作及有关的操作规则</li>
+<li>数据库主要有检索和更新（插入、删除、修改）两大类操作</li>
+<li>数据模型必须定义这些操作的含义、符号、规则及实现操作的语言</li>
+<li>数据操作是对系统<strong>动态特性</strong>的描述</li>
+</ul>
+</li>
+<li>数据的约束条件<ul>
+<li>数据的约束条件是一组完整性规则的集合。</li>
+<li>完整性规则是指给定的数据模型中的数据及其联系所具有的制约和依存规则，以保证数据的正确、有效、相容。</li>
+<li>提供定义完整性约束条件的机制</li>
+</ul>
+</li>
+</ol>
+<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><ol>
+<li>层次模型：用树来表示实体和实体间的联系；</li>
+<li>网状模型：一个联系可以被称为一个系，每个系至少由两种记录类型组成：一种等同于层次模型中父节点的首记录另一种等同于层次模型中子节点的属记录</li>
+<li>关系模型：关系模型是目前应用最广泛的数据模型，采用关系模型作为数据的组织方式，常用表描述；</li>
+<li>半结构化模型：包括XML模型， </li>
+<li>键值对型：如Redis；</li>
+<li>文档型：如MongoDB；</li>
+<li>列存：如Habse；</li>
+<li>图型：如NEO4J；</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%9316-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/" rel="prev" title="数据库16-数据库安全">
+                  <i class="fa fa-angle-left"></i> 数据库16-数据库安全
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%933-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%93%E7%B3%BB%E5%92%8C%E7%BB%93%E6%9E%84/" rel="next" title="数据库3-数据库体系和结构">
+                  数据库3-数据库体系和结构 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="A web service recommendation algorithm  based on BaisSVDSourceDa Sun ,Tong Nie  Beijing Engineering Research Center for IoT Software and Systems, Information Department, Beijing University of Technolo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Paper笔记-A-web-service-recommendation-algorithm-based-on-BaisSVD">
+<meta property="og:url" content="http://example.com/2025/05/01/Paper%E7%AC%94%E8%AE%B0-A-web-service-recommendation-algorithm-based-on-BaisSVD/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="A web service recommendation algorithm  based on BaisSVDSourceDa Sun ,Tong Nie  Beijing Engineering Research Center for IoT Software and Systems, Information Department, Beijing University of Technolo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241116140224325.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.466Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.245Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241116140224325.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/Paper%E7%AC%94%E8%AE%B0-A-web-service-recommendation-algorithm-based-on-BaisSVD/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/Paper%E7%AC%94%E8%AE%B0-A-web-service-recommendation-algorithm-based-on-BaisSVD/","path":"2025/05/01/Paper笔记-A-web-service-recommendation-algorithm-based-on-BaisSVD/","title":"Paper笔记-A-web-service-recommendation-algorithm-based-on-BaisSVD"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Paper笔记-A-web-service-recommendation-algorithm-based-on-BaisSVD | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#A-web-service-recommendation-algorithm-based-on-BaisSVD"><span class="nav-number">1.</span> <span class="nav-text">A web service recommendation algorithm  based on BaisSVD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Source"><span class="nav-number">1.1.</span> <span class="nav-text">Source</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.2.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Keywords"><span class="nav-number">1.3.</span> <span class="nav-text">Keywords</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.4.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RELATED-WORK"><span class="nav-number">1.5.</span> <span class="nav-text">RELATED WORK</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-Traditional-collaborative-filtering"><span class="nav-number">1.5.1.</span> <span class="nav-text">A. Traditional collaborative filtering</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Matrix-factorization-in-Recommendation-System"><span class="nav-number">1.5.2.</span> <span class="nav-text">B. Matrix factorization in Recommendation System</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-FunkSVD"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">1).FunkSVD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-BiasSVD"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">2).BiasSVD</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RESULT-OF-EXPERIMENTS"><span class="nav-number">1.6.</span> <span class="nav-text">RESULT OF EXPERIMENTS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-DataSet"><span class="nav-number">1.6.1.</span> <span class="nav-text">A. DataSet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Algorithm-flow"><span class="nav-number">1.6.2.</span> <span class="nav-text">B. Algorithm flow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-Evaluation-indices"><span class="nav-number">1.6.3.</span> <span class="nav-text">C. Evaluation indices</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D-Experimental-results-and-analysis"><span class="nav-number">1.6.4.</span> <span class="nav-text">D. Experimental results and analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CONCLUSION-AND-FUTURE-WORK"><span class="nav-number">1.7.</span> <span class="nav-text">CONCLUSION AND FUTURE WORK</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/Paper%E7%AC%94%E8%AE%B0-A-web-service-recommendation-algorithm-based-on-BaisSVD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Paper笔记-A-web-service-recommendation-algorithm-based-on-BaisSVD | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Paper笔记-A-web-service-recommendation-algorithm-based-on-BaisSVD
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="A-web-service-recommendation-algorithm-based-on-BaisSVD"><a href="#A-web-service-recommendation-algorithm-based-on-BaisSVD" class="headerlink" title="A web service recommendation algorithm  based on BaisSVD"></a>A web service recommendation algorithm  based on BaisSVD</h1><h2 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h2><p><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9141664">Da Sun ,Tong Nie  Beijing Engineering Research Center for IoT Software and Systems, Information Department, Beijing University of Technology</a></p>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>随着网络技术和网络服务的发展，Web服务的数量也将呈爆炸式增长，能够提供类似功能的Web服务的数量也将迅速增加。</p>
+<p>服务质量(Quality of Service，QoS)被广泛用于描述和评价Web服务的非功能性能，并已成功地应用于服务推荐。</p>
+<p>然而，目前的Web服务建议大多仍局限于传统的协同过滤，<strong>没有考虑用户和Web服务本身的偏向</strong>。</p>
+<p>本文首先介绍了Web服务推荐的现状，然后分析了存在的问题和数据集的特点。最后，应用BiasSVD算法预测服务质量，并推荐给用户，将实验结果与传统的协同过滤算法进行了比较，得出了该算法在Web服务推荐场景中的可行性和优越性。</p>
+<h2 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h2><p>Web服务;推荐;服务质量预测;协同过滤;矩阵分解;</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>随着互联网技术的发展，Web服务的便利性导致了用户对Web服务的需求不断增加。如今，大量的Web服务充斥着互联网，用户的选择越来越多。同时，它们也提出了更高的要求：在相同的业务类型和条件下，用户除了满足功能需求外，还希望获得更高的服务质量(Qos)。</p>
+<p>目前，通过预测服务质量并推荐给用户已经成为解决Web服务信息过载的一种方法。协同过滤是一种广泛使用的推荐技术，已被证明是最准确的预测方法。基于历史数据的经典协同过滤主要从三个方面进行研究。</p>
+<ul>
+<li>第一种是从用户的角度出发，即基于用户的算法(UPCC)。</li>
+<li>第二种是从项目的角度，即基于项目的算法(IPCC)。</li>
+<li>第三种算法结合了用户和项目两个方面，即基于用户和项目的算法(UIPCC)。</li>
+</ul>
+<p>UPCC的前提是，在现有数据中，两个用户之间的相似度越高，那些无法访问该项目的用户出现类似结果的可能性就越大。</p>
+<p>IPCC正在从项目的角度寻找类似的项目进行预测。</p>
+<p>UIPCC是UPCC和IPCC的加权结果。</p>
+<p>一般来说，用户与项目之间的相似度可以通过余弦相似度或皮尔逊相关系数来获得。然而，传统的协同过滤Web服务推荐算法也存在一些不足：</p>
+<ul>
+<li>如果项目之间存在相关性，信息量不会随着向量维度的增加而线性增加；</li>
+<li>评分矩阵元素稀疏，计算结果不稳定，向量维度的增加或减少都会导致近邻结果的较大差异。</li>
+</ul>
+<p>针对这些问题，本文使用BiasSVD来解决这些问题，从而提高推荐结果的准确性和用户体验。</p>
+<h2 id="RELATED-WORK"><a href="#RELATED-WORK" class="headerlink" title="RELATED WORK"></a>RELATED WORK</h2><h3 id="A-Traditional-collaborative-filtering"><a href="#A-Traditional-collaborative-filtering" class="headerlink" title="A. Traditional collaborative filtering"></a>A. Traditional collaborative filtering</h3><p>目前，协同过滤推荐算法有两种：</p>
+<ul>
+<li>基于用户的协同过滤推荐算法</li>
+<li>基于项目的协同过滤推荐算法。</li>
+</ul>
+<p>前者是基于这样的假设：如果用户对某些项目具有相似的分数，那么他们对其他项目也具有相似的分数，基于目标用户的最近邻居（最相似的用户），算法逼近目标用户对项目的分数。</p>
+<p>对于后者，用户对不同项目的评分是相似的，要估计用户对某个物品的评分，可以估计用户物品的几个类似物品的评分。</p>
+<p>协同过滤的关键步骤是计算用户之间的相似度。协同过滤算法中使用了多种方法来计算用户之间的相似度。其中大多数是基于用户对具有共同偏好的产品的评级。两种最常用的方法是Pearson correlation和included angle cosine；</p>
+<p>这两种方法都将用户$x$和$y$频繁使用(overplay)的产品集定义为：<br>$$<br>S_{xy}&#x3D;S_x\bigcap S_y<br>$$<br>用户$X$和$Y$之间的Pearson correlation定义为：<br>$$<br>{\rm Sim}(x,y)&#x3D;\frac{\sum_{i\in S_{xy}}(r_{xi}-\overline{r_x})(r_{yi}-\overline{r_y})}{\sqrt{\sum_{i\in S_{xy}}(r_{xi}-\overline{r_x})^2 \sum_{i \in S_{xy}}(r_{yi}-\overline{r_y})^2}}<br>$$<br>在included angle cosine方法中，用户$x$和$y$由$m$维载体表示。两个载体之间的相似度可以通过以下方式获得</p>
+<p>$$<br>{\rm Sim}(x,y)&#x3D;\frac{\sum_{i\in S_{xy}}r_{xi}r_{yi}}{\sqrt{\sum_{i\in S_{xy}}r_{xi}^2\sum_{i\in S_{xy}}r_{yi}^2}}<br>$$<br>基于用户的方法利用来自类似用户的历史Qos体验进行个性化Qos预测，而基于服务的方法使用来自类似服务的方法进行预测。混合方法是前两种方法的结合，因此可以达到更高的预测准确率。  </p>
+<p>基于传统的协同过滤算法，UPCC和IPCC预测和推荐服务质量的基本步骤如下：</p>
+<ol>
+<li>准备数据集;</li>
+<li>计算用户（Web服务）的相似度并获取用户（Web服务）的相似度;</li>
+<li>选择最近的邻居用户（Web Service）获取相似用户（Web Service）的集合;</li>
+<li>服务质量预测并获取预测结果;</li>
+<li>推荐</li>
+</ol>
+<p>不同的系统使用不同的相似度计算来使预测分数尽可能准确。协同过滤推荐系统虽然已得到广泛应用，但也面临着推荐效果不佳、系统扩展性弱等诸多问题。</p>
+<h3 id="B-Matrix-factorization-in-Recommendation-System"><a href="#B-Matrix-factorization-in-Recommendation-System" class="headerlink" title="B. Matrix factorization in Recommendation System"></a>B. Matrix factorization in Recommendation System</h3><p>基于模型的协同过滤算法一般基于定义的随机参数模型。根据已有的Qos数据集，通过机器学习的方法训练预测模型来预测个性化QOS值，推荐系统的得分预测问题可以看作是一场补全矩阵的游戏，这是推荐系统的任务，而矩阵分解是为了实现其目标。</p>
+<p>矩阵分解算法应用于个性化推荐的核心思想是将用户评分矩阵分解为一个<strong>低秩矩阵</strong>(low rank)，使产品尽可能接近原始评分矩阵，并使预测矩阵与原始矩阵之间的误差平方最小。</p>
+<p>奇异值分解(SVD)由于既可以用于降维算法的特征分解，也可以用于推荐算法的特征分解，因此在机器学习中得到了广泛的应用。我们把$m$个用户和$n$个项目的得分作为一个矩阵$M$，然后用矩阵分解来解决推荐问题。</p>
+<blockquote>
+<p>低秩矩阵为什么有用？</p>
+<p>在矩阵论中，矩阵满秩当且仅当其各行各列线性无关，也就是说，矩阵的秩衡量矩阵内部的相关性；</p>
+<p>在机器学习领域，矩阵往往表示图像，用户-物品推荐表等结构性信息，若行列间的相关性很低，意味着矩阵可以被<strong>降维</strong>，投影到更低维度的子空间，用较少的线性无关的向量表示，以表达矩阵其余的冗余信息；</p>
+<p>在图像处理领域，如果图像的秩比较高，这意味着图像的噪声严重，低秩的矩阵往往被用于恢复图像；</p>
+<p>注意到，对于矩阵$M_{s\times t}$，其秩$R(M)\le \min{s,t}$;</p>
+<p>经验表明，对于海量的用户和项目的集合，决定用户对项目的打分往往和看起来只和若干指标有关，我们用这些指标构建低秩的矩阵，用于还原和近似原先的评分矩阵，换句话说，我们将评分矩阵近似分解成这些低秩矩阵的乘积；</p>
+</blockquote>
+<h4 id="1-FunkSVD"><a href="#1-FunkSVD" class="headerlink" title="1).FunkSVD"></a>1).FunkSVD</h4><p>原始的奇异值矩阵分解(PureSVD)需要先填充矩阵，然后分解降维，由于逆运算$O(N^3)$，具有复杂度高的缺点。因此，Simon提出了FunkSVD的方法。他没有将矩阵分解为三个矩阵，而是将其分解为两个低等级用户项目矩阵，这降低了计算复杂性。<br>$$<br>M_{m\times n}&#x3D;P^T_{m\times k}Q_{k\times n}<br>$$<br>对于用户评分，FunkSVD用于矩阵分解，相应的表示为$q_j^T p_i$;</p>
+<p>FunkSVD使用线性回归(linear regression)的思想，通过<strong>最小化观察数据的平方</strong>来找到用户和项目的最佳隐式载体表示(the optimal implicit vector representation)。如果我们考虑所有物品和样本的组合，最小化以下公式:<br>$$<br>\sum_{i,j}(m_{ij}-q_j^T p_i)^2<br>$$<br>如果上述公式被最小化并找到相应的极端值(extreme value)$p_i,q_j$，则将得到矩阵$P$和$Q$;</p>
+<p>对于矩阵$M$的<strong>任何空白分数</strong>，分数可以通过以下公式计算。同时，为了避免过度匹配观察数据(overfitting)，提出了带$L2$正则项的FunkSVD;<br>$$<br>\arg \min \sum_{i,j}(m_{ij}-q_j^Tp_i)^2+\beta(||p_i||^2+||q_j||^2)<br>$$<br>因此，使用FunkMVD进行推荐的步骤如下：</p>
+<ol>
+<li>通过梯度下降法求出$P$和$Q$，使损失函数最小化;</li>
+<li>通过$P$和$Q$完成矩阵;</li>
+<li>对于用户$i$，找到上一个值缺失的位置，并根据完成值从大到小进行推荐。</li>
+</ol>
+<h4 id="2-BiasSVD"><a href="#2-BiasSVD" class="headerlink" title="2).BiasSVD"></a>2).BiasSVD</h4><p>基于FunkSVD算法有很多改进版本，其中BiasSVD是最受欢迎的一个。</p>
+<p>提出的算法基于以下假设：一些用户或项目会带来自己的特征。BiasSVD推荐系统由三个部分组成：</p>
+<ul>
+<li>有些与用户项目无关，称为<strong>用户偏向项</strong>;</li>
+<li>有些与项目中的用户无关，称为<strong>项目偏向项</strong>。</li>
+</ul>
+<p>假设评分系统的平均得分为$μ$，则添加偏差项后的优化目标函数如下：<br>$$<br>\arg \min \sum_{i,j}(m_{ij}-\mu-b_i-b_j-q_j^Tp_i)^2+\beta(||p_i||^2+||q_j||^2+||b_i||^2+||b_j||^2)<br>$$<br>在Web服务推荐中，有很多有关Web服务调用历史的偏好信息。例如，Web服务本身的服务质量一般较高，因此当需要预测Web服务的服务质量值时，预测的服务质量值应该包含Web服务的偏差信息。另一个用户可能更喜欢质量方面的吞吐量或响应时间。这些是用户或网络服务包含的偏见信息。将这些偏差信息添加到服务质量预测中可以提高预测准确率并具有更好的推荐效果。</p>
+<p>与FunkSVD和BiasSVD相比，BiasSVD的最终推荐效果优于FunkSVD;本文中，作者还使用了BiasSVD算法作为Web服务的推荐模型。</p>
+<h2 id="RESULT-OF-EXPERIMENTS"><a href="#RESULT-OF-EXPERIMENTS" class="headerlink" title="RESULT OF EXPERIMENTS"></a>RESULT OF EXPERIMENTS</h2><p>首先介绍实验中使用的数据集，然后说明传统协同过滤算法和BiasSVD算法的真实算法流程、评估指标和实验结果。  </p>
+<h3 id="A-DataSet"><a href="#A-DataSet" class="headerlink" title="A. DataSet"></a>A. DataSet</h3><p>本文中的所有实验都基于来自香港中 文大学的郑先生收集的Web服务数据集。来自30个国家&#x2F;地区的339名服务用户在73个国家&#x2F;地区的5825个现实世界Web服务上总共执行了1974675次现实世界Web服务调用。每条记录还包含响应时间和吞吐量。</p>
+<h3 id="B-Algorithm-flow"><a href="#B-Algorithm-flow" class="headerlink" title="B. Algorithm flow"></a>B. Algorithm flow</h3><p><strong>Input</strong></p>
+<p>QoS矩阵、正规化参数$β$,学习率$\alpha$;</p>
+<p><strong>Process</strong></p>
+<ol>
+<li><p>根据相应的稀疏度对QoS矩阵进行稀疏化;</p>
+</li>
+<li><p>考虑用户偏见信息和Web服务的偏见信息部分，并设置偏见;<br>$$<br>b_{ij}&#x3D;\mu + b_i + b_j<br>$$</p>
+<ul>
+<li>$\mu$:所有记录的总体平均值</li>
+<li>$b_i$:用户补偿信息(user offset information)</li>
+<li>$b_j$:web服务补偿信息(web service offset information)</li>
+</ul>
+</li>
+<li><p>在迭代过程中，可以将$b_i,b_j$的初始值设置为$0$，然后进行迭代;<br>$$<br>b_i\leftarrow b_i+\alpha(m_{ij}-\mu-b_i-b_j-q_j^Tp_i-\beta b_i)\<br>b_j\leftarrow b_j+\alpha(m_{ij}-\mu-b_i-b_j-q_j^Tp_i-\beta b_j)\<br>$$</p>
+</li>
+<li><p>优化目标函数：<br>$$<br>\arg \min \sum_{i,j}(m_{ij}-\mu-b_i-b_j-q_j^Tp_i)^2+\beta(||p_i||^2+||q_j||^2+||b_i||^2+||b_j||^2)<br>$$</p>
+</li>
+</ol>
+<p><strong>output</strong></p>
+<p>服务质量预测值$p(u,i)$,构成矩阵QoS的预测值；</p>
+<h3 id="C-Evaluation-indices"><a href="#C-Evaluation-indices" class="headerlink" title="C. Evaluation indices"></a>C. Evaluation indices</h3><p>协同过滤推荐算法的评估方法有多种，两个主要的评估标准是MAE和RMSE，以及精确率、召回率等指标。本文使用了MAE和RMSE；</p>
+<p> MAE的定义如下：<br>$$<br>{\rm MAE}&#x3D;\frac 1n \sum_{u\in U,i\in I}|p_{ui}-r_{ui}|<br>$$<br>RMSE的定义如下：<br>$$<br>{\rm RMSE}&#x3D; \sqrt{\frac 1n \sum_{u\in U,i\in I}|p_{ui}-r_{ui}|^2}<br>$$<br>从上面的公式可以看出，<strong>MAE</strong>重点关注预测误差的绝对值，无论误差的大小如何，其对<strong>所有误差的权重都是相同</strong>的; </p>
+<p><strong>RSSE</strong>对预测值与实际值的差进行平方运算，然后将差相加，<strong>差异大的结果赋予更大的权重</strong>，结果也会相应改变</p>
+<p>Mae和RSSE的值与预测的准确性成正比，即值越小，预测越准确。</p>
+<h3 id="D-Experimental-results-and-analysis"><a href="#D-Experimental-results-and-analysis" class="headerlink" title="D. Experimental results and analysis"></a>D. Experimental results and analysis</h3><p>在本文中，作者比较了UPCC、IPCC、UPICC和FunkDID作为最终的比较算法，以验证该算法的效果。</p>
+<p>UPCC、IPCC和UIPCC是基于用户、基于项目的混合协作过滤算法。FunkSVD是一种没有偏差的矩阵分解算法。  在经验中，我们主要验证在相同稀疏数据下，BiasDID算法是否能够与传统协同过滤算法相比提高预测准确率。 </p>
+<p>Fig.1显示了使用5%、15%和25%训练矩阵密度在不同响应时间和吞吐量预测方法下的MAE和RSSE结果。</p>
+<p><img src="/assets/image-20241116140224325.png" alt="Fig.1.Results Of Experiments"></p>
+<p>总而言之，依靠平均值预测效果最差，而基于传统的协同过滤方法，包括UPCC、IPCC和UPICC，预测效果优于平均值预测，但仍然不理想。</p>
+<p>关键是，在数据稀疏的情况下，<strong>基于矩阵分解的方法明显优于传统的协同过滤</strong>。随着密度的增加，所有方法的性能都有所提高，这表明<strong>更高质量的信息可以提高预测准确率</strong>，而且Bias奇异值在预测准确率方面更具优势。</p>
+<h2 id="CONCLUSION-AND-FUTURE-WORK"><a href="#CONCLUSION-AND-FUTURE-WORK" class="headerlink" title="CONCLUSION AND FUTURE WORK"></a>CONCLUSION AND FUTURE WORK</h2><p>传统的基于用户的协同过滤推荐算法在计算用户相似度时往往面临数据稀疏性和可扩展性差的缺点。然而，在矩阵分解中使用BiasSVD来计算用户相似度可以改善数据稀疏性的缺点，而且本身的可扩展性也很好。</p>
+<p>因此，作者提出了一种基于BiasSVD的推荐算法。该算法在考虑用户偏好的同时，利用FunkSVD分解相似度矩阵。通过郑收集的数据集表明，与传统算法相比，该算法有效地克服了数据稀疏性的缺点，提高了服务质量预测的准确性。</p>
+<p>但是，在计算相似度的过程中，迭代的时间复杂度需要进一步优化。此外，当面临冷启动时，BiasSVD的性能仍然较弱。因此，下一步需要寻找解决方案，优化时间复杂度，改善冷启动问题。</p>
+<p>同时，对于近几年的热点技术，比如深度学习也可以应用到推荐算法中，以后的研究也会考虑深度学习在推荐算法中的应用。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/IETLS-WrittingTask1/" rel="prev" title="IETLS-WrittingTask1">
+                  <i class="fa fa-angle-left"></i> IETLS-WrittingTask1
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A20-%E6%A6%82%E8%BF%B0/" rel="next" title="信息检索0-概述">
+                  信息检索0-概述 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

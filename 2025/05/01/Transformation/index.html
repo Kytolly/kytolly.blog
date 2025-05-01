@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="2D TransformsTransform in Scale对于二维平面上的一个点$(x,y)$, 将向量变换成原来的$s$倍，只需要左乘缩放矩阵：$$\left( \begin{array}{c} x’\y’ \end{array}\right) &#x3D; \left( \begin{array}{c} s&amp; 0\0&amp; s \end{array}\right) \left(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transformation">
+<meta property="og:url" content="http://example.com/2025/05/01/Transformation/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="2D TransformsTransform in Scale对于二维平面上的一个点$(x,y)$, 将向量变换成原来的$s$倍，只需要左乘缩放矩阵：$$\left( \begin{array}{c} x’\y’ \end{array}\right) &#x3D; \left( \begin{array}{c} s&amp; 0\0&amp; s \end{array}\right) \left(">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241205114854529.png">
+<meta property="og:image" content="http://example.com/assets/image-20241205115452455.png">
+<meta property="og:image" content="http://example.com/assets/image-20241205122455101.png">
+<meta property="og:image" content="http://example.com/assets/image-20241205122656009.png">
+<meta property="og:image" content="http://example.com/assets/image-20241205122756461.png">
+<meta property="og:image" content="http://example.com/assets/image-20241205123342624.png">
+<meta property="og:image" content="http://example.com/assets/image-20241206142540343.png">
+<meta property="og:image" content="http://example.com/assets/image-20241206145750325.png">
+<meta property="og:image" content="http://example.com/assets/image-20241206155742667.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.341Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.332Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241205114854529.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/Transformation/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/Transformation/","path":"2025/05/01/Transformation/","title":"Transformation"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Transformation | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2D-Transforms"><span class="nav-number">1.</span> <span class="nav-text">2D Transforms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Transform-in-Scale"><span class="nav-number">1.1.</span> <span class="nav-text">Transform in Scale</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transform-Rotate"><span class="nav-number">1.2.</span> <span class="nav-text">Transform: Rotate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Liner-Transforms"><span class="nav-number">1.3.</span> <span class="nav-text">Liner Transforms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Affine-Transformation"><span class="nav-number">1.4.</span> <span class="nav-text">Affine Transformation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inverse-Transform"><span class="nav-number">1.5.</span> <span class="nav-text">Inverse Transform</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Composite-Transform"><span class="nav-number">1.6.</span> <span class="nav-text">Composite Transform</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transform-in-3D"><span class="nav-number">2.</span> <span class="nav-text">Transform in 3D</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%86%E5%9B%BE%E5%8F%98%E6%8D%A2"><span class="nav-number">2.1.</span> <span class="nav-text">视图变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2"><span class="nav-number">2.2.</span> <span class="nav-text">投影变换</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/Transformation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Transformation | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Transformation
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="2D-Transforms"><a href="#2D-Transforms" class="headerlink" title="2D Transforms"></a>2D Transforms</h2><h3 id="Transform-in-Scale"><a href="#Transform-in-Scale" class="headerlink" title="Transform in Scale"></a>Transform in Scale</h3><p>对于二维平面上的一个点$(x,y)$, 将向量变换成原来的$s$倍，只需要<strong>左乘缩放矩阵</strong>：<br>$$<br>\left( \begin{array}{c} x’\y’ \end{array}\right) &#x3D; \left( \begin{array}{c} s&amp; 0\0&amp; s \end{array}\right) \left( \begin{array}{c} x\y \end{array}\right)<br>$$<br>非均匀缩放：如果对坐标轴上缩放不同比例，只需调整为<br>$$<br>\left( \begin{array}{c} x’\y’ \end{array}\right) &#x3D; \left( \begin{array}{c} s_x&amp; 0\0&amp; s_y \end{array}\right) \left( \begin{array}{c} x\y \end{array}\right)\<br>$$<br>关于$y$轴的镜像<br>$$<br>\left( \begin{array}{c} x’\y’ \end{array}\right) &#x3D; \left( \begin{array}{c} -1&amp; 0\0&amp; 1 \end{array}\right) \left( \begin{array}{c} x\y \end{array}\right)\<br>$$<br>Shear Matrix:</p>
+<p>竖直方向上移动为0，水平方向的移动$0\to y&#x3D;0, a\to y&#x3D;1$;<br>$$<br>\left( \begin{array}{c} x’\y’ \end{array}\right) &#x3D; \left( \begin{array}{c} 1&amp; a\0&amp; 1 \end{array}\right) \left( \begin{array}{c} x\y \end{array}\right)\<br>$$<br>效果如下</p>
+<p><img src="/assets/image-20241205114854529.png" alt="image-20241205114854529"></p>
+<h3 id="Transform-Rotate"><a href="#Transform-Rotate" class="headerlink" title="Transform: Rotate"></a>Transform: Rotate</h3><p>旋转默认绕原点逆时针旋转</p>
+<p>旋转矩阵如下：<br>$$<br>\boldsymbol R_\theta &#x3D;\left( \begin{array}{c} \cos\theta &amp; -\sin\theta \\sin\theta&amp; \cos\theta \end{array}\right)<br>$$</p>
+<p>不难观察到$\boldsymbol R_\theta^\top &#x3D; \boldsymbol R_{-\theta}$，换句话说旋转矩阵是正交矩阵；</p>
+<p>对于一般的旋转矩阵也有<strong>旋转矩阵的逆即为其转置</strong>；</p>
+<p>旋转效果如下：</p>
+<p><img src="/assets/image-20241205115452455.png" alt="image-20241205115452455"></p>
+<h3 id="Liner-Transforms"><a href="#Liner-Transforms" class="headerlink" title="Liner Transforms"></a>Liner Transforms</h3><p>对于线性变换<br>$$<br>\begin{cases}<br>x’&#x3D;ax+by\<br>y’&#x3D;cx+dy<br>\end{cases}<br>$$<br>我们只需要左乘一个相同维度的矩阵$\boldsymbol M$<br>$$<br>\vec x’&#x3D;\boldsymbol M \vec x, \boldsymbol M&#x3D;\left(\begin{array}{c} a&amp;b\c&amp;d\end{array}\right)<br>$$<br>为进一步描述<strong>平移变换</strong>，只需要进一步加上平移量<br>$$<br>\vec x’ &#x3D; \vec x+\vec t, \vec t &#x3D; \left(\begin{array}{c} t_x\t_y\end{array}\right)<br>$$<br>为进一步描述<strong>仿射变换</strong>(Affine Transform)<br>$$<br>\vec x’&#x3D;\boldsymbol M \vec x+\vec t<br>$$<br>但是这个就不属于线性变化的范畴了,为此我们引入<strong>齐次坐标</strong>，基于向量的平移不变性，增加一个维度;</p>
+<p>一个理解是</p>
+<blockquote>
+<p>vector + vector &#x3D; vector<br>point - point &#x3D; vector<br>point + vector &#x3D; point<br>point + point &#x3D; ?</p>
+</blockquote>
+<p>在齐次坐标下，将三维点看作二维向量<br>$$<br>\left(\begin{array}{c}<br>x’\<br>y’\<br>w’<br>\end{array}\right)<br>{\rm \ is \ 2D\ point\ }<br>\left(\begin{array}{c}<br>x&#x2F;w\<br>y&#x2F;w\<br>1\end{array}\right),w\neq 0<br>$$<br>那么在齐次坐标的观点下，<strong>点+点的结果是线段的中点</strong>；</p>
+<p>平移变换可以表示如下<br>$$<br>\left(\begin{array}{c}<br>x’\<br>y’\<br>w’<br>\end{array}\right) &#x3D; \left(\begin{array}{c}<br>1&amp;0&amp;t_x\<br>0&amp;1&amp;t_y\<br>0&amp;0&amp;1<br>\end{array}\right)<br>\left(\begin{array}{c}<br>x\<br>y\<br>1\end{array}\right)<br>$$<br>仿射变换可以表示如下<br>$$<br>\left(\begin{array}{c}<br>x’\<br>y’\<br>w’<br>\end{array}\right) &#x3D; \left(\begin{array}{c}<br>a&amp;b&amp;t_x\<br>c&amp;d&amp;t_y\<br>0&amp;0&amp;1<br>\end{array}\right)<br>\left(\begin{array}{c}<br>x\<br>y\<br>1\end{array}\right)<br>$$</p>
+<h3 id="Affine-Transformation"><a href="#Affine-Transformation" class="headerlink" title="Affine Transformation"></a>Affine Transformation</h3><p>在齐次坐标下，这些特殊的仿射变换可以左乘如下矩阵，表达如下：</p>
+<p>缩放Scale<br>$$<br>\boldsymbol S(s_x,s_y)&#x3D; \left(\begin{array}{c}<br>s_x&amp;0&amp;0\<br>0&amp;s_y&amp;0\<br>0&amp;0&amp;1<br>\end{array}\right)<br>$$<br>旋转Rotate<br>$$<br>\boldsymbol R(\theta) &#x3D;<br>\left(\begin{array}{c}<br>\cos \theta&amp;-\sin\theta&amp;0\<br>\sin\theta&amp;\cos\theta&amp;0\<br>0&amp;0&amp;1<br>\end{array}\right)<br>$$<br>平移Translation<br>$$<br>\bold T (t_x,t_y) &#x3D;<br>\left(\begin{array}{c}<br>1&amp;0&amp;t_x\<br>0&amp;1&amp;t_y\<br>0&amp;0&amp;1<br>\end{array}\right)<br>$$</p>
+<h3 id="Inverse-Transform"><a href="#Inverse-Transform" class="headerlink" title="Inverse Transform"></a>Inverse Transform</h3><p>在数学上，逆变换等价于左乘变换矩阵的逆矩阵；</p>
+<p><img src="/assets/image-20241205122455101.png" alt="image-20241205122455101"></p>
+<h3 id="Composite-Transform"><a href="#Composite-Transform" class="headerlink" title="Composite Transform"></a>Composite Transform</h3><p>复杂的变换可以通过简单的变换相乘得到；</p>
+<p>乘法的顺序很重要，因为矩阵乘法不满足交换律；</p>
+<p><img src="/assets/image-20241205122656009.png" alt="image-20241205122656009"></p>
+<p><img src="/assets/image-20241205122756461.png" alt="image-20241205122756461"></p>
+<p>对于仿射变换矩阵$A_1,A_2,\cdots, $从右到左运用以下矩阵，根据结合律，可以先将所有矩阵合成为一个最终矩阵；<br>$$<br>\boldsymbol A_n\cdot \cdots \boldsymbol A_2 \cdot\boldsymbol A_1\cdot \left(\begin{array}{c}x\y\1\end{array}\right) &#x3D; \boldsymbol M \vec v<br>$$<br>反过来也可以将复杂矩阵进行分解，下图是沿任意点旋转的过程</p>
+<p><img src="/assets/image-20241205123342624.png" alt="image-20241205123342624"></p>
+<h2 id="Transform-in-3D"><a href="#Transform-in-3D" class="headerlink" title="Transform in 3D"></a>Transform in 3D</h2><p>试图引入齐次坐标</p>
+<blockquote>
+<p>3D Point &#x3D; $(x,y,z,1)^\top$</p>
+<p>3D vector &#x3D; $(x, y, z, 0)^\top$</p>
+</blockquote>
+<p>几乎和2D版本同理，仿射变换如下：<br>$$<br>\left(\begin{array}{c}<br>x’\<br>y’\<br>w’\<br>1<br>\end{array}\right) &#x3D; \left(\begin{array}{c}<br>a&amp;b&amp;c&amp;t_x\<br>d&amp;e&amp;f&amp;t_y\<br>g&amp;h&amp;i&amp;t_z\<br>0&amp;0&amp;0&amp;1<br>\end{array}\right)<br>\left(\begin{array}{c}<br>x\<br>y\<br>z\<br>1\end{array}\right)<br>$$<br>具体来说，</p>
+<p>缩放变换<br>$$<br>\boldsymbol S(s_x,s_y,s_z)&#x3D; \left(\begin{array}{c}<br>s_x&amp;0&amp;0&amp;0\<br>0&amp;s_y&amp;0&amp;0\<br>0&amp;0&amp;s_z&amp;0\<br>0&amp;0&amp;0&amp;1<br>\end{array}\right)<br>$$<br>平移变换<br>$$<br>\boldsymbol T(t_x,t_y,t_z)&#x3D;<br>\left(\begin{array}{c}<br>1&amp;0&amp;0&amp;t_x\<br>0&amp;1&amp;0&amp;t_y\<br>0&amp;0&amp;1&amp;t_z\<br>0&amp;0&amp;0&amp;1<br>\end{array}\right)<br>$$<br>旋转变换(分别从x,y,z轴旋转),注意轮换对称性<br>$$<br>\boldsymbol R_x(\theta) &#x3D;<br>\left(\begin{array}{c}<br>1&amp;0&amp;0&amp;0\<br>0&amp;\cos\theta&amp;-\sin\theta&amp;0\<br>0&amp;\sin\theta&amp;\cos\theta&amp;0\<br>0&amp;0&amp;0&amp;1<br>\end{array}\right)\<br>\boldsymbol R_y(\theta) &#x3D;<br>\left(\begin{array}{c}<br>\cos\theta&amp;0&amp;\sin\theta&amp;0\<br>0&amp;1&amp;0&amp;0\<br>-\sin\theta&amp;0&amp;\cos\theta&amp;0\<br>0&amp;0&amp;0&amp;1<br>\end{array}\right)\<br>\boldsymbol R_z(\theta) &#x3D;<br>\left(\begin{array}{c}<br>\cos\theta&amp;-\sin\theta&amp;0&amp;0\<br>\sin\theta&amp;\cos\theta&amp;0&amp;0\<br>0&amp;0&amp;1&amp;0\<br>0&amp;0&amp;0&amp;1<br>\end{array}\right)<br>$$<br>对于任意旋转，写成三个欧拉角对应的绕轴旋转<br>$$<br>\boldsymbol R_{xyz}(\alpha, \beta,\gamma)&#x3D;\boldsymbol R_x(\alpha)\boldsymbol R_y(\beta)\boldsymbol R_z(\gamma)<br>$$<br>对于一个旋转轴$\mathbf n$和一个旋转角$\alpha$,这条旋转轴默认过原点，以下是Rodrigues旋转公式<br>$$<br>\boldsymbol R(\mathbf{n}, \alpha) &#x3D; \cos \alpha I + (1-\cos\alpha) \mathbf{n}\mathbf{n}^\top + \sin\alpha<br>\left(\begin{array}{c}<br>0&amp;-n_z&amp;n_y\<br>n_z&amp;0&amp;-n_x\<br>-n_y&amp;n_x&amp;0<br>\end{array}\right)<br>$$<br>对于将三维模型转化成二维图片，应该经过如下mvp变换</p>
+<ul>
+<li>model transformation</li>
+<li>view transformation</li>
+<li>projection transformation</li>
+</ul>
+<h3 id="视图变换"><a href="#视图变换" class="headerlink" title="视图变换"></a>视图变换</h3><p>相机应该有如下属性,如下图所示</p>
+<ul>
+<li><p>position $\vec e$</p>
+</li>
+<li><p>gaze direction $\hat g$</p>
+</li>
+<li><p>up direction $\hat t$</p>
+</li>
+</ul>
+<p><img src="/assets/image-20241206142540343.png" alt="image-20241206142540343"></p>
+<p>在观察相机和背景进行着相同的相对运动时，得出的视图可能完全一样，我们约定相机永远在原点，沿着z轴看，头顶为y轴，这是相机的标准位置；</p>
+<p>将任意摆放的相机平移到标准位置，需要经历以下步骤，那么这些步骤相乘对应的逆矩阵就是视图矩阵$\boldsymbol M_{view}$;</p>
+<ul>
+<li>将$\vec e$平移到原点</li>
+<li>旋转$\hat t$和y轴正方向同向</li>
+<li>旋转$(\hat g \times \hat t)$和x轴正方向同向</li>
+</ul>
+<p>由此写出视图矩阵$\boldsymbol M_{view} &#x3D; R_{view}T_{view}$<br>$$<br>T_{view} &#x3D;<br>\left(\begin{array}{c}<br>1&amp;0&amp;0&amp;-x_e\<br>0&amp;1&amp;0&amp;-y_e\<br>0&amp;0&amp;1&amp;-z_e\<br>0&amp;0&amp;0&amp;1<br>\end{array}\right)<br>$$<br>思考$R_{view}$的逆，即将$(0,1,0,0)^\top$旋转到$\hat t$,将$(1,0,0,0)$旋转到$\hat g\times \hat t$,结合旋转矩阵的逆等于其转置，如下<br>$$<br>R_{view}^{-1} &#x3D;<br>\left(\begin{array}{c}<br>x_{\hat g\times \hat t } &amp; x_{\hat t} &amp; x_{-\hat g} &amp; 0\<br>y_{\hat g\times \hat t } &amp; y_{\hat t} &amp; y_{-\hat g} &amp; 0\<br>z_{\hat g\times \hat t } &amp; z_{\hat t} &amp; z_{-\hat g} &amp; 0\<br>0 &amp; 0&amp; 0 &amp; 1<br>\end{array}\right )\</p>
+<p>R_{view} &#x3D;<br>\left(\begin{array}{c}<br>x_{\hat g\times \hat t } &amp; y_{\hat g\times \hat t } &amp;z_{\hat g\times \hat t } &amp; 0\<br>x_{\hat t}&amp; y_{\hat t} &amp; z_{\hat t} &amp; 0\<br>x_{-\hat g} &amp; y_{-\hat g} &amp; z_{-\hat g} &amp; 0\<br>0 &amp; 0&amp; 0 &amp; 1<br>\end{array}\right )<br>$$<br>相机和物品应该要运用相同的视图矩阵，所以模型变换和视图变换其实相同，也统称为魔模型视图变换；<br>$$<br>\boldsymbol M &#x3D;<br>\left(\begin{array}{c}<br>x_{\hat g\times \hat t } &amp; y_{\hat g\times \hat t } &amp;z_{\hat g\times \hat t } &amp; 0\<br>x_{\hat t}&amp; y_{\hat t} &amp; z_{\hat t} &amp; 0\<br>x_{-\hat g} &amp; y_{-\hat g} &amp; z_{-\hat g} &amp; 0\<br>0 &amp; 0&amp; 0 &amp; 1<br>\end{array}\right )<br>\left(\begin{array}{c}<br>1&amp;0&amp;0&amp;-x_e\<br>0&amp;1&amp;0&amp;-y_e\<br>0&amp;0&amp;1&amp;-z_e\<br>0&amp;0&amp;0&amp;1<br>\end{array}\right)<br>$$</p>
+<h3 id="投影变换"><a href="#投影变换" class="headerlink" title="投影变换"></a>投影变换</h3><p>投影变换分为</p>
+<ul>
+<li>正交投影Orthographic projection:常用于工程制图，相机在无限远处</li>
+<li>透视投影Perspective projection：常用于美术，有近大远小的成像原理</li>
+</ul>
+<p><img src="/assets/image-20241206145750325.png" alt="image-20241206145750325"></p>
+<p><strong>Orthographic Projection</strong></p>
+<p>一般来说，我们将空间中方体$[l,r]\times [b,t]\times [f,n]$,可以映射为标准立方体(canonical cube)$[-1,1]^3$,这需要先进行平移再缩放即可，如下：<br>$$<br>\boldsymbol M_{o} &#x3D;<br>\left(\begin{array}{c}<br>\frac{2}{r-l}&amp;0&amp;0&amp;0\<br>0&amp;\frac{2}{t-b}&amp;0&amp;0\<br>0&amp;0&amp;\frac{2}{n-f}&amp;0\<br>0&amp;0&amp;0&amp;1<br>\end{array}\right)<br>\left(\begin{array}{c}<br>1&amp;0&amp;0&amp;-\frac{r+l}{2}\<br>0&amp;1&amp;0&amp;-\frac{t+b}{2}\<br>0&amp;0&amp;1&amp;-\frac{n+f}{2}\<br>0&amp;0&amp;0&amp;1<br>\end{array}\right)<br>$$<br><strong>Perspective Projection</strong></p>
+<p>对于透视变换，我们划归成正交投影变换问题：也就是规定一个近平面Near clip plane和一个远平面Far clip plane,其中两个面中心被相机正对着，满足以下性质</p>
+<ul>
+<li>运用矩阵后，近平面上点保持不动</li>
+<li>运用矩阵后，远平面上的点分量z保持不变</li>
+<li>运用矩阵后，原平面中心点保持不变</li>
+</ul>
+<p>这样我们将两个面上的物品大小变得完全一样，可以直接运用正交投影变换，也就是<br>$$<br>\boldsymbol M_{p}&#x3D;\boldsymbol M_{o} \boldsymbol M_{p\to o}<br>$$<br><img src="/assets/image-20241206155742667.png" alt="image-20241206155742667"></p>
+<p>以下是变换矩阵$\boldsymbol M_{p\to o}$的推导：</p>
+<p>对于空间任意一个点$(x,y,z,1)^\top$,和透视点和近平面满足某种相似三角形的特性，假设这个点被映射到近平面上的点$(x’,y’,z’,1)^\top$<br>$$<br>x’&#x3D;\frac{n}{z}x,y’&#x3D;\frac{n}{z}y<br>$$<br>在齐次坐标的假设下，这个点等价于$(nx,ny,*,z)^\top$;</p>
+<p>变换矩阵应该具有如此形式,才能满足$\boldsymbol M_{p\to o} (x,y,z,1)^\top &#x3D;  (nx,ny,*,z)^\top$<br>$$<br>\left(\begin{array}{c}<br>n &amp; 0 &amp; 0 &amp; 0\<br>0 &amp; n &amp; 0 &amp; 0\</p>
+<ul>
+<li>&amp; * &amp; * &amp; *\<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right)<br>$$<br>结合近平面方程和远平面方程，我们有<br>$$<br>\left(\begin{array}{c}<br>n &amp; 0 &amp; 0 &amp; 0\<br>0 &amp; n &amp; 0 &amp; 0\</li>
+<li>&amp; * &amp; * &amp; *\<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right)<br>\left(\begin{array}{c}<br>0\<br>0\<br>f\<br>1<br>\end{array}\right)&#x3D;<br>\left(\begin{array}{c}<br>0\<br>0\<br>f^2\<br>f<br>\end{array}\right)\</li>
+</ul>
+<p>\left(\begin{array}{c}<br>n &amp; 0 &amp; 0 &amp; 0\<br>0 &amp; n &amp; 0 &amp; 0\</p>
+<ul>
+<li>&amp; * &amp; * &amp; *\<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right)<br>\left(\begin{array}{c}<br>x\<br>y\<br>n\<br>1<br>\end{array}\right)&#x3D;<br>\left(\begin{array}{c}<br>nx\<br>ny\<br>n^2\<br>n<br>\end{array}\right)<br>$$<br>最终透视变换的矩阵如下：<br>$$<br>\boldsymbol M_{p}&#x3D;\boldsymbol M_{o} \left(\begin{array}{c}<br>n &amp; 0 &amp; 0 &amp; 0\<br>0 &amp; n &amp; 0 &amp; 0\<br>0 &amp; 0 &amp; n+f &amp; -nf\<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right)<br>$$<br>思考：可以注意到，对于近平面和原平面之间的点，运用$M_{p\to o}$后$z$值变得更大也就是更靠近远平面了，数学上来说$n+f-\frac{nf}{z}&gt;z,n&lt; z&lt; f$;</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Shading/" rel="prev" title="Shading">
+                  <i class="fa fa-angle-left"></i> Shading
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E7%9F%A9%E9%98%B5%E8%AE%BA%E5%9F%BA%E7%A1%80/" rel="next" title="矩阵论基础">
+                  矩阵论基础 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

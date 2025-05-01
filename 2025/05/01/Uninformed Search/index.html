@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="假设下面搜索问题按照下图举例： Depth-first SearchDFS总是拓展搜索树中当前边缘节点集中的最深的结点，很快搜索推进到没有后继的最深层，将它们从边缘节点集去掉后，回溯到下一个稍浅的未拓展后继的结点； 做到这一点的关键是维护一个栈，每次保证当前看到最深的结点在栈顶，优先弹出的也是已经被搜完的栈顶结点；  我们从四个性能度量考察DFS：  完备性： 在避免了重复状态和冗余路径，优先状态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Uninformed Search">
+<meta property="og:url" content="http://example.com/2025/05/01/Uninformed%20Search/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="假设下面搜索问题按照下图举例： Depth-first SearchDFS总是拓展搜索树中当前边缘节点集中的最深的结点，很快搜索推进到没有后继的最深层，将它们从边缘节点集去掉后，回溯到下一个稍浅的未拓展后继的结点； 做到这一点的关键是维护一个栈，每次保证当前看到最深的结点在栈顶，优先弹出的也是已经被搜完的栈顶结点；  我们从四个性能度量考察DFS：  完备性： 在避免了重复状态和冗余路径，优先状态">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406121806041.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406121805212.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406121804164.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406121804947.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.322Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.384Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406121806041.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/Uninformed%20Search/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/Uninformed%20Search/","path":"2025/05/01/Uninformed Search/","title":"Uninformed Search"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Uninformed Search | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Depth-first-Search"><span class="nav-number">1.</span> <span class="nav-text">Depth-first Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Breadth-first-Search"><span class="nav-number">2.</span> <span class="nav-text">Breadth-first Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Uniform-cost-Search"><span class="nav-number">3.</span> <span class="nav-text">Uniform-cost Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Depth-limited-Search"><span class="nav-number">4.</span> <span class="nav-text">Depth-limited Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Iterative-Deepening-Search"><span class="nav-number">5.</span> <span class="nav-text">Iterative Deepening Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bidirectional-Search"><span class="nav-number">6.</span> <span class="nav-text">Bidirectional Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Search-and-Models"><span class="nav-number">7.</span> <span class="nav-text">Search and Models</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/Uninformed%20Search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Uninformed Search | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Uninformed Search
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>假设下面搜索问题按照下图举例：<br><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406121806041.png" alt="image-20240612180603977"></p>
+<h2 id="Depth-first-Search"><a href="#Depth-first-Search" class="headerlink" title="Depth-first Search"></a>Depth-first Search</h2><p>DFS总是拓展搜索树中当前边缘节点集中的最深的结点，很快搜索推进到没有后继的最深层，将它们从边缘节点集去掉后，回溯到下一个稍浅的未拓展后继的结点；</p>
+<p>做到这一点的关键是维护一个栈，每次保证当前看到最深的结点在栈顶，优先弹出的也是已经被搜完的栈顶结点；</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406121805212.png" alt="image-20240612180510158"></p>
+<p>我们从四个性能度量考察DFS：</p>
+<ul>
+<li>完备性：<ul>
+<li>在避免了重复状态和冗余路径，优先状态空间中图搜索完备；</li>
+<li>但是对于树搜索可能会陷入死循环，不过可以优化检查根节点到当前结点的新节点，但还是无法避免冗余路径；</li>
+<li>遭遇无限且无法到达目标结点的路径则会失败；</li>
+</ul>
+</li>
+<li>最优性：优先左子树可能会导致路径变长，代价变大，错过最优解，尽管到达了目标结点；</li>
+<li>时间复杂度：若搜索一致树每个状态有$b$个后继，对于$m$为任意结点的最大深度，$d$为最浅解的深度，DFS可能会在搜索树上生成所有$O(b+b^2+\cdots+b^m)&#x3D;O(b^m)$个结点；</li>
+<li>空间复杂度：只需要存储根节点到叶节点的路径可以做到$O(bm)$，具有很大优势；</li>
+</ul>
+<h2 id="Breadth-first-Search"><a href="#Breadth-first-Search" class="headerlink" title="Breadth-first Search"></a>Breadth-first Search</h2><p>BFS总是拓展深度最浅的结点，直到目标检测被通过。这意味着浅层的结点会在深层结点来临之前被拓展，这通过队列(Queue)很容易实现；</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406121804164.png" alt="image-20240612180444111"></p>
+<p>我们从四个方面考察BFS的性能：</p>
+<ul>
+<li>完备性：若通过结点通过目标检测，那么一定是最浅结点，因为更浅的结点没有通过目标检测；因此BFS是完备的；</li>
+<li>最优性：若路径代价是基于深度的非减函数，那么BFS是最优的；</li>
+<li>时间复杂度：最坏情况下目标为最后一层结点，解的深度为$d$,目标检测在选择拓展结点时，时间复杂度为$O(b^{d+1})$;</li>
+<li>空间复杂度：已拓展的每个结点都保存在探索集中，因此空间复杂度为$O(b^d)$,几乎不能忍受；</li>
+</ul>
+<h2 id="Uniform-cost-Search"><a href="#Uniform-cost-Search" class="headerlink" title="Uniform-cost Search"></a>Uniform-cost Search</h2><p>UCS总是拓展代价最小的结点，直到需要将边缘结点集组织成按代价排序的优先队列来实现；</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406121804947.png" alt="image-20240612180420901"></p>
+<p>下面从四个方面考察UCS的性能：</p>
+<ul>
+<li>完备性：UCS对解路径的步数并不关心，因此若存在零代价的行动，那么UCS可能会陷入死循环，否则代价都是正直的话，UCS是完备的；</li>
+<li>最优性：目标检测发生于结点被拓展时进行，而不是在生成时进行，第一个生成的目标结点可能在次优路径上，也就是说目标结点被搜索到时并不会立即停止算法，而是等待可能到目标结点的路径都被（部分，因为代价过大的路径可能就不会搜了）探索过后，比较最小的代价后再返回；</li>
+<li>时间复杂度：假设最优解代价为$c$,单步行动最小代价为$\varepsilon$,那么最坏时间复杂度为$O(b^{1+[\frac c\varepsilon]})$,因为在探索代价大的行动前，会先探索代价小的行动所在的搜索树；</li>
+<li>空间复杂度：同$O(b^{1+[\frac c\varepsilon]})$</li>
+</ul>
+<h2 id="Depth-limited-Search"><a href="#Depth-limited-Search" class="headerlink" title="Depth-limited Search"></a>Depth-limited Search</h2><p>为了避免无限循环的DFS失败，对DFS设置探索界限$l$，深度为$l$​的结点被视作没有后继；</p>
+<p>选择一个好的$l$值往往是困难的，对于大多数问题，如果它没被解决，是无法知道一个好的深度界限的；</p>
+<p>我们从四个方面考察DLS的性能：</p>
+<ul>
+<li>完备性：设置$l&lt;d$,DLS无法搜到目标节点，也就是不完备的；</li>
+<li>最优性：设置$l&gt;d$,同DFS一样不是最优的；</li>
+<li>时间复杂度：被剪枝为$O(b^l)$;</li>
+<li>空间复杂度：$O(bl)$;</li>
+</ul>
+<h2 id="Iterative-Deepening-Search"><a href="#Iterative-Deepening-Search" class="headerlink" title="Iterative Deepening Search"></a>Iterative Deepening Search</h2><p>结合DFS和BFS的优势，它经常和深度优先搜索结合使用确定更好的深度界限；</p>
+<p>初始化深度限制$l&#x3D;0$,不断增大它，直到找到目标，当$l&#x3D;d$的时候，即最浅的目标节点所在深度时，就能找到；</p>
+<p>我们从四个方面考察IDS的性能：</p>
+<ul>
+<li>完备性：同BFS，分支因子有限时搜索算法完备；</li>
+<li>最优性：同BFS，代价函数为结点深度的非减函数时最优；</li>
+<li>时间复杂度：上层结点被重复生成，存在解时时间复杂度为$O(db+(d-1)b^2+\cdots+b^d)&#x3D;O(b^d)$;</li>
+<li>空间复杂度：同$O(bd)$;</li>
+</ul>
+<h2 id="Bidirectional-Search"><a href="#Bidirectional-Search" class="headerlink" title="Bidirectional Search"></a>Bidirectional Search</h2><p>并不是每一个问题都能运用双向搜索，比如8皇后问题，但是对于一个使用BFS的搜索问题，解的深度为$d$意味着时间复杂度为$O(b^d)$,但是同时对起始和目标同时BFS直到相遇看起来时间复杂度为$O(2b^{d&#x2F;2})$,这要小得多；</p>
+<h2 id="Search-and-Models"><a href="#Search-and-Models" class="headerlink" title="Search and Models"></a>Search and Models</h2><p>Search operates over models of the world</p>
+<ol>
+<li>The agent doesn’t actually try all the plans out in the real world;</li>
+<li>Planning is all “in simulation”</li>
+<li>Your search is only as good as your models…</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Search%20Problems/" rel="prev" title="Search Problems">
+                  <i class="fa fa-angle-left"></i> Search Problems
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%9C%80%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98/" rel="next" title="最优化问题">
+                  最优化问题 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

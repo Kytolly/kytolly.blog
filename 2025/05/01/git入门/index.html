@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Git架构在任何当前工作的 Git 仓库中，每个文件都是这样的：  追踪的（tracked）-：这些是 Git 所知道的所有文件或目录。这些是新添加（用 git add 添加）和提交（用 git commit 提交）到主仓库的文件和目录。 未被追踪的（untracked） ：这些是在工作目录中创建的，但还没有被暂存（或用 git add 命令添加）的任何新文件或目录。 被忽略的（ignored）：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git入门">
+<meta property="og:url" content="http://example.com/2025/05/01/git%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Git架构在任何当前工作的 Git 仓库中，每个文件都是这样的：  追踪的（tracked）-：这些是 Git 所知道的所有文件或目录。这些是新添加（用 git add 添加）和提交（用 git commit 提交）到主仓库的文件和目录。 未被追踪的（untracked） ：这些是在工作目录中创建的，但还没有被暂存（或用 git add 命令添加）的任何新文件或目录。 被忽略的（ignored）：">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.473Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.022Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/git%E5%85%A5%E9%97%A8/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/git%E5%85%A5%E9%97%A8/","path":"2025/05/01/git入门/","title":"git入门"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>git入门 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E6%9E%B6%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">Git架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BGit%E6%9C%AC%E5%9C%B0%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">查看Git本地配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gitignore%E8%AF%A6%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">.gitignore详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%BF%BD%E7%95%A5%E6%9F%90%E4%BA%9B%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%EF%BC%9F"><span class="nav-number">3.1.</span> <span class="nav-text">为什么要忽略某些文件上传？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%96%87%E4%BB%B6%E5%BA%94%E8%AF%A5%E8%A2%AB%E5%BF%BD%E7%95%A5%EF%BC%9F"><span class="nav-number">3.2.</span> <span class="nav-text">什么文件应该被忽略？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gitignore%E4%B8%AD%E6%A0%BC%E5%BC%8F%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="nav-number">3.3.</span> <span class="nav-text">.gitignore中格式是怎样的？</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/git%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="git入门 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git入门
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="Git架构"><a href="#Git架构" class="headerlink" title="Git架构"></a>Git架构</h2><p>在任何当前工作的 Git 仓库中，每个文件都是这样的：</p>
+<ul>
+<li><strong>追踪的（tracked）</strong>-：这些是 Git 所知道的所有文件或目录。这些是新添加（用 git add 添加）和提交（用 git commit 提交）到主仓库的文件和目录。</li>
+<li><strong>未被追踪的（untracked）</strong> ：这些是在工作目录中创建的，但还没有被暂存（或用 git add 命令添加）的任何新文件或目录。</li>
+<li><strong>被忽略的（ignored）</strong>：这些是 Git 知道的要全部排除、忽略或在 Git 仓库中不需要注意的所有文件或目录。本质上，这是一种告诉 Git 哪些未被追踪的文件应该保持不被追踪并且永远不会被提交的方法。</li>
+</ul>
+<h2 id="查看Git本地配置"><a href="#查看Git本地配置" class="headerlink" title="查看Git本地配置"></a>查看Git本地配置</h2><p>设置账号，密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line">git config --global user.email &quot;your.email@example.com&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="gitignore详解"><a href="#gitignore详解" class="headerlink" title=".gitignore详解"></a><code>.gitignore</code>详解</h2><p>所有被忽略的文件都会被保存在一个 <code>.gitignore</code> 文件中;</p>
+<p><code>.gitignore</code> 文件是一个纯文本文件，包含了项目中所有指定的文件和文件夹的列表，这些文件和文件夹是 Git 应该忽略和不追踪的;</p>
+<p>一个 <code>.gitignore</code> 文件会被放在仓库的根目录下，也可以放在仓库的任何文件夹下，一个仓库可以有多个<code>.gitignore</code>;</p>
+<p>名字前面有点（<code>.</code>）的文件默认是隐藏的;</p>
+<h3 id="为什么要忽略某些文件上传？"><a href="#为什么要忽略某些文件上传？" class="headerlink" title="为什么要忽略某些文件上传？"></a>为什么要忽略某些文件上传？</h3><p>忽略某些文件上传是因为这些文件通常是本地环境特有的，或者是没有必要被版本控制的文件。以下是一些常见的原因：</p>
+<ul>
+<li><strong>本地配置文件</strong>：开发者的本地配置文件（如编辑器配置、环境变量配置等）通常因人而异，不应该上传到公共仓库。</li>
+<li><strong>编译或生成的文件</strong>：编译生成的文件（如<code>*.class</code>文件、<code>dist/</code>目录等）可以通过源代码重新生成，上传它们既浪费空间，也会让仓库变得臃肿。</li>
+<li><strong>敏感信息</strong>：如API密钥、数据库密码等敏感信息不应该上传到公共仓库，以防泄露。</li>
+<li><strong>依赖库</strong>：如<code>node_modules/</code>、<code>vendor/</code>等第三方依赖库不需要放在版本控制系统中，通常会通过包管理工具（如npm、composer等）自动下载和安装。</li>
+<li><strong>日志文件和临时文件</strong>：如<code>*.log</code>文件、<code>*.tmp</code>文件等，是开发过程中的临时数据，不需要上传到仓库中。</li>
+</ul>
+<h3 id="什么文件应该被忽略？"><a href="#什么文件应该被忽略？" class="headerlink" title="什么文件应该被忽略？"></a>什么文件应该被忽略？</h3><p>根据项目类型和开发环境，以下是一些常见的需要忽略的文件和目录：</p>
+<ul>
+<li>操作系统生成的文件<ul>
+<li><code>.DS_Store</code>（macOS）</li>
+<li><code>Thumbs.db</code>（Windows）</li>
+</ul>
+</li>
+<li>依赖库和包<ul>
+<li><code>node_modules/</code>（Node.js）</li>
+<li><code>vendor/</code>（PHP Composer）</li>
+<li><code>Pods/</code>（iOS Cocoapods）</li>
+</ul>
+</li>
+<li>编译输出文件<ul>
+<li><code>*.class</code>（Java）</li>
+<li><code>*.o</code>, <code>*.so</code>（C&#x2F;C++）</li>
+<li><code>dist/</code>, <code>build/</code>（前端项目）</li>
+</ul>
+</li>
+<li>环境配置文件<ul>
+<li><code>.env</code></li>
+<li><code>*.local</code>（环境特定的配置）</li>
+</ul>
+</li>
+<li>IDE和编辑器生成的文件<ul>
+<li><code>.vscode/</code>, <code>.idea/</code></li>
+<li><code>*.suo</code>, <code>*.user</code>（Visual Studio）</li>
+</ul>
+</li>
+<li>日志文件<ul>
+<li><code>*.log</code></li>
+</ul>
+</li>
+<li>其他临时文件<ul>
+<li><code>*.tmp</code></li>
+<li><code>*.swp</code>（Vim）</li>
+<li><code>*.bak</code>（备份文件）</li>
+</ul>
+</li>
+</ul>
+<h3 id="gitignore中格式是怎样的？"><a href="#gitignore中格式是怎样的？" class="headerlink" title=".gitignore中格式是怎样的？"></a><code>.gitignore</code>中格式是怎样的？</h3><p><code>.gitignore</code> 文件的格式简单且灵活。以下是一些常见的规则：</p>
+<ul>
+<li>每行一个模式，表示要忽略的文件或目录。</li>
+<li>可以使用通配符 <code>*</code> 来匹配任意字符。</li>
+<li><code>#</code> 用于注释说明，不会影响规则。</li>
+<li>以斜杠 <code>/</code> 结尾表示目录。</li>
+<li>可以使用 <code>!</code> 前缀来否定一个忽略规则。</li>
+<li>可以指定文件的完整路径或使用相对路径。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 忽略所有 .log 文件</span><br><span class="line">*.log</span><br><span class="line"></span><br><span class="line"># 忽略目录</span><br><span class="line">node_modules/</span><br><span class="line">dist/</span><br><span class="line"></span><br><span class="line"># 忽略特定文件</span><br><span class="line">config/database.yml</span><br><span class="line"></span><br><span class="line"># 忽略所有的 .env 文件，但不忽略 .env.example</span><br><span class="line">.env</span><br><span class="line">!.env.example</span><br><span class="line"></span><br><span class="line"># 忽略 IDE 生成的文件夹</span><br><span class="line">.idea/</span><br><span class="line">.vscode/</span><br><span class="line"></span><br><span class="line"># 忽略系统生成的文件</span><br><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A23-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" rel="prev" title="信息检索3-推荐系统">
+                  <i class="fa fa-angle-left"></i> 信息检索3-推荐系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/LinuxShell%E5%B8%B8%E8%AF%86/" rel="next" title="LinuxShell常识">
+                  LinuxShell常识 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

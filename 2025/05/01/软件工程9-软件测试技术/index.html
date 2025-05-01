@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="软件测试技术分类 白盒测试：考虑系统或组件的内部机制的测试形式（如分支测试、路径测试、语句测试等） 黑盒测试：忽略系统或组件的内部机制，仅关注于那些响应所选择的输入及相应执行条件的输出的测试形式 灰盒测试：多用于集成测试阶段，不仅关注输出、输 入的正确性，同 时也关注程序内部的情况。  白盒测试概念此方法把测试对象看做一个透明的盒子，允许测试人员利用程序内部的逻辑结构及有关信息，设计或选择测试用例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程9-软件测试技术">
+<meta property="og:url" content="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B9-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="软件测试技术分类 白盒测试：考虑系统或组件的内部机制的测试形式（如分支测试、路径测试、语句测试等） 黑盒测试：忽略系统或组件的内部机制，仅关注于那些响应所选择的输入及相应执行条件的输出的测试形式 灰盒测试：多用于集成测试阶段，不仅关注输出、输 入的正确性，同 时也关注程序内部的情况。  白盒测试概念此方法把测试对象看做一个透明的盒子，允许测试人员利用程序内部的逻辑结构及有关信息，设计或选择测试用例">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241108102406730.png">
+<meta property="og:image" content="http://example.com/assets/image-20241108102928057.png">
+<meta property="og:image" content="http://example.com/assets/image-20241220154007865.png">
+<meta property="og:image" content="http://example.com/assets/image-20241220154201788.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.512Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.993Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241108102406730.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B9-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B9-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF/","path":"2025/05/01/软件工程9-软件测试技术/","title":"软件工程9-软件测试技术"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>软件工程9-软件测试技术 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF"><span class="nav-number">1.</span> <span class="nav-text">软件测试技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="nav-number">1.2.</span> <span class="nav-text">白盒测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%A6%86%E7%9B%96"><span class="nav-number">1.2.2.</span> <span class="nav-text">逻辑覆盖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%AD%E5%8F%A5%E8%A6%86%E7%9B%96"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">语句覆盖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E8%A6%86%E7%9B%96"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">分支覆盖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E8%A6%86%E7%9B%96"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">条件覆盖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E7%BB%84%E5%90%88%E8%A6%86%E7%9B%96"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">条件组合覆盖</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%BE%E8%A6%86%E7%9B%96%E6%B5%8B%E8%AF%95"><span class="nav-number">1.2.3.</span> <span class="nav-text">控制流图覆盖测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E7%82%B9%E8%A6%86%E7%9B%96"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">结点覆盖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%B9%E8%A6%86%E7%9B%96"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">边覆盖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%E8%A6%86%E7%9B%96"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">路径覆盖</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8E%AF%E8%B7%AF%E5%A4%8D%E6%9D%82%E6%80%A7"><span class="nav-number">1.2.3.3.1.</span> <span class="nav-text">环路复杂性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A1%AE%E5%AE%9A%E7%BA%BF%E6%80%A7%E7%8B%AC%E7%AB%8B%E8%B7%AF%E5%BE%84%E5%9F%BA%E6%9C%AC%E9%9B%86%E5%90%88"><span class="nav-number">1.2.3.3.2.</span> <span class="nav-text">确定线性独立路径基本集合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%BC%E5%87%BA%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"><span class="nav-number">1.2.3.3.3.</span> <span class="nav-text">导出测试用例</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="nav-number">1.3.</span> <span class="nav-text">黑盒测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5-1"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E7%B1%BB%E5%88%92%E5%88%86"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">等价类划分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E5%80%BC%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">边界值分析方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%B5%8B%E8%AF%95"><span class="nav-number">1.3.0.4.</span> <span class="nav-text">状态测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90"><span class="nav-number">1.3.0.5.</span> <span class="nav-text">静态分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%AD%96%E7%95%A5"><span class="nav-number">1.4.</span> <span class="nav-text">测试策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#V%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.4.2.</span> <span class="nav-text">V模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.4.3.</span> <span class="nav-text">基本步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BD%9C%E5%9C%A8%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.4.</span> <span class="nav-text">潜在问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.5.</span> <span class="nav-text">单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5-3"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E6%9D%A1%E4%BB%B6%E5%92%8C%E9%80%80%E5%87%BA%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">进入条件和退出条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="nav-number">1.4.5.3.</span> <span class="nav-text">主要内容</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.5.3.1.</span> <span class="nav-text">模块接口测试</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.5.3.2.</span> <span class="nav-text">局部数据结构测试</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.5.3.3.</span> <span class="nav-text">路径测试</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.5.3.4.</span> <span class="nav-text">错误处理测试</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.5.3.5.</span> <span class="nav-text">边界测试</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.4.5.4.</span> <span class="nav-text">用例设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83"><span class="nav-number">1.4.5.5.</span> <span class="nav-text">环境</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.6.</span> <span class="nav-text">集成测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E9%9B%86%E6%88%90"><span class="nav-number">1.4.6.1.</span> <span class="nav-text">自顶向下集成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E9%9B%86%E6%88%90"><span class="nav-number">1.4.6.2.</span> <span class="nav-text">自底向上集成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SMOKE%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.6.3.</span> <span class="nav-text">SMOKE方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E4%BE%8B%E8%AE%BE%E8%AE%A1-1"><span class="nav-number">1.4.6.4.</span> <span class="nav-text">用例设计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.7.</span> <span class="nav-text">系统测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5-4"><span class="nav-number">1.4.7.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.7.2.</span> <span class="nav-text">功能测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.7.3.</span> <span class="nav-text">性能测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.7.4.</span> <span class="nav-text">压力测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%81%A2%E5%A4%8D%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.7.5.</span> <span class="nav-text">恢复测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.7.6.</span> <span class="nav-text">安全测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AA%8C%E6%94%B6%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.7.7.</span> <span class="nav-text">验收测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%CE%B1-%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.7.7.1.</span> <span class="nav-text">α 测试</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%CE%B2%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.7.7.2.</span> <span class="nav-text">β测试</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.7.7.3.</span> <span class="nav-text">回归测试</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B9-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="软件工程9-软件测试技术 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          软件工程9-软件测试技术
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="软件测试技术"><a href="#软件测试技术" class="headerlink" title="软件测试技术"></a>软件测试技术</h1><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
+<li>白盒测试：考虑系统或组件的内部机制的测试形式（如分支测试、路径测试、语句测试等）</li>
+<li>黑盒测试：忽略系统或组件的内部机制，仅关注于那些响应所选择的输入及相应执行条件的输出的测试形式</li>
+<li>灰盒测试：多用于集成测试阶段，不仅关注输出、输 入的正确性，同 时也关注程序内部的情况。</li>
+</ul>
+<h2 id="白盒测试"><a href="#白盒测试" class="headerlink" title="白盒测试"></a>白盒测试</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>此方法把测试对象看做一个透明的盒子，允许测试人员利用程序内部的逻辑结构及有关信息，设计或选择测试用例， 对程序所有逻辑路径进行测试。</p>
+<p>通过在不同点检查程序的状态，确定实际的状态是否与预期的状态一致。因此白盒测试又称为结构测试或逻辑驱动测试。</p>
+<p>原则：</p>
+<ul>
+<li>程序模块所有独立执行路径至少测试一次</li>
+<li>对于逻辑判定，真假至少都扯一次</li>
+<li>在循环的边界和运行的边界执行循环体</li>
+<li>测试内部数据结构的有效性</li>
+</ul>
+<h3 id="逻辑覆盖"><a href="#逻辑覆盖" class="headerlink" title="逻辑覆盖"></a>逻辑覆盖</h3><p>逻辑覆盖是以程序内部的逻辑为基础的设计测试用例的技术；</p>
+<h4 id="语句覆盖"><a href="#语句覆盖" class="headerlink" title="语句覆盖"></a>语句覆盖</h4><p>语句覆盖就是设计若干个测试用例， 运行被测程序，使得<strong>每一可执行语句</strong>至少执行一次。</p>
+<h4 id="分支覆盖"><a href="#分支覆盖" class="headerlink" title="分支覆盖"></a>分支覆盖</h4><p>设计若干测试用例，运行被测程序使得程序的每个判断条件的<strong>取真分支和取假分支</strong>至少经历一次；</p>
+<ul>
+<li>分支覆盖又称为判定覆盖</li>
+</ul>
+<h4 id="条件覆盖"><a href="#条件覆盖" class="headerlink" title="条件覆盖"></a>条件覆盖</h4><p>设计若干测试用例，运行被测程序使得<strong>判断中的每个条件</strong>取值至少执行一次</p>
+<h4 id="条件组合覆盖"><a href="#条件组合覆盖" class="headerlink" title="条件组合覆盖"></a>条件组合覆盖</h4><p>设计足够多的测试用例，运行被测程序，使得每个判断所有可能条件取值组合至少执行一次；</p>
+<ul>
+<li>取决于条件最多的判断框；</li>
+<li>这个判断框条件数为$n$,则要设计$2^n$个用例；</li>
+</ul>
+<h3 id="控制流图覆盖测试"><a href="#控制流图覆盖测试" class="headerlink" title="控制流图覆盖测试"></a>控制流图覆盖测试</h3><p>控制流图覆盖测试将代码转化成控制流图，也属于白盒测试；<br>控制流图的画法：每个结点表示<strong>一个或多个无分支</strong>的PDL语句，箭头为边，代表控制流的方向；</p>
+<p><img src="/assets/image-20241108102406730.png" alt="image-20241108102406730"></p>
+<ul>
+<li>在选择或多分支结构中，分支的汇聚处应有一个汇聚结点；</li>
+<li>边和结点圈定的区域叫做区域，当对区域计数时，图形外的区域也应记为一个区域；</li>
+<li>如果判断中的条件表达式是复合的，则需要改为一系列只有单个条件的嵌套的判断。</li>
+<li>程序的入口和出口应该占用一个结点，一段无分支的串行代码应该合并；</li>
+</ul>
+<p>以下是一个程序流图和其控制流图的对应关系</p>
+<p><img src="/assets/image-20241108102928057.png" alt="image-20241108102928057"></p>
+<h4 id="结点覆盖"><a href="#结点覆盖" class="headerlink" title="结点覆盖"></a>结点覆盖</h4><p>对于图G 中每个语法上可达的节点，测试用例所执行的测试路径的集合中至少存 在一条测试路径访问该节点。 </p>
+<p>显然，节点覆盖和语句覆盖是等价的。</p>
+<h4 id="边覆盖"><a href="#边覆盖" class="headerlink" title="边覆盖"></a>边覆盖</h4><p>对于图G 中每一个可到达的长度小于等于1的路径，测试用例所执行的测试路径 的集合中至少存在一条测试路径游历该路径。 </p>
+<p>显然，边覆盖包含节点覆盖，且边覆盖也可以实现分支覆盖。</p>
+<h4 id="路径覆盖"><a href="#路径覆盖" class="headerlink" title="路径覆盖"></a>路径覆盖</h4><p>路径覆盖测试就是设计足够的测试用例，覆盖程序中所有可能的路径；</p>
+<p>基本路径测试方法把覆盖的路径数压缩到一定限度内，程序中的循环体最多只执行 一次；</p>
+<p>在程序控制流图的基础上，分析控制构造的环路复杂性，导出基本可执行路径 集合，设计测试用例的方法。</p>
+<p>设计出的测试用例要保证在测试中，程序的每一个可 执行语句至少要执行一次。</p>
+<h5 id="环路复杂性"><a href="#环路复杂性" class="headerlink" title="环路复杂性"></a>环路复杂性</h5><p>环路复杂性给出了确保程序的每个可执行语句至少执行一次的用例数上界；</p>
+<p>一条独立路径指在控制流图中，从起点到终点的一条路径，该路径至少包含一条新的边（即之前没有经过的边）。换句话说，独立路径是无法通过其他路径的线性组合来得到的。</p>
+<p>环路复杂性给出了程序基本路径集中的独立路径条数；<br>$$<br>V(G)&#x3D;e-n+2p&#x3D;d+1<br>$$</p>
+<ul>
+<li>e为图中边的数目</li>
+<li>n为节点数目</li>
+<li>p为连接组件数，若图为连通的，p&#x3D;1</li>
+<li>d为决策结点数</li>
+</ul>
+<p>在拓朴学上这也是图的区域数</p>
+<h5 id="确定线性独立路径基本集合"><a href="#确定线性独立路径基本集合" class="headerlink" title="确定线性独立路径基本集合"></a>确定线性独立路径基本集合</h5><p>算法：</p>
+<ul>
+<li>从源节点（控制流图的入口点）开始， 一直走到汇节点（控制流图的出口 点）。该路径作为基线路径；</li>
+<li>接下来，重新回溯基线路径，依次 “翻转”在判断节点上原来选择的路 径。即当遇到节点的出度大于等于2 时，必须选择不同的边；</li>
+<li>重复以上过程，直到得到的路径数目 等于V(G)</li>
+</ul>
+<h5 id="导出测试用例"><a href="#导出测试用例" class="headerlink" title="导出测试用例"></a>导出测试用例</h5><p>导出测试用例，确保基本路径集的每一条路径的执行。</p>
+<ul>
+<li>根据判断结点给出的条件，选择适当的数据以保证某一条路径可以被测试到——用逻辑覆盖方法。</li>
+<li>每个测试用例执行之后，与预期结果进行比较。如果所有测试用例都执行完毕，则可以确信程序中所有的可执行语句至少被执行了一次。</li>
+<li>一些独立的路径往往不是完全孤立的，有时它是程序正常的控制流的一部分，这时，这些路径的测试可以是另一条路径测试的一部分。</li>
+</ul>
+<h2 id="黑盒测试"><a href="#黑盒测试" class="headerlink" title="黑盒测试"></a>黑盒测试</h2><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p>这种方法是把测试对象看做一个黑盒子，测试人员完全不考虑程序内部的逻辑结构和内部特性，只依据程序的需求规格说明书，检查程序的功能是否符合它的功能说明。</p>
+<p>黑盒测试又叫做功能测试或数据驱动测试，主要是在程序接口上测试：</p>
+<ul>
+<li>是否有不正确或者遗漏的功能；</li>
+<li>接口上输入能否正确接受，能否输出正确结果；</li>
+<li>数据结构错误或者数据文件访问错误</li>
+<li>性能是否能满足要求</li>
+<li>是否有初始化或终止性错误</li>
+</ul>
+<p>在测试中，穷尽测试是不可能的，因此需要某些合适的方法</p>
+<ul>
+<li>等价类划分</li>
+<li>边界值分析</li>
+<li>状态测试</li>
+</ul>
+<h4 id="等价类划分"><a href="#等价类划分" class="headerlink" title="等价类划分"></a>等价类划分</h4><p>最典型的黑盒测试划分，完全不考虑程序的内部结构，只依据程序的规格说明来设计测试用例；<br>等价类划分会把所有可能输入数据划分成若干部分，从每个部分少数有代表性的数据作为测试用例；</p>
+<ul>
+<li>有效等价类：合理的有意义的输入数据构成集合</li>
+<li>无效等价类：不合理的，无意义的输入数据构成集合；</li>
+</ul>
+<p>划分等价类的原则：</p>
+<ul>
+<li>输入条件规定了取值范围，则可以确定一个有效等价类和两个无效等价类，比如区间</li>
+<li>若输入条件规定输入值的集合，即「必须如何」，则可划分一个有效和一个无效等价类</li>
+<li>若输入条件是一个布尔量，则可以确定一个有效等价类和一个无效等价类；</li>
+<li>若规定了输入数据的一组值，且程序对每个输入值分别处理，则可以为每个输入值建立等价类，这组之外的值建立一个无效等价类，它是所有不允许输入值的集合；</li>
+<li>若规定了输入数据必须遵循的约束规则，则可以确定一个有效等价类和若干个无效等价类<br>确定测试用例的原则：</li>
+<li>建立等价类表：输入条件+有效等价类+无效等价类，并为每个等价类设定编号；</li>
+<li>设计新的测试用例，使<strong>其尽可能多地覆盖尚未被覆盖的有效等价类</strong>，重复直到所有有效等价类被覆盖；</li>
+<li>设计新的测试用例，使<strong>其仅覆盖一个尚未覆盖的无效等价类</strong>，重复直到说欧无效等价类被覆盖；</li>
+</ul>
+<h4 id="边界值分析方法"><a href="#边界值分析方法" class="headerlink" title="边界值分析方法"></a>边界值分析方法</h4><p>根据软件测试的经验，大量的错误发生在输入或者输出的边界上，而不是输入的范围的内部，因此针对边界情况设计的测试用例十分有用；</p>
+<ul>
+<li>边界值：对于输入等价类和输出等价类而言，稍高于边界值或稍低于边界值的一些特定情况；</li>
+<li>应该确定边界情况，选取刚刚等于，刚刚大雨或刚刚小于边界的值作为测试数据，而不是选取等价类的典型值；</li>
+</ul>
+<h4 id="状态测试"><a href="#状态测试" class="headerlink" title="状态测试"></a>状态测试</h4><p>黑盒测试阶段，程序内部的逻辑结构无从得知，因此只能对状态的测试间接加以验证；<br>软件状态：软件当前所处的条件或模式，通常访问所有状态是可实现的，但是很难走完所有分子来达到某种状态，必须选择重要内容来测试；<br>建立状态转换图：</p>
+<ul>
+<li>表示软件可能进入的每一种独立状态；</li>
+<li>找出从一种状态转入另一种状态需要的输入和条件；</li>
+<li>找出进入或退出某种状态时设置的条件和输出结果；</li>
+</ul>
+<p>根据转换图设计用例：</p>
+<ul>
+<li>每种状态至少访问一次</li>
+<li>看起来时最常见的状态转换</li>
+<li>状态间最不常用的分支</li>
+<li>测试所有错误状态和返回值</li>
+<li>测试状态的随机转换</li>
+</ul>
+<h4 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h4><p>不实际运行程序，通过检查和阅读发现错误和评估代码质量的软件测试技术；</p>
+<ul>
+<li>对代码标准以及质量监控提高代码的可靠性</li>
+<li>尽可能今早通过源代码检查发现缺陷</li>
+<li>组织代码审核定位易产生错误的模块</li>
+</ul>
+<p>这实际上是非常有效的质量保证手段，其通用评审过程包括计划，概述，准备，评审会议，返工，跟踪；</p>
+<p>主要内容：检查需求，设计和代码<br>类型：同事审查（用于初次审查），走查（开发组内部进行），审查（会议形式，由开发组，测试员和产品经理等联合进行）</p>
+<h2 id="测试策略"><a href="#测试策略" class="headerlink" title="测试策略"></a>测试策略</h2><h3 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h3><p>测试策略为开发人员，质量保证组织和客户提供路线图，规定了测试的主要步骤；<br>测试策略必须和测试计划， 用例设计，执行和结果数据收集和分析结合在一起；<br>测试策略应该具有足够的灵活性，必要时应该有足够的可塑性来应对大软件系统；<br>测试策略要足够严格，保证项目对整个进程进行合理的计划和跟踪管理；</p>
+<h3 id="V模型"><a href="#V模型" class="headerlink" title="V模型"></a>V模型</h3><p>V 模型非常明确地标明了测试过程中存在的不同级别，并且清楚地描述了这些测试阶<br>段和开发过程期间各阶段应关系：</p>
+<ol>
+<li>单元测试的主要目的是验证软件模块是否按详细设计的规格说明正确运行。</li>
+<li>集成测试主要目的是检查多个模块间是否按概要设计说明的方式协同工作。</li>
+<li>系统测试的主要目的是验证整个系统是否满足需求规格说明。</li>
+<li>验收测试从用户的角度检查系统是否满足合同中定义的需求，以及以确认产品是否能符合业务上的需要。</li>
+</ol>
+<h3 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h3><ol>
+<li>计划和准备<ul>
+<li>制定计划</li>
+<li>编写与评审测试用例</li>
+<li>编写测试脚本和准备测试环境</li>
+</ul>
+</li>
+<li>执行阶段<ul>
+<li>搭建环境、构造测试数据</li>
+<li>执行测试并记录问题</li>
+<li>和开发人员一起确认问题</li>
+<li>撰写测试报告</li>
+</ul>
+</li>
+<li>返工和回归性测试</li>
+</ol>
+<h3 id="潜在问题"><a href="#潜在问题" class="headerlink" title="潜在问题"></a>潜在问题</h3><ul>
+<li>在着手开始测试之前，要对产品的需求进行量化。</li>
+<li>明确指出测试目标。</li>
+<li>为每类用户建立描述交互场景的用例。</li>
+<li>建立一个强调“快速循环测试”的测试计划。</li>
+<li>设计一个能够测试自身是否“强壮”的软件。</li>
+<li>在进行测试之前，对软件进行有效的正式技术审核。</li>
+<li>使用正式技术审核来评估测试策略和测试用例本身。</li>
+<li>为测试过程建立一种持续的改进方法。</li>
+</ul>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><h4 id="概念-3"><a href="#概念-3" class="headerlink" title="概念"></a>概念</h4><p>单元测试又称模块测试，是针对软件设计的最小单位 ─ 程序模块，进行正确性检<br>验的测试工作。其目的在于发现各模块内部可能存在的各种差错。<br>单元测试需要从程序的内部结构出发设计测试用例。多个模块可以平行地独立进行单元测试。<br>单元的内涵</p>
+<ul>
+<li>单元测试的主要依据</li>
+<li>单元级测试工具：C++Test，JUnit，NUnit</li>
+</ul>
+<p>主要内容：</p>
+<p><img src="/assets/image-20241220154007865.png" alt="image-20241220154007865"></p>
+<h4 id="进入条件和退出条件"><a href="#进入条件和退出条件" class="headerlink" title="进入条件和退出条件"></a>进入条件和退出条件</h4><p>进入条件：</p>
+<ul>
+<li>被测代码编译链接通过</li>
+<li>被测代码静态检查工具检查通过</li>
+<li>已完成至少一轮代码检视或走读</li>
+<li>单元测试用例的检视通过</li>
+<li>单元测试代码写完并通过检测</li>
+</ul>
+<p>退出条件：</p>
+<ul>
+<li>所用测试用例执行通</li>
+<li>单元测试覆盖率达到预定要求</li>
+<li>单元测试未被执行的代码进行正式审查</li>
+</ul>
+<h4 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h4><h5 id="模块接口测试"><a href="#模块接口测试" class="headerlink" title="模块接口测试"></a>模块接口测试</h5><p>在单元测试的开始，应对通过被测模块的数据流进行测试。测试项目包括：</p>
+<ul>
+<li>调用本模块的输入参数是否正确；</li>
+<li>本模块调用子模块时输入给子模块的参数是否正确；</li>
+<li>全局量的定义在各模块中是否一致；</li>
+</ul>
+<h5 id="局部数据结构测试"><a href="#局部数据结构测试" class="headerlink" title="局部数据结构测试"></a>局部数据结构测试</h5><p>检查如下方面：</p>
+<ul>
+<li>不正确或不一致的数据类型说明</li>
+<li>使用尚未赋值或尚未初始化的变</li>
+<li>错误的初始值或错误的缺省值</li>
+<li>变量名拼写错或书写错</li>
+<li>不一致的数据类型</li>
+<li>全局数据对模块的影响</li>
+</ul>
+<h5 id="路径测试"><a href="#路径测试" class="headerlink" title="路径测试"></a>路径测试</h5><p>选择适当的测试用例，对模块中重要的执行路径进行测试。</p>
+<ul>
+<li>应当设计测试用例查找由于错误的计算、不正确的比较或不正常的控制流而导致的错误。</li>
+<li>对基本执行路径和循环进行测试可以发现大量的路径错误。</li>
+</ul>
+<h5 id="错误处理测试"><a href="#错误处理测试" class="headerlink" title="错误处理测试"></a>错误处理测试</h5><ul>
+<li>出错的描述是否难以理解</li>
+<li>出错的描述是否能够对错误定位</li>
+<li>显示的错误与实际的错误是否相符</li>
+<li>对错误条件的处理正确与否</li>
+<li>在对错误进行处理之前，错误条件是否已经引起系统的干预等</li>
+</ul>
+<h5 id="边界测试"><a href="#边界测试" class="headerlink" title="边界测试"></a>边界测试</h5><ul>
+<li>注意数据流、控制流中刚好等于、大于或小于确定的比较值时出错的可能性；</li>
+<li>如果对模块运行时间有要求的话，还要专门进行关键路径测试，以确定最坏情况下和平均意义下影响模块运行时间的因素。</li>
+</ul>
+<h4 id="用例设计"><a href="#用例设计" class="headerlink" title="用例设计"></a>用例设计</h4><p>在单元测试时，测试者需要依据详细设计说明书和源程序清单，了解该模块的I&#x2F;O条件和模块的逻辑结构，主要采用白盒测试的测试用例，辅之以黑盒测试的测试用例，使之对任何合理的输入和不合理的输入，都能鉴别和响应。</p>
+<h4 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h4><p>模块并不是一个独立的程序，在考虑测试模块时，同时要考虑它和外界的联系，用一些辅助模块去模拟与被测模块相联系的其它模块。</p>
+<ul>
+<li>驱动模块 (driver) </li>
+<li>桩模块 (stub)</li>
+</ul>
+<p><img src="/assets/image-20241220154201788.png" alt="image-20241220154201788"></p>
+<h3 id="集成测试"><a href="#集成测试" class="headerlink" title="集成测试"></a>集成测试</h3><p>集成测试就是将软件集成起来后进行测试。又称为子系统测试、组装测试、部件测试等。</p>
+<ul>
+<li>集成测试主要可以检查诸如两个模块单独运行正常，但集成起来运行可能出现问题的情况</li>
+<li>集成测试是一种范围很广的测试，当向下细化时，就成为单元测试。</li>
+</ul>
+<p>值得注意的是，在实际工作中，常常是综合使用自底向上和自顶向下的集成方法。</p>
+<ul>
+<li>例如，按进度选择优先测试已经完成的模块</li>
+<li>如果已完成的模块所调用的模块没有完成，就采用自顶向下的方法，打桩进行测试</li>
+<li>如果已经完成模块的上层模块没有完成，可以采用自底向上集成方式。</li>
+</ul>
+<h4 id="自顶向下集成"><a href="#自顶向下集成" class="headerlink" title="自顶向下集成"></a>自顶向下集成</h4><p>这种组装方式将模块按系统程序结构，沿控制层次自顶向下进行集成。从属于主控模块的按深度优先方式（纵向）或者广度优先方式（横向）集成到结构中去。</p>
+<ul>
+<li>自顶向下的集成方式在测试过程中较早地验证了主要的控制和判断点。</li>
+<li>选用按深度方向集成的方式，可以首先实现和验证一个完整的软件功能。</li>
+<li>缺点是桩的开发量较大</li>
+</ul>
+<h4 id="自底向上集成"><a href="#自底向上集成" class="headerlink" title="自底向上集成"></a>自底向上集成</h4><p>自底向上集成方法是从软件结构最底层的模块开始，按照接口依赖关系逐层向上集成以进行测试。</p>
+<ul>
+<li>由于是从最底层开始集成，对于一个给定层次的模块，它的子模块（包括子模块的所有下属模块）已经集成并测试完成，所以不再需要使用桩模块进行辅助测试。在模块的测试过程中需要从子模块得到的信息可以直接运行子模块得到。</li>
+<li>自底向上的集成方法的优点是每个模块调用其他底层模块都已经测试，不需要桩模块；</li>
+<li>缺点:每个模块都必须编写驱动模块；缺陷的隔离和定位不如自顶向下。</li>
+</ul>
+<h4 id="SMOKE方法"><a href="#SMOKE方法" class="headerlink" title="SMOKE方法"></a>SMOKE方法</h4><p>构造：将已经转换为代码的软件构件集成；<br>一个构造包括所有的数据文件、库、可复用的模块以及实现一个或多个产品功能所需的工程化构件。</p>
+<ul>
+<li>设计一系列测试以暴露影响构造正确地完成其功能的错误。其目的是为了发现极有可能造成项目延迟的业务阻塞错误。</li>
+<li>每天将该构造与其他构造，以及整个软件产品集成起来进行冒烟测试。这种集成方法可以是自顶向下，也可以自底向上。</li>
+<li>特别关注更改过的代码。</li>
+</ul>
+<h4 id="用例设计-1"><a href="#用例设计-1" class="headerlink" title="用例设计"></a>用例设计</h4><ul>
+<li>首先应考虑为通过性测试设计用例，用来验证需求和设计是否得到满足、软件功能是否得到实现。可以考虑等价类分法、场景分析法、状态图法等</li>
+<li>其次考虑为失效性测试设计用例，主要以已知的缺陷空间为依据设计测试用例。可以考虑边界值法、错误猜测法、因果图法和状态图法等</li>
+<li>也应强调覆盖率的要求。集成测试的覆盖率有接口覆盖率，接口路径覆盖率等。</li>
+<li>注意接口有显性和隐性之分。函数调用（API）接口属于显性接口，而消息、网络协议等都属于隐性接口。</li>
+</ul>
+<h3 id="系统测试"><a href="#系统测试" class="headerlink" title="系统测试"></a>系统测试</h3><h4 id="概念-4"><a href="#概念-4" class="headerlink" title="概念"></a>概念</h4><p>系统测试是从用户使用的角度来进行的测试，主要工作是将完成了集成测试的系统在真实的运行环境下进行测试，用于功能确认和验证。</p>
+<ul>
+<li>系统测试基本上使用黑盒测试方法</li>
+<li>系统测试的依据主要是软件需求规格说明</li>
+</ul>
+<p>系统测试在软件开发过程中属于必不可少的一环，是软件质量保证的最重要环节。</p>
+<ul>
+<li>从测试的内容上看，系统测试针对的是外部输入层的测试空间，如果不进行系统测试，那么外部输入层向接口层转换的代码就没有得到测试。此外，许多功能是系统所有组件相互协调中得到的，只能在系统测试级别进行观察和测试。</li>
+<li>从测试的角度上看，在单元测试和集成测试阶段，测试针对的是各级技术规格说明，即从软件开发者的技术观点的角度考虑的。而系统测试是从客户的观点来考虑系统是否完全正确地满足了需求。</li>
+</ul>
+<h4 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h4><p>在规定的一段时间完成运行软件的所有功能，以验证软件系统有无严重错误</p>
+<h4 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h4><p>性能测试是要检查系统是否满足在需求说明书中规定的性能。特别是对于实时系统或嵌入式系统。常常需要与压力测试结合起来进行，并常常要求同时进行硬件和软件检测。</p>
+<ul>
+<li>通常，对软件性能的检测表现在以下几个方面：响应时间、吞吐量、辅助存储区，例如缓冲区、工作区的大小等、处理精度，等等。</li>
+<li>性能测试工具：LoadRunner、PerformanceRunner等</li>
+</ul>
+<h4 id="压力测试"><a href="#压力测试" class="headerlink" title="压力测试"></a>压力测试</h4><p>压力测试是要检查在系统运行环境不正常乃至发生故障的情况下，系统可以运行到何种程度的测试。例如：</p>
+<ul>
+<li>把输入数据速率提高一个数量级，确定输入功能将如何响应。</li>
+<li>设计需要占用最大存储量或其它资源的测试用例进行测试。</li>
+<li>设计出在虚拟存储管理机制中引起“颠簸”的测试用例进行测试。</li>
+<li>设计出会对磁盘常驻内存的数据过度访问的测试用例进行测试。</li>
+<li>压力测试的一个变种就是敏感性测试。在程序有效数据界限内一个小范围内的一组<br>数据可能引起极端的或不平稳的错误处理出现，或者导致极度的性能下降的情况发生。此测试用以发现可能引起这种不稳定性或不正常处理的某些数据组合。</li>
+</ul>
+<p>压力测试工具：JMeter等</p>
+<h4 id="恢复测试"><a href="#恢复测试" class="headerlink" title="恢复测试"></a>恢复测试</h4><p>恢复测试是要证实在克服硬件故障(包括掉电、硬件或网络出错等)后，系统能否常地继续进行工作，并不对系统造成任何损害。为此，可采用各种人工干预的手段，模拟硬件故障，故意造成软件出错。并由此检查：</p>
+<ul>
+<li>错误探测功能──系统能否发现硬件失效与故障；</li>
+<li>能否切换或启动备用的硬件；</li>
+<li>在故障发生时能否保护正在运行的作业和系统状态；</li>
+<li>在系统恢复后能否从最后记录下来的无错误状态开始继续执行作业，等等。</li>
+<li>掉电测试：其目的是测试软件系统在发生电源中断时能否保护当时的状态且不毁坏数据，然后在电源恢复时从保留的断点处重新进行操作。</li>
+</ul>
+<h4 id="安全测试"><a href="#安全测试" class="headerlink" title="安全测试"></a>安全测试</h4><p>安全性测试是要检验在系统中已经存在的系统安全性、保密性措施是否发挥作用，有无漏洞。<br>力图破坏系统的保护机构以进入系统的主要方法有以下几种：</p>
+<ul>
+<li>正面攻击或从侧面、背面攻击系统中易受损坏的那些部分；</li>
+<li>以系统输入为突破口，利用输入的容错性进行正面攻击；</li>
+<li>申请和占用过多的资源压垮系统，以破坏安全措施，从而进入系统；</li>
+<li>故意使系统出错，利用系统恢复的过程，窃取用户口令及其它有用的信息；</li>
+<li>通过浏览残留在计算机各种资源中的垃圾（无用信息），以获取如口令，安全码，译码关键字等信息；</li>
+<li>浏览全局数据，期望从中找到进入系统的关键字；</li>
+<li>浏览那些逻辑上不存在，但物理上还存在的各种记录和资料等<br>安全性测试工具：NMAP、Nessus、Appscan等</li>
+</ul>
+<h4 id="验收测试"><a href="#验收测试" class="headerlink" title="验收测试"></a>验收测试</h4><p>在通过了系统的有效性测试及软件配置审查之后，就应开始系统的验收测试。<br>验收测试是以用户为主的测试。软件开发人员和QA（质量保证）人员也应参加。</p>
+<ul>
+<li>由用户参加设计测试用例，使用生产中的实际数据进行测试。</li>
+<li>在测试过程中，除了考虑软件的功能和性能外，还应对软件的可移植性、兼容性、可维护性、错误的恢复功能等进行确认。</li>
+</ul>
+<p>确认测试应交付的文档有：</p>
+<ul>
+<li>确认测试分析报告</li>
+<li>最终的用户手册和操作手</li>
+<li>项目开发总结报告。</li>
+</ul>
+<p>主要形式：</p>
+<ul>
+<li>根据合同进行的验收测试：重复执行相关的测试用例</li>
+<li>用户验收测试：客户和最终用户不同</li>
+<li>现场测试：客户代表执行，分为α 测试和β 测试</li>
+</ul>
+<h5 id="α-测试"><a href="#α-测试" class="headerlink" title="α 测试"></a>α 测试</h5><p>在软件交付使用之后，用户将如何实际使用程序，对于开发者来说是无法预测的。<br>α测试是由一个用户在开发环境下进行的测试，也可以是公司内部的用户在模拟实际操作环境下进行的测试。<br>α测试的目的是评价软件产品的FLURPS（即功能、局域化、可使用性、可靠性、性能和支持）。尤其注重产品的界面和特色。<br>α测试可以从软件产品编码结束之时开始，或在模块（子系统）测试完成之后开始，也可以在确认测试过程中产品达到一定的稳定和可靠程度之后再开始。</p>
+<h5 id="β测试"><a href="#β测试" class="headerlink" title="β测试"></a>β测试</h5><p>β测试是由软件的多个用户在实际使用环境下进行的测试。这些用户返回有关错误信息给开发者。<br>测试时，开发者通常不在测试现场。因而，β测试是在开发者无法控制的环境下进行的软件现场应用。<br>在β测试中，由用户记下遇到的所有问题，包括真实的以及主观认定的，定期向开发者报告。<br>β测试主要衡量产品的FLURPS。着重于产品的支持性，包括文档、客户培训和支持产品生产能力。<br>只有当α测试达到一定的可靠程度时，才能开始β测试。它处在整个测试的最后阶段。同时，产品的所有手册文本也应该在此阶段完全定稿。</p>
+<h5 id="回归测试"><a href="#回归测试" class="headerlink" title="回归测试"></a>回归测试</h5><p>在软件测试的各个阶段，在修正发现的软件缺陷或增加新功能时，变化的部分必须进行再测试。此外，对软件进行修改还可能会导致引入新的软件缺陷以及其他问题。<br>为解决这些问题，需要进行回归测试。</p>
+<ul>
+<li>回归测试是指有选择地重新测试系统或其组件，以验证对软件的修改没有导致不希望出现的影响，以及系统或组件仍然符合其指定的需求。</li>
+<li>回归测试可以在所有的测试级别执行，并应用于功能和非功能测试中。</li>
+<li>回归测试应该尽量采用自动化测试。</li>
+</ul>
+<p>回归测试范围：</p>
+<ul>
+<li>缺陷再测试：重新运行所有发现故障的测试，而新的软件版本已经修正了这些故障。</li>
+<li>功能改变的测试：测试所有修改或修正过的程序部分。</li>
+<li>新功能测试：测试所有新集成的程序。</li>
+<li>完全回归测试：测试整个系统。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B8-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/" rel="prev" title="软件工程8-软件测试概论">
+                  <i class="fa fa-angle-left"></i> 软件工程8-软件测试概论
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

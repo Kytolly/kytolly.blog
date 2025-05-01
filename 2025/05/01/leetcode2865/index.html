@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="题目Leetcode 2865 美丽塔 I 给你一个长度为 &#96;n&#96; 下标从 **0** 开始的整数数组 &#96;maxHeights&#96; 。  你的任务是在坐标轴上建 n 座塔。第 i 座塔的下标为 i ，高度为 heights[i] 。 如果以下条件满足，我们称这些塔是 美丽 的：  1 &lt;&#x3D; heights[i] &lt;&#x3D; maxHeights[i] heights 是一个 山脉 数组。  如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode2865">
+<meta property="og:url" content="http://example.com/2025/05/01/leetcode2865/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目Leetcode 2865 美丽塔 I 给你一个长度为 &#96;n&#96; 下标从 **0** 开始的整数数组 &#96;maxHeights&#96; 。  你的任务是在坐标轴上建 n 座塔。第 i 座塔的下标为 i ，高度为 heights[i] 。 如果以下条件满足，我们称这些塔是 美丽 的：  1 &lt;&#x3D; heights[i] &lt;&#x3D; maxHeights[i] heights 是一个 山脉 数组。  如">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.190Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.168Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/leetcode2865/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/leetcode2865/","path":"2025/05/01/leetcode2865/","title":"leetcode2865"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>leetcode2865 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/leetcode2865/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="leetcode2865 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          leetcode2865
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/beautiful-towers-i/description/">Leetcode 2865</a></p>
+<details><summary>美丽塔 I</summary>
+给你一个长度为 `n` 下标从 **0** 开始的整数数组 `maxHeights` 。
+
+<p>你的任务是在坐标轴上建 <code>n</code> 座塔。第 <code>i</code> 座塔的下标为 <code>i</code> ，高度为 <code>heights[i]</code> 。</p>
+<p>如果以下条件满足，我们称这些塔是 <strong>美丽</strong> 的：</p>
+<ol>
+<li><code>1 &lt;= heights[i] &lt;= maxHeights[i]</code></li>
+<li><code>heights</code> 是一个 <strong>山脉</strong> 数组。</li>
+</ol>
+<p>如果存在下标 <code>i</code> 满足以下条件，那么我们称数组 <code>heights</code> 是一个 <strong>山脉</strong> 数组：</p>
+<ul>
+<li>对于所有 <code>0 &lt; j &lt;= i</code> ，都有 <code>heights[j - 1] &lt;= heights[j]</code></li>
+<li>对于所有 <code>i &lt;= k &lt; n - 1</code> ，都有 <code>heights[k + 1] &lt;= heights[k]</code></li>
+</ul>
+<p>请你返回满足 <strong>美丽塔</strong> 要求的方案中，<strong>高度和的最大值</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：maxHeights = [5,3,4,1,1]</span><br><span class="line">输出：13</span><br><span class="line">解释：和最大的美丽塔方案为 heights = [5,3,3,1,1] ，这是一个美丽塔方案，因为：</span><br><span class="line">- 1 &lt;= heights[i] &lt;= maxHeights[i]  </span><br><span class="line">- heights 是个山脉数组，峰值在 i = 0 处。</span><br><span class="line">13 是所有美丽塔方案中的最大高度和。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：maxHeights = [6,5,3,9,2,7]</span><br><span class="line">输出：22</span><br><span class="line">解释： 和最大的美丽塔方案为 heights = [3,3,3,9,2,2] ，这是一个美丽塔方案，因为：</span><br><span class="line">- 1 &lt;= heights[i] &lt;= maxHeights[i]</span><br><span class="line">- heights 是个山脉数组，峰值在 i = 3 处。</span><br><span class="line">22 是所有美丽塔方案中的最大高度和。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：maxHeights = [3,2,5,5,2,3]</span><br><span class="line">输出：18</span><br><span class="line">解释：和最大的美丽塔方案为 heights = [2,2,5,5,2,2] ，这是一个美丽塔方案，因为：</span><br><span class="line">- 1 &lt;= heights[i] &lt;= maxHeights[i]</span><br><span class="line">- heights 是个山脉数组，最大值在 i = 2 处。</span><br><span class="line">注意，在这个方案中，i = 3 也是一个峰值。</span><br><span class="line">18 是所有美丽塔方案中的最大高度和。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n == maxHeights &lt;= 103</code></li>
+<li><code>1 &lt;= maxHeights[i] &lt;= 109</code></li>
+</ul>
+</details>
+
+<p>这道题应该在集训的时候见过，依稀记得用单调栈应该能做到$O(N$​​);奈何学的不扎实怎么想都降不下来，只能先交个暴力枚举的方法，在这里认认真真做个笔记；</p>
+<details><summary>看完题解后发现和想象中不一样在于：</summary>
+
+<p>他所维护的单调栈至始至终只有1(2)个，我却误认为对于每个下标都得开一个栈才能找到非增序列元素和最大值，事实上其中暗含递推关系，使得可以继承停止弹栈时候的状态；</p>
+</details>
+
+<p>注意观察，山脉数组由左侧的非递减序列和右侧的非递增序列组成；</p>
+<p>对于每个下标<code>i</code>,设山脉数组中<code>[0,i]</code>中非递减序列元素和最大值为<code>prefix[i]</code>，<code>[i,n-1]</code>中非递增序列元素和最大值为<code>suffix[i]</code>，遍历<code>i</code>作为峰顶，最大值即为 <code>max⁡(prefix[i]+suffix[i]−maxHeights[i])</code></p>
+<ul>
+<li><p><code>heights[i]=maxHeights[i]</code></p>
+<p>放开对两侧的限制，才能使得<code>prefix[i]</code>和<code>suffix[i]</code>尽可能大；</p>
+</li>
+<li><p>对于左侧的<code>prefix[i]</code>的求法：</p>
+<p>我们保持单调栈中元素是增的，也就是说：</p>
+<ul>
+<li><code>maxHeights</code>依次入栈，若栈为空直接进入；</li>
+<li>在<code>maxHeights[i]</code>入栈之前，将所有大于它的栈顶全部弹出；</li>
+<li>弹出后假设栈顶为<code>maxHeights[j] j&lt;i</code>，我们可以利用已经求好的<code>prefix[j]</code>和<code>j</code>左侧的取值关系，得到<code>prefix[i]=prefix[j]+(i-j)*maxHeights[i]</code>,因为在<code>[j+1,i-1]</code>中的值最多取到<code>maxHeights[i]</code></li>
+</ul>
+</li>
+<li><p>对于右侧的<code>suffix[i]</code>的求法;</p>
+<p>我们把数组反过来入单调栈，求法就和上面一样了;</p>
+</li>
+</ul>
+<p>注意，实际入栈的应该是数组的索引，而不是数组元素，这样方便使用递推关系；</p>
+<p>上代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">maximumSumOfHeights</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; maxHeights)</span> </span>&#123;</span><br><span class="line">        std::stack&lt;<span class="type">int</span>&gt; s,t;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = maxHeights.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">long</span> <span class="type">long</span>&gt; <span class="title">prefix</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">long</span> <span class="type">long</span>&gt; <span class="title">suffix</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.<span class="built_in">empty</span>())&#123;</span><br><span class="line">                s.<span class="built_in">push</span>(i);</span><br><span class="line">                prefix[i] = maxHeights[i];</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(!s.<span class="built_in">empty</span>()&amp;&amp;maxHeights[s.<span class="built_in">top</span>()]&gt;maxHeights[i]) s.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span>(s.<span class="built_in">empty</span>()) prefix[i] = (i<span class="number">+1</span>)*<span class="number">1LL</span>*maxHeights[i];</span><br><span class="line">            <span class="keyword">else</span> prefix[i] = (i-s.<span class="built_in">top</span>())*<span class="number">1LL</span>*maxHeights[i] + prefix[s.<span class="built_in">top</span>()];</span><br><span class="line">            s.<span class="built_in">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(t.<span class="built_in">empty</span>())&#123;</span><br><span class="line">                t.<span class="built_in">push</span>(i);</span><br><span class="line">                suffix[i] = maxHeights[i];</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(!t.<span class="built_in">empty</span>()&amp;&amp;maxHeights[t.<span class="built_in">top</span>()]&gt;maxHeights[i]) t.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span>(t.<span class="built_in">empty</span>()) suffix[i]=(n-i)*<span class="number">1LL</span>*maxHeights[i];</span><br><span class="line">            <span class="keyword">else</span> suffix[i] = (t.<span class="built_in">top</span>() - i)*<span class="number">1LL</span>*maxHeights[i] + suffix[t.<span class="built_in">top</span>()];</span><br><span class="line">            t.<span class="built_in">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(sum&lt;prefix[i]+suffix[i]-maxHeights[i]) </span><br><span class="line">                sum = prefix[i]+suffix[i]-maxHeights[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>很不应该的一道题，之前的算法学的一点也不扎实，也可能是太久没看算法了（一学期），得回炉重造了；</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/leetcode2859/" rel="prev" title="leetcode2859">
+                  <i class="fa fa-angle-left"></i> leetcode2859
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/leetcode3261/" rel="next" title="leetcode3261">
+                  leetcode3261 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

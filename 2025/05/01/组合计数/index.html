@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="组合计数加乘原理乘法原理：完成一个工程需要分 $n$ 个步骤，$a_i(1 \le i \le n)$ 代表第 $i$ 个步骤的不同方法数目。那么完成这件事共有 $S &#x3D; a_1 \times a_2 \times \cdots \times a_n$ 种不同的方法。 加法原理：完成一个工程可以有 $n$ 类办法，$a_i(1 \le i \le n)$ 代表第 $i$ 类方法的数目。那">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组合计数">
+<meta property="og:url" content="http://example.com/2025/05/01/%E7%BB%84%E5%90%88%E8%AE%A1%E6%95%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="组合计数加乘原理乘法原理：完成一个工程需要分 $n$ 个步骤，$a_i(1 \le i \le n)$ 代表第 $i$ 个步骤的不同方法数目。那么完成这件事共有 $S &#x3D; a_1 \times a_2 \times \cdots \times a_n$ 种不同的方法。 加法原理：完成一个工程可以有 $n$ 类办法，$a_i(1 \le i \le n)$ 代表第 $i$ 类方法的数目。那">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.439Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.878Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E7%BB%84%E5%90%88%E8%AE%A1%E6%95%B0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E7%BB%84%E5%90%88%E8%AE%A1%E6%95%B0/","path":"2025/05/01/组合计数/","title":"组合计数"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>组合计数 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E8%AE%A1%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">组合计数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E4%B9%98%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">加乘原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E5%88%97%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">排列数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">组合数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%86%E6%8E%92%E5%88%97"><span class="nav-number">1.4.</span> <span class="nav-text">圆排列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E5%B1%89%E5%8E%9F%E7%90%86"><span class="nav-number">1.5.</span> <span class="nav-text">抽屉原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%B9%E6%96%A5%E5%8E%9F%E7%90%86"><span class="nav-number">1.6.</span> <span class="nav-text">容斥原理</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E7%BB%84%E5%90%88%E8%AE%A1%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="组合计数 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          组合计数
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="组合计数"><a href="#组合计数" class="headerlink" title="组合计数"></a>组合计数</h1><h2 id="加乘原理"><a href="#加乘原理" class="headerlink" title="加乘原理"></a>加乘原理</h2><p>乘法原理：完成一个工程需要分 $n$ 个步骤，$a_i(1 \le i \le n)$ 代表第 $i$ 个步骤的不同方法数目。那么完成这件事共有 $S &#x3D; a_1 \times a_2 \times \cdots \times a_n$ 种不同的方法。</p>
+<p>加法原理：完成一个工程可以有 $n$ 类办法，$a_i(1 \le i \le n)$ 代表第 $i$ 类方法的数目。那么完成这件事共有 $S&#x3D;a_1+a_2+\cdots +a_n$​ 种不同的方法。</p>
+<p>例题(快速幂)：计算$x^ymod\ p$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">pow</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123; </span><br><span class="line">	<span class="type">int</span> res=<span class="number">1</span>;</span><br><span class="line">	x%=p;</span><br><span class="line">	<span class="keyword">for</span>(;y;y&gt;&gt;=<span class="number">1</span>,x=x*x%p) <span class="keyword">if</span>(y&amp;<span class="number">1</span>) res=res*x%p;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="排列数"><a href="#排列数" class="headerlink" title="排列数"></a>排列数</h2><p>从 $n$ 个不同元素中，任取 $m$（$m\leq n$）个元素按照一定的顺序排成一列，叫做从 $n$ 个不同元素中取出 $m$ 个元素的一个排列；</p>
+<p>从 $n$ 个不同元素中取出 $m$($m\leq n$) 个元素的所有排列的个数，叫做从 $n$ 个不同元素中取出 $m$ 个元素的排列数，用符号 $\mathrm A_n^m$表示。<br>$$<br>\mathrm A_n^m &#x3D; n(n-1)(n-2) \cdots (n-m+1) &#x3D; \frac{n!}{(n - m)!}<br>$$</p>
+<h2 id="组合数"><a href="#组合数" class="headerlink" title="组合数"></a>组合数</h2><p>从 $n$ 个不同元素中，任取 $m \leq n$ 个元素组成一个集合，叫做从 $n$ 个不同元素中取出 $m$ 个元素的一个组合；</p>
+<p>从 $n$ 个不同元素中取出 $m \leq n$ 个元素的所有组合的个数，叫做从 $n$ 个不同元素中取出 $m$ 个元素的组合数，用符号 $\dbinom{n}{m}$ 来表示；<br>$$<br>\dbinom{n}{m} &#x3D; \frac{\mathrm A_n^m}{m!} &#x3D; \frac{n!}{m!(n - m)!}<br>$$</p>
+<p>例题：计算$\dbinom{n}{m} mod\ p$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">inv</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> p)</span></span>&#123; <span class="comment">//求逆元</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">pow</span>(x,p<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br><span class="line">fac[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) fac[i]=fac[i<span class="number">-1</span>]*i; <span class="comment">//预处理出阶乘</span></span><br><span class="line"><span class="keyword">return</span> ((fac[n]*<span class="built_in">inv</span>(fac[m],p))%p*<span class="built_in">inv</span>(fac[n-m],p))%p;</span><br></pre></td></tr></table></figure>
+
+<h2 id="圆排列"><a href="#圆排列" class="headerlink" title="圆排列"></a>圆排列</h2><p>$n$ 个人全部来围成一圈，所有的排列数记为 $\mathrm Q_n^n$。考虑其中已经排好的一圈，从不同位置断开，又变成不同的队列。<br>所以有<br>$$<br>\mathrm Q_n^n \times n &#x3D; \mathrm A_n^n \Longrightarrow \mathrm Q_n &#x3D; \frac{\mathrm A_n^n}{n} &#x3D; (n-1)!<br>$$</p>
+<p>由此可知部分圆排列的公式：</p>
+<p>$$<br>\mathrm Q_n^r &#x3D; \frac{\mathrm A_n^r}{r} &#x3D; \frac{n!}{r \times (n-r)!}<br>$$</p>
+<h2 id="抽屉原理"><a href="#抽屉原理" class="headerlink" title="抽屉原理"></a>抽屉原理</h2><p>将 $n$ 个物体，划分为 $k$ 组，那么至少存在一个分组，含有大于或等于 $\left \lceil \dfrac{n}{k} \right \rceil$ 个物品。</p>
+<p>推广的形式也可以使用反证法证明：若每个分组含有小于 $\left \lceil \dfrac{n}{k} \right \rceil$ 个物体，则其总和 $S\leq (\left \lceil \dfrac{n}{k} \right \rceil -1 ) \times k&#x3D;k\left\lceil \dfrac{n}{k} \right\rceil-k &lt; k(\dfrac{n}{k}+1)-k&#x3D;n$ 矛盾。</p>
+<p>此外，划分还可以弱化为覆盖结论不变。<br>给定集合 $S$, 一个 $S$ 的非空子集构成的簇 ${A_1,A_2\ldots A_k}$</p>
+<ul>
+<li>若满足 $\bigcup_{i&#x3D;1}^k A_i$ 则称为 $S$ 的一个覆盖（cover）；</li>
+<li>若一个覆盖还满足 $i\neq j\to A_i\cap A_j&#x3D;\varnothing$ 则称为 $S$ 的一个划分。</li>
+</ul>
+<p>鸽巢原理可以有如下叙述：对于 $S$ 的一个覆盖 ${A_1,A_2\ldots A_k}$ 有至少一个集合 $A_i$ 满足 $\left\vert A_i \right\vert \geq \left\lceil \dfrac{\left\vert S \right\vert}{k} \right\rceil$。</p>
+<h2 id="容斥原理"><a href="#容斥原理" class="headerlink" title="容斥原理"></a>容斥原理</h2><p>设 U 中元素有 n 种不同的属性，而第 i 种属性称为 $P_i$，拥有属性 $P_i$ 的元素构成集合 $S_i$，那么</p>
+<p>$$<br>\begin{aligned}<br>\left|\bigcup_{i&#x3D;1}^{n}S_i\right|&#x3D;&amp;\sum_{i}|S_i|-\sum_{i&lt;j}|S_i\cap S_j|+\sum_{i&lt;j&lt;k}|S_i\cap S_j\cap S_k|-\cdots\<br>&amp;+(-1)^{m-1}\sum_{a_i&lt;a_{i+1} }\left|\bigcap_{i&#x3D;1}^{m}S_{a_i}\right|+\cdots+(-1)^{n-1}|S_1\cap\cdots\cap S_n|<br>\end{aligned}<br>$$</p>
+<p>即</p>
+<p>$$<br>\left|\bigcup_{i&#x3D;1}^{n}S_i\right|&#x3D;\sum_{m&#x3D;1}^n(-1)^{m-1}\sum_{a_i&lt;a_{i+1} }\left|\bigcap_{i&#x3D;1}^mS_{a_i}\right|<br>$$<br>证明：</p>
+<p>对于每个元素使用二项式定理计算其出现的次数。对于元素$ x$，假设它出现在 $T_1,T_2,\cdots,T_m$ 的集合中，那么它的出现次数为</p>
+<p>$$<br>\begin{aligned}<br>Cnt&#x3D;&amp;|{T_i}|-|{T_i\cap T_j|i&lt;j}|+\cdots+(-1)^{k-1}\left|\left{\bigcap_{i&#x3D;1}^{k}T_{a_i}|a_i&lt;a_{i+1}\right}\right|\<br>&amp;+\cdots+(-1)^{m-1}|{T_1\cap\cdots\cap T_m}|\<br>&#x3D;&amp;\dbinom{m}{1}-\dbinom{m}{2}+\cdots+(-1)^{m-1}\dbinom{m}{m}\<br>&#x3D;&amp;\dbinom{m}{0}-\sum_{i&#x3D;0}^m(-1)^i\dbinom{m}{i}\<br>&#x3D;&amp;1-(1-1)^m&#x3D;1<br>\end{aligned}<br>$$</p>
+<p>于是每个元素出现的次数为 1，那么合并起来就是并集;</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/" rel="prev" title="数理逻辑">
+                  <i class="fa fa-angle-left"></i> 数理逻辑
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E9%9B%86%E5%90%88%E8%AE%BA/" rel="next" title="集合论">
+                  集合论 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

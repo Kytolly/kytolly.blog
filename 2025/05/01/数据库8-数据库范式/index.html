@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="数据库范式数学表示关系模式的五元组表示：$\rm R(U, D, DOM, F) $  $R$：关系名  $U$：组成该关系的属性名集合  $D$：属性组U中属性所来自的域  $DOM$：属性向域的映象集合  $F$：属性间数据的依赖关系集  对于一个简化的关系模式三元组表示：$\rm R(U,F)$  数据依赖是现实世界属性相互联系的抽象 数据依赖是数据内在的性质 数据依赖是寓意的体现规范化解决">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库8-数据库范式">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%938-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8C%83%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据库范式数学表示关系模式的五元组表示：$\rm R(U, D, DOM, F) $  $R$：关系名  $U$：组成该关系的属性名集合  $D$：属性组U中属性所来自的域  $DOM$：属性向域的映象集合  $F$：属性间数据的依赖关系集  对于一个简化的关系模式三元组表示：$\rm R(U,F)$  数据依赖是现实世界属性相互联系的抽象 数据依赖是数据内在的性质 数据依赖是寓意的体现规范化解决">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241027121522132.png">
+<meta property="og:image" content="http://example.com/assets/image-20241027121839337.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.420Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.736Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241027121522132.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%938-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8C%83%E5%BC%8F/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%938-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8C%83%E5%BC%8F/","path":"2025/05/01/数据库8-数据库范式/","title":"数据库8-数据库范式"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据库8-数据库范式 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8C%83%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">数据库范式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.1.</span> <span class="nav-text">数学表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%BE%9D%E8%B5%96"><span class="nav-number">1.2.</span> <span class="nav-text">数据依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96"><span class="nav-number">1.2.1.</span> <span class="nav-text">函数依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E4%BE%9D%E8%B5%96-%E9%83%A8%E5%88%86%E4%BE%9D%E8%B5%96"><span class="nav-number">1.2.2.</span> <span class="nav-text">完全依赖&#x2F;部分依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E4%BE%9D%E8%B5%96"><span class="nav-number">1.2.3.</span> <span class="nav-text">传递依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%95%B4%E5%90%AB"><span class="nav-number">1.2.4.</span> <span class="nav-text">逻辑蕴含</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Armstrong%E5%85%AC%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">Armstrong公理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E9%9B%86%E9%97%AD%E5%8C%85"><span class="nav-number">1.3.1.</span> <span class="nav-text">属性集闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BE%9D%E8%B5%96%E9%9B%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">最小依赖集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%99%E9%80%89%E7%A0%81"><span class="nav-number">1.3.3.</span> <span class="nav-text">候选码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E5%88%86%E8%A7%A3"><span class="nav-number">1.4.</span> <span class="nav-text">模式分解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%9D%E6%8C%81%E4%BE%9D%E8%B5%96"><span class="nav-number">1.4.1.</span> <span class="nav-text">保持依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%8D%9F%E5%88%86%E8%A7%A3"><span class="nav-number">1.4.2.</span> <span class="nav-text">无损分解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8C%83%E5%BC%8F"><span class="nav-number">1.5.</span> <span class="nav-text">范式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1NF"><span class="nav-number">1.5.1.</span> <span class="nav-text">1NF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2NF"><span class="nav-number">1.5.2.</span> <span class="nav-text">2NF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3NF"><span class="nav-number">1.5.3.</span> <span class="nav-text">3NF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BCNF"><span class="nav-number">1.5.4.</span> <span class="nav-text">BCNF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E8%8C%83%E5%BC%8F"><span class="nav-number">1.5.5.</span> <span class="nav-text">反范式</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%938-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8C%83%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据库8-数据库范式 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库8-数据库范式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="数据库范式"><a href="#数据库范式" class="headerlink" title="数据库范式"></a>数据库范式</h1><h2 id="数学表示"><a href="#数学表示" class="headerlink" title="数学表示"></a>数学表示</h2><p>关系模式的五元组表示：$\rm R(U, D, DOM, F) $</p>
+<ul>
+<li>$R$：关系名 </li>
+<li>$U$：组成该关系的属性名集合 </li>
+<li>$D$：属性组U中属性所来自的域 </li>
+<li>$DOM$：属性向域的映象集合 </li>
+<li>$F$：属性间数据的依赖关系集</li>
+</ul>
+<p>对于一个简化的关系模式三元组表示：$\rm R(U,F)$</p>
+<ul>
+<li>数据依赖是现实世界属性相互联系的抽象</li>
+<li>数据依赖是数据内在的性质</li>
+<li>数据依赖是寓意的体现<br>规范化解决的问题是如何构造合适的关系模式</li>
+</ul>
+<p>设计好的模式：大模式的分解，信息完整</p>
+<p>模式的分解：自动化，模式设计包含所有信息，按照一定规则分解的小模式没有数据冗余和更新异常</p>
+<h2 id="数据依赖"><a href="#数据依赖" class="headerlink" title="数据依赖"></a>数据依赖</h2><ul>
+<li>函数依赖FD：一个关系表中属性之间的联系</li>
+<li>多值依赖MVD：关系中属性之间在语义上的关联特性</li>
+</ul>
+<h3 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h3><p>对于关系模式$R(U)$,$X,Y \subseteq U$,设$t,s$是关系$R$中的任意两个元组；</p>
+<p>称$Y$函数依赖于$X$,$X$称为决定因子，$Y$称为依赖因子，若$t[X]&#x3D;s[X]$,则$t[Y]&#x3D;s[Y]$;</p>
+<ul>
+<li>对于$Y\subseteq X$,这种情况视为平凡函数依赖</li>
+<li>由于不反映新的寓意，所以函数依赖一般指非平凡的；</li>
+</ul>
+<h3 id="完全依赖-部分依赖"><a href="#完全依赖-部分依赖" class="headerlink" title="完全依赖&#x2F;部分依赖"></a>完全依赖&#x2F;部分依赖</h3><p>对于$X,Y$是关系的不同属性集，满足$X\to Y$；</p>
+<p>若$\nexists X’ \subset X,X’\to Y$,称$Y$完全函数依赖于$X$,否则称为部分依赖</p>
+<h3 id="传递依赖"><a href="#传递依赖" class="headerlink" title="传递依赖"></a>传递依赖</h3><p>对于$X,Y,Z$是关系的三个不同的属性集</p>
+<p>若$X\to Y,Y\to Z,Y\nrightarrow X$,有$X\to Z$, 称$Z$传递依赖于$X$</p>
+<ul>
+<li>某一个属性列唯一，那么这个属性可以决定其他属性</li>
+<li>这个属性的任意超集也可以决定其他属性</li>
+</ul>
+<h3 id="逻辑蕴含"><a href="#逻辑蕴含" class="headerlink" title="逻辑蕴含"></a>逻辑蕴含</h3><p>对于关系$R$上的依赖集$F&#x3D;{ A\to B, B\to C }$</p>
+<p>若$A\to C$在$R$上也成立，称$F$逻辑蕴含$A\to C$,记为$F\models A\to C$</p>
+<p>也就是说，一个函数依赖可以由其他函数推出，那么这个函数依赖被视为多余的；</p>
+<p>对于函数依赖的闭包，定义为<br>$$<br>F^+&#x3D;{X\to Y| F \models X\to Y}<br>$$</p>
+<ul>
+<li>这个集合定义了由给定函数依赖集能够推导出所有的函数依赖</li>
+<li>根据一直的函数依赖集，推导出其他函数依赖的规则称为推理规则</li>
+<li>由已知函数依赖集推导闭包是NPC问题；</li>
+</ul>
+<h2 id="Armstrong公理"><a href="#Armstrong公理" class="headerlink" title="Armstrong公理"></a>Armstrong公理</h2><p>闭包中的函数依赖可以通过三个关系找出，这样的推导是正确且完备的，不过从$F$找到对应的闭包是一个NPC问题；</p>
+<ul>
+<li>自反性：$$ Y\subseteq X\subseteq U \models X\to Y$$</li>
+<li>增广性：$$X\to Y,Z\subseteq U \models X\cup Z\to Y\cup Z $$</li>
+<li>传递性：$$ X\to Y,Y\to Z\models X\to Z$$</li>
+<li>合并性：$${X\to Y,Y\to Z}\models X\to Y\cup Z$$</li>
+<li>伪传递性：$${X\to Y,WY\to Z}\models XW\to Z$$</li>
+<li>分解性：$${X\to Y,Z\subseteq Y}\models X\to Z$$</li>
+<li>复合性：$${X\to Y, W\to Z}\models XW\to YZ$$</li>
+<li>通用一致性：$${X\to Y,W\to Z}\models X\cup (W-Z) \to YZ$$</li>
+</ul>
+<h3 id="属性集闭包"><a href="#属性集闭包" class="headerlink" title="属性集闭包"></a>属性集闭包</h3><p>定义以下的属性集闭包：<br>$$<br>X^+ &#x3D; { A| A\in U, X\to A\in F^+}<br>$$<br>属性集的闭包是P问题；$X\to Y$能使用Armstrong规则推导出的充分必要条件为$A\subseteq X^+$;</p>
+<p>属性集闭包算法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">X_clo := X</span><br><span class="line">do&#123;</span><br><span class="line">	if A→B,A⊆X+</span><br><span class="line">		X+ = X+ ⋃ B</span><br><span class="line">&#125;while(X+ changes)</span><br></pre></td></tr></table></figure>
+
+<h3 id="最小依赖集"><a href="#最小依赖集" class="headerlink" title="最小依赖集"></a>最小依赖集</h3><p>函数依赖集逻辑等价记作$F&#x3D;G$；</p>
+<p>$F,G$是$R(U)$的两个函数依赖集，若$F^+ &#x3D; G^+$,称$F,G$是等价的函数依赖集；</p>
+<p>最小依赖集定义如下：</p>
+<ul>
+<li>$F_{min} ^+ &#x3D; F^+$;</li>
+<li>每个函数依赖的右边是单属性；</li>
+<li>$F_{min}$没有冗余的函数依赖；</li>
+<li>每个函数依赖左边没有冗余的属性</li>
+</ul>
+<p>最小依赖集算法：</p>
+<ul>
+<li>计算$F$等价的$G$，要求$G$的每个依赖集右边为单属性；</li>
+<li>消除$G$中每个函数依赖左边的冗余属性</li>
+<li>消除$G$中的冗余的函数依赖</li>
+</ul>
+<h3 id="候选码"><a href="#候选码" class="headerlink" title="候选码"></a>候选码</h3><p>若$K$为$R(U,F)$中的属性或者属性结合，若$K\xrightarrow{f} \ U$,则$K$为$R$的候选码；</p>
+<p>若候选码多于一个，可选定一个当作主码(primary key)</p>
+<ul>
+<li>单个属性是码，称为单码</li>
+<li>整个属性组是码，称为全码</li>
+</ul>
+<h2 id="模式分解"><a href="#模式分解" class="headerlink" title="模式分解"></a>模式分解</h2><p>函数依赖可以引起的数据冗余和更新异常等问题，需要对关系模式进行分解</p>
+<p>关系模式$R$的分解就是用两个或两个以上关系来替换$R$，分解后的关系模式的属性集都是$R$中属性的子集，其并集与$R$的属性集相同</p>
+<p>具体来说，对属性集$U$,关系模式$R(U)$,若用一组关系模式的集合${R_1(U_1),\cdots,R_k(U_k)}$来取代$U&#x3D;\bigcup_{i&#x3D;1}^k U_i$,则称此关系模式的$R$的一个分解，记作$\rho &#x3D; {R_1,\cdots,R_k}$</p>
+<p> 关系模式分解的两个特性实际上涉及两个数据库模式的等价问题</p>
+<ul>
+<li>数据等价是指两个数据库实例应表示同样的信息内容，如果是无损分解，那么对关系反复的投影和连接都不会丢失信息；</li>
+<li>依赖等价是指两个数据库模式应有相同的依赖集闭包。在依赖集闭包相等 情况下，数据的语义是不会出错的</li>
+</ul>
+<h3 id="保持依赖"><a href="#保持依赖" class="headerlink" title="保持依赖"></a>保持依赖</h3><p> 设$\rho&#x3D;{R_1,…,R_k}$是$R$的一个分解；$F$是$R$的一个FD集；</p>
+<p>如果<br>$$<br>\bigcup_{i&#x3D;1}^k \prod R_i(F) \models F<br>$$<br> 称分解$\rho$保持函数依赖集$F$</p>
+<h3 id="无损分解"><a href="#无损分解" class="headerlink" title="无损分解"></a>无损分解</h3><p>对于关系模式$R$,其一个函数依赖集为$F$,其一个模式分解为$\rho &#x3D; {R_1,\cdots,R_k}$,</p>
+<p>若对于$R$中满足$F$的每一个关系$r$，均有<br>$$<br>r&#x3D;\pi_{R_1}(r) \bowtie \cdots \bowtie \pi_{R_k}(r)<br>$$<br>则称分解$\rho$是相对于依赖集$F$的一个无损连接分解，否则则是有损分解；</p>
+<p>利用Chase算法将关系模式一分为二，判断是否为无损分解；</p>
+<p>设$\rho&#x3D;{R_1(U_1),R_2(U_2)}$是关系模式$R$的一个分解，则$\rho$是无损分解的充分必要条件为以下关系满足其一即可<br>$$<br>(U_1\cap U_2)\to(U_1-U_2)\(U_1\cap U_2)\to(U_2-U_1)<br>$$<br> 模式分解能消除数据冗余和操作异常现象， 分解以后，检索需要作笛卡尔集或连接操作，带来时间开销，为了消除冗余和异常，对模式的分解是值得的；</p>
+<h2 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h2><p>范式是关系的状态，也是衡量关系模式的好坏的标准，一个规范化的方式有最小的数据冗余</p>
+<p>除了与援助进行连接的外键之外，数据库实例中的其他属性值不能被复制</p>
+<h3 id="1NF"><a href="#1NF" class="headerlink" title="1NF"></a>1NF</h3><p>在每个关系模式$R$每个属性值都是不可再分的原子值；1NF是关系模式应具有的最起码条件；</p>
+<p>换言之，1NF要求<strong>不存在表中之表</strong>；</p>
+<p><img src="/assets/image-20241027121522132.png" alt="image-20241027121522132"></p>
+<h3 id="2NF"><a href="#2NF" class="headerlink" title="2NF"></a>2NF</h3><p>在1NF的基础上，<strong>消除了部分依赖</strong>导致的冗余和操作异常，2NF是通往更高范式的中间步骤，它消除了1NF存在的部分问题,但仍可能出现冗余和异常；</p>
+<p>如果关系模式$R\in 1NF$且<strong>每个非主属性完全依赖于候选码</strong>，称$R$满足2NF；</p>
+<p><img src="/assets/image-20241027121839337.png" alt="image-20241027121839337"></p>
+<p>以下简单情况必定满足2NF</p>
+<ul>
+<li>R的码是单码</li>
+<li>R的码是全码</li>
+<li>R是二元关系</li>
+</ul>
+<p>2NF分解算法：</p>
+<ol>
+<li><p>对于关系模式$R(U)$，主键为$W$，$R$上存在函数依赖$X\to Z$，其中$Z$是非主属性，$X\subset W$<br>则$W\to Z$是部分依赖，进行分解</p>
+<ul>
+<li>$R1(XZ)$,主键为$X$</li>
+<li>$R2(U-Z)$，主键为$W$，外键为$X$</li>
+</ul>
+</li>
+<li><p>若$R1,R2$仍然不是2NF，重复上述分解过程</p>
+</li>
+</ol>
+<h3 id="3NF"><a href="#3NF" class="headerlink" title="3NF"></a>3NF</h3><p>若关系模式$R\in 1NF$，而且每个<strong>非主属性都不传递依赖于</strong>$R$的候选码，称$R$属于3NF；</p>
+<p>定理：若$R$是3NF，必有$R$是2NF<br>证明：对于关系模式$R(U)$，主键为$W$，若存在部分依赖$W\to Z$,意味着R上存在函数依赖$X\to Z$，其中$Z$是非主属性，$X\subset W$，可以看成$W\to X, X\to Z$,这样特殊的传递依赖;</p>
+<p>以下的简单情形必定满足3NF;</p>
+<ul>
+<li>关系模式是全码；</li>
+<li>所有二元关系；</li>
+</ul>
+<p>3NF分解算法：</p>
+<ol>
+<li><p>对关系模式$R(U)$，主键为$W$，$R$上存在FD：$X\to Z$,其中$Z$非属性，$X$不是候选键, 说明$W\to Z$是传递依赖，进行如下分解</p>
+<ul>
+<li><p>$R1(XZ)$，主键为$X$</p>
+</li>
+<li><p>$R2(U-Z)$，主键为$W$，外键为$X$</p>
+</li>
+</ul>
+</li>
+<li><p>若$R1,R2$不是3NF，继续进行如上分解</p>
+</li>
+</ol>
+<p>分解的原则应该从传递依赖链的尾部开始；</p>
+<h3 id="BCNF"><a href="#BCNF" class="headerlink" title="BCNF"></a>BCNF</h3><p>BCNF，也称修正3NF，若关系模式R是1NF，而且<strong>每个属性都不传递依赖于</strong>R的候选码，那么称R是BCNF；</p>
+<ul>
+<li>非主属性对每一个码都是完全函数依赖；</li>
+<li>非主属性对不包含它的码也是完全函数依赖；</li>
+<li>没有任何属性完全依赖于非码的任何一组属性；</li>
+</ul>
+<p>关系为单码，并且已经是3NF，那么关系一定是BCNF；</p>
+<p>BCNF分解算法</p>
+<ul>
+<li>对于关系模式R，R上成立的函数依赖集F，找到最小依赖集$F_m$；</li>
+<li>将最小依赖集中左部相同的FD用合并性合并，</li>
+<li>对最小依赖集中的每个FD $X\to Y$构成模式$(XY)$</li>
+<li>对于生成的模式集中，若每个模式不包含R的候选码，此时将候选码作为一个模式放入模式集中</li>
+</ul>
+<p>不过这样的分解可能是有损的，违背了我们分解的初衷；</p>
+<h3 id="反范式"><a href="#反范式" class="headerlink" title="反范式"></a>反范式</h3><p>提高查询效率，采用空间换时间的实现思路；</p>
+<ul>
+<li>存在频繁查询时，可以容忍适当的冗余设计，目的是减少多表关联 查询，提高效率</li>
+<li>有些信息频繁变动，需要保存历史信息反范式化一定要适度，并且在原本已满足三范式的基础上再做调整的</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%937-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/" rel="prev" title="数据库7-数据库设计">
+                  <i class="fa fa-angle-left"></i> 数据库7-数据库设计
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%939-SQL%E5%9F%BA%E7%A1%80/" rel="next" title="数据库9-SQL基础">
+                  数据库9-SQL基础 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

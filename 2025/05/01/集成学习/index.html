@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="集成学习概念集成学习 (ensemble learning) 通过构建并结合多个学习器来完成学习任务。 下图展示了集成学习的一般结构：先产生一组“个体学习器” (individual learner)，再用某种策略将它们结合。若集成中只包含同种类型的个体学习器，这样的集成是“同质的” (homogeneous)，同质集成中的个体学习器称为“基学习器” (base learner)，相应的学习算法称">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集成学习">
+<meta property="og:url" content="http://example.com/2025/05/01/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="集成学习概念集成学习 (ensemble learning) 通过构建并结合多个学习器来完成学习任务。 下图展示了集成学习的一般结构：先产生一组“个体学习器” (individual learner)，再用某种策略将它们结合。若集成中只包含同种类型的个体学习器，这样的集成是“同质的” (homogeneous)，同质集成中的个体学习器称为“基学习器” (base learner)，相应的学习算法称">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528111457637.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614031753278.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614031919466.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528111700595.png">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614032129675.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.356Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:23.008Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528111457637.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/","path":"2025/05/01/集成学习/","title":"集成学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>集成学习 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">集成学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.0.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bagging"><span class="nav-number">1.0.2.</span> <span class="nav-text">Bagging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97"><span class="nav-number">1.0.3.</span> <span class="nav-text">随机森林</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boosting"><span class="nav-number">1.0.4.</span> <span class="nav-text">Boosting</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="集成学习 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          集成学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:23" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="集成学习"><a href="#集成学习" class="headerlink" title="集成学习"></a>集成学习</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p><strong>集成学习</strong> (ensemble learning) 通过构建并结合多个学习器来完成学习任务。 下图展示了集成学习的一般结构：先产生一组“个体学习器” (individual learner)，再用某种策略将它们结合。若集成中只包含同种类型的个体学习器，这样的集成是“同质的” (homogeneous)，同质集成中的个体学习器称为“基学习器” (base learner)，相应的学习算法称为“基学习算法” (base learning algorithm)。集成也可以包含不同类型的个体学习器，即“异质的” (heterogenous)。</p>
+<p>**集成学习通过将多个学习器进行结合，通常可以获得比单一学习器显著优越的泛化性能。**这对“弱学习器” (weak learner) 尤为明显。实际中，要获得好的集成，个体学习器通常应该“好二不同”，即个体学习器要有一定的“准确性”，并且要有“多样性”，即学习器间具有差异。</p>
+<h3 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h3><p>给定包含 <em>m</em>个样本的数据集，先随机取出一个样本放入采样集，<strong>再把该样本放回初始数据集</strong>，使得下次采样时该样本仍有可能被选中，经过 <em>m</em> 次随机采样，得到含 <em>m</em> 个样本的采样集，初始训练集中有的样本在采样集多次出现，有的则从未出现。这样可采样出 <em>T</em> 个含 <em>m</em> 个训练样本的采样集，然后基于每个采样集训练出一个基学习器，再将这些基学习器结合。这就是 Bagging 的基本流程。</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528111457637.png" alt="image-20240528111457637"></p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614031753278.png" alt="image-20240614031753278"></p>
+<h3 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h3><p>随机森林 (Random Forset，RF) 是 Bagging 的一个扩展。RF 在以决策树为基学习器构建 Bagging 集成的基础上，在决策树的训练过程中引入随机属性选择。传统决策树在选择划分属性时是在当前节点的属性集合 (假定有 <em>d</em> 个属性) 中选择一个最优属性；而在 RF 中，对基决策树的每个结点，先从该结点的属性集合中随机选择一个包含 <em>k</em> 个属性的子集，然后再从这个子集中选择一个最优属性用于划分。参数 <em>k</em> 控制了随机性的引入程度。 </p>
+<ol>
+<li>假如有N个样本，则有放回的随机选择N个样本(每次随机选择一个样本，然后返回继续选择)。这选择好了的N个样本用来训练一个决策树，作为决策树根节点处的样本。</li>
+<li>当每个样本有M个属性时，在决策树的每个节点需要分裂时，<strong>随机从这M个属性中选取出m个属性，满足条件m &lt;&lt; M。然后从这m个属性中采用某种策略（比如说信息增益</strong>）来选择1个属性作为该节点的分裂属性。</li>
+<li>决策树形成过程中每个节点都要按照步骤2来分裂（很容易理解，如果下一次该节点选出来的那一个属性是刚刚其父节点分裂时用过的属性，则该节点已经达到了叶子节点，无须继续分裂了）。一直到不能够再分裂为止。注意整个决策树形成过程中没有进行剪枝。</li>
+<li>按照步骤1~3建立大量的决策树，这样就构成了随机森林了</li>
+</ol>
+<h3 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h3><p>Boosting 是一族可将弱学习器提升为强学习器的算法：先从初始训练集训练出一个基学习器，再根据基学习器的表现对训练样本进行调整，使得先前基学习器做错的训练样本在后续受到更多的关注，然后基于调整后的样本训练下一个基学习器，如此重复进行，直至基学习器达到事先指定的值，最终将这 <em>T</em> 个基学习器进行加权结合。 </p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614031919466.png" alt="image-20240614031919466"></p>
+<p>著名代表为Adaboosting：</p>
+<ol>
+<li><p><strong>初始化训练数据的权值分布</strong></p>
+<p>如果有N个样本，则每一个训练样本最开始时都被赋予相同的权值：1&#x2F;N</p>
+</li>
+<li><p><strong>训练弱分类器</strong></p>
+<p>如果某个样本点已经被准确地分类，那么在构造下一个训练集中，它的权值就被降低</p>
+<p>相反，如果某个样本点没有被准确地分类，那么它的权值就得到提高</p>
+<p>权值更新过的样本集被用于训练下一个分类器，整个训练过程如此迭代地进行下去</p>
+</li>
+<li><p><strong>将各个训练得到的弱分类器组合成强分类器</strong></p>
+<p>加大分类误差率小的弱分类器的权重，而降低分类误差率大的弱分类器的权重</p>
+</li>
+</ol>
+<p>AdaBoost算法流程如下：</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240528111700595.png" alt="image-20240528111700595"></p>
+<p> Adaboost流程示意图<img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614032129675.png" alt="image-20240614032129675"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA(Support%20Vector%20Machine)/" rel="prev" title="支持向量机(Support Vector Machine)">
+                  <i class="fa fa-angle-left"></i> 支持向量机(Support Vector Machine)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Hash%E6%8A%80%E6%9C%AF/" rel="next" title="Hash技术">
+                  Hash技术 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

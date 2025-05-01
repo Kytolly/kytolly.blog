@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第一章：数据通信、数据网络和因特网1.1  现代企业的数据通信和网络构成1.1.1 趋势 通信量的上升 新服务的发展 技术的进步  1.1.2 数据传输和网络容量需求高速局域网的出现网络处理的数据量不断上升，数据传送的可接受延迟必须变小 企业广域网需求由集中式数据处理模式迭代到高速广域网的建立； 数字电器大大增加了网络运载的图像和视频的通信量 1.1.3 融合使用网际协议基于分组的传输 1.2 通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一章：数据通信、数据网络和因特网">
+<meta property="og:url" content="http://example.com/2025/05/01/%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E3%80%81%E6%95%B0%E6%8D%AE%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第一章：数据通信、数据网络和因特网1.1  现代企业的数据通信和网络构成1.1.1 趋势 通信量的上升 新服务的发展 技术的进步  1.1.2 数据传输和网络容量需求高速局域网的出现网络处理的数据量不断上升，数据传送的可接受延迟必须变小 企业广域网需求由集中式数据处理模式迭代到高速广域网的建立； 数字电器大大增加了网络运载的图像和视频的通信量 1.1.3 融合使用网际协议基于分组的传输 1.2 通">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312111620793.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312111704411.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312112120321.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312112120242.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312112142555.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312122316919.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312122317119.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312140915898.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312140926197.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312140933211.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.334Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.848Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312111620793.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E3%80%81%E6%95%B0%E6%8D%AE%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E3%80%81%E6%95%B0%E6%8D%AE%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/","path":"2025/05/01/第一章：数据通信、数据网络和因特网/","title":"第一章：数据通信、数据网络和因特网"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>第一章：数据通信、数据网络和因特网 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E3%80%81%E6%95%B0%E6%8D%AE%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91"><span class="nav-number">1.</span> <span class="nav-text">第一章：数据通信、数据网络和因特网</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E7%8E%B0%E4%BB%A3%E4%BC%81%E4%B8%9A%E7%9A%84%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E5%92%8C%E7%BD%91%E7%BB%9C%E6%9E%84%E6%88%90"><span class="nav-number">1.1.</span> <span class="nav-text">1.1  现代企业的数据通信和网络构成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-1-%E8%B6%8B%E5%8A%BF"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 趋势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-2-%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E5%92%8C%E7%BD%91%E7%BB%9C%E5%AE%B9%E9%87%8F%E9%9C%80%E6%B1%82"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 数据传输和网络容量需求</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%AB%98%E9%80%9F%E5%B1%80%E5%9F%9F%E7%BD%91%E7%9A%84%E5%87%BA%E7%8E%B0"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">高速局域网的出现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BC%81%E4%B8%9A%E5%B9%BF%E5%9F%9F%E7%BD%91%E9%9C%80%E6%B1%82"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">企业广域网需求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E7%94%B5%E5%99%A8"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">数字电器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-3-%E8%9E%8D%E5%90%88"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.1.3 融合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 通信模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 数据通信</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1 数据通信模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-%E4%BF%A1%E6%81%AF%E7%9A%84%E4%BC%A0%E8%BE%93"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2 信息的传输</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E5%92%8C%E4%BC%A0%E8%BE%93%E5%AA%92%E4%BD%93"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">传输和传输媒体</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">通信技术</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E6%95%88%E7%8E%87"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">传输效率</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E7%BD%91%E7%BB%9C"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1-%E5%B9%BF%E5%9F%9F%E7%BD%91"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.4.1 广域网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2-%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="nav-number">1.4.2.</span> <span class="nav-text">1.4.2 局域网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-3-%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C"><span class="nav-number">1.4.3.</span> <span class="nav-text">1.4.3 无线网络</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E5%9B%A0%E7%89%B9%E7%BD%91"><span class="nav-number">1.5.</span> <span class="nav-text">1.5  因特网</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-1-%E5%9B%A0%E7%89%B9%E7%BD%91%E8%B5%B7%E6%BA%90"><span class="nav-number">1.5.1.</span> <span class="nav-text">1.5.1 因特网起源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-2-%E8%A6%81%E7%B4%A0"><span class="nav-number">1.5.2.</span> <span class="nav-text">1.5.2 要素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-3-%E5%9B%A0%E7%89%B9%E7%BD%91%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">1.5.3 因特网的体系结构</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%8D%8F%E8%AE%AE%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E3%80%81TCP-IP%E5%92%8C%E5%9F%BA%E4%BA%8E%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">第二章：协议体系结构、TCP&#x2F;IP和基于互联网的应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E5%8D%8F%E8%AE%AE%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E7%9A%84%E5%BF%85%E8%A6%81%E6%80%A7"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 协议体系结构的必要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%8F%E8%AE%AE%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 简单的协议结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-TCP-IP%E5%8D%8F%E8%AE%AE%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 TCP&#x2F;IP协议体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-TCP-IP%E5%90%84%E5%B1%82"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 TCP&#x2F;IP各层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-TCP%E5%92%8CIP%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 TCP和IP的操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-TCP%E5%92%8CUDP"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3 TCP和UDP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-4-IP%E5%92%8CIPv6"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.3.4 IP和IPv6</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-5-%E5%8D%8F%E8%AE%AE%E6%8E%A5%E5%8F%A3"><span class="nav-number">2.3.5.</span> <span class="nav-text">2.3.5  协议接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E5%8D%8F%E8%AE%AE%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E7%9A%84%E5%86%85%E9%83%A8%E6%A0%87%E5%87%86%E5%8C%96"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 协议体系结构的内部标准化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-%E6%A0%87%E5%87%86%E5%92%8C%E5%8D%8F%E8%AE%AE%E5%B1%82"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1 标准和协议层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-%E6%9C%8D%E5%8A%A1%E5%8E%9F%E8%AF%AD%E5%92%8C%E5%8F%82%E6%95%B0"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.4.2 服务原语和参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E4%BC%A0%E7%BB%9F%E7%9A%84%E5%9F%BA%E4%BA%8E%E5%9B%A0%E7%89%B9%E7%BD%91%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 传统的基于因特网的应用程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-%E5%A4%9A%E5%AA%92%E4%BD%93"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 多媒体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-1-%E5%AA%92%E4%BD%93%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.6.1.</span> <span class="nav-text">2.6.1 媒体类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-2-%E5%A4%9A%E5%AA%92%E4%BD%93%E5%BA%94%E7%94%A8"><span class="nav-number">2.6.2.</span> <span class="nav-text">2.6.2 多媒体应用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B"><span class="nav-number">2.7.</span> <span class="nav-text">2.7 套接字编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-1-%E5%A5%97%E6%8E%A5%E5%AD%97"><span class="nav-number">2.7.1.</span> <span class="nav-text">2.7.1 套接字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-2-%E5%A5%97%E6%8E%A5%E5%AD%97%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8"><span class="nav-number">2.7.2.</span> <span class="nav-text">2.7.2 套接字接口调用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93"><span class="nav-number">3.</span> <span class="nav-text">第三章：数据传输</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%9C%AF%E8%AF%AD"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 概念与术语</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-%E4%BC%A0%E8%BE%93%E6%9C%AF%E8%AF%AD"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1 传输术语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-2-%E9%A2%91%E7%8E%87%E3%80%81%E9%A2%91%E8%B0%B1%E5%92%8C%E5%B8%A6%E5%AE%BD"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2 频率、频谱和带宽</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%A8%A1%E6%8B%9F%E5%92%8C%E6%95%B0%E5%AD%97%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 模拟和数字数据传输</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E4%B8%8E%E6%95%B0%E5%AD%97%E6%95%B0%E6%8D%AE"><span class="nav-number">3.2.1.</span> <span class="nav-text">3.2.1 模拟数据与数字数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-%E6%A8%A1%E6%8B%9F%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7"><span class="nav-number">3.2.2.</span> <span class="nav-text">3.2.2 模拟信号和数字信号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-3-%E6%A8%A1%E6%8B%9F%E4%BC%A0%E8%BE%93%E5%92%8C%E6%95%B0%E5%AD%97%E4%BC%A0%E8%BE%93"><span class="nav-number">3.2.3.</span> <span class="nav-text">3.2.3 模拟传输和数字传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4-%E5%BC%82%E6%AD%A5%E4%BC%A0%E8%BE%93%E5%92%8C%E5%90%8C%E6%AD%A5%E4%BC%A0%E8%BE%93"><span class="nav-number">3.2.4.</span> <span class="nav-text">3.2.4 异步传输和同步传输</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E4%BC%A0%E8%BE%93%E6%8D%9F%E4%BC%A4"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 传输损伤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-%E8%A1%B0%E5%87%8F"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1 衰减</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-%E6%97%B6%E5%BB%B6"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2 时延</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-3-%E5%99%AA%E5%A3%B0"><span class="nav-number">3.3.3.</span> <span class="nav-text">3.3.3 噪声</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E4%BF%A1%E9%81%93%E5%AE%B9%E9%87%8F"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 信道容量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-1-%E5%A5%88%E5%A5%8E%E6%96%AF%E7%89%B9%E5%B8%A6%E5%AE%BD"><span class="nav-number">3.4.1.</span> <span class="nav-text">3.4.1 奈奎斯特带宽</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-2-%E9%A6%99%E5%86%9C%E5%AE%B9%E9%87%8F%E5%85%AC%E5%BC%8F"><span class="nav-number">3.4.2.</span> <span class="nav-text">3.4.2 香农容量公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-3-%E8%A1%A8%E8%BE%BE%E5%BC%8F-E-b-N-0"><span class="nav-number">3.4.3.</span> <span class="nav-text">3.4.3 表达式  $ {E_b}&#x2F;{N_0}$</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E4%BC%A0%E8%BE%93%E5%AA%92%E4%BD%93"><span class="nav-number">4.</span> <span class="nav-text">第四章：传输媒体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%AF%BC%E5%90%91%E5%AA%92%E4%BD%93"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 导向媒体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-1-%E5%8F%8C%E7%BB%9E%E7%BA%BF"><span class="nav-number">4.1.1.</span> <span class="nav-text">4.1.1 双绞线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-2-%E5%90%8C%E8%BD%B4%E7%94%B5%E7%BC%86"><span class="nav-number">4.1.2.</span> <span class="nav-text">4.1.2 同轴电缆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-3-%E5%85%89%E7%BA%A4"><span class="nav-number">4.1.3.</span> <span class="nav-text">4.1.3 光纤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E6%97%A0%E7%BA%BF%E4%BC%A0%E8%BE%93"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 无线传输</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-1-%E5%A4%A9%E7%BA%BF"><span class="nav-number">4.2.1.</span> <span class="nav-text">4.2.1 天线</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%A9%E7%BA%BF%E5%A2%9E%E7%9B%8A"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">天线增益</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-2-%E5%9C%B0%E9%9D%A2%E5%BE%AE%E6%B3%A2"><span class="nav-number">4.2.2.</span> <span class="nav-text">4.2.2 地面微波</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-3-%E5%8D%AB%E6%98%9F%E5%BE%AE%E6%B3%A2"><span class="nav-number">4.2.3.</span> <span class="nav-text">4.2.3 卫星微波</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-4-%E5%B9%BF%E6%92%AD%E6%97%A0%E7%BA%BF%E7%94%B5"><span class="nav-number">4.2.4.</span> <span class="nav-text">4.2.4 广播无线电</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-5-%E7%BA%A2%E5%A4%96%E7%BA%BF"><span class="nav-number">4.2.5.</span> <span class="nav-text">4.2.5 红外线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E6%97%A0%E7%BA%BF%E4%BC%A0%E6%92%AD"><span class="nav-number">4.3.</span> <span class="nav-text">4.3  无线传播</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-%E5%9C%B0%E6%B3%A2%E4%BC%A0%E8%BE%93"><span class="nav-number">4.3.1.</span> <span class="nav-text">4.3.1 地波传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-2-%E5%A4%A9%E7%BA%BF%E4%BC%A0%E6%92%AD"><span class="nav-number">4.3.2.</span> <span class="nav-text">4.3.2 天线传播</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-3-%E8%A7%86%E8%B7%9D%E4%BC%A0%E6%92%AD"><span class="nav-number">4.3.3.</span> <span class="nav-text">4.3.3 视距传播</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E8%A7%86%E8%B7%9D%E4%BC%A0%E8%BE%93"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 视距传输</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-4-1-%E8%87%AA%E7%94%B1%E7%A9%BA%E9%97%B4%E6%8D%9F%E8%80%97"><span class="nav-number">4.4.0.1.</span> <span class="nav-text">4.4.1 自由空间损耗</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-2-%E5%A4%A7%E6%B0%94%E5%90%B8%E6%94%B6"><span class="nav-number">4.4.1.</span> <span class="nav-text">4.4.2 大气吸收</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-3-%E5%A4%9A%E5%BE%84"><span class="nav-number">4.4.2.</span> <span class="nav-text">4.4.3 多径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-4-%E6%8A%98%E5%B0%84"><span class="nav-number">4.4.3.</span> <span class="nav-text">4.4.4 折射</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E4%BF%A1%E5%8F%B7%E7%BC%96%E7%A0%81%E6%8A%80%E6%9C%AF"><span class="nav-number">5.</span> <span class="nav-text">第五章：信号编码技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E6%95%B0%E5%AD%97%E6%95%B0%E6%8D%AE-%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 数字数据 数字信号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-1-%E4%B8%8D%E5%BD%92%E9%9B%B6%E7%A0%81%EF%BC%88NRZ%EF%BC%89"><span class="nav-number">5.1.1.</span> <span class="nav-text">5.1.1 不归零码（NRZ）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-2-%E5%A4%9A%E7%94%B5%E5%B9%B3%E4%BA%8C%E8%BF%9B%E5%88%B6"><span class="nav-number">5.1.2.</span> <span class="nav-text">5.1.2 多电平二进制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-3-%E5%8F%8C%E7%9B%B8%E4%BD%8D"><span class="nav-number">5.1.3.</span> <span class="nav-text">5.1.3 双相位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-4-%E8%B0%83%E5%88%B6%E7%8E%87"><span class="nav-number">5.1.4.</span> <span class="nav-text">5.1.4 调制率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-5-%E6%89%B0%E7%A0%81%E6%8A%80%E6%9C%AF"><span class="nav-number">5.1.5.</span> <span class="nav-text">5.1.5 扰码技术</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E6%95%B0%E5%AD%97%E6%95%B0%E6%8D%AE-%E6%A8%A1%E6%8B%9F%E4%BF%A1%E5%8F%B7"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 数字数据 模拟信号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-1-%E6%8C%AF%E5%B9%85%E9%94%AE%E6%8E%A7ASK"><span class="nav-number">5.2.1.</span> <span class="nav-text">5.2.1 振幅键控ASK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-2-%E9%A2%91%E7%A7%BB%E9%94%AE%E6%8E%A7FSK"><span class="nav-number">5.2.2.</span> <span class="nav-text">5.2.2 频移键控FSK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-3-%E7%9B%B8%E7%A7%BB%E9%94%AE%E6%8E%A7"><span class="nav-number">5.2.3.</span> <span class="nav-text">5.2.3 相移键控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-4-%E6%80%A7%E8%83%BD"><span class="nav-number">5.2.4.</span> <span class="nav-text">5.2.4 性能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE-%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 模拟数据 数字信号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-1-%E8%84%89%E7%A0%81%E8%B0%83%E5%88%B6"><span class="nav-number">5.3.1.</span> <span class="nav-text">5.3.1 脉码调制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-2-%E5%A2%9E%E9%87%8F%E8%B0%83%E5%88%B6"><span class="nav-number">5.3.2.</span> <span class="nav-text">5.3.2 增量调制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-3-%E6%80%A7%E8%83%BD"><span class="nav-number">5.3.3.</span> <span class="nav-text">5.3.3 性能</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9A%E5%B7%AE%E9%94%99%E6%A3%80%E6%B5%8B%E5%92%8C%E7%BA%A0%E6%AD%A3"><span class="nav-number">6.</span> <span class="nav-text">第六章：差错检测和纠正</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E5%B7%AE%E9%94%99%E7%B1%BB%E5%9E%8B"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 差错类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E5%B7%AE%E9%94%99%E6%A3%80%E6%B5%8B"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 差错检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 奇偶校验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-1-%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C%E6%AF%94%E7%89%B9"><span class="nav-number">6.3.1.</span> <span class="nav-text">6.3.1 奇偶校验比特</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-2-%E4%BA%8C%E7%BB%B4%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C"><span class="nav-number">6.3.2.</span> <span class="nav-text">6.3.2 二维奇偶校验</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A0%A1%E9%AA%8C%E5%92%8C"><span class="nav-number">6.4.</span> <span class="nav-text">6.4 因特网校验和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-%E5%BE%AA%E7%8E%AF%E5%86%97%E4%BD%99%E6%A3%80%E6%B5%8B"><span class="nav-number">6.5.</span> <span class="nav-text">6.5 循环冗余检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-5-1-%E6%A8%A1%E4%BA%8C%E9%99%A4%E6%B3%95"><span class="nav-number">6.5.1.</span> <span class="nav-text">6.5.1 模二除法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-5-2-%E5%A4%9A%E9%A1%B9%E5%BC%8F"><span class="nav-number">6.5.2.</span> <span class="nav-text">6.5 2 多项式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-5-3-%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91"><span class="nav-number">6.5.3.</span> <span class="nav-text">6.5 3 数字逻辑</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-%E5%89%8D%E5%90%91%E7%BA%A0%E9%94%99"><span class="nav-number">6.6.</span> <span class="nav-text">6.6 前向纠错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-6-1-%E5%9D%97%E7%A0%81%E5%8E%9F%E7%90%86"><span class="nav-number">6.6.1.</span> <span class="nav-text">6.6.1 块码原理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.</span> <span class="nav-text">第七章：数据链路控制协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 流量控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-1-%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="nav-number">7.1.1.</span> <span class="nav-text">7.1.1 停止等待流量控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-2-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="nav-number">7.1.2.</span> <span class="nav-text">7.1.2 滑动窗口流量控制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-%E5%B7%AE%E9%94%99%E6%8E%A7%E5%88%B6"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 差错控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-1-%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85ARQ"><span class="nav-number">7.2.1.</span> <span class="nav-text">7.2.1 停止等待ARQ</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-2-%E8%BF%94%E5%9B%9EN-ARQ"><span class="nav-number">7.2.2.</span> <span class="nav-text">7.2.2 返回N ARQ</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-3-%E9%80%89%E6%8B%A9%E6%8B%92%E7%BB%9DARQ"><span class="nav-number">7.2.3.</span> <span class="nav-text">7.2.3 选择拒绝ARQ</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E6%8E%A7%E5%88%B6%EF%BC%88HDLC%EF%BC%89"><span class="nav-number">7.3.</span> <span class="nav-text">7.3 高级数据链路控制（HDLC）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-1-%E5%9F%BA%E6%9C%AC%E7%89%B9%E7%82%B9"><span class="nav-number">7.3.1.</span> <span class="nav-text">7.3.1 基本特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-2-%E5%B8%A7%E7%BB%93%E6%9E%84"><span class="nav-number">7.3.2.</span> <span class="nav-text">7.3.2 帧结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-3-%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="nav-number">7.3.3.</span> <span class="nav-text">7.3.3 运行方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">7.3.3.1.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81"><span class="nav-number">7.3.3.2.</span> <span class="nav-text">数据传送</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8B%86%E9%93%BE"><span class="nav-number">7.3.3.3.</span> <span class="nav-text">拆链</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0%EF%BC%9A%E5%A4%8D%E7%94%A8"><span class="nav-number">8.</span> <span class="nav-text">第八章：复用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-%E9%A2%91%E5%88%86%E5%A4%8D%E7%94%A8"><span class="nav-number">8.1.</span> <span class="nav-text">8.1 频分复用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-1-%E7%89%B9%E7%82%B9"><span class="nav-number">8.1.1.</span> <span class="nav-text">8.1.1 特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-2-%E6%A8%A1%E6%8B%9F%E8%BD%BD%E6%B3%A2%E7%B3%BB%E7%BB%9F"><span class="nav-number">8.1.2.</span> <span class="nav-text">8.1.2 模拟载波系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-3-%E6%B3%A2%E5%88%86%E5%A4%8D%E7%94%A8"><span class="nav-number">8.1.3.</span> <span class="nav-text">8.1.3 波分复用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E5%90%8C%E6%AD%A5%E6%97%B6%E5%88%86%E5%A4%8D%E7%94%A8"><span class="nav-number">8.2.</span> <span class="nav-text">8.2 同步时分复用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-1-%E7%89%B9%E7%82%B9"><span class="nav-number">8.2.1.</span> <span class="nav-text">8.2.1 特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-2-TDM%E9%93%BE%E8%B7%AF%E6%8E%A7%E5%88%B6"><span class="nav-number">8.2.2.</span> <span class="nav-text">8.2.2 TDM链路控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-3-%E6%95%B0%E5%AD%97%E8%BD%BD%E6%B3%A2%E7%B3%BB%E7%BB%9F"><span class="nav-number">8.2.3.</span> <span class="nav-text">8.2.3 数字载波系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-4-SONET-SDH"><span class="nav-number">8.2.4.</span> <span class="nav-text">8.2.4 SONET&#x2F;SDH</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-%E7%94%B5%E7%BC%86%E8%B0%83%E8%A7%A3%E8%B0%83%E5%88%B6%E5%99%A8"><span class="nav-number">8.3.</span> <span class="nav-text">8.3 电缆调解调制器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-%E9%9D%9E%E5%AF%B9%E7%A7%B0%E6%95%B0%E5%AD%97%E7%94%A8%E6%88%B7%E7%BA%BF%E8%B7%AF"><span class="nav-number">8.4.</span> <span class="nav-text">8.4 非对称数字用户线路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4-1-ADSL%E8%AE%BE%E8%AE%A1"><span class="nav-number">8.4.1.</span> <span class="nav-text">8.4.1 ADSL设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4-2-%E7%A6%BB%E6%95%A3%E5%A4%9A%E9%9F%B3%E8%B0%83"><span class="nav-number">8.4.2.</span> <span class="nav-text">8.4.2 离散多音调</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4-3-%E5%B8%A6%E5%AE%BD%E6%8E%A5%E5%85%A5%E8%AE%BE%E8%AE%A1"><span class="nav-number">8.4.3.</span> <span class="nav-text">8.4.3 带宽接入设计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-xDSL"><span class="nav-number">8.5.</span> <span class="nav-text">8.5 xDSL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-1-%E9%AB%98%E6%95%B0%E6%8D%AE%E7%8E%87%E6%95%B0%E5%AD%97%E7%94%A8%E6%88%B7%E8%B7%AF%E7%BA%BFHDSL"><span class="nav-number">8.5.1.</span> <span class="nav-text">8.5.1 高数据率数字用户路线HDSL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-2-%E5%8D%95%E7%BA%BF%E6%95%B0%E5%AD%97%E7%94%A8%E6%88%B7%E8%B7%AF%E7%BA%BFSDSL"><span class="nav-number">8.5.2.</span> <span class="nav-text">8.5.2 单线数字用户路线SDSL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-3-%E7%94%9A%E9%AB%98%E6%95%B0%E6%8D%AE%E7%8E%87%E6%95%B0%E5%AD%97%E7%94%A8%E6%88%B7%E8%B7%AF%E7%BA%BFVDSL"><span class="nav-number">8.5.3.</span> <span class="nav-text">8.5.3 甚高数据率数字用户路线VDSL</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-6-%E5%A4%9A%E4%BF%A1%E9%81%93%E6%8E%A5%E5%85%A5"><span class="nav-number">8.6.</span> <span class="nav-text">8.6 多信道接入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-6-1-%E9%A2%91%E5%88%86%E5%8F%8C%E5%B7%A5FDD"><span class="nav-number">8.6.1.</span> <span class="nav-text">8.6.1 频分双工FDD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-6-2-%E6%97%B6%E5%88%86%E5%8F%8C%E5%B7%A5TDD"><span class="nav-number">8.6.2.</span> <span class="nav-text">8.6.2 时分双工TDD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-6-3-%E9%A2%91%E5%88%86%E5%A4%9A%E5%9D%80FDMA"><span class="nav-number">8.6.3.</span> <span class="nav-text">8.6.3 频分多址FDMA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-6-4-%E6%97%B6%E5%88%86%E5%A4%9A%E5%9D%80"><span class="nav-number">8.6.4.</span> <span class="nav-text">8.6.4 时分多址</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0%EF%BC%9A%E5%B9%BF%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E5%92%8C%E5%8D%8F%E8%AE%AE"><span class="nav-number">9.</span> <span class="nav-text">第九章：广域网技术和协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-%E4%BA%A4%E6%8D%A2%E5%BC%8F%E9%80%9A%E4%BF%A1%E7%BD%91"><span class="nav-number">9.1.</span> <span class="nav-text">9.1 交换式通信网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2%E7%BD%91%E7%BB%9C"><span class="nav-number">9.2.</span> <span class="nav-text">9.2 电路交换网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">9.3.</span> <span class="nav-text">9.3 电路交换的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-1-%E7%A9%BA%E5%88%86%E4%BA%A4%E6%8D%A2"><span class="nav-number">9.3.1.</span> <span class="nav-text">9.3.1 空分交换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-2-%E6%97%B6%E5%88%86%E4%BA%A4%E6%8D%A2"><span class="nav-number">9.3.2.</span> <span class="nav-text">9.3.2 时分交换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-3-%E6%97%B6%E9%9A%99%E4%BA%A4%E6%8D%A2"><span class="nav-number">9.3.3.</span> <span class="nav-text">9.3.3 时隙交换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-3-4-%E6%97%B6%E9%97%B4%E5%A4%8D%E7%94%A8%E4%BA%A4%E6%8D%A2"><span class="nav-number">9.3.4.</span> <span class="nav-text">9.3.4 时间复用交换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-4-%E8%BD%AF%E4%BA%A4%E6%8D%A2%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">9.4.</span> <span class="nav-text">9.4 软交换体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-5-%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86"><span class="nav-number">9.5.</span> <span class="nav-text">9.5 分组交换原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-1-%E4%BA%A4%E6%8D%A2%E6%8A%80%E6%9C%AF"><span class="nav-number">9.5.1.</span> <span class="nav-text">9.5.1 交换技术</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-2-%E5%88%86%E7%BB%84%E5%A4%A7%E5%B0%8F"><span class="nav-number">9.5.2.</span> <span class="nav-text">9.5.2 分组大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-3-%E5%A4%96%E9%83%A8%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3"><span class="nav-number">9.5.3.</span> <span class="nav-text">9.5.3 外部网络接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-5-4-%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2%E5%92%8C%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2%E5%AF%B9%E6%AF%94"><span class="nav-number">9.5.4.</span> <span class="nav-text">9.5.4 电路交换和分组交换对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-%E5%BC%82%E6%AD%A5%E4%BC%A0%E8%BE%93%E6%96%B9%E5%BC%8F"><span class="nav-number">9.6.</span> <span class="nav-text">9.6 异步传输方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-6-2-ATM%E4%BF%A1%E5%85%83"><span class="nav-number">9.6.1.</span> <span class="nav-text">9.6.2 ATM信元</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0%EF%BC%9A%E8%9C%82%E7%AA%9D%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C"><span class="nav-number">10.</span> <span class="nav-text">第十章：蜂窝无线网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-1-%E8%9C%82%E7%AA%9D%E7%BD%91%E7%BB%9C%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">10.1.</span> <span class="nav-text">10.1 蜂窝网络的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-1-1-%E8%9C%82%E7%AA%9D%E7%BD%91%E7%BB%9C%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">10.1.1.</span> <span class="nav-text">10.1.1 蜂窝网络的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A2%91%E7%8E%87%E9%87%8D%E7%94%A8"><span class="nav-number">10.1.1.1.</span> <span class="nav-text">频率重用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A2%9E%E5%A4%A7%E5%AE%B9%E9%87%8F"><span class="nav-number">10.1.1.2.</span> <span class="nav-text">增大容量</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-1-2-%E8%9C%82%E7%AA%9D%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">10.1.2.</span> <span class="nav-text">10.1.2 蜂窝系统的操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-1-3-%E7%A7%BB%E5%8A%A8%E6%97%A0%E7%BA%BF%E7%94%B5%E4%BC%A0%E6%92%AD%E6%95%88%E5%BA%94"><span class="nav-number">10.1.3.</span> <span class="nav-text">10.1.3  移动无线电传播效应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-1-4-%E7%A7%BB%E5%8A%A8%E7%8E%AF%E5%A2%83%E4%B8%AD%E7%9A%84%E8%A1%B0%E8%90%BD"><span class="nav-number">10.1.4.</span> <span class="nav-text">10.1.4 移动环境中的衰落</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%9A%E5%BE%84%E4%BC%A0%E6%92%AD"><span class="nav-number">10.1.4.1.</span> <span class="nav-text">多径传播</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%9A%E5%BE%84%E4%BC%A0%E6%92%AD%E6%95%88%E5%BA%94"><span class="nav-number">10.1.4.2.</span> <span class="nav-text">多径传播效应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A1%B0%E8%90%BD%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">10.1.4.3.</span> <span class="nav-text">衰落的类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B7%AE%E9%94%99%E8%A1%A5%E5%81%BF%E6%9C%BA%E5%88%B6"><span class="nav-number">10.1.4.4.</span> <span class="nav-text">差错补偿机制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-%E5%9B%9B%E4%BB%A3%E8%9C%82%E7%AA%9D%E7%BD%91%E7%BB%9C"><span class="nav-number">10.2.</span> <span class="nav-text">10.2 四代蜂窝网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-2-1-%E7%AC%AC%E4%B8%80%E4%BB%A3"><span class="nav-number">10.2.1.</span> <span class="nav-text">10.2.1 第一代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-2-2-%E7%AC%AC%E4%BA%8C%E4%BB%A3"><span class="nav-number">10.2.2.</span> <span class="nav-text">10.2.2 第二代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-2-3-%E7%AC%AC%E4%B8%89%E4%BB%A3"><span class="nav-number">10.2.3.</span> <span class="nav-text">10.2.3 第三代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-2-4-%E7%AC%AC%E5%9B%9B%E4%BB%A3"><span class="nav-number">10.2.4.</span> <span class="nav-text">10.2.4 第四代</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-LTE-Advanced"><span class="nav-number">10.3.</span> <span class="nav-text">10.3 LTE-Advanced</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-3-1-LTE-Advanced%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">10.3.1.</span> <span class="nav-text">10.3.1 LTE-Advanced体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-3-2-LTE-Advanced%E4%BC%A0%E8%BE%93%E7%89%B9%E6%80%A7"><span class="nav-number">10.3.2.</span> <span class="nav-text">10.3.2 LTE-Advanced传输特性</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E3%80%81%E6%95%B0%E6%8D%AE%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="第一章：数据通信、数据网络和因特网 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          第一章：数据通信、数据网络和因特网
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="第一章：数据通信、数据网络和因特网"><a href="#第一章：数据通信、数据网络和因特网" class="headerlink" title="第一章：数据通信、数据网络和因特网"></a>第一章：数据通信、数据网络和因特网</h2><h3 id="1-1-现代企业的数据通信和网络构成"><a href="#1-1-现代企业的数据通信和网络构成" class="headerlink" title="1.1  现代企业的数据通信和网络构成"></a>1.1  现代企业的数据通信和网络构成</h3><h4 id="1-1-1-趋势"><a href="#1-1-1-趋势" class="headerlink" title="1.1.1 趋势"></a>1.1.1 趋势</h4><ul>
+<li>通信量的上升</li>
+<li>新服务的发展</li>
+<li>技术的进步</li>
+</ul>
+<h4 id="1-1-2-数据传输和网络容量需求"><a href="#1-1-2-数据传输和网络容量需求" class="headerlink" title="1.1.2 数据传输和网络容量需求"></a>1.1.2 数据传输和网络容量需求</h4><h5 id="高速局域网的出现"><a href="#高速局域网的出现" class="headerlink" title="高速局域网的出现"></a>高速局域网的出现</h5><p>网络处理的数据量不断上升，数据传送的可接受延迟必须变小</p>
+<h5 id="企业广域网需求"><a href="#企业广域网需求" class="headerlink" title="企业广域网需求"></a>企业广域网需求</h5><p>由集中式数据处理模式迭代到高速广域网的建立；</p>
+<h5 id="数字电器"><a href="#数字电器" class="headerlink" title="数字电器"></a>数字电器</h5><p>大大增加了网络运载的图像和视频的通信量</p>
+<h4 id="1-1-3-融合"><a href="#1-1-3-融合" class="headerlink" title="1.1.3 融合"></a>1.1.3 融合</h4><p>使用网际协议基于分组的传输</p>
+<h3 id="1-2-通信模型"><a href="#1-2-通信模型" class="headerlink" title="1.2 通信模型"></a>1.2 通信模型</h3><p>要素：源点、发送器、传输系统、接收器、终点</p>
+<h3 id="1-3-数据通信"><a href="#1-3-数据通信" class="headerlink" title="1.3 数据通信"></a>1.3 数据通信</h3><h4 id="1-3-1-数据通信模型"><a href="#1-3-1-数据通信模型" class="headerlink" title="1.3.1 数据通信模型"></a>1.3.1 数据通信模型</h4><p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312111620793.png" alt="image-20231211162001737"></p>
+<h4 id="1-3-2-信息的传输"><a href="#1-3-2-信息的传输" class="headerlink" title="1.3.2 信息的传输"></a>1.3.2 信息的传输</h4><p>企业关注传输媒体的选择，引人注目的是光纤传输和无线传输；</p>
+<p>通过复用和压缩提高传输效率；</p>
+<h5 id="传输和传输媒体"><a href="#传输和传输媒体" class="headerlink" title="传输和传输媒体"></a>传输和传输媒体</h5><p>双绞线、同轴电缆、光缆、地面微波、卫星微波</p>
+<h5 id="通信技术"><a href="#通信技术" class="headerlink" title="通信技术"></a>通信技术</h5><p> 编码</p>
+<h5 id="传输效率"><a href="#传输效率" class="headerlink" title="传输效率"></a>传输效率</h5><p>复用和压缩</p>
+<h3 id="1-4-网络"><a href="#1-4-网络" class="headerlink" title="1.4 网络"></a>1.4 网络</h3><p>局域网（LAN）：世界上最普遍的网络类型之一，</p>
+<p>简单介绍各种类型的网络：</p>
+<h4 id="1-4-1-广域网"><a href="#1-4-1-广域网" class="headerlink" title="1.4.1 广域网"></a>1.4.1 广域网</h4><p>广域网的建立采用下列技术</p>
+<ul>
+<li>电路交换：两点建立专用的通信路径</li>
+<li>分组交换：数据以小的分组发送出去</li>
+<li>帧中继：采用变长的帧，高数据率和低误码率</li>
+<li>ATM（异步传输方式）：采用固定长度且较短的信元，拓展电路交换技术</li>
+</ul>
+<h4 id="1-4-2-局域网"><a href="#1-4-2-局域网" class="headerlink" title="1.4.2 局域网"></a>1.4.2 局域网</h4><p>范围小、相连设备属于同一组织、数据率高</p>
+<h4 id="1-4-3-无线网络"><a href="#1-4-3-无线网络" class="headerlink" title="1.4.3 无线网络"></a>1.4.3 无线网络</h4><p>移动性、安装配置的简易性；</p>
+<h3 id="1-5-因特网"><a href="#1-5-因特网" class="headerlink" title="1.5  因特网"></a>1.5  因特网</h3><h4 id="1-5-1-因特网起源"><a href="#1-5-1-因特网起源" class="headerlink" title="1.5.1 因特网起源"></a>1.5.1 因特网起源</h4><p>由DARPA开发，基础是TCP&#x2F;IP协议族</p>
+<h4 id="1-5-2-要素"><a href="#1-5-2-要素" class="headerlink" title="1.5.2 要素"></a>1.5.2 要素</h4><ul>
+<li>主机</li>
+<li>网络</li>
+<li>路由器：连接网络</li>
+</ul>
+<p>运行方式如下：源点将数据拆分成IP分组，每个分组包含IP地址，每个分组携带IP地址途径一连串的路由器和网络，到达目的点</p>
+<h5 id="1-5-3-因特网的体系结构"><a href="#1-5-3-因特网的体系结构" class="headerlink" title="1.5.3 因特网的体系结构"></a>1.5.3 因特网的体系结构</h5><ul>
+<li>交换局</li>
+<li>用户驻地设备</li>
+<li>因特网服务提供者</li>
+<li>网络接入点</li>
+<li>网络服务提供者</li>
+<li>网络接入点</li>
+<li>网络服务提供者</li>
+<li>汇接点</li>
+</ul>
+<h2 id="第二章：协议体系结构、TCP-IP和基于互联网的应用程序"><a href="#第二章：协议体系结构、TCP-IP和基于互联网的应用程序" class="headerlink" title="第二章：协议体系结构、TCP&#x2F;IP和基于互联网的应用程序"></a>第二章：协议体系结构、TCP&#x2F;IP和基于互联网的应用程序</h2><h3 id="2-1-协议体系结构的必要性"><a href="#2-1-协议体系结构的必要性" class="headerlink" title="2.1 协议体系结构的必要性"></a>2.1 协议体系结构的必要性</h3><p>协议作为规则的集合，构成栈结构</p>
+<p>协议要素：语法、语义、定时关系</p>
+<h3 id="2-2-简单的协议结构"><a href="#2-2-简单的协议结构" class="headerlink" title="2.2 简单的协议结构"></a>2.2 简单的协议结构</h3><p>通信任务划分为3个层次：网络接入层、运输层、应用层；</p>
+<p>应用程序在计算机内部也有唯一的地址：端口；</p>
+<ul>
+<li>运输层为数据加上运输首部，内容是协议控制信息，形成协议数据单元（PDU），这个过程成为封装，PDU也称为报文段；</li>
+<li>网络层接受来自运输层的报文段，网络接入协议（NAP）为报文段加入一个网络接入首部，形成分组；</li>
+</ul>
+<h3 id="2-3-TCP-IP协议体系结构"><a href="#2-3-TCP-IP协议体系结构" class="headerlink" title="2.3 TCP&#x2F;IP协议体系结构"></a>2.3 TCP&#x2F;IP协议体系结构</h3><h4 id="2-3-1-TCP-IP各层"><a href="#2-3-1-TCP-IP各层" class="headerlink" title="2.3.1 TCP&#x2F;IP各层"></a>2.3.1 TCP&#x2F;IP各层</h4><ul>
+<li>物理层</li>
+<li>数据链路层</li>
+<li>网际层</li>
+<li>运输层</li>
+<li>应用层</li>
+</ul>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312111704411.png" alt="image-20231211170457277"></p>
+<h4 id="2-3-2-TCP和IP的操作"><a href="#2-3-2-TCP和IP的操作" class="headerlink" title="2.3.2 TCP和IP的操作"></a>2.3.2 TCP和IP的操作</h4><ul>
+<li>主机A上端口3关联的进程将报文向下递交给TCP，告知发送主机B的端口2，报文增加控制信息（TCP首部）形成TCP报文段</li>
+<li>TCP向下递交报文给IP，告知发送给主机B，增加IP首部形成IP报文段</li>
+<li>IP将报文向下递交给网络接入层，告知发送给路由器J，增加网络层首部形成分组或者帧、</li>
+</ul>
+<h4 id="2-3-3-TCP和UDP"><a href="#2-3-3-TCP和UDP" class="headerlink" title="2.3.3 TCP和UDP"></a>2.3.3 TCP和UDP</h4><ul>
+<li>TCP为应用程序之间的数据传送形成可靠的连接；</li>
+<li>UDP不保证交付的正确性，不维护到达时的顺序，不管是否有重复到达，面向无连接；</li>
+<li>SNMP（简单网络管理协议）使用了UDP</li>
+</ul>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312112120321.png" alt="image-20231211212035244"></p>
+<h4 id="2-3-4-IP和IPv6"><a href="#2-3-4-IP和IPv6" class="headerlink" title="2.3.4 IP和IPv6"></a>2.3.4 IP和IPv6</h4><ul>
+<li>IP首部格式最小长度为20字，IPv6首部格式最小为40字</li>
+<li>IPv6由IETF发布，人们对更多地址有需求</li>
+</ul>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312112120242.png" alt="image-20231211212053143"></p>
+<h4 id="2-3-5-协议接口"><a href="#2-3-5-协议接口" class="headerlink" title="2.3.5  协议接口"></a>2.3.5  协议接口</h4><ul>
+<li><p>TCP&#x2F;IP协议族每一层都与他的邻层直接交互操作；</p>
+</li>
+<li><p>有些应用并没有每一层都用到，调用任意一层的服务是允许的；</p>
+</li>
+</ul>
+<h3 id="2-4-协议体系结构的内部标准化"><a href="#2-4-协议体系结构的内部标准化" class="headerlink" title="2.4 协议体系结构的内部标准化"></a>2.4 协议体系结构的内部标准化</h3><h4 id="2-4-1-标准和协议层"><a href="#2-4-1-标准和协议层" class="headerlink" title="2.4.1 标准和协议层"></a>2.4.1 标准和协议层</h4><p>每一层所要求的标准化工作的三个关键元素;协议规约、服务定义、寻址</p>
+<h4 id="2-4-2-服务原语和参数"><a href="#2-4-2-服务原语和参数" class="headerlink" title="2.4.2 服务原语和参数"></a>2.4.2 服务原语和参数</h4><p>发放N实体向另一系统的对等N实体传送数据：</p>
+<ul>
+<li>源点N实体请求调用他的N-1实体，参数是传输的数据和终点地址</li>
+<li>N-1实体准备一个（N-1）PDU发送到对等N-1实体</li>
+<li>终点的N-1实体把数据交付给终点适当的N实体，参数为数据和源点地址</li>
+<li>若要求确认，终点的N实体向N-1实体发送响应</li>
+<li>N-1实体用（N-1）PDU运送这个确认</li>
+<li>以证实的服务原语交付给N实体</li>
+</ul>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312112142555.png" alt="image-20231211214228519"></p>
+<h3 id="2-5-传统的基于因特网的应用程序"><a href="#2-5-传统的基于因特网的应用程序" class="headerlink" title="2.5 传统的基于因特网的应用程序"></a>2.5 传统的基于因特网的应用程序</h3><ul>
+<li>简单邮件传输协议（SMTP）</li>
+<li>文件传送协议（FTP）</li>
+<li>安全外壳（SSH）</li>
+</ul>
+<h3 id="2-6-多媒体"><a href="#2-6-多媒体" class="headerlink" title="2.6 多媒体"></a>2.6 多媒体</h3><h4 id="2-6-1-媒体类型"><a href="#2-6-1-媒体类型" class="headerlink" title="2.6.1 媒体类型"></a>2.6.1 媒体类型</h4><ul>
+<li>文本</li>
+<li>音频</li>
+<li>图像</li>
+<li>视频</li>
+</ul>
+<h4 id="2-6-2-多媒体应用"><a href="#2-6-2-多媒体应用" class="headerlink" title="2.6.2 多媒体应用"></a>2.6.2 多媒体应用</h4><p>流视频、流音频等</p>
+<h3 id="2-7-套接字编程"><a href="#2-7-套接字编程" class="headerlink" title="2.7 套接字编程"></a>2.7 套接字编程</h3><h4 id="2-7-1-套接字"><a href="#2-7-1-套接字" class="headerlink" title="2.7.1 套接字"></a>2.7.1 套接字</h4><p>一个应用程序可以有多个套接字地址，每个端口对应一个套接字</p>
+<h4 id="2-7-2-套接字接口调用"><a href="#2-7-2-套接字接口调用" class="headerlink" title="2.7.2 套接字接口调用"></a>2.7.2 套接字接口调用</h4><p> ……</p>
+<p>​      </p>
+<h2 id="第三章：数据传输"><a href="#第三章：数据传输" class="headerlink" title="第三章：数据传输"></a>第三章：数据传输</h2><h3 id="3-1-概念与术语"><a href="#3-1-概念与术语" class="headerlink" title="3.1 概念与术语"></a>3.1 概念与术语</h3><h4 id="3-1-1-传输术语"><a href="#3-1-1-传输术语" class="headerlink" title="3.1.1 传输术语"></a>3.1.1 传输术语</h4><ul>
+<li>导向媒体、非导向媒体</li>
+<li>直连链路、点对点、多点</li>
+<li>单工、半双工、全双工</li>
+</ul>
+<h4 id="3-1-2-频率、频谱和带宽"><a href="#3-1-2-频率、频谱和带宽" class="headerlink" title="3.1.2 频率、频谱和带宽"></a>3.1.2 频率、频谱和带宽</h4><ul>
+<li><p>模拟信号、数字信号</p>
+</li>
+<li><p>周期信号</p>
+</li>
+<li><p>峰值振幅、频率、相位、周期、波长</p>
+</li>
+<li><p>频域、基频、谐频</p>
+<p>一般的，信号频率越大的成分的强度迅速减小，但不为零</p>
+</li>
+<li><p>绝对带宽、有效带宽（带宽）</p>
+</li>
+<li><p>直流成分</p>
+</li>
+<li><p>对于频率为$f$的01方波，每个脉冲持续时间为$\frac{1}{2f}$,数据率为$2f$,对于振幅为A的方波径傅里叶变换表达式如下</p>
+<p>$s(t)&#x3D;A\times \frac{4}{\pi}\times \sum_{k&#x3D;1,k\equiv 1mod2}^{\infty}\frac{sin(2\pi fkt)}{k}$</p>
+<p>任何数字波形都有无限的绝对带宽，但是将它作为一个信号在某个媒体上传输，媒体将限制信号的带宽（传输带宽越高，成本越高）</p>
+</li>
+<li><p>信号的数据率越高，其有效带宽越宽</p>
+</li>
+</ul>
+<h3 id="3-2-模拟和数字数据传输"><a href="#3-2-模拟和数字数据传输" class="headerlink" title="3.2 模拟和数字数据传输"></a>3.2 模拟和数字数据传输</h3><h4 id="3-2-1-模拟数据与数字数据"><a href="#3-2-1-模拟数据与数字数据" class="headerlink" title="3.2.1 模拟数据与数字数据"></a>3.2.1 模拟数据与数字数据</h4><p>模拟数据：音频等</p>
+<p>数字数据：文本、字符串等</p>
+<p>视频既可以用连续信号传输，也可以存储为数字文件格式</p>
+<h4 id="3-2-2-模拟信号和数字信号"><a href="#3-2-2-模拟信号和数字信号" class="headerlink" title="3.2.2 模拟信号和数字信号"></a>3.2.2 模拟信号和数字信号</h4><p>音频带宽：300~3400Hz</p>
+<p>视频带宽：0~4MHz</p>
+<p>二进制数据：取决于波形</p>
+<h4 id="3-2-3-模拟传输和数字传输"><a href="#3-2-3-模拟传输和数字传输" class="headerlink" title="3.2.3 模拟传输和数字传输"></a>3.2.3 模拟传输和数字传输</h4><p>模拟传输：包括放大器来克服衰减，但可能导致失真</p>
+<p>数字传输：通过转发器，每隔一段短距离恢复原来的数字信号</p>
+<p>数字传输的优势：</p>
+<ul>
+<li>数字技术</li>
+<li>数据完整性</li>
+<li>容量利用率</li>
+<li>安全保密</li>
+<li>综合性</li>
+</ul>
+<h4 id="3-2-4-异步传输和同步传输"><a href="#3-2-4-异步传输和同步传输" class="headerlink" title="3.2.4 异步传输和同步传输"></a>3.2.4 异步传输和同步传输</h4><ul>
+<li>异步传输：拒绝无中断的长比特流</li>
+<li>同步传输：发送器和接收器建立独立的时钟路线以确保时钟同步，短距离表现良好，长距离有可能时钟脉冲会受到损伤</li>
+</ul>
+<h3 id="3-3-传输损伤"><a href="#3-3-传输损伤" class="headerlink" title="3.3 传输损伤"></a>3.3 传输损伤</h3><h4 id="3-3-1-衰减"><a href="#3-3-1-衰减" class="headerlink" title="3.3.1 衰减"></a>3.3.1 衰减</h4><p>对于电磁波，频率越高衰减越严重，采取均衡衰减技术；</p>
+<p>相对衰减值$N_f&#x3D;-10lg(\frac{P_f}{P_{1000}})$；</p>
+<h4 id="3-3-2-时延"><a href="#3-3-2-时延" class="headerlink" title="3.3.2 时延"></a>3.3.2 时延</h4><p>靠近中心频率的地方传播速度快，两侧较慢，因此信号的不同频率成分到达接收器的时间不同；</p>
+<h4 id="3-3-3-噪声"><a href="#3-3-3-噪声" class="headerlink" title="3.3.3 噪声"></a>3.3.3 噪声</h4><p>传输性能的主要制约因素：噪声</p>
+<p>分类：热噪声、互调噪声、串扰、冲击噪声…</p>
+<h3 id="3-4-信道容量"><a href="#3-4-信道容量" class="headerlink" title="3.4 信道容量"></a>3.4 信道容量</h3><p>信道容量：信道能达到的最大数据传输速率</p>
+<h4 id="3-4-1-奈奎斯特带宽"><a href="#3-4-1-奈奎斯特带宽" class="headerlink" title="3.4.1 奈奎斯特带宽"></a>3.4.1 奈奎斯特带宽</h4><p>无噪声、信道带宽为B，可承受的最大信号率为2B</p>
+<p>限制来源于码间串扰；</p>
+<p>对于多电平信号，$C&#x3D;2Blog_2M$;</p>
+<h4 id="3-4-2-香农容量公式"><a href="#3-4-2-香农容量公式" class="headerlink" title="3.4.2 香农容量公式"></a>3.4.2 香农容量公式</h4><p>噪声的存在会破坏一个或多个比特，数据率增加，比特率变短，给定噪声模式会影响更多比特；</p>
+<p>$SNR_{db}&#x3D;10lg\frac{P_s}{P_n}$,SNR越高，表明信号质量越高；</p>
+<p>在高斯白噪声影响下，信道无误码容量公式$C&#x3D;Blog_2(1+SNR)$；</p>
+<p>频谱效率$\frac{C}{B}&#x3D;log_2(1+SNR)$;在SNR&lt;1时几乎线性，在SNR&gt;1时平缓上升；</p>
+<p>信噪比低于0dB，影响信道容量的主要因素是噪声；高于0dB，则取决于信号的设计；</p>
+<h4 id="3-4-3-表达式-E-b-N-0"><a href="#3-4-3-表达式-E-b-N-0" class="headerlink" title="3.4.3 表达式  $ {E_b}&#x2F;{N_0}$"></a>3.4.3 表达式  $ {E_b}&#x2F;{N_0}$</h4><p>T为温度，$T_b$为发送一比特的时间，S是信号功率，R为数据率；</p>
+<p>$E_b&#x3D;ST_b&#x3D;S&#x2F;R$;</p>
+<p>$\frac{E_b}{N_0}&#x3D;\frac{S&#x2F;R}{N_0}&#x3D;\frac{S}{kTR}&#x3D;\frac{S}{N}\frac{B}{R}&#x3D;\frac{B}{C}(2^{C&#x2F;B}-1)$;</p>
+<p>$(\frac{E_b}{N_0})<em>{dB}&#x3D;S</em>{dbW}-10lgR+228.6dbW-10lgT$;</p>
+<h2 id="第四章：传输媒体"><a href="#第四章：传输媒体" class="headerlink" title="第四章：传输媒体"></a>第四章：传输媒体</h2><p>传输媒体：发送器和接收器之间的物理通道；</p>
+<h3 id="4-1-导向媒体"><a href="#4-1-导向媒体" class="headerlink" title="4.1 导向媒体"></a>4.1 导向媒体</h3><h4 id="4-1-1-双绞线"><a href="#4-1-1-双绞线" class="headerlink" title="4.1.1 双绞线"></a>4.1.1 双绞线</h4><p>最常用的传输媒体；</p>
+<p>廉价方便；</p>
+<p>应用：电话网，楼层之间的通信；</p>
+<p>可用于模拟传输和数字传输；</p>
+<p>在传输距离、带宽和数据率限制较大；</p>
+<p>EIA发布ANSI&#x2F;EIA&#x2F;TIA-568标准；</p>
+<ul>
+<li>无屏蔽双绞线UTP</li>
+</ul>
+<p>​	可作为普通的话音级电话线，绞距越小，支持的传输速率越高，造价越贵；</p>
+<p>​	在电磁场干扰下显得脆弱；</p>
+<ul>
+<li><p>屏蔽的双绞线STP</p>
+<p>价格更贵，可应用于有干扰源的环境</p>
+</li>
+</ul>
+<h4 id="4-1-2-同轴电缆"><a href="#4-1-2-同轴电缆" class="headerlink" title="4.1.2 同轴电缆"></a>4.1.2 同轴电缆</h4><p>应用：电视传播，长途电话传播，计算机系统之间的短距离连接，局域网；</p>
+<p>可用于模拟传输和数字传输；</p>
+<p>相对双绞线可应用在频率更高，数据率更快的环境中；</p>
+<h4 id="4-1-3-光纤"><a href="#4-1-3-光纤" class="headerlink" title="4.1.3 光纤"></a>4.1.3 光纤</h4><p>由光纤丝和光缆组成；</p>
+<p>应用：军事，局域网，长途干线、市区干线、农用交换干线、用户环路；</p>
+<p>优势：容量更大，体积小重量轻，衰减小，隔绝电磁场，转发器间隔更远；</p>
+<ul>
+<li>多模突变：适合短距离，传输性能好；</li>
+<li>多模渐变：中心较高的折射率，应用于局域网；</li>
+</ul>
+<h3 id="4-2-无线传输"><a href="#4-2-无线传输" class="headerlink" title="4.2 无线传输"></a>4.2 无线传输</h3><h4 id="4-2-1-天线"><a href="#4-2-1-天线" class="headerlink" title="4.2.1 天线"></a>4.2.1 天线</h4><p>最简单的天线：各向同性天线（全向天线）；</p>
+<p>抛物面发射天线：应用于地面微波和卫星应用；</p>
+<h5 id="天线增益"><a href="#天线增益" class="headerlink" title="天线增益"></a>天线增益</h5><p>$G_{dB}&#x3D;10lg(\frac{P_{参考}}{P_{定向}})$；</p>
+<p>$G&#x3D;\frac{4\pi A_e}{\lambda^2}&#x3D;\frac{4\pi f^2A_e}{c^2}$</p>
+<p>抛物线天线物理面积为A，有效面积为0.56A；</p>
+<h4 id="4-2-2-地面微波"><a href="#4-2-2-地面微波" class="headerlink" title="4.2.2 地面微波"></a>4.2.2 地面微波</h4><p>应用：长途电信服务，蜂窝系统；</p>
+<p>损耗：$L&#x3D;10lg(\frac{4\pi d^2}{\lambda^2})^2$</p>
+<h4 id="4-2-3-卫星微波"><a href="#4-2-3-卫星微波" class="headerlink" title="4.2.3 卫星微波"></a>4.2.3 卫星微波</h4><p>卫星从上行频段接受传输信号，从下行频段发送出去，这些频段简称转发器；</p>
+<p>应用：电视广播，长途电话传输，专用商业网络，全球定位；</p>
+<p>最佳频率范围1~10GHz；</p>
+<h4 id="4-2-4-广播无线电"><a href="#4-2-4-广播无线电" class="headerlink" title="4.2.4 广播无线电"></a>4.2.4 广播无线电</h4><p>损伤的主要来源是多径；</p>
+<h4 id="4-2-5-红外线"><a href="#4-2-5-红外线" class="headerlink" title="4.2.5 红外线"></a>4.2.5 红外线</h4><p>无法穿透墙体</p>
+<h3 id="4-3-无线传播"><a href="#4-3-无线传播" class="headerlink" title="4.3  无线传播"></a>4.3  无线传播</h3><h4 id="4-3-1-地波传输"><a href="#4-3-1-地波传输" class="headerlink" title="4.3.1 地波传输"></a>4.3.1 地波传输</h4><p>应用：调幅无线电广播</p>
+<h4 id="4-3-2-天线传播"><a href="#4-3-2-天线传播" class="headerlink" title="4.3.2 天线传播"></a>4.3.2 天线传播</h4><p>信号经过电离层反射会地球；</p>
+<h4 id="4-3-3-视距传播"><a href="#4-3-3-视距传播" class="headerlink" title="4.3.3 视距传播"></a>4.3.3 视距传播</h4><p>沿地表弯曲，比光学视距略远；</p>
+<p>中间无障碍物情况下，$d_{km}&#x3D;3.57\sqrt{Kh_{m}}$;</p>
+<p>视距传播的两根天线的高度为$3.57(\sqrt{Kh_1}+\sqrt{Kh_2}),K&#x3D;\frac{4}{3}$;</p>
+<h3 id="4-4-视距传输"><a href="#4-4-视距传输" class="headerlink" title="4.4 视距传输"></a>4.4 视距传输</h3><h5 id="4-4-1-自由空间损耗"><a href="#4-4-1-自由空间损耗" class="headerlink" title="4.4.1 自由空间损耗"></a>4.4.1 自由空间损耗</h5><p>卫星通信的主要损耗方式；</p>
+<p>对于理想化的全向天线来说，$\frac{P_t}{P_f}&#x3D;\frac{(4\pi d)^2}{\lambda^2}&#x3D;\frac{(4\pi fd)^2}{c^2}$</p>
+<p>$L_{dB}&#x3D;-20lg\lambda_m+20lgd_m+21.98dB$</p>
+<p>$L_{dB}&#x3D;20lgf_{Hz}+20lgd_m-147.56dB$</p>
+<p>对于其它类型的天线，必须考虑天线增益G（或者有效面积A）</p>
+<p>$\frac{P_t}{P_f}&#x3D;\frac{(4\pi d)^2}{G_rG_t\lambda^2}&#x3D;\frac{(cd)^2}{f^2A_rA_t}$</p>
+<h4 id="4-4-2-大气吸收"><a href="#4-4-2-大气吸收" class="headerlink" title="4.4.2 大气吸收"></a>4.4.2 大气吸收</h4><p>降雨频繁地区应该使用路径较短或者较低的频段；</p>
+<h4 id="4-4-3-多径"><a href="#4-4-3-多径" class="headerlink" title="4.4.3 多径"></a>4.4.3 多径</h4><p>经障碍物反射产生多个副本，时延各不相同；</p>
+<h4 id="4-4-4-折射"><a href="#4-4-4-折射" class="headerlink" title="4.4.4 折射"></a>4.4.4 折射</h4><p>无线电波经大气传播会发生弯曲的现象；</p>
+<h2 id="第五章：信号编码技术"><a href="#第五章：信号编码技术" class="headerlink" title="第五章：信号编码技术"></a>第五章：信号编码技术</h2><h3 id="5-1-数字数据-数字信号"><a href="#5-1-数字数据-数字信号" class="headerlink" title="5.1 数字数据 数字信号"></a>5.1 数字数据 数字信号</h3><ul>
+<li>数据率：发送一个比特所需要的时间；</li>
+<li>调制速率：信号电平改变的速率；</li>
+<li>可以利用编码机制来提高传输性能，下面是不同机制的评估方式：<ul>
+<li>信号频谱</li>
+<li>时钟同步</li>
+<li>差错检测</li>
+<li>信号干扰和抗噪声度</li>
+<li>费用和复杂性</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-1-1-不归零码（NRZ）"><a href="#5-1-1-不归零码（NRZ）" class="headerlink" title="5.1.1 不归零码（NRZ）"></a>5.1.1 不归零码（NRZ）</h4><ul>
+<li>无电压表示二进制0，正电平表示二级制1</li>
+<li>负电平表示二进制0，正电平表示二进制1（不归零电平）</li>
+<li>不归零1制（NRZI）：有跳变表示1，无跳变表示0；属于差分编码</li>
+</ul>
+<p>NRZ容易实现，能有效利用带宽；但有直流成分，且缺乏同步能力；</p>
+<h4 id="5-1-2-多电平二进制"><a href="#5-1-2-多电平二进制" class="headerlink" title="5.1.2 多电平二进制"></a>5.1.2 多电平二进制</h4><ul>
+<li><p>双极性AMI</p>
+<p>正负脉冲表示1，零电平表示0；</p>
+<p>直流分量为0，有检错手段，接受电路简单</p>
+</li>
+<li><p>伪三进制</p>
+<p>交替的正负脉冲表示0，零电平表示1；</p>
+<p>直流分量为0，有检错手段，接受电路简单</p>
+</li>
+</ul>
+<p>数据率较高时引入扰码；</p>
+<h4 id="5-1-3-双相位"><a href="#5-1-3-双相位" class="headerlink" title="5.1.3 双相位"></a>5.1.3 双相位</h4><p>曼彻斯特编码：从低到高跳变表示1，从高到低跳变表示0；</p>
+<p>差分曼彻斯特编码：比特中央位置提供定时关系，周期起始没有跳变表示1，有跳变表示0；</p>
+<p>优点：同步、、无直流成分、有差错检测</p>
+<p>缺点：所需求的带宽大</p>
+<h4 id="5-1-4-调制率"><a href="#5-1-4-调制率" class="headerlink" title="5.1.4 调制率"></a>5.1.4 调制率</h4><p>调制率是信号元生成的速率；</p>
+<p>比如曼彻斯特编码数据率为$\frac{1}{T_b}$,调制率为$\frac{2}{T_b}$;</p>
+<h4 id="5-1-5-扰码技术"><a href="#5-1-5-扰码技术" class="headerlink" title="5.1.5 扰码技术"></a>5.1.5 扰码技术</h4><p>双相位技术很少运用于远距离因为他们要求更高的信号传输速率；</p>
+<ul>
+<li><p>双极性8零替换B8ZS<img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312122316919.png" alt="image-20231212231623827"></p>
+</li>
+<li><p>高密度双极性3零 HDB3</p>
+</li>
+</ul>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312122317119.png" alt="image-20231212231721060"></p>
+<h3 id="5-2-数字数据-模拟信号"><a href="#5-2-数字数据-模拟信号" class="headerlink" title="5.2 数字数据 模拟信号"></a>5.2 数字数据 模拟信号</h3><h4 id="5-2-1-振幅键控ASK"><a href="#5-2-1-振幅键控ASK" class="headerlink" title="5.2.1 振幅键控ASK"></a>5.2.1 振幅键控ASK</h4><h4 id="5-2-2-频移键控FSK"><a href="#5-2-2-频移键控FSK" class="headerlink" title="5.2.2 频移键控FSK"></a>5.2.2 频移键控FSK</h4><h4 id="5-2-3-相移键控"><a href="#5-2-3-相移键控" class="headerlink" title="5.2.3 相移键控"></a>5.2.3 相移键控</h4><h4 id="5-2-4-性能"><a href="#5-2-4-性能" class="headerlink" title="5.2.4 性能"></a>5.2.4 性能</h4><h3 id="5-3-模拟数据-数字信号"><a href="#5-3-模拟数据-数字信号" class="headerlink" title="5.3 模拟数据 数字信号"></a>5.3 模拟数据 数字信号</h3><p>解码器将模拟信号转换成可传输的数字信号，或者将数字信号恢复成原来的模拟数据</p>
+<h4 id="5-3-1-脉码调制"><a href="#5-3-1-脉码调制" class="headerlink" title="5.3.1 脉码调制"></a>5.3.1 脉码调制</h4><p>基础：采样原理</p>
+<p>原始信号带宽为B，脉幅调制（PAM）样本采集速率为2B，每个$\frac{1}{2B}$s采集一次；</p>
+<p>使用量化PAM脉冲来恢复原有信号，仅仅发生近似，不能完全恢复；</p>
+<p>使用同一的量化过程，但是对输入的模拟信号进行压扩，可减少失真；</p>
+<h4 id="5-3-2-增量调制"><a href="#5-3-2-增量调制" class="headerlink" title="5.3.2 增量调制"></a>5.3.2 增量调制</h4><p>DM实现简单，并且数据率相同情况下比脉码调制有功耗的信噪比</p>
+<h4 id="5-3-3-性能"><a href="#5-3-3-性能" class="headerlink" title="5.3.3 性能"></a>5.3.3 性能</h4><h2 id="第六章：差错检测和纠正"><a href="#第六章：差错检测和纠正" class="headerlink" title="第六章：差错检测和纠正"></a>第六章：差错检测和纠正</h2><h3 id="6-1-差错类型"><a href="#6-1-差错类型" class="headerlink" title="6.1 差错类型"></a>6.1 差错类型</h3><ul>
+<li>单比特差错</li>
+<li>突发性差错</li>
+</ul>
+<h3 id="6-2-差错检测"><a href="#6-2-差错检测" class="headerlink" title="6.2 差错检测"></a>6.2 差错检测</h3><ul>
+<li>一个无比特差错帧的到达概率随帧的长度增加而减小；</li>
+<li>差错检验码有其他传输比特计算得到；</li>
+</ul>
+<h3 id="6-3-奇偶校验"><a href="#6-3-奇偶校验" class="headerlink" title="6.3 奇偶校验"></a>6.3 奇偶校验</h3><h4 id="6-3-1-奇偶校验比特"><a href="#6-3-1-奇偶校验比特" class="headerlink" title="6.3.1 奇偶校验比特"></a>6.3.1 奇偶校验比特</h4><ul>
+<li>每7个比特的IRA字符附加奇偶校验比特；</li>
+<li>奇校验用于异步传输，偶校验用于同步传输；</li>
+<li>偶数比特错误不能检测到；</li>
+</ul>
+<h4 id="6-3-2-二维奇偶校验"><a href="#6-3-2-二维奇偶校验" class="headerlink" title="6.3.2 二维奇偶校验"></a>6.3.2 二维奇偶校验</h4><p>可以纠正一个比特的错误；检测某一行（列）偶数个差错的发生；</p>
+<p>构成矩形的四个差错无法检测出来；</p>
+<h3 id="6-4-因特网校验和"><a href="#6-4-因特网校验和" class="headerlink" title="6.4 因特网校验和"></a>6.4 因特网校验和</h3><ul>
+<li>无符号二进制八位整数相加</li>
+<li>循环进位</li>
+<li>补充端到端的差错检测（假定数据链路层使用CRC这这样的强大的差错检测码）</li>
+</ul>
+<h3 id="6-5-循环冗余检测"><a href="#6-5-循环冗余检测" class="headerlink" title="6.5 循环冗余检测"></a>6.5 循环冗余检测</h3><h4 id="6-5-1-模二除法"><a href="#6-5-1-模二除法" class="headerlink" title="6.5.1 模二除法"></a>6.5.1 模二除法</h4><p>给定k位比特块D，生成n-k位帧检测序列F（FCS），形成要发送的n位帧T；</p>
+<p>n-k+1位长的预定比特序列P，我们希望T&#x2F;P没有余数；</p>
+<p>$T&#x3D;2^{n-k}D+F$；</p>
+<p>采用异或除法；</p>
+<h4 id="6-5-2-多项式"><a href="#6-5-2-多项式" class="headerlink" title="6.5 2 多项式"></a>6.5 2 多项式</h4><p>P(X)&#x3D;q(x) 或P(x)&#x3D;(x+1)q(x),q(x)为本原多项式；</p>
+<h4 id="6-5-3-数字逻辑"><a href="#6-5-3-数字逻辑" class="headerlink" title="6.5 3 数字逻辑"></a>6.5 3 数字逻辑</h4><p>…</p>
+<h3 id="6-6-前向纠错"><a href="#6-6-前向纠错" class="headerlink" title="6.6 前向纠错"></a>6.6 前向纠错</h3><p>FEC编码器将k比特数据块映射为更长的n比特码字，经过传输后可能会产生与源码字相似的比特串，再经过FEC解码器还原；</p>
+<ul>
+<li>无差错</li>
+<li>可检测，可纠正的差错</li>
+<li>可检测，不能纠正的差错</li>
+<li>不能检测的差错</li>
+</ul>
+<h4 id="6-6-1-块码原理"><a href="#6-6-1-块码原理" class="headerlink" title="6.6.1 块码原理"></a>6.6.1 块码原理</h4><p>增加冗余位、比较汉明距离；</p>
+<p>原则：对于接受到的非法码字，选择与它汉明距离最近的合法码字</p>
+<p>对于$(n，k)$块码，有$2^n$可能码字，有$2^k$合法码字，</p>
+<p>冗余度为$\frac{n-k}{k}$；</p>
+<p>编码率为$\frac{k}{n}$；</p>
+<p>映射的码字中最短的汉明距离设为$d$，</p>
+<p>能保证纠正所有小于等于$t$比特差错的编码，要有$2t+1\le d$;</p>
+<p>保证纠正所有小于等于$t-1$比特差错，检测出t比特差错的编码，要有$2t\le d$</p>
+<p>每个码字可保证被纠正的差错数位$t&#x3D;[\frac{d-1}{2}]$</p>
+<p>每个码字可保证被检测的差错数位$t&#x3D;d-1$</p>
+<h2 id="第七章：数据链路控制协议"><a href="#第七章：数据链路控制协议" class="headerlink" title="第七章：数据链路控制协议"></a>第七章：数据链路控制协议</h2><p>数据链路控制的要求与目标：</p>
+<ul>
+<li>帧同步</li>
+<li>流量控制</li>
+<li>差错控制</li>
+<li>寻址</li>
+<li>控制信息和数据在同一个链路上</li>
+<li>链路管理</li>
+</ul>
+<h3 id="7-1-流量控制"><a href="#7-1-流量控制" class="headerlink" title="7.1 流量控制"></a>7.1 流量控制</h3><p>传输时间：将帧传到媒体所需的时间，与帧的长度成正比；</p>
+<p>传播时间：一个比特由源点到终点所需要的时间；</p>
+<p>在接受之前，每个帧都会受到任意不等量的时延；</p>
+<h4 id="7-1-1-停止等待流量控制"><a href="#7-1-1-停止等待流量控制" class="headerlink" title="7.1.1 停止等待流量控制"></a>7.1.1 停止等待流量控制</h4><p>源实体传输一个帧，目的实体接收到后会返回一个确认帧；源点发送下一个帧之前必须等待，直到接收到下一个帧；</p>
+<p>源点把大块的数据分割成较小的数据块，并用很多个帧来传输这些数据块；</p>
+<p>帧的长度为$L_{bit}$数据的链路长度$B_{bit}$,链路的数据率$R_{bps}$,链路的长度$d_m$,传播速度$v_{m&#x2F;s}$，有$B&#x3D;R\frac{d}{v}$;</p>
+<p>传输时间取归一化值1，传播时延$a&#x3D;\frac{B}{L}$；</p>
+<p>数据率很高，或者发送接收方相距很远，停止等待协议提供的链路效率不高；</p>
+<h4 id="7-1-2-滑动窗口流量控制"><a href="#7-1-2-滑动窗口流量控制" class="headerlink" title="7.1.2 滑动窗口流量控制"></a>7.1.2 滑动窗口流量控制</h4><ul>
+<li>B为W帧分配了缓存，因此能一次接受W帧，允许A在无确认情况下发送W帧；</li>
+<li>B返回带有序号的确认帧，表明B确认接受序号之前的帧，A可以发送序号之后的帧；</li>
+<li>A维护允许发送的序号列表，B维护准备接受的序号列表</li>
+<li>对于k比特长的字段，最大窗口大小为$2^k-1$,实际窗口值可以不必等于最大可能值；</li>
+<li>滑动窗口协议允许接受发发送”接受未就绪“的RNR帧，确认前面帧已接受但是不接受后面的帧，这时需要接收方重新发送一个确认帧来开启滑动窗口；</li>
+<li>对于两个方向的传输，常常应用捎带技术，</li>
+</ul>
+<h3 id="7-2-差错控制"><a href="#7-2-差错控制" class="headerlink" title="7.2 差错控制"></a>7.2 差错控制</h3><p>可能存在的两种类型的差错，需要使用自动重传请求：</p>
+<ul>
+<li>帧丢失</li>
+<li>帧损伤</li>
+</ul>
+<h4 id="7-2-1-停止等待ARQ"><a href="#7-2-1-停止等待ARQ" class="headerlink" title="7.2.1 停止等待ARQ"></a>7.2.1 停止等待ARQ</h4><p>基于停止等待流量控制；</p>
+<ul>
+<li>检测到数据帧损伤：终点丢弃该帧不返回确认帧，源点内置计时器，计时器超时重传；</li>
+<li>检测到确认损伤：交替标记确认帧未ACK0和ACK1，ACK0表示接收到1帧，准备接受0帧</li>
+</ul>
+<p>优势：简单易行，缺点：低效</p>
+<p>采用滑动窗口机制称作连续ARQ；</p>
+<h4 id="7-2-2-返回N-ARQ"><a href="#7-2-2-返回N-ARQ" class="headerlink" title="7.2.2 返回N ARQ"></a>7.2.2 返回N ARQ</h4><p>基于滑动窗口流量控制；</p>
+<ol>
+<li>帧损伤：接收到的帧i无效，B简单丢弃帧i；<ul>
+<li>A继续发送帧(i+1)，B发觉次序不对返回一个REJ i，A重传帧i以及后面帧；</li>
+<li>A没有继续发送，B未接收到任何帧，不返回RR和REJ，A计时器超时，先传一个RR帧要求B发送RR响应帧表明希望接受到的帧，A接收到RR响应帧后重传帧i；</li>
+</ul>
+</li>
+<li>RR损伤：B接收到帧i，返回一个RR(i+1)；<ul>
+<li>RR(i+1)丢失，A接收到下一帧的RR并在计时器超时前到达；</li>
+<li>若未到达，A返回一个RR要求B响应自己的命令（内置P比特计时器），重复数次，重复次数到达阈值，A启动复位；</li>
+</ul>
+</li>
+<li>REJ损伤：B未接收到任何帧，不返回RR和REJ，A计时器超时，先传一个RR帧要求B发送RR响应帧表明希望接受到的帧，A接收到RR响应帧后重传帧i；</li>
+</ol>
+<h4 id="7-2-3-选择拒绝ARQ"><a href="#7-2-3-选择拒绝ARQ" class="headerlink" title="7.2.3 选择拒绝ARQ"></a>7.2.3 选择拒绝ARQ</h4><p>重传的只有否认的帧和超时的帧，否认称为SREJ；</p>
+<p>需要维护一个足够大的缓存已保存SREJ后的帧；</p>
+<p>应用于卫星链路；</p>
+<p>对于k比特信号，未来避免发送窗口和接收窗口出现重叠，最大窗口值限制在$2^{k-1}$;</p>
+<h3 id="7-3-高级数据链路控制（HDLC）"><a href="#7-3-高级数据链路控制（HDLC）" class="headerlink" title="7.3 高级数据链路控制（HDLC）"></a>7.3 高级数据链路控制（HDLC）</h3><h4 id="7-3-1-基本特点"><a href="#7-3-1-基本特点" class="headerlink" title="7.3.1 基本特点"></a>7.3.1 基本特点</h4><p>站点：主站、从站、混合站</p>
+<p>链路设置：非平衡、平衡</p>
+<p>数据传送方式：正常响应（NRM），异步平衡（ABM）、异步响应（ARM）；</p>
+<h4 id="7-3-2-帧结构"><a href="#7-3-2-帧结构" class="headerlink" title="7.3.2 帧结构"></a>7.3.2 帧结构</h4><p>首部：标志（8bit），地址（8bit+），控制（8bit or 16bit）</p>
+<p>尾部：FCS（16bit or 32bit），标志（8bit）；</p>
+<h4 id="7-3-3-运行方式"><a href="#7-3-3-运行方式" class="headerlink" title="7.3.3 运行方式"></a>7.3.3 运行方式</h4><p>HDLC要求两个站点交换I帧、S帧和U帧；          </p>
+<h5 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h5><p>通知进行初始化；指出请求（NRM，ABM，ARM），指出使用3bit还是7bit</p>
+<p>接受返回UA帧，拒绝返回DM帧</p>
+<h5 id="数据传送"><a href="#数据传送" class="headerlink" title="数据传送"></a>数据传送</h5><p>…</p>
+<h5 id="拆链"><a href="#拆链" class="headerlink" title="拆链"></a>拆链</h5><p>对于拆链帧DISC，对方必须用UA帧回答；</p>
+<h2 id="第八章：复用"><a href="#第八章：复用" class="headerlink" title="第八章：复用"></a>第八章：复用</h2><ul>
+<li>数据率越高，传输设备性价比越高；</li>
+<li>大部分通信设备对自身要求达到的数据率相对不太高；</li>
+</ul>
+<p>数据链路的容量应当被共享；</p>
+<h3 id="8-1-频分复用"><a href="#8-1-频分复用" class="headerlink" title="8.1 频分复用"></a>8.1 频分复用</h3><h4 id="8-1-1-特点"><a href="#8-1-1-特点" class="headerlink" title="8.1.1 特点"></a>8.1.1 特点</h4><ul>
+<li>传输媒体的有效带宽超出被传输信号要求的带宽和，可以使用FDM</li>
+<li>每个被调制的信号都会具有各自载波频率为中心的一定的带宽（信道）</li>
+<li>媒体上传输的混合信号是模拟的，每个信号调制到相应的副载波上后叠加形成复合基带，符合信号经过一个整体调制到载波信号上，解调后，通过各个带通滤波器解调恢复成原始信号；</li>
+<li>需要注意串扰问题和交调噪声；</li>
+</ul>
+<h4 id="8-1-2-模拟载波系统"><a href="#8-1-2-模拟载波系统" class="headerlink" title="8.1.2 模拟载波系统"></a>8.1.2 模拟载波系统</h4><p>…</p>
+<h4 id="8-1-3-波分复用"><a href="#8-1-3-波分复用" class="headerlink" title="8.1.3 波分复用"></a>8.1.3 波分复用</h4><p>不同频率的多路光纤在同一光纤上传输时，才能充分利用光纤；</p>
+<h3 id="8-2-同步时分复用"><a href="#8-2-同步时分复用" class="headerlink" title="8.2 同步时分复用"></a>8.2 同步时分复用</h3><h4 id="8-2-1-特点"><a href="#8-2-1-特点" class="headerlink" title="8.2.1 特点"></a>8.2.1 特点</h4><p>…</p>
+<h4 id="8-2-2-TDM链路控制"><a href="#8-2-2-TDM链路控制" class="headerlink" title="8.2.2 TDM链路控制"></a>8.2.2 TDM链路控制</h4><h4 id="8-2-3-数字载波系统"><a href="#8-2-3-数字载波系统" class="headerlink" title="8.2.3 数字载波系统"></a>8.2.3 数字载波系统</h4><h4 id="8-2-4-SONET-SDH"><a href="#8-2-4-SONET-SDH" class="headerlink" title="8.2.4 SONET&#x2F;SDH"></a>8.2.4 SONET&#x2F;SDH</h4><h3 id="8-3-电缆调解调制器"><a href="#8-3-电缆调解调制器" class="headerlink" title="8.3 电缆调解调制器"></a>8.3 电缆调解调制器</h3><h3 id="8-4-非对称数字用户线路"><a href="#8-4-非对称数字用户线路" class="headerlink" title="8.4 非对称数字用户线路"></a>8.4 非对称数字用户线路</h3><h4 id="8-4-1-ADSL设计"><a href="#8-4-1-ADSL设计" class="headerlink" title="8.4.1 ADSL设计"></a>8.4.1 ADSL设计</h4><h4 id="8-4-2-离散多音调"><a href="#8-4-2-离散多音调" class="headerlink" title="8.4.2 离散多音调"></a>8.4.2 离散多音调</h4><h4 id="8-4-3-带宽接入设计"><a href="#8-4-3-带宽接入设计" class="headerlink" title="8.4.3 带宽接入设计"></a>8.4.3 带宽接入设计</h4><h3 id="8-5-xDSL"><a href="#8-5-xDSL" class="headerlink" title="8.5 xDSL"></a>8.5 xDSL</h3><h4 id="8-5-1-高数据率数字用户路线HDSL"><a href="#8-5-1-高数据率数字用户路线HDSL" class="headerlink" title="8.5.1 高数据率数字用户路线HDSL"></a>8.5.1 高数据率数字用户路线HDSL</h4><h4 id="8-5-2-单线数字用户路线SDSL"><a href="#8-5-2-单线数字用户路线SDSL" class="headerlink" title="8.5.2 单线数字用户路线SDSL"></a>8.5.2 单线数字用户路线SDSL</h4><h4 id="8-5-3-甚高数据率数字用户路线VDSL"><a href="#8-5-3-甚高数据率数字用户路线VDSL" class="headerlink" title="8.5.3 甚高数据率数字用户路线VDSL"></a>8.5.3 甚高数据率数字用户路线VDSL</h4><h3 id="8-6-多信道接入"><a href="#8-6-多信道接入" class="headerlink" title="8.6 多信道接入"></a>8.6 多信道接入</h3><h4 id="8-6-1-频分双工FDD"><a href="#8-6-1-频分双工FDD" class="headerlink" title="8.6.1 频分双工FDD"></a>8.6.1 频分双工FDD</h4><h4 id="8-6-2-时分双工TDD"><a href="#8-6-2-时分双工TDD" class="headerlink" title="8.6.2 时分双工TDD"></a>8.6.2 时分双工TDD</h4><h4 id="8-6-3-频分多址FDMA"><a href="#8-6-3-频分多址FDMA" class="headerlink" title="8.6.3 频分多址FDMA"></a>8.6.3 频分多址FDMA</h4><h4 id="8-6-4-时分多址"><a href="#8-6-4-时分多址" class="headerlink" title="8.6.4 时分多址"></a>8.6.4 时分多址</h4><h2 id="第九章：广域网技术和协议"><a href="#第九章：广域网技术和协议" class="headerlink" title="第九章：广域网技术和协议"></a>第九章：广域网技术和协议</h2><p>广域网设计的传统方式：电路交换和分组交换；</p>
+<h3 id="9-1-交换式通信网"><a href="#9-1-交换式通信网" class="headerlink" title="9.1 交换式通信网"></a>9.1 交换式通信网</h3><p>数据从一个结点进入网络后，经过由一个结点到另一个结点的交换，最后传到目的地；</p>
+<p>结点和结点之间的链路通常式点对点的专线；</p>
+<h3 id="9-2-电路交换网络"><a href="#9-2-电路交换网络" class="headerlink" title="9.2 电路交换网络"></a>9.2 电路交换网络</h3><p>过程：</p>
+<ul>
+<li>电路建立</li>
+<li>数据传送</li>
+<li>电路断连</li>
+</ul>
+<p>特点：</p>
+<p>连接的通路式数据开始传输前建立的；</p>
+<p>交换效率可能很低；</p>
+<p>信道容量专用；</p>
+<p>透明度高；</p>
+<p>公用电信网络组成：用户，用户环路，交换局，中继线；</p>
+<h3 id="9-3-电路交换的概念"><a href="#9-3-电路交换的概念" class="headerlink" title="9.3 电路交换的概念"></a>9.3 电路交换的概念</h3><p>数字交换机：</p>
+<ul>
+<li>网络接口</li>
+<li>控制单元</li>
+</ul>
+<p>当两个站点之间的所有通路都正在使用无法建立连接的时候就发生了阻塞；</p>
+<h4 id="9-3-1-空分交换"><a href="#9-3-1-空分交换" class="headerlink" title="9.3.1 空分交换"></a>9.3.1 空分交换</h4><p>信号通路和信号通路从物理上分隔开的交换机；</p>
+<p>纵横交换机：价格高，一个交叉点损坏导致相连线路设备无法使用，利用率低；</p>
+<p>多级交换机：交叉点少提高了利用率，可靠性，可能被阻塞；</p>
+<h4 id="9-3-2-时分交换"><a href="#9-3-2-时分交换" class="headerlink" title="9.3.2 时分交换"></a>9.3.2 时分交换</h4><p>独立的数据块（时隙）由控制逻辑控制，言输入端到输出端为数据选择路由并传递它们；</p>
+<h4 id="9-3-3-时隙交换"><a href="#9-3-3-时隙交换" class="headerlink" title="9.3.3 时隙交换"></a>9.3.3 时隙交换</h4><p>基础：时隙交换机制TSI；</p>
+<p>以便建立全双工的连接，传入某一时隙的数据被存储起来，直到下一周期数据通过正确的信道被发送出去，引入时延；</p>
+<p>TSI帧尾每个信道提供时隙，必须考虑线路的容量；</p>
+<p> 信道数目越多，所经历的平均时延越大；</p>
+<h4 id="9-3-4-时间复用交换"><a href="#9-3-4-时间复用交换" class="headerlink" title="9.3.4 时间复用交换"></a>9.3.4 时间复用交换</h4><p>TMS交换机由数字选择器实现，信道的分配由时隙计数器存储器提供；</p>
+<p>减少阻塞可建立多级机制；</p>
+<h3 id="9-4-软交换体系结构"><a href="#9-4-软交换体系结构" class="headerlink" title="9.4 软交换体系结构"></a>9.4 软交换体系结构</h3><p>属于电路交换；</p>
+<p>通过专门软件将计算机变成智能电话交换机；</p>
+<ul>
+<li><p>媒体网关MG；</p>
+</li>
+<li><p>媒体网关控制器MGC；</p>
+</li>
+</ul>
+<h3 id="9-5-分组交换原理"><a href="#9-5-分组交换原理" class="headerlink" title="9.5 分组交换原理"></a>9.5 分组交换原理</h3><ul>
+<li>分组长度上限值：1000字节；</li>
+<li>过长则分割成报文序列，每个保温包括部分数据和一些控制信息；</li>
+<li>控制信息使得分组在网络中能按一定路由前进；</li>
+</ul>
+<p>优点：效率高，数据率转换，更方便处理拥塞，有优先级别；</p>
+<h4 id="9-5-1-交换技术"><a href="#9-5-1-交换技术" class="headerlink" title="9.5.1 交换技术"></a>9.5.1 交换技术</h4><ul>
+<li>数据报：分组独立，分组不一定按相同路由到达，由终点重新排序；省略呼叫建立过程；</li>
+<li>虚电路：发送分组之前，建立特定路由，双方分组按相同路由穿过网络,这条电路可以被共享；分组传递更快；</li>
+</ul>
+<h4 id="9-5-2-分组大小"><a href="#9-5-2-分组大小" class="headerlink" title="9.5.2 分组大小"></a>9.5.2 分组大小</h4><p>控制信息位于首部，包含3个字节；</p>
+<p>更多的分组导致时延的增加</p>
+<h4 id="9-5-3-外部网络接口"><a href="#9-5-3-外部网络接口" class="headerlink" title="9.5.3 外部网络接口"></a>9.5.3 外部网络接口</h4><p>虚电路服务使得任意用户之间可以建立（外部）虚电路逻辑连接</p>
+<h4 id="9-5-4-电路交换和分组交换对比"><a href="#9-5-4-电路交换和分组交换对比" class="headerlink" title="9.5.4 电路交换和分组交换对比"></a>9.5.4 电路交换和分组交换对比</h4><p>短报文数据报分组交换更快，长报文分组交换可能更出色；</p>
+<p>电路交换服务式透明的；</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312140915898.png" alt="image-20231214091535807"></p>
+<h3 id="9-6-异步传输方式"><a href="#9-6-异步传输方式" class="headerlink" title="9.6 异步传输方式"></a>9.6 异步传输方式</h3><p>ATM是一种交换和复用的技术，采用信元（小的固定长度的分组），保证时延变化小和打包时延小；</p>
+<p>多协议标记交换（MPLS）是二层的面向连接的分组交换协议；</p>
+<p>9.6.1 ATM逻辑连接</p>
+<p>VCC虚通路连接是ATM网络中基本的交换单元，交换速率可变，全双工，长度固定的信元流；</p>
+<p>优势：</p>
+<ul>
+<li>简化了网络体系结构；</li>
+<li>增强了网络性能和可靠性；</li>
+<li>减少了处理过程并缩短连接建立时间</li>
+<li>增强了网络服务：对端用户可见；</li>
+</ul>
+<p>特性：</p>
+<ul>
+<li>服务质量Qos</li>
+<li>交换和半永久的需通路连接；</li>
+<li>通信量参数协商和使用监控；</li>
+</ul>
+<h4 id="9-6-2-ATM信元"><a href="#9-6-2-ATM信元" class="headerlink" title="9.6.2 ATM信元"></a>9.6.2 ATM信元</h4><p>有5个字节首部和48个字节信息字段组成；·</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312140926197.png" alt="image-20231214092623103"></p>
+<h2 id="第十章：蜂窝无线网络"><a href="#第十章：蜂窝无线网络" class="headerlink" title="第十章：蜂窝无线网络"></a>第十章：蜂窝无线网络</h2><h3 id="10-1-蜂窝网络的概念"><a href="#10-1-蜂窝网络的概念" class="headerlink" title="10.1 蜂窝网络的概念"></a>10.1 蜂窝网络的概念</h3><h4 id="10-1-1-蜂窝网络的概念"><a href="#10-1-1-蜂窝网络的概念" class="headerlink" title="10.1.1 蜂窝网络的概念"></a>10.1.1 蜂窝网络的概念</h4><p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202312140933211.png" alt="image-20231214093330124"></p>
+<h5 id="频率重用"><a href="#频率重用" class="headerlink" title="频率重用"></a>频率重用</h5><p>两个相同使用频率之间的蜂窝必须相隔N个蜂窝，$N&#x3D;I^2+J^2+IJ,D&#x2F;R&#x3D;\sqrt{3N}$;</p>
+<h5 id="增大容量"><a href="#增大容量" class="headerlink" title="增大容量"></a>增大容量</h5><p>增加新信道，频率借用，蜂窝分裂，蜂窝扇区化，微蜂窝</p>
+<h4 id="10-1-2-蜂窝系统的操作"><a href="#10-1-2-蜂窝系统的操作" class="headerlink" title="10.1.2 蜂窝系统的操作"></a>10.1.2 蜂窝系统的操作</h4><p>中心位置包括基站，基站包括天线，控制器和收发器；</p>
+<h4 id="10-1-3-移动无线电传播效应"><a href="#10-1-3-移动无线电传播效应" class="headerlink" title="10.1.3  移动无线电传播效应"></a>10.1.3  移动无线电传播效应</h4><ul>
+<li>信号强度</li>
+<li>衰落：Hata模型</li>
+</ul>
+<h4 id="10-1-4-移动环境中的衰落"><a href="#10-1-4-移动环境中的衰落" class="headerlink" title="10.1.4 移动环境中的衰落"></a>10.1.4 移动环境中的衰落</h4><h5 id="多径传播"><a href="#多径传播" class="headerlink" title="多径传播"></a>多径传播</h5><p>信号的发射，衍射和散射</p>
+<h5 id="多径传播效应"><a href="#多径传播效应" class="headerlink" title="多径传播效应"></a>多径传播效应</h5><p>信号带来的时延和码间干扰（ISI）</p>
+<h5 id="衰落的类型"><a href="#衰落的类型" class="headerlink" title="衰落的类型"></a>衰落的类型</h5><p>快衰落、慢衰落</p>
+<h5 id="差错补偿机制"><a href="#差错补偿机制" class="headerlink" title="差错补偿机制"></a>差错补偿机制</h5><p>前向纠错，自适应均衡，分集</p>
+<h3 id="10-2-四代蜂窝网络"><a href="#10-2-四代蜂窝网络" class="headerlink" title="10.2 四代蜂窝网络"></a>10.2 四代蜂窝网络</h3><h4 id="10-2-1-第一代"><a href="#10-2-1-第一代" class="headerlink" title="10.2.1 第一代"></a>10.2.1 第一代</h4><p>1G：高级电话服务系统AMPS</p>
+<h4 id="10-2-2-第二代"><a href="#10-2-2-第二代" class="headerlink" title="10.2.2 第二代"></a>10.2.2 第二代</h4><p>2G:支持数字业务信道，加密，差错检测和纠正，信道接入</p>
+<h4 id="10-2-3-第三代"><a href="#10-2-3-第三代" class="headerlink" title="10.2.3 第三代"></a>10.2.3 第三代</h4><p>3G：提供高速无线通信；</p>
+<p>主导技术：CDMA</p>
+<h4 id="10-2-4-第四代"><a href="#10-2-4-第四代" class="headerlink" title="10.2.4 第四代"></a>10.2.4 第四代</h4><p>4G：基于完全IP分组交换网络</p>
+<h3 id="10-3-LTE-Advanced"><a href="#10-3-LTE-Advanced" class="headerlink" title="10.3 LTE-Advanced"></a>10.3 LTE-Advanced</h3><h4 id="10-3-1-LTE-Advanced体系结构"><a href="#10-3-1-LTE-Advanced体系结构" class="headerlink" title="10.3.1 LTE-Advanced体系结构"></a>10.3.1 LTE-Advanced体系结构</h4><ul>
+<li>中继</li>
+<li>演进型分组核心网EPC</li>
+<li>毫微微蜂窝</li>
+</ul>
+<h4 id="10-3-2-LTE-Advanced传输特性"><a href="#10-3-2-LTE-Advanced传输特性" class="headerlink" title="10.3.2 LTE-Advanced传输特性"></a>10.3.2 LTE-Advanced传输特性</h4><ul>
+<li>正交频分复用OFDM</li>
+<li>多输入多输出MIMO</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/DHCP%E5%8D%8F%E8%AE%AE/" rel="prev" title="">
+                  <i class="fa fa-angle-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/" rel="next" title="编译原理基础">
+                  编译原理基础 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

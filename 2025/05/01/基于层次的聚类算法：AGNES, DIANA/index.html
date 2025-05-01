@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="基于层次的办法层次聚类方法对给定的数据集进行层次的分解，直到某种条件满足为止。  凝聚的层次聚类：  一种自底向上的策略，首先将每个对象作为一个簇，然后合并这些原子簇为越来越大的簇，直到某个终结条件被满足， 代表是AGNES算法   最小距离法（Single Linkage） 定义：在两个簇之间的所有可能配对样本点中，选择距离最小的一对样本点的距离作为簇间距离。  特点 ：  链状效应：由于只考虑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于层次的聚类算法：AGNES, DIANA">
+<meta property="og:url" content="http://example.com/2025/05/01/%E5%9F%BA%E4%BA%8E%E5%B1%82%E6%AC%A1%E7%9A%84%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95%EF%BC%9AAGNES,%20DIANA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="基于层次的办法层次聚类方法对给定的数据集进行层次的分解，直到某种条件满足为止。  凝聚的层次聚类：  一种自底向上的策略，首先将每个对象作为一个簇，然后合并这些原子簇为越来越大的簇，直到某个终结条件被满足， 代表是AGNES算法   最小距离法（Single Linkage） 定义：在两个簇之间的所有可能配对样本点中，选择距离最小的一对样本点的距离作为簇间距离。  特点 ：  链状效应：由于只考虑">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405280207851.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.388Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.518Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405280207851.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E5%9F%BA%E4%BA%8E%E5%B1%82%E6%AC%A1%E7%9A%84%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95%EF%BC%9AAGNES,%20DIANA/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E5%9F%BA%E4%BA%8E%E5%B1%82%E6%AC%A1%E7%9A%84%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95%EF%BC%9AAGNES,%20DIANA/","path":"2025/05/01/基于层次的聚类算法：AGNES, DIANA/","title":"基于层次的聚类算法：AGNES, DIANA"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基于层次的聚类算法：AGNES, DIANA | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%B1%82%E6%AC%A1%E7%9A%84%E5%8A%9E%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">基于层次的办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E8%B7%9D%E7%A6%BB%E6%B3%95%EF%BC%88Single-Linkage%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">最小距离法（Single Linkage）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E8%B7%9D%E7%A6%BB%E6%B3%95%EF%BC%88Complete-Linkage%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">最大距离法（Complete Linkage）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E5%9F%BA%E4%BA%8E%E5%B1%82%E6%AC%A1%E7%9A%84%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95%EF%BC%9AAGNES,%20DIANA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="基于层次的聚类算法：AGNES, DIANA | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于层次的聚类算法：AGNES, DIANA
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="基于层次的办法"><a href="#基于层次的办法" class="headerlink" title="基于层次的办法"></a>基于层次的办法</h3><p>层次聚类方法对给定的数据集进行层次的分解，直到某种条件满足为止。</p>
+<ul>
+<li><p>凝聚的层次聚类：</p>
+<ul>
+<li>一种自底向上的策略，首先将每个对象作为一个簇，然后合并这些原子簇为越来越大的簇，直到某个终结条件被满足，</li>
+<li>代表是AGNES算法</li>
+</ul>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405280207851.png" alt="image-20240528020729807"></p>
+<h3 id="最小距离法（Single-Linkage）"><a href="#最小距离法（Single-Linkage）" class="headerlink" title="最小距离法（Single Linkage）"></a>最小距离法（Single Linkage）</h3><ul>
+<li><p><strong>定义</strong>：在两个簇之间的所有可能配对样本点中，选择距离最小的一对样本点的距离作为簇间距离。</p>
+</li>
+<li><p>特点</p>
+<p>：</p>
+<ul>
+<li><strong>链状效应</strong>：由于只考虑最接近的一对点，最小距离法容易形成链状结构，即若干个样本逐个连接在一起，形成较长的“链”。</li>
+<li><strong>噪声敏感</strong>：对噪声和离群点（outliers）较为敏感，因为离群点可能会导致簇之间的最小距离变小，从而错误地合并簇。</li>
+<li><strong>效率较高</strong>：计算简单，效率较高，但结果可能不稳定。</li>
+</ul>
+</li>
+<li><p><strong>适用场景</strong>：适用于数据集中的簇呈现不规则形状或链状结构的情况。</p>
+</li>
+</ul>
+<h3 id="最大距离法（Complete-Linkage）"><a href="#最大距离法（Complete-Linkage）" class="headerlink" title="最大距离法（Complete Linkage）"></a>最大距离法（Complete Linkage）</h3><ul>
+<li><p><strong>定义</strong>：在两个簇之间的所有可能配对样本点中，选择距离最大的一对样本点的距离作为簇间距离。</p>
+</li>
+<li><p>特点</p>
+<p>：</p>
+<ul>
+<li><strong>紧密簇</strong>：最大距离法倾向于形成紧密、球形的簇，因为它考虑了簇中最远样本点之间的距离，从而避免形成链状结构。</li>
+<li><strong>抗噪声能力强</strong>：对噪声和离群点较为鲁棒，不容易被离群点影响，因为离群点的存在不会显著改变簇的最大距离。</li>
+<li><strong>计算复杂度高</strong>：由于需要计算所有样本点的最大距离，计算复杂度相对较高。</li>
+</ul>
+</li>
+<li><p><strong>适用场景</strong>：适用于数据集中簇的形状较为规则、且希望得到更紧密的簇的情况。</p>
+</li>
+</ul>
+</li>
+<li><p>分裂的层次聚类：</p>
+<ul>
+<li><p>采用自顶向下的策略，它首先将所有对象置于一个簇中，然后逐渐细分为越来越小的簇，直到达到了某个终结条件。</p>
+</li>
+<li><p>代表是DIANA算法;</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">算法    DIANA（自顶向下分裂算法）</span><br><span class="line">输入：包含n个对象的数据库，终止条件簇的数目k。</span><br><span class="line">输出：k个簇，达到终止条件规定簇数目。</span><br><span class="line">（1）将所有对象整个当成一个初始簇；</span><br><span class="line">（2） FOR （i=1; i≠k; i++) DO BEGIN</span><br><span class="line">（3）       在所有簇中挑出具有最大直径的簇C；</span><br><span class="line">（4）      找出C中与其它点平均相异度最大的一个点p并把p放入splinter group，剩余的放在old party中；</span><br><span class="line">（5）.      REPEAT</span><br><span class="line">（6）             在old party里找出到最近的splinter group中的点的距离不大于到old party中最近点的距离的点，并将该点加入splinter group。</span><br><span class="line">（7）       UNTIL 没有新的old party的点被分配给splinter group；</span><br><span class="line">（8）   splinter group和old party为被选中的簇分裂成的两个簇，与其它簇一起组成新的簇集合。</span><br><span class="line">（9） END.</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%9F%BA%E4%BA%8E%E5%AF%86%E5%BA%A6%E7%9A%84%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95%EF%BC%9ADBSCAN/" rel="prev" title="基于密度的聚类算法：DBSCAN">
+                  <i class="fa fa-angle-left"></i> 基于密度的聚类算法：DBSCAN
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%9F%BA%E4%BA%8E%E7%BD%91%E6%A0%BC%E7%9A%84%E8%81%9A%E7%B1%BB%EF%BC%9ASTING/" rel="next" title="基于网格的聚类：STING">
+                  基于网格的聚类：STING <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

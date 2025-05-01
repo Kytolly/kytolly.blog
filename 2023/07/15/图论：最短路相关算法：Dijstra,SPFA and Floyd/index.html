@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Preface暑假集训用到了最短路的板子但之前的板子没存下来，在加上之前也看的不是很明白，故这里放点笔记； 部分板子目前还未测试过，谨慎使用$$(2023.7.15)$$； ContentProblem用链式前向星方式存储一个有权图$$G(V:E)$$，找到点 $$ i,j $$ 之间权值最小的路径长度； 注意：有时题目中的图其实就是树，而树的路径长度用 $$dfs$$ 就好了不需要用这个； 通常">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论：最短路相关算法-Dijstra,SPFA and Floyd">
+<meta property="og:url" content="http://example.com/2023/07/15/%E5%9B%BE%E8%AE%BA%EF%BC%9A%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95%EF%BC%9ADijstra,SPFA%20and%20Floyd/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Preface暑假集训用到了最短路的板子但之前的板子没存下来，在加上之前也看的不是很明白，故这里放点笔记； 部分板子目前还未测试过，谨慎使用$$(2023.7.15)$$； ContentProblem用链式前向星方式存储一个有权图$$G(V:E)$$，找到点 $$ i,j $$ 之间权值最小的路径长度； 注意：有时题目中的图其实就是树，而树的路径长度用 $$dfs$$ 就好了不需要用这个； 通常">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-15T14:46:32.000Z">
+<meta property="article:modified_time" content="2023-08-02T19:12:44.690Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2023/07/15/%E5%9B%BE%E8%AE%BA%EF%BC%9A%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95%EF%BC%9ADijstra,SPFA%20and%20Floyd/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/07/15/%E5%9B%BE%E8%AE%BA%EF%BC%9A%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95%EF%BC%9ADijstra,SPFA%20and%20Floyd/","path":"2023/07/15/图论：最短路相关算法：Dijstra,SPFA and Floyd/","title":"图论：最短路相关算法-Dijstra,SPFA and Floyd"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>图论：最短路相关算法-Dijstra,SPFA and Floyd | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Content"><span class="nav-number">2.</span> <span class="nav-text">Content</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem"><span class="nav-number">2.1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijstra-%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.1.</span> <span class="nav-text">$$Dijstra$$ 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Notice"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">Notice:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Proof%EF%BC%9A"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">Proof：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Template%EF%BC%9A"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">Template：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Floyd-%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.2.</span> <span class="nav-text">$$Floyd$$ 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Notice-1"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">Notice</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Proof"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">Proof</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Template"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">Template:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SPFA-%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.3.</span> <span class="nav-text">$$SPFA$$ 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Notice-2"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">Notice:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Template-1"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">Template:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-number">2.3.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Remark"><span class="nav-number">3.</span> <span class="nav-text">Remark</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/15/%E5%9B%BE%E8%AE%BA%EF%BC%9A%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%9B%B8%E5%85%B3%E7%AE%97%E6%B3%95%EF%BC%9ADijstra,SPFA%20and%20Floyd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="图论：最短路相关算法-Dijstra,SPFA and Floyd | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图论：最短路相关算法-Dijstra,SPFA and Floyd
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-07-15 22:46:32" itemprop="dateCreated datePublished" datetime="2023-07-15T22:46:32+08:00">2023-07-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-08-03 03:12:44" itemprop="dateModified" datetime="2023-08-03T03:12:44+08:00">2023-08-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h1><p>暑假集训用到了最短路的板子但之前的板子没存下来，在加上之前也看的不是很明白，故这里放点笔记；</p>
+<p>部分板子目前还未测试过，谨慎使用$$(2023.7.15)$$；</p>
+<h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>用<strong>链式前向星</strong>方式存储一个有权图$$G(V:E)$$，找到点 $$ i,j $$ 之间权值最小的路径长度；</p>
+<p>注意：有时题目中的图其实就是树，而树的路径长度用 $$dfs$$ 就好了不需要用这个；</p>
+<p>通常包括$$\ Dijstra 算法,SPFA \ and \ Floyd算法$$，<del>其中小心SPFA被卡爆（）；</del></p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Dijstra-算法"><a href="#Dijstra-算法" class="headerlink" title="$$Dijstra$$ 算法"></a>$$Dijstra$$ 算法</h3><h4 id="Notice"><a href="#Notice" class="headerlink" title="Notice:"></a>Notice:</h4><ul>
+<li><p>该算法只能处理边<strong>正权图</strong>的<strong>单源</strong>最短路问题，但是它的效率十分优秀，一般采用带小根堆优先队列优化<del>（$$ZKW$$线段树!$$Fibonnaci$$堆!）</del>；</p>
+</li>
+<li><p>时间复杂度为$$O((|V|+|E|)log|V|)$$;</p>
+</li>
+<li><p>但这个复杂度放在稠密图里可能会被$%$$$hack$$,需要换成邻接矩阵的方式存图，复杂度为$$O(|V|^2)$$,<del>遇到了再补吧</del>；</p>
+</li>
+</ul>
+<h4 id="Proof："><a href="#Proof：" class="headerlink" title="Proof："></a>Proof：</h4><ul>
+<li>对于每个点$$v$$均维护一个「当前最短距离数组」$$dis[v]$$ 以及「访问数组」$$vis[v] $$,首先将$$dis[u]$$初始化为0，将其他点的距离初始化为无穷，并将所有点初始化为未访问的。记$$e[i]:u-v$$的边权为 $$e[i].w$$。然后进行以下步骤：<ol>
+<li>从所有未访问的点中，找出当前距离最小的,并将其标记为已访问的;</li>
+<li>调整所有出边连接但<strong>尚未访问</strong>的点，转移状态；</li>
+<li>重复1和2步骤，直到所有点都已访问，因为所有边权权值均为正的，所以用之后访问的结点是不能更新已经访问过的结点的（因为贪婪算法下若可以更新的话必定在还在之前就已经更新过了）；</li>
+<li>可以用<code>pre[y]=i</code>维护最短的路径（点边关系）；</li>
+</ol>
+</li>
+</ul>
+<h4 id="Template："><a href="#Template：" class="headerlink" title="Template："></a>Template：</h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4779">标准版询问单源最短路径</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> local</span></span><br><span class="line"><span class="comment">//#pragma GCC optimize(2)</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">200005</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> head;</span><br><span class="line">    <span class="type">int</span> to;</span><br><span class="line">    <span class="type">int</span> nxt;</span><br><span class="line">    <span class="type">int</span> w;</span><br><span class="line">&#125;e[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v,<span class="type">int</span> w,<span class="type">int</span>&amp; cnt,std::vector&lt;<span class="type">int</span>&gt;&amp; head)</span></span>&#123;</span><br><span class="line">    e[cnt].nxt=head[u];</span><br><span class="line">    head[u]=cnt;</span><br><span class="line">    e[cnt].head=u,e[cnt].to=v,e[cnt].w=w;</span><br><span class="line">    cnt++;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;<span class="comment">//链式前向星建图</span></span><br><span class="line"><span class="comment">//*****************************************************************************************//</span></span><br><span class="line"></span><br><span class="line"><span class="type">long</span> <span class="type">long</span> dis[maxn]; </span><br><span class="line"><span class="comment">//int pre[maxn];</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> INF=<span class="number">1000000009</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Node</span>&#123;<span class="comment">//使用Node维护每次要更新的点和距离</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> distance;</span><br><span class="line">    <span class="type">int</span> position;</span><br><span class="line">    <span class="built_in">Node</span>(<span class="type">long</span> <span class="type">long</span> a,<span class="type">int</span> b)&#123;distance=a;position=b;&#125;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span> &gt;(<span class="type">const</span> Node&amp;obj) <span class="type">const</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> distance&gt;obj.distance;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">cmp</span>&#123;<span class="comment">//小根堆比较函数</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(Node&amp;a,Node&amp;b)</span><span class="type">const</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a&gt;b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">std::priority_queue&lt;Node,std::vector&lt;Node&gt;,cmp&gt; disQ;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Dijstra</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> n,<span class="type">long</span> <span class="type">long</span> (&amp;dis)[maxn],std::vector&lt;<span class="type">int</span>&gt;&amp; head<span class="comment">/*,int (&amp;pre)[maxn]*/</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) dis[i]=INF;</span><br><span class="line">    dis[u]=<span class="number">0</span>;</span><br><span class="line">    disQ.<span class="built_in">push</span>(<span class="built_in">Node</span>(<span class="number">0</span>,u));<span class="comment">//保存用来更新的队列</span></span><br><span class="line">    <span class="type">bool</span> vis[maxn];</span><br><span class="line">    <span class="built_in">memset</span>(vis,<span class="literal">false</span>,<span class="built_in">sizeof</span>(vis));<span class="comment">//初始化</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!disQ.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        <span class="type">int</span> x=disQ.<span class="built_in">top</span>().position;</span><br><span class="line">        disQ.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span>(vis[x]) <span class="keyword">continue</span>; vis[x]=<span class="literal">true</span>;<span class="comment">//不再对已访问过的位置进行访问</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=head[x];j!=<span class="number">-1</span>;j=e[j].nxt)&#123;</span><br><span class="line">            <span class="type">int</span> y=e[j].to;<span class="comment">//遍历当前位置的邻点，并更新它们</span></span><br><span class="line">            <span class="keyword">if</span>(dis[y]&gt;dis[x]+e[j].w)&#123;</span><br><span class="line">                dis[y]=dis[x]+e[j].w;</span><br><span class="line">                <span class="keyword">if</span>(!vis[y]) disQ.<span class="built_in">push</span>(<span class="built_in">Node</span>(dis[y],y))<span class="comment">/*,pre[y]=i*/</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//****************************************************************************************//</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);</span></span><br><span class="line">    <span class="meta">#<span class="keyword">ifdef</span> local</span></span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span> <span class="comment">// local</span></span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n,m,s;</span><br><span class="line">    std::cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; head;<span class="comment">//head[u],头为u的当前最晚出现的边标号</span></span><br><span class="line">    head.<span class="built_in">resize</span>(n<span class="number">+1</span>,<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">        <span class="type">int</span> u,v,w;</span><br><span class="line">        std::cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;</span><br><span class="line">        <span class="built_in">add</span>(u,v,w,cnt,head);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//memset(pre,0,sizeof(pre));</span></span><br><span class="line">    <span class="built_in">Dijstra</span>(s,n,dis,head);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i!=<span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        std::cout&lt;&lt;dis[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Floyd-算法"><a href="#Floyd-算法" class="headerlink" title="$$Floyd$$ 算法"></a>$$Floyd$$ 算法</h3><h4 id="Notice-1"><a href="#Notice-1" class="headerlink" title="Notice"></a>Notice</h4><ul>
+<li>$$Floyd$$ 算法是基于最朴素的动态规划的思想，求出全局上的任意两点的最短路问题，可以处理负边权的情况；</li>
+<li>我们知道对于图$$G$$ 中存在负权值环的话，沿着这个环一直前进是不会得到最短路的，$$Floyd$$ 算法也无法处理这类的问题；</li>
+<li>在一些加了若干限制的最短路问题中，往往都要回归到朴素的$$Floyd$$算法来；</li>
+</ul>
+<h4 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h4><p>考虑对每个$$k$$值，「$$i$$到$$j$$ 的路径只允许经过标号不大于$$k$$的点」中最短路径长度$$dis[i][j]$$，明显$$k&#x3D;n$$是我们所求问题的答案；</p>
+<ul>
+<li><p>初始$$k&#x3D;0$$，所欲值都是正无穷；</p>
+</li>
+<li><p>递归的说，对于已有的$$k-1 $$允许的最短路径，新的最短路径要么经过$$k$$,要么维持不变；</p>
+</li>
+<li><p>状态转移方程为<br>$$<br>dis[i][j]&#x3D;min(dis[i][j],dis[i][k]+dis[k][j]),for\  all\  (i,j)s<br>$$</p>
+</li>
+<li><p>时间复杂度为$$O(|V|^3)$$;</p>
+</li>
+</ul>
+<h4 id="Template"><a href="#Template" class="headerlink" title="Template:"></a>Template:</h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3371">弱化版单源最短路径，不是正解，只有70分</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//#pragma GCC optimize(2)</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">10005</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">500005</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">long</span> <span class="type">long</span> dis[maxn][maxn]; </span><br><span class="line"><span class="type">const</span> <span class="type">long</span> <span class="type">long</span> INF= (<span class="number">1</span>&lt;&lt;<span class="number">31</span>)<span class="number">-1</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Floyd</span><span class="params">(<span class="type">int</span> n,<span class="type">long</span> <span class="type">long</span> (&amp;dis)[maxn][maxn])</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;=n;k++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">                dis[i][j]=std::<span class="built_in">min</span>(dis[i][j],dis[i][k]+dis[k][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);</span></span><br><span class="line">    <span class="meta">#<span class="keyword">ifdef</span> local</span></span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span> <span class="comment">// local</span></span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n,m,s;</span><br><span class="line">    std::cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            dis[i][j]= INF;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">        <span class="type">int</span> u,v,w;</span><br><span class="line">        std::cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;</span><br><span class="line">        dis[u][v]=std::<span class="built_in">min</span>(dis[u][v],w*<span class="number">1LL</span>);<span class="comment">//可能由重边</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">Floyd</span>(n,dis);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i!=<span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        std::cout&lt;&lt;((i!=s)?dis[s][i]:<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="SPFA-算法"><a href="#SPFA-算法" class="headerlink" title="$$SPFA$$ 算法"></a>$$SPFA$$ 算法</h3><h4 id="Notice-2"><a href="#Notice-2" class="headerlink" title="Notice:"></a>Notice:</h4><ul>
+<li>对于一般的带权图，不同于正权图的$$relax$$操作每次取出最小的$$dis$$来进行下一步，边权有负数是不保证正确性的，所以我们维护一个普通的队列就行了，这也是$$SPFA$$经常得卡爆的地方，构造数据可以欺骗算法进入冗余的分支，使得队列的进出和$$relax$$多了很多不必要的操作；</li>
+<li>这个算法本质是$$Bellmon-Ford$$算法的局部优化，复杂度为$$O(|V||E|)$$；</li>
+<li>所以说没必要仔细解释$$Bellmon$$算法对全局的$$n-1$$次$$relax$$操作了，卡$$SPFA$$的一定卡$$Bellmon$$;</li>
+<li>（保证输入是随机数据）慎用，不要偷懒！<del>因为它已经死了</del>；</li>
+</ul>
+<h4 id="Template-1"><a href="#Template-1" class="headerlink" title="Template:"></a>Template:</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//#pragma GCC optimize(2)</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn=<span class="number">100005</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">500005</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span>&#123;</span><br><span class="line">    <span class="type">int</span> head;</span><br><span class="line">    <span class="type">int</span> to;</span><br><span class="line">    <span class="type">int</span> nxt;</span><br><span class="line">    <span class="type">int</span> w;</span><br><span class="line">&#125;e[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v,<span class="type">int</span> w,<span class="type">int</span>&amp; cnt,std::vector&lt;<span class="type">int</span>&gt;&amp; head)</span></span>&#123;</span><br><span class="line">    e[cnt].nxt=head[u];</span><br><span class="line">    head[u]=cnt;</span><br><span class="line">    e[cnt].head=u,e[cnt].to=v,e[cnt].w=w;</span><br><span class="line">    cnt++;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//******************************************************************************//</span></span><br><span class="line"><span class="type">const</span> <span class="type">long</span> <span class="type">long</span> INF=(<span class="number">1</span>&lt;&lt;<span class="number">31</span>)<span class="number">-1</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> dis[maxn];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SPFA</span><span class="params">(<span class="type">int</span> s,<span class="type">int</span> n,<span class="type">long</span> <span class="type">long</span> (&amp;dis)[maxn],std::vector&lt;<span class="type">int</span>&gt; &amp;head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) dis[i]=INF;</span><br><span class="line">    dis[s]=<span class="number">0</span>;</span><br><span class="line">    <span class="type">bool</span> vis[maxn];</span><br><span class="line">    <span class="built_in">memset</span>(vis,<span class="literal">false</span>,<span class="built_in">sizeof</span>(vis));</span><br><span class="line"></span><br><span class="line">    std::queue&lt;<span class="type">int</span>&gt; disQ;</span><br><span class="line">    disQ.<span class="built_in">push</span>(s);</span><br><span class="line">    <span class="keyword">while</span>(!disQ.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        <span class="type">int</span> x=disQ.<span class="built_in">front</span>();</span><br><span class="line">        disQ.<span class="built_in">pop</span>();</span><br><span class="line">        vis[x]=<span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=head[x];i!=<span class="number">-1</span>;i=e[i].nxt)&#123;</span><br><span class="line">            <span class="type">int</span> y=e[i].to;</span><br><span class="line">            <span class="keyword">if</span>(dis[y]&gt;dis[x]+e[i].w)&#123;</span><br><span class="line">                dis[y]=dis[x]+e[i].w;</span><br><span class="line">                <span class="keyword">if</span>(!vis[y])&#123;</span><br><span class="line">                    vis[y]=<span class="literal">true</span>;</span><br><span class="line">                    disQ.<span class="built_in">push</span>(y);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//*************************************************************************************//</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);</span></span><br><span class="line">    <span class="meta">#<span class="keyword">ifdef</span> local</span></span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span> <span class="comment">// local</span></span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n,m,s;</span><br><span class="line">    std::cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; head;<span class="comment">//head[u],头为u的当前最晚出现的边标号</span></span><br><span class="line">    head.<span class="built_in">resize</span>(n<span class="number">+1</span>,<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">        <span class="type">int</span> u,v,w;</span><br><span class="line">        std::cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;</span><br><span class="line">        <span class="built_in">add</span>(u,v,w,cnt,head);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//memset(pre,0,sizeof(pre));</span></span><br><span class="line">    <span class="built_in">SPFA</span>(s,n,dis,head);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i!=<span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        std::cout&lt;&lt;dis[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p><del>暂时没有；</del></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3385">洛谷P3385 【模板】负环</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5905">洛谷P5909【模板】Johnson 全源最短路</a></p>
+<h1 id="Remark"><a href="#Remark" class="headerlink" title="Remark"></a>Remark</h1><p>还是多整理一些模板少打比赛吧，太坐牢了，<del>怎么写那么快的啊</del>；</p>
+<p>学校的专题等一波题解发下来吧，真的不知道里面是什么毒瘤数据；</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/14/UESTC%202023%20Summer%20Training#4%20Div.2%E6%9A%91%E5%81%87%E9%9B%86%E8%AE%AD/" rel="prev" title="UESTC 2023 Summer Training#4 Div.2暑假集训">
+                  <i class="fa fa-angle-left"></i> UESTC 2023 Summer Training#4 Div.2暑假集训
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/17/%E6%95%B0%E5%AD%A6%EF%BC%9A%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9B%B8%E5%85%B3%E6%80%A7%E8%B4%A8/" rel="next" title="\[数学\]二进制位运算相关性质">
+                  \[数学\]二进制位运算相关性质 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="离群点(Outlier)和异常(Anomaly)检测Background异常数据通常作为噪音而忽略，但是在欺诈检测，入侵检测等领域，离群点能带来新的启发。 Content概念离群点：显著不同于其它数据对象，好像它是被不同的机制产生的一样； 噪声：观测变量的随机性产生； 分类 全局离群点：显著地偏移其他对象 情景离群点：依赖情景属性和行为属性，例如夏天的28℃和冬天的28℃ 局部离群点：密度偏离所在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="离群点(Outlier)检测">
+<meta property="og:url" content="http://example.com/2025/05/01/%E7%A6%BB%E7%BE%A4%E7%82%B9(Outlier)%E6%A3%80%E6%B5%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="离群点(Outlier)和异常(Anomaly)检测Background异常数据通常作为噪音而忽略，但是在欺诈检测，入侵检测等领域，离群点能带来新的启发。 Content概念离群点：显著不同于其它数据对象，好像它是被不同的机制产生的一样； 噪声：观测变量的随机性产生； 分类 全局离群点：显著地偏移其他对象 情景离群点：依赖情景属性和行为属性，例如夏天的28℃和冬天的28℃ 局部离群点：密度偏离所在">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405271555010.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.381Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.835Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405271555010.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E7%A6%BB%E7%BE%A4%E7%82%B9(Outlier)%E6%A3%80%E6%B5%8B/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E7%A6%BB%E7%BE%A4%E7%82%B9(Outlier)%E6%A3%80%E6%B5%8B/","path":"2025/05/01/离群点(Outlier)检测/","title":"离群点(Outlier)检测"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>离群点(Outlier)检测 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A6%BB%E7%BE%A4%E7%82%B9-Outlier-%E5%92%8C%E5%BC%82%E5%B8%B8-Anomaly-%E6%A3%80%E6%B5%8B"><span class="nav-number">1.</span> <span class="nav-text">离群点(Outlier)和异常(Anomaly)检测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">1.1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Content"><span class="nav-number">1.2.</span> <span class="nav-text">Content</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">1.2.2.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%91%E6%88%98"><span class="nav-number">1.2.3.</span> <span class="nav-text">挑战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%91%E7%9D%A3%EF%BC%8C%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%92%8C%E6%97%A0%E7%9B%91%E7%9D%A3%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.4.</span> <span class="nav-text">监督，半监督和无监督的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%9A%84%E6%A3%80%E6%B5%8B"><span class="nav-number">1.2.5.</span> <span class="nav-text">基于统计学的检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E8%B7%9D%E7%A6%BB%E7%9A%84%E6%A3%80%E6%B5%8B"><span class="nav-number">1.2.6.</span> <span class="nav-text">基于距离的检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%81%8F%E7%A6%BB%E7%9A%84%E6%A3%80%E6%B5%8B"><span class="nav-number">1.2.7.</span> <span class="nav-text">基于偏离的检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%AF%86%E5%BA%A6%E7%9A%84%E6%A3%80%E6%B5%8B"><span class="nav-number">1.2.8.</span> <span class="nav-text">基于密度的检测</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E7%A6%BB%E7%BE%A4%E7%82%B9(Outlier)%E6%A3%80%E6%B5%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="离群点(Outlier)检测 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          离群点(Outlier)检测
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="离群点-Outlier-和异常-Anomaly-检测"><a href="#离群点-Outlier-和异常-Anomaly-检测" class="headerlink" title="离群点(Outlier)和异常(Anomaly)检测"></a>离群点(Outlier)和异常(Anomaly)检测</h1><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>异常数据通常作为噪音而忽略，但是在欺诈检测，入侵检测等领域，离群点能带来新的启发。</p>
+<h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>离群点：显著不同于其它数据对象，好像它是被不同的机制产生的一样；</p>
+<p>噪声：观测变量的随机性产生；</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li>全局离群点：显著地偏移其他对象</li>
+<li>情景离群点：依赖情景属性和行为属性，例如夏天的28℃和冬天的28℃<ul>
+<li>局部离群点：密度偏离所在局部区域的密度；</li>
+</ul>
+</li>
+<li>集体离群点：数据集中的一个子集偏移整个数据集；</li>
+</ul>
+<h3 id="挑战"><a href="#挑战" class="headerlink" title="挑战"></a>挑战</h3><ul>
+<li>合适的建模</li>
+<li>如何分辨噪声和离群点？</li>
+<li>可解释性，针对应用</li>
+</ul>
+<h3 id="监督，半监督和无监督的方法"><a href="#监督，半监督和无监督的方法" class="headerlink" title="监督，半监督和无监督的方法"></a>监督，半监督和无监督的方法</h3><p>pass</p>
+<h3 id="基于统计学的检测"><a href="#基于统计学的检测" class="headerlink" title="基于统计学的检测"></a>基于统计学的检测</h3><p>事先对数据集进行分布上的假设，采用不一致性检验(Discordancy test)；</p>
+<p>例如经验告诉我们，假设数据集服从正态分布，需要参数如下：</p>
+<ul>
+<li>数据集参数: 例如, 假设的数据分布</li>
+<li>分布参数: 例如平均值和方差</li>
+<li>和预期的孤立点的数目</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>难以挖掘多维属性；</li>
+<li>数据集分布未知，但<strong>有效性高度依赖于给定数据所做的统计模型假设是否成立</strong>。</li>
+<li>不保证所有离群点被发现；</li>
+</ul>
+<h3 id="基于距离的检测"><a href="#基于距离的检测" class="headerlink" title="基于距离的检测"></a>基于距离的检测</h3><p>数据对象的给定半径的邻域内，如果没有足够多的邻居，那么被认定为离群点；</p>
+<ul>
+<li>距离阈值$r$;</li>
+<li>分数阈值$\pi$;</li>
+<li>距离度量$dis(o,o’)$;</li>
+</ul>
+<p>若$o$被认为是数据集$D$中的$DB(r,\pi)$离群点，即<br>$$<br>\frac{|{o’|dis(o,o’)}|}{|D|}\le \pi<br>$$<br>常见算法：</p>
+<ul>
+<li>K-d Tree</li>
+<li>嵌套循环：遍历对象，计算对象半径内的邻居数，若中途超出阈值提前退出；</li>
+<li>一种cell-based算法：先验性质剪枝</li>
+</ul>
+<p>注意：$o_1,o_2$并不能被基于距离的算法检测到离群</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405271555010.png" alt="image-20240527155532971"></p>
+<h3 id="基于偏离的检测"><a href="#基于偏离的检测" class="headerlink" title="基于偏离的检测"></a>基于偏离的检测</h3><p>检查对象的主要特征，与给出的描述偏离大的对象被认为是离群点；</p>
+<h3 id="基于密度的检测"><a href="#基于密度的检测" class="headerlink" title="基于密度的检测"></a>基于密度的检测</h3><p>非离群对象周围的密度与其邻域周围密度类似，而离群点密度显著不同于邻域周围的密度；</p>
+<ul>
+<li><p>对象$o$的$k-distance$:第$k$个最近邻之间的距离$dis_k(o)$；</p>
+<ul>
+<li>注意集合$N_k(o)&#x3D;{o’\in D-{o}|dis(o,o’)\le dis_k(o)}$可能大小超过$k$;</li>
+</ul>
+</li>
+<li><p>对象$p$相对于对象$o$的可达距离：$reachDis_k(p,o)&#x3D;\max{dis_k(o),dis(p,o)}$</p>
+</li>
+<li><p>对象$o$的局部可达密度:$lrd_k(o)&#x3D;\frac{|N_k(o)|}{\sum_{p\in D} reachDis_k(p,o)}$</p>
+<ul>
+<li><p>对象$o$的局部异常因子（Local Outlier Factor）:</p>
+<p>$LOF_k(o)&#x3D;\frac{1}{|N_k(o)|}{\sum_{o’\in N_k(o)}\frac{lrd_k(o’)}{lrd_k(o)}}$​</p>
+<ul>
+<li><p>表示对象$o$的异常程度；</p>
+<ul>
+<li>簇中心的点LOF接近1，但是不能认为这样的点是异常的；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E6%B8%85%E5%8D%95/" rel="prev" title="期末复习清单">
+                  <i class="fa fa-angle-left"></i> 期末复习清单
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/K-d%20Tree%E5%8F%91%E7%8E%B0%E7%BB%99%E5%AE%9A%E5%A4%A7%E5%B0%8F%E7%9A%84%E9%82%BB%E5%9F%9F%E4%B8%AD%E7%9A%84%E7%82%B9/" rel="next" title="K-d Tree发现给定大小的邻域中的点">
+                  K-d Tree发现给定大小的邻域中的点 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

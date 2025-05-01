@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="平稳白噪声序列设${X_n,n&#x3D;0,1,\cdots}$为一列两两互不相关的随机变量序列，满足$E(X_n)&#x3D;0,n&#x3D;0,1,2\cdots$,且$$\left.E(X_mX_n)&#x3D;\left{\begin{array}{ll}0\quad,&amp;\text{当}m\neq n\\sigma^2,&amp;\text{当}m&#x3D;n\end{arr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="应用随机过程中的一些例子">
+<meta property="og:url" content="http://example.com/2025/05/01/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="平稳白噪声序列设${X_n,n&#x3D;0,1,\cdots}$为一列两两互不相关的随机变量序列，满足$E(X_n)&#x3D;0,n&#x3D;0,1,2\cdots$,且$$\left.E(X_mX_n)&#x3D;\left{\begin{array}{ll}0\quad,&amp;\text{当}m\neq n\\sigma^2,&amp;\text{当}m&#x3D;n\end{arr">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.496Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.554Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90/","path":"2025/05/01/应用随机过程中的一些例子/","title":"应用随机过程中的一些例子"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>应用随机过程中的一些例子 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E7%A8%B3%E7%99%BD%E5%99%AA%E5%A3%B0%E5%BA%8F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">平稳白噪声序列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BB%91%E5%8A%A8%E5%B9%B3%E5%9D%87%E5%BA%8F%E5%88%97"><span class="nav-number">2.</span> <span class="nav-text">滑动平均序列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fix-Neyman-1951-%E7%96%BE%E7%97%85%E3%80%81%E6%AD%BB%E4%BA%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">Fix-Neyman(1951)疾病、死亡模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A6%BB%E6%95%A3%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F"><span class="nav-number">4.</span> <span class="nav-text">离散排队系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#M-G-1%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.</span> <span class="nav-text">M&#x2F;G&#x2F;1排队系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#s-S-%E5%A4%87%E8%B4%A7%E7%AD%96%E7%95%A5"><span class="nav-number">6.</span> <span class="nav-text">(s, S)备货策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E8%BF%87%E7%A8%8B"><span class="nav-number">7.</span> <span class="nav-text">分支过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%BA%E5%8F%A3%E7%BB%93%E6%9E%84%E5%8F%98%E5%8C%96%E7%9A%84Markov%E9%93%BE%E6%A8%A1%E5%9E%8B"><span class="nav-number">8.</span> <span class="nav-text">人口结构变化的Markov链模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Yule-%E8%BF%87%E7%A8%8B"><span class="nav-number">9.</span> <span class="nav-text">Yule 过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E7%81%AD%E8%BF%87%E7%A8%8B"><span class="nav-number">10.</span> <span class="nav-text">生灭过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#M-M-S%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F"><span class="nav-number">11.</span> <span class="nav-text">M&#x2F;M&#x2F;S排队系统</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="应用随机过程中的一些例子 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          应用随机过程中的一些例子
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="平稳白噪声序列"><a href="#平稳白噪声序列" class="headerlink" title="平稳白噪声序列"></a>平稳白噪声序列</h3><p>设${X_n,n&#x3D;0,1,\cdots}$为一列两两互不相关的随机变量序列，满足$E(X_n)&#x3D;0,n&#x3D;0,1,2\cdots$,且<br>$$<br>\left.E(X_mX_n)&#x3D;\left{\begin{array}{ll}0\quad,&amp;\text{当}m\neq n\\sigma^2,&amp;\text{当}m&#x3D;n\end{array}\right.\right.<br>$$</p>
+<ul>
+<li><p>白噪声序列${X_n,n&#x3D;0,1,\cdots}$为平稳的.</p>
+<p>这是因为协方差函数 $cov( X_n, X_m) &#x3D; E( X_nX_m)$只与$m- n\textbf{有 关 }.$</p>
+</li>
+</ul>
+<h3 id="滑动平均序列"><a href="#滑动平均序列" class="headerlink" title="滑动平均序列"></a>滑动平均序列</h3><p>设$\left { \varepsilon _n, :n&#x3D; 0, \pm 1, \pm 2, \cdots \right }$为 一 列 互 不 相 关 的 且 有 相 同 均 值 $m$和方差$\sigma^2$的平稳白噪声序列。</p>
+<p>设$a_1,a_2,\cdots,a_k$为任意$k$个实数。如下滑动平均序列具有平稳性：<br>$$<br>X_n&#x3D;a_1\varepsilon_n+a_2\varepsilon_{n-1}+\cdots+a_k\varepsilon_{n-k+1}&#x3D;\sum_{i&#x3D;1}^k a_i\varepsilon_{n+1-i},\quad n&#x3D;0,\pm1,\pm2,\cdots<br>$$<br>对于均值,保持不变：<br>$$<br>E[X_n]&#x3D;E[\sum_{i&#x3D;1}^k a_i\varepsilon_{n+1-i}]&#x3D;\mu\sum_{i&#x3D;1}^k a_i<br>$$<br>协方差<br>$$<br>\gamma(\tau)&#x3D;\gamma(n,n+\tau)&#x3D;\sigma^2\sum_{i&#x3D;1}^k a_i a_{i+\tau}(0\le \tau \le k-1)<br>$$<br>滑动平均序列均值具有遍历性,这是因为$k$是固定的数，<br>$$<br>\tau\to \infty,\gamma(\tau)\to 0<br>$$</p>
+<h3 id="Fix-Neyman-1951-疾病、死亡模型"><a href="#Fix-Neyman-1951-疾病、死亡模型" class="headerlink" title="Fix-Neyman(1951)疾病、死亡模型"></a>Fix-Neyman(1951)疾病、死亡模型</h3><p>考虑一个包含两个健康状态$S_1,S_2$以及两个死亡状态$S_3,S_4$<br>(即由不同原因引起的死亡)的模型。若个体病愈，则认为它处于状态$S_1$,若它患病，则它处于$S_2$,个体可以从$S_1,S_2$进入$S_3$和$S_4$, 易见这是一个马氏链的模型，转移矩阵为<br>$$\left.\mathbf{P}&#x3D;\left(\begin{array}{cccc}p_{11}&amp;p_{12}&amp;p_{13}&amp;p_{14}\p_{21}&amp;p_{22}&amp;p_{23}&amp;p_{24}\0&amp;0&amp;1&amp;0\0&amp;0&amp;0&amp;1\end{array}\right.\right)$$</p>
+<h3 id="离散排队系统"><a href="#离散排队系统" class="headerlink" title="离散排队系统"></a>离散排队系统</h3><p>考虑顾客到达一服务台排队等待服务的情况。若服务台前至少有一顾客等待，则在一单位时间周期内，服务员完成一个顾客的服务后，该顾客立即离去；若服务台前没有顾客，则服务员空闲。在一个服务周期内，顾客可以到达，设第$n$个周期到达的顾客数$\xi_n$是一个取值为非负整数的随机变量，且${\xi_1,\xi_2,\cdots}$相互独立<br>同分布。</p>
+<p>设$X_n$为第$n$个周期开始时服务台前的等待服务的顾客数，验<br>证${ X_n, n&#x3D; 0, 1, 2, \cdots } \textbf{是 Markov链 , 并 写 出 转 移 概 率 。 }$</p>
+<h3 id="M-G-1排队系统"><a href="#M-G-1排队系统" class="headerlink" title="M&#x2F;G&#x2F;1排队系统"></a>M&#x2F;G&#x2F;1排队系统</h3><p>在$M&#x2F;G&#x2F;1$排队系统中，$M$表示顾客到达服务台的时间间隔，假设为独立同分布，概率密度为$g(t).$ 若服务员空闲，则顾客立刻就能得到服务，否则就需要等待排队。$G$表示每位顾客的服务时间，假设为独立同指数分布(参数为λ),且与顾客到达过程相互独立。数字1表示只有1名服务员。<br>设$X_n$表示第$n$位顾客到达服务台时系统内的顾客数(包括该顾<br>客)、验证${ X_n, n&#x3D; 1, 2, \cdots } \textbf{是 Markov链 , 并 写 出 转 移 概 率 。 }$</p>
+<h3 id="s-S-备货策略"><a href="#s-S-备货策略" class="headerlink" title="(s, S)备货策略"></a>(s, S)备货策略</h3><p>设某商店使用$(s,S)$备货策略，每天早上检查某商品的剩余量，<br>设为$x$,定购额为<br>$$\left.\left{\begin{array}{ll}0,&amp;\text{若}x\geq s\S-x,&amp;\text{若}x&lt;s\end{array}\right.\right.$$<br>设定货和进货不需要时间，每天的需求量$Y_n$独立同分布<br>且$P{Y_n&#x3D;j}&#x3D;a_j,j&#x3D;0,1,2,\cdots$.设$X_n$为第$n$天结束时的存货量，<br>验证${ X_n, n&#x3D; 1, 2, \cdots } \textbf{是 Markov链 , 并 写 出 转 移 概 率 。 }$</p>
+<h3 id="分支过程"><a href="#分支过程" class="headerlink" title="分支过程"></a>分支过程</h3><p>考虑一个能产生同类后代的个体组成的群体.每一个体生命结束时以概率$p_j(j&#x3D;0,1,2,3,\cdots)$产生了$j$个新的后代，与别的个体产生的后代个数相互独立.</p>
+<p>初始的个体数以$X_0$表示，称为第零代的总数；第零代的后代构成第一代，其总数记为$X_1$,第一代的每个个体以同样的分布产生第二代，$\cdots$.一般地，以$X_n$记第$n$代的总数.</p>
+<p>此Markov链${ X_n, n&#x3D; 0, 1, 2, \cdots }$ 称 为 分 支 过 程 . </p>
+<p>现在假设群体是从单个祖先开始的，即$X_0&#x3D; 1$,则 有<br>$$<br>X_n&#x3D;\sum_{i&#x3D;1}^{X_{n-1}}Z_{n-1,i}<br>$$<br>其中$Z_{n-1,i}$表示第$n-1$代的第$i$个成员的后代的个数。</p>
+<ol>
+<li><p>第$n$代的平均个体数<br>$$<br>\begin{aligned}<br>E[X_n]&amp;&#x3D;E[E(X_n|X_{n-1})]\<br>&amp;&#x3D;\mu E[X_{n-1}]\<br>&amp;&#x3D;\mu^n\<br>\end{aligned}<br>$$<br>其中$\mu &#x3D;\sum_{i&#x3D;0}^\infty ip_i$表示每个个体的后代个数的均值，从而可以看出，若$μ &lt; 1$，则平均个体数单调下降趋于0.若$μ &#x3D; 1$时，各代平均个体数相同.当$μ &gt; 1$​时，平均个体数按指数阶上升至无穷.</p>
+<p>直觉上看家族消亡和$\mu$有关.</p>
+</li>
+<li><p>考虑群体最终会消亡的概率$π_0$, 设$0&lt; p_0&lt; 1$, 则$\pi _0&#x3D; 1 \Longleftrightarrow \mu \leq 1$</p>
+<p>由$\pi_0$的表达式$\pi_0&#x3D;\sum_{j&#x3D;0}^\infty \pi_0^jp_j:&#x3D;F(\pi_0)$ 知它是直线$y&#x3D;x$和曲线$y&#x3D;F(x)$交点的横坐标，显然(1,1)是一个交点.</p>
+<ul>
+<li><p>当$p_0+p_1&#x3D;1$时，$y&#x3D; F( x)$是 一 条 直 线 ,方程只有唯一解$\pi_0&#x3D;1$,家族必定消亡,此时<br>$$<br>\mu&#x3D;\sum_{i&#x3D;0}^\infty jp_j&#x3D;p_1&lt;1<br>$$</p>
+</li>
+<li><p>当$p_0+p_1&lt;1$时，由于<br>$$<br>\begin{aligned}&amp;F’(x)\quad&#x3D;\quad\sum_{j&#x3D;1}^\infty jx^{j-1}p_j&gt;0,\quad0&lt;x&lt;1\&amp;F’’(x)\quad&#x3D;\quad\sum_{j&#x3D;2}^\infty j(j-1)x^{j-2}p_j&gt;0,\quad0&lt;x&lt;1\end{aligned}<br>$$<br>可见$F( x) $是 单 调 增 加 的 凸 函 数 .</p>
+<ul>
+<li><p>$\forall s\in(0,1), F( s) &gt; s, F( 1) &#x3D; 1$, 方 程 $\pi _0&#x3D; F( \pi _0)$只 有 唯 一 的解$\pi_0&#x3D;1;$​</p>
+<p>此时$F^\prime(1)\leq1$而 $F^\prime(1)&#x3D;\sum_{j&#x3D;0}^\infty jp_j&#x3D;\mu$,从而$\mu\leq1.$</p>
+</li>
+<li><p>存在一个$0&lt;s&lt;1$使得 $F(s)&#x3D;s$,断言，$\pi_0$必定取值为$s$,为 此 只 需 证 明 $\pi _0$是方程的最小解.</p>
+<p>数学归纳法，$$\pi&#x3D;\sum_{j&#x3D;0}^\infty\pi^jp_j\geq\pi^0p_0&#x3D;p_0&#x3D;P{X_1&#x3D;0}$$</p>
+<p>假设$\pi \geq P{ X_n&#x3D; 0}$ ,则<br>$$<br>\begin{aligned}P{X_{n+1}&#x3D;0}&amp;&#x3D;\quad\sum_{j&#x3D;0}^\infty P{X_{n+1}&#x3D;0|X_1&#x3D;j}\cdot p_j\&amp;&#x3D;\quad\sum_{j&#x3D;0}^\infty P{X_n&#x3D;0}^j\cdot p_j\&amp;\leq\quad\sum_{j&#x3D;0}^\infty\pi^jp_j&#x3D;\pi\end{aligned}<br>$$<br>从而对一切$n$,$\pi\geq P{X_n&#x3D;0}.$<br>$\lim_{n\to\infty}P{X_n&#x3D;0}&#x3D;P{\text{群体最终灭绝}}&#x3D;\pi_0$,故$\pi\geq\pi_0.$这就证明了在这种情况下$\pi_0$取值应为$s.$</p>
+<p>容易看出$F’(1) &#x3D; μ &gt; 1$.此时$\pi&lt;1$,因此等价关系成立</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在实际应用中，考虑一个群体的真实增长时，分支过程的假定在群体达到无限之前就不成立了(比如独立同分布性).但另一方面，利用分支过程研究消亡现象是有意义的，因为一般灭绝常常发生在过程的早期.</p>
+</li>
+</ol>
+<h3 id="人口结构变化的Markov链模型"><a href="#人口结构变化的Markov链模型" class="headerlink" title="人口结构变化的Markov链模型"></a>人口结构变化的Markov链模型</h3><p>考虑社会的教育水平与文化程度的发展变化，可以建立如下模型：</p>
+<p>将全国所有16岁以上的人口分为文盲、初中、高中(含中专)、大学(含大专)、中级技术人才、高级技术人才、特级专家等7类，结构的变化为升级、退化(如，初中文化者会重新变为文盲)、进入 (年龄达到16岁或移民进入)迁出(死亡或移民国外).</p>
+<p>用$(n_1(t),n_2(t),\cdots,n_7(t))$表示在$t$年各等级的人数;</p>
+<p>$N( t) &#x3D; \sum _{i&#x3D; 1}^7n_i( t)$为 全 社 会 16岁 以 上 人 口 总 数  (简 称 为 总 人 数 );</p>
+<p>以$q_{ij}$记每年从$i$级转为$j$级的人数在$i$级人数中的百分比，则<br>$$<br>\mathbf{Q}&#x3D;(q_{ij})_{7\times7}<br>$$<br>是一个准转移矩阵(每行所有元素之和$\leq1).$</p>
+<p>再考虑进入与迁出，记$w_i$为每年从$i$级迁出占$i$级总人数的比例,$r_i$为每年进入$i$级的人数占总进入人数的比例，则<br>$$<br>\sum_{j&#x3D;1}^7q_{ij}+w_i&#x3D;1,\quad r_i\geq0,\quad\sum_{i&#x3D;1}^7r_i&#x3D;1<br>$$<br>记$R(t)$为总进入人数，$W(t)$为总迁出人数，则<br>$$<br>\begin{aligned} N(t+1) &amp;&#x3D; N(t)+R(t)-W(t)\ n_j(t+1) &amp;&#x3D; \sum_{i&#x3D;1}^7n_i(t)q_{ij}+r_jR(t)-n_j(t)w_j\end{aligned}<br>$$<br>令$$M(t)&#x3D;N(t+1)-N(t)&#x3D;R(t)-W(t)$$.</p>
+<p>设总人数以常数百分比$\alpha$增长(可以为负增长),即<br>$$<br>M(t)&#x3D;\alpha N(t)\ \alpha&#x3D;\frac{N(t+1)}{N(t)}-1<br>$$<br>于是<br>$$<br>\begin{aligned}\frac{n_j(t+1)}{N(t+1)}&amp;&#x3D;\quad\frac{N(t)}{N(t+1)}[\sum_{i&#x3D;1}^7\frac{n_i(t)}{N(t)}q_{ij}+r_j\frac{R(t)}{N(t)}-\frac{n_j(t)}{N(t)}w_j]\&amp;&#x3D;\quad(\frac1{1+\alpha})[\sum_{i&#x3D;1}^7\frac{n_i(t)}{N(t)}q_{ij}+r_j\frac{R(t)}{N(t)}-\frac{n_j(t)}{N(t)}w_j]\end{aligned}<br>$$<br>记$a_j(t)&#x3D;\frac{n_j(t)}{N(t)}$,上式可改写为<br>$$<br>\begin{aligned}a_j(t+1)&amp;&#x3D;\frac{1}{1+\alpha}[\sum_{i&#x3D;1}^{7}a_i(t)q_{ij}+r_j\frac{R(t)}{N(t)}-w_ja_j(t)] \end{aligned}<br>$$<br>由$R(t)&#x3D;W(t)+M(t)$,可故写为<br>$$<br>a_j(t+1)&#x3D;\frac{1}{1+\alpha}[\sum_{i&#x3D;1}^7a_i(t)(q_{ij}+r_jw_i)-w_ja_j(t)+\alpha r_j]<br>$$<br>这是由于<br>$$<br>\frac{W(t)}{N(t)}&#x3D;\frac{\sum_{i&#x3D;1}^7n_i(t)w_i}{N(t)}&#x3D;\sum_{i&#x3D;1}^7a_i(t)w_i<br>$$<br>特别地,当$\alpha&#x3D;0 , a_j(t+1)&#x3D;\sum_{i&#x3D;1}^7a_j(t)(q_j+r_jw_i)-w_ja_j(t)$;</p>
+<p>记$\mathbf{a}(t)&#x3D;(a_1(t),\cdots,a_7(t)), \mathbf{P}&#x3D;(\widetilde p_{ij})$</p>
+<p>其中<br>$$<br>\widetilde{p}<em>{ij}&#x3D;<br>\begin{cases}<br>q</em>{ij}+r_jw_i&amp;,i\neq j\<br>q_{jj}+r_jw_j-w_j&amp;,i&#x3D;j<br>\end{cases}<br>$$<br>则上式变为<br>$$<br>a(t+1)&#x3D;\mathbf{a}(t)\widetilde{\mathbf{P}}<br>$$<br>这是一个以$\widetilde{\mathbf{P}}$为转移阵的Markov链，在$t$时刻分布满足的方程.</p>
+<p>我们希望人口维持在比较合理的稳定水平$a^*$,文盲不太多，专家也不太多，并且从现在的$a(0)$出发，通过控制人口进入各级的比例$r&#x3D;(r_1,\cdots,r_7)$来尽快地达到这个稳定水平.为此我们讨论一下在不同的r下全部可能的稳定结构.由于</p>
+<p>$$<br>\mathbf{a}&#x3D; \mathbf a\cdot \widetilde P<br>$$<br>即<br>$$<br>\mathbf{a}&#x3D;\mathbf{a}(\mathbf{Q}+(w_ir_j)-(w_j\delta_{ij}))&#x3D;\mathbf{a}\mathbf{Q}+(\mathbf{a}\mathbf{w}^T)\mathbf{r}-(a_1w_1,\cdots,a_7w_7)<br>$$<br>其 中<br>$$<br>\mathbf{w} &#x3D; ( w_1, \cdots , w_7) , \textbf{r}&#x3D; ( r_1, \cdots , r_7) .<br>$$<br>当数$\mathbf{aw^T}\neq0$时$$\mathbf{r&#x3D;a<a href="aw%5ET">I-Q+(w_j\delta_{ij})</a>^{-1}}$$即$\mathbf{a&#x3D;(aw^{T})\cdot r(I-Q+(w_j\delta_{ij}))^{-1}.}$</p>
+<p> 因 为 要 求 $r_i\geq 0$. 从而$a_j\geq \sum <em>{i&#x3D; 1}^7a_iq</em>{ij}- a_jw_j( \forall j)$,这 样 对 于<br>$$<br>\forall\mathbf{a}\in\mathcal{A}\doteq{\mathbf{a}:a_j\geq\sum_{i&#x3D;1}^7a_iq_{ij}-a_jw_j,\forall j},<br>$$<br>找出$r$使其满足<br>$$<br>\mathrm{a&#x3D;aQ+aw^{T}r-a(w_i\delta_{ij})&#x3D;a\cdot\widetilde{P}}<br>$$<br>从而对于此$r,a$是一个稳定的结构.</p>
+<h3 id="Yule-过程"><a href="#Yule-过程" class="headerlink" title="Yule 过程"></a>Yule 过程</h3><p>设群体中各个生物体的繁殖是相互独立，强度为$\lambda$的Poisson过程，并且群体中没有死亡，此过程称为Yule过程，也叫纯生过程;</p>
+<p>设在时刻0群体中有1个个体，则群体将有的个体数是${1,2,3\cdots}$ ;</p>
+<p>以$T_i(i\geq1)$记群体数目从$i$增加到$i+1$所需的时间，由Yule过程定义，当群体数目为$i$时，这$i$个个体是以相互独立的Poisson过程来产生后代的;</p>
+<p>由Poisson过程的可加性知，这相当于一个强度为$\lambda i$的Poisson过程；由Poisson过程的平稳独立增量性，易知$T_i$与状态的转移是独立的 $(i\geq1)$,并且${T_i}$是相互独立且服从参数为$\lambda i$的指数分布;</p>
+<p>这就说明了Yule过程是一个连续时间Markov链。</p>
+<h3 id="生灭过程"><a href="#生灭过程" class="headerlink" title="生灭过程"></a>生灭过程</h3><p>设马尔可夫链${X(t),t\geq0}$,状态空间$\mathcal{S}&#x3D;{0,1,2,\cdots}$,若转移概率矩阵$\mathbf P(t)&#x3D;(p_{ij}(t))$满足：当$h$充分小时，<br>$$<br>\begin{aligned}&amp;\begin{cases}p_{i,i+1}(h)&#x3D;\lambda_ih+o(h),&amp;\lambda_i\geq0,i\geq0,\p_{i,i-1}(h)&#x3D;\mu_ih+o(h),&amp;\mu_i\geq0,i\geq1,\p_{ii}(h)&#x3D;1-(\lambda_i+\mu_i)h+o(h),&amp;\mu_0&#x3D;0,i\geq0,\\sum_{|j-i|\geq2}p_{ij}(h)&#x3D;o(h),&amp;i\geq0.\end{cases}\end{aligned}<br>$$<br>则称该过程为生灭过程.</p>
+<p>根据生灭过程的定义，当$h$充分小时，状态的转移只有三种可能： $i\to i+1,i\to i-1,i\to i$这个特性是许多生物群体，例子裂变,信号计数等的共同特点，因而可以作为这一类为物理自然现象的数学模型。</p>
+<p>生灭过程的$\mathbf Q$矩阵是保守的：<br>$$<br>\left.\mathbf{Q}&#x3D;\left(\begin{array}{ccccccc}-\lambda_0&amp;\lambda_0&amp;0&amp;0&amp;0&amp;0&amp;\cdots\\mu_1&amp;-(\lambda_1+\mu_1)&amp;\lambda_1&amp;0&amp;0&amp;0&amp;\cdots\0&amp;\mu_2&amp;-(\lambda_2+\mu_2)&amp;\lambda_2&amp;0&amp;0&amp;\cdots\0&amp;0&amp;\mu_3&amp;-(\lambda_3+\mu_3)&amp;\lambda_3&amp;0&amp;\cdots\\vdots&amp;\vdots&amp;\vdots&amp;\cdots&amp;\vdots&amp;\vdots&amp;\ddots\end{array}\right.\right)<br>$$<br>若${X(t),t\geq0}$为生灭过程，则$\mathbf{P}(t),\mathbf{Q}$满足Kolmogorov微分方程</p>
+<ol>
+<li><p>向后方程<br>$$<br>p_{ij}’(t)&#x3D;\begin{cases}-\lambda_0p_{0j}(t)+\lambda_0p_{1j}(t),&amp;i&#x3D;0\-(\lambda_i+\mu_i)p_{ij}(t)+\lambda_ip_{i+1,j}(t)+\mu_ip_{i-1,j}(t),&amp;i&gt;0\end{cases}<br>$$</p>
+</li>
+<li><p>向前方程<br>$$<br>p_{ij}’(t)&#x3D;\begin{cases}-p_{i0}(t)\lambda_0+p_{i,1}(t)\mu_1,&amp;j&#x3D;0\-p_{ij}(t)(\lambda_j+\mu_j)+p_{i,j-1}(t)\lambda_{j-1}+p_{i,j+1}(t)\mu_{j+1},&amp;j&gt;0\end{cases}<br>$$</p>
+</li>
+</ol>
+<p>设$\tau_i$是Markov链到达状态$i$后，离开该状态前的停留时间.</p>
+<p>对于生灭过程，$\tau_i$服从参数为$\lambda_i+\mu_i$的指数分布，并且其在### 各个状态的停留时间相互独立. 定义$T_0&#x3D;0$,<br>$$<br>T_n&#x3D;\inf{t&gt;T_{n-1}|X(t)\neq X(T_{n-1})},n\geq1.<br>$$<br>$T_n$是Markov链${X(t),t\geq0}$的第$n$次转移时刻.</p>
+<p>设$Y_n&#x3D; X( T_n)$ , 则${ Y_n, n&#x3D; 0, 1, 2, \cdots }$​是 离 散 时 间 Markov链，其一步转移概率矩阵K：<br>$$<br>\left.\mathbf{K}&#x3D;\left(\begin{array}{ccccccc}q_0&amp;p_0&amp;0&amp;0&amp;0&amp;0&amp;\cdots\q_1&amp;0&amp;p_1&amp;0&amp;0&amp;0&amp;\cdots\0&amp;q_2&amp;0&amp;p_2&amp;0&amp;0&amp;\cdots\0&amp;0&amp;q_3&amp;0&amp;p_3&amp;0&amp;\cdots\\vdots&amp;\vdots&amp;\vdots&amp;\cdots&amp;\vdots&amp;\vdots&amp;\ddots\end{array}\right.\right)<br>$$<br>其中$p_0&#x3D;1-q_0$<br>$$<br>q_0&#x3D;\begin{cases}1,&amp;\lambda_0&#x3D;0,\0,&amp;\lambda_0&gt;0,\end{cases}\p_i&#x3D;\frac{\lambda_i}{\lambda_i+\mu_i},q_i&#x3D;\frac{\mu_i}{\lambda_i+\mu_i},\quad i\geq1.<br>$$<br>生灭过程描述的情况如下：已知时刻$t$时有$i$个生物时，再等待$\tau_i$后，以概率$p_i$增加一个生物，或者以概率$q_i$减少一个生物. 这里$\tau_i\sim$Ехр$(\lambda_i+\mu_i).$</p>
+<h3 id="M-M-S排队系统"><a href="#M-M-S排队系统" class="headerlink" title="M&#x2F;M&#x2F;S排队系统"></a>M&#x2F;M&#x2F;S排队系统</h3><p>顾客的来到是参数为λ的Poisson过程。服务员数为$s$个，每个顾客接受服务的时间服从参数为$\mu$的指数分布。遵循先来先服务、 服务员没有|空闲就排队的原则，以$X(t)$记$t$时刻系统中的总人数， 则${X(t),t\geq0}$是一个生灭过程(来到看作出生，离去看作死亡)。若以$\lambda_n,\mu_n$分别记系统中有$n$个顾客时的来到率和离去率。则来到率是恒定参数为$\lambda$的Poisson过程$(\lambda_n&#x3D;\lambda)$;离去过程的参数会发生变化：<br>$$<br>\left.\mu_n&#x3D;\left{\begin{array}{ll}n\mu,&amp;1\leq n\leq s\s\mu:,&amp;n&gt;s\end{array}\right.\right.<br>$$</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Markov%E9%93%BE/" rel="prev" title="Markov链">
+                  <i class="fa fa-angle-left"></i> Markov链
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E7%9A%84%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/" rel="next" title="应用随机过程的预备知识">
+                  应用随机过程的预备知识 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Brown 运动Brown运动随机过程${B(t),t\geq0}$如果满足：  $B( 0) &#x3D; 0;$  ${ B( t) , t\geq 0}$有平稳独立增量；  对 每 个$t&gt; 0$, $B( t)$服从正态分布$N( 0, \sigma ^2t)$;   则称${B(t),t\geq0}$​为Brown运动，也称为Wiener过程. 等价定义如下：  (正态增量)$B(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Brown运动">
+<meta property="og:url" content="http://example.com/2025/05/01/Brown%E8%BF%90%E5%8A%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Brown 运动Brown运动随机过程${B(t),t\geq0}$如果满足：  $B( 0) &#x3D; 0;$  ${ B( t) , t\geq 0}$有平稳独立增量；  对 每 个$t&gt; 0$, $B( t)$服从正态分布$N( 0, \sigma ^2t)$;   则称${B(t),t\geq0}$​为Brown运动，也称为Wiener过程. 等价定义如下：  (正态增量)$B(">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406070229383.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406070920906.jpg">
+<meta property="article:published_time" content="2025-05-01T12:47:10.493Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:21.950Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406070229383.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/Brown%E8%BF%90%E5%8A%A8/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/Brown%E8%BF%90%E5%8A%A8/","path":"2025/05/01/Brown运动/","title":"Brown运动"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Brown运动 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Brown-%E8%BF%90%E5%8A%A8"><span class="nav-number">1.</span> <span class="nav-text">Brown 运动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Brown%E8%BF%90%E5%8A%A8"><span class="nav-number">1.1.</span> <span class="nav-text">Brown运动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">Property</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">Mark</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E9%99%90%E7%BB%B4%E5%88%86%E5%B8%83"><span class="nav-number">1.2.</span> <span class="nav-text">有限维分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.3.</span> <span class="nav-text">路径性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%96%E4%B8%AD%E6%97%B6%E5%88%BB-T-x"><span class="nav-number">1.4.</span> <span class="nav-text">首中时刻$T_x$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Brown%E8%BF%90%E5%8A%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC%E5%8F%98%E9%87%8F"><span class="nav-number">1.5.</span> <span class="nav-text">Brown运动的最大值变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Brown-%E8%BF%90%E5%8A%A8%E7%9A%84%E5%8F%8D%E6%AD%A3%E5%BC%A6%E5%BE%8B"><span class="nav-number">1.6.</span> <span class="nav-text">Brown 运动的反正弦律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Brown%E6%A1%A5"><span class="nav-number">1.7.</span> <span class="nav-text">Brown桥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-1"><span class="nav-number">1.7.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%90%B8%E6%94%B6%E5%80%BC%E7%9A%84Brown%E8%BF%90%E5%8A%A8"><span class="nav-number">1.8.</span> <span class="nav-text">有吸收值的Brown运动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E5%8E%9F%E7%82%B9%E5%8F%8D%E5%B0%84%E7%9A%84Brown%E8%BF%90%E5%8A%A8"><span class="nav-number">1.9.</span> <span class="nav-text">在原点反射的Brown运动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%A0%E4%BD%95Brown%E8%BF%90%E5%8A%A8"><span class="nav-number">1.10.</span> <span class="nav-text">几何Brown运动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E6%BC%82%E7%A7%BB%E7%9A%84Brown%E8%BF%90%E5%8A%A8"><span class="nav-number">1.11.</span> <span class="nav-text">有漂移的Brown运动</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/Brown%E8%BF%90%E5%8A%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Brown运动 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Brown运动
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:21" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Brown-运动"><a href="#Brown-运动" class="headerlink" title="Brown 运动"></a>Brown 运动</h1><h2 id="Brown运动"><a href="#Brown运动" class="headerlink" title="Brown运动"></a>Brown运动</h2><p>随机过程${B(t),t\geq0}$如果满足：</p>
+<ol>
+<li><p>$B( 0) &#x3D; 0;$</p>
+</li>
+<li><p>${ B( t) , t\geq 0}$有平稳独立增量；</p>
+</li>
+<li><p>对 每 个$t&gt; 0$, $B( t)$服从正态分布$N( 0, \sigma ^2t)$;</p>
+</li>
+</ol>
+<p>则称${B(t),t\geq0}$​为Brown运动，也称为Wiener过程.</p>
+<p>等价定义如下：</p>
+<ol>
+<li>(正态增量)$B(t+s)-B(s)\sim N(0,\sigma^2t);$</li>
+<li>(独立增量)$B(t+s)-B(s)$独立于过程的过去状态$B(u)$,$0\leq u\leq s.$</li>
+<li>(路径的连续性)$B( t) , t\geq 0$是$t$​的连续函数.</li>
+</ol>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406070229383.png" alt="image-20240607022911230"></p>
+<h4 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h4><ol>
+<li>Brown运动是Gauss过程，$\mu_B(t)&#x3D;0,\gamma(s,t)&#x3D;\min(s,t)$</li>
+<li>Brown运动具有Markov性；</li>
+</ol>
+<h4 id="Mark"><a href="#Mark" class="headerlink" title="Mark"></a>Mark</h4><p>如果$\sigma&#x3D;1$,我们称之为标准Brown运动。如果$\sigma\neq1$,则可考虑${X(t)&#x2F;\sigma,t\geq0}$​,它是标准Brown运动. 故不失一般性，可以只考虑标准Brown运动的情形。</p>
+<p>等价定义并没有假定$B(0)&#x3D;0$,因此我们称之为始于$x$的Brown运动,所以有时为了强调起始点,也记为$B^x(t)$ ;</p>
+<h2 id="有限维分布"><a href="#有限维分布" class="headerlink" title="有限维分布"></a>有限维分布</h2><p>对于Brown运动$B^x(t),t\geq0$,以及$0\leq t_1&lt;t_2&lt;\cdots&lt;t_n$,有如下联合分布函数<br>$$<br>P_x{B(t_1)\leq x_1,\cdots,B(t_n)\leq x_n}&#x3D;\int_{-\infty}^{x_1}p_{t_1}(x,y_1)dy_1\cdot\\int_{-\infty}^{x_2}p_{t_2-t_1}(y_1,y_2)dy_2\cdots\int_{-\infty}^{x_n}p_{t_n-t_{n-1}}(y_{n-1},y_n)dy_n<br>$$<br>即$(B(t_1),B(t_2),\cdots,B(t_n))$ 的联合概率密度为<br>$$<br>p_{t_1,t_2,\ldots,t_n}(y_1,y_2,\ldots,y_n)&#x3D;p_{t_1}(x,y_1)p_{t_2-t_1}(y_1,y_2)\cdots p_{t_n-t_{n-1}}(y_{n-1},y_n)<br>$$</p>
+<h2 id="路径性质"><a href="#路径性质" class="headerlink" title="路径性质"></a>路径性质</h2><p>对于Brown运动的一条样本路径$B(t),0&lt;t&lt;T$, <strong>几乎</strong>有如下性质:对区间$[0,t]$遍取分割${t_i^n}<em>i&#x3D;0^n$,且其模$\delta_n&#x3D;\max_0\leq i\leq n-1(t</em>{i+1}^n-t_i^n)$， 满足当$n\to\infty,\delta_n\to0.$极限的意义是依均方收敛；</p>
+<ol>
+<li><p>是$t$的连续函数；</p>
+</li>
+<li><p>在任意区间(无论区间多么小)上都不是单调的；</p>
+</li>
+<li><p>在任意点都不是可微的；</p>
+</li>
+<li><p>在任意区间(无论区间多么小)上都是无限变差的<br>$$<br>\begin{aligned}&amp;\lim_{\delta_n\to0}\sum_{i&#x3D;0}^{n-1}|B(t_{i+1}^n)-B(t_i^n)|&#x3D;\infty\end{aligned}<br>$$</p>
+</li>
+<li><p>对任意$t\textbf{, 在 }[ 0, t]$上的二次变差等于$t.$<br>$$<br>\begin{aligned}&amp;\lim_{\delta_n\to0}\sum_{i&#x3D;0}^{n-1}|B(t_{i+1}^n)-B(t_i^n)|^2&#x3D;t \end{aligned}<br>$$</p>
+</li>
+</ol>
+<h2 id="首中时刻-T-x"><a href="#首中时刻-T-x" class="headerlink" title="首中时刻$T_x$"></a>首中时刻$T_x$</h2><p>以$T_x$记Brown运动首次击中$x$的时刻，即<br>$$<br>T_x&#x3D;\inf{t&gt;0,B(t)&#x3D;x}<br>$$<br>对$x&gt;0$, 由 全 概 率公式<br>$$<br>\begin{aligned}P{B(t)\geq x}&amp;&#x3D;P{B(t)\geq x|T_x\leq t}P{T_x\leq t}\&amp;+P{B(t)\geq x|T_x&gt;t}P{T_x&gt;t}\end{aligned}<br>$$<br>若$T_x\leq t$,则$B(t)$在$[0,t]$中的某个时刻击中$x$,由对称性得<br>$$<br>P{B(t)\geq x|T_x\leq t}&#x3D;\frac12<br>$$<br><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406070920906.jpg" alt="d15655a26aba7bf052fd31a4499bc41" style="zoom:50%;" /></p>
+<p>再由连续性可知，$B(t)$不可能还未击中$x$就大于$x$,<br>$$<br>\begin{aligned}P{T_x\leq t}&#x3D;2P{B(t)\geq x}&amp;&#x3D;\frac{2}{\sqrt{2\pi t}}\int_x^\infty e^{-u^2&#x2F;2t}du\&amp;&#x3D;\frac{2}{\sqrt{2\pi}}\int_{x&#x2F;\sqrt{t}}^\infty e^{-y^2&#x2F;2}dy \end{aligned}<br>$$<br>由此可见<br>$$<br>P{T_x&lt;\infty}&#x3D;\lim_{t\to\infty}P{T_x\leq t}&#x3D;\frac{2}{\sqrt{2\pi}}\int_0^\infty e^{-y^2&#x2F;2}dy&#x3D;1<br>$$<br>性质$P{T_x&lt;\infty}&#x3D;1$称为Brown运动的常返性。</p>
+<p>根据式(3),$T_x$的分布函数和概率密度函数如下：<br>$$<br>F_{T_x}(t)&#x3D;\begin{cases}\frac{2}{\sqrt{2\pi}}\int_{|x|&#x2F;\sqrt{t}}^\infty e^{-y^2&#x2F;2}dy&amp;,t&gt;0\0&amp;,t\le 0\end{cases}\<br>\left.f_{T_x}(t)&#x3D;\left{\begin{array}{l}\frac{|x|}{\sqrt{2\pi}}t^{-\frac{3}{2}}e^{-\frac{x^2}{2t}}&amp;,t&gt;0\0,t\le 0\end{array}\right.\right.<br>$$<br>期望如下：<br>$$<br>\begin{aligned}<br>\begin{aligned}E[T_x]&#x3D;\int_0^\infty P{T_x&gt;t}dt\end{aligned}&amp; \begin{aligned}&amp;&#x3D;&amp;\int_0^\infty\Big(1-\frac{2}{\sqrt{2\pi}}\int_{x&#x2F;\sqrt{t}}^\infty e^{-y^2&#x2F;2}dy\Big)dt\end{aligned} \<br>&amp;&#x3D;\quad\frac2{\sqrt{2\pi}}\int_0^\infty\int_0^{x&#x2F;\sqrt{t}}e^{-y^2&#x2F;2}dydt \<br>&amp;&#x3D;\quad\frac2{\sqrt{2\pi}}\int_0^\infty e^{-y^2&#x2F;2}dy\int_0^{x^2&#x2F;y^2}dt \<br>&amp;\begin{aligned}&amp;&#x3D;&amp;\frac{2x^2}{\sqrt{2\pi}}\int_0^\infty\frac{1}{y^2}e^{-y^2&#x2F;2}dy\end{aligned} \<br>&amp;\begin{aligned}&amp;\geq&amp;\frac{2x^2e^{-1&#x2F;2}}{\sqrt{2\pi}}\int_0^1\frac{1}{y^2}dy&#x3D;\infty\end{aligned}<br>\end{aligned}<br>$$<br>$T_x$虽然几乎必然是有限的，但有无穷的期望.直观地看，就是Brown运动以概率1会击中$x$，但它的平均时间是无穷的。</p>
+<h2 id="Brown运动的最大值变量"><a href="#Brown运动的最大值变量" class="headerlink" title="Brown运动的最大值变量"></a>Brown运动的最大值变量</h2><p>对Brown运动中在$[0,t]$达到的最大值<br>$$<br>\begin{aligned} M(t)&#x3D;\max_{0\leq s\leq t}B(s).\end{aligned}<br>$$<br>其分布对$x&gt;0$有<br>$$<br>\begin{aligned}P{M(t)\geq x}&amp; &#x3D;  P{T_x\leq t} \<br>&amp;&#x3D; 2P{B(t)\geq x} \<br>&amp;&#x3D;\frac{2}{\sqrt{2\pi}}\int_{x&#x2F;\sqrt{t}}^{\infty}e^{-y^2&#x2F;2}dy\end{aligned}<br>$$</p>
+<p>而对于Brown运动在$[0,t]$中达到的最小值$m(t)&#x3D;\min_0\leq s\leq tB(s)$,<br>当$x&lt; 0$时 , 有<br>$$<br>\begin{aligned}P{m(t)&gt;x}&amp;&#x3D;\quad P{T_x&gt;t}\&amp;&#x3D;\quad1-P{T_x\leq t}\&amp;&#x3D;\quad1-P{T_{-x}\leq t}\&amp;&#x3D;\quad1-\frac{2}{\sqrt{2\pi}}\int_{|x|&#x2F;\sqrt{t}}^{\infty}e^{-y^2&#x2F;2}dy.\end{aligned}<br>$$</p>
+<h2 id="Brown-运动的反正弦律"><a href="#Brown-运动的反正弦律" class="headerlink" title="Brown 运动的反正弦律"></a>Brown 运动的反正弦律</h2><p>设${B^x(t),t\geq0}$ 为始于$x$的Brown运动，则$B^x(t)$在$(0,t)$中至少有一个零点的概率为<br>$$<br>\frac{|x|}{\sqrt{2\pi}}\int_0^tu^{-\frac32}e^{-\frac{x^2}{2u}}du.<br>$$<br>只需要知道Brown运动的最小值分布即可；</p>
+<p>$B^y(t)$在区间$(a,b)$中至少有一个零点的概率为<br>$$<br>\frac2\pi\arccos\sqrt{\frac ab}<br>$$<br>那么没有零点的概率为$\frac2\pi \arcsin\sqrt{\frac ab}$</p>
+<p>证明：<br>$$<br>\begin{aligned}<br>&amp;P{B^y\text{在}(a,b)\text{中至少有一个零点}}\<br>&#x3D;&amp;\int_{-\infty}^\infty P{B^x\text{在}(0,b-a)\text{中至少有一个零点}}\cdot f_{B(a)}(x)dx\<br>&#x3D;&amp;\frac{1}{2\pi\sqrt{a}}\int_{-\infty}^{\infty}\int_{0}^{b-a}|x|u^{-\frac{3}{2}}e^{-x^{2}(\frac{1}{2u}+\frac{1}{2a})} du dx \<br>&#x3D;&amp;\frac{1}{\pi\sqrt{a}}\int_0^{b-a}\int_0^\infty xu^{-\frac{3}{2}}e^{-x^2(\frac{1}{2u}+\frac{1}{2a})} dx du \<br>&#x3D;&amp;\frac{1}{\pi\sqrt{a}}\int_0^{b-a}u^{-\frac{3}{2}}\frac{au}{a+u}du\stackrel{y&#x3D;\sqrt{u}}{&#x3D;}\frac{2\sqrt{a}}{\pi}\int_0^{\sqrt{b-a}}\frac{1}{a+y^2} dy \<br>&#x3D;&amp;\frac{2}{\pi}\arctan\frac{\sqrt{b-a}}{\sqrt{a}}&#x3D;\frac{2}{\pi}\arccos\sqrt{\frac{a}{b}}.<br>\end{aligned}<br>$$<br>取时刻$t$之前的最后一个零点$$ \zeta_{t} &#x3D; \sup{s\leq t,B(s)&#x3D;0}$$<br>时刻$t$之后的第一个零点$$\beta_{t} &#x3D; \inf{s\geq t,B(s)&#x3D;0} $$</p>
+<p>由反正弦律有<br>$$<br>P{\zeta_t\leq x}&#x3D;P{B\text{在}(x,t)\text{中没有零点}}&#x3D;\frac2\pi\arcsin\sqrt{\frac xt}\P{\beta_t\geq y}&#x3D;P{B\text{在}(t,y)\text{中没有零点}}&#x3D;\frac2\pi\arcsin\sqrt{\frac ty}\P{\zeta_t\leq x,\beta_t\geq y}&#x3D;P{B\text{在}(x,y)\text{中没有零点}}&#x3D;\frac2\pi\arcsin\sqrt{\frac xy}<br>$$</p>
+<h2 id="Brown桥"><a href="#Brown桥" class="headerlink" title="Brown桥"></a>Brown桥</h2><p>设${B(t),t\geq0}$是Brown运动.令<br>$$<br>B^<em>(t)&#x3D;B(t)-tB(1),\quad0\leq t\leq1<br>$$<br>则称随机过程${B^</em>(t),0\leq t\leq1}$为Brown桥。</p>
+<h4 id="Property-1"><a href="#Property-1" class="headerlink" title="Property"></a>Property</h4><p>对$\forall 0\le s\le t\le 1$</p>
+<ol>
+<li>$E[B^*(t)] &#x3D; 0,$</li>
+<li>$E[B^<em>(s)B^</em>(t)] &#x3D;s(1-t)$</li>
+<li>$D[B^<em>(t)] &#x3D;  E[B^</em>(t)B^*(t)]&#x3D;t(1-t) $​</li>
+<li>$B^<em>(0)&#x3D;B^</em>(1)&#x3D;0$​</li>
+<li>Brown桥也是Gauss过程</li>
+</ol>
+<h2 id="有吸收值的Brown运动"><a href="#有吸收值的Brown运动" class="headerlink" title="有吸收值的Brown运动"></a>有吸收值的Brown运动</h2><p>设$T_x$为Brown运动${B(t)}$首次击中$x$的时刻，$x&gt; 0. \textbf{令 }$<br>$$<br>\left.Z(t)&#x3D;\left{<br>\begin{array}<br>{ll}B(t),&amp;\text{若}t&lt;T_x\<br>x,&amp;\text{若}t\geq T_x\end{array}\right.\right.<br>$$<br>则${Z(t), t ≥ 0}$是击中$x$后，永远停留在那里的Brown运动。</p>
+<p>离散部分的分布为<br>$$<br>\begin{array}{rcl}P{Z(t)&#x3D;x}&amp;&#x3D;&amp;P{T_x\leq t}\&amp;&#x3D;&amp;\frac{2}{\sqrt{2\pi t}}\int_x^\infty e^{-\frac{y^2}{2t}}dy\end{array}<br>$$<br>连续部分的分布：对$\forall y\le x$<br>$$<br>\begin{aligned}P{Z(t)\leq y}<br>&amp;&#x3D;P\big{B(t)\leq y,\max_{0\leq s\leq t}B(s)\leq x\big}\<br>&amp;&#x3D;P{B(t)\leq y}-P\big{B(t)\leq y,\max_{0\leq s\leq t}B(s)&gt;x\big}\<br>&amp;&#x3D;P{B(t)\leq y}-P{B(t)\geq2x-y}\<br>&amp;&#x3D;P{B(t)\leq y}-P{B(t)\leq y-2x}\<br>&amp;&#x3D;\frac{1}{\sqrt{2\pi t}}\int_{y-2x}^ye^{-\frac{u^2}{2t}}<br>\end{aligned}<br>$$</p>
+<h2 id="在原点反射的Brown运动"><a href="#在原点反射的Brown运动" class="headerlink" title="在原点反射的Brown运动"></a>在原点反射的Brown运动</h2><p>$Y(t)&#x3D;|B(t)|$,则称随机过程${Y(t),t\geq0}$为在原点反射的Brown运动.它的概率分布为<br>$$<br>\begin{aligned}P{Y(t)\leq y}&amp;&#x3D;\quad P{B(t)\leq y}-P{B(t)\leq-y}\&amp;&#x3D;\quad2P{B(t)\leq y}-1\&amp;&#x3D;\quad\frac2{\sqrt{2\pi t}}\int_{-\infty}^ye^{-\frac{u^2}{2t}}du-1,\quad y&gt;0\end{aligned}<br>$$</p>
+<h2 id="几何Brown运动"><a href="#几何Brown运动" class="headerlink" title="几何Brown运动"></a>几何Brown运动</h2><p>由 $X( t) &#x3D; e^{B( t) }$定 义 的 随 机 过 程 ${ X( t) , t\geq 0}$称 为 几 何 Brown运动。</p>
+<p>由于Brown运动的矩母函数为$E[e^{sB(t)}]&#x3D;e^{ts^2&#x2F;2}$,所以几何Brown运动的均值函数与方差函数分别为<br>$$<br>\begin{aligned}E[X(t)]&amp;&#x3D;\quad E[e^{B(t)}]&#x3D;e^{t&#x2F;2}\D[X(t)]&amp;&#x3D;\quad E[X^2(t)]-(E[X(t)])^2\&amp;&#x3D;\quad E[e^{2B(t)}]-e^t\&amp;&#x3D;\quad e^{2t}-e^t\end{aligned}<br>$$<br>在金融市场中，人们经常假定股票的价格按照几何Brown运动变化。</p>
+<h2 id="有漂移的Brown运动"><a href="#有漂移的Brown运动" class="headerlink" title="有漂移的Brown运动"></a>有漂移的Brown运动</h2><p>设 $B( t)$是 标 准 Brown运 动 , 我 们 称 $X( t) &#x3D; \mu t+ B( t) t$为 有 漂 移的Brown运动;</p>
+<p>其中常数$\mu$称为漂移系数。容易看出，有漂移的 Brown运 动 是 一 个 以 速 率$\mu$漂移开去的过程；</p>
+<p>对任意常数$A,B&gt;0,-B&lt;x&lt;A$,记 $p(x)$ 为过程在击中$-B$之前击中$A$的概率，有<br>$$<br>p(x)&#x3D;P{X(t)\text{在击中}-B之前击中 A|X(0)&#x3D;x}&#x3D;\frac e{2\mu B}-e^{-2\mu x}<br>$$</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" rel="prev" title="操作系统6-文件系统">
+                  <i class="fa fa-angle-left"></i> 操作系统6-文件系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Markov%E9%93%BE/" rel="next" title="Markov链">
+                  Markov链 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="DHCP协议学习笔记一、基本概念✅ 定义：动态主机配置协议（Dynamic Host Configuration Protocol）  应用层协议（UDP 67&#x2F;68端口） 自动为网络设备分配IP地址及其他配置参数  ✅ 核心功能：  IP地址动态分配   从地址池自动分配临时IP（租约机制）   配置参数传递   子网掩码、默认网关、DNS服务器等   地址回收与重用   租约到期后自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2025/05/01/DHCP%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="DHCP协议学习笔记一、基本概念✅ 定义：动态主机配置协议（Dynamic Host Configuration Protocol）  应用层协议（UDP 67&#x2F;68端口） 自动为网络设备分配IP地址及其他配置参数  ✅ 核心功能：  IP地址动态分配   从地址池自动分配临时IP（租约机制）   配置参数传递   子网掩码、默认网关、DNS服务器等   地址回收与重用   租约到期后自">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.333Z">
+<meta property="article:modified_time" content="2025-03-11T13:17:44.461Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/DHCP%E5%8D%8F%E8%AE%AE/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/DHCP%E5%8D%8F%E8%AE%AE/","path":"2025/05/01/DHCP协议/","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DHCP%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">DHCP协议学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">一、基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">二、工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9B%9B%E6%AD%A5%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B%EF%BC%88DORA%E8%BF%87%E7%A8%8B%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 四步交互流程（DORA过程）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%8A%A5%E6%96%87%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 报文类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF%E7%89%B9%E6%80%A7"><span class="nav-number">1.3.</span> <span class="nav-text">三、关键技术特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%A7%9F%E7%BA%A6%E7%AE%A1%E7%90%86"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 租约管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9C%B0%E5%9D%80%E6%B1%A0%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 地址池类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%AE%89%E5%85%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.4.</span> <span class="nav-text">四、安全注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%AE%9E%E8%B7%B5%E5%91%BD%E4%BB%A4"><span class="nav-number">1.5.</span> <span class="nav-text">五、实践命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Windows%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%93%8D%E4%BD%9C"><span class="nav-number">1.5.1.</span> <span class="nav-text">1. Windows客户端操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%EF%BC%88isc-dhcp-server%EF%BC%89"><span class="nav-number">1.5.2.</span> <span class="nav-text">2. Linux服务器配置（isc-dhcp-server）</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/DHCP%E5%8D%8F%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-05-01 20:47:10" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-03-11 21:17:44" itemprop="dateModified" datetime="2025-03-11T21:17:44+08:00">2025-03-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="DHCP协议学习笔记"><a href="#DHCP协议学习笔记" class="headerlink" title="DHCP协议学习笔记"></a>DHCP协议学习笔记</h1><h2 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h2><p>✅ <strong>定义</strong>：动态主机配置协议（Dynamic Host Configuration Protocol）</p>
+<ul>
+<li>应用层协议（UDP 67&#x2F;68端口）</li>
+<li>自动为网络设备分配IP地址及其他配置参数</li>
+</ul>
+<p>✅ <strong>核心功能</strong>：</p>
+<ol>
+<li><strong>IP地址动态分配</strong>  <ul>
+<li>从地址池自动分配临时IP（租约机制）</li>
+</ul>
+</li>
+<li><strong>配置参数传递</strong>  <ul>
+<li>子网掩码、默认网关、DNS服务器等</li>
+</ul>
+</li>
+<li><strong>地址回收与重用</strong>  <ul>
+<li>租约到期后自动回收未续约的IP</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、工作原理"><a href="#二、工作原理" class="headerlink" title="二、工作原理"></a>二、工作原理</h2><h3 id="1-四步交互流程（DORA过程）"><a href="#1-四步交互流程（DORA过程）" class="headerlink" title="1. 四步交互流程（DORA过程）"></a>1. 四步交互流程（DORA过程）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">    客户端-&gt;&gt;DHCP服务器: DHCP Discover（广播）</span><br><span class="line">    DHCP服务器-&gt;&gt;客户端: DHCP Offer（单播）</span><br><span class="line">    客户端-&gt;&gt;DHCP服务器: DHCP Request（广播）</span><br><span class="line">    DHCP服务器-&gt;&gt;客户端: DHCP Ack（单播）</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-报文类型"><a href="#2-报文类型" class="headerlink" title="2. 报文类型"></a>2. 报文类型</h3><table>
+<thead>
+<tr>
+<th>报文类型</th>
+<th>方向</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DHCP Discover</td>
+<td>客户端→服务器</td>
+<td>寻找可用DHCP服务器</td>
+</tr>
+<tr>
+<td>DHCP Offer</td>
+<td>服务器→客户端</td>
+<td>提供IP配置提案</td>
+</tr>
+<tr>
+<td>DHCP Request</td>
+<td>客户端→服务器</td>
+<td>确认接受配置</td>
+</tr>
+<tr>
+<td>DHCP Ack&#x2F;Nak</td>
+<td>服务器→客户端</td>
+<td>最终确认&#x2F;拒绝分配</td>
+</tr>
+</tbody></table>
+<h2 id="三、关键技术特性"><a href="#三、关键技术特性" class="headerlink" title="三、关键技术特性"></a>三、关键技术特性</h2><h3 id="1-租约管理"><a href="#1-租约管理" class="headerlink" title="1. 租约管理"></a>1. 租约管理</h3><ul>
+<li><strong>租约时长</strong>：默认8天（可配置）</li>
+<li><strong>续租流程</strong>：<ol>
+<li>T1时间（50%租期）：单播续租原IP</li>
+<li>T2时间（87.5%租期）：广播请求新服务器</li>
+<li>到期后释放IP并重启DORA过程</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-地址池类型"><a href="#2-地址池类型" class="headerlink" title="2. 地址池类型"></a>2. 地址池类型</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>特点</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>动态分配</td>
+<td>临时IP，租期结束后回收</td>
+<td>普通用户设备</td>
+</tr>
+<tr>
+<td>静态绑定</td>
+<td>MAC-IP固定映射</td>
+<td>服务器&#x2F;打印机</td>
+</tr>
+<tr>
+<td>自动分配</td>
+<td>长期保留首次分配的IP</td>
+<td>移动设备优化体验</td>
+</tr>
+</tbody></table>
+<h2 id="四、安全注意事项"><a href="#四、安全注意事项" class="headerlink" title="四、安全注意事项"></a>四、安全注意事项</h2><p>⚠️ <strong>常见攻击</strong>：</p>
+<ol>
+<li><strong>DHCP饥饿攻击</strong>：伪造大量请求耗尽地址池</li>
+<li><strong>恶意服务器注入</strong>：伪造DHCP服务器分配错误配置</li>
+</ol>
+<p>🛡️ <strong>防护措施</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 交换机端口安全配置（Cisco示例）</span></span><br><span class="line">switch(config-if)# ip dhcp snooping</span><br><span class="line">switch(config-if)# ip dhcp snooping <span class="built_in">limit</span> rate 10</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、实践命令"><a href="#五、实践命令" class="headerlink" title="五、实践命令"></a>五、实践命令</h2><h3 id="1-Windows客户端操作"><a href="#1-Windows客户端操作" class="headerlink" title="1. Windows客户端操作"></a>1. Windows客户端操作</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 释放IP地址</span></span><br><span class="line">ipconfig /release</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新获取IP</span></span><br><span class="line">ipconfig /renew</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看完整租约信息</span></span><br><span class="line">ipconfig /all | findstr <span class="string">&quot;Lease&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Linux服务器配置（isc-dhcp-server）"><a href="#2-Linux服务器配置（isc-dhcp-server）" class="headerlink" title="2. Linux服务器配置（isc-dhcp-server）"></a>2. Linux服务器配置（isc-dhcp-server）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置文件示例（/etc/dhcp/dhcpd.conf）</span></span><br><span class="line">subnet 192.168.1.0 netmask 255.255.255.0 &#123;</span><br><span class="line">    range 192.168.1.100 192.168.1.200;</span><br><span class="line">    option routers 192.168.1.1;</span><br><span class="line">    option domain-name-servers 8.8.8.8;</span><br><span class="line">    default-lease-time 86400;  <span class="comment"># 24小时</span></span><br><span class="line">    max-lease-time 172800;     <span class="comment"># 48小时</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E7%BB%93%E6%9E%84/" rel="prev" title="计算机组成与结构">
+                  <i class="fa fa-angle-left"></i> 计算机组成与结构
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E3%80%81%E6%95%B0%E6%8D%AE%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/" rel="next" title="第一章：数据通信、数据网络和因特网">
+                  第一章：数据通信、数据网络和因特网 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

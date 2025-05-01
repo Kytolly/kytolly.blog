@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Background和动画实验一样，这次也是用matlab和python共同实现，完成对Taylor中值定理，Euler公式，Fourier公式的验证； 这次我们需要的python库：sympy，这个库能让我们像matlab一样完成符号运算; ContentTaylor公式先给出Taylor中值定理： 若$f(x)$在$x_0$的临域$U(x_0)$具有直到$n+1$阶导数，则当在$(a,b)$内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2025/05/01/Taylor%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C%E5%92%8CFourier%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Background和动画实验一样，这次也是用matlab和python共同实现，完成对Taylor中值定理，Euler公式，Fourier公式的验证； 这次我们需要的python库：sympy，这个库能让我们像matlab一样完成符号运算; ContentTaylor公式先给出Taylor中值定理： 若$f(x)$在$x_0$的临域$U(x_0)$具有直到$n+1$阶导数，则当在$(a,b)$内">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202401241815327.jpg">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202401242017824.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202401252015526.jpg">
+<meta property="article:published_time" content="2025-05-01T12:47:10.479Z">
+<meta property="article:modified_time" content="2024-12-08T06:57:56.612Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202401241815327.jpg">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/Taylor%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C%E5%92%8CFourier%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/Taylor%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C%E5%92%8CFourier%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C/","path":"2025/05/01/Taylor多项式实验和Fourier多项式实验/","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Content"><span class="nav-number">2.</span> <span class="nav-text">Content</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Taylor%E5%85%AC%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">Taylor公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Euler%E5%85%AC%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">Euler公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fourier%E5%8F%98%E6%8D%A2%E7%9B%B8%E5%85%B3"><span class="nav-number">2.3.</span> <span class="nav-text">Fourier变换相关</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reamrk"><span class="nav-number">3.</span> <span class="nav-text">Reamrk</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/Taylor%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C%E5%92%8CFourier%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-05-01 20:47:10" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-12-08 14:57:56" itemprop="dateModified" datetime="2024-12-08T14:57:56+08:00">2024-12-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>和动画实验一样，这次也是用matlab和python共同实现，完成对Taylor中值定理，Euler公式，Fourier公式的验证；</p>
+<p>这次我们需要的python库：<code>sympy</code>，这个库能让我们像matlab一样完成符号运算;</p>
+<h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><h3 id="Taylor公式"><a href="#Taylor公式" class="headerlink" title="Taylor公式"></a>Taylor公式</h3><p>先给出Taylor中值定理：</p>
+<p>若$f(x)$在$x_0$的临域$U(x_0)$具有直到$n+1$阶导数，则当在$(a,b)$内，$f(x)$可以表示为关于$x-x_0$的$n$次多项式$P(x)$与一个余项$R_n(x)$之和：<br>$$<br>f(x)&#x3D;P(x)+R_n(x)&#x3D;\sum_{k&#x3D;0}^{n}\frac{f^{k}(x_0)}{k!}(x-x_0)^k+R_n(x)<br>$$</p>
+<p>$$<br>R(n)&#x3D;\frac{f^{n+1}(\epsilon)}{(n+1)!}(x-x_0)^{n+1},\epsilon \text{在}x_0,x\text{之间}<br>$$</p>
+<p>在matlab中利用<code>taylor</code>函数可以直接求出对应展开阶数的<code>P(x)</code>，<code>taylor</code>函数的接口如下：</p>
+<p><code>T = taylor(f,var,a)</code></p>
+<p><code>f</code>是即将展开的函数；</p>
+<p><code>var</code>指定要展开的自变量；</p>
+<p><code>a</code>指定拓展点，也就是说<code>T</code>展开应该是关于<code>(x-a)</code>的多项式；</p>
+<p><code>T = taylor(___,Name,Value)</code></p>
+<p><code>Name</code>和<code>Value</code>是在此之上的选项，例如，可以指定泰勒级数的扩展点、截断顺序或顺序模式扩张。</p>
+<p><code>&#39;ExpansionPoint&#39;,x0</code>,指定拓展点为<code>x0</code></p>
+<p><code>order,n</code>指定展开阶数</p>
+<p>下面是对$sin(x)&#x3D;x-\frac{x^3}{6}+…+(-1)^{\frac{n-1}{2}}\frac{x^n}{n!}+o(x^n)$的展开实验代码</p>
+<p>matlab：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">syms x</span><br><span class="line">fx = <span class="built_in">sin</span>(x); </span><br><span class="line">x0 = <span class="number">0</span>; <span class="comment">%展开点</span></span><br><span class="line">n=[<span class="number">11</span> <span class="number">14</span> <span class="number">17</span>];</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="built_in">length</span>(n) <span class="comment">%展开阶数: n-1阶</span></span><br><span class="line">hx(<span class="built_in">i</span>) = taylor(fx,x,<span class="string">&#x27;order&#x27;</span>,n(<span class="built_in">i</span>),<span class="string">&#x27;ExpansionPoint&#x27;</span>,x0)    </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">xp = <span class="built_in">linspace</span>(<span class="number">-6</span>,<span class="number">6</span>,<span class="number">400</span>); <span class="comment">%创建节点数组</span></span><br><span class="line">y  = subs(fx, x, xp);   <span class="comment">%通过subs替换符号计算函数值</span></span><br><span class="line">y1 = subs(hx(<span class="number">1</span>), x, xp); y4 = subs(hx(<span class="number">2</span>), x, xp);</span><br><span class="line">y6 = subs(hx(<span class="number">3</span>), x, xp);</span><br><span class="line">h=<span class="built_in">plot</span>(xp,y,<span class="string">&#x27;r&#x27;</span>,xp,y1,<span class="string">&#x27;k&#x27;</span>,xp,y4,<span class="string">&#x27;b&#x27;</span>,xp,y6,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;linewidth&#x27;</span>,<span class="number">2</span>)</span><br><span class="line"><span class="built_in">legend</span>(h,<span class="string">&#x27;source&#x27;</span>,<span class="string">&#x27;n=11&#x27;</span>,<span class="string">&#x27;n=14&#x27;</span>,<span class="string">&#x27;n=17&#x27;</span>)</span><br><span class="line">set(gca,<span class="string">&#x27;fontsize&#x27;</span>,<span class="number">16</span>)</span><br></pre></td></tr></table></figure>
+
+<p>通过matlab拟合出来的图像是这样的：</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202401241815327.jpg" alt="taylorimg"></p>
+<p>python：</p>
+<p>这里需要注意的小点是：利用<code>sympy</code>中的<code>series</code>方法得到的<code>talor</code>展开是带$O(x^N)$的符号式，记得需要用<code>removeO</code>方法去掉，同时将<code>sympy</code>的公式用<code>lambdify</code>转化成<code>numpy</code>的公式才能对<code>linspace</code>计算函数值；</p>
+<p>在<code>sympy</code>中<code>series</code>方法的接口如下：</p>
+<p><code>expr.series()</code> 方法来对表达式进行级数展开。下面是一些参数：</p>
+<p><code>x</code>: 展开的变量。</p>
+<p><code>x0</code>: （可选）展开点，默认为$ 0$，也就是在 $x&#x3D;0$ 处展开。</p>
+<p><code>n</code>: （可选）展开式的阶数，就是说要展开到$x-x_0$的几次方。</p>
+<p><code>dir</code>: （可选）展开方向，<code>+</code> 表示正方向，<code>-</code> 表示负方向（对劳伦展开有用）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line"></span><br><span class="line">x = sympy.Symbol(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">y = sympy.sin(x)</span><br><span class="line">n = [<span class="number">11</span>, <span class="number">14</span>, <span class="number">17</span>]</span><br><span class="line">val = []</span><br><span class="line">cor = [<span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;k&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line">xp = np.linspace(-<span class="number">6</span>, <span class="number">6</span>, <span class="number">400</span>)</span><br><span class="line">funco = sympy.lambdify(x, y, <span class="string">&#x27;numpy&#x27;</span>)</span><br><span class="line">yo = funco(xp)</span><br><span class="line">val.append(yo)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(n)):</span><br><span class="line">    fi = y.series(x, <span class="number">0</span>, n[i]).removeO()</span><br><span class="line">    funci = sympy.lambdify(x, fi, <span class="string">&#x27;numpy&#x27;</span>)</span><br><span class="line">    yi = funci(xp)</span><br><span class="line">    val.append(yi)</span><br><span class="line"></span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(val)):</span><br><span class="line">    ax.plot(xp, val[i], color = cor[i])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>最后拟合出来的效果是这样的：</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202401242017824.png" alt="sintaloy"></p>
+<h3 id="Euler公式"><a href="#Euler公式" class="headerlink" title="Euler公式"></a>Euler公式</h3><p>有了Taylor展开的基础后，我们顺便验证Euler公式：$e^{i\theta}&#x3D;cos\theta + isin\theta$​,使用numpy中的复数，对$(-\pi,\pi)$中一系列点，计算两边值是否相等即可；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> cos,sin,pi,e</span><br><span class="line"><span class="keyword">import</span> sympy </span><br><span class="line"></span><br><span class="line">xp = np.linspace(-np.pi, np.pi, <span class="number">100</span>)</span><br><span class="line">lrh = e**(<span class="number">1j</span>*xp)</span><br><span class="line">rlh = cos(xp)+<span class="number">1j</span>*sin(xp)</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">sum</span>(lrh == rlh)==<span class="built_in">len</span>(xp):</span><br><span class="line">    z = sympy.Symbol(<span class="string">&#x27;z&#x27;</span>, real = <span class="literal">True</span>)</span><br><span class="line">    <span class="built_in">print</span>(sympy.expand(sympy.E**(sympy.I*z), <span class="built_in">complex</span> = <span class="literal">True</span>))</span><br></pre></td></tr></table></figure>
+
+<p>展开的结果确实是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I*sin(z) + cos(z)</span><br></pre></td></tr></table></figure>
+
+<p>注意Euler公式有一个常见的变形：<br>$$<br>cos\ x&#x3D;\frac{e^{ix}+e^{-ix}}{2},sin\ x&#x3D; \frac{e^{ix}-e^{-ix}}{2i}<br>$$</p>
+<h3 id="Fourier变换相关"><a href="#Fourier变换相关" class="headerlink" title="Fourier变换相关"></a>Fourier变换相关</h3><p>和Fourier变换有许多知识点，比如作者还打算复习之前学过的快速Fourier变换算法，这是一个十分优秀高效的算法，不过在这里只介绍Fourier变换的强大之处，也就是几乎对各种各样的函数的拟合；</p>
+<p>注意之前的Taylor展开对函数的拟合其实并不是那么好，基本只能在展开点附近才有比较好的效果，并且Taylor展开本身对函数要求也很高：要求函数在该点具有足够高阶的导数，我们知道许多函数的性质都不是这么好；</p>
+<details><summary>先来复习一下Frourier变换</summary>
+
+<ul>
+<li><p>连续函数的正交：</p>
+<p>若定义在$(a,b)$函数$f(x),g(x)$满足$\int_{a}^{b}f(x)g(x)&#x3D;0$则称两函数$f(x),g(x)$在$(a,b)$正交;</p>
+<blockquote>
+<p>如果把函数理解成一系列很密集的散点，那么这些散点构成的向量就满足向量正交的概念，不过在函数取密集的散点向量，不一定是正交的，因为函数描述的是连续的性质，不过我们在工程中经常采用这种近似</p>
+</blockquote>
+</li>
+<li><p>关键的积分关系：</p>
+<ul>
+<li>$\int_{-\pi}^{\pi} 1\cdot cos\ nx dx&#x3D;0(n&#x3D;1,2,3…)$</li>
+<li>$\int_{-\pi}^{\pi} 1\cdot sin\ nx dx&#x3D;0(n&#x3D;1,2,3…)$</li>
+<li>$\int_{-\pi}^{\pi} sin\ kx\cdot cos\ nx dx&#x3D;0(k&#x3D;1,2,3…,n&#x3D;1,2,3…)$</li>
+<li>$\int_{-\pi}^{\pi} cos\ kx\cdot cos\ nx dx&#x3D;0(k&#x3D;1,2,3…,n&#x3D;1,2,3…,k\neq n)$</li>
+<li>$\int_{-\pi}^{\pi} sin\ kx\cdot sin\ nx dx&#x3D;0(k&#x3D;1,2,3…,n&#x3D;1,2,3…,k\neq n)$</li>
+<li>$\int_{-\pi}^{\pi} 1dx &#x3D;2\pi$</li>
+<li>$\int_{-\pi}^{\pi} sin^2\ kxdx&#x3D;\pi(k&#x3D;1,2,3…)$</li>
+<li>$\int_{-\pi}^{\pi} cos^2\ nxdx&#x3D;\pi(n&#x3D;1,2,3…)$​</li>
+</ul>
+</li>
+<li><p>$1,cosx,sinx,cos2x,sin2x…$是一串两两正交的函数列</p>
+</li>
+<li><p>根据工程实践猜想傅里叶级数公式：</p>
+<p>若周期信号$f(x)$周期为$T$,角频率为$\omega &#x3D; \frac{2\pi}{T}$,满足Dirichlet条件：</p>
+<ol>
+<li>一个周期内只有有限个第一类间断点</li>
+<li>一个周期内只有有限个极值点</li>
+</ol>
+<p>则可以展开成下列级数：</p>
+<p>$$<br>f(x)&#x3D;\frac{a_0}{2}+\sum_{n&#x3D;1}^{\infty}a_ncos\ n\omega x+b_nsin\ n\omega x<br>$$<br>根据上述「关键的积分关系」待定系数求得：</p>
+<p>直流分量：$\frac{a_0}{2}&#x3D;\frac{1}{T}\int_{-T&#x2F;2}^{T&#x2F;2}f(x)dx$</p>
+<p>傅里叶系数：$a_n&#x3D;\frac{2}{T}\int_{-T&#x2F;2}^{T&#x2F;2}{f(x)cos(n\omega x)dx},b_n&#x3D;\frac{2}{T}\int_{-T&#x2F;2}^{T&#x2F;2}{f(x)sin(n\omega x)dx}$​</p>
+</li>
+<li><p>Fourier级数指数形式：</p>
+<p>$f(x)&#x3D;\sum_{n&#x3D;0}^{\infty}a_ncos(n\omega x)+b_nsin(n\omega x)&#x3D;\sum_{n&#x3D;0}^{\infty}a_n\frac{e^{in\omega x}+e^{-in\omega x}}{2}+b_n\frac{e^{in\omega x}-e^{-in\omega x}}{2i}$</p>
+<p>$&#x3D;\sum_{n&#x3D;0}^{\infty}e^{in\omega x}\frac{a_n-ib_n}{2}+e^{-in\omega x}\frac{a_n+ib_n}{2}$$&#x3D;\sum_{n&#x3D;0}^{\infty}e^{in\omega x}\frac{\frac{2}{T}\int_{-T&#x2F;2}^{T&#x2F;2}{f(x)\frac{e^{in\omega x}+e^{-in\omega x}}{2}dx}-i\frac{2}{T}\int_{-T&#x2F;2}^{T&#x2F;2}{f(x)\frac{e^{in\omega x}-e^{-in\omega x}}{2i}dx}}{2}+       e^{-in\omega x}\frac{\frac{2}{T}\int_{-T&#x2F;2}^{T&#x2F;2}{f(x)\frac{e^{in\omega x}+e^{-in\omega x}}{2}dx}+i\frac{2}{T}\int_{-T&#x2F;2}^{T&#x2F;2}{f(x)\frac{e^{in\omega x}-e^{-in\omega x}}{2i}dx}}{2}$</p>
+</li>
+</ul>
+<p>​	$&#x3D;\sum_{n&#x3D;-\infty}^{\infty}F_ne^{in\omega x}$</p>
+<p>​	其中$F_n&#x3D;\frac{1}{T}\int_{-T&#x2F;2}^{T&#x2F;2}f(x)e^{-in\omega x}dx$​</p>
+<ul>
+<li><p>将周期信号$f(t)$​推广成有限时间的非周期信号,也即时域从周期转化为非周期时，<strong>频域从离散的转化为连续的</strong>：原始的Fourier变换（FT）<br>$$<br>F(\omega)&#x3D;\int_{-\infty}^{\infty}f(t)e^{-i\omega x}dx<br>$$</p>
+<p>$$<br>f(x)&#x3D;\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)e^{i\omega x}d\omega<br>$$</p>
+</li>
+<li><p>离散时间无限频谱内的Fourier变换（DTFT）</p>
+<p>将连续信号$f(x)$采样，采样时间点间隔为$T_s$,冲击序列为$\delta_s(x)&#x3D;\sum_{n&#x3D;-\infty}^{\infty}\delta(x-nT_s)$,取样信号为$f_s(x)&#x3D;\sum_{n&#x3D;-\infty}^{\infty}f(x)\delta(x-nT_s)$,其频谱密度为$F_s(\omega)&#x3D;\int_{-\infty}^{\infty}f_s(x)e^{-i\omega x}dx&#x3D;\sum_{n&#x3D;-\infty}^{\infty}\int_{-\infty}^{\infty}f(x)\delta(x-nT_s)e^{-i\omega x}dx$</p>
+<p>$&#x3D;\sum_{n&#x3D;-\infty}^{\infty}f(nT_s)e^{-i\omega nT_s}$</p>
+</li>
+<li><p>离散傅里叶变换（DFT）：</p>
+<p>对于数组$f[n](0\le n&lt;N)$,定义$f$由离散傅里叶变换得到$F$,<br>$$<br>f\xrightarrow[]{DFT}F:F[k]&#x3D;\sum_{n&#x3D;0}^{N-1}f(n)e^{-i\frac{2\pi}{N}n\cdot k},k&#x3D;0,1,…N-1<br>$$<br>可待定系数证明$F$由离散傅里叶逆变换得到$f$,<br>$$<br>F\xrightarrow[]{IDFT}f:f[n]&#x3D;\sum_{k&#x3D;0}^{N-1}F[k]e^{i\frac{2\pi}{N}k\cdot n},n&#x3D;0,1,…N-1<br>$$<br><del>由于暂时没看懂其中的物理意义所以留个坑，貌似这样的式子都是天才一眼看出来的🤣,同时给FFT埋个坑</del></p>
+</li>
+</ul>
+</details>
+
+<p>经过简单的对Fourier变换的复习之后，我们来看看我们的任务：</p>
+<p>给以$2\pi$为周期的周期函数$f(x)$在区间定义如下,验证傅里叶级数对其近似效果：<br>$$<br>f(x)&#x3D;\begin{cases}<br>x^2&amp;-\pi\le x&lt;0\<br>0&amp;0\le x&lt;\pi<br>\end{cases}<br>$$<br>先看matlab代码</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">T=<span class="number">2</span>*<span class="built_in">pi</span>;</span><br><span class="line">fx=@(x) (<span class="built_in">mod</span>(x+<span class="built_in">pi</span>,T)&lt;<span class="built_in">pi</span>).*(T-<span class="built_in">mod</span>(x,T)).^<span class="number">2</span>;</span><br><span class="line">test=<span class="number">4</span>;</span><br><span class="line">xp=<span class="built_in">linspace</span>(<span class="number">-2</span>*<span class="built_in">pi</span>,<span class="number">2</span>*<span class="built_in">pi</span>,<span class="number">1000</span>);</span><br><span class="line">N=[<span class="number">2</span>,<span class="number">4</span>,<span class="number">8</span>,<span class="number">16</span>];</span><br><span class="line">col=[<span class="string">&#x27;red&#x27;</span>,<span class="string">&#x27;cyan&#x27;</span>,<span class="string">&#x27;blue&#x27;</span>,<span class="string">&#x27;yellow&#x27;</span>];</span><br><span class="line">idx=<span class="number">2</span>;</span><br><span class="line">yp=fx(xp);</span><br><span class="line"><span class="built_in">plot</span>(xp,yp,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;red&#x27;</span>,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;DisplayName&#x27;</span>,<span class="string">&#x27;OriginSignal&#x27;</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line">yp_test=[];</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:test</span><br><span class="line">    n=N(<span class="built_in">i</span>);</span><br><span class="line">    [fs,an,bn]=FourierSeries(fx,x,n);</span><br><span class="line">    yp_t=subs(fs,x,xp);</span><br><span class="line">    yp_t=double(yp_t);</span><br><span class="line">    yp_test=[yp_test;[yp_t]];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">plot</span>(xp,yp_test(<span class="number">1</span>,:),<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;green&#x27;</span>,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;DisplayName&#x27;</span>,<span class="string">&#x27;n=2&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line"><span class="built_in">plot</span>(xp,yp_test(<span class="number">2</span>,:),<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;cyan&#x27;</span>,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;DisplayName&#x27;</span>,<span class="string">&#x27;n=4&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(xp,yp_test(<span class="number">3</span>,:),<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;yellow&#x27;</span>,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;DisplayName&#x27;</span>,<span class="string">&#x27;n=8&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line"><span class="built_in">plot</span>(xp,yp_test(<span class="number">4</span>,:),<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;blue&#x27;</span>,<span class="string">&#x27;LineWidth&#x27;</span>,<span class="number">2</span>,<span class="string">&#x27;DisplayName&#x27;</span>,<span class="string">&#x27;n=16&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;show&#x27;</span>,<span class="string">&#x27;location&#x27;</span>, <span class="string">&#x27;northeast&#x27;</span>);</span><br><span class="line"><span class="built_in">hold</span> off </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[fs,an,bn]</span>=<span class="title">FourierSeries</span><span class="params">(fx,x,n,l,r)</span></span></span><br><span class="line"><span class="comment">%fx为周期信号</span></span><br><span class="line"><span class="comment">%x为自变量</span></span><br><span class="line"><span class="comment">%n为展开阶数</span></span><br><span class="line"><span class="comment">%[l,r]为周期区间</span></span><br><span class="line"><span class="comment">%an，bn为余弦项系数，正弦项系数</span></span><br><span class="line"><span class="comment">%fs为展开表达式</span></span><br><span class="line"><span class="keyword">if</span> nargin==<span class="number">3</span></span><br><span class="line">    l=-<span class="built_in">pi</span>;</span><br><span class="line">    r=<span class="built_in">pi</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">T=r-l;</span><br><span class="line">w=<span class="number">2</span>*<span class="built_in">pi</span>/T;</span><br><span class="line"><span class="comment">%fx=subs(fx,x,x+l+T/2);</span></span><br><span class="line">fx=@(x)fx(x+l+T/<span class="number">2</span>);</span><br><span class="line">an=integral(fx,-T/<span class="number">2</span>,T/<span class="number">2</span>)/T;</span><br><span class="line">bn=[];</span><br><span class="line">fs=an;</span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span>:n</span><br><span class="line">    ak=integral(@(x) fx(x).*<span class="built_in">cos</span>(k*w*x),-T/<span class="number">2</span>,T/<span class="number">2</span>)*<span class="number">2</span>/T;</span><br><span class="line">    bk=integral(@(x) fx(x).*<span class="built_in">sin</span>(k*w*x),-T/<span class="number">2</span>,T/<span class="number">2</span>)*<span class="number">2</span>/T;</span><br><span class="line">    an=[an,ak];</span><br><span class="line">    bn=[bn,bk];</span><br><span class="line">    fs=fs+ak*<span class="built_in">cos</span>(k*w*x)+bk*<span class="built_in">sin</span>(k*w*x);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">fs=subs(fs,x,x-l-T/<span class="number">2</span>);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>最后拟合出来的效果是这样的，可以看到随着展开阶数增大，拟合效果越来越好，但也可以看到吉布斯现象也越来越显著；</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202401252015526.jpg" alt="Fourier"></p>
+<p>用python也可以做到同样的效果，很遗憾python库里也没有直接计算傅里叶级数的函数；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy.integrate <span class="keyword">import</span> quad</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the original signal function fx</span></span><br><span class="line">T = <span class="number">2</span> * np.pi</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fx</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> (np.mod(x + np.pi, T) &lt; np.pi) * (T - np.mod(x, T)) ** <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Fourier series calculation</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fourier_series</span>(<span class="params">fx, x, n, l=-np.pi, r=np.pi</span>):</span><br><span class="line">    T = r - l</span><br><span class="line">    w = <span class="number">2</span> * np.pi / T</span><br><span class="line">    fs = <span class="number">0</span></span><br><span class="line">    an = []  <span class="comment"># Cosine coefficients</span></span><br><span class="line">    bn = []  <span class="comment"># Sine coefficients</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Calculate a0 coefficient</span></span><br><span class="line">    a0, _ = quad(<span class="keyword">lambda</span> x: fx(x), -T/<span class="number">2</span>, T/<span class="number">2</span>)</span><br><span class="line">    an.append(a0 / T)</span><br><span class="line">    fs += an[<span class="number">0</span>] / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Calculate remaining an and bn coefficients</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">        ak, _ = quad(<span class="keyword">lambda</span> x: fx(x) * np.cos(k * w * x), -T/<span class="number">2</span>, T/<span class="number">2</span>)</span><br><span class="line">        bk, _ = quad(<span class="keyword">lambda</span> x: fx(x) * np.sin(k * w * x), -T/<span class="number">2</span>, T/<span class="number">2</span>)</span><br><span class="line">        an.append(ak * <span class="number">2</span> / T)</span><br><span class="line">        bn.append(bk * <span class="number">2</span> / T)</span><br><span class="line">        fs += an[k] * np.cos(k * w * x) + bn[k] * np.sin(k * w * x)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> fs, an, bn</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the range of x and the number of Fourier series terms</span></span><br><span class="line">test = <span class="number">4</span></span><br><span class="line">xp = np.linspace(-<span class="number">2</span>*np.pi, <span class="number">2</span>*np.pi, <span class="number">1000</span>)</span><br><span class="line">N = [<span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">16</span>]</span><br><span class="line">colors = [<span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;cyan&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot the original signal</span></span><br><span class="line">yp = fx(xp)</span><br><span class="line">plt.plot(xp, yp, color=<span class="string">&#x27;red&#x27;</span>, linewidth=<span class="number">2</span>, label=<span class="string">&#x27;OriginSignal&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot the Fourier approximations</span></span><br><span class="line"><span class="keyword">for</span> idx, n <span class="keyword">in</span> <span class="built_in">enumerate</span>(N):</span><br><span class="line">    fs, _, _ = fourier_series(fx, xp, n)</span><br><span class="line">    plt.plot(xp, fs, color=colors[idx], linewidth=<span class="number">2</span>, label=<span class="string">f&#x27;n=<span class="subst">&#123;n&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show the legend and plot</span></span><br><span class="line">plt.legend(loc=<span class="string">&#x27;northeast&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h2 id="Reamrk"><a href="#Reamrk" class="headerlink" title="Reamrk"></a>Reamrk</h2><p>留坑：</p>
+<ul>
+<li><input disabled="" type="checkbox"> 快速傅里叶变换（FFT）和Cooley-Tukey 算法</li>
+<li><input disabled="" type="checkbox"> 二维傅里叶变换</li>
+<li><input disabled="" type="checkbox"> python画CG</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/matlab%E6%95%B0%E5%AD%A6%E5%AE%9E%E9%AA%8C/" rel="prev" title="matlab数学实验">
+                  <i class="fa fa-angle-left"></i> matlab数学实验
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%8A%A8%E7%94%BB%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C/" rel="next" title="动画设计实验">
+                  动画设计实验 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

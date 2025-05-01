@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="图论-Path and CycleWalk&#x2F;Trail&#x2F;Path&#x2F;Circle在图$G$中，途径(Walk)是指如下形式的 边序列$$v_0v_1,v_1v_2,…,v_{n-1}v_n:&#x3D;e_1,e_2,…,e_n$$  边的数量$n$是迹的长度 简单图可以表示为$v_0 → v_1 → v_2 → · · · → v_n$ 起始点initial vert">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论2-Path and cycles">
+<meta property="og:url" content="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA2-Path%20and%20cycles/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="图论-Path and CycleWalk&#x2F;Trail&#x2F;Path&#x2F;Circle在图$G$中，途径(Walk)是指如下形式的 边序列$$v_0v_1,v_1v_2,…,v_{n-1}v_n:&#x3D;e_1,e_2,…,e_n$$  边的数量$n$是迹的长度 简单图可以表示为$v_0 → v_1 → v_2 → · · · → v_n$ 起始点initial vert">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20250113175050077.png">
+<meta property="og:image" content="http://example.com/assets/image-20241104183459892.png">
+<meta property="og:image" content="http://example.com/assets/image-20241104183524845.png">
+<meta property="og:image" content="http://example.com/assets/image-20250113183629667.png">
+<meta property="og:image" content="http://example.com/assets/image-20241105150112268.png">
+<meta property="og:image" content="http://example.com/assets/image-20241105145856010.png">
+<meta property="og:image" content="http://example.com/assets/image-20241105145925675.png">
+<meta property="og:image" content="http://example.com/assets/image-20241105150019504.png">
+<meta property="og:image" content="http://example.com/assets/image-20241105161909715.png">
+<meta property="og:image" content="http://example.com/assets/image-20241105165412898.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.445Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.459Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20250113175050077.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA2-Path%20and%20cycles/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA2-Path%20and%20cycles/","path":"2025/05/01/图论2-Path and cycles/","title":"图论2-Path and cycles"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>图论2-Path and cycles | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA-Path-and-Cycle"><span class="nav-number">1.</span> <span class="nav-text">图论-Path and Cycle</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Walk-Trail-Path-Circle"><span class="nav-number">1.1.</span> <span class="nav-text">Walk&#x2F;Trail&#x2F;Path&#x2F;Circle</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem"><span class="nav-number">1.1.1.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-1"><span class="nav-number">1.1.2.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lemma"><span class="nav-number">1.1.3.</span> <span class="nav-text">Lemma</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E9%80%9A%E5%9B%BE"><span class="nav-number">1.2.</span> <span class="nav-text">连通图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-2"><span class="nav-number">1.2.1.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Corollary"><span class="nav-number">1.2.2.</span> <span class="nav-text">Corollary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Distance"><span class="nav-number">1.3.</span> <span class="nav-text">Distance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Konig"><span class="nav-number">1.3.1.</span> <span class="nav-text">Theorem(Konig)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Edge-Connectivity"><span class="nav-number">1.4.</span> <span class="nav-text">Edge-Connectivity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lemma-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">Lemma</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Corollary-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">Corollary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lemma-2"><span class="nav-number">1.4.3.</span> <span class="nav-text">Lemma</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-3"><span class="nav-number">1.4.4.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lemma-3"><span class="nav-number">1.4.5.</span> <span class="nav-text">Lemma</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vertex-Connectivity"><span class="nav-number">1.5.</span> <span class="nav-text">Vertex-Connectivity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-4"><span class="nav-number">1.5.1.</span> <span class="nav-text">Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%BF%9E%E9%80%9A%E5%9B%BE"><span class="nav-number">1.6.</span> <span class="nav-text">2-连通图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-5"><span class="nav-number">1.6.1.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Menger-vertex-version"><span class="nav-number">1.6.2.</span> <span class="nav-text">Theorem(Menger,vertex version)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Menger-edge-version"><span class="nav-number">1.6.3.</span> <span class="nav-text">Theorem(Menger,edge version)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Eulerian-Graph"><span class="nav-number">1.6.4.</span> <span class="nav-text">Eulerian Graph</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lemma-4"><span class="nav-number">1.6.5.</span> <span class="nav-text">Lemma</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-6"><span class="nav-number">1.6.6.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-7"><span class="nav-number">1.6.7.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fleury-Algorithm"><span class="nav-number">1.6.8.</span> <span class="nav-text">Fleury Algorithm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hamilton-Graph"><span class="nav-number">1.7.</span> <span class="nav-text">Hamilton Graph</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-8"><span class="nav-number">1.7.1.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-9"><span class="nav-number">1.7.2.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Erdos"><span class="nav-number">1.7.3.</span> <span class="nav-text">Theorem(Erdos)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lemma-Bondy"><span class="nav-number">1.7.4.</span> <span class="nav-text">Lemma(Bondy)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Chvatal"><span class="nav-number">1.7.5.</span> <span class="nav-text">Theorem(Chvatal)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem%EF%BC%88Chvatal-Erdos%EF%BC%89"><span class="nav-number">1.7.6.</span> <span class="nav-text">Theorem（Chvatal-Erdos）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Claw-free-Graph"><span class="nav-number">1.8.</span> <span class="nav-text">Claw-free Graph</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-10"><span class="nav-number">1.8.1.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-11"><span class="nav-number">1.8.2.</span> <span class="nav-text">Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shortest-Path-Problem"><span class="nav-number">1.9.</span> <span class="nav-text">Shortest Path Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gravity%E6%B3%95"><span class="nav-number">1.9.1.</span> <span class="nav-text">Gravity法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dijkstra%E7%AE%97%E6%B3%95"><span class="nav-number">1.9.2.</span> <span class="nav-text">Dijkstra算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chinese-Postmen-Problem"><span class="nav-number">1.10.</span> <span class="nav-text">Chinese Postmen Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-12"><span class="nav-number">1.10.1.</span> <span class="nav-text">Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ttravelling-Saleman-Problem"><span class="nav-number">1.11.</span> <span class="nav-text">Ttravelling Saleman Problem</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA2-Path%20and%20cycles/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="图论2-Path and cycles | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图论2-Path and cycles
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="图论-Path-and-Cycle"><a href="#图论-Path-and-Cycle" class="headerlink" title="图论-Path and Cycle"></a>图论-Path and Cycle</h1><h2 id="Walk-Trail-Path-Circle"><a href="#Walk-Trail-Path-Circle" class="headerlink" title="Walk&#x2F;Trail&#x2F;Path&#x2F;Circle"></a>Walk&#x2F;Trail&#x2F;Path&#x2F;Circle</h2><p>在图$G$中，<strong>途径</strong>(Walk)是指如下形式的 <strong>边序列</strong><br>$$<br>v_0v_1,v_1v_2,…,v_{n-1}v_n:&#x3D;e_1,e_2,…,e_n<br>$$</p>
+<ul>
+<li>边的数量$n$是迹的长度</li>
+<li>简单图可以表示为$v_0 → v_1 → v_2 → · · · → v_n$</li>
+<li>起始点initial vertex：$v_0$</li>
+<li>终点final vertex：$v_n$</li>
+<li>内部点internal ertex：$v_1,v_2,…,v_{n-1}$</li>
+</ul>
+<p>特别地，我们称边集相异的途径称为 <strong>迹</strong>(trail)</p>
+<p>我们称顶点集相异的迹称为<strong>路</strong>(path)</p>
+<ul>
+<li>所有的点为$v_0,v_1,…v_n$,<strong>可能存在</strong>$v_n&#x3D;v_0$</li>
+<li>记作$P_{n+1}$</li>
+</ul>
+<p>对于顶点和终点相同的路称作<strong>圈</strong>(circle);</p>
+<ul>
+<li>所有的点为$v_0,v_1,…v_n$,$v_n&#x3D;v_0$</li>
+<li>记作$C_n$</li>
+<li>长度为3的圈记作<strong>三角形</strong>(triangle)</li>
+</ul>
+<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><p>对于顶点集为$V&#x3D;{v_1,v_2,…,v_n}$和邻接矩阵$A&#x3D;[a_{ij}]$,邻接矩阵的幂<br>$$<br>A^k &#x3D; [a_{ij}^{(k)}]<br>$$<br>表示$v_i-v_j$间长度为$k$的迹的数目；</p>
+<p><strong>proof</strong> :归纳法</p>
+<h3 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem"></a>Theorem</h3><p>对于所有点度数至少为2的图，必定包含一个圈;</p>
+<p><strong>proof</strong>:考虑最长路；</p>
+<h3 id="Lemma"><a href="#Lemma" class="headerlink" title="Lemma"></a>Lemma</h3><p>对于简单图$G$,$\delta(G)\ge k$,那么$G$包含一条长度至少为$k$的路；</p>
+<h2 id="连通图"><a href="#连通图" class="headerlink" title="连通图"></a>连通图</h2><p>称图$G$是<strong>连通的</strong>(connected)，当且仅当对于点集中任意点对$x,y$,存在$x$到$y$的路；</p>
+<p>连通分量的数目记作$\omega(G)$;</p>
+<h3 id="Theorem-2"><a href="#Theorem-2" class="headerlink" title="Theorem"></a>Theorem</h3><p>对于具有$n$个顶点的简单图$G$ ,其有$k$个连通分量，边的数目满足以下不等式约束：<br>$$<br>n-k\le m\le \frac{(n-k+1)(n-k)}{2}<br>$$</p>
+<p><strong>proof</strong>: 下界显然，上界只需注意以下引理<br>$$<br>\binom{p+q-1}{2}&#x3D;\binom{p}{2}+\binom{q}{2}+(p-1)(q-1)\ge \binom{p}{2}+\binom{q}{2}<br>$$</p>
+<h3 id="Corollary"><a href="#Corollary" class="headerlink" title="Corollary"></a>Corollary</h3><p>任意具有$n$个顶点的简单图，若其边数大于$(n-1)(n-2)&#x2F;2$, 则一定是连通的；<br><strong>proof</strong>：这意味着连通分量个数小于2；</p>
+<h2 id="Distance"><a href="#Distance" class="headerlink" title="Distance"></a>Distance</h2><p>对于图上两点$u,v$</p>
+<ul>
+<li><strong>距离</strong>$d(u,v)$：从$u$到$v$的最短路的长度；</li>
+<li><strong>离心距</strong>$\varepsilon(x)$:对于点$x$,遍历可能的顶点$y$,使得$d(x,y)$最大化的距离值；</li>
+<li>图的<strong>直径</strong>$D(G)$:使得$\varepsilon(x)$最大化的离心率值；</li>
+<li>图的<strong>半径</strong>$R(G)$:使得$\varepsilon(x)$最小化的离心率值；</li>
+<li>图的<strong>围长</strong>$g(G)$:图$G$的最短圈的长度；</li>
+<li>图的<strong>周长</strong>$c(G)$:图$G$的最长圈的长度；</li>
+</ul>
+<h3 id="Theorem-Konig"><a href="#Theorem-Konig" class="headerlink" title="Theorem(Konig)"></a>Theorem(Konig)</h3><p>图$G$是二部图当且仅当图中不含有奇圈；<br><strong>proof</strong>: 反证法；</p>
+<h2 id="Edge-Connectivity"><a href="#Edge-Connectivity" class="headerlink" title="Edge-Connectivity"></a>Edge-Connectivity</h2><p><strong>断集</strong>(disconnecting set)是指对于连通图上的一组边，满足其消失导致图变得不连通；</p>
+<p>对于$S,T\subseteq V(G)$，,如果两个点集之间的边，其顶点各在不同的两个点集之中，记作$[S,T]$;</p>
+<p><strong>边割</strong>(edge cut)就是指这样一种$[S,\overline S]$;这样的边割定义蕴含着某种对称差性质，记作$\partial(S)$;</p>
+<p>称图的最小非空边割为<strong>键</strong>(bond)；</p>
+<p>若一个边割只包含一条边，我们称这条边为<strong>割边</strong>(cut edge)&#x2F;<strong>桥</strong>(bridge)；</p>
+<p><img src="/assets/image-20250113175050077.png" alt="image-20250113175050077"></p>
+<p>对于连通图$G$，其<strong>边连通性</strong>（edge connectivity）定义为最小边割的大小，也就是我们使图$G$不连通所需要删除的最少边数，记作$\lambda(G)$;<br>换句话说，若$\lambda(G)&#x3D;k$,称$G$是$k-$边连通的，但不是$(k+1)-$边连通的；</p>
+<p>note:边连通性描述了图到底有多么连通的性质，删除多少条边才能使得图变得不连通，暗示着图两点之间的独立路径数；</p>
+<h3 id="Lemma-1"><a href="#Lemma-1" class="headerlink" title="Lemma"></a>Lemma</h3><p>对于图$G$上的顶点子集$S$，满足<br>$$<br>|[S,\overline S]|&#x3D; \sum_{v\in S}d(v)-2|E(G[S])|<br>$$<br><strong>proof</strong>:统计贡献；</p>
+<h3 id="Corollary-1"><a href="#Corollary-1" class="headerlink" title="Corollary"></a>Corollary</h3><p>图$G$是偶图(每个顶点的度为偶数)，当且仅当对于任意的非空顶点子集$S$,$[S,\overline S]$ 为偶图；<br><strong>proof</strong>：充分性显然，必要性只需要取一个顶点构成的点集即可；</p>
+<h3 id="Lemma-2"><a href="#Lemma-2" class="headerlink" title="Lemma"></a>Lemma</h3><p>对于图$G$,其点集的子集$X,Y$，有<br>$$<br>\partial(X) \triangle \partial(Y)&#x3D;\partial(X\triangle Y)<br>$$<br><strong>proof</strong>:如下图<br><img src="/assets/image-20241104183459892.png" alt="image-20241104183459892"></p>
+<h3 id="Theorem-3"><a href="#Theorem-3" class="headerlink" title="Theorem"></a>Theorem</h3><p>对于连通图$G$，一个边割$F$是键当且仅当$G-F$恰好有两个$2$个连通分量；一个边集$S$是边割的充分必要条件是$S$是若干键的不相交并；<br><strong>proof</strong>：利用键的最小性即可；</p>
+<h3 id="Lemma-3"><a href="#Lemma-3" class="headerlink" title="Lemma"></a>Lemma</h3><p>对于图$G$，一条边$e$是桥当且仅当$e$不在图$G$的圈中；<br><strong>proof</strong>：反证法；</p>
+<h2 id="Vertex-Connectivity"><a href="#Vertex-Connectivity" class="headerlink" title="Vertex-Connectivity"></a>Vertex-Connectivity</h2><p>对于连通图$G$，称一组顶点为<strong>点割</strong>(vertex cut)，如果删除这组顶点会导致图$G$不连通；若点割只包含一个顶点，则称这个点为<strong>割点</strong>（cut vertex）;</p>
+<p>类似定义点连通性为点割的最小大小，记作$\kappa(G)$，也就是使得图$G$不连通的最少删除点数<br>若$\kappa(G)&#x3D;k$，称作图$G$是$k-$点连通的，但不是$(k+1)-$点连通的；</p>
+<h3 id="Theorem-4"><a href="#Theorem-4" class="headerlink" title="Theorem"></a>Theorem</h3><p>对于简单图,有$\kappa(G)\le \lambda(G)\le \delta(G)$;<br><strong>proof</strong>：考虑度最小的点，尝试删除与其关联的边，有$\lambda(G)\le \delta(G)$;<br>取一组最小的边割$[S,\overline S]$,完全图的情况平凡，考虑非完全图，取出$x\in S,y\in\overline S, x\nleftrightarrow y$；<br>构造<br>$$<br>T&#x3D;{u|u\in \overline S, x\leftrightarrow u}\bigcup {v|v\in S,y\leftrightarrow v}<br>$$<br>这是一组点割，容易观察到$\kappa(G)\le |T|\le \lambda(G)$;<br><img src="/assets/image-20241104183524845.png" alt="image-20241104183524845"></p>
+<h2 id="2-连通图"><a href="#2-连通图" class="headerlink" title="2-连通图"></a>2-连通图</h2><p>称两条路<strong>内部不相交</strong>(internally disjoint),如果他们没有共同的内部顶点；</p>
+<p>2-连通图意味着它既是2-边连通的，也是2-点连通的；</p>
+<h3 id="Theorem-5"><a href="#Theorem-5" class="headerlink" title="Theorem"></a>Theorem</h3><p>对一个至少有3个顶点的图$G$，若$G$是2-连通的，当且仅当对于每一个点对$u,v\in V(G)$,均存在两条内部不相交的路将他们相连；</p>
+<p><strong>proof</strong>:充分性：删去一条边&#x2F;点仍有另一条路径将之连通；</p>
+<p>必要性：对距离归纳，相邻情况平凡；考虑最短路径前面一个点，构造不相交路径，删去该点仍然存在一条路径将之连通，如下图，选择最后一次与先前构造的两条路径交汇的顶点即可；</p>
+<p><img src="/assets/image-20250113183629667.png" alt="image-20250113183629667"></p>
+<h3 id="Theorem-Menger-vertex-version"><a href="#Theorem-Menger-vertex-version" class="headerlink" title="Theorem(Menger,vertex version)"></a>Theorem(Menger,vertex version)</h3><p>拥有至少$k+1$条路经的图$G$是$k$-点连通的当且仅当对于每一个点对$u,v$存在$k$条内部无公共点的路径；</p>
+<h3 id="Theorem-Menger-edge-version"><a href="#Theorem-Menger-edge-version" class="headerlink" title="Theorem(Menger,edge version)"></a>Theorem(Menger,edge version)</h3><p>图$G$是$k$-边连通的当且仅当对于每一个点对$u,v$存在$k$条内部无公共边的路径；</p>
+<h3 id="Eulerian-Graph"><a href="#Eulerian-Graph" class="headerlink" title="Eulerian Graph"></a>Eulerian Graph</h3><p><strong>欧拉迹</strong>(Eulerian trail)定义为包含图中所有边的迹；若这个迹闭合，称为<strong>欧拉圈</strong>（Eulerian circuit）；<br>若图包含一个欧拉圈，称该图为<strong>欧拉图</strong>(Eulerian graph)；若图不包含欧拉圈，但是包括一个欧拉迹，称该图为<strong>半欧拉图</strong>(semi Eulerian graph)；</p>
+<h3 id="Lemma-4"><a href="#Lemma-4" class="headerlink" title="Lemma"></a>Lemma</h3><p>若图$G$是图，每个顶点的度至少为2，那么图$G$包含圈；<br><strong>proof</strong>:对于非简单图，结论平凡，对于简单图，考虑最长路即可；</p>
+<h3 id="Theorem-6"><a href="#Theorem-6" class="headerlink" title="Theorem"></a>Theorem</h3><p>若连通图$G$是欧拉图当且仅当每个顶点的度数为偶数；<br><strong>proof</strong>：配对；</p>
+<h3 id="Theorem-7"><a href="#Theorem-7" class="headerlink" title="Theorem"></a>Theorem</h3><p>若连通图$G$是半欧拉图，当且仅当恰好存在两个顶点的度数为奇数；<br><strong>proof</strong>：除开迹首尾两个顶点外配对，迹首尾两个顶点为奇点；</p>
+<h3 id="Fleury-Algorithm"><a href="#Fleury-Algorithm" class="headerlink" title="Fleury Algorithm"></a>Fleury Algorithm</h3><p>构造欧拉圈可按照如下算法：</p>
+<ol>
+<li>从一个顶点$u$开始，选择与之关联的，未被遍历的一条边；</li>
+<li>若选择的边是桥，改选其他边，若没有别的选择，就选择桥；选择这条边的另一个顶点为$v$;</li>
+<li>将这条边加入迹中，擦除这条边</li>
+<li>若产生了新的孤立点，同时擦除这个孤立点；</li>
+<li>将$u$更新为$v$，选择下一条边；</li>
+</ol>
+<h2 id="Hamilton-Graph"><a href="#Hamilton-Graph" class="headerlink" title="Hamilton Graph"></a>Hamilton Graph</h2><p> 一个哈密顿圈是指一个遍历图中所有顶点的圈；<br> 一个图$G$为哈密顿图当且仅当图$G$包含一个哈密顿圈；</p>
+<ul>
+<li>对于$n\ge 3$，$K_n$是哈密顿图</li>
+<li>当且仅当$m&#x3D;n\ge 2$时，$K_{m,n}$是哈密顿圈</li>
+<li>Peterson图不是哈密顿图</li>
+</ul>
+<p>由此定义图$G$的哈密顿闭包$C(G)$:通过在不相邻的点对上增加边，达到不存在不相邻的点对使得$d(u)+d(v)\ge n$的状态，也就是无法继续加边；这样的加边是顺序无关的；</p>
+<p><img src="/assets/image-20241105150112268.png" alt="image-20241105150112268"></p>
+<h3 id="Theorem-8"><a href="#Theorem-8" class="headerlink" title="Theorem"></a>Theorem</h3><p>若$G,H$均是哈密顿图，那么$G \square H$是哈密顿图;<br><strong>proof</strong>:对于$p$为偶数，构造如下：</p>
+<p><img src="/assets/image-20241105145856010.png" alt="image-20241105145856010"></p>
+<p>对于$p$为奇数，构造如下：</p>
+<p><img src="/assets/image-20241105145925675.png" alt="image-20241105145925675"></p>
+<h3 id="Theorem-9"><a href="#Theorem-9" class="headerlink" title="Theorem"></a>Theorem</h3><p> 对于哈密顿图$G$，取顶点集的非空真子集$S$，有<br>$$<br> \omega(G-S)\le |S|<br>$$</p>
+<p><strong>proof</strong>:取$G$的哈密顿圈$C$，$C-S$至多$|S|$个分量；意味着$G-S$至多$|S|$个分量；</p>
+<h3 id="Theorem-Erdos"><a href="#Theorem-Erdos" class="headerlink" title="Theorem(Erdos)"></a>Theorem(Erdos)</h3><p>对于具有$n$个顶点的简单图$G$，若$\delta(G)\ge \frac n2$，则图$G$是哈密顿圈；<br><strong>proof</strong>：反证法，增加边使得$G$成为没有哈密顿圈的最大图，取图$G$中的最长路$v_1v_2…v_n$;由假设$v_n\nleftrightarrow v_1$<br>注意到<br>$$<br>S&#x3D;{j|v_1\leftrightarrow v_j}\</p>
+<p>T&#x3D;{j|v_{j+1}\leftrightarrow v_n}\</p>
+<p>|Ｓ\cap T|&#x3D;|S|+|T|-|S\cup T|\ge \frac n2+\frac n2 - (n-1)&#x3D;1<br>$$<br><img src="/assets/image-20241105150019504.png" alt="image-20241105150019504"><br>则存在哈密顿圈$v_1\to v_2\to\cdots\to v_j\to v_{j+1}\to\cdots \to v_n$;<br>注：可进一步加强为$d(u)+d(v)$对任意不相邻的点对成立，这说明在简单图上哈密顿闭包是良定义的；</p>
+<h3 id="Lemma-Bondy"><a href="#Lemma-Bondy" class="headerlink" title="Lemma(Bondy)"></a>Lemma(Bondy)</h3><p>对于简单图$G$，$G$是哈密顿图当且仅当$G$的闭包是哈密顿图；</p>
+<h3 id="Theorem-Chvatal"><a href="#Theorem-Chvatal" class="headerlink" title="Theorem(Chvatal)"></a>Theorem(Chvatal)</h3><p>对于简单图$G$的度序列为$d_1\le d_2\le …\le d_n，n\ge 3$，$\forall i&lt;\frac n2, d_i&gt;i\vee d_{n-i}\ge n-i$，则图G是哈密顿图;</p>
+<h3 id="Theorem（Chvatal-Erdos）"><a href="#Theorem（Chvatal-Erdos）" class="headerlink" title="Theorem（Chvatal-Erdos）"></a>Theorem（Chvatal-Erdos）</h3><p>若$\kappa(G)\ge \alpha(G)$，则$G$是哈密顿图，除非$G&#x3D;K_2$</p>
+<h2 id="Claw-free-Graph"><a href="#Claw-free-Graph" class="headerlink" title="Claw-free Graph"></a>Claw-free Graph</h2><p>称图$G$是**无爪的(**claw-free)，当且仅当其不含$K_{1,3}$</p>
+<p>在无爪图中，任何顶点的邻居的生成子图只有两种类型，从而将顶点分为两类：</p>
+<ul>
+<li>Type1:连通图</li>
+<li>Type2:仅有两个连通分量，并且分量都是完全图；</li>
+</ul>
+<p>对于Type1的顶点，定义操作：在邻居中添加原本没有的边；只要邻居不构成团，操作就可以进行；</p>
+<p>定义Ryjáček闭包：对于无爪图$G$,反复应用上述操作使得每一个Type1顶点邻居都能导出团，增边结束后生成图$H$；</p>
+<h3 id="Theorem-10"><a href="#Theorem-10" class="headerlink" title="Theorem"></a>Theorem</h3><p>$H$是哈密顿的当且仅当$G$是哈密顿的；</p>
+<h3 id="Theorem-11"><a href="#Theorem-11" class="headerlink" title="Theorem"></a>Theorem</h3><p>设$G$是2-连通图，顶点数$n&gt;2$,$u$和$v$是$G$的不同点。若<br>$$<br>d(u,v)&#x3D;2\Rightarrow \max{d(u),d(v)}\ge \frac n2<br>$$<br>则$G$具有哈密顿圈。</p>
+<h2 id="Shortest-Path-Problem"><a href="#Shortest-Path-Problem" class="headerlink" title="Shortest Path Problem"></a>Shortest Path Problem</h2><h3 id="Gravity法"><a href="#Gravity法" class="headerlink" title="Gravity法"></a>Gravity法</h3><p>Making a model of the map by knotting together pieces  of string whose lengths are proportional a length of the roads. <strong>To find the  shortest length, take hold of the knots corresponding to A to L–and pull tight !</strong></p>
+<h3 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h3><p>The idea is to move across the graph from left to right, associating with each vertex X a number l(X) indicating the shortest distance from A to X. This means that, when we reach a vertex such as Kin the figure, then l(K) is either l(H) + 6 or l(I) + 2, whichever is smaller.</p>
+<h2 id="Chinese-Postmen-Problem"><a href="#Chinese-Postmen-Problem" class="headerlink" title="Chinese Postmen Problem"></a>Chinese Postmen Problem</h2><p>邮递员希望投递信件，尽可能短的总距离并回到他的起点。显然，他必须至少穿过路线中的每条道路一次。</p>
+<p><img src="/assets/image-20241105161909715.png" alt="image-20241105161909715"></p>
+<p>在一个具有非负权的带权连通图$G$中，找出一条总权重最小的环游，这种环游称为最优环游。</p>
+<p>若$G$为欧拉图，任意欧拉圈都是最优环游；</p>
+<p>考虑$G$为非欧拉图，其必然包含偶数个奇度顶点；并且， 对于任意一个环游必定通过某些边不止一次，选取重复边按相同权值加入图$G$中，问题等价描述为一个最优化问题：</p>
+<p>添加重复边求一个欧拉赋权母图$G^<em>&#x3D;G+E_1,E_1\in E(G)$，最小化<br>$$<br>\sum_{e\in E(G^</em>)-E(G)} \omega(e)<br>$$<br>同时找到$G^*$的欧拉圈；</p>
+<h3 id="Theorem-12"><a href="#Theorem-12" class="headerlink" title="Theorem"></a>Theorem</h3><p>上述欧拉赋权母图拥有最小权值的欧拉圈当且仅当</p>
+<ul>
+<li>$G$的每一条边至多被添加一次</li>
+<li>对于$G^*$的每一个圈$C$,均有$\sum_{e\in E_1\cap E(C)}\omega(e)\le \sum_{e\in E(C)-E_1}\omega(e)$</li>
+</ul>
+<h2 id="Ttravelling-Saleman-Problem"><a href="#Ttravelling-Saleman-Problem" class="headerlink" title="Ttravelling Saleman Problem"></a>Ttravelling Saleman Problem</h2><p>一位旅行推销员希望参观一些城镇，然后返回他的家。鉴于城镇之间的距离，他应该如何规划路线，以便他只访问每个城镇一次，并最大限度地减少总旅行距离？ </p>
+<p>该问题可形式化描述为最小化带权完全图的哈密顿圈权值，称问题的解为TSP环游；</p>
+<p>这是一个NP-hard问题；</p>
+<p>Aheuristicapproach:2-edge-exchange: 如果一个可以通过删除两条边并添加两条边从另一个获得，则两个TPS路径称为2-相邻；</p>
+<p><img src="/assets/image-20241105165412898.png" alt="image-20241105165412898"></p>
+<p>通过上述边的对换， 我们可以迭代地挖掘出最优路径；</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/golang%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6/" rel="prev" title="golang中的并发机制">
+                  <i class="fa fa-angle-left"></i> golang中的并发机制
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%9B%BE%E8%AE%BA3-Tree/" rel="next" title="图论3-Tree">
+                  图论3-Tree <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

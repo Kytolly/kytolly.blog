@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="图论4-PlanarityPlanarity一个平面图(planar)被定义为：在平面上绘制没有交叉的图； 若图$G$不能在平面上绘制或表示，称为非平面图； 若两个图可以在同一个图的边插入一个2度的新顶点来获得，则这两个图是同胚的(homeomorphic);  称图$H$紧缩于(contractible to)$K_{3,3}$或$K_5$， 如果我们将$H$的边收缩能够得到$K_{3，3}$或">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论4-Planarity">
+<meta property="og:url" content="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA4-Planarity/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="图论4-PlanarityPlanarity一个平面图(planar)被定义为：在平面上绘制没有交叉的图； 若图$G$不能在平面上绘制或表示，称为非平面图； 若两个图可以在同一个图的边插入一个2度的新顶点来获得，则这两个图是同胚的(homeomorphic);  称图$H$紧缩于(contractible to)$K_{3,3}$或$K_5$， 如果我们将$H$的边收缩能够得到$K_{3，3}$或">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241113203750619.png">
+<meta property="og:image" content="http://example.com/assets/image-20241113204645054.png">
+<meta property="og:image" content="http://example.com/assets/image-20241113205735583.png">
+<meta property="og:image" content="http://example.com/assets/image-20250113201109956.png">
+<meta property="og:image" content="http://example.com/assets/image-20250113201118879.png">
+<meta property="og:image" content="http://example.com/assets/image-20250113201045487.png">
+<meta property="og:image" content="http://example.com/assets/image-20250113201150372.png">
+<meta property="og:image" content="http://example.com/assets/image-20250113201837423.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.447Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.473Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241113203750619.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA4-Planarity/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA4-Planarity/","path":"2025/05/01/图论4-Planarity/","title":"图论4-Planarity"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>图论4-Planarity | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA4-Planarity"><span class="nav-number">1.</span> <span class="nav-text">图论4-Planarity</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Planarity"><span class="nav-number">1.1.</span> <span class="nav-text">Planarity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Kazimierz-Kuratowski"><span class="nav-number">1.1.1.</span> <span class="nav-text">Theorem(Kazimierz Kuratowski)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Corollary"><span class="nav-number">1.1.2.</span> <span class="nav-text">Corollary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crossing"><span class="nav-number">1.2.</span> <span class="nav-text">Crossing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem"><span class="nav-number">1.2.1.</span> <span class="nav-text">Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bound"><span class="nav-number">1.3.</span> <span class="nav-text">Bound</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Euler"><span class="nav-number">1.3.2.</span> <span class="nav-text">Theorem(Euler)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Corollary-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">Corollary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Corollary-2"><span class="nav-number">1.3.4.</span> <span class="nav-text">Corollary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polyhedra"><span class="nav-number">1.4.</span> <span class="nav-text">Polyhedra</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fullerene"><span class="nav-number">1.5.</span> <span class="nav-text">Fullerene</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Genus"><span class="nav-number">1.6.</span> <span class="nav-text">Genus</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-3"><span class="nav-number">1.6.1.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-4"><span class="nav-number">1.6.2.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-5"><span class="nav-number">1.6.3.</span> <span class="nav-text">Theorem</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA4-Planarity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="图论4-Planarity | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图论4-Planarity
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="图论4-Planarity"><a href="#图论4-Planarity" class="headerlink" title="图论4-Planarity"></a>图论4-Planarity</h1><h2 id="Planarity"><a href="#Planarity" class="headerlink" title="Planarity"></a>Planarity</h2><p>一个<strong>平面图</strong>(planar)被定义为：在平面上绘制没有交叉的图；</p>
+<p>若图$G$不能在平面上绘制或表示，称为非平面图；</p>
+<p>若两个图可以在同一个图的边插入一个2度的新顶点来获得，则这两个图是<strong>同胚的</strong>(homeomorphic);</p>
+<p><img src="/assets/image-20241113203750619.png" alt="image-20241113203750619"></p>
+<p>称图$H$<strong>紧缩于</strong>(contractible to)$K_{3,3}$或$K_5$， 如果我们将$H$的边收缩能够得到$K_{3，3}$或$K_5$;</p>
+<h3 id="Theorem-Kazimierz-Kuratowski"><a href="#Theorem-Kazimierz-Kuratowski" class="headerlink" title="Theorem(Kazimierz Kuratowski)"></a>Theorem(Kazimierz Kuratowski)</h3><p>$K_{3,3},K_5$是非平面的；进一步地，如果一个图是平面图，当且仅当其没有子图和$K_{3,3}$或$K_5$同胚；</p>
+<h3 id="Corollary"><a href="#Corollary" class="headerlink" title="Corollary"></a>Corollary</h3><p>一个图是平面的当且仅当它不包含可紧缩到$K_5$或$K_{3,3}$的子图; </p>
+<p><strong>proof</strong>:考虑命题反面</p>
+<p><img src="/assets/image-20241113204645054.png" alt="image-20241113204645054"></p>
+<h2 id="Crossing"><a href="#Crossing" class="headerlink" title="Crossing"></a>Crossing</h2><p>图$G$的交叉数${\rm cr}(G)$定义为将$G$绘制在平面上是发生的最小交叉数；</p>
+<p>显然${\rm cr}(K_5)&#x3D;{\rm cr}(K_{3,3})&#x3D;1$;</p>
+<p><img src="/assets/image-20241113205735583.png" alt="image-20241113205735583"></p>
+<p>图的厚度$t(G)$定义为将$G$分解成若干个平面图的并的最小数量；</p>
+<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><p>对于简单图$G$,顶点数$n\ge 3$,边数$m$; 则厚度存在下界<br>$$<br>t(G)\ge \lceil \frac {m}{3n-6} \rceil<br>$$<br><strong>proof</strong>:只需证$m\le (3n-6)t(G)$;</p>
+<h2 id="Bound"><a href="#Bound" class="headerlink" title="Bound"></a>Bound</h2><p>定义一个平面图的区域$R$的<strong>边界度</strong>(bound degree)为$b(R)$ 为遍历区域的边界记录的图的边数；</p>
+<p>假设平面图将平面划分为$f$个区域，称$f$为平面图的面数；</p>
+<h3 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem"></a>Theorem</h3><p>假设平面图$G$的面最小边界度为$l\ge 2$,则<br>$$<br>lf\le C&#x3D;\sum_{R} b_R\le 2m<br>$$<br>对于不少于3个顶点的简单平面图，则<br>$$<br>m\le \frac{l}{l-2}(n-2)<br>$$<br>对于一般的平面图，自然有<br>$$<br>m\le 3n-6<br>$$<br>对于二部平面图，有<br>$$<br>m\le 2n-4<br>$$</p>
+<h3 id="Theorem-Euler"><a href="#Theorem-Euler" class="headerlink" title="Theorem(Euler)"></a>Theorem(Euler)</h3><p>若图$G$是一个具有$n$个顶点，$m$条边和$f$个面的<strong>连通平面图</strong>，则满足一下公式：<br>$$<br>n-m+f&#x3D;2<br>$$<br><strong>proof</strong>:若图有圈，删除一条圈中的边导致$m$和$f$均减少1，且不丢失连通性；重复上述操作划归为树的情况，即$m&#x3D;n-1,f&#x3D;1$<br><strong>note</strong>:由此可证明$K_{3,3},K_5$不是连通图；</p>
+<h3 id="Corollary-1"><a href="#Corollary-1" class="headerlink" title="Corollary"></a>Corollary</h3><p>$K_{m,n}$是平面图当且仅当$\min {m,n}\le 2$;$K_n$是平面图当且仅当$n\le 4$;</p>
+<h3 id="Corollary-2"><a href="#Corollary-2" class="headerlink" title="Corollary"></a>Corollary</h3><p>对于平面图$G$，有<br>$$<br>n-m+f&#x3D;\omega(G)+1<br>$$</p>
+<h2 id="Polyhedra"><a href="#Polyhedra" class="headerlink" title="Polyhedra"></a>Polyhedra</h2><p>一个多面体(polyhedron)定义为一个实体，它被有限个面包围，每一个面都是多边形；<br>一个多面体是凸的，若连接两个顶点的险段都完全包含在多面体内；<br>多面体可以用一个平面图表示；</p>
+<p>一个多面体是正则的(regular)，若存在整数$n\ge 3, m\ge 3$,每个顶点均有$r$个面在此相遇，而且每个面的边界上均有$l$条边；</p>
+<p><img src="/assets/image-20250113201109956.png" alt="image-20250113201109956"><img src="/assets/image-20250113201118879.png" alt="image-20250113201118879"></p>
+<h3 id="Theorem-2"><a href="#Theorem-2" class="headerlink" title="Theorem"></a>Theorem</h3><p>假定正多面体的顶点度为$r$，每个面度为$l$，则$(l,r)$仅有如下取值：<br>$$(3,3),(3,4),(4,3),(3,5),(5,3)$$<br><strong>proof</strong>:注意到<br>$$<br>n-m+f&#x3D;2 \<br>2m&#x3D;lf&#x3D;nr<br>$$</p>
+<p>导出<br>$$<br>(l-2)(r-2)&lt;4<br>$$</p>
+<h2 id="Fullerene"><a href="#Fullerene" class="headerlink" title="Fullerene"></a>Fullerene</h2><p>一个<strong>烯</strong>(fullerene)的特征如下：</p>
+<ul>
+<li>由五边形和六边形构成；</li>
+<li>每个顶点处有3个面相遇；</li>
+</ul>
+<p>可以确定，总共12个五边形；</p>
+<p><img src="/assets/image-20250113201045487.png" alt="image-20250113201045487"><strong>proof</strong>:注意到<br>$$<br>n-m+f&#x3D;2\<br>f&#x3D;f_5+f_6\<br>2m&#x3D;3n&#x3D;5f_5+6f_6<br>$$</p>
+<h2 id="Genus"><a href="#Genus" class="headerlink" title="Genus"></a>Genus</h2><p>定义一个表面的<strong>亏格数</strong>(genus)$g$，如果其拓扑同构于有$g$个<strong>柄</strong>(handle)或者<strong>交叉帽</strong>(cross-caps)一个<strong>球体</strong>(sphere);</p>
+<p><img src="/assets/image-20250113201150372.png" alt="image-20250113201150372"></p>
+<p>这里给出结论，$K_5$和$K_{3,3}$是亏格数为1的图(toroidal graphs)；</p>
+<p><img src="/assets/image-20250113201837423.png" alt="image-20250113201837423"></p>
+<h3 id="Theorem-3"><a href="#Theorem-3" class="headerlink" title="Theorem"></a>Theorem</h3><p>图$G$的亏格数$g$不超过其交叉数${\rm cr}(G)$;</p>
+<h3 id="Theorem-4"><a href="#Theorem-4" class="headerlink" title="Theorem"></a>Theorem</h3><p>对于可定向的连通图$G$，亏格数为$g$,顶点数为$n$,边数为$m$，面数为$f$,满足<br>$$<br>n-m+f&#x3D;2-2g<br>$$</p>
+<h3 id="Theorem-5"><a href="#Theorem-5" class="headerlink" title="Theorem"></a>Theorem</h3><p>对于不少于4个顶点的可定向的连通图$G$，边数为$m$,顶点数为$n$，其亏格数满足<br>$$<br>g(G)\ge \lceil \frac{m-3n}{6}\rceil +1<br>$$</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%9B%BE%E8%AE%BA3-Tree/" rel="prev" title="图论3-Tree">
+                  <i class="fa fa-angle-left"></i> 图论3-Tree
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%9B%BE%E8%AE%BA5-Coloring/" rel="next" title="图论5-Coloring">
+                  图论5-Coloring <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

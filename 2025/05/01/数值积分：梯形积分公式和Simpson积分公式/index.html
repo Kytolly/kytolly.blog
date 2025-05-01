@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Background在实际工程中许多函数的原函数并不容易求出，因此对它们使用Newton-Lebniz公式是相当困难的，因此衍生出数值积分，基本思想就是对于一个黎曼可积分的函数，不断细分积分区间对小面积求和得到定积分的近似值； 但是过于细致的区间划分会导致大量资源的消耗，因此这篇文章旨在介绍一种启发式的办法来使得误差控制在我们接收范围内同时减少对计算资源的消耗； 由于对数值分析的了解还不够，不少内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数值积分：梯形积分公式和Simpson积分公式">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%EF%BC%9A%E6%A2%AF%E5%BD%A2%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F%E5%92%8CSimpson%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Background在实际工程中许多函数的原函数并不容易求出，因此对它们使用Newton-Lebniz公式是相当困难的，因此衍生出数值积分，基本思想就是对于一个黎曼可积分的函数，不断细分积分区间对小面积求和得到定积分的近似值； 但是过于细致的区间划分会导致大量资源的消耗，因此这篇文章旨在介绍一种启发式的办法来使得误差控制在我们接收范围内同时减少对计算资源的消耗； 由于对数值分析的了解还不够，不少内">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Trapezoidal_rule_illustration.png/1920px-Trapezoidal_rule_illustration.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Trapezoidal_rule_illustration_small.svg/1920px-Trapezoidal_rule_illustration_small.svg.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.482Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.637Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Trapezoidal_rule_illustration.png/1920px-Trapezoidal_rule_illustration.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%EF%BC%9A%E6%A2%AF%E5%BD%A2%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F%E5%92%8CSimpson%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%EF%BC%9A%E6%A2%AF%E5%BD%A2%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F%E5%92%8CSimpson%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F/","path":"2025/05/01/数值积分：梯形积分公式和Simpson积分公式/","title":"数值积分：梯形积分公式和Simpson积分公式"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数值积分：梯形积分公式和Simpson积分公式 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Content"><span class="nav-number">2.</span> <span class="nav-text">Content</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A2%AF%E5%BD%A2%E7%A7%AF%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">梯形积分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E9%80%82%E5%BA%94Simpson%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">自适应Simpson积分公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E7%B2%BE%E5%BA%A6Lobatto%E7%A7%AF%E5%88%86%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">高精度Lobatto积分法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Remark"><span class="nav-number">3.</span> <span class="nav-text">Remark</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%EF%BC%9A%E6%A2%AF%E5%BD%A2%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F%E5%92%8CSimpson%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数值积分：梯形积分公式和Simpson积分公式 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数值积分：梯形积分公式和Simpson积分公式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>在实际工程中许多函数的原函数并不容易求出，因此对它们使用Newton-Lebniz公式是相当困难的，因此衍生出数值积分，基本思想就是对于一个黎曼可积分的函数，不断细分积分区间对小面积求和得到定积分的近似值；</p>
+<p>但是过于细致的区间划分会导致大量资源的消耗，因此这篇文章旨在介绍一种启发式的办法来使得误差控制在我们接收范围内同时减少对计算资源的消耗；</p>
+<p>由于对数值分析的了解还不够，不少内容只能留坑了；</p>
+<p>启发式的策略主要有以下几种：</p>
+<ol>
+<li><strong>误差估算与细分</strong><br>在自适应梯形积分中，可以利用Richardson外推或其他误差估计技术估算当前的误差。如果对某个区间的误差估计超出了预期阈值，只有这些区间会被进一步细分，从而减少不必要的计算。</li>
+<li><strong>局部适应性</strong><br>对于有急剧变化或高度非线性的函数，使用相同数量的区间可能会导致某些部分的误差大于其他部分。在这种情况下，可以设计算法以更高的密度对这些特定区域进行采样，同时对函数较为平缓的部分进行较少的采样。同时，也应该自适应的调整步长，在函数变化剧烈的地方采用较小的步长，而在平缓区域使用较大的步长。</li>
+<li><strong>多步骤递增</strong><br>不是一开始就使用非常高的划分数，可以从一个较小的区间数开始，并逐步增加，直到满足精确度要求，以此来优化计算时间。</li>
+<li><strong>停止准则的动态调整</strong><br>动态调整误差阈值，可以在算法运行过程中根据已经计算的结果和剩余区间来适应性地调整。</li>
+</ol>
+<h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><h3 id="梯形积分"><a href="#梯形积分" class="headerlink" title="梯形积分"></a>梯形积分</h3><p>在matlab中有一个现成的函数可供调用：<br><code>Q=trapz(x,y)</code>表示y在x细分下的<strong>梯形积分</strong>，注意Q求出来并不是真实精确的积分结果；</p>
+<p>梯形公式将图像线性近似$f(x)&#x3D;f(a)+\frac{f(b)-f(a)}{b-a}(x-a)$，并用线下方的梯形面积替代积分面积：<br>$$<br>\int_{a}^{b}f(x)dx\approx(b-a)\frac{f(a)+f(b)}{2}<br>$$<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Trapezoidal_rule_illustration.png/1920px-Trapezoidal_rule_illustration.png"></p>
+<p>其中如果将区间细化为$a&#x3D;x_0&lt;x1&lt;…&lt;x_{N-1}&lt;x_N&#x3D;b$,那么计算结果为<br>$$<br>\int_{a}^{b}f(x)dx&#x3D;\frac{b-a}{2N}(f(x_0)+\sum_{i&#x3D;0}^{N-1}f(x_i)+f(x_N))<br>$$</p>
+<p>$$<br>R_T(f)&#x3D;-\frac{(b-a)^2}{12}f’’(\xi)<br>$$</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Trapezoidal_rule_illustration_small.svg/1920px-Trapezoidal_rule_illustration_small.svg.png"></p>
+<p>用matlab实现如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="built_in">linspace</span>(<span class="number">0</span>,<span class="built_in">pi</span>,<span class="number">3</span>);</span><br><span class="line">y=<span class="built_in">sin</span>(x);</span><br><span class="line">my_trapz_res=my_trapz(x,y)</span><br><span class="line">trapz_res=trapz(x,y)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">res</span>=<span class="title">my_trapz0</span><span class="params">(f,a,b)</span></span></span><br><span class="line">res=(b-a)*(f(b)+f(a))/<span class="number">2</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">res</span>=<span class="title">my_trapz</span><span class="params">(x,y)</span></span></span><br><span class="line"><span class="comment">%x,y传入的应该是一对长度相等的向量</span></span><br><span class="line">n=<span class="built_in">length</span>(x);</span><br><span class="line">res=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:n</span><br><span class="line">res=res+(x(<span class="built_in">i</span>)-x(<span class="built_in">i</span><span class="number">-1</span>))*(y(<span class="built_in">i</span>)+y(<span class="built_in">i</span><span class="number">-1</span>))/<span class="number">2</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>从结果上看到，和官方提供的函数并无多大区别：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">my_trapz_res =</span><br><span class="line"></span><br><span class="line">    <span class="number">1.5708</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">trapz_res =</span><br><span class="line"></span><br><span class="line">    <span class="number">1.5708</span></span><br></pre></td></tr></table></figure>
+
+<p>在自适应梯形积分中，可以利用Richardson外推或其他误差估计技术估算当前的误差。如果对某个区间的误差估计超出了预期阈值，只有这些区间会被进一步细分，从而减少不必要的计算。（留坑）</p>
+<h3 id="自适应Simpson积分公式"><a href="#自适应Simpson积分公式" class="headerlink" title="自适应Simpson积分公式"></a>自适应Simpson积分公式</h3><p>在Simpson积分中，将图像近似为一个二次函数$f(x)&#x3D;Ax^2+Bx+C$,那么积分可以做如下近似：<br>$$<br>\int_{a}^{b}f(x)\approx\frac{A}{3}(b^3-a^3)+\frac{B}2(b^2-a^2)+C(b-a)<br>$$</p>
+<p>$$<br>&#x3D;(b-a)[\frac{A}{3}(b^2+a^2+ab)+\frac{B}{2}(b+a)+C]&#x3D;(b-a)\frac{f(a)+f(b)+4f(\frac{a+b}{2})}6<br>$$</p>
+<p>我们也采用变步长的启发式策略：</p>
+<ul>
+<li>对于一个极小的区间认为他的Simpson值加上误差容忍可以近似为积分值；</li>
+<li>二分区间分别计算左边区间的Simpson值和右边区间的Simpson值</li>
+<li>如果两值加起来与整个区间Simpson值差距不超过15倍得误差容忍度，就认为这个区间足够小，返回这个小区间得积分值；</li>
+<li>否则需要继续递归，返回区间的左边积分值加上右边积分值；</li>
+</ul>
+<p>matlab程序如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">quad(@(x)<span class="built_in">sin</span>(x),<span class="number">0</span>,<span class="built_in">pi</span>)</span><br><span class="line">my_quad(@(x) <span class="built_in">sin</span>(x),<span class="number">0</span>,<span class="built_in">pi</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">res</span>=<span class="title">my_simpson</span><span class="params">(f,a,b)</span></span></span><br><span class="line">res=(b-a)*(f(a)+f(b)+<span class="number">4</span>*f((a+b)/<span class="number">2</span>))/<span class="number">6</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">res</span>=<span class="title">my_quad</span><span class="params">(f,a,b,tol)</span></span></span><br><span class="line"><span class="keyword">if</span> nargin==<span class="number">3</span></span><br><span class="line">    tol=<span class="number">10</span>^(<span class="number">-6</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">mid=(a+b)/<span class="number">2</span>;</span><br><span class="line">quad_all=my_simpson(f,a,b);</span><br><span class="line">quad_l=my_simpson(f,a,mid);</span><br><span class="line">quad_r=my_simpson(f,mid,b);</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">abs</span>(quad_l+quad_r-quad_all)&lt;<span class="number">15</span>*tol) </span><br><span class="line">    res=quad_l+quad_r+(quad_l+quad_r-quad_all)/<span class="number">15</span>; </span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">    res=my_quad(f,a,mid,tol)+my_quad(f,mid,b,tol);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到和官方提供的quad函数没有太大差距：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ans</span> =</span><br><span class="line"></span><br><span class="line">    <span class="number">2.0000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">ans</span> =</span><br><span class="line"></span><br><span class="line">    <span class="number">2.0000</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4525">洛谷模板题</a></p>
+<p>请注意，自适应simpson公式数值积分适用于精度要求低，被积函数平滑性较差的数值积分；</p>
+<h3 id="高精度Lobatto积分法"><a href="#高精度Lobatto积分法" class="headerlink" title="高精度Lobatto积分法"></a>高精度Lobatto积分法</h3><p>留坑，暂时找不到资料</p>
+<h2 id="Remark"><a href="#Remark" class="headerlink" title="Remark"></a>Remark</h2><p>这里大多数数值积分的介绍都缺少一点理论知识，等哪天补一补数值计算再回来填坑了；</p>
+<p>其中的启发式算法还是很不错的；</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%AD%A6%E4%B9%A0%E5%B7%A5%E4%BD%9C%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE%EF%BC%8C%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%80%E8%A7%88/" rel="prev" title="学习工作常用快捷键，命令行一览">
+                  <i class="fa fa-angle-left"></i> 学习工作常用快捷键，命令行一览
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F0-%E7%BB%AA%E8%AE%BA/" rel="next" title="操作系统0-绪论">
+                  操作系统0-绪论 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="基础概念一个好的AI应该做到以下两点：  think&#x2F;behavior rationally maximize your expected utility  也就是一个理性的Agent对每一个可能的感知序列，根据已知的感知序列提供的证据和Agent具有的先验知识，理性Agent应该选择能使其性能度量最大化的行动; 那么如何设计一个合理的AI呢？PEAS描述这样的任务环境；  性能度量pe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Agent&amp;Environment">
+<meta property="og:url" content="http://example.com/2025/05/01/Agent&Environment/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="基础概念一个好的AI应该做到以下两点：  think&#x2F;behavior rationally maximize your expected utility  也就是一个理性的Agent对每一个可能的感知序列，根据已知的感知序列提供的证据和Agent具有的先验知识，理性Agent应该选择能使其性能度量最大化的行动; 那么如何设计一个合理的AI呢？PEAS描述这样的任务环境；  性能度量pe">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406110751803.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406112346440.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406112346424.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406112346453.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.313Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:21.941Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406110751803.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/Agent&Environment/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/Agent&Environment/","path":"2025/05/01/Agent&Environment/","title":"Agent&Environment"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Agent&Environment | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">基础概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E7%8E%AF%E5%A2%83%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">任务环境分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Simple-Reflect-Agent"><span class="nav-number">3.</span> <span class="nav-text">Simple-Reflect Agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reflect-Agent"><span class="nav-number">4.</span> <span class="nav-text">Reflect-Agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Planning-Agent"><span class="nav-number">5.</span> <span class="nav-text">Planning-Agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%95%88%E7%94%A8%E7%9A%84Agent"><span class="nav-number">6.</span> <span class="nav-text">基于效用的Agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0Agent"><span class="nav-number">7.</span> <span class="nav-text">学习Agent</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/Agent&Environment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Agent&amp;Environment | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Agent&Environment
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:21" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><p>一个好的AI应该做到以下两点：</p>
+<ul>
+<li>think&#x2F;behavior rationally</li>
+<li>maximize your expected utility</li>
+</ul>
+<p>也就是一个理性的Agent对每一个可能的感知序列，根据已知的感知序列提供的证据和Agent具有的先验知识，理性Agent应该选择能使其性能度量最大化的行动;</p>
+<p>那么如何设计一个合理的AI呢？PEAS描述这样的任务环境；</p>
+<ol>
+<li>性能度量performance measuere</li>
+<li>环境environment</li>
+<li>执行器actuator</li>
+<li>传感器sensor</li>
+</ol>
+<p>一个理性的Agent不一定要做到全知，而且也很难做到，一个合理Agent基于已有感知序列进行行动，为了实现最大化期望性能，必须要做一些必要的信息收集，在位置的环境中探查；</p>
+<p>如果一个Agent依赖于设计员的先验知识而不能子集的感知信息，则称Agent缺乏自主性，一个合理Agent应该是自主的，Agent应该学习；</p>
+<p>但是在Agent诞生初期很难做到完全自主，当Agent经验较少时，其行为往往是随机的，那么设计者应该提供Agent一些先验知识和学习能力，当得到环境的充足经验后，理性Agent才能独立出先验知识进行有效的行动；</p>
+<h2 id="任务环境分类"><a href="#任务环境分类" class="headerlink" title="任务环境分类"></a>任务环境分类</h2><p>在实践中我们经常能看到如下环境：</p>
+<ul>
+<li>完全可观察&amp;部分可观察</li>
+<li>单Agent&amp;多Agent</li>
+<li>确定Agent&amp;随机Agent</li>
+<li>片段式&amp;延续式</li>
+<li>静态&amp;动态</li>
+<li>离散&amp;连续</li>
+<li>已知&amp;未知</li>
+</ul>
+<p>举个例子来说，自动驾驶就是要处理一个部分可观察的，多Agent，随机的，连续的，动态的，连续的和未知的环境，这每个方面都很难困难；</p>
+<h2 id="Simple-Reflect-Agent"><a href="#Simple-Reflect-Agent" class="headerlink" title="Simple-Reflect Agent"></a>Simple-Reflect Agent</h2><p>对于一个简单反射Agent，可以基于当前的感知选择行动，不关注感知历史，比如说每一步决策都是一个MDP，就像建立简单反射一样；</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406110751803.png" alt="image-20240611075158735"></p>
+<p>但是简单反射Agent的智能相当有限，可能会不可避免地陷入无限循环；</p>
+<h2 id="Reflect-Agent"><a href="#Reflect-Agent" class="headerlink" title="Reflect-Agent"></a>Reflect-Agent</h2><p>对于一个反射性智能体，也就是基于模型的反射Agent,比如它认为状态的改变具有Markov性,为了处理部分可观测的环境，可以让Agent跟踪记录看不到的那部分世界，根据感知历史维持内部状态；</p>
+<p>如何更新Agent的内部状态？加入两种知识，统称为世界模型：</p>
+<ul>
+<li>世界如何独立于Agent发展</li>
+<li>Agent如何影响世界</li>
+</ul>
+<p>对于一个当下执行一个动作将导致某种后果，作为先验知识输入到一个Reflect Agent，有如下特征：</p>
+<ul>
+<li>Choose action based on current percept (and maybe memory)</li>
+<li>May have memory or a model of the world’s current state<ul>
+<li>If … now, then …</li>
+</ul>
+</li>
+<li><strong>Do not consider</strong> the future consequences of their actions</li>
+<li>Consider how the world IS now</li>
+</ul>
+<h2 id="Planning-Agent"><a href="#Planning-Agent" class="headerlink" title="Planning-Agent"></a>Planning-Agent</h2><p>对于一个基于目标的Agent，也许Agent需要一条漫长的行动序列来找到目标途径，这时搜索和规划就是好的方法，特征如下：</p>
+<ul>
+<li>Ask “what if”</li>
+<li>Decisions based on (hypothesized) consequences of actions</li>
+<li>Must have a model of how the world evolves in response to actions</li>
+<li>Must formulate a goal (test)</li>
+<li>Consider how the world WOULD BE</li>
+</ul>
+<p>一个基于模型和目标的Agent，要记录世界的状态，也要记录到达的目标集合，选择能达到最终目标的方向行动，如下图；</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406112346440.png" alt="image-20240611075014254"></p>
+<p>也有几个改进的版本：</p>
+<ol>
+<li>Optimal Planning：最小化代价去实现目标；</li>
+<li>Complete Planning: 找到全局最优解；</li>
+<li>Replanning：每次规划距离当前最近的点，采用启发式的方法；</li>
+</ol>
+<h2 id="基于效用的Agent"><a href="#基于效用的Agent" class="headerlink" title="基于效用的Agent"></a>基于效用的Agent</h2><p>Agent的效用就是性能度量的内在化，基于效用的Agent试图最大化它期望的快乐，从而做出理性的决策；</p>
+<ul>
+<li>多目标冲突时，部分目标可达到时，效用函数可以进行适当的折中；</li>
+<li>无目标有把握达到时，效用函数可以对依据目标的重要性对成功进行似然加权；</li>
+</ul>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406112346424.png" alt="image-20240611225455235"></p>
+<h2 id="学习Agent"><a href="#学习Agent" class="headerlink" title="学习Agent"></a>学习Agent</h2><p>人工智能最需要的就是需要一个在初始未知的环境中运转并逐渐提升的Agent，一个学习Agent似乎能做到这一切，它被分为四个概念组件：</p>
+<ol>
+<li>评判元件Critic：告诉学习元件Agent的运转情况，进行反馈；</li>
+<li>学习元件Learning Element：负责Agent的改进提高，制定更好的规则；</li>
+<li>问题产生器Problem generator：建议探索性的活动；</li>
+<li>性能元件Performance element：负责选择外部行动，发生状态的转移和世界的改变；</li>
+</ol>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406112346453.png" alt="image-20240611225556921"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Adversarial%20Search/" rel="prev" title="Adversarial Search">
+                  <i class="fa fa-angle-left"></i> Adversarial Search
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Constraint%20Satisfaction%20Problems/" rel="next" title="Constraint Satisfaction Problems">
+                  Constraint Satisfaction Problems <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

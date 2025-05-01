@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="应用随机过程：常见分布的数字特征退化分布(单点分布)若随机变量$X$只取常数$c$,即$$P{X&#x3D;c}&#x3D;1$$则$X$并不随机，但我们把它看作随机变量的退化情况更为方便，因此称之为退化分布，又称单点分布. 离散均匀分布若随机变量$X$的分布律为$$P(X&#x3D;k)&#x3D;\frac1n,\quad k&#x3D;1,2,\cdots,n$$则称之为离散均匀分布，记作$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="概率论：常见分布的数字特征">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%A6%82%E7%8E%87%E8%AE%BA%EF%BC%9A%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="应用随机过程：常见分布的数字特征退化分布(单点分布)若随机变量$X$只取常数$c$,即$$P{X&#x3D;c}&#x3D;1$$则$X$并不随机，但我们把它看作随机变量的退化情况更为方便，因此称之为退化分布，又称单点分布. 离散均匀分布若随机变量$X$的分布律为$$P(X&#x3D;k)&#x3D;\frac1n,\quad k&#x3D;1,2,\cdots,n$$则称之为离散均匀分布，记作$">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406021628633.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.498Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.816Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406021628633.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%A6%82%E7%8E%87%E8%AE%BA%EF%BC%9A%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%A6%82%E7%8E%87%E8%AE%BA%EF%BC%9A%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/","path":"2025/05/01/概率论：常见分布的数字特征/","title":"概率论：常见分布的数字特征"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>概率论：常见分布的数字特征 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%EF%BC%9A%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81"><span class="nav-number">1.</span> <span class="nav-text">应用随机过程：常见分布的数字特征</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%80%E5%8C%96%E5%88%86%E5%B8%83-%E5%8D%95%E7%82%B9%E5%88%86%E5%B8%83"><span class="nav-number">1.1.</span> <span class="nav-text">退化分布(单点分布)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%BB%E6%95%A3%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83"><span class="nav-number">1.2.</span> <span class="nav-text">离散均匀分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bernoulli%E5%88%86-%E5%B8%83"><span class="nav-number">1.3.</span> <span class="nav-text">Bernoulli分 布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-1"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83"><span class="nav-number">1.4.</span> <span class="nav-text">二项分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-2"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="nav-number">1.5.</span> <span class="nav-text">几何分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-3"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Poisson%E5%88%86-%E5%B8%83"><span class="nav-number">1.6.</span> <span class="nav-text">Poisson分 布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-4"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9F%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83"><span class="nav-number">1.7.</span> <span class="nav-text">负二项分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-5"><span class="nav-number">1.7.0.1.</span> <span class="nav-text">Property</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-6"><span class="nav-number">1.7.0.2.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83"><span class="nav-number">1.8.</span> <span class="nav-text">连续均匀分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-7"><span class="nav-number">1.8.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="nav-number">1.9.</span> <span class="nav-text">正态分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-8"><span class="nav-number">1.9.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E6%95%B0%E5%88%86%E5%B8%83"><span class="nav-number">1.10.</span> <span class="nav-text">指数分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-9"><span class="nav-number">1.10.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%A1%E6%96%B9%E5%88%86%E5%B8%83"><span class="nav-number">1.11.</span> <span class="nav-text">卡方分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Property-10"><span class="nav-number">1.11.1.</span> <span class="nav-text">Property</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gamma-%E5%88%86-%E5%B8%83"><span class="nav-number">1.12.</span> <span class="nav-text">$\Gamma$分 布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%BB%B4%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="nav-number">1.13.</span> <span class="nav-text">多维正态分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-11"><span class="nav-number">1.13.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%A6%82%E7%8E%87%E8%AE%BA%EF%BC%9A%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="概率论：常见分布的数字特征 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          概率论：常见分布的数字特征
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="应用随机过程：常见分布的数字特征"><a href="#应用随机过程：常见分布的数字特征" class="headerlink" title="应用随机过程：常见分布的数字特征"></a>应用随机过程：常见分布的数字特征</h1><h2 id="退化分布-单点分布"><a href="#退化分布-单点分布" class="headerlink" title="退化分布(单点分布)"></a>退化分布(单点分布)</h2><p>若随机变量$X$只取常数$c$,即<br>$$<br>P{X&#x3D;c}&#x3D;1<br>$$<br>则$X$并不随机，但我们把它看作随机变量的退化情况更为方便，因此称之为退化分布，又称单点分布.</p>
+<h2 id="离散均匀分布"><a href="#离散均匀分布" class="headerlink" title="离散均匀分布"></a>离散均匀分布</h2><p>若随机变量$X$的分布律为<br>$$<br>P(X&#x3D;k)&#x3D;\frac1n,\quad k&#x3D;1,2,\cdots,n<br>$$<br>则称之为离散均匀分布，记作$X\sim U{1,\cdots,n}$​.</p>
+<h4 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h4><ol>
+<li>特征函数<br>$$<br>\psi_X(t)&#x3D;\frac{e^{ita}-e^{it(b+1)}}{(1-e^{it})(b-a+1)}<br>$$</li>
+</ol>
+<h2 id="Bernoulli分-布"><a href="#Bernoulli分-布" class="headerlink" title="Bernoulli分 布"></a>Bernoulli分 布</h2><p>若 随 机 变 量$X$的分布律为<br>$$<br>P(X&#x3D;k)&#x3D;p^k(1-p)^{n-k},\quad k&#x3D;0,1<br>$$<br>则称之为离散均匀分布，记作$X\sim$Ber$(p)$.</p>
+<p>设事件$A$出现的概率为$p,0&lt;p&lt;1$,则$X$为一次伯努利试验中$A$​出现的次数.</p>
+<h4 id="Property-1"><a href="#Property-1" class="headerlink" title="Property"></a>Property</h4><ol>
+<li>特征函数<br>$$<br>\psi_{X}(t)&#x3D;1-p+pe^{it}<br>$$</li>
+</ol>
+<h2 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h2><p>若随机变量$X$​的分布律为<br>$$<br>\left.P(X&#x3D;k)&#x3D;\left(\begin{array}{c}n\k\end{array}\right.\right)p^k(1-p)^{n-k},\quad k&#x3D;0,1,\cdots,n<br>$$<br>则称之为以$n$和$p$为参数的二项分布，记作$X\sim B(n,p)$.</p>
+<p>设事件$A$在每次试验中出现的概率均为$p,0&lt;p&lt;1$,且每次实验相互独立，则$X$为$n$重伯努利试验中事件$A$​出现的次数.</p>
+<h4 id="Property-2"><a href="#Property-2" class="headerlink" title="Property"></a>Property</h4><ol>
+<li>特征函数<br>$$<br>\psi_{X}(t)&#x3D;1-p+pe^{it}<br>$$</li>
+</ol>
+<h2 id="几何分布"><a href="#几何分布" class="headerlink" title="几何分布"></a>几何分布</h2><p>若随机变量$X$的分布律为<br>$$<br>P(X&#x3D;k)&#x3D;p(1-p)^{k-1},\quad k\geq1<br>$$<br>则称之为几何分布，记作$X\sim$Geom$(p)$.</p>
+<p>在伯努利试验中， 设事件$A$在每次试验中出现的概率均为$p,0&lt;p&lt;1$,则$X$为事件$A$首次出现时的总试验次数;</p>
+<h4 id="Property-3"><a href="#Property-3" class="headerlink" title="Property"></a>Property</h4><ol>
+<li>特征函数<br>$$<br>\psi_X(t)&#x3D;\frac{p}{e^{-it}-(1-p)}<br>$$</li>
+</ol>
+<h2 id="Poisson分-布"><a href="#Poisson分-布" class="headerlink" title="Poisson分 布"></a>Poisson分 布</h2><p>  若 随 机 变 量 $X$的分布律为<br>$$<br>P(X&#x3D;k)&#x3D;\frac{e^{-\lambda}\lambda^k}{k!},\quad k&#x3D;0,1,\cdots<br>$$<br>其中$\lambda&gt;0$,则称$X$服从Poisson分布，记为$X\sim$Poi$(\lambda).$​</p>
+<h4 id="Property-4"><a href="#Property-4" class="headerlink" title="Property"></a>Property</h4><ol>
+<li><p>特征函数<br>$$<br>\psi_X(t)&#x3D;e^{\lambda(e^{it}-1)}<br>$$</p>
+</li>
+<li><p>数学期望<br>$$<br>E[X]&#x3D;\lambda<br>$$</p>
+</li>
+<li><p>方差<br>$$<br>Var[X]&#x3D;\lambda<br>$$</p>
+</li>
+</ol>
+<h2 id="负二项分布"><a href="#负二项分布" class="headerlink" title="负二项分布"></a>负二项分布</h2><p>对于任意实数$r&gt;0$,若随机变量$X$的分布律为<br>$$<br>\left.P(X&#x3D;k)&#x3D;\left(\begin{array}{c}k+r-1\k\end{array}\right.\right)p^r(1-p)^k,:k&#x3D;0,1,2,\cdots<br>$$<br>则称之为负二项分布，记作$X\sim\mathsf{NB}(r,p)$​。</p>
+<h4 id="Property-5"><a href="#Property-5" class="headerlink" title="Property"></a>Property</h4><ol>
+<li>特征函数<br>$$<br>\psi_X(t)&#x3D;\left(\frac{p}{1-(1-p)e^{it}}\right)^r<br>$$</li>
+</ol>
+<p>在伯努利试验中，设事件$A$在每次试验中出现的概率均为$p$,则$X$为直到事件$A$成功$r$次时，试验的总失败次数。</p>
+<p>负二项分布通常用于替换Poisson分布。同Poisson分布一样，它也在非负整数上取值，但因为它包含两个参数，相比Poisson 分布其变化更灵活。Poisson分布的方差和均值相等，但负二项分布的方差大于均值.</p>
+<h4 id="Property-6"><a href="#Property-6" class="headerlink" title="Property"></a>Property</h4><ol>
+<li>特征函数<br>$$<br>\psi_{X}(t)&#x3D;\left(\frac p{1-(1-p)e^{it}}\right)^{r}<br>$$</li>
+</ol>
+<h2 id="连续均匀分布"><a href="#连续均匀分布" class="headerlink" title="连续均匀分布"></a>连续均匀分布</h2><p>如果$X$的概率密度为<br>$$<br>\left.f(x)&#x3D;\left{\begin{array}{ll}1&#x2F;(b-a),&amp;\text{若 }a\leq x\leq b\0,&amp;\text{其他}\end{array}\right.\right.<br>$$<br>其中$a&lt;b$,则称之为区间$[a,b]$上的(连续)均匀分布，记为$X\sim\mathbf{U}[a,b].$​</p>
+<h4 id="Property-7"><a href="#Property-7" class="headerlink" title="Property"></a>Property</h4><ol>
+<li>特征函数<br>$$<br>\psi_X(t)&#x3D;\frac{e^{itb}-e^{ita}}{t(b-a)}<br>$$</li>
+</ol>
+<h2 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h2><p>如果$X$的概率密度为<br>$$<br>f(x)&#x3D;\frac1{\sigma\sqrt{2\pi}}\cdot e^{-\frac{(x-\mu)^2}{2\sigma^2}},x\in\mathbb{R}<br>$$<br>则称之为参数为$\mu$和$\sigma^2$的正态分布，也称为高斯分布，记为$X\sim\mathsf{N}(\mu,\sigma^{2}).$​</p>
+<h4 id="Property-8"><a href="#Property-8" class="headerlink" title="Property"></a>Property</h4><ol>
+<li><p>若随机变量X服从正态分布$N(0,\sigma^2)$,其中$\sigma&gt;0$,$X$的$k$​阶原点矩<br>$$<br>E(X^{k})&#x3D;\left{\begin{array}{ll}0, &amp; \text{当}k\text{为奇数时};\ \sigma^{k}(k-1)!!, &amp; \text{当}k\text{为偶数时}.\end{array}\right.<br>$$</p>
+<details> 
+    <summary>证明</summary>
+    $E(X^k)=(k-1)E(X^{k-2}),E(X)=0$
+</details>
+</li>
+<li><p>特征函数<br>$$<br>\psi_X(t)&#x3D;e^{it\mu-\frac12\sigma^2t^2}<br>$$</p>
+</li>
+</ol>
+<h2 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h2><p>如果$X$的概率密度为<br>$$<br>\left.f(x)&#x3D;\left{\begin{array}{ll}\lambda e^{-\lambda x},&amp;x\geq0\0,&amp;x&lt;0\end{array}\right.\right.<br>$$<br>则称之为指数分布，记为$X\sim$Exp$(\lambda).$​ </p>
+<h4 id="Property-9"><a href="#Property-9" class="headerlink" title="Property"></a>Property</h4><ol>
+<li><p>特征函数<br>$$<br>\psi_X(t)&#x3D;(1-it\lambda^{-1})^{-1}<br>$$</p>
+</li>
+<li><p>分布函数<br>$$<br>F(x)&#x3D;P(X\le x)&#x3D;1-e^{-\lambda x}<br>$$</p>
+</li>
+<li><p>数学期望<br>$$<br>E[X]&#x3D;\frac{1}{\lambda}<br>$$</p>
+</li>
+<li><p>方差<br>$$<br>Var(X)&#x3D;\frac{1}{\lambda}<br>$$</p>
+</li>
+</ol>
+<h2 id="卡方分布"><a href="#卡方分布" class="headerlink" title="卡方分布"></a>卡方分布</h2><p>如果$X$的概率密度为<br>$$<br>f(x)&#x3D;\frac1{2^{\frac n2}\Gamma(\frac n2)}x^{\frac n2-1}e^{-\frac x2},\quad x&gt;0<br>$$<br>$n$为正整数，则称之为自由度为$n$的卡方分布，记为$X\sim\chi^2(n).$​</p>
+<h3 id="Property-10"><a href="#Property-10" class="headerlink" title="Property"></a>Property</h3><ol>
+<li><p>特征函数<br>$$<br>\psi_X(t)&#x3D;(1-2it)^{-\frac n 2}<br>$$</p>
+</li>
+<li><p>数学期望<br>$$<br>E[X]&#x3D;n<br>$$<br>方差<br>$$<br>Var[X]&#x3D;2n<br>$$</p>
+</li>
+</ol>
+<h2 id="Gamma-分-布"><a href="#Gamma-分-布" class="headerlink" title="$\Gamma$分 布"></a>$\Gamma$分 布</h2><p>若$X$的概率密度为<br>$$<br>\left.f(x)&#x3D;\left{\begin{array}{ll}\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x},&amp;x\geq0\0,&amp;x&lt;0\end{array}\right.\right.<br>$$<br>$\alpha &gt; 0$, $\beta &gt; 0$, 则称$X$服从形状参数$\alpha$,反尺度参数$\beta$的$\Gamma$分布，记为$X\sim \Gamma(\alpha,\beta)$.</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406021628633.png" alt="image-20240602162822256"></p>
+<ol>
+<li><p>$E(X)&#x3D;\alpha&#x2F;\beta,D(X)&#x3D;\alpha&#x2F;\beta^2.$</p>
+</li>
+<li><p>如果$X\sim\Gamma(\alpha,\beta)$,对任意的$c&gt;0,cX\sim\Gamma(\alpha,\frac\beta c)$</p>
+</li>
+<li><p>如果$X\sim$Exp$(\lambda)$,则$X\sim\Gamma(1,\lambda)$</p>
+</li>
+<li><p>如果$X\sim\chi^2(n)$,则 $X\sim \mathsf{Exp}(\frac n2,\frac12).$</p>
+</li>
+<li><p>如果$X_1,X_2,\ldots,X_n$相互独立同分布且服从参数为$\lambda$的指数分布，则$\sum_{i&#x3D;1}^nX_i\sim \Gamma(n,\lambda)$</p>
+</li>
+<li><p>分布函数<br>$$<br>F(x)&#x3D;\int_0^xf(x)dx&#x3D;1-\sum_{i&#x3D;0}^{\alpha-1}\frac{(\beta x)^i}{i!}e^{-\beta x}.<br>$$</p>
+</li>
+<li><p>特征函数<br>$$<br>\psi_X(t)&#x3D;(1-it\beta^{-1})^{-\alpha}<br>$$</p>
+</li>
+</ol>
+<h2 id="多维正态分布"><a href="#多维正态分布" class="headerlink" title="多维正态分布"></a>多维正态分布</h2><p>设$\boldsymbol{\mu}&#x3D;(\mu_1,\cdots,\mu_d)^T$,$\boldsymbol{\Sigma}$是$d$阶正定对称矩阵,并且其行列式为$|\Sigma|$.如果$\mathbf{X}&#x3D;(X_1,X_2,\ldots,X_d)^T$的联合概率密度为<br>$$<br>f(x_1,\cdots,x_d)&#x3D;(2\pi)^{-d&#x2F;2}|\Sigma|^{-1&#x2F;2}\exp{-\frac12(\mathbf{x}-\boldsymbol{\mu})^{\prime}\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})}<br>$$<br>则称之为$d$维正态分布,记为$\mathbf{X}\sim\mathsf{N}_d(\boldsymbol{\mu},\boldsymbol{\Sigma}). $</p>
+<h4 id="Property-11"><a href="#Property-11" class="headerlink" title="Property"></a>Property</h4><ol>
+<li><p>特征函数<br>$$<br>\psi_\boldsymbol{X}(\boldsymbol{t})&#x3D;\exp{i\boldsymbol{t}^T\boldsymbol{\mu}-\frac12\boldsymbol{t}^T\boldsymbol{\Sigma}\boldsymbol{t}}<br>$$</p>
+</li>
+<li><p>若$\mathbf{X}\sim N_d(\mathbf{0},\mathbf{I}_d)$,则X的任一线性函数$\mathbf{Y}&#x3D;\mathbf{A}_n\times d\mathbf{X}+\boldsymbol{\mu}$ 服从$n$维正态分布$N_n(\boldsymbol{\mu},\mathbf{A}\mathbf{A}^T)$</p>
+</li>
+<li><p>若$\mathbf{Y}\sim N(\boldsymbol{\mu},\boldsymbol{\Sigma})$,则  $\mathbf{A}\mathbf{Y}+\mathbf{b}\sim N(\mathbf{A}\boldsymbol{\mu}+\mathbf{b},\mathbf{A}\boldsymbol{\Sigma}\mathbf{A}^T)$</p>
+</li>
+<li><p>设$\mathbf{X}\sim N(\mu_1,\sigma_1^2),Y\sim N(\mu_2,\sigma_2^2)$,并且$X$与$Y$相互独立，则</p>
+<p>$$<br>(X,X+Y)^T\sim N(\boldsymbol{\mu},\boldsymbol{\Sigma}).<br>$$<br>其中均值$\boldsymbol{\mu}&#x3D;(\mu_1,\mu_1+\mu_2)^T$,协方差矩阵$\boldsymbol\Sigma&#x3D;\left(\begin{array}{cc}\sigma_1^2&amp;\sigma_1^2\\sigma_1^2&amp;\sigma_1^2+\sigma_2^2\end{array}\right)$</p>
+</li>
+<li><p>$(X_1,X_2,\cdots,X_n)^T$服从$n$维正态分布当且仅当其任意非零线性组合<br>$$<br>l_1X_1+l_2X_2+\cdots+l_nX_n<br>$$<br>服从正态分布,其中$l_1,l_2,\cdots,l_n$不全为零.</p>
+</li>
+<li><p>特别的，对二位联合正态分布，其联合概率密度为<br>$$<br>\mathrm{f(x,y)}&#x3D;\frac{1}{2\pi\sigma_{1}\sigma_{2}\sqrt{1-\rho^{2}}}e^{\left{-\frac{1}{2(1-\rho^{2})}\left[\frac{(x-\mu_{1})^{2}}{\sigma_{1}^{2}}-2\rho\frac{(x-\mu_{1})(x-\mu_{2})}{\sigma_{1}\sigma_{2}}+\frac{(y-\mu_{2})^{2}}{\sigma_{2}^{2}}\right]\right}}<br>$$<br>其中相关系数$\rho &#x3D; \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}$</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E7%9A%84%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/" rel="prev" title="应用随机过程的预备知识">
+                  <i class="fa fa-angle-left"></i> 应用随机过程的预备知识
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B0-%E7%BB%AA%E8%AE%BA/" rel="next" title="软件工程0-绪论">
+                  软件工程0-绪论 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

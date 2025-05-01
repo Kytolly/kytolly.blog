@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="期末复习简介  什么是大数据？  大数据的特征（4V,IBM）  什么是数据挖掘？  知识发现的流程 数据挖掘的主要任务  关联规则挖掘  分类&#x2F;回归  聚类分析  离群点检测    数据挖掘和其他学科的关系  认识数据和数据预处理  属性类型  数据类型   相似性度量    欧式距离    曼哈顿距离    闵可夫斯基距离    余弦距离    相关系数    马氏距离    KL散">
+<meta property="og:type" content="article">
+<meta property="og:title" content="期末复习清单">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E6%B8%85%E5%8D%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="期末复习简介  什么是大数据？  大数据的特征（4V,IBM）  什么是数据挖掘？  知识发现的流程 数据挖掘的主要任务  关联规则挖掘  分类&#x2F;回归  聚类分析  离群点检测    数据挖掘和其他学科的关系  认识数据和数据预处理  属性类型  数据类型   相似性度量    欧式距离    曼哈顿距离    闵可夫斯基距离    余弦距离    相关系数    马氏距离    KL散">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.380Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.808Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E6%B8%85%E5%8D%95/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E6%B8%85%E5%8D%95/","path":"2025/05/01/期末复习清单/","title":"期末复习清单"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>期末复习清单 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">期末复习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A4%E8%AF%86%E6%95%B0%E6%8D%AE%E5%92%8C%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">认识数据和数据预处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E8%A7%84%E5%88%99%E5%92%8C%E6%8C%96%E6%8E%98"><span class="nav-number">1.3.</span> <span class="nav-text">关联规则和挖掘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">1.4.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB%E4%BB%A5%E5%8F%8A%E7%A6%BB%E7%BE%A4%E7%82%B9%E6%A3%80%E6%B5%8B"><span class="nav-number">1.5.</span> <span class="nav-text">聚类以及离群点检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF"><span class="nav-number">1.6.</span> <span class="nav-text">大数据技术</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E6%B8%85%E5%8D%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="期末复习清单 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          期末复习清单
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="期末复习"><a href="#期末复习" class="headerlink" title="期末复习"></a>期末复习</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> 什么是大数据？</li>
+<li><input checked="" disabled="" type="checkbox"> 大数据的特征（4V,IBM）</li>
+<li><input checked="" disabled="" type="checkbox"> 什么是数据挖掘？</li>
+<li><input checked="" disabled="" type="checkbox"> 知识发现的流程</li>
+<li>数据挖掘的主要任务<ul>
+<li><input checked="" disabled="" type="checkbox"> 关联规则挖掘</li>
+<li><input checked="" disabled="" type="checkbox"> 分类&#x2F;回归</li>
+<li><input checked="" disabled="" type="checkbox"> 聚类分析</li>
+<li><input checked="" disabled="" type="checkbox"> 离群点检测</li>
+</ul>
+</li>
+<li><input checked="" disabled="" type="checkbox"> 数据挖掘和其他学科的关系</li>
+</ul>
+<h2 id="认识数据和数据预处理"><a href="#认识数据和数据预处理" class="headerlink" title="认识数据和数据预处理"></a>认识数据和数据预处理</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> 属性类型</li>
+<li><input checked="" disabled="" type="checkbox"> 数据类型</li>
+</ul>
+<ul>
+<li><p>相似性度量</p>
+<ul>
+<li><p><input checked="" disabled="" type="checkbox"> 
+欧式距离</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+曼哈顿距离</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+闵可夫斯基距离</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+余弦距离</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+相关系数</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+马氏距离</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+KL散度</p>
+</li>
+</ul>
+</li>
+<li><p>数据预处理</p>
+<ul>
+<li><p>数据清理</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 缺失值处理</li>
+<li><input checked="" disabled="" type="checkbox"> 噪声处理</li>
+</ul>
+</li>
+<li><p>数据集成</p>
+<ul>
+<li><p>相关分析</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 卡方分析</li>
+</ul>
+</li>
+<li><p>数据压缩</p>
+<ul>
+<li><p>维度压缩</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> PCA降维</li>
+<li><input checked="" disabled="" type="checkbox"> 特征筛选：信息增益</li>
+</ul>
+</li>
+<li><p>数据压缩</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 聚类</li>
+<li><input checked="" disabled="" type="checkbox"> 直方图</li>
+<li><input checked="" disabled="" type="checkbox"> 采样</li>
+</ul>
+</li>
+<li><p>数据变换</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 最大-最小归一化</li>
+<li><input checked="" disabled="" type="checkbox"> Z-score归一化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="关联规则和挖掘"><a href="#关联规则和挖掘" class="headerlink" title="关联规则和挖掘"></a>关联规则和挖掘</h2><ul>
+<li><p>基本概念</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 频繁项集</li>
+<li><input checked="" disabled="" type="checkbox"> 什么是关联规则</li>
+</ul>
+</li>
+<li><p><strong>Apriori算法</strong></p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 两个先验性质</li>
+<li><input checked="" disabled="" type="checkbox"> 算法流程</li>
+<li><input checked="" disabled="" type="checkbox"> 改进方法</li>
+</ul>
+</li>
+<li><p>FP_Growth</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 生成FP树，找频繁模式</li>
+<li><input checked="" disabled="" type="checkbox"> 候选集产生-测试</li>
+</ul>
+</li>
+<li><p>关联规则评估</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 置信度</li>
+<li><input checked="" disabled="" type="checkbox"> 提升度，兴趣因子</li>
+</ul>
+</li>
+</ul>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> 监督学习vs无监督学习</li>
+<li><input checked="" disabled="" type="checkbox"> 判别模型vs生成模型</li>
+</ul>
+<ul>
+<li><p>分类算法</p>
+<ul>
+<li><p>决策树</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 如何构造决策树</li>
+<li><input checked="" disabled="" type="checkbox"> 如何对属性进行划分</li>
+<li><input checked="" disabled="" type="checkbox"> 划分准则：id3,c4.5,cart,选择最具划分能力的feature，使得划分后的数据集越纯越好</li>
+</ul>
+<ul>
+<li><p>如何解决过拟合问题</p>
+<ul>
+<li><p><input checked="" disabled="" type="checkbox"> 
+过拟合的原因</p>
+</li>
+<li><p>如何避免过拟合</p>
+<ul>
+<li><p><input checked="" disabled="" type="checkbox"> 
+去除噪声</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+增加样本</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+Train-valid-test</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+正则项</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+限制树高</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+设置最大叶子节点阈值</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+先剪枝&#x2F;后剪枝</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>KNN</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> lazy learning</li>
+<li><input checked="" disabled="" type="checkbox"> 流程</li>
+<li><input checked="" disabled="" type="checkbox"> 优点，缺点</li>
+</ul>
+</li>
+<li><p>Naive Bayes</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 概率输出</li>
+<li><input checked="" disabled="" type="checkbox"> 类条件下特征独立</li>
+</ul>
+</li>
+<li><p>SVM</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 基本思想：间隔最大化</li>
+</ul>
+<ul>
+<li>优点及其原因<ul>
+<li><input checked="" disabled="" type="checkbox"> 支持最小样本</li>
+<li><input checked="" disabled="" type="checkbox"> 泛化能力强</li>
+<li><input checked="" disabled="" type="checkbox"> 高维非线性：<strong>核技巧</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ANN</p>
+<ul>
+<li><p><input checked="" disabled="" type="checkbox"> 
+感知机</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+BP算法</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+优缺点：过拟合，训练慢</p>
+</li>
+</ul>
+</li>
+<li><p>集成学习</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> bagging（RF）</li>
+<li><input checked="" disabled="" type="checkbox"> Boosting</li>
+<li><input checked="" disabled="" type="checkbox"> stacking</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="聚类以及离群点检测"><a href="#聚类以及离群点检测" class="headerlink" title="聚类以及离群点检测"></a>聚类以及离群点检测</h2><ul>
+<li><p><input checked="" disabled="" type="checkbox"> 
+<strong>什么是聚类</strong></p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+聚类的功能</p>
+</li>
+<li><p><strong>聚类的分类</strong></p>
+<ul>
+<li><p>基于划分的聚类</p>
+<ul>
+<li><strong>K-means</strong><ul>
+<li><input checked="" disabled="" type="checkbox"> 流程：初始均值-簇分配-更新均值</li>
+<li><input checked="" disabled="" type="checkbox"> 缺点：初始值敏感，K是超参数，只能发现类球状簇，离群点敏感</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>基于密度的聚类</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> DBscan关键概念，密度可达</li>
+<li><input checked="" disabled="" type="checkbox"> DBscan流程</li>
+<li><input checked="" disabled="" type="checkbox"> DBscan<strong>优缺点</strong>：任意球状簇，无需设置K，噪声鲁棒，$\varepsilon$难求，很难找到不同密度的簇</li>
+</ul>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+基于层次的聚类：AGES，DJANA</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox"> 
+基于网络的聚类：STNG</p>
+</li>
+</ul>
+</li>
+<li><p>离群点检测</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <strong>什么是离群点</strong></li>
+<li><input checked="" disabled="" type="checkbox"> <strong>离群点类型</strong>（全局，局部，集体）</li>
+</ul>
+<ul>
+<li>方法<ul>
+<li><input checked="" disabled="" type="checkbox"> 基于统计的方法</li>
+<li><input checked="" disabled="" type="checkbox"> 基于密度的方法</li>
+<li><input checked="" disabled="" type="checkbox"> LOF算法</li>
+<li><input disabled="" type="checkbox"> 基于偏离的方法</li>
+<li><input checked="" disabled="" type="checkbox"> 基于距离的方法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="大数据技术"><a href="#大数据技术" class="headerlink" title="大数据技术"></a>大数据技术</h2><ul>
+<li><p>hash技术</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> hash作用</li>
+<li><input checked="" disabled="" type="checkbox"> Shingle文档表征</li>
+<li><input checked="" disabled="" type="checkbox"> 最小哈希</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>如何得到签名矩阵</strong></li>
+<li><input disabled="" type="checkbox"> <strong>近似计算</strong></li>
+</ul>
+<ul>
+<li><strong>局部敏感哈希</strong><ul>
+<li><input checked="" disabled="" type="checkbox"> 基本思想：通过映射函数找到相似的候选集</li>
+<li><input checked="" disabled="" type="checkbox"> trick：将签名矩阵划分为多个band，对每个band进行hash</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>数据流挖掘</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <strong>挑战</strong>（4个）单程处理，内存限制，时间复杂度，概念漂移</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>什么是概念漂移</strong></li>
+</ul>
+<ul>
+<li>概念漂移的检测方法<ul>
+<li><input checked="" disabled="" type="checkbox"> 基于分布的方法</li>
+<li><input checked="" disabled="" type="checkbox"> 基于错误率的方法</li>
+<li><input checked="" disabled="" type="checkbox"> 数据流分类</li>
+<li><strong>数据流聚类</strong><ul>
+<li><input checked="" disabled="" type="checkbox"> 框架：线上（微簇MC，簇特征，加减，增量）+线下</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Hadrop&#x2F;spork</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 什么是<strong>hadrop</strong></li>
+<li><input checked="" disabled="" type="checkbox"> <strong>设计准则</strong>：并行化（自动），容错及恢复，简明接口</li>
+</ul>
+<ul>
+<li><p>hadrop生态</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> HDFS（NatureNode,DataNode）</li>
+<li><input checked="" disabled="" type="checkbox"> Mapreduce（计算）</li>
+<li><input checked="" disabled="" type="checkbox"> <strong>spark</strong>（ROD：transformation懒惰，action）</li>
+<li><input checked="" disabled="" type="checkbox"> spark与Mapreduce比较</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/" rel="prev" title="数据预处理">
+                  <i class="fa fa-angle-left"></i> 数据预处理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E7%A6%BB%E7%BE%A4%E7%82%B9(Outlier)%E6%A3%80%E6%B5%8B/" rel="next" title="离群点(Outlier)检测">
+                  离群点(Outlier)检测 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

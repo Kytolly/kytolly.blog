@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="应用随机过程：测度论预备知识$\sigma$代数，可测空间，随机事件设$\Omega$是一个样本空间(或任意一个集合),$\mathcal{F}$是$\Omega$的某些子集组成的集簇.如果满足：  $\Omega \in \mathcal{F} ;$  若$A\in\mathcal{F}$,则$A^c&#x3D;\Omega\setminus A\in\mathcal{F};$  若$A_n\i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="应用随机过程的预备知识">
+<meta property="og:url" content="http://example.com/2025/05/01/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E7%9A%84%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="应用随机过程：测度论预备知识$\sigma$代数，可测空间，随机事件设$\Omega$是一个样本空间(或任意一个集合),$\mathcal{F}$是$\Omega$的某些子集组成的集簇.如果满足：  $\Omega \in \mathcal{F} ;$  若$A\in\mathcal{F}$,则$A^c&#x3D;\Omega\setminus A\in\mathcal{F};$  若$A_n\i">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.497Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.562Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E7%9A%84%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E7%9A%84%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/","path":"2025/05/01/应用随机过程的预备知识/","title":"应用随机过程的预备知识"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>应用随机过程的预备知识 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%EF%BC%9A%E6%B5%8B%E5%BA%A6%E8%AE%BA%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">应用随机过程：测度论预备知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sigma-%E4%BB%A3%E6%95%B0%EF%BC%8C%E5%8F%AF%E6%B5%8B%E7%A9%BA%E9%97%B4%EF%BC%8C%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">$\sigma$代数，可测空间，随机事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">Mark</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Property"><span class="nav-number">1.1.1.</span> <span class="nav-text">Property</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90-sigma-%E4%BB%A3%E6%95%B0-Borel-sigma-%E4%BB%A3%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">生成$\sigma$代数, Borel $\sigma$代数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-1"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">Mark</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">Example</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E7%A9%BA%E9%97%B4%EF%BC%8C%E4%BA%8B%E4%BB%B6%EF%BC%8C%E6%A6%82%E7%8E%87"><span class="nav-number">1.3.</span> <span class="nav-text">概率空间，事件，概率</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-1"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%9E%81%E9%99%90"><span class="nav-number">1.4.</span> <span class="nav-text">事件的极限</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-2"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">Mark</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-2"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%EF%BC%8C%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.</span> <span class="nav-text">随机变量，分布函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-3"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E7%BC%98%E5%88%86%E5%B8%83%EF%BC%8C%E8%81%94%E5%90%88%E5%AF%86%E5%BA%A6"><span class="nav-number">1.6.</span> <span class="nav-text">边缘分布，联合密度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-3"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">Mark</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E6%80%A7%E5%87%BD%E6%95%B0"><span class="nav-number">1.7.</span> <span class="nav-text">示性函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Riemann-Stieltjes%E7%A7%AF%E5%88%86"><span class="nav-number">1.8.</span> <span class="nav-text">Riemann-Stieltjes积分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-4"><span class="nav-number">1.8.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B-%E6%96%B9%E5%B7%AE%EF%BC%8C%E5%8E%9F%E7%82%B9%E7%9F%A9"><span class="nav-number">1.9.</span> <span class="nav-text">数学期望,方差，原点矩</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-4"><span class="nav-number">1.9.0.1.</span> <span class="nav-text">Mark</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E6%AF%8D%E5%87%BD%E6%95%B0"><span class="nav-number">1.10.</span> <span class="nav-text">矩母函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-5"><span class="nav-number">1.10.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E5%87%BD%E6%95%B0"><span class="nav-number">1.11.</span> <span class="nav-text">特征函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-6"><span class="nav-number">1.11.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B6%E6%95%9B%E6%80%A7"><span class="nav-number">1.12.</span> <span class="nav-text">收敛性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%A0%E4%B9%8E%E5%BF%85%E7%84%B6%E6%94%B6%E6%95%9B"><span class="nav-number">1.12.0.1.</span> <span class="nav-text">几乎必然收敛</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-5"><span class="nav-number">1.12.0.2.</span> <span class="nav-text">Mark</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%9D%E6%A6%82%E7%8E%87%E6%94%B6%E6%95%9B"><span class="nav-number">1.12.0.3.</span> <span class="nav-text">依概率收敛</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-6"><span class="nav-number">1.12.0.4.</span> <span class="nav-text">Mark</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-7"><span class="nav-number">1.12.0.5.</span> <span class="nav-text">Property</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#p-%E2%80%8B%E2%80%8B%E6%AC%A1%E5%B9%B3%E5%9D%87%E6%94%B6%E6%95%9B"><span class="nav-number">1.12.0.6.</span> <span class="nav-text">$p$​​次平均收敛</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%9D%E5%88%86%E5%B8%83%E6%94%B6%E6%95%9B"><span class="nav-number">1.12.0.7.</span> <span class="nav-text">依分布收敛</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-7"><span class="nav-number">1.12.0.8.</span> <span class="nav-text">Mark</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8B%AC%E7%AB%8B%E6%80%A7"><span class="nav-number">1.13.</span> <span class="nav-text">独立性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-8"><span class="nav-number">1.13.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%EF%BC%8C%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F%EF%BC%8CBayes%E5%85%AC%E5%BC%8F"><span class="nav-number">1.14.</span> <span class="nav-text">条件概率，全概率公式，Bayes公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%9C%9F%E6%9C%9B-%E6%9D%A1%E4%BB%B6%E6%96%B9%E5%B7%AE%EF%BC%8C%E5%85%A8%E6%9C%9F%E6%9C%9B%E5%85%AC%E5%BC%8F"><span class="nav-number">1.15.</span> <span class="nav-text">条件期望,条件方差，全期望公式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-9"><span class="nav-number">1.15.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B"><span class="nav-number">1.16.</span> <span class="nav-text">随机过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-8"><span class="nav-number">1.16.0.1.</span> <span class="nav-text">Mark</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E9%99%90%E7%BB%B4%E5%88%86%E5%B8%83-%E7%B0%87-%EF%BC%8CKolmogorov%E5%AE%9A%E7%90%86-%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81"><span class="nav-number">1.17.</span> <span class="nav-text">有限维分布(簇)，Kolmogorov定理,数字特征</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-10"><span class="nav-number">1.17.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A5%E5%B9%B3%E7%A8%B3%E8%BF%87%E7%A8%8B%EF%BC%8C%E5%AE%BD%E5%B9%B3%E7%A8%B3%E8%BF%87%E7%A8%8B"><span class="nav-number">1.18.</span> <span class="nav-text">严平稳过程，宽平稳过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-9"><span class="nav-number">1.18.0.1.</span> <span class="nav-text">Mark</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%8D%E5%8E%86%E6%80%A7"><span class="nav-number">1.19.</span> <span class="nav-text">遍历性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Proof"><span class="nav-number">1.19.0.1.</span> <span class="nav-text">Proof</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A8%E8%AE%BA"><span class="nav-number">1.19.0.2.</span> <span class="nav-text">推论</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B3%E7%A8%B3%E5%A2%9E%E9%87%8F%EF%BC%8C%E7%8B%AC%E7%AB%8B%E5%A2%9E%E9%87%8F"><span class="nav-number">1.20.</span> <span class="nav-text">平稳增量，独立增量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-11"><span class="nav-number">1.20.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Remark"><span class="nav-number">1.21.</span> <span class="nav-text">Remark</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E7%9A%84%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="应用随机过程的预备知识 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          应用随机过程的预备知识
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="应用随机过程：测度论预备知识"><a href="#应用随机过程：测度论预备知识" class="headerlink" title="应用随机过程：测度论预备知识"></a>应用随机过程：测度论预备知识</h1><h2 id="sigma-代数，可测空间，随机事件"><a href="#sigma-代数，可测空间，随机事件" class="headerlink" title="$\sigma$代数，可测空间，随机事件"></a>$\sigma$代数，可测空间，随机事件</h2><p>设$\Omega$是一个样本空间(或任意一个集合),$\mathcal{F}$是$\Omega$的某些子集组成的集簇.如果满足：</p>
+<ul>
+<li><p>$\Omega \in \mathcal{F} ;$</p>
+</li>
+<li><p>若$A\in\mathcal{F}$,则$A^c&#x3D;\Omega\setminus A\in\mathcal{F};$</p>
+</li>
+<li><p>若$A_n\in \mathcal{F} , n&#x3D; 1, 2, \cdots \textbf{, 则 }\bigcup _{n&#x3D; 1}^\infty A_n\in \mathcal{F} ;$</p>
+</li>
+</ul>
+<p>则称$\mathcal{F}$为$\sigma$代 数 。$(\Omega , \mathcal{F} )$称为可测空间，$\mathcal{F}$​中的元素称为随机事件；</p>
+<h4 id="Mark"><a href="#Mark" class="headerlink" title="Mark"></a>Mark</h4><p>一个事件应该理解成一个集合，它可以用若干样本点表示；</p>
+<h3 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h3><ol>
+<li>$\Omega,\varnothing \in \mathcal F$​.</li>
+<li>$\mathcal F$对集合的可数交，可数并，差，补运算封闭；</li>
+</ol>
+<h2 id="生成-sigma-代数-Borel-sigma-代数"><a href="#生成-sigma-代数-Borel-sigma-代数" class="headerlink" title="生成$\sigma$代数, Borel $\sigma$代数"></a>生成$\sigma$代数, Borel $\sigma$代数</h2><p>以$\Omega$的某些子集为元素的集合称为$(\Omega$上的)集类。对于$\Omega$上的任一非空集类$\mathcal{C}$,存在包含$\mathcal{C}$的最小$\sigma$代数，称为由$\mathcal{C}$生成的$\sigma$代数，记为$\sigma(\mathcal{C}).$​<br>$$<br>\sigma(\mathcal{C})&#x3D;\bigcap{\mathcal{H}|\mathcal{H}\text{为包含}\mathcal{C}\text{的}\sigma\text{代数}}.<br>$$<br>设$\Omega&#x3D;\mathbb{R}$。由所有半无限区间$(-\infty,x)$生成的$\sigma$代数称为$\mathbb{R}$上的 Borel $\sigma$代数，记为$\mathcal{B}(\mathbb{R})$, 其中的元素称为 Borel 集合。类似地，可定义$\mathbb{R}^n$上的 Borel $\sigma$代数$\mathcal{B}(\mathbb{R}^n)$。</p>
+<h4 id="Mark-1"><a href="#Mark-1" class="headerlink" title="Mark"></a>Mark</h4><p>如何理解最小？对于$\forall \mathcal C \subset \mathcal X\Rightarrow\sigma(\mathcal C) \subset \mathcal X$.</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>对样本空间$\Omega$,随机事件$A,B$,写出以下集簇$\mathcal C$的最小$\sigma$代数：</p>
+<ul>
+<li>$\mathcal C&#x3D;{A}:\sigma(\mathcal C)&#x3D;{\Omega,\varnothing,A,A^{\mathcal C}}$.</li>
+<li>$\mathcal C&#x3D;{A,B}:\sigma(\mathcal{C})&#x3D;{\emptyset,\Omega,A,A^c,B,B^c,A\cap B,A\cap B^c,A^c\cap B,A^c\cap B^c,A\cup B,A\cup B^c,A^c\cup B,A^c\cup B^c}.$</li>
+</ul>
+<h2 id="概率空间，事件，概率"><a href="#概率空间，事件，概率" class="headerlink" title="概率空间，事件，概率"></a>概率空间，事件，概率</h2><p>设$(\Omega,\mathcal{F})$是可测空间，$P(\cdot)$ 是定义在$\mathcal{F}$上的实值函数。如果</p>
+<ol>
+<li>(非负性)$\forall A\in\mathcal{F},0\leq P(A)\leq1;$</li>
+<li>(规范性)$P(\Omega)&#x3D;1;$</li>
+<li>(可列可加性)对两两互不相容事件$A_1,A_2,\cdots$,(即当$i\neq j\textbf{时 , }A_i\cap A_j&#x3D; \emptyset$)有</li>
+</ol>
+<p>$$<br>P(\bigcup_{i&#x3D;1}^\infty A_i)&#x3D;\sum_{i&#x3D;1}^\infty P(A_i)<br>$$</p>
+<p>则称$P$是$(\Omega,\mathcal{F})$上的概率，$(\Omega,\mathcal{F},P)$称为概率空间，$\mathcal{F}$中的元素称为事件，$P(A)$称为事件$A$的概率.</p>
+<h4 id="Property-1"><a href="#Property-1" class="headerlink" title="Property"></a>Property</h4><ul>
+<li><p>$P( \emptyset ) &#x3D; 0.$</p>
+</li>
+<li><p>(有限可加性)若$A_i\in\mathcal{F},i&#x3D;1,\ldots,n;$且$A_i\cap A_j&#x3D; \emptyset , \forall i\neq j\textbf{, 有 }P( \bigcup _{i&#x3D; 1}^nA_i) &#x3D; \sum _{i&#x3D; 1}^nP( A_i) .$</p>
+</li>
+<li><p>$\forall A\in \mathcal{F} , P( A) &#x3D; 1- P( A^c) .$</p>
+</li>
+<li><p>(单调性)若$A\subset B, \textbf{则  }P( A) \leq P( B)$,$P(B-A)&#x3D;P(B)-P(A).$</p>
+</li>
+<li><p>(概率加法定理)$P(A\cup B)&#x3D;P(A)+P(B)-P(A\cap B).$​</p>
+</li>
+<li><p>Jordan公式：$P\left(\bigcup_{i&#x3D;1}^nA_i\right)&#x3D;\sum_{k&#x3D;1}^n\sum_{i_1&lt;\cdots&lt;i_k}(-1)^{k-1}P(A_{i_1}\cdots A_{i_k})$.</p>
+</li>
+<li><p>若$A_n\in \mathcal{F} , n\geq 1, \textbf{则  }P( \bigcup _{n\geq 1}A_n) \leq \sum _{n\geq 1}P( A_n) .$​</p>
+<details>
+    <summary>证明</summary>
+    不妨设不等式右端小于$+\infty.$构造互斥事件序列$\{E_n\}$,其中
+$$E_n=\left\{\begin{matrix}A_1,&n=1,\\A_n-\bigcup_{i=1}^nA_j,&n>1.\end{matrix}\right.$$
+于是有$E_n\subseteq A_{n\text{,并且}\bigcup_{i=1}^nE_i}=\bigcup_{i=1}^nA_i,\bigcup_{i=1}^\infty E_i=\bigcup_{i=1}^\infty A_i$,从而
+$$P\left(\bigcup_{i=1}^\infty A_i\right)=P\left(\bigcup_{i=1}^\infty E_i\right)=\sum_{i=1}^\infty P(E_i)\leq\sum_{i=1}^nP(A_i).$$
+</details></li>
+</ul>
+<h2 id="事件的极限"><a href="#事件的极限" class="headerlink" title="事件的极限"></a>事件的极限</h2><p><strong>事件的单调性</strong>：若对每个$n$,有$A_n\subset A_n+1($或 $A_n\supset A_n+1)$, 则称事件序列${A_n}_{n&gt;1}$为单调增(或单调降)。</p>
+<p>对单调增或单调降序列${A_n}$,我们分别令$A&#x3D;\bigcup_nA_n$或$A&#x3D;\bigcap_nA_n$ 称$A$为${A_n}$的极限，通常记为$A_n\uparrow A$或$A_n\downarrow A.$</p>
+<p>设${ A_n} <em>{n\geq 1}\textbf{为 一 事 件 序 列 。令 }$<br>$$<br>\limsup</em>{n\to\infty}A_n&#x3D;\bigcap_{n&#x3D;1}^\infty\bigcup_{k&#x3D;n}^\infty A_k\<br>\liminf_{n\to\infty}A_n&#x3D;\bigcup_{n&#x3D;1}^\infty\bigcap_{k&#x3D;n}^\infty A_k<br>$$<br>分别称其为${A_n}$​的上极限和下极限。</p>
+<p>若$\lim\sup_{n\to\infty}A_n&#x3D;\liminf_{n\to\infty}A_n$,则称${A_n}$极限存在，用$\lim_{n\to\infty}A_n$表示</p>
+<h4 id="Mark-2"><a href="#Mark-2" class="headerlink" title="Mark"></a>Mark</h4><p>如何理解上极限，下极限？</p>
+<ol>
+<li>上极限：全体出现在无穷个$A_k$中的元素；</li>
+<li>下极限：全体只在有限个$A_k$中不存在的元素；</li>
+</ol>
+<p>$$<br>\begin{aligned}<br>\limsup_{n\to\infty}A_n&amp;&#x3D;{w|\forall n\in\mathbb{N},\exists k\geq n,\text{使}w\in A_k}<br>\&amp;&#x3D;{w|w\text{属于无穷多个}A_n}\<br>\liminf_{n\to\infty}A_n&amp;&#x3D;{w|\exists n\in\mathbb{N},\forall k\geq n,\text{有}w\in A_k}\&amp;&#x3D;{w|w\text{至多不属于有限多个}A_n}<br>\end{aligned}\<br>$$</p>
+<h4 id="Property-2"><a href="#Property-2" class="headerlink" title="Property"></a>Property</h4><ol>
+<li><p>若$A_n\in\mathcal{F}$ 且 $A_n\uparrow A\in\mathcal{F}(A_n\downarrow A\in\mathcal{F})$, 则$P(A)&#x3D;\operatorname*{lim}_{n\to\infty}P(A_n).$​</p>
+<details>
+    <summary>证明</summary>
+    设$\{A_n\}$是单调增序列，构造互斥事件序列$\{B_n\}$,其中
+$$B_n=\begin{cases}A_1,&n=1,\\A_n-A_{n-1},&n>1.\end{cases}$$
+于是有$\bigcup_{i=1}^nA_i=\bigcup_{i=1}^nB_i$ 及$\bigcup_{i=1}^\infty A_i=\bigcup_{i=1}^\infty B_i$,故
+$$\begin{aligned}P\left(\lim_{n\to\infty}A_n\right)&=P\left(\bigcup_{i=1}^\infty A_i\right)=P\left(\bigcup_{i=1}^\infty B_i\right)=\sum_{i=1}^\infty P(B_i)\\&=\lim_{n\to\infty}\sum_{i=1}^nP(B_i)=\lim_{n\to\infty}P\left(\bigcup_{i=1}^nB_i\right)\\&=\lim_{n\to\infty}P\left(\bigcup_{i=1}^nA_i\right)=\lim_{n\to\infty}P(A_n).\end{aligned}$$
+</details>
+</li>
+<li><p>(Borel-Cantelli第一引理)设${A_n,n\geq1}$是一列事件，若$\sum_{n&#x3D; 1}^\infty P( A_n) &lt; \infty $, 则 $P(\operatorname*{lim}\mathop{\mathrm{sup}}_{n\to\infty}A_n)&#x3D;0$​.​</p>
+<details><summary>证明</summary>
+    易知$\bigcup_{i=n}^\infty A_i$是关于$n$的单调减序列，故
+$$\begin{aligned}0\leq P(\lim_{i\to\infty}\sup A_i)&=P\left(\bigcap_{n=1}^\infty\bigcup_{i=n}^\infty A_i\right)=P\left(\lim_{n\to\infty}\bigcup_{i=n}^\infty A_i\right)\\&=\lim_{n\to\infty}P(\bigcup_{i=n}^\infty A_i)\leq\lim_{n\to\infty}\sum_{i=n}^\infty P(A_i)=0.\end{aligned}$$
+从而得证.
+</details>
+</li>
+<li><p>(Borel-Cantelli第二引理)设${A_n,n\geq1}$是一列事件，若$\sum_{n&#x3D; 1}^\infty P( A_n) &#x3D; \infty $, 则 $P(\operatorname*{lim}\mathop{\mathrm{sup}}_{n\to\infty}A_n)&#x3D;1$​​.</p>
+</li>
+</ol>
+<h2 id="随机变量，分布函数"><a href="#随机变量，分布函数" class="headerlink" title="随机变量，分布函数"></a>随机变量，分布函数</h2><p>设$(\Omega,\mathcal{F},P)$是概率空间，$X$是定义在$\Omega$上取值于实数集$\mathbb{R}$的函数， 如果对任意实数$x\in \mathbb{R}$, ${ \omega : X( \omega ) \leq x} \in \mathcal{F}$,则称$X(\omega)$是$\mathcal{F}$上的随机变量，简称为随机变量.<br>$$<br>F(x)&#x3D;P(\omega:X(\omega)\leq x),\quad-\infty&lt;x&lt;\infty<br>$$<br>称为随机变量$X$​的分布函数.</p>
+<p>若向量$\mathbf{X}&#x3D;(X_1,\cdots,X_d)$满足对所有的$k,1\leq k\leq d,X_k$都是随机变量，则称$\mathbf X$为多维随机变量，也称随机向量.</p>
+<p>多维随机变量$\mathbf{X}&#x3D;(X_1,\cdots,X_d)$,的$(d$维联合)分布函数写作<br>$$<br>F(x_1,\cdots,x_d)&#x3D;P(X_1\leq x_1,\cdots,X_d\leq x_d).<br>$$<br>这里$d$为正整数，$x_k\in\mathbb{R},k&#x3D;1,2,\ldots,d.$</p>
+<h4 id="Property-3"><a href="#Property-3" class="headerlink" title="Property"></a>Property</h4><ol>
+<li><p>$F( x_1, \cdots , x_d)$对每个变量都是单调的；</p>
+</li>
+<li><p>$F( x_1, \cdots , x_d)$对每个变量都是右连续的；</p>
+</li>
+<li><p>$\forall i&#x3D; 1, 2, \cdots , d$,$\lim_{x_i\to-\infty}F(x_1,\cdots,x_i,\cdots,x_d)&#x3D;0;$</p>
+</li>
+<li><p>$\lim_{x_1,x_2,\cdots,x_d\to+\infty}F(x_1,x_2,\cdots,x_d)&#x3D;1.$</p>
+</li>
+</ol>
+<h2 id="边缘分布，联合密度"><a href="#边缘分布，联合密度" class="headerlink" title="边缘分布，联合密度"></a>边缘分布，联合密度</h2><p>设$F(x_1,\cdots,x_d)$为$(X_1,\cdots,X_d)$的联合分布函数.对 $\forall 1\leq k_{1}&lt; \cdots &lt; k_{n}\leq d$, $( X_{k_{1}}, \cdots , X_{k_{n}})$的边缘分布为<br>$$<br>F_{X_{k_1},\cdots,X_{k_n}}(x_{k_1},\cdots,x_{k_n})&#x3D;F(\infty,\cdots,\infty,x_{k_1},\infty,\cdots,\infty,x_{k_2},\infty,\cdots,\infty,x_{k_n},\infty,\cdots,\infty).<br>$$<br>如果<br>$$<br>f(x_1,\cdots,x_d)&#x3D;\frac{\partial^dF}{\partial x_1\cdots\partial x_d}<br>$$<br>对所有的 $(x_1,\cdots,x_d)\in R^d$ 存在，则称函数$f( x_1, \cdots , x_d) \textbf{为 X}&#x3D; ( X_1, \cdots , X_d)$​的联合密度函数，并且<br>$$<br>F(x_1,\cdots,x_d)&#x3D;\int_{-\infty}^{x_1}\cdots\int_{-\infty}^{x_d}f(t_1,\cdots,t_d)dt_d\cdots dt_1.<br>$$</p>
+<h4 id="Mark-3"><a href="#Mark-3" class="headerlink" title="Mark"></a>Mark</h4><p>并非所有分布都具有概率密度，比如Cantor分布；</p>
+<h2 id="示性函数"><a href="#示性函数" class="headerlink" title="示性函数"></a>示性函数</h2><p>任意事件 $A$的示性函数为:$ \mathbb I_A(\omega) &#x3D; \begin{cases} 0, &amp; A\ 没发生, \1, &amp; A\ 发生了. \end{cases}$</p>
+<p>若$A \in \cal F$ , 则$ \mathbb I_A(\omega)$ 是随机变量; </p>
+<p>若$A \notin \cal F $, 则$\mathbb I_A(\omega)$ 不是随机变量.</p>
+<p>给定$ (\Omega, \cal F)$ 和事件序列$B_n \in \cal F$ , 若 $\forall (k \ne l): B_k\cap B_l &#x3D; \varnothing$ 且$\bigcup_{k &#x3D; 1}^\infty B_k &#x3D;\Omega $, 则称${B_k} $为 $\Omega$ 的一个 <strong>划分</strong> .</p>
+<p>若 ${B_k}$ 是$\Omega$ 的一个划分, 则 $X(\omega) &#x3D; \sum_{n &#x3D; 1}^\infty x_n \mathbb I_{B_n} (\omega) $是随机变量, 其中 $ x_n \in \R $.</p>
+<h2 id="Riemann-Stieltjes积分"><a href="#Riemann-Stieltjes积分" class="headerlink" title="Riemann-Stieltjes积分"></a>Riemann-Stieltjes积分</h2><p>设$a&#x3D;x_0&lt;x_1&lt;\cdots&lt;x_n&#x3D;b$为有限区间$(a,b]$的一个分割，$g(x),F(x)$为$(a,b]$上的实值函数。令<br>$$<br>\Delta F(x_i)&#x3D;F(x_i)-F(x_{i-1}),\xi_i\in[x_{i-1},x_i],1\leq i\leq n,<br>$$<br>和$\lambda&#x3D;\max_1\leq i\leq n(x_i-x_{i-1})$。如果当$\lambda\to0$时，极限<br>$$<br>\lim_{\lambda\to0}\sum_{i&#x3D;1}^ng(\xi_i)\Delta F(x_i)<br>$$<br>存在，且与分割的选择以及$\xi_i\in[x_{i-1},x_i]$的取法无关，则称该极限值为函数$g(x)$关于$F(x)$ 在$(a,b]$上的 Riemann-Stieltjes积分，记为<br>$$<br>\int_a^bg(x)dF(x)&#x3D;\lim_{\lambda\to0}\sum_{i&#x3D;1}^ng(\xi_i)\Delta F(x_i).<br>$$</p>
+<h4 id="Property-4"><a href="#Property-4" class="headerlink" title="Property"></a>Property</h4><ol>
+<li>(线性性质)$\int_a^b[\alpha g_1(x)\pm\beta g_2(x)]dF(x)&#x3D;\alpha\int_a^bg_1(x)dF(x)\pm\beta\int_a^bg_2(x)dF(x).$</li>
+<li>(区间可加性$)\int_a^bg(x)dF(x)&#x3D;\int_a^cg(x)dF(x)+\int_c^bg(x)dF(x).$</li>
+<li>$\int_a^bdF(x)&#x3D;F(b)-F(a)$,其中$a,b$均可为有限数或无穷大.</li>
+<li>$\int_a^bg(x)d[\alpha F_1(x)+\beta F_2(x)]&#x3D;\alpha\int_a^bg(x)dF_1(x)+\beta\int_a^bg(x)dF_2(x).$</li>
+<li>若$g(x)\geq0,:F(x)$单调不减,$b&gt;a$,则 $ \int_a^b g(x)d F(x)\geq 0. $</li>
+</ol>
+<h2 id="数学期望-方差，原点矩"><a href="#数学期望-方差，原点矩" class="headerlink" title="数学期望,方差，原点矩"></a>数学期望,方差，原点矩</h2><p>$F(x)$是随机变量的分布函数，其数学期望定义为<br>$$<br>E[X]&#x3D;\int_{-\infty}^{+\infty} xdF(x)<br>$$<br>方差定义为<br>$$<br>Var(X)&#x3D;\int_{-\infty}^{+\infty} [x-E(x)]^2dF(x)<br>$$<br>$k$阶原点矩定义为<br>$$<br>\gamma_k(X)&#x3D;E[X^k]<br>$$<br>中心矩定义为<br>$$<br>\mu_k(X)&#x3D;E([X-E(X)]^k)<br>$$<br>协方差定义为<br>$$<br>Cov(X,Y)&#x3D;E[(X-E[X])(Y-E[Y])]&#x3D;E(XY)-E[X]E[Y]<br>$$<br>$k+l$阶混合矩定义为$E[X^kY^l]$，混合中心矩定义为$E[(X-E[X])^k(Y-E[Y])^l]$​</p>
+<h4 id="Mark-4"><a href="#Mark-4" class="headerlink" title="Mark"></a>Mark</h4><ul>
+<li><p>期望有可能是不存在的，比如Cauchy分布：<br>$$<br>f(x)&#x3D;\frac{1}{2\pi}\frac{1}{x^2+1},x\in \mathbb R<br>$$</p>
+</li>
+<li><p>概率论版本的Jesen不等式如下：</p>
+<p>对于$\varphi’’\ge 0$($\varphi$是凸函数),有<br>$$<br>\varphi(E[X])\le E[\varphi(x)]<br>$$</p>
+</li>
+<li><p>对于全排列$[n]$的置换$\sigma$ ,满足$\sigma(i)&#x3D;i$的下标个数为$X$，$E[X]&#x3D;Var[X]&#x3D;1$</p>
+</li>
+</ul>
+<h2 id="矩母函数"><a href="#矩母函数" class="headerlink" title="矩母函数"></a>矩母函数</h2><p>若随机变量$X$的分布函数为$F_X(x)$,则称<br>$$<br>M_X(t)&#x3D;E[e^{tX}]&#x3D;\int_{-\infty}^\infty e^{tx}dF_X(x)<br>$$<br>为$X$的矩母函数.</p>
+<h4 id="Property-5"><a href="#Property-5" class="headerlink" title="Property"></a>Property</h4><ol>
+<li>$M_X^{(n)}(t)&#x3D;E[X^ne^{tX}]$</li>
+<li>$E[X^n]&#x3D;M_X^{(n)}(0)$</li>
+<li>矩母函数存在时，将唯一决定分布，也即矩母函数和分布唯一对应</li>
+<li>若概率密度存在，则$M_X(t)$是$f(x)$的Laplace变换</li>
+</ol>
+<h2 id="特征函数"><a href="#特征函数" class="headerlink" title="特征函数"></a>特征函数</h2><p>若随机变量$X$的分布函数为$F_X(x)$,则称<br>$$<br>\psi_X(t)&#x3D;E[e^{itX}]&#x3D;\int_{-\infty}^\infty e^{itx}dF_X(x)<br>$$<br>为$X$的 特 征 函 数 .</p>
+<h4 id="Property-6"><a href="#Property-6" class="headerlink" title="Property"></a>Property</h4><ol>
+<li><p>分布函数由其特征函数唯一决定.如果有概率密度$f( x) \textbf{, 则 }\psi <em>X( t)$就是$f(x)$的Fourier变换<br>$$<br>\psi_X(t)&#x3D;\int</em>{-\infty}^\infty e^{itx}f_X(x)dx<br>$$</p>
+</li>
+<li><p>(有界性)$|\psi(t)|\leq1&#x3D;\psi(0);$</p>
+</li>
+<li><p>(共轭对称性)$\psi(-t)&#x3D;\overline\psi(t);$ </p>
+</li>
+<li><p>(一致连续性)$|\psi(t+h)-\psi(t)|\leq\int_{-\infty}^\infty|e^{ihx}-1|dF(x);$</p>
+</li>
+<li><p>(线性变换)设$Y&#x3D;aX+b$,则$Y$的特征函数是$\psi_Y(t)&#x3D;e^{ibt}\psi_X(at);$</p>
+</li>
+<li><p>两个相互独立的随机变量之和的特征函数等于它们的特征函数之积.</p>
+</li>
+<li><p>(非负定性)对于任意的正整数$n$,任意实数$t_1,\cdots,t_n$及复数$\lambda_1,\cdots,\lambda_n$​,有<br>$$<br>\sum_{k&#x3D;1}^n\sum_{j&#x3D;1}^n\psi(t_k-t_j)\lambda_k\overline{\lambda_j}&#x3D;\int_{-\infty}^{+\infty}|\sum_{k&#x3D;1}^n \lambda_ke^{it_kx}|^2 dx\geq0.<br>$$</p>
+</li>
+<li><p>设随机变量$X$有$n$阶矩存在，则它的特征函数可微分$n$次，且当$k\leq n$时，有<br>$$<br>\psi^{(k)}(0)&#x3D;i^kE[X^k]<br>$$</p>
+</li>
+<li><p>特征函数可作如下带皮阿诺型余项的Taylor展开：<br>$$<br>\psi(t)&#x3D;1+itE[X]+\frac{(it)^2}{2!}E[X^2]+\cdots+\frac{(it)^n}{n!}E[X^n]+o(t)<br>$$</p>
+</li>
+</ol>
+<h2 id="收敛性"><a href="#收敛性" class="headerlink" title="收敛性"></a>收敛性</h2><h4 id="几乎必然收敛"><a href="#几乎必然收敛" class="headerlink" title="几乎必然收敛"></a>几乎必然收敛</h4><p>设${X_n,n\geq1}$是随机变量序列，若存在随机变量$X$使得<br>$$<br>P[\omega\in\Omega:\lim_{n\to\infty}X_n(\omega)&#x3D;X(\omega)]&#x3D;1,<br>$$<br>则称随机变量序列${ X_n, n\geq 1}$ 几 乎 必 然 收 敛 (或以概率1收敛于$X$), 记为 $ X_n \xrightarrow{a. s_{\cdot }}X.$​</p>
+<p>等价命题：$X_n\xrightarrow{a.s}X$当且仅当对任意的$\epsilon &gt; 0\textbf{, 有 }$<br>$$<br>P(\lim\sup_{n\to\infty}{|X_n-X|\geq\epsilon})&#x3D;0.<br>$$</p>
+<h4 id="Mark-5"><a href="#Mark-5" class="headerlink" title="Mark"></a>Mark</h4><p>事件${lim_{n\to \infty}X_n(\omega)&#x3D;X(\omega)}$发生的概率是1，几乎是一个必然事件，我们认为事件$X_n(\omega)&#x3D;X(\omega)$几乎处处成立；</p>
+<ul>
+<li>考虑喂养一个宠物，并将该宠物每天消耗的食物量记为Xn.虽然Xn是不可预测的，但我们可以非常确定有一天该数字将变为零，并且此后将永远保持为零；</li>
+<li>假设一个人每天早上抛七枚硬币。硬币每出现一个正面，当天下午他都会向慈善机构捐赠一块钱。然而，如果某一天硬币的结果全是反面，他就会永远停止捐赠。设$X_1,X_2, . . .$为慈善机构每天从他那里收到的金额。我们几乎可以肯定，有一天这个金额将为零，并在那之后永远保持为零。然而，当我们考虑任何有限的天数时，终止条件不会发生的概率不为零（虽然这个概率极小）;</li>
+</ul>
+<h4 id="依概率收敛"><a href="#依概率收敛" class="headerlink" title="依概率收敛"></a>依概率收敛</h4><p>设${X_n,n\geq1}$是随机变量序列,若存在随机变量$X$,使得$\forall\varepsilon&gt;0$​,有<br>$$<br>\lim_{n\to\infty}P{|X_n-X|\geq\varepsilon}&#x3D;0<br>$$<br>则称随机变量序列${ X_n,n\geq1}$依概率收敛于$X$, 记为$X_n\xrightarrow{P}X$​.</p>
+<h4 id="Mark-6"><a href="#Mark-6" class="headerlink" title="Mark"></a>Mark</h4><p>随着事件序列的进展，‘不寻常‘的结果发生的概率越来越小；</p>
+<p>假设随机数生成器生成0到1之间的伪随机浮点数.设$X$为生成器输出的数字，由于伪随机数是确定性生成的，因此其下一个值并不是真正随机的。假设当观察一系列随机生成的数字时，可以推断出它的模式并对下一个随机生成的数字是什么做出越来越准确的预测。令$X_n$为在观察前$n − 1$个随机数后对下一个随机数的值做的猜测。随着对生成器的模式越来越了解，猜测也将变得更加准确，$Xn$的结果会收敛到$X$的结果。</p>
+<h4 id="Property-7"><a href="#Property-7" class="headerlink" title="Property"></a>Property</h4><ol>
+<li>随机变量序列$X_n\xrightarrow PX$的充分必要条件是${X_n}$的任意子序列都包含几乎必然收敛于$X$的子序列;</li>
+</ol>
+<h4 id="p-​​次平均收敛"><a href="#p-​​次平均收敛" class="headerlink" title="$p$​​次平均收敛"></a>$p$​​次平均收敛</h4><p>称随机变量$X\in L^p$ ,如果其满足 $E(|X|^p)&lt;\infty$ ;</p>
+<p>设随机变量序列${X_n}\subset L^p,p\geq1$,随机变量$X\in L^p$,若有<br>$$<br>\lim_{n\to\infty}E[|X_n-X|^p]&#x3D;0<br>$$<br>则称随机变量序列${ X_n, n\geq 1}$ $ p$次 平均收敛于$ X$.记作$X_n\xrightarrow{L^p}X$</p>
+<h4 id="依分布收敛"><a href="#依分布收敛" class="headerlink" title="依分布收敛"></a>依分布收敛</h4><p>设${F_n(x)}$是分布函数列，如果存在一个单调不减函数$F(x)$, 使得在$F(x)$的所有连续点$x$上均有<br>$$<br>\lim_{n\to\infty}F_n(x)&#x3D;F(x)<br>$$<br>则称${ F_n( x) }$ 弱 收 敛 于 $F( x)$,记 为 $F_n( x) \xrightarrow{W}F( x) .$ </p>
+<p>设随机变量$X_n,X$的分布函数分别为$F_n(x)$及$F(x)$,$F_n(x)\xrightarrow{W}F(x)$，则称${X_n}$依分布收敛于$X$,记为$X_n\xrightarrow{L}X.$​</p>
+<h4 id="Mark-7"><a href="#Mark-7" class="headerlink" title="Mark"></a>Mark</h4><ol>
+<li><p>$$<br>X_n\xrightarrow{L^p}X \Rightarrow X_n\xrightarrow PX \Rightarrow X_n\xrightarrow{L}X.<br>$$</p>
+</li>
+<li><p>$$<br>X_n\xrightarrow{a.s.}X \Rightarrow X_n\xrightarrow PX \Rightarrow X_n\xrightarrow{L}X.<br>$$</p>
+</li>
+<li><p>$$<br>\exists {X_n, n\ge 1}, X_n\xrightarrow{P}X ，X_n\xrightarrow{L^p}X , X_n \stackrel{a.s.}\nrightarrow X.<br>$$</p>
+<p>定义$\Omega&#x3D;(0,1],A_n(i)&#x3D;(\frac{i-1}{n},\frac in],X_n^i(\omega)&#x3D;\begin{cases}1&amp;,\omega\in A_n(i)\0&amp;,\omega\notin A_n(i)\end{cases}$</p>
+<p>验证序列<br>$$<br>{Y_i}_{i&#x3D;1}^\infty &#x3D; { X_1^1,X_2^1,X_2^2,X_3^1,X_3^2,X_3^3,…}<br>$$<br>满足构造要求</p>
+</li>
+<li><p>$$<br>\exists {X_n, n\ge 1}, X_n\xrightarrow{a.s.}X , X_n \stackrel{L^p}\nrightarrow X.<br>$$</p>
+<p>定义$\Omega&#x3D;(0,1],A_n(i)&#x3D;(\frac{i-1}{n},\frac in],X_n^i(\omega)&#x3D;\begin{cases}e^n&amp;,\omega\in A_n(i)\0&amp;,\omega\notin A_n(i)\end{cases}$</p>
+<p>验证序列<br>$$<br>{Y_i}_{i&#x3D;1}^\infty &#x3D; { X_1^1,X_2^1,X_2^2,X_3^1,X_3^2,X_3^3,…}<br>$$<br>满足构造要求</p>
+</li>
+</ol>
+<h2 id="独立性"><a href="#独立性" class="headerlink" title="独立性"></a>独立性</h2><p>设$A_1,A_2,\cdots,A_n$为$n$个事件，如果对任何$m\leq n$及1$\leq k_1&lt; k_2&lt; \cdots &lt; k_m\leq n$, 有<br>$$<br>P\left(\bigcap_{j&#x3D;1}^mA_{k_j}\right)&#x3D;\prod_{j&#x3D;1}^mP(A_{k_j})<br>$$<br>则称$ A_1,A_2,\cdots,A_n$ 相互独立. </p>
+<p>设$n$维随机变量$(X_1,\cdots,X_n)$的联合分布函数为$F(x_1,\cdots,x_n)$,若对所有实数组$(x_1,\cdots,x_n)$均有<br>$$<br>F(x_1,\cdots,x_n)&#x3D;F_{X_1}(x_1)\cdots F_{X_n}(x_n)<br>$$<br>成立，其中 $ F_{X_k}(x_k) $是关于$X_k$的边缘分布，则称$X_1,X_2,\cdots,X_n$相互独立。</p>
+<h4 id="Property-8"><a href="#Property-8" class="headerlink" title="Property"></a>Property</h4><ol>
+<li><p>$A_1,A_2,\cdots,A_n$​两两独立不一定相互独立.</p>
+</li>
+<li><p>$$<br>E\Big(\prod_{k&#x3D;1}^nX_k\Big)&#x3D;\prod_{k&#x3D;1}^nE(X_k)<br>$$</p>
+</li>
+<li><p>$$<br>Var\Big(\sum_{k&#x3D;1}^nX_k\Big)&#x3D;\sum_{k&#x3D;1}^nVar(X_k)<br>$$</p>
+</li>
+</ol>
+<h2 id="条件概率，全概率公式，Bayes公式"><a href="#条件概率，全概率公式，Bayes公式" class="headerlink" title="条件概率，全概率公式，Bayes公式"></a>条件概率，全概率公式，Bayes公式</h2><p>设$B$是一个事件，且$P( B) &gt; 0$. 则 事 件$B$发生的条件下事件$A$发生的条件概率为<br>$$<br>P(A|B)&#x3D;\frac{P(A\cap B)}{P(B)}<br>$$</p>
+<p>全概率公式:</p>
+<p>设${B_n}$是$\Omega$的一个有限划分，且$P(B_n)&gt;0.$则有<br>$$<br>P(A)&#x3D;\sum_nP(B_n)P(A|B_n)<br>$$</p>
+<p>贝叶斯公式: </p>
+<p>设 ${ B_n}$是$\Omega$的一个有限划分，且$P(B_n)&gt;0.$如果$P(A)&gt;0$,则<br>$$<br>P(B_k|A)&#x3D;\frac{P(B_k)P(A|B_k)}{\sum_{n}P(B_n)P(A|B_n)},k&#x3D;1,2,\ldots,n.<br>$$</p>
+<h2 id="条件期望-条件方差，全期望公式"><a href="#条件期望-条件方差，全期望公式" class="headerlink" title="条件期望,条件方差，全期望公式"></a>条件期望,条件方差，全期望公式</h2><p>设$(X,Y)$是连续型随机变量，其联合概率密度函数$f(x,y)$。对固定的$y$若满足$f_Y(y)&gt;0$,给定$Y&#x3D;y$时，$X$的条件概率定义为：<br>$$<br>f_{X|Y}(x|y)&#x3D;\frac{f(x,y)}{f_Y(y)}<br>$$</p>
+<p>称作在$Y&#x3D;y$的条件下，随机变量$X$的条件概率密度.称<br>$$<br>E[X|Y&#x3D;y]&#x3D;\int_{-\infty}^{+\infty}xf_{X|Y}(x|y)dx<br>$$<br>为在$Y&#x3D;y$的条件下，随机变量$X$​的 条 件 期 望 .</p>
+<p>称<br>$$<br>Var(X|Y&#x3D;y)&#x3D;E{[X-E(X|Y&#x3D;y)]^2|Y&#x3D;y}<br>$$<br>为在 $Y&#x3D;y$ 的条件下，随机变量$X$的 条 件 方 差.</p>
+<h4 id="Property-9"><a href="#Property-9" class="headerlink" title="Property"></a>Property</h4><ol>
+<li><p>(全期望公式)$E(X)&#x3D;E[E(X|Y)], E[g(X)]&#x3D;E{E[g(X)|Y]}$​.</p>
+</li>
+<li><p>$E(a|Y)&#x3D;a$</p>
+</li>
+<li><p>$E(aX+bZ|Y)&#x3D;aE(X|Y)+bE(Z|Y)$</p>
+</li>
+<li><p>如果$X\geq0$, 则$E(X|Y)\geq0$.</p>
+</li>
+<li><p>如果$X$与}$Y$独立,则$E(X|Y)&#x3D;E(X)$.</p>
+</li>
+<li><p>$E[Xg(Y)|Y]&#x3D;g(Y)E[X|Y]$.特别地,$E[g(Y)|Y]&#x3D;g(Y)$.</p>
+</li>
+<li><p>$E[X|Y,g(Y)]&#x3D;E(X|Y).$</p>
+</li>
+<li><p>$E[X-E(X|Y)]^{2}\leq E[X-g(Y)]^{2}$​</p>
+<p>$E(X|Y)$是所有用$g(Y)$来近似$X$中效果最好的.</p>
+</li>
+<li><p>$D(X|Y&#x3D;y)&#x3D;E(X^{2}|Y&#x3D;y)-[E(X|Y&#x3D;y)]^{2}.$</p>
+</li>
+<li><p>(全方差定理)$Var(X)&#x3D;E[Var(X|Y)]+Var[E(X|Y)].$​</p>
+</li>
+</ol>
+<h2 id="随机过程"><a href="#随机过程" class="headerlink" title="随机过程"></a>随机过程</h2><p>设$( \Omega , \mathcal{F} , P)$是 概 率 空 间 , $T$是一参数集$T\subseteq\mathbb{R}$。若对每一个$t\in T, X( t)$ 是 $( \Omega , \mathcal{F} , P)$上的随机变量，则称随机变量族${ X( t) , t\in T}$​为 随 机 过 程 .</p>
+<h4 id="Mark-8"><a href="#Mark-8" class="headerlink" title="Mark"></a>Mark</h4><ol>
+<li>观察随机过程的两种视角：对于随机过程${X(t,\omega)|(t,\omega)\in T\times \Omega}$<ul>
+<li>固定$\omega\in \Omega$,$X$是定义在$T$上的样本函数，称作实现；</li>
+<li>固定$t\in T$,$X$是定义在$\Omega$​上的随机变量，称作状态；</li>
+</ul>
+</li>
+</ol>
+<h2 id="有限维分布-簇-，Kolmogorov定理-数字特征"><a href="#有限维分布-簇-，Kolmogorov定理-数字特征" class="headerlink" title="有限维分布(簇)，Kolmogorov定理,数字特征"></a>有限维分布(簇)，Kolmogorov定理,数字特征</h2><p>对任意有限个$t_1,\cdots,t_n\in T$,定义随机过程的$n$维 分 布 函 数 $F_{t_1,\cdots,t_n}(x_1,\cdots,x_n)\colon$<br>$$<br>F_{t_1,\cdots,t_n}(x_1,\cdots,x_n)&#x3D;P(X(t_1)\leq x_1,\cdots,X(t_n)\leq x_n).<br>$$<br>随机过程的所有的一维分布，二维分布，$\cdots,n$维分布等的全体<br>$$<br>{F_{t_1,\cdots,t_n}(x_1,\cdots,x_n),t_1,\cdots,t_n\in T,n\geq1}<br>$$<br>称为随机过程${ X( t) , t\in T}$​ 的 有 限 维 分 布 簇 .</p>
+<h4 id="Property-10"><a href="#Property-10" class="headerlink" title="Property"></a>Property</h4><ol>
+<li><p>对称性：对$( 1, 2, \cdots , n)$的任一排列$( j_1, j_2, \cdots , j_n) $，有<br>$$<br>\begin{aligned}&amp;F_{t_{j_1},\cdots,t_{j_n}}(x_{j_1},\cdots,x_{j_n})\&amp;&#x3D;\quad P(X(t_{j_1})\leq x_{j_1},\cdots,X(t_{j_n})\leq x_{j_n})\&amp;&#x3D;\quad P(X(t_1)\leq x_{t_1},\cdots,X(t_n)\leq x_{t_n})\&amp;&#x3D;\quad F_{t_1,\cdots,t_n}(x_1,\cdots,x_n).\end{aligned}<br>$$</p>
+</li>
+<li><p>相容性：对$m&lt;n$,有<br>$$<br>F_{t_1,\cdots,t_m,t_{m+1},\cdots t_n}(x_1,\cdots,x_m,\infty,\cdots,\infty)&#x3D;F_{t_1,\cdots,t_m}(x_1,\cdots,x_m).<br>$$</p>
+</li>
+</ol>
+<p>Kolmogorov定理描述如下事实：</p>
+<p>设分布函数族${F_{t_1,\cdots,t_n}(x_1,\cdots,x_n),t_1,\cdots,t_n\in T,n\geq1 }$ 满足上述的对称性和相容性，则必存在一个随机过程${X(t),t\in T}$使<br>$$<br>{F_{t_1,\cdots,t_n}(x_1,\cdots,x_n),t_1,\cdots,t_n\in T,n\geq1}<br>$$<br>恰好是${X(t),t\in T}$的有限维分布簇.</p>
+<p>有限维分布簇完整地描述了随机过程的概率性质，但是实际过程中几乎无法得到完整的分布簇，因此采用数字特征描述随机过程也许是更好的办法.</p>
+<ol>
+<li>均值函数：$\mu_X(t)&#x3D;E[X(t)],t\in T$</li>
+<li>方差函数：$Var_X(t)&#x3D;E[(X-\mu_X(t))^2],t\in T$</li>
+<li>协方差函数：$\gamma_X(s,t)&#x3D;E[(X(s)-\mu_X(s))(X(t)-\mu_X(t))]$</li>
+<li>自相关函数：$R_X(s,t)&#x3D;E[X(s)X(t)]&#x3D;\gamma_X(s,t)+\mu_X(s)\mu_X(t)$</li>
+</ol>
+<h2 id="严平稳过程，宽平稳过程"><a href="#严平稳过程，宽平稳过程" class="headerlink" title="严平稳过程，宽平稳过程"></a>严平稳过程，宽平稳过程</h2><p>如果随机过程${X(t),t\in T}$对任意的$t_1,\cdots,t_n\in T$和任意的$h\textbf{, }$ 均满足$(X(t_1+h),\cdots,X(t_n+h))$与 $( X( t_1) , \cdots , X( t_n) )$具 有 相 同的联合分布，记为<br>$$<br>(X(t_1+h),\cdots,X(t_n+h))\stackrel{d}{&#x3D;}(X(t_1),\cdots,X(t_n))<br>$$<br>则称${ X( t) , t\in T}$​为 严 平 稳 过 程 .</p>
+<p>如果随机过程$X(t)$的所有二阶矩都存在，并且均值函数$E[X(t)]&#x3D;\mu$,协方差函数$\gamma(t,s)$只与时间差$t-s$有关，则<br>称${ X( t) , t\in T}$为 宽 平 稳 过 程.</p>
+<h4 id="Mark-9"><a href="#Mark-9" class="headerlink" title="Mark"></a>Mark</h4><ol>
+<li><p>严平稳过程的有限维分布关于时间平移不变；</p>
+</li>
+<li><p>严平稳过程的主要性质和选取的起始点无关而和变量之间的距离有关；</p>
+</li>
+<li><p>宽平稳过程的协方差函数可以记为$\gamma(t)$,因为$$\gamma(s,t+s)&#x3D;\gamma(0,t),s,t\in\mathbb{R}$$;</p>
+</li>
+<li><p>宽平稳过程：$\gamma(t)$是偶函数，$\gamma(0)&#x3D;Var_X(t),|\gamma(\tau)\le\gamma(0)|$​,且具有非负定性，也即对于任意时刻$t_k$和实<br>数$a_k, k &#x3D; 1, 2, … ,N$，有<br>$$<br>\begin{aligned}\sum_{i&#x3D;1}^N\sum_{j&#x3D;1}^Na_ia_j\gamma(t_i-t_j)\geq0.\end{aligned}<br>$$</p>
+<details>
+    <summary>证明</summary>
+    $\mathbf A=(a_1,a_2,...,a_n),\mathbf Z=(E[t_1]-\mu,E[t_2]-\mu,...,E[t_n]-\mu)$
+    $0\le Var(\mathbf A^T \mathbf Z)=A^TE[ZZ^T]A=\sum_{i=1}^N\sum_{j=1}^Na_ia_j\gamma(t_i-t_j)$
+</details></li>
+</ol>
+<h2 id="遍历性"><a href="#遍历性" class="headerlink" title="遍历性"></a>遍历性</h2><p>设${X(t),-\infty&lt;t&lt;\infty}$为一平稳过程，若<br>$$<br>\overline{X}&#x3D;\lim_{T\to\infty}\frac1{2T}\int_{-T}^TX(t)dt&#x3D;\mu<br>$$</p>
+<p>或当参数空间为$T&#x3D;\mathbb{Z}$时，<br>$$<br>\overline{X}&#x3D;\lim_{N\to\infty}\frac1{2N+1}\sum_{k&#x3D;-N}^NX(k)&#x3D;\mu<br>$$<br>则称${ X( t) , t\in T}$的 均 值 有 遍 历 性 .</p>
+<p>若<br>$$<br>\overline{\gamma}(\tau)&#x3D;\lim_{T\to\infty}\frac{1}{2T}\int_{-T}^T(X(t)-\mu)(X(t+\tau)-\mu)dt&#x3D;\gamma(\tau)<br>$$<br>或当参数空间为$T&#x3D;\mathbb{Z}$时，<br>$$<br>\overline{\gamma}(\tau)&#x3D;\lim_{N\to\infty}\frac1{2N+1}\sum_{k&#x3D;-N}^N(X(k)-\mu)(X(k+\tau)-\mu)&#x3D;\gamma(\tau)<br>$$<br>则称${ X( t) , t\in T}$的 协 方 差 有 遍 历 性.</p>
+<p>若随机过程的均值和协方差函数都具有遍历性，则称此随机过程有遍历性.</p>
+<p>均值遍历性定理：</p>
+<ol>
+<li><p>设${X(t),-\infty&lt;t&lt;\infty}$是平稳过程，其协方差函数为$\gamma(\tau)$,则$X(t)$的均值有遍历性的充分必要条件是<br>$$<br>\lim_{T\to\infty}\frac1T\int_0^{2T}\left(1-\frac\tau{2T}\right)\gamma(\tau)d\tau&#x3D;0.<br>$$</p>
+</li>
+<li><p>设${X(t),t&#x3D;0,\pm1,\pm2,\cdots}$是平稳序列，其协方差函数为$\gamma ( \tau ) \textbf{, 则 }X( t)$的均值有遍历性的充分必要条件是<br>$$<br>\lim_{N\to\infty}\frac{1}{N}\sum_{\tau&#x3D;0}^{N-1}\gamma(\tau)&#x3D;0.<br>$$</p>
+</li>
+</ol>
+<details>
+
+<h4 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h4><p>首先，计算$\overline{X}$的均值和方差。记<br>$$<br>\overline{X}<em>T&#x3D;\frac{1}{2T}\int</em>{-T}^TX\left(t\right)\mathrm{d}t<br>$$<br>则有<br>$$<br>E(\overline{X})&#x3D;E(\lim_{T\to\infty}\overline{X}<em>T)&#x3D;\lim</em>{T\to\infty}E(\overline{X}<em>T)&#x3D;\lim</em>{T\to\infty}\frac{1}{2T}\int_{-T}^TE[X(t)]\mathrm{d}t&#x3D;\mu<br>$$<br>进而<br>$$<br>\begin{aligned}Var(\overline{X})&amp;&#x3D;E{[\overline{X}-E(\overline{X})]^2}\&amp;&#x3D;E_t^|\lim_{t\to\infty}\left[\frac1{2T}\int_{-T}^T(X(t)-\mu)\mathrm{d}t\right]^2\&amp;&#x3D;\lim_{T\to\infty}\frac1{4T^2}E^|\int_{-T}^T[X(t)-\mu]\mathrm{d}t|^2\&amp;&#x3D;\lim_{T\to\infty}\frac1{4T^2}\int_{-T}^T\int_{-T}^TE\langle[X(t)-\mu][X(s)-\mu]\rangle\mathrm{d}t\mathrm{d}s\&amp;&#x3D;\lim_{T\to\infty}\frac1{4T^2}\int_{-T}^T\int_{-T}^T\gamma(t-s)\mathrm{d}t\mathrm{d}s\end{aligned}<br>$$<br>在上述积分中，做变换$$\begin{cases}\tau&#x3D;t-s\v&#x3D;t+s\end{cases}$$,则变换的 Jacobi 行列式值为：$$J&#x3D;\left|\begin{array}{cc}1&amp;-1\1&amp;1\end{array}\right|^{-1}&#x3D;\dfrac{1}{2}$$<br>积分区域变换为顶点分别在$\tau$轴和$\upsilon$ 轴上的菱形区域<br>$$<br>D:-2T\leqslant\tau\pm v\leqslant2T<br>$$<br>由于$\gamma(\tau)$是偶函数，故<br>$$<br>\begin{aligned}\operatorname*{lim}<em>{T\to\infty}\frac{1}{4T^{2}}\cdot\frac{1}{2}\int\int</em>{D}\gamma(\tau):\mathrm{d}\tau\mathrm{d}v&amp;&#x3D;\lim_{T\to\infty}\frac{1}{8T^{2}}\int_{-2T}^{2T}\gamma(\tau):\mathrm{d}\tau\int_{-(2T-|\tau|)}^{2T-|\tau|}:\mathrm{d}v\&amp;&#x3D;\lim_{T\to\infty}\frac{1}{4T^{2}}\int_{-2T}^{2T}\gamma(\tau):(2T-|\tau|):\mathrm{d}\tau\&amp;&#x3D;\lim_{T\to\infty}\frac{1}{2T^{2}}\int_{0}^{2T}\gamma(\tau):(2T-\tau):\mathrm{d}\tau\&amp;&#x3D;\lim_{T\to\infty}\frac{1}{T}\int_{0}^{2T}\gamma(\tau)\Big|:1-\frac{\tau}{2T}\Big|:\mathrm{d}\tau\end{aligned}<br>$$</p>
+</details>
+
+<h4 id="推论"><a href="#推论" class="headerlink" title="推论"></a>推论</h4><ol>
+<li>若$\int_{-\infty}^{\infty}|\gamma(\tau)|d\tau&lt;\infty$,则均值遍历性定理成立.</li>
+<li>对于平稳序列而言,若$\gamma(\tau)\to0(\tau\to\infty)$​,则均值遍历性定理成立.</li>
+</ol>
+<h2 id="平稳增量，独立增量"><a href="#平稳增量，独立增量" class="headerlink" title="平稳增量，独立增量"></a>平稳增量，独立增量</h2><p>如果对任何$t_1,t_2,\cdots t_n\in T,t_1&lt;t_2&lt;\cdots&lt;t_n$随机变量$X(t_2)-X(t_1),\cdots,X(t_n)-X(t_{n-1})$是相互独立的，则称${ X( t) , t\in T}$ 为 独 立 增 量 过 程 .<br>如 果 对 任 何 $t_1, t_2$,有 $X( t_1+ h) - X( t_1) \overset {d}{\operatorname* { \operatorname* { &#x3D; } } }X( t_2+ h) - X( t_2) $,则称${X(t),t\in T}$为是平稳增量过程.</p>
+<p>有独立增量和平稳增量的过程称为平稳独立增量过程.</p>
+<h4 id="Property-11"><a href="#Property-11" class="headerlink" title="Property"></a>Property</h4><ol>
+<li><p>假设${X(t),t\geq0}$是一个独立增量过程，$X(0)&#x3D;0.$则$X(t)$具有平稳增量的充分必要条件是：其特征函数具有可乘性，即<br>$$<br>\psi_{X(t+s)}(a)&#x3D;\psi_{X(t)}(a)\psi_{X(s)}(a)<br>$$</p>
+</li>
+<li><p>设${ X( t) , t\geq 0}$是 一 个 平 稳 独 立 增 量 过 程 , $X( 0) &#x3D; 0.$</p>
+<ul>
+<li>$\mu(t)&#x3D;mt.$​</li>
+<li>$Var(t)&#x3D;\sigma^2 t$</li>
+<li>$\gamma ( s, t) &#x3D; \sigma ^2\min ( s, t) .$其中$m,\sigma^2$​均是常数。</li>
+</ul>
+<p>proof:注意到<br>$$<br>\mu(s+t)&#x3D;E[X(s+t)-X(s)]+E[X(s)]&#x3D;\mu(t)+\mu(s)\<br>Var(s+t)&#x3D;Var[X(s+t)-X(s)]+Var[X(s)]&#x3D;Var(s)+Var(t)<br>$$<br>这是Cauchy方程，简单验证连续性即可；</p>
+<p>其次,假设$s&lt;t$，<br>$$<br>\begin{aligned}<br>\gamma(s,t)&amp;&#x3D;E[X(s)X(t)]-E[X(s)]E[X(t)]\<br>&amp;&#x3D;E[X(s)]E[X(t-s)]+E[X^2(s)]-E[X(s)]E[X(t)]\<br>&amp;&#x3D;\sigma^2 s<br>\end{aligned}<br>$$</p>
+</li>
+</ol>
+<h2 id="Remark"><a href="#Remark" class="headerlink" title="Remark"></a>Remark</h2><ul>
+<li><input disabled="" type="checkbox"> </li>
+<li><input disabled="" type="checkbox"> Borel-Cantelli第二引理证明？</li>
+<li><input disabled="" type="checkbox"> </li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90/" rel="prev" title="应用随机过程中的一些例子">
+                  <i class="fa fa-angle-left"></i> 应用随机过程中的一些例子
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%A6%82%E7%8E%87%E8%AE%BA%EF%BC%9A%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/" rel="next" title="概率论：常见分布的数字特征">
+                  概率论：常见分布的数字特征 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

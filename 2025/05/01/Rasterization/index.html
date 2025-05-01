@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="RasterizationScreen对于一个宽高为width, height的屏幕来说，从一个视点来看可以形成一个视锥： 定义一个宽高比$${\rm Aspect Ratio }&#x3D;\frac{\rm width}{\rm height}$$以及一个垂直视角 Vertical Field of View(fovY):连接屏幕宽的中点，和视点形成的夹角； 同理定义水平可视角度；  形式化来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rasterization">
+<meta property="og:url" content="http://example.com/2025/05/01/Rasterization/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="RasterizationScreen对于一个宽高为width, height的屏幕来说，从一个视点来看可以形成一个视锥： 定义一个宽高比$${\rm Aspect Ratio }&#x3D;\frac{\rm width}{\rm height}$$以及一个垂直视角 Vertical Field of View(fovY):连接屏幕宽的中点，和视点形成的夹角； 同理定义水平可视角度；  形式化来">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241207172656304.png">
+<meta property="og:image" content="http://example.com/assets/image-20241207173113298.png">
+<meta property="og:image" content="http://example.com/assets/image-20241207185400978.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208144930773.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208150318558.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208150436078.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208153535998.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208153740024.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208153829837.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208154307669.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208155056788.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208160358803.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208160720284.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208161738648.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208161753146.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208161850156.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208162707054.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208162721846.png">
+<meta property="og:image" content="http://example.com/assets/image-20241208162841499.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.338Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.266Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241207172656304.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/Rasterization/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/Rasterization/","path":"2025/05/01/Rasterization/","title":"Rasterization"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Rasterization | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Rasterization"><span class="nav-number">1.</span> <span class="nav-text">Rasterization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Screen"><span class="nav-number">1.1.</span> <span class="nav-text">Screen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sampleing"><span class="nav-number">1.2.</span> <span class="nav-text">Sampleing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sampling-Artifacts"><span class="nav-number">1.3.</span> <span class="nav-text">Sampling Artifacts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DSP"><span class="nav-number">1.4.</span> <span class="nav-text">DSP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Filtering"><span class="nav-number">1.5.</span> <span class="nav-text">Filtering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Antialiasing-idea"><span class="nav-number">1.6.</span> <span class="nav-text">Antialiasing idea</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Increase-Sampling-Rate"><span class="nav-number">1.6.1.</span> <span class="nav-text">Increase Sampling Rate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pre-blur-before-Sampling"><span class="nav-number">1.6.2.</span> <span class="nav-text">Pre-blur before Sampling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-Sampling-Anti-Aliasing-MSAA"><span class="nav-number">1.7.</span> <span class="nav-text">Multiple Sampling Anti Aliasing(MSAA)</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/Rasterization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Rasterization | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Rasterization
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Rasterization"><a href="#Rasterization" class="headerlink" title="Rasterization"></a>Rasterization</h1><h2 id="Screen"><a href="#Screen" class="headerlink" title="Screen"></a>Screen</h2><p>对于一个宽高为<code>width, height</code>的屏幕来说，从一个视点来看可以形成一个视锥：</p>
+<p>定义一个宽高比<br>$$<br>{\rm Aspect Ratio }&#x3D;\frac{\rm width}{\rm height}<br>$$<br>以及一个垂直视角 Vertical Field of View(fovY):连接屏幕宽的中点，和视点形成的夹角；</p>
+<p>同理定义水平可视角度；</p>
+<p><img src="/assets/image-20241207172656304.png" alt="image-20241207172656304"></p>
+<p>形式化来说<br>$$<br>\tan\frac{\rm fovY}{2}&#x3D;\frac{t}{|n|}\<br>{\rm AspectRatio} &#x3D;\frac{r}{t}<br>$$<br><img src="/assets/image-20241207173113298.png" alt="image-20241207173113298"></p>
+<p>将屏幕(screen)抽象出如下要素</p>
+<ul>
+<li>一个由像素(pixel)构成的二维数组</li>
+<li>数组的大小称为分辨率(resolution)</li>
+<li>屏幕是典型的光栅成像设备</li>
+</ul>
+<p>光栅化定义为将物品画在屏幕上的过程；</p>
+<p>像素可以理解为一个颜色不变的小方块</p>
+<p>如果我们需要将标准立方体一个面$[-1,1]^2$上的物品视图变换到$[0,\rm width]\times[0,height]$上，只需左乘以下矩阵<br>$$<br>\boldsymbol M_{view} &#x3D;\left( \begin{array}{c}<br>{\rm width}&#x2F;2 &amp; 0 &amp; 0 &amp; {\rm width}&#x2F;2\<br>0 &amp; {\rm height&#x2F;2}&amp; 0 &amp; {\rm height&#x2F;2}\<br>0 &amp; 0 &amp; 1 &amp; 0\<br>0 &amp; 9 &amp; 0 &amp; 1<br>\end{array} \right)<br>$$</p>
+<h2 id="Sampleing"><a href="#Sampleing" class="headerlink" title="Sampleing"></a>Sampleing</h2><p>三角形有诸多性质，包括任意多边形可以进行三角剖分，三角形一定是平面图，边界和内部容易用叉积判断，重心坐标插值简单；</p>
+<p>三角光栅化就是考虑像素中心和三角形的位置关系‘</p>
+<p>光栅化的最简单办法：采样(sampling)</p>
+<p>采样可如下形式化定义：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for(int x = 0; x&lt;xmax; ++x) output[x] = f(x);</span><br></pre></td></tr></table></figure>
+
+<p>采样的对象很多，包括一维的时间，二维的面积，方向，三维的体积；</p>
+<p>对于屏幕内的任意一点<code>(x,y)</code>,定义采样</p>
+<p>函数以判断点是否在三角形内<br>$$<br>\rm  inside(t,x,y) &#x3D; \begin{cases}\rm<br>1&amp;\rm  Point(x,y)\ in\ Triangle\ t\<br>0&amp;\rm  Otherwise<br>\end{cases}<br>$$<br>那么采样过程可以理解为扫描整个屏幕上的像素点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (int x = 0; x &lt; xmax; ++x) </span><br><span class="line">  for (int y = 0; y &lt; ymax; ++y) </span><br><span class="line">    image[x][y] = inside(tri, x + 0.5, y + 0.5);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/assets/image-20241207185400978.png" alt="image-20241207185400978"></p>
+<p>显然没有必要遍历整个屏幕，我们只需要考虑三角形的包围盒即可；</p>
+<h2 id="Sampling-Artifacts"><a href="#Sampling-Artifacts" class="headerlink" title="Sampling Artifacts"></a>Sampling Artifacts</h2><p>很显然，如果采样率过低，或者分辨率过低，就会产生锯齿(Jagies)问题，或者走样(Aliasing)现象;</p>
+<p>假如说对一张图片，去掉一半的行，或者对着屏幕拍照，可能会有摩尔纹(Moire);</p>
+<p>高速旋转的车轮可能看上去是倒转的(Wagon wheel effect);</p>
+<p>抽象出这些现象的原因：信号变化太快但是采样太慢，用信号与系统的观点来看就是实际信号频率大于采样频率；</p>
+<p>Blurring(Pre-Filtering) Before Sampling 是一个常见的反走样的技巧(Antialiasing idea);</p>
+<p>但是反之(先采样再模糊)效果不好；</p>
+<p><img src="/assets/image-20241208144930773.png" alt="image-20241208144930773"></p>
+<h2 id="DSP"><a href="#DSP" class="headerlink" title="DSP"></a>DSP</h2><p>在频域分析中，我们常用Fourier级数展开将几乎任意一种函数写成频率，振幅不同的波叠加<br>$$<br>f(x)&#x3D;\frac{a_0}{2}+\sum_{n&#x3D;1}^{\infty}a_n\cos n\omega x+b_n\sin n\omega x<br>$$</p>
+<ul>
+<li><p>直流分量：$\frac{a_0}{2}&#x3D;\frac{1}{T}\int_{-T&#x2F;2}^{T&#x2F;2}f(x)dx$</p>
+</li>
+<li><p>傅里叶系数：<br>$$<br>a_n&#x3D;\frac{2}{T}\int_{-T&#x2F;2}^{T&#x2F;2}{f(x)\cos(n\omega x)dx}\<br>b_n&#x3D;\frac{2}{T}\int_{-T&#x2F;2}^{T&#x2F;2}{f(x)\sin(n\omega x)dx}<br>$$</p>
+</li>
+</ul>
+<p>将周期信号$f(t)$推广成有限时间的非周期信号,也即时域从周期转化为非周期时，<strong>频域从离散的转化为连续的</strong>：原始的Fourier变换（FT）及其逆变换,其作用可以将函数从时域变换成频域；<br>$$<br>F(\omega)&#x3D;\int_{-\infty}^{\infty}f(t)e^{-i\omega x}dx\<br>f(x)&#x3D;\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)e^{i\omega x}d\omega<br>$$<br>我们分离出这些信号波，并用同一种方法采样，如下图</p>
+<p><img src="/assets/image-20241208150318558.png" alt="image-20241208150318558"></p>
+<p>可以看到，如果采样频率很低，跟不上信号本身的频率，那么采样就难以恢复出原来的信号；</p>
+<p><img src="/assets/image-20241208150436078.png" alt="image-20241208150436078"></p>
+<p>同样的采样函数，采样完全不同的信号函数得出一样的结果，仅凭结果无法区分两个信号，这样的现象称为走样(aliases);</p>
+<p>对于一张图像来说，我们常用如下的2DFT,先要将图像转化成灰度图，然后将这张图片看作上下左右循环重复的大图；</p>
+<p>2DFT将原始的灰度图像$I(x,y)$，转化成其频域图$F(u,v)$<br>$$<br>F(u,v)&#x3D;\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x,y)e^{-i2\pi(ux+vy)}dxdy\<br>f(x,y)&#x3D;\frac{1}{2\pi}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}F(u,v)e^{i2\pi (ux+vy)}dxdy<br>$$<br>在图像的边界涉及重复图像的切换，所以变化应该很明显，频域图蕴含信息较多，因此需要中心化；</p>
+<p>中心的区域定义为高频区，信息较多；对于非中心的区域为低频区，信息较少；</p>
+<p>以下是一张图及其对应频域图(频谱)</p>
+<p><img src="/assets/image-20241208153535998.png" alt="image-20241208153535998"></p>
+<h2 id="Filtering"><a href="#Filtering" class="headerlink" title="Filtering"></a>Filtering</h2><p>滤波的含义是对于删去函数频域上特定频率大小的子波；</p>
+<p>我们对图像作高通滤波(High-pass filter),保留频率高的信号，得到图像的轮廓，轮廓蕴含的信息较多，这也是符合直觉的；</p>
+<p><img src="/assets/image-20241208153740024.png" alt="image-20241208153740024"></p>
+<p>反之，我们将图片通过一个低通滤波器，得到其模糊图像，也就是边界的概念几乎消失；</p>
+<p><img src="/assets/image-20241208153829837.png" alt="image-20241208153829837"></p>
+<p>某种观点上看，滤波(Filtering)&#x3D;卷积(convolution)&#x3D;平均(averaging);</p>
+<p><img src="/assets/image-20241208154307669.png" alt="image-20241208154307669"></p>
+<p><strong>Convolution Theorem</strong></p>
+<p>空间域中的卷积等于频域中的乘法，反之亦然;</p>
+<p>可以看到，对一张图像，我们先作2DFT将图像转化成其频谱，对频谱应用卷积核，其本质为是将某一像素的频率用周围像素的加权平均代替，形成新的频谱，这就完成了滤波过程，将新的频谱应用2DIFT，得到滤波处理后的图像，表现为原图像的模糊；</p>
+<p><img src="/assets/image-20241208155056788.png" alt="image-20241208155056788"></p>
+<p>不同卷积核的滤波效果：</p>
+<ul>
+<li>更大的卷积核，对应更大范围的像素平均代替原来像素，更新后像素差异变小，处理后图像越模糊，对应低通滤波</li>
+<li>更小的卷积核对应高通滤波</li>
+</ul>
+<p>对于采样的过程可数学形式化如下：</p>
+<p>将连续信号$f(x)$采样，采样时间点间隔为$T_s$,冲击序列为<br>$$<br>\delta_s(x)&#x3D;\sum_{n&#x3D;-\infty}^{\infty}\delta(x-nT_s)<br>$$<br>取样信号为<br>$$<br>f_s(x)&#x3D;\sum_{n&#x3D;-\infty}^{\infty}f(x)\delta(x-nT_s)<br>$$<br>其频谱密度为<br>$$<br>F_s(\omega)&#x3D;\int_{-\infty}^{\infty}f_s(x)e^{-i\omega x}dx\<br>&#x3D;\sum_{n&#x3D;-\infty}^{\infty}\int_{-\infty}^{\infty}f(x)\delta(x-nT_s)e^{-i\omega x}dx\<br>&#x3D;\sum_{n&#x3D;-\infty}^{\infty}f(nT_s)e^{-i\omega nT_s}<br>$$<br><img src="/assets/image-20241208160358803.png" alt="image-20241208160358803"></p>
+<p>时域上的卷积等价于频域上的乘积，理解上图发现：采样本质上是对频域内容的重复；</p>
+<p>我们在频域上重新理解走样，假设原本的信号频谱，每$F_s$重复一次；</p>
+<p>若采样速度过慢，反映在频谱上重复越频繁，重复间隔变小，就会出现不同频率成分的混合，发生走样现象；</p>
+<p><img src="/assets/image-20241208160720284.png" alt="image-20241208160720284"></p>
+<h2 id="Antialiasing-idea"><a href="#Antialiasing-idea" class="headerlink" title="Antialiasing idea"></a>Antialiasing idea</h2><h3 id="Increase-Sampling-Rate"><a href="#Increase-Sampling-Rate" class="headerlink" title="Increase Sampling Rate"></a>Increase Sampling Rate</h3><p>提高显示器的分辨率，或者传感器的采样率是终极解决办法，从根本上避免频谱重叠问题；</p>
+<p>但是受限于实际条件无法更换，或者成本高昂，可能无法做到；</p>
+<h3 id="Pre-blur-before-Sampling"><a href="#Pre-blur-before-Sampling" class="headerlink" title="Pre-blur before Sampling"></a>Pre-blur before Sampling</h3><p>先对图像&#x2F;信号的高频信息通过低通滤波器删除掉，也即对图像&#x2F;信号变模糊，再以原本稀疏的采样率采样，处理后的信号&#x2F;图像的频率间隔变窄，采样重复也不会发生重叠现象；</p>
+<p><img src="/assets/image-20241208161738648.png" alt="image-20241208161738648"></p>
+<p><img src="/assets/image-20241208161753146.png" alt="image-20241208161753146"></p>
+<p>模糊操作先前提到，本质上是应用卷积核；</p>
+<p>在光栅化三角形时，经过模糊后，定义像素内平均值<code>inside(t,x,y)</code>为三角形覆盖像素的面积</p>
+<p>模糊效果如下</p>
+<p><img src="/assets/image-20241208161850156.png" alt="image-20241208161850156"></p>
+<h2 id="Multiple-Sampling-Anti-Aliasing-MSAA"><a href="#Multiple-Sampling-Anti-Aliasing-MSAA" class="headerlink" title="Multiple Sampling Anti Aliasing(MSAA)"></a>Multiple Sampling Anti Aliasing(MSAA)</h2><p>多重采样抗锯齿(MSAA)算法是对上述算法的近似，是一种在计算机图形学中广泛使用的抗锯齿技术。它主要用于解决图形渲染时产生的边缘锯齿问题，使得图像边界更加平滑，更加贴近真实视觉效果。</p>
+<p>思想：通过对像素内的多个位置进行采样并平均其值，来近似像素框滤镜的效果</p>
+<ol>
+<li><p>在每个像素中采集 NxN 样本</p>
+<p><img src="/assets/image-20241208162707054.png" alt="image-20241208162707054"></p>
+</li>
+<li><p>平均每个像素“内部”的 NxN 样本</p>
+<p><img src="/assets/image-20241208162721846.png" alt="image-20241208162721846"></p>
+</li>
+<li><p>对每个涉及像素，用tradeoff值替代，而不是二元值0-1</p>
+<p><img src="/assets/image-20241208162841499.png" alt="image-20241208162841499"></p>
+</li>
+</ol>
+<p>缺点是计算开销大，一般可能采用更先进的算法，比如复用邻近像素</p>
+<p>其他抗锯齿方案：</p>
+<ul>
+<li><strong>TXAA（Temporal Anti-Aliasing）</strong>：TXAA 是一种基于时间的抗锯齿技术，通过在多个帧之间进行颜色混合来消除锯齿。它结合了空间和时间上的信息，效果更好，但实现复杂且性能开销较大</li>
+<li><strong>FXAA(Fast Approximate AA)</strong>:采样无关算法，是图像后期处理消除锯齿</li>
+</ul>
+<p>Super resolution &#x2F; super sampling </p>
+<ul>
+<li>From low resolution to high resolution </li>
+<li>Essentially still “not enough samples” problem</li>
+<li>DLSS (Deep Learning Super Sampling）</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Geometry/" rel="prev" title="Geometry">
+                  <i class="fa fa-angle-left"></i> Geometry
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Shading/" rel="next" title="Shading">
+                  Shading <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

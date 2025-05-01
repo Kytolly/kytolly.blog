@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="项目管理概念定义 计划、协调、度量、监控、控制及报告等管理方法在软件开 发和维护中的具体应用，以保证整个过程是系统的、有原则 的、可量化的 四要素4P 人员People：关键业务领域：招聘、选拔、绩效管理、培训、 薪酬、职业发展、组织和工作设计、团队&#x2F;文化的发展。一个项目管理的好坏，很大程度就体现在团队的建设和管理上。人力资源管理成熟度模型（PCMM） PCMM是通过对人力资源管理的如人">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程11-软件管理技术">
+<meta property="og:url" content="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B11-%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="项目管理概念定义 计划、协调、度量、监控、控制及报告等管理方法在软件开 发和维护中的具体应用，以保证整个过程是系统的、有原则 的、可量化的 四要素4P 人员People：关键业务领域：招聘、选拔、绩效管理、培训、 薪酬、职业发展、组织和工作设计、团队&#x2F;文化的发展。一个项目管理的好坏，很大程度就体现在团队的建设和管理上。人力资源管理成熟度模型（PCMM） PCMM是通过对人力资源管理的如人">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241206211623192.png">
+<meta property="og:image" content="http://example.com/assets/image-20241206212247135.png">
+<meta property="og:image" content="http://example.com/assets/image-20241206213659612.png">
+<meta property="og:image" content="http://example.com/assets/image-20241206213732170.png">
+<meta property="og:image" content="http://example.com/assets/image-20241206213945142.png">
+<meta property="og:image" content="http://example.com/assets/image-20241206214344311.png">
+<meta property="og:image" content="http://example.com/assets/image-20241207000501820.png">
+<meta property="og:image" content="http://example.com/assets/image-20241207000454614.png">
+<meta property="og:image" content="http://example.com/assets/image-20241207000520257.png">
+<meta property="og:image" content="http://example.com/assets/image-20241207001143613.png">
+<meta property="og:image" content="http://example.com/assets/image-20241207001154418.png">
+<meta property="og:image" content="http://example.com/assets/image-20241207001409920.png">
+<meta property="og:image" content="http://example.com/assets/image-20241207001357518.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.503Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.944Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241206211623192.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B11-%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B11-%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/","path":"2025/05/01/软件工程11-软件管理技术/","title":"软件工程11-软件管理技术"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>软件工程11-软件管理技术 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">项目管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E8%A6%81%E7%B4%A04P"><span class="nav-number">1.1.2.</span> <span class="nav-text">四要素4P</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%BA%A6%E9%87%8F"><span class="nav-number">1.2.</span> <span class="nav-text">软件度量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AB%E4%B9%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E7%9A%84"><span class="nav-number">1.2.2.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F%E5%92%8C%E7%BB%84%E7%BB%87%E7%BB%A9%E6%95%88%E7%9A%84%E5%86%B3%E5%AE%9A%E5%9B%A0%E7%B4%A0"><span class="nav-number">1.2.3.</span> <span class="nav-text">软件质量和组织绩效的决定因素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">1.2.4.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E6%B5%8B%E9%87%8F"><span class="nav-number">1.2.5.</span> <span class="nav-text">直接测量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%B4%E6%8E%A5%E5%BA%A6%E9%87%8F"><span class="nav-number">1.2.6.</span> <span class="nav-text">间接度量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BC%B0%E7%AE%97"><span class="nav-number">1.2.7.</span> <span class="nav-text">项目估算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#COCOMO%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.8.</span> <span class="nav-text">COCOMO模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E8%AE%A1%E5%88%92"><span class="nav-number">1.3.</span> <span class="nav-text">项目计划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%98%E7%89%B9%E5%9B%BE"><span class="nav-number">1.3.1.</span> <span class="nav-text">甘特图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PERT%E6%8A%80%E6%9C%AF%E5%92%8CCPM%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">PERT技术和CPM方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%BF%BD%E8%B8%AA%E5%92%8C%E6%8E%A7%E5%88%B6"><span class="nav-number">1.3.3.</span> <span class="nav-text">项目的追踪和控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%BB%84%E7%BB%87%E4%B8%8E%E8%AE%A1%E5%88%92"><span class="nav-number">1.3.4.</span> <span class="nav-text">软件项目的组织与计划</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%B6%E5%AE%9A%E8%AE%A1%E5%88%92"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">制定计划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E8%AE%A1%E5%88%92%E7%9B%AE%E6%A0%87%E5%92%8C%E8%BF%9B%E8%A1%8C%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">指定计划目标和进行风险分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%A1%E5%88%92%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">软件计划的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%96%BD%E8%AE%A1%E5%88%92%E4%B8%AD%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%88%92%E5%88%86"><span class="nav-number">1.3.4.4.</span> <span class="nav-text">项目实施计划中任务的划分</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87%E5%BB%BA%E7%AB%8B"><span class="nav-number">1.3.5.</span> <span class="nav-text">软件项目组织建立</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B11-%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="软件工程11-软件管理技术 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          软件工程11-软件管理技术
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="项目管理"><a href="#项目管理" class="headerlink" title="项目管理"></a>项目管理</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p> 计划、协调、度量、监控、控制及报告等管理方法在软件开 发和维护中的具体应用，以保证整个过程是系统的、有原则 的、可量化的</p>
+<h3 id="四要素4P"><a href="#四要素4P" class="headerlink" title="四要素4P"></a>四要素4P</h3><ul>
+<li><p>人员People：关键业务领域：招聘、选拔、绩效管理、培训、 薪酬、职业发展、组织和工作设计、团队&#x2F;文化的发展。一个项目管理的好坏，很大程度就体现在团队的建设和管理上。人力资源管理成熟度模型（PCMM） PCMM是通过对人力资源管理的如人力资源规划、薪酬管理、绩效管理、组织管理、职 业规划、培训管理、知识管理等模块，按初始级、重复级、定义级、定量级和优化级这五 个递进层级进行详细描述和分级，建立企业人力资源管理的成熟程度评价模型，以此来对 企业目前人力资源管理现状进行评级，寻找不足和差距，以此来明确未来的发展方向。</p>
+<p>用人的原则：人和人是不一样的，知识、技能可以培训而改变，但人格是很难改变的 ，应该用人之所长</p>
+<p>项目中的三架马车：项目负责人，职能部门经理，项目成员；</p>
+<p>项目目标包括：商业目标，过程目标，行为目标</p>
+<p>如果各个因素的目标一致程度很大 对于项目成功的支持就越大</p>
+<p>团队成长如下图所示</p>
+<p><img src="/assets/image-20241206211623192.png" alt="image-20241206211623192"></p>
+</li>
+<li><p>产品Product：在策划一个项目以前，应当建立产品的目标和 范围，应考虑其他解决办法，以及技术和管理应当被约束。</p>
+<p>在项目活动中，直接构造产品所需的工程活动比例是最高的。 </p>
+<p>不同类型的产品所需要的工程活动特征也不一样，分为核心类产品开发，产品的客户化开发，系统的应用集成</p>
+</li>
+<li><p>过程Process：软件开发的一个全面计划。</p>
+</li>
+<li><p>项目Project：理解成功项目管理的关键因素，掌握项目计划、 监控和控制的一般方法</p>
+</li>
+</ul>
+<h2 id="软件度量"><a href="#软件度量" class="headerlink" title="软件度量"></a>软件度量</h2><h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><p>一种量化衡量方法,使得人们可以理解和把握软件项目的(生产)效率(或者所需要的劳动量)</p>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul>
+<li>描述（项目和过程）</li>
+<li>评估（状态和质量） </li>
+<li>预测（为计划） </li>
+<li>改进（产品质量和过程性能）</li>
+</ul>
+<h3 id="软件质量和组织绩效的决定因素"><a href="#软件质量和组织绩效的决定因素" class="headerlink" title="软件质量和组织绩效的决定因素"></a>软件质量和组织绩效的决定因素</h3><p>关键因素：过程、人、产品、技术。 </p>
+<p>过程处于三角的中心，连接其它三个因素；</p>
+<p><img src="/assets/image-20241206212247135.png" alt="image-20241206212247135"></p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li>面向规模的度量：一定时间产生的代码行数， 执行速度，文件页数，错误和缺陷数</li>
+<li>面向功能的度量：功能性，可靠性，可维护性，复杂性，效率，其他质量指标</li>
+<li>面向对象的度量</li>
+<li>面向用例的度量</li>
+</ul>
+<h3 id="直接测量"><a href="#直接测量" class="headerlink" title="直接测量"></a>直接测量</h3><p>这是一种基于规模的度量，比如基于代码行的度量</p>
+<p>优点 </p>
+<ul>
+<li>LOC、KLOC和相关度量容易计算 </li>
+<li>许多现有的软件估算模型都使用LOC和KLOC作为一项重要输入</li>
+<li>有大量的关于LOC的文献和数据</li>
+</ul>
+<p>缺点 </p>
+<ul>
+<li>LOC依赖于使用的语言，这对短小精悍的程序不利 </li>
+<li>不太适用于非过程化语言 </li>
+<li>LOC在设计完成的时候才能计算，估算需要一定程度的细节，而这些细节可能很难获得， 例如，项目计划人员难于在分析和设计完成之前估算LOC</li>
+</ul>
+<h3 id="间接度量"><a href="#间接度量" class="headerlink" title="间接度量"></a>间接度量</h3><p>一般指功能点度量，功能点数从直接度量软件信息域和评估软件复杂性的经验量化关系中获得 </p>
+<p>步骤： 先算未调整功能点总计数UFC ，再算功能点FP<br>$$<br>FP &#x3D;  UFC\times (0.65 + 0.01\times \Sigma F_i)<br>$$<br>$F_i$一般指复杂性调整值，一般有14项，取值在0~5；</p>
+<ol>
+<li>系统需要可靠的备份和恢复么？</li>
+<li>需要进行数据通信么？</li>
+<li>有分布式处理功能么？</li>
+<li>性能重要么？</li>
+<li>将该系统运行在一个现有的操作系统中么？ </li>
+<li>系统要求在线输入数据么？</li>
+<li>在线输入数据要求在多个屏幕和操作 之间建立输入事务么？</li>
+<li>主文件是否在线更新？</li>
+<li>输入、输出、文件或查询是否复杂？</li>
+<li>内部处理是否复杂？ </li>
+<li>代码是可重用的么？ </li>
+<li>设计中包括数据（流程）转换或安装 么？</li>
+<li>系统要为不同的机构设计不同的安装 方法么？</li>
+<li>应用程序便于变更么？易于用户使用 么？</li>
+</ol>
+<p>面向功能点的度量标准 计算：</p>
+<ul>
+<li>每FP的错误数，即总的错误数除以总的FP数。 </li>
+<li>每FP的缺陷数，即总的缺陷数除以总的FP数。 </li>
+<li>每FP的文档页数，即总的文档页数除以总的FP数。 </li>
+<li>每人月的FP数，即总的FP数除以总的人月数</li>
+</ul>
+<p>有趣的是，代码行数和功能点之间的关系依赖于编程语言；</p>
+<h3 id="项目估算"><a href="#项目估算" class="headerlink" title="项目估算"></a>项目估算</h3><p>项目成本模型遵循以下经验公式：<br>$$<br>Effort &#x3D; A + Size^B\times M<br>$$</p>
+<ul>
+<li>常量A:由组织实践和软件类型决定</li>
+<li>常量B：取值在$[1,15]$;</li>
+<li>常量M：反应产品，过程和人力属性</li>
+<li>Size是软件代码规模的估算，也可以是功能点和目标点</li>
+</ul>
+<p>算法成本估算示意图</p>
+<p><img src="/assets/image-20241206213659612.png" alt="image-20241206213659612"></p>
+<p>不同软件开发阶段的估算的不确定性</p>
+<p><img src="/assets/image-20241206213732170.png" alt="image-20241206213732170"></p>
+<h3 id="COCOMO模型"><a href="#COCOMO模型" class="headerlink" title="COCOMO模型"></a>COCOMO模型</h3><p> COCOMO（构造性成本模型）是一个经验模型, 通过收集大量的软件项目（63个） 的数据而获得。 </p>
+<p>它已得到广泛的证明。可用于公共领域并且很多公共和商业工具都支持它。 </p>
+<p>应用广泛，并得到了不同组织的评价。 </p>
+<p>有较长的历史，于1981年第一次实例化；</p>
+<p><img src="/assets/image-20241206213945142.png" alt="image-20241206213945142"></p>
+<h2 id="项目计划"><a href="#项目计划" class="headerlink" title="项目计划"></a>项目计划</h2><p>软件开发项目的进度安排有两种方式：</p>
+<ul>
+<li>系统最终交付日期已经确定，软件开发部门必须在规定期限内完成；</li>
+<li>系统最终交付日期只确定了大致的年限，最后交付日期由软件开发部门确定。</li>
+</ul>
+<p>进度安排落空，会导致市场机会的丧失，使用户不满意，而且也会导致成本的增加。</p>
+<p>因此，在考虑进度安排时，要把工作量与花费时间联系起来，合理分配工作量, 利 用进度安排的有效分析方法严密监控软件开发的进展情况，使软件开发进度不致拖延；</p>
+<p>当几个人共同承担软件开发项目中的某一任务时，人与人之间必须通过交流来解决各自承担任务之间的接口问题，即所谓通信问题。</p>
+<p>通信需花费时间和代价，会引起软件错误增加，降低软件生产率。 </p>
+<p>若两个人之间需要通信，则称在这两个人之间存在一条通信路径。如果一个软件开 发小组有n 个人，每两人之间都需要通信，则总的通信路径有n(n-1)&#x2F;2 (条)。</p>
+<ul>
+<li>一个软件任务由一个人单独开发，生产率最高；</li>
+<li>而 对于一个稍大型的软件项目，一个人单独开发，时间太长。因此软件 开发小组是必要的。</li>
+<li>但是，开发小组不宜太大，成员之间避免太多的通信路径。 </li>
+<li>在开发进程中，切忌中途加人，避免太多的生产率损失。</li>
+</ul>
+<p>任务的确定和并行：</p>
+<ul>
+<li>当参加同一软件工程项目的人数不止一人的时候，开发工作就会出现 并行情形。</li>
+<li>软件开发进程中设置许多里程碑</li>
+<li>里程碑为管理人员提供了指示项目 进度的可靠依据。 </li>
+<li>软件工程项目的并行性提出了一系列的进度要求。</li>
+</ul>
+<p><img src="/assets/image-20241206214344311.png" alt="image-20241206214344311"></p>
+<p>进度安排的方法：甘特图， PERT技术和CPM方法等</p>
+<ul>
+<li>可以把用于一般开发项目的进度安排的技术和工具应用于软件项目。 </li>
+<li>为监控软件项目的进度计划和工作的实际进展情况，为表现各项任务 之间进度的相互依赖关系，需要采用图示的方法。 </li>
+<li>在图示方法中，必须明确标明： <ol>
+<li>各个任务的计划开始时间，完成时间； </li>
+<li>各个任务完成标志（即○文档编写和△评审）； </li>
+<li>各个任务与参与工作的人数，各个任务与工作量之间的衔接情况；</li>
+<li>完成各个任务所需的物理资源和数据资源</li>
+</ol>
+</li>
+</ul>
+<h3 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h3><p>在甘特图中，每一任务完成的标准，不是以能否继续下一阶段任务为标准，而是以 必须交付应交付的文档与通过评审为标准。因此在甘特图中，文档编制与评审是软 件开发进度的里程碑。</p>
+<p><img src="/assets/image-20241207000501820.png" alt="image-20241207000501820"></p>
+<h3 id="PERT技术和CPM方法"><a href="#PERT技术和CPM方法" class="headerlink" title="PERT技术和CPM方法"></a>PERT技术和CPM方法</h3><p>PERT技术叫做计划评审技术，CPM方法叫做关键路径法，它们都是安排开发进度， 制定软件开发计划的最常用的方法。 它们都采用网络图来描述一个项目的任务网络，也就是从一个项目的开始到结束， 把应当完成的任务用图或表的形式表示出来。</p>
+<p><img src="/assets/image-20241207000454614.png" alt="image-20241207000454614"></p>
+<p><img src="/assets/image-20241207000520257.png" alt="image-20241207000520257"></p>
+<h3 id="项目的追踪和控制"><a href="#项目的追踪和控制" class="headerlink" title="项目的追踪和控制"></a>项目的追踪和控制</h3><p>软件项目管理一项重要工作就是在项目实施过程中进行追踪和控制：</p>
+<ul>
+<li>定期举行项目状态会议。由每位项目成员报告其进展和遇到的问题。</li>
+<li>评价在软件工程过程中所产生的所有评审的结果。</li>
+<li>确定由项目的计划进度所安排的可能选择的正式的里程碑。</li>
+<li>比较在项目资源表中所列出的每一个项目任务的实际开始时间和计划开始时间。 </li>
+<li>非正式地与开发人员交谈，以得到他们对开发进展和刚冒头的问题的客观评价。</li>
+<li>当问题出现的时候，项目管理人员必须实行控制以尽快地排解问题</li>
+</ul>
+<h3 id="软件项目的组织与计划"><a href="#软件项目的组织与计划" class="headerlink" title="软件项目的组织与计划"></a>软件项目的组织与计划</h3><ul>
+<li>制定计划 </li>
+<li>软件项目组织的建立</li>
+<li>人员配备</li>
+</ul>
+<h4 id="制定计划"><a href="#制定计划" class="headerlink" title="制定计划"></a>制定计划</h4><p>软件开发项目的计划涉及到实施项目的各个环节，带有全局性质。</p>
+<ul>
+<li>计划的合理性和准确性往往关系着项目的成败。 </li>
+<li>计划应力求完备。要考虑到一些未知因素和不确定因素，考虑到可能的修改。</li>
+<li>计划 应力求准确。尽可能提高所依据数据的可靠程度。</li>
+</ul>
+<h4 id="指定计划目标和进行风险分析"><a href="#指定计划目标和进行风险分析" class="headerlink" title="指定计划目标和进行风险分析"></a>指定计划目标和进行风险分析</h4><ul>
+<li>制定计划的目的就是要回答：这个软件项目的范围是什么？需要哪些资源？花费多 少工作量？要用的成本有多少？以及进度如何安排等等一系列问题。 </li>
+<li>这步工作应当以系统计划为基础，以系统规格说明为依据。 </li>
+<li>在开发工作尚未开始之前，准确回答这些问题是十分困难的。需要通过以往的开发 经验做出估算，很难达到准确。 </li>
+<li>从估算出发，项目必然带有一定的风险。估算的准确性越差，风险也就越大。研制 的软件项目越复杂，规模越大，结构化程度越低，资源、成本、进度等因素的不确 定性越大，承担这一项目所冒的风险也越大。 </li>
+<li>组织软件项目必须事先认清可能构成风险的因素，并研究战胜风险的对策，只有这 样才能避免出现灾难性的后果，取得项目预期的成果。</li>
+</ul>
+<h4 id="软件计划的类型"><a href="#软件计划的类型" class="headerlink" title="软件计划的类型"></a>软件计划的类型</h4><ul>
+<li>项目实施计划（软件开 发计划） ：这是软件 开发的综 合性计划， 通常应包 括任务、 进度、人 力、环境、 资源、组 织等多个 方面。</li>
+<li>质量保证计划 ：把软件开 发的质量 要求具体 规定为每 个开发阶 段可以检 查的质量 保证活动。</li>
+<li>软件测试计划 ：规定测试 活动的任 务、测试 方法、进 度、资源、 人员职责 等。 </li>
+<li>文档编制计划 ：综合支持计 划 软件分发计 划 规定所开 发项目应 编制的文 档种类、 内容、进 度、人员 职责等。 规定对用 户进行培 训的目标、 要求、进 度、人员 职责等。 </li>
+<li>用户培训计划  ：软件开发 项目完成 后，如何 提供给用 户。 规定软件 开发过程 中所需要 的支持， 以及如何 获取和利 用这些支 持</li>
+</ul>
+<h4 id="项目实施计划中任务的划分"><a href="#项目实施计划中任务的划分" class="headerlink" title="项目实施计划中任务的划分"></a>项目实施计划中任务的划分</h4><p>如何进行工作划分是实施计划首先应解决的问题。常用的计划结构有： </p>
+<ul>
+<li><p>阶段项目计划：按软件生存期，把开发工作划分为若干阶段，对每一阶段工作做出计划。 再把每一阶段工作分解为若干任务，做出任务计划。还要把任务细分为若干步骤，做出步 骤计划。</p>
+</li>
+<li><p>任务分解结构WBS：按项目的实际情况进行自顶向下的结构化分解，形成树形任务结构。进一 步把工作内容、所需工作量、预计完成的期限也规定下来。 </p>
+<p><img src="/assets/image-20241207001143613.png" alt="image-20241207001143613"></p>
+</li>
+<li><p>任务责任矩阵：在任务分解的基础上，把工作分配给相关的人员，用一个矩阵形表格表示 任务的分工和责任。</p>
+<p><img src="/assets/image-20241207001154418.png" alt="image-20241207001154418"></p>
+</li>
+</ul>
+<h3 id="软件项目组织建立"><a href="#软件项目组织建立" class="headerlink" title="软件项目组织建立"></a>软件项目组织建立</h3><p>开发组织采用什么形式，要针对软件项目的特点来决定，同时也与参与人员的素质 有关。</p>
+<ol>
+<li><p>组织原则 ：</p>
+<ul>
+<li>尽早落实责任：在软件项目工作开始时，要尽早指定专人负责。使他有权进行管理，并对任务的完成负全责。</li>
+<li>减少接口：一个组织的生产率随完成任务中存在的通信路径数目增加而降低。 要有合理的人员分工、好的组织结构、有效的通信，减少不必要的生产率的损失。</li>
+<li>责权均衡：软件经理人员所负的责任不应比委任给他的权力还大。</li>
+</ul>
+</li>
+<li><p>组织结构的模式</p>
+<ul>
+<li>按课题划分的模式 把软件开发人员按课题组成小组，小组成员自始至终参加所承担课题的各项任务。他们应负责 完成软件产品的定义、设计、实现、测试、复查、文档编制、甚至包括维护在内的全过程。</li>
+<li>按职能划分的模式 把参加开发项目的软件人员按任务的工作阶段划分成若干个专业小组。要开发的软件产品在每 个专业小组完成阶段加工（即工序）以后，沿工序流水线向下传递。例如，分别建立计划组、需求 分析组、设计组、实现组、系统测试组、质量保证组、维护组等。各种文档资料按工序在各组之间 传递。</li>
+<li>矩阵形模式 这种模式实际上是以上两种模式的复合。一方面，按工作性质，成立一些专门组，如开发组、 业务组、测试组等；另一方面，每一个项目又有它的经理人员负责管理。每个软件人员属于某一个 专门组，又参加某一项目的工作。</li>
+</ul>
+<p><img src="/assets/image-20241207001409920.png" alt="image-20241207001409920"></p>
+</li>
+<li><p>程序设计小组的组织形式</p>
+<p>小组内部人员的组织形式对生产率也有影响。现有的组织形式有三种。 （1）主程序员制小组 （2）民主制小组 （3）层次式小组</p>
+<p><img src="/assets/image-20241207001357518.png" alt="image-20241207001357518"></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B10-%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4%E6%8A%80%E6%9C%AF/" rel="prev" title="软件工程10-软件维护技术">
+                  <i class="fa fa-angle-left"></i> 软件工程10-软件维护技术
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B2-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/" rel="next" title="软件工程2-需求分析">
+                  软件工程2-需求分析 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="A： 喜闻乐见的题题意：给定两圆，以其中一个圆内为中心作正方形完全在这个圆内的条件，正方形完全在另一个圆的条件概率； 思路：由条件概率公式$$P(B|A)&#x3D;\frac{P(AB)}{P(A)}$$,我们只需要求出$$P(AB)$$和$$P(A)$$即可； $$P(A)$$的求解：正方形中心可行域为以$$A$$为圆心，$$\frac{\sqrt{4r_1^2-d^2}-d}{2}$$为半径">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022010910017-谢卿云-计算几何专题报告">
+<meta property="og:url" content="http://example.com/2025/05/01/2022010910017-%E8%B0%A2%E5%8D%BF%E4%BA%91-%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E4%B8%93%E9%A2%98%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="A： 喜闻乐见的题题意：给定两圆，以其中一个圆内为中心作正方形完全在这个圆内的条件，正方形完全在另一个圆的条件概率； 思路：由条件概率公式$$P(B|A)&#x3D;\frac{P(AB)}{P(A)}$$,我们只需要求出$$P(AB)$$和$$P(A)$$即可； $$P(A)$$的求解：正方形中心可行域为以$$A$$为圆心，$$\frac{\sqrt{4r_1^2-d^2}-d}{2}$$为半径">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.270Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:21.925Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/2022010910017-%E8%B0%A2%E5%8D%BF%E4%BA%91-%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E4%B8%93%E9%A2%98%E6%8A%A5%E5%91%8A/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/2022010910017-%E8%B0%A2%E5%8D%BF%E4%BA%91-%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E4%B8%93%E9%A2%98%E6%8A%A5%E5%91%8A/","path":"2025/05/01/2022010910017-谢卿云-计算几何专题报告/","title":"2022010910017-谢卿云-计算几何专题报告"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2022010910017-谢卿云-计算几何专题报告 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A%EF%BC%9A-%E5%96%9C%E9%97%BB%E4%B9%90%E8%A7%81%E7%9A%84%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">A： 喜闻乐见的题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">思路：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-%E6%AD%A4%E6%9B%B2%E4%B8%80%E5%93%8D%EF%BC%8C"><span class="nav-number">2.</span> <span class="nav-text">B: 此曲一响，_______________</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A-1"><span class="nav-number">2.1.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-1"><span class="nav-number">2.2.</span> <span class="nav-text">思路：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E-%E9%BA%A6%E7%94%B0%E6%80%AA%E5%9C%88II"><span class="nav-number">3.</span> <span class="nav-text">E: 麦田怪圈II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A-2"><span class="nav-number">3.1.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-2"><span class="nav-number">3.2.</span> <span class="nav-text">思路：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F-%E9%BA%A6%E7%94%B0%E6%80%AA%E5%9C%88III"><span class="nav-number">4.</span> <span class="nav-text">F: 麦田怪圈III</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A-3"><span class="nav-number">4.1.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-3"><span class="nav-number">4.2.</span> <span class="nav-text">思路：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-%E8%BF%87%E9%A9%AC%E8%B7%AF"><span class="nav-number">5.</span> <span class="nav-text">I: 过马路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A-4"><span class="nav-number">5.1.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-4"><span class="nav-number">5.2.</span> <span class="nav-text">思路：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N%EF%BC%9A%E5%9B%9E%E8%BD%AC%E6%95%B0"><span class="nav-number">6.</span> <span class="nav-text">N：回转数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A-5"><span class="nav-number">6.1.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-5"><span class="nav-number">6.2.</span> <span class="nav-text">思路：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#S-%E5%85%94%E5%84%BF%E7%88%B7%EF%BC%88Simple-Version%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">S: 兔儿爷（Simple Version）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A-6"><span class="nav-number">7.1.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-6"><span class="nav-number">7.2.</span> <span class="nav-text">思路：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T-%E5%85%94%E5%84%BF%E7%88%B7%EF%BC%88Easy-Version%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">T:  兔儿爷（Easy Version）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A-7"><span class="nav-number">8.1.</span> <span class="nav-text">题意：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-7"><span class="nav-number">8.2.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/2022010910017-%E8%B0%A2%E5%8D%BF%E4%BA%91-%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E4%B8%93%E9%A2%98%E6%8A%A5%E5%91%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2022010910017-谢卿云-计算几何专题报告 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2022010910017-谢卿云-计算几何专题报告
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:21" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="A：-喜闻乐见的题"><a href="#A：-喜闻乐见的题" class="headerlink" title="A： 喜闻乐见的题"></a>A： 喜闻乐见的题</h2><h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>给定两圆，以其中一个圆内为中心作正方形完全在这个圆内的条件，正方形完全在另一个圆的条件概率；</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>由条件概率公式$$P(B|A)&#x3D;\frac{P(AB)}{P(A)}$$,我们只需要求出$$P(AB)$$和$$P(A)$$即可；</p>
+<p>$$P(A)$$的求解：正方形中心可行域为以$$A$$为圆心，$$\frac{\sqrt{4r_1^2-d^2}-d}{2}$$为半径的圆，输入保证这个半径长度不为$$0$$；</p>
+<p>$$P(BA)$$的求解：由以上的分析，正方形的中心也在以$$B$$为圆心，$$\frac{\sqrt{4r_2^2-d^2}-d}{2}$$的圆内（注意输入没有保证，要特判不存在的情形），因此正方形的中心可行域为两圆的相交区域，问题转化为两圆相交面积问题模板；</p>
+<p>两圆面积交问题：</p>
+<ul>
+<li><p>如果两圆相离、外切、内切或者内含，那么他们的面积交为0；</p>
+</li>
+<li><p>如果两圆相交，可以通过容斥原理转化为两个扇形面积减去两个三角形的面积；</p>
+</li>
+<li><p>由于三角形的顶点为两圆交点并不方便求解，可以考虑采用$$Heron$$公式；</p>
+</li>
+</ul>
+<h2 id="B-此曲一响，"><a href="#B-此曲一响，" class="headerlink" title="B: 此曲一响，_______________"></a>B: 此曲一响，_______________</h2><h3 id="题意：-1"><a href="#题意：-1" class="headerlink" title="题意："></a>题意：</h3><p>给定多边形$$Polygon$$和点$$T，S$$,求多边形内部到$$S$$的距离不超过到点$$T$$的距离的$$k$$倍的所有点构成区域面积；</p>
+<h3 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h3><p>到两定点比值一定的轨迹构成$$Apollonius$$圆；</p>
+<p>其中，两定点和与定点共线的直径的两个对径点共同构成调和点列，通过这个性质可以快速求出$$Apollonius$$圆的半径和圆心（注意题目输入保证是不会让圆退化为中垂线的）；</p>
+<p>问题转化为多边形与圆面积交模板：</p>
+<ul>
+<li><p>以圆的圆心为视点，对多边形作三角剖分；</p>
+</li>
+<li><p>一点为圆心的三角形与圆面积交分为四种情况：</p>
+<ul>
+<li><p>所对线段两点完全在圆内，此时面积交为整个三角形；</p>
+</li>
+<li><p>如果线段两端点有以一个在圆外一个在圆内，那么面积交为一个三角形和一个扇形</p>
+</li>
+<li><p>如果线段两端点两个端点均在圆外且线段与圆没有交点（或相切），那么面积交为一个扇形；</p>
+</li>
+<li><p>如果线段两端点两个端点均在圆外且线段与圆有交点，那么面积交为一个三角形加两个</p>
+<p>扇形；</p>
+</li>
+<li><p>注意这里涉及反三角函数的转化，如果出现点重合的情况一定要特判为0，否则可能会出现$$nan$$</p>
+</li>
+</ul>
+</li>
+<li><p>整个多边形与圆面积交为各个三角形与圆面积交的有向和；</p>
+</li>
+</ul>
+<h2 id="E-麦田怪圈II"><a href="#E-麦田怪圈II" class="headerlink" title="E: 麦田怪圈II"></a>E: 麦田怪圈II</h2><h3 id="题意：-2"><a href="#题意：-2" class="headerlink" title="题意："></a>题意：</h3><p>求出内外切于两圆之间的前$$n$$个最大圆面积和；</p>
+<h3 id="思路：-2"><a href="#思路：-2" class="headerlink" title="思路："></a>思路：</h3><p>以两圆切点为反演中心，$$1$$为反演半径作反演变换；</p>
+<p>两圆化成平行两直线，要求的$$n$$个圆直径均为两平行直线的距离，由反演变化距离公式以及圆幂定理，设反演中心$$I$$和左（右）手第$$k$$个圆圆心连线交点为$$C,D$$，那么反演变换前该圆的直径$$2r[k]&#x3D;C’D’&#x3D;\frac{CD}{IC \cdot ID}&#x3D;\frac{(r_2-r_1)r_1r_2}{k^2(r_2-r_1)^2+r_1r_2}$$，面积总和即为$$\sum_{k&#x3D;1}^{n}\pi[k&#x2F;2][k&#x2F;2]$$；</p>
+<p>注意这里$$k,n$$应该要开<code>long long</code> <del>否则整形的精度将会溢出导致半径为负</del>；</p>
+<h2 id="F-麦田怪圈III"><a href="#F-麦田怪圈III" class="headerlink" title="F: 麦田怪圈III"></a>F: 麦田怪圈III</h2><h3 id="题意：-3"><a href="#题意：-3" class="headerlink" title="题意："></a>题意：</h3><p>给定$$n$$个圆，判断原点是否在它们的「包围圈」内，所谓「包围圈」是指由它们的本身和两两外公切线所围成最大的凸集；</p>
+<h3 id="思路：-3"><a href="#思路：-3" class="headerlink" title="思路："></a>思路：</h3><p>不难发现原点到各个圆的两条公切线是问题关键，（当然如果没有的话问题答案即为<code>YES</code>），对每一条切线的极角排序（无需分象限），如果有相邻的极角之差超过$$\pi$$，那么答案便是<code>NO</code>；</p>
+<p>第$$i$$个圆的两条切线的极角$$\theta&#x3D;atan2(y_i,x_i)\pm asin(\frac{r_i}{\sqrt{x_i^2+y_i^2}})$$;</p>
+<h2 id="I-过马路"><a href="#I-过马路" class="headerlink" title="I: 过马路"></a>I: 过马路</h2><h3 id="题意：-4"><a href="#题意：-4" class="headerlink" title="题意："></a>题意：</h3><p>求运动的多边形和动点不相遇的最长持续时间；</p>
+<h3 id="思路：-4"><a href="#思路：-4" class="headerlink" title="思路："></a>思路：</h3><p>（题解的正确性存疑，因为本人$$hack$$过自己的几组边界数据但是提交却出现$$AC$$的情况，本人也认为思路不完全正确）；</p>
+<p>考虑转化运动参考系，将多边形当作惯性系，那么动点$$x$$向速度恒为$$v$$,$$y$$向速度不大于$$u$$,如果初始状态多边形的点全部都在射线$$y&#x3D;\frac{ux}{v}$$的一侧，那么动点无需等待全力过马路即可，时间为$$w&#x2F;u$$,否则等待一段时间，这段时间是每个点作方向为$$(v,u)$$的「切线」最右侧所代表的时间，换言之，$$T&#x3D;max_{1\le i\le n}(\frac{x}{v}-\frac{y}{u})$$，再全速前进即可；</p>
+<h2 id="N：回转数"><a href="#N：回转数" class="headerlink" title="N：回转数"></a>N：回转数</h2><h3 id="题意：-5"><a href="#题意：-5" class="headerlink" title="题意："></a>题意：</h3><p>求给定点关于给定多边形的回转数；</p>
+<h3 id="思路：-5"><a href="#思路：-5" class="headerlink" title="思路："></a>思路：</h3><p>为降低时间开销不考虑极角排序做法；</p>
+<p>遍历每一条边，判断边$$uv$$与点$$a$$的相对位置关系；</p>
+<p>回转数自增当且仅当</p>
+<ul>
+<li>$$(v-u)\times(a-u)&gt;0$$</li>
+<li>$$u.y\le a.y$$</li>
+<li>$$a.y&lt;v.y$$</li>
+</ul>
+<p>回转数自减当且仅当</p>
+<ul>
+<li>$$(v-u)\times(a-u)&lt;0$$</li>
+<li>$$u.y\ge a.y$$</li>
+<li>$$a.y&gt;v.y$$</li>
+</ul>
+<h2 id="S-兔儿爷（Simple-Version）"><a href="#S-兔儿爷（Simple-Version）" class="headerlink" title="S: 兔儿爷（Simple Version）"></a>S: 兔儿爷（Simple Version）</h2><h3 id="题意：-6"><a href="#题意：-6" class="headerlink" title="题意："></a>题意：</h3><p>判断点是否在三角形的内部；</p>
+<h3 id="思路：-6"><a href="#思路：-6" class="headerlink" title="思路："></a>思路：</h3><p>本题是$$T$$题的$$n&#x3D;3$$ 的版本；</p>
+<h2 id="T-兔儿爷（Easy-Version）"><a href="#T-兔儿爷（Easy-Version）" class="headerlink" title="T:  兔儿爷（Easy Version）"></a>T:  兔儿爷（Easy Version）</h2><h3 id="题意：-7"><a href="#题意：-7" class="headerlink" title="题意："></a>题意：</h3><p>判断点是否在多边形的内部（多边形可能会退化，也不一定是凸的）；</p>
+<h3 id="思路：-7"><a href="#思路：-7" class="headerlink" title="思路："></a>思路：</h3><p>本题由两个模板组成；</p>
+<ul>
+<li><p>$$Graham$$算法求给定点集的凸包</p>
+<ul>
+<li>选定二维偏序最小者为极点</li>
+<li>剩余的点作极角排序</li>
+<li>维护单调栈，逆时针第一条边入栈，若新加入的点在栈顶边的右侧则出栈，否则直接入栈，始终保证栈内至少有两个点（一条边）；</li>
+</ul>
+</li>
+<li><p>二分极角序判断点是否在凸多边形内</p>
+<ul>
+<li>选取二维偏序最小者为极点</li>
+<li>三角剖分多边形，二分对角线位置，判断在最大在何处对角线的左侧</li>
+<li>判断是否在两条对角线夹边内部</li>
+</ul>
+</li>
+<li><p>注意事项：</p>
+<ol>
+<li>退化情况包括$$n&#x3D;1,n&#x3D;2$$</li>
+<li>点在对角线或者一边的延长线上，此时不能算作在多边形的内部；</li>
+</ol>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/k/" rel="prev" title="k">
+                  <i class="fa fa-angle-left"></i> k
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E8%B0%A2%E5%8D%BF%E4%BA%91-2022010910017-%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%93%E9%A2%98%E6%8A%A5%E5%91%8A/" rel="next" title="谢卿云-2022010910017-字符串专题报告">
+                  谢卿云-2022010910017-字符串专题报告 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

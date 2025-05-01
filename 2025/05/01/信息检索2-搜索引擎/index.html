@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="第二章-搜索引擎[TOC] 技术架构网络爬虫：搜索引擎的信息源来自于互联网网页，通过网络爬虫将整个互联网获取到本地。网页去重：互联网页面中有相当大比例的内容是完全相同或者近似重复的，网页去重模块会对此做出检测，并去除重复内容。倒排索引：网页内容通过倒排索引这种高效查询数据结构来保存，网页之间的链接关系也会保存。链接分析：链接关系在网页相关性排序阶段是可利用的，通过链接分析可以判断页面的相对重要性，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息检索2-搜索引擎">
+<meta property="og:url" content="http://example.com/2025/05/01/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A22-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第二章-搜索引擎[TOC] 技术架构网络爬虫：搜索引擎的信息源来自于互联网网页，通过网络爬虫将整个互联网获取到本地。网页去重：互联网页面中有相当大比例的内容是完全相同或者近似重复的，网页去重模块会对此做出检测，并去除重复内容。倒排索引：网页内容通过倒排索引这种高效查询数据结构来保存，网页之间的链接关系也会保存。链接分析：链接关系在网页相关性排序阶段是可利用的，通过链接分析可以判断页面的相对重要性，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241024095937602.png">
+<meta property="og:image" content="http://example.com/assets/image-20241024124807770.png">
+<meta property="og:image" content="http://example.com/assets/image-20241024125629617.png">
+<meta property="og:image" content="http://example.com/assets/image-20241024125543558.png">
+<meta property="og:image" content="http://example.com/assets/image-20241024130947837.png">
+<meta property="og:image" content="http://example.com/assets/image-20241024154324297.png">
+<meta property="og:image" content="http://example.com/assets/image-20241024154851690.png">
+<meta property="og:image" content="http://example.com/assets/image-20241024155029328.png">
+<meta property="og:image" content="http://example.com/assets/image-20241024155152282.png">
+<meta property="og:image" content="http://example.com/assets/image-20241101191223428.png">
+<meta property="og:image" content="http://example.com/assets/image-20241101213037966.png">
+<meta property="og:image" content="http://example.com/assets/image-20241101213640405.png">
+<meta property="og:image" content="http://example.com/assets/image-20241101213949002.png">
+<meta property="og:image" content="http://example.com/assets/image-20241101214840607.png">
+<meta property="og:image" content="http://example.com/assets/image-20241101214958372.png">
+<meta property="og:image" content="http://example.com/assets/image-20241101215323481.png">
+<meta property="og:image" content="http://example.com/assets/image-20241101220610962.png">
+<meta property="og:image" content="http://example.com/assets/image-20241130222013904.png">
+<meta property="og:image" content="http://example.com/assets/image-20241130222140811.png">
+<meta property="og:image" content="http://example.com/assets/image-20241130222529794.png">
+<meta property="og:image" content="http://example.com/assets/image-20241130223129076.png">
+<meta property="og:image" content="http://example.com/assets/image-20241130225903546.png">
+<meta property="og:image" content="http://example.com/assets/image-20241130230628789.png">
+<meta property="og:image" content="http://example.com/assets/image-20241130235350065.png">
+<meta property="og:image" content="http://example.com/assets/image-20241202134030030.png">
+<meta property="og:image" content="http://example.com/assets/image-20241202184015876.png">
+<meta property="og:image" content="http://example.com/assets/image-20241202185543679.png">
+<meta property="og:image" content="http://example.com/assets/image-20241202191525395.png">
+<meta property="og:image" content="http://example.com/assets/image-20241202193637979.png">
+<meta property="og:image" content="http://example.com/assets/image-20241202194049282.png">
+<meta property="og:image" content="http://example.com/assets/image-20241202194110085.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.470Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.416Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241024095937602.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A22-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A22-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/","path":"2025/05/01/信息检索2-搜索引擎/","title":"信息检索2-搜索引擎"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>信息检索2-搜索引擎 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E"><span class="nav-number">1.</span> <span class="nav-text">第二章-搜索引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">技术架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB"><span class="nav-number">1.2.</span> <span class="nav-text">网络爬虫</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.1.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%93%E5%8F%96%E7%AD%96%E7%95%A5"><span class="nav-number">1.2.2.</span> <span class="nav-text">抓取策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">深度优先</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">宽度优先</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Partial-PageRank"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">Partial PageRank</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OPIC%E7%AD%96%E7%95%A5-Online-Page-Importance-Computation"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">OPIC策略(Online Page Importance Computation)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%A7%E7%AB%99%E4%BC%98%E5%85%88%E7%AD%96%E7%95%A5-Lager-Sites-First"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">大站优先策略(Lager Sites First)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5"><span class="nav-number">1.2.3.</span> <span class="nav-text">网页更新策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%86%E5%8F%B2%E5%8F%82%E8%80%83%E7%AD%96%E7%95%A5"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">历史参考策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E7%AD%96%E7%95%A5"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">用户体验策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB%E6%8A%BD%E6%A0%B7%E7%AD%96%E7%95%A5"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">聚类抽样策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%88%AC%E8%99%AB"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">分布式爬虫</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%BC%8F%E5%88%86%E5%B8%83%E7%88%AC%E8%99%AB"><span class="nav-number">1.2.3.4.1.</span> <span class="nav-text">主从式分布爬虫</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E7%AD%89%E5%BC%8F%E5%88%86%E5%B8%83%E7%88%AC%E8%99%AB"><span class="nav-number">1.2.3.4.2.</span> <span class="nav-text">对等式分布爬虫</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9A%97%E7%BD%91%E6%8A%93%E5%8F%96"><span class="nav-number">1.2.3.4.3.</span> <span class="nav-text">暗网抓取</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.2.4.</span> <span class="nav-text">网络协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%8A%80%E6%9C%AF"><span class="nav-number">1.3.</span> <span class="nav-text">索引技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">1.3.1.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E8%AF%8D%E8%AF%8D%E5%85%B8"><span class="nav-number">1.3.2.</span> <span class="nav-text">单词词典</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%B8%8C-%E9%93%BE%E8%A1%A8"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">哈希+链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%91%E5%BD%A2%E8%AF%8D%E5%85%B8%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">树形词典结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%92%E6%8E%92%E5%88%97%E8%A1%A8"><span class="nav-number">1.3.3.</span> <span class="nav-text">倒排列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%92%E6%8E%92%E6%96%87%E6%A1%A3"><span class="nav-number">1.3.4.</span> <span class="nav-text">倒排文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%BB%BA%E7%AB%8B"><span class="nav-number">1.3.5.</span> <span class="nav-text">索引建立</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E9%81%8D%E9%81%8D%E5%8E%86%E6%96%87%E6%A1%A3%E6%B3%95"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">两遍遍历文档法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E6%B3%95"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">排序法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6%E6%B3%95"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">归并法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E7%B4%A2%E5%BC%95"><span class="nav-number">1.3.5.4.</span> <span class="nav-text">动态索引</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%9B%B4%E6%96%B0"><span class="nav-number">1.3.6.</span> <span class="nav-text">索引更新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E9%87%8D%E5%BB%BA%E7%AD%96%E7%95%A5"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">完全重建策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%8D%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5Re-Merge"><span class="nav-number">1.3.6.2.</span> <span class="nav-text">再合并策略Re-Merge</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E5%9C%B0%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5In-Place"><span class="nav-number">1.3.6.3.</span> <span class="nav-text">原地更新策略In-Place</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%AD%96%E7%95%A5"><span class="nav-number">1.3.6.4.</span> <span class="nav-text">混合策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%A4%84%E7%90%86"><span class="nav-number">1.3.7.</span> <span class="nav-text">查询处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E4%B8%80%E6%96%87%E6%A1%A3-Doc-at-a-time"><span class="nav-number">1.3.7.1.</span> <span class="nav-text">一次一文档(Doc at a time)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E4%B8%80%E5%8D%95%E8%AF%8D-Term-at-a-Time"><span class="nav-number">1.3.7.2.</span> <span class="nav-text">一次一单词(Term at a Time)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%B3%E8%B7%83%E6%8C%87%E9%92%88-Skip-Pointer"><span class="nav-number">1.3.7.3.</span> <span class="nav-text">跳跃指针(Skip Pointer)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.3.8.</span> <span class="nav-text">索引压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E5%85%B8%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.3.8.1.</span> <span class="nav-text">词典压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%80%92%E6%8E%92%E5%88%97%E8%A1%A8%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.3.8.2.</span> <span class="nav-text">倒排列表压缩</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">文本处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-number">1.4.1.</span> <span class="nav-text">词法分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E6%8A%80%E6%9C%AF"><span class="nav-number">1.4.2.</span> <span class="nav-text">中文分词技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%9A%84%E5%88%86%E8%AF%8D"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">基于字符串匹配的分词</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%90%86%E8%A7%A3%E7%9A%84%E5%88%86%E8%AF%8D%E6%96%B9%E6%B3%95"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">基于理解的分词方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%BB%9F%E8%AE%A1%E7%9A%84%E5%88%86%E8%AF%8D%E6%8A%80%E6%9C%AF"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">基于统计的分词技术</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%94%A8%E8%AF%8D%E6%B1%87%E5%88%A0%E9%99%A4"><span class="nav-number">1.4.3.</span> <span class="nav-text">无用词汇删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8B%B1%E6%96%87%E8%AF%8D%E5%B9%B2%E6%8F%90%E5%8F%96"><span class="nav-number">1.4.4.</span> <span class="nav-text">英文词干提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E8%AF%8D%E9%80%89%E6%8B%A9"><span class="nav-number">1.4.5.</span> <span class="nav-text">索引词选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E6%8E%92%E5%BA%8F"><span class="nav-number">1.5.</span> <span class="nav-text">搜索排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6"><span class="nav-number">1.5.1.</span> <span class="nav-text">相关计算框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%8E%92%E5%BA%8F"><span class="nav-number">1.5.2.</span> <span class="nav-text">机器学习排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E7%B4%A2%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BB%B7"><span class="nav-number">1.5.3.</span> <span class="nav-text">检索质量评价</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E5%88%86%E6%9E%90"><span class="nav-number">1.6.</span> <span class="nav-text">链接分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PageRank%E7%AE%97%E6%B3%95"><span class="nav-number">1.6.1.</span> <span class="nav-text">PageRank算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Simplified-Version"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">Simplified Version</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Standard-Version"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">Standard Version</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HITS%E7%AE%97%E6%B3%95"><span class="nav-number">1.6.2.</span> <span class="nav-text">HITS算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%94%E8%BE%83"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">比较</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E5%8E%BB%E9%87%8D"><span class="nav-number">1.7.</span> <span class="nav-text">网页去重</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6"><span class="nav-number">1.7.1.</span> <span class="nav-text">框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shingling%E7%AE%97%E6%B3%95"><span class="nav-number">1.7.2.</span> <span class="nav-text">Shingling算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SuperShingle-Trick"><span class="nav-number">1.7.3.</span> <span class="nav-text">SuperShingle Trick</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SimHash%E7%AE%97%E6%B3%95"><span class="nav-number">1.7.4.</span> <span class="nav-text">SimHash算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E5%8F%8D%E4%BD%9C%E5%BC%8A"><span class="nav-number">1.8.</span> <span class="nav-text">网页反作弊</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E5%BC%8A%E6%96%B9%E6%B3%95"><span class="nav-number">1.8.1.</span> <span class="nav-text">作弊方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E4%BD%9C%E5%BC%8A"><span class="nav-number">1.8.1.1.</span> <span class="nav-text">内容作弊</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E4%BD%9C%E5%BC%8A"><span class="nav-number">1.8.1.2.</span> <span class="nav-text">链接作弊</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E9%9A%90%E8%97%8F%E4%BD%9C%E5%BC%8A"><span class="nav-number">1.8.1.3.</span> <span class="nav-text">页面隐藏作弊</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web2-0%E4%BD%9C%E5%BC%8A"><span class="nav-number">1.8.1.4.</span> <span class="nav-text">Web2.0作弊</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E4%BD%9C%E5%BC%8A%E6%8A%80%E6%9C%AF"><span class="nav-number">1.8.2.</span> <span class="nav-text">反作弊技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%A1%E4%BB%BB%E4%BC%A0%E6%92%AD%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.8.2.1.</span> <span class="nav-text">信任传播模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E4%BF%A1%E4%BB%BB%E4%BC%A0%E6%92%AD%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.8.2.2.</span> <span class="nav-text">不信任传播模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%8F%91%E7%8E%B0%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.8.2.3.</span> <span class="nav-text">异常发现模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E5%86%85%E5%AE%B9%E4%BD%9C%E5%BC%8A"><span class="nav-number">1.8.2.4.</span> <span class="nav-text">反内容作弊</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E9%93%BE%E6%8E%A5%E4%BD%9C%E5%BC%8A"><span class="nav-number">1.8.3.</span> <span class="nav-text">反链接作弊</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E9%9A%90%E8%97%8F%E4%BD%9C%E5%BC%8A"><span class="nav-number">1.8.3.1.</span> <span class="nav-text">反隐藏作弊</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A22-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="信息检索2-搜索引擎 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          信息检索2-搜索引擎
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第二章-搜索引擎"><a href="#第二章-搜索引擎" class="headerlink" title="第二章-搜索引擎"></a>第二章-搜索引擎</h1><p>[TOC]</p>
+<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p><strong>网络爬虫</strong>：搜索引擎的信息源来自于互联网网页，通过网络爬虫将整个互联网获取到本地。<br><strong>网页去重</strong>：互联网页面中有相当大比例的内容是完全相同或者近似重复的，网页去重模块会对此做出检测，并去除重复内容。<br><strong>倒排索引</strong>：网页内容通过倒排索引这种高效查询数据结构来保存，网页之间的链接关系也会保存。<br><strong>链接分析</strong>：链接关系在网页相关性排序阶段是可利用的，通过链接分析可以判断页面的相对重要性，对于为用户提供准确的搜索结果帮助很大。</p>
+<p><strong>云存储与云计算平台</strong>：网页数量非常多，搜索引擎不仅需要保存网页原始信息，还需要保存一些中间结果，单台或少量机器是不现实的。优秀的云存储和云计算平台已经称为大型商业搜索引擎的核心竞争力。<br><strong>查询分析</strong>：当搜索引擎接收到用户的查询词后，首先需要对查询词进行分析，推导用户的真正搜索意图。<br><strong>Cache系统</strong>：搜索引擎的缓存系统存储了不同的查询意图对应的搜索结果，如果能够在缓存系统中找到满足用户需求的信息，则可以直接将搜索结果返回给用户。</p>
+<p><strong>网页排序</strong>：根据用户的查询实时实时计算哪些网页满足用户信息需求，并排序输出作为搜索结果。网页排序最重要的两个参考因素：内容相似性因素、网页重要性因素。<br><strong>反作弊</strong>：作弊将网页的搜索排名提高到与其网页质量不相称的位置，这会严重影响用户的搜索体验。自动发现作弊网页并对其处罚，是搜索引擎非常重要的一部分。</p>
+<p><img src="/assets/image-20241024095937602.png" alt="image-20241024095937602"></p>
+<h2 id="网络爬虫"><a href="#网络爬虫" class="headerlink" title="网络爬虫"></a>网络爬虫</h2><p>网络爬虫是通过网页的链接地址来寻找网页，从网站某一个页面开始，读取网页的内容，找到在网页中的其他链接地址，然后通过这些链接地址寻找下一个网页，如此循环下去，直到把这个网站所有网页抓取完为止。</p>
+<ul>
+<li>作用：为搜索引擎抓取大量数据；</li>
+<li>对象：整个互联网上的网页；</li>
+</ul>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>基本过程：</p>
+<ul>
+<li>为爬虫输送表示起始位置的URL列表；</li>
+<li>从种子列表出发，不断爬行发现新的URL</li>
+<li>根据某种抓取策略爬行发现新的URL，如此重复</li>
+</ul>
+<p><img src="/assets/image-20241024124807770.png" alt="image-20241024124807770"></p>
+<p>类型：</p>
+<ul>
+<li>批量性爬虫：有明确的抓取范围和目标，当爬虫达到这个抓取目标之后，即停止抓取过程。</li>
+<li>增量型爬虫：会保持持续不断的抓取，对于抓取到的网页，定期更新</li>
+<li>垂直型爬虫：关注特定主题内容或者特定行业的网页</li>
+</ul>
+<h3 id="抓取策略"><a href="#抓取策略" class="headerlink" title="抓取策略"></a>抓取策略</h3><h4 id="深度优先"><a href="#深度优先" class="headerlink" title="深度优先"></a>深度优先</h4><p>依据深度优先的原则，先下载当前网页所链接的URL，追加到待抓取URL队列末尾。</p>
+<p><img src="/assets/image-20241024125629617.png" alt="image-20241024125629617"></p>
+<h4 id="宽度优先"><a href="#宽度优先" class="headerlink" title="宽度优先"></a>宽度优先</h4><p>将新下载的网页包含的链接直接追加到待抓取URL队列末尾。</p>
+<p><img src="/assets/image-20241024125543558.png" alt="image-20241024125543558"></p>
+<h4 id="Partial-PageRank"><a href="#Partial-PageRank" class="headerlink" title="Partial PageRank"></a>Partial PageRank</h4><ul>
+<li>对于已经下载的网页，加上待抓取URL队列中的URL一起，形成网页集合</li>
+<li>在此集合内进行PageRank计算，将待抓取URL队列里的网页按照PageRank得分降序排列</li>
+<li>形成的序列就是爬虫接下来应该依次抓取的URL列表。</li>
+<li>一个性能折衷方案是每新下载$K$个网页时，将所有网页重新计算非完全PageRank，对产生的新网页赋临时Pagerank值，若值比较大则优先下载；</li>
+</ul>
+<p><img src="/assets/image-20241024130947837.png" alt="image-20241024130947837"></p>
+<h4 id="OPIC策略-Online-Page-Importance-Computation"><a href="#OPIC策略-Online-Page-Importance-Computation" class="headerlink" title="OPIC策略(Online Page Importance Computation)"></a>OPIC策略(Online Page Importance Computation)</h4><p>每个互联网页面都给予相同的现金，每当下载了某个页面P之后，P将自己拥有的现金平均分配给P所包含的链接页面，把自己的现金清空。</p>
+<p>对于待抓取的URL队列中的网页，则根据手头拥有的现金金额进行排序，优先下载现金最充裕的网页。</p>
+<ul>
+<li>不同于Pagerank的迭代计算，OPIC是在线策略，适合实时计算，</li>
+<li>PageRank需要考虑无连接关系的网页远程跳转的过程，OPIC没有这一计算因子</li>
+</ul>
+<h4 id="大站优先策略-Lager-Sites-First"><a href="#大站优先策略-Lager-Sites-First" class="headerlink" title="大站优先策略(Lager Sites First)"></a>大站优先策略(Lager Sites First)</h4><p>以网站为单位来衡量网页重要性，对于待抓取的URL队列中的网页，如果哪个网站等待下载的页面最多，则优先下载这些链接</p>
+<h3 id="网页更新策略"><a href="#网页更新策略" class="headerlink" title="网页更新策略"></a>网页更新策略</h3><p>互联网的内容具有动态性，网页更新策略的任务就是决定何时<strong>重新抓取已经下载过的网页</strong>，使得本地下载的网页和互联网的原始网页内容保持一致；</p>
+<h4 id="历史参考策略"><a href="#历史参考策略" class="headerlink" title="历史参考策略"></a>历史参考策略</h4><p>假设：过去频繁更新的网页，那么将来也会频繁更新。该策略通过参考其历史更新情况来预估某个网页何时进行更新。</p>
+<p>利用泊松过程对网站的变化建模，通过历史的变动情况，利用模型进行预测网页内容何时发生变化；</p>
+<h4 id="用户体验策略"><a href="#用户体验策略" class="headerlink" title="用户体验策略"></a>用户体验策略</h4><p>更新网页取决于网页的内容变化带来的搜索质量变化；</p>
+<p>影响越大的网页，则越快更新；</p>
+<p>用户体验策略保存网页的多个历史版本，并根据过去每次内容变化对搜索资料的影响，得出一个平均值，以此作为判断爬虫更新该网页时机的参考依据，影响越大的网页则优先调度进行更新。</p>
+<h4 id="聚类抽样策略"><a href="#聚类抽样策略" class="headerlink" title="聚类抽样策略"></a>聚类抽样策略</h4><p>具有相似属性的网页，其更新周期也是类似的，只需计算某个类别的更新周期；</p>
+<p>对同一类别的网页进行采样，以被采样的网页更新周期作为其他网页的更新周期；</p>
+<p>无需保留网页的历史信息。对于新网页也只需要找到其聚类就能进行更新；</p>
+<p><img src="/assets/image-20241024154324297.png" alt="image-20241024154324297"></p>
+<p>与网页更新周期相关的属性有两大类：</p>
+<ul>
+<li>静态：页面内容，链接深度，PageRank；</li>
+<li>动态：图片数量的变化情况，入链出链的变化情况；</li>
+</ul>
+<h4 id="分布式爬虫"><a href="#分布式爬虫" class="headerlink" title="分布式爬虫"></a>分布式爬虫</h4><p>分布式技术将抓取任务分布到不同的节点以提高抓取的性能和可拓展性；</p>
+<p>层级划分：分布式数据中心，分布式抓取服务器。分布式爬虫程序；</p>
+<p><img src="/assets/image-20241024154851690.png" alt="image-20241024154851690"></p>
+<h5 id="主从式分布爬虫"><a href="#主从式分布爬虫" class="headerlink" title="主从式分布爬虫"></a>主从式分布爬虫</h5><p>不同服务器承担不同的角色分工。</p>
+<ul>
+<li>URL服务器维护待抓取URL队列，获得待抓取网页的URL，分配给不同的抓取服务器，分配使得各抓取服务器负载均衡。</li>
+<li><strong>抓取服务器之间没有通信联系，每个抓取服务器只和URL服务器进行消息传递</strong>。</li>
+</ul>
+<p><img src="/assets/image-20241024155029328.png" alt="image-20241024155029328"></p>
+<p>URL服务器承担很多管理任务，同时，待抓取队列数量巨大，因此，URL服务器容易成为整个系统的瓶颈。</p>
+<h5 id="对等式分布爬虫"><a href="#对等式分布爬虫" class="headerlink" title="对等式分布爬虫"></a>对等式分布爬虫</h5><p>在对等式分布爬虫体系中，服务器之间不存在分工差异，每台服务器承担相同的功能，各自负担一部分URL的抓取工作。<br>该架构中没有URL服务器，则需要服务器自己判断某个URL是否需要自己抓取，或者将读取到的URL传递给其他服务器。</p>
+<p>许多对等式分布爬虫通过哈希取模的方法进行任务的分工；</p>
+<p><img src="/assets/image-20241024155152282.png" alt="image-20241024155152282"></p>
+<h5 id="暗网抓取"><a href="#暗网抓取" class="headerlink" title="暗网抓取"></a>暗网抓取</h5><p>暗网：目前搜索引擎按常规方式很难抓取到的互联网页面</p>
+<p>典型的暗网是垂直领域的网站，通常是网站提供组合查询界面，用户输入查询才能获取数据的页面；</p>
+<p>难点：模拟人的行为，填写内容并提交表单，获取数据；</p>
+<p>技术：组合查询问题，文本框填写问题；</p>
+<p><strong>组合查询问题</strong></p>
+<p>查询模板：如果在向搜索引擎提交查询的时候，部分属性被赋予值，其他属性不赋值，则这几个赋值的属性称为查询模板。</p>
+<p>对于固定的查询模板，如果给模板内的每个属性都赋值，形成不同的查询组合，提交给搜索引擎，获得的返回结果，如果内容相差甚大，则这个查询模板是富含信息的查询模板。</p>
+<p>对于一个固定的垂直搜索来说，其查询模板组合起来有很多，抓取的任务是找到富含信息的查询模板。</p>
+<p>ISIT算法：减少提交的查询模板数量</p>
+<ul>
+<li>先从1维开始，判断是否是富含信息模板，如果是的话，将该1维模板拓展到2维，再次依次考察对应的二维模板；</li>
+<li>如此类推，逐渐增加维数，直到再也找不到富含信息模板为止。</li>
+</ul>
+<p><strong>文本框填写问题</strong></p>
+<p>对于输入中的文本框，需要爬虫自动生成查询。</p>
+<ul>
+<li>可以通过人工观察对网站进行定位，提供一个初始种子查询关键词表，以此作为爬虫工作的基础条件。</li>
+<li>通过人工启发结合递归迭代的方式，尽可能覆盖数据库里的记录。</li>
+</ul>
+<h3 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h3><ul>
+<li>URL规范：统一资源定位符,<code>&lt;协议&gt;://&lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;</code>;</li>
+<li>HTTP协议:超文本传输协议,定义了浏览器怎样向万维网服务器请求万维网文档，以及服务器怎样把文档传送给浏览器。</li>
+<li>Robots协议:是Web站点和搜索引擎爬虫交互的一种方式，<code>robots.txt</code>是存放在站点根目录下的一个纯文本文件。该文件可以指定搜索引擎爬虫只抓取指定的内容，或者禁止搜索引擎爬虫抓取网站的部分或全部内容。</li>
+</ul>
+<h2 id="索引技术"><a href="#索引技术" class="headerlink" title="索引技术"></a>索引技术</h2><h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p>搜索引擎索引是实现单词-文档矩阵的具体的数据结构；</p>
+<table>
+<thead>
+<tr>
+<th><strong>术语</strong></th>
+<th><strong>概念</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>文档</td>
+<td>以文本形式存在的存储对象</td>
+</tr>
+<tr>
+<td>文档集合</td>
+<td>由若干文档构成的集合</td>
+</tr>
+<tr>
+<td>文档编号</td>
+<td>作为文档的唯一标识</td>
+</tr>
+<tr>
+<td>单词编号</td>
+<td>作为单词的唯一标识</td>
+</tr>
+<tr>
+<td>倒排索引</td>
+<td>实现单词—文档矩阵的一种具体存储形式</td>
+</tr>
+<tr>
+<td>单词词典</td>
+<td><strong>文档集合</strong>中出现过的所有单词构成的字符串集合</td>
+</tr>
+<tr>
+<td>倒排列表</td>
+<td>记载出现过某个单词的所有文档的文档列表、以及单词在该文档中出现的位置信息</td>
+</tr>
+<tr>
+<td>倒排文档</td>
+<td>顺序存储倒排列表的文件</td>
+</tr>
+</tbody></table>
+<p><img src="/assets/image-20241101191223428.png" alt="image-20241101191223428"></p>
+<h3 id="单词词典"><a href="#单词词典" class="headerlink" title="单词词典"></a>单词词典</h3><p>单词词典：用来维护文档集合中出现过的所有单词相关信息，记载某个单词对应的倒排列表在倒排文件中的位置信息；</p>
+<h4 id="哈希-链表"><a href="#哈希-链表" class="headerlink" title="哈希+链表"></a>哈希+链表</h4><p>主体部分是哈希表，每个哈希表项保存一个指针，指针指向冲突链表，在冲突链表里，相同哈希值的单词形成链表结构。</p>
+<p><img src="/assets/image-20241101213037966.png" alt="image-20241101213037966"></p>
+<p>冲突链表：两个不同单词获得相同的哈希值，这在哈希方法里称为一次冲突，可将相同哈希值的单词存储在链表里，以供后续查找。</p>
+<p>建立词典：</p>
+<ol>
+<li>对于某个文档出现的单词T，利用Hash函数获取其哈希值；</li>
+<li>根据哈希值对应的哈希表项读取并保存其中的指针，找到对应的冲突链表；</li>
+<li>若冲突链表中已经存在单词T，则说明该单词之前解析的文档中已经出现过；若未发现该单词，则将其加入冲突链表中。</li>
+</ol>
+<p>响应用户请求：</p>
+<ol>
+<li>先计算请求的哈希值</li>
+<li>定位对应的哈希槽中，获取冲突链表</li>
+<li>将查询和链表中的每一个单词进行比较；</li>
+</ol>
+<h4 id="树形词典结构"><a href="#树形词典结构" class="headerlink" title="树形词典结构"></a>树形词典结构</h4><p>利用B树可以进行高效的查找，前提是字典项具有顺序；</p>
+<p><img src="/assets/image-20241101213640405.png" alt="image-20241101213640405"></p>
+<h3 id="倒排列表"><a href="#倒排列表" class="headerlink" title="倒排列表"></a>倒排列表</h3><p>一个倒排索引项描述一个单词和文档相关的信息,形成列表结构，也就是倒排列表；</p>
+<ul>
+<li>每一个文档维护一个文档编号<code>DocID</code></li>
+<li>单词在在这个文档出现的次数<code>TF</code></li>
+<li>单词在文档出现的位置…</li>
+</ul>
+<p><img src="/assets/image-20241101213949002.png" alt="image-20241101213949002"></p>
+<p>在实际实现中，并不存储实际的文档编号，二十存储文档编号差值(D-Gap)</p>
+<ul>
+<li>相邻两个倒排索引项文档编号的插值</li>
+<li>文档编号一般是大数值，这样的作法可以增加数据的压缩率；</li>
+<li>文档通常递增，因此通常为大于0的整数；</li>
+</ul>
+<h3 id="倒排文档"><a href="#倒排文档" class="headerlink" title="倒排文档"></a>倒排文档</h3><p>倒排文档的组成：</p>
+<ul>
+<li>关键字（作者，主题词，分类号）</li>
+<li>目长：含有关键字记录的条数</li>
+<li>记录号集合：所有和该关键字有关的记录号；</li>
+</ul>
+<p>倒排文档建立在顺排文档的基础上，它是从主文档中提取可检索字段内容，也有采取自动从标题、文摘或全文中提取关键词，利用所得到的这些属性词来建立倒排文档。</p>
+<h3 id="索引建立"><a href="#索引建立" class="headerlink" title="索引建立"></a>索引建立</h3><h4 id="两遍遍历文档法"><a href="#两遍遍历文档法" class="headerlink" title="两遍遍历文档法"></a>两遍遍历文档法</h4><p>在内存里完成索引的创建过程的，需要对文档进行两遍扫描。</p>
+<ol>
+<li>第一次遍历：获得统计信息，根据统计信息分配内存，建立好单词的倒排列表在内存的位置；</li>
+<li>第二遍文档遍历：建立每个单词的倒排列表信息；</li>
+</ol>
+<p>一个空间上的优化是：始终在内存中分配固定大小的空间，用来存放词典信息和索引的中间结果，当分配的空间消耗完时，把<strong>中间结果写进磁盘</strong>，清空内存里中间结果所占空间，以用做下一轮存放索引中间结果的存储区。</p>
+<p><img src="/assets/image-20241101214840607.png" alt="image-20241101214840607"></p>
+<h4 id="排序法"><a href="#排序法" class="headerlink" title="排序法"></a>排序法</h4><p>排序法是指对中间结果在内存中排序；</p>
+<p>基本步骤：</p>
+<ol>
+<li>读入一个文档后，给文档进行编号，赋予唯一的文档ID，并对文档内容解析；</li>
+<li>对于文档中出现的单词，通过查词典将单词转换为对应的单词ID，如果词典中没有这个单词，说明是第一次检测到，则赋予单词唯一的单词ID并插入词典中。</li>
+<li>对该文档内每个单词建立一个（单词ID，文档ID，单词频率）三元组，这个三元组就是单词对应文档的倒排列表项，将这个三元组追加进入中间结果存储区末尾。</li>
+<li>对文档内的所有单词都经过如此处理，形成三元组序列的形式，处理完成以后，开始依次序处理下一文档，如此循环。</li>
+<li>当分配的内存空间被占满时，对三元组中间结果进行排序。排序的原则：<ul>
+<li>主键是单词ID，即首先要按照单词ID由小到大排序；</li>
+<li>次键是文档ID，即在相同单词ID的情况下，按照文档ID由小到大排序。</li>
+</ul>
+</li>
+<li>然后将排好序的三元组写入临时文件中，空出内存来进行后续文档的处理。</li>
+</ol>
+<p><img src="/assets/image-20241101214958372.png" alt="image-20241101214958372"></p>
+<p>注意，在建立索引的过程中，词典一直存储在内存中，每次清空内存只是将中间结果写入磁盘；</p>
+<p>最终的文档处理完毕后，需要对中间结果进行合并，由于每个中间结果都是有序的</p>
+<ol>
+<li>在合并中间结果的过程中，系统为每个中间结果文件在内存中开辟一个数据缓冲区，用来存放文件的部分数据。</li>
+<li>将不同缓冲区中包含的同一个单词ID的三元组进行合并。</li>
+<li>如果某个单词ID的所有三元组全部合并完成，说明这个单词的倒排列表已经构建完成，则将其写入最终索引中，同时将各个缓冲区中对应这个单词ID的三元组内容清空，这样缓冲区就可以继续从中间结果文件中读入后续的三元组来进行下一个单词的三元组合并。</li>
+</ol>
+<p><img src="/assets/image-20241101215323481.png" alt="image-20241101215323481"></p>
+<h4 id="归并法"><a href="#归并法" class="headerlink" title="归并法"></a>归并法</h4><p>分两个阶段进行</p>
+<ul>
+<li>在内存中维护中间结果，当内存占满后，将内存数据写入磁盘临时文件</li>
+<li>对临时文件进行归并，形成最终索引，</li>
+</ul>
+<p>需要在内存建立索引结构，描述目前处理的文档子集；</p>
+<p>在将中间结果写入磁盘临时文件时，将整个内存的倒排索引写入临时文件。依次将单词和对应的倒排列表写入磁盘文件，随后彻底清空所占内存。</p>
+<h4 id="动态索引"><a href="#动态索引" class="headerlink" title="动态索引"></a>动态索引</h4><p>组成：</p>
+<ul>
+<li>倒排索引：在磁盘中已经存在的索引；</li>
+<li>临时索引：在<strong>内存</strong>中实时建立的倒排索引</li>
+<li>已删除文档列表：用来存储已被删除的文档的相应的文档ID，形成一个文档ID列表。</li>
+</ul>
+<p>动态索引的处理办法：</p>
+<ol>
+<li>当系统发现有新文档进入时，立即将其加入到临时索引结构中。</li>
+<li>当文档被删除时，则将其加入删除文档队列。</li>
+<li>当文档被更改时，则将原始文档放入已删除队列，解析更改后的文档内容，并将其加入临时索引中。</li>
+</ol>
+<p><img src="/assets/image-20241101220610962.png" alt="image-20241101220610962"></p>
+<p>对于查询请求，如何形成准确的搜索结果？</p>
+<ul>
+<li>同时从倒排索引和临时索引中读取对应的倒排列表；</li>
+<li>找到的文档集合进行合并；</li>
+<li>在文档删除列表过滤；</li>
+</ul>
+<h3 id="索引更新"><a href="#索引更新" class="headerlink" title="索引更新"></a>索引更新</h3><h4 id="完全重建策略"><a href="#完全重建策略" class="headerlink" title="完全重建策略"></a>完全重建策略</h4><p>当新增文档达到一定数量，将新增文档和原先的老文档进行合并，然后利用建立静态索引的方式，对所有文档重新建立索引。</p>
+<p>新索引建立完成后，老的索引被遗弃释放，之后对用户查询的相应完全由新的索引来负责。</p>
+<p><img src="/assets/image-20241130222013904.png" alt="image-20241130222013904"></p>
+<p>由于重建索引需要较长的时间，在进行索引重建过程中，内存中仍然需要维护老的索引来应对用户的查询请求。只有当新索引建立完成后，才能释放旧的索引，将用户查询请求切换到新索引上。</p>
+<h4 id="再合并策略Re-Merge"><a href="#再合并策略Re-Merge" class="headerlink" title="再合并策略Re-Merge"></a>再合并策略Re-Merge</h4><p>当新增文档进入搜索系统时，搜索系统在内存维护临时倒排索引来记录信息，当新增文档达到一定数量，或者指定大小的内存被消耗完，则把临时索引和老文档的倒排索引进行合并，以生成新的索引。</p>
+<p>步骤如下：</p>
+<ol>
+<li>当新增文档进入系统，解析文档，之后更新内存中的临时索引，文档中出现的每个单词，在其倒排列表末尾追加倒排列表项，这个临时索引可称为增量索引。</li>
+<li>增量索引将指定的内存消耗光后，此时需要进行一次索引合并，即将增量索引和旧文档的倒排列表索引进行合并。</li>
+<li>在合并过程中，需要一次遍历增量索引和老索引单词词典中包含的单词及其对应的倒排列表，可以用两个指针分别指向两套索引中的目前需要合并的单词：<ul>
+<li>如果这个单词在词典序中小于老索引的单词指针指向的单词，说明这个单词在旧索引中未出现过，则直接将这个单词对应的倒排列表写入新索引的倒排文件中，同时增量索引单词指针后移指向下一个单词。</li>
+<li>如果两个单词指针指向的单词相同，说明这个单词同时在增量索引和旧索引中同时出现，则将老索引中这个单词的倒排列表写入新索引的倒排列表，然后把增量索引中这个单词的倒排列表追加到其后，这样就完成了这个单词所有倒排列表的合并。</li>
+<li>如果某个单词仅在老索引中出现过，即发现老索引的单词指针指向的单词，其词典序小于增量索引单词指针指向的单词，则直接将老索引中对应的倒排列表写入新索引倒排文件中。新索引的单词指针后移指向下一个单词，继续合并。</li>
+</ul>
+</li>
+</ol>
+<p><img src="/assets/image-20241130222140811.png" alt="image-20241130222140811"></p>
+<p>由于在磁盘的老索引(倒排文档对应的倒排列表，保存为文件)是顺序的，增量索引在遍历词典的时候也按照字典顺序由低到高排列，可以只对倒排文件进行<strong>一遍扫描，顺序读取</strong>，减少了IO开销(文件操作中比较耗时的磁盘寻道时间)，提高合并效率。</p>
+<p><img src="/assets/image-20241130222529794.png" alt="image-20241130222529794"></p>
+<p>这个再合并策略类似于归并排序；</p>
+<ul>
+<li>优点：老的倒排索引是<strong>顺序结构</strong>，遍历时可以顺序读取文件内容，减少磁盘寻道时间，高效更新。</li>
+<li>缺点：<strong>需要生成新的倒排索引文件</strong>，但是老索引很多单词的倒排列表其实没发生什么变化，也需要从老索引中读取出来并写入新索引文件中，这一操作非常耗时，带来大量的<strong>IO开销</strong>；</li>
+</ul>
+<h4 id="原地更新策略In-Place"><a href="#原地更新策略In-Place" class="headerlink" title="原地更新策略In-Place"></a>原地更新策略In-Place</h4><p>在索引合并时，并不生成新的索引文件，而是直接在老的索引文件里进行追加操作，将增量索引里单词的倒排列表项追加到老索引相应位置的末尾。即只更新增量索引里出现的单词相关信息，其他单词相关信息不做变动。</p>
+<p><img src="/assets/image-20241130223129076.png" alt="image-20241130223129076"></p>
+<p>策略步骤如下：</p>
+<ol>
+<li>老索引中每个单词的倒排列表末尾都预留出空余磁盘空间，以作为信息追加的存储区域。</li>
+<li>在对新增索引进行合并时，按照词典序，依次遍历新增索引中包含的单词，并对新增倒排列表的大小和老索引中相应预留空间大小进行比较：<ul>
+<li>如果预留空间足够大，则将新增列表追加到老索引后面即可；</li>
+<li>如果预留空间不足以容纳新增倒排列表，则在磁盘中找到一块完整的连续存储区，这个存储区足以容纳这个单词的倒排列表，然后，将老索引中的倒排列表读出并写入新的磁盘位置，并将增量索引对应的倒排列表追加到其后。</li>
+</ul>
+</li>
+</ol>
+<p>缺点：</p>
+<p>对于倒排文件中的相邻索引单词，其倒排列表顺序一般是按照相邻单词的词典序存储的，但是由于原地更新策略对单词的倒排列表做数据迁移，某些单词及其对应倒排列表会从老索引中移出</p>
+<ul>
+<li>这样就破坏了这种单词连续性，导致在进行索引合并时不能进行顺序读取，必须维护一个单词到其倒排文件相应位置的映射表</li>
+<li>一方面降低了磁盘读取速度，另外一方面需要大量的内存来存储这种映射信息。</li>
+</ul>
+<h4 id="混合策略"><a href="#混合策略" class="headerlink" title="混合策略"></a>混合策略</h4><p>混合策略的出发点是能够结合不同索引更新策略的长处，将不同的索引更新策略混合，以形成更高效的方法。<br>常用的混合策略是根据<strong>单词的倒排列表长度</strong>进行区分：</p>
+<ul>
+<li>对于经常在不同的文档中出现的单词，其对应的倒排列表较长，称为长倒排列表单词，采取原地更新策略；</li>
+<li>对于少见的一些单词，其倒排列表较短，称为短倒排列表单词，则采取再合并策略。</li>
+</ul>
+<h3 id="查询处理"><a href="#查询处理" class="headerlink" title="查询处理"></a>查询处理</h3><h4 id="一次一文档-Doc-at-a-time"><a href="#一次一文档-Doc-at-a-time" class="headerlink" title="一次一文档(Doc at a time)"></a>一次一文档(Doc at a time)</h4><p>以倒排列表中包含的文档为单位，每次将其中某个文档与查询的最终相似性得分计算完毕，然后开始计算另外一个文档的最终得分，直到所有的文档的得分都计算完毕为止。</p>
+<p>步骤</p>
+<ol>
+<li>找到和查询相关的所有文档；</li>
+<li>按照文档顺序，计算每个文档和用户查询的相似性得分<ul>
+<li>对每个查询单词，若文档包含单词，计算文档和单词的相似性得分</li>
+<li>将查询出现的单词对应的得分，累加得到最终相似性得分；</li>
+</ul>
+</li>
+<li>根据文档得分进行大小排序，输出得分<code>Top K</code>作为搜索结果输出，即可完成一次用户查询的响应。</li>
+</ol>
+<p><img src="/assets/image-20241130225903546.png" alt="image-20241130225903546"></p>
+<h4 id="一次一单词-Term-at-a-Time"><a href="#一次一单词-Term-at-a-Time" class="headerlink" title="一次一单词(Term at a Time)"></a>一次一单词(Term at a Time)</h4><p>将某个单词对应的倒排列表中的每个文档ID，都计算一个部分相似性得分，在计算完毕某个单词倒排列表中包含的所有文档之后，接着计算下一个单词的倒排列表中包含的文档。若发现某个文档ID已经有了得分，则在原先得分上进行累加。</p>
+<p>步骤</p>
+<ol>
+<li>找到和查询相关的所有文档；</li>
+<li>按照查询单词顺序， 计算每个文档和用户查询的相似性得分<ul>
+<li>对每个文档，若文档包含单词，计算文档和单词的相似性得分</li>
+<li>将文档的所有部分得分累加得到最终相似性得分；</li>
+</ul>
+</li>
+<li>根据文档得分进行大小排序，输出得分<code>Top K</code>作为搜索结果输出，即可完成一次用户查询的响应。</li>
+</ol>
+<p><img src="/assets/image-20241130230628789.png" alt="image-20241130230628789"></p>
+<h4 id="跳跃指针-Skip-Pointer"><a href="#跳跃指针-Skip-Pointer" class="headerlink" title="跳跃指针(Skip Pointer)"></a>跳跃指针(Skip Pointer)</h4><p>对于某些搜索引擎，认为文档必须包含所有的查询词，才认为文档是相关的；</p>
+<p>文档ID是以<strong>文档编号差值（D-Gap）形式</strong>存储，且这个差值是以<strong>压缩</strong>后的方式编码的；</p>
+<p>note: 若倒排列表直接包含文档ID，而不是差分，只需要通过归并排序能获得倒排列表集合的交集；</p>
+<p>跳跃指针基本思想：将一个倒排列表数据化整为零，切分为若干个固定大小的数据块，一个数据块为一组，对于每个数据块，增加元信息来记录关于这个块的一些信息。</p>
+<ul>
+<li>设置数据块大小，将一个倒排列表分成若干块</li>
+<li>每个块前加入管理信息<code>&lt;idx, Pos j&gt;</code>表示第<code>j</code>个块的首个文档ID为<code>idx</code></li>
+</ul>
+<p>在一个具有跳跃指针的倒排列表中查找某个文档(已知文档ID)：</p>
+<ol>
+<li>先根据跳跃指针，确定文档在哪一个块中；</li>
+<li>连续顺序解压，恢复该块中所有的文档ID，进行比较；</li>
+</ol>
+<p>数据块的大小一般设置为$\sqrt L$,其中倒排列表长度为$L$,效果比较好</p>
+<ul>
+<li>数据块越小，则使用跳跃指针向后进行跳跃的可能性越大，其缺点是增加了比较操作的次数；</li>
+<li>数据块越大，则可以有效减少指针比较次数，其缺点是使用跳跃指针向后跳跃的可能性越小。</li>
+</ul>
+<p>获得查询词的对应的倒排列表交集：反复在两个倒排列表中查找某个文档是否存在，将同时存在两个倒排列表中的文档ID作为计算结果。</p>
+<p>跳跃指针的优点</p>
+<ul>
+<li>相对不包含跳跃指针的索引来说，只需对其中一个数据块进行解压缩和文档编号查找即可获得结果，不用将所有索引数据都进行解压缩和比较操作。这明显加快了查找速度，并节省内存空间。</li>
+</ul>
+<h3 id="索引压缩"><a href="#索引压缩" class="headerlink" title="索引压缩"></a>索引压缩</h3><p>索引压缩则可以利用数据压缩算法，有效减少数据量，并且可以减少磁盘读&#x2F;写数据量，加快用户查询的响应速度。</p>
+<p>倒排索引包含两个部分：单词词典、单词对应的倒排列表。</p>
+<h4 id="词典压缩"><a href="#词典压缩" class="headerlink" title="词典压缩"></a>词典压缩</h4><p>词典组织方式，一般存储单词+DF+指向倒排列表的指针</p>
+<ul>
+<li>哈希加链表</li>
+<li>B树形词典结构</li>
+</ul>
+<p>结构优化</p>
+<ul>
+<li>将单词连续存储在某个内存区域，原来存储单词内容的部分由指向这个存储区对应单词起始位置的指针代替；</li>
+<li>单词结尾可以采用下一个单词的指针所指向位置判断。</li>
+</ul>
+<p><img src="/assets/image-20241130235350065.png" alt="image-20241130235350065"></p>
+<p>进一步的优化技术：</p>
+<ul>
+<li>将连续词典分块，动态调整分块大小，以获取最优压缩效果；</li>
+<li>原来每个词典项需保留一个指向连续词典区的指针，分块之后，每个块中的词典项共享同一个指针。</li>
+<li>每个分块内包含多个单词，则为每个单词增加单词长度信息，以在提取单词时对块内不同单词予以区分。</li>
+</ul>
+<h4 id="倒排列表压缩"><a href="#倒排列表压缩" class="headerlink" title="倒排列表压缩"></a>倒排列表压缩</h4><p>采用<strong>二进制编码</strong>：由二进制数字0和1表示实际数据，不同的比特宽度代表了不同的数字表示范围。</p>
+<p>倒排列表压缩算法举例：</p>
+<ul>
+<li><p>Elias Gamma算法:利用分解函数将待压缩的数字分解为两个因子，然后分别用一元编码和二进制编码来表达这两个因子。</p>
+<p>将分解数字表示为$x&#x3D;2^e+d$,因子$e+1$用一元编码表示，因子$d$采用长度为$e$的二进制编码表示</p>
+</li>
+<li><p>Elias Delta算法：利用了两次Elias Gamma算法，将待压缩的数字分解为3个因子，之后利用一元编码和二进制编码来进行数值压缩。</p>
+<p>将分解数字表示为$x&#x3D;2^e+d$,因子$e+1$用Elias Gamma算法继续分解为个因子，因子$d$采用长度为$e$的二进制编码表示</p>
+</li>
+<li><p>PForDelta算法：PForDelta算法是目前解压速度最快的一种倒排文件压缩算法，其主要思想是尽可能一次性压缩和解压多个数值。设定连续压缩$K$个数值，取一定比例作为异常大数；</p>
+<p>压缩的数据分为3部分：异常数据存储区、常规数据存储区、异常链表头。</p>
+<p>压缩过程</p>
+<ol>
+<li>确定小数的最大者，进而确定比例宽度；</li>
+<li>对原始数据循环遍历，处理异常大数。遇到大数则逆序放置到静态数据尾端，并将异常大数转换为链表结构。</li>
+<li>将小数一次性快速压缩，存入常规数据存储区，压缩按照先前得到的比例宽度</li>
+</ol>
+<p>解压过程</p>
+<p>一次性将常规存储区的数据进行解压，根据异常链表头、依次顺序读出异常大数的位置，结合尾部存储的异常大数恢复原始数值序列。</p>
+<p><img src="/assets/image-20241202134030030.png" alt="image-20241202134030030"></p>
+</li>
+</ul>
+<h2 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h2><p>一般来说，名词是最能表达文档内容的。因此，对文档进行预处理是必要的。</p>
+<p>文本处理过程：</p>
+<ul>
+<li>文本的词法分析：主要是对文本中的数字、连接符、标点符号和字符的大小写进行处理；</li>
+<li>无用词汇的删除：主要是过滤掉那些对于信息获取过程来说区分能力低的词汇；</li>
+<li>词干提取：主要是去除词缀（前缀和后缀），这样可以允许所获取的文档包含一些查询词条的变换形式；</li>
+<li>索引词条&#x2F;词干的选择：在选择时，通常按照单词的习惯用法，实际上名词往往要比形容词、副词和动词包含更多的语义；</li>
+<li>构造词条的分类结构：例如词典或者结构抽取，利用它可以进行查询的扩展。</li>
+</ul>
+<h3 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h3><p>将字符串（文档中的文本）转换成词条的过程，这些词条可能被用来作为索引词条。因此词法分析的主要目的是识别文本中的词条。</p>
+<ul>
+<li>英文：在对英文进行分词的过程中，除了空格分隔符，还需要处理：数字、连字符、标点符号和字母的大小写。</li>
+<li>数字：数字一般不适合用作索引词条，因为对于数字来说，如果不参考上下文，它就没有明确的含义。 </li>
+<li>连字符：对于连字符的处理，目前常用的是方法是，首先采用一定的规则选出那些对词义有影响的连字符号，然后将其他的连字符都过滤掉。</li>
+<li>标点符号：在词法分析过程中，标点符号将被全部去除。但是，对于那些成为单词中一部分的标点符号来说，一般不可以去除。<br>字母的大小写：可以将文本中的所有词条都转换成大写或者小写。但是在某些特殊情况下，也需要对大小写进行区分。</li>
+</ul>
+<h3 id="中文分词技术"><a href="#中文分词技术" class="headerlink" title="中文分词技术"></a>中文分词技术</h3><p>对于中文来说，词与词之间没有分隔符，且存在许多歧义现象；</p>
+<ul>
+<li>单字切分：是指按照中文一个字、一个字地进行分词。按此方式切分出来的词进入索引，称为字索引。 </li>
+<li>二分法：是指每两个字进行一次切分。</li>
+<li>词库分词：是指用一个已经建立好的词的集合去匹配目标，当遇上集合中已经存在的词时，就将之切分出来。</li>
+</ul>
+<p>系统评价：</p>
+<ul>
+<li><p>用户相应度：主要指用户对这项技术的满意度。</p>
+</li>
+<li><p>兼容性：要求能在不同的系统中都可以毫无障碍地使用，而且能给各行各业都带来方便。</p>
+</li>
+<li><p>准确率：是分词系统性能的核心指标，系统的准确率越高越好，应尽可能接近100%。<br>$$<br>p&#x3D;\frac{\rm 切分结果中正确分词数}{\rm 切分结果中所有分词数}\times 100%<br>$$</p>
+</li>
+<li><p>运行效率：在分词系统中分词的工作消耗的时间应尽量少，使用户没有等待的感觉。</p>
+</li>
+<li><p>适用性：好的分词系统具有良好的适用性，可以方便地集成在各种各样的汉语信息处理系统中。</p>
+</li>
+<li><p>通用性：中文分词系统必须具有很好的通用性。应能适应不同地区的不同用字、用词，不同的语言风格，不同的专用名构成方式等；支持不同的应用目标，包括语音合成、校对、翻译等；支持不同领域的应用，包括社会科学、新闻、办公等。</p>
+</li>
+</ul>
+<p>中文分词算法：基于字符串匹配的分词方法、基于理解的分词方法、基于统计的分词方法。</p>
+<p>中文分词难题：</p>
+<ul>
+<li>歧义识别：歧义是指同样的一句话，可能有两种或者更多的切分方法。 </li>
+<li>新词识别：在字典中都没有收录过，但又确实能称为词的那些词。</li>
+</ul>
+<h4 id="基于字符串匹配的分词"><a href="#基于字符串匹配的分词" class="headerlink" title="基于字符串匹配的分词"></a>基于字符串匹配的分词</h4><p>机械分词方法，它是按照一定的策略将待分析的汉字串与一个“充分大的”机器词典中的词条进行配，若在词典中找到某个字符串，则匹配成功（识别出一个词）。</p>
+<p><strong>最大匹配法</strong>（Forward Maximum Matching method, FMM）:FMM算法是正向最大匹配算法，它是基于字符串匹配的一种分词方法。</p>
+<p>算法思想：选取包含6~8个汉字的符号串作为最大符号串，把最大符号串与词典中的单词条目相匹配，如果不能匹配，就削掉一个汉字继续匹配，直到在词典中找到相应的单词为止。匹配的方向是从左向右。 </p>
+<p>**逆向最大匹配法（Backward Maximum Matching method，BMM）：基于字符串匹配的一种分词方法，基本算法和正向最大匹配法相似，只是匹配的方向是从右到左，该算法比FMM的精确度高一些。</p>
+<p><strong>双向匹配法</strong>（Bi-direction Matching method，BM）：将FMM法和BMM法结合起来的算法称为双向匹配法，这种算法通过比较两者的切分结果，来决定正确的切分，而且可以识别出分词中的交叉歧义。</p>
+<p><strong>最少匹配算法</strong>（Fewest Words Matching，FWM）：FWM实现的分词结果中含词数最少，它和在有向图中搜索最短路径很相似。控制首先要对所选的语料进行分段，然后逐段计算最短路径，得到若干个分词结果，最后进行统计排歧，确定最理想的分词结果。</p>
+<p><strong>网格分词算法</strong>：基于统计性的一种分词算法，它的算法思想是：首先构造候选词网格，利用词典匹配，列举输入句子所有可能的切分词语，并且以词网格形式保存；然后计算词网格中的每一条路径的权值，权值通过计算图中每一结点得一元统计概率和结点之间的二元统计概率的相关信息；最后根据搜索算法在图中找到一条权值最大的路径，作为最后的分词结果。</p>
+<h4 id="基于理解的分词方法"><a href="#基于理解的分词方法" class="headerlink" title="基于理解的分词方法"></a>基于理解的分词方法</h4><p>基于理解的分词方法是通过让计算机模拟人对句子的理解，达到识别词的效果。<br>基本思想：在分词的同时进行句法、语义分析，利用句法信息和语义信息来处理歧义现象。<br>通常包括三个部分：分词子系统、句法语义子系统、总控部分。在总控部分的协调下，分词子系统可以获得有关词、句子等的句法和语义信息来对分词歧义进行判断，即它模拟了人对句子的理解过程。</p>
+<h4 id="基于统计的分词技术"><a href="#基于统计的分词技术" class="headerlink" title="基于统计的分词技术"></a>基于统计的分词技术</h4><p>从形式上看，词是稳定的字的组合，因此在上下文中，相邻的字同时出现的次数越多，就越有可能构成一个词。因此字与字相邻共现的频率或概率能够较好的反映成词的可信度。可以对语料中相邻共现的各个字的组合的频度进行统计，计算它们的互现信息。<br>基本思想：定义两个字的互现信息，计算两个汉字X、Y的相邻共现概率。互现信息体现了汉字之间结合关系的紧密程度。当紧密程度高于某一个阈值时，便可认为此字组可能构成了一个词。这种方法只需对语料中的字组频度进行统计，不需要切分词典。</p>
+<h3 id="无用词汇删除"><a href="#无用词汇删除" class="headerlink" title="无用词汇删除"></a>无用词汇删除</h3><p>在信息库的文档中太频繁出现的单词将不会成为具有良好区分能力的词汇。<br>实际上，如果一个单词出现在信息库中80％的文档中，该单词对于信息获取过程来说没用，这些词统称为无用词汇。在选择索引词条的时候，这些词条常常被过滤掉。<br>一般来说，冠词、介词、连词都可以算作无用词汇。<br>删除无用词汇对于信息获取来说具有重要意义，它可以大大缩小索引空间的大小，而且空间的缩小一般可以在40％左右。</p>
+<p>信息获取系统通常会设置一个无用词汇列表。删除无用词汇将影响系统的查全率，因此，一些搜索引擎采用了全文索引，对无用词汇也会建立索引。</p>
+<h3 id="英文词干提取"><a href="#英文词干提取" class="headerlink" title="英文词干提取"></a>英文词干提取</h3><p>用户输入词汇是信息库中某个相关文档中词汇的一种变形，词汇的变形可以是该词的复数、动名词或过去分词形式等。在这种情况下，则可以将文档中的词汇用它们的词干来代替。<br>词干：是单词的一部分，是去除词的前缀和后缀后剩下的部分。 </p>
+<p>波特算法基本思想：对文本中单词的后缀应用一系列的规则，是目前公认最好的算法。该算法使用了560个后缀，上千条规则。</p>
+<h3 id="索引词选择"><a href="#索引词选择" class="headerlink" title="索引词选择"></a>索引词选择</h3><p>一些名词常常是两个或者三个同时出现，可以将这些词汇作为一个整体建立索引。在实际操作中，可以先设置一个阈值，计算文本中词汇之间的距离，如果该距离小于阈值，则将这些词汇放在一起构成名词词组。</p>
+<h2 id="搜索排序"><a href="#搜索排序" class="headerlink" title="搜索排序"></a>搜索排序</h2><p>搜索结果排序是搜索引擎最核心的构成部分，很大程度上决定了搜索引擎的质量好坏与用户接受与否。</p>
+<h3 id="相关计算框架"><a href="#相关计算框架" class="headerlink" title="相关计算框架"></a>相关计算框架</h3><p>搜索引擎的核心是判断哪些文档和用户需求相关，并按照相关程度排序输出。相关度计算是将用户查询和文档内容进行匹配的过程，而检索模型是用来计算内容相关度的理论基础。</p>
+<h3 id="机器学习排序"><a href="#机器学习排序" class="headerlink" title="机器学习排序"></a>机器学习排序</h3><p>利用机器学习技术对搜索结果进行排序，是非常热门的一个研究领域。<br>基本思路：提供训练数据，机器自动学习获得排序公式（传统检索模型由人工拟合排序公式）。</p>
+<ul>
+<li>人工标注训练数据：对于某个查询Q，人工标出哪些文档是和这个查询相关的，并标出相关程度，或者利用用户点击记录来模拟这种人工打分机制。</li>
+<li>文档特征抽取：每个文档是由若干特征构成的，通过特征抽取算法抽取文档特征，常用特征有文档长度、网页PageRank值、网页入链数量等。</li>
+<li>学习分类函数：通过多个训练实例，采用机器学习技术对系统进行训练，生成分类函数。</li>
+<li>在实际搜索系统中采用机器学习模型：利用生成的分类函数对与查询相关的网页进行排序。</li>
+</ul>
+<p>机器学习排序可分为三类方法：单文档方法（Pointwise Approach）、文档对方法（Pairwise Approach）、文档列表方法（Listwise Approach）。</p>
+<h3 id="检索质量评价"><a href="#检索质量评价" class="headerlink" title="检索质量评价"></a>检索质量评价</h3><p>混淆矩阵如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>相关文献</strong></th>
+<th><strong>不相关文献</strong></th>
+<th><strong>总计</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>被检出文献</td>
+<td>A</td>
+<td>C</td>
+<td>A+C</td>
+</tr>
+<tr>
+<td>未检出文献</td>
+<td>B</td>
+<td>D</td>
+<td>B+D</td>
+</tr>
+<tr>
+<td>总计</td>
+<td>A+B</td>
+<td>C+D</td>
+<td>A+B+C+D</td>
+</tr>
+</tbody></table>
+<p>查全率：衡量系统在实施某一作业时检出相关文献能力的一种测度指标，是对检索遗漏程度的度量。<br>$$<br>{\rm precision}&#x3D;\frac {A}{A+B}<br>$$<br>查准率：衡量系统在实施某一检索作业时检索精度的一个测度指标，是对检索噪音程度的度量。<br>$$<br>{\rm recall}&#x3D; \frac{A}{A+C}<br>$$</p>
+<h2 id="链接分析"><a href="#链接分析" class="headerlink" title="链接分析"></a>链接分析</h2><p>搜索引擎在查找能够满足用户请求的网页时，主要考虑两方面的因素：一方面是用户发出的查询与网页内容的内容相似性得分，即<strong>网页和查询的相关性</strong>，另一方面是通过链接分析方法计算获得的得分，即<strong>网页的重要性</strong>。</p>
+<h3 id="PageRank算法"><a href="#PageRank算法" class="headerlink" title="PageRank算法"></a>PageRank算法</h3><p>取万维网链接结构图$G$，$G$的规模为$N$;</p>
+<p>对于$G$中的每一个节点，设$PR(n)$是其PageRank值，而向量$\overline {PR}$为G对应的PageRank结果向量,分量和为1,预先设定参数$\alpha$;</p>
+<h4 id="Simplified-Version"><a href="#Simplified-Version" class="headerlink" title="Simplified Version"></a>Simplified Version</h4><p>初始化向量$PR&#x3D;(\frac1N, \frac1N,\cdots,\frac1N)$;</p>
+<p>每一步迭代，$PR$向量获得更新如下：<br>$$<br>PR^{(k)}(n)\leftarrow \alpha\frac1N + (1-\alpha)\sum_{i\to n}\frac{PR(i)}{Outdeg(i)}<br>$$<br>算法充分迭代，直到向量$PR$收敛；</p>
+<h4 id="Standard-Version"><a href="#Standard-Version" class="headerlink" title="Standard Version"></a>Standard Version</h4><p>初始化向量$PR&#x3D;(\frac1N, \frac1N,\cdots,\frac1N),I&#x3D;(\frac\alpha N, \frac\alpha N,\cdots,\frac\alpha N)$;</p>
+<p>遍历每一个结点$n$:</p>
+<ul>
+<li><p>若$Outdeg(n)&gt;0$,则遍历$n$的出度顶点$i$,更新<br>$$<br>I(i)\leftarrow I(i)+(1-\alpha)\frac{PR(n)}{Outdeg(n)}<br>$$</p>
+</li>
+<li><p>若$Outdeg(n)&#x3D;0$,则对所有顶点$i$更新：<br>$$<br>I(i)\leftarrow I(i)+(1-\alpha)\frac{PR(n)}{N}<br>$$</p>
+</li>
+</ul>
+<p>遍历完成后，更新向量$PR\leftarrow I$;算法充分迭代，直到向量$PR$收敛；</p>
+<h3 id="HITS算法"><a href="#HITS算法" class="headerlink" title="HITS算法"></a>HITS算法</h3><p>HITS是Hyperlink-Induced Topic Search（基于超链接推演的主题搜索算法）的简称，其核心思想是对网页两个方面的权威程度进行评价，一个是<strong>内容权威度</strong>（Authority Value），即网页本身内容的受欢迎程度，另一个是<strong>链接权威度</strong>（Hub Value），即网页链接到其他受欢迎资源的程度。</p>
+<p>对用户输入的查询的主题而言，首先是通过文本搜索过程与此查询主题内容相关的网页集合，并适当扩展该网页集合，以包括尽可能多的结果候选网页，同时使结果集合网页间的链接结构关系更加完整；</p>
+<p>随后则是通过一个“迭代-收敛”的过程计算网页集合中每个页面对应的链接权威度与内容权威度数值，算法最后输出的是分别按照链接权威度与内容权威度排序的结果列表，用户可以根据需求的不同，选择其中的结果页面进行浏览。</p>
+<p>记$R$为网络信息检索结果集合，找到和$R$有关链接的网页形成结构图$G$</p>
+<p>对于图$G$中每一个结点$n$，维护$H(n),A(n)$为其链接权威度和内容权威度；</p>
+<p>初始化$H&#x3D;A&#x3D;(1,1,\cdots,1)$;</p>
+<p>每一步迭代，进行I操作和O操作，对每一个结点$n$</p>
+<ul>
+<li><p>I操作：<br>$$<br>A(n)\leftarrow \sum_{i\to n}H(i)<br>$$</p>
+</li>
+<li><p>O操作：<br>$$<br>H(n)\leftarrow \sum_{n\to j}A(j)<br>$$</p>
+</li>
+<li><p>规范化处理：每个分量除以某数，使得<br>$$<br>\sum_{n\in G}A^2(n)&#x3D;\sum_{n\in G}H^2(n)&#x3D;1<br>$$</p>
+</li>
+</ul>
+<p>算法充分迭代直到收敛，或者到达迭代次数上限；</p>
+<p>P的内容权威度与链向P网页的链接权威度相关（O操作）。链向P的网页的链接权威度越高，说明P的内容权威度越高。<br>链接权威度与内容权威度之间具有相互增强的关系。</p>
+<p>缺点：</p>
+<ul>
+<li><strong>计算效率较低</strong>：HITS是与查询相关的算法，所以必须在接收到用户查询后实时进行计算，而其本身需要进行很多轮迭代计算才能获得最终结果，导致计算效率变低。</li>
+<li><strong>主题漂移问题</strong>：如果在扩展网页集合里包含部分与查询主题无关的页面，而且这些页面之间有较多的相互链接指向，那么使用HITS算法很可能会给予这些无关网页很高的排名，导致搜索结果发生主题漂移，这种现象称为紧密链接社区现象。</li>
+<li><strong>易被作弊者操纵结果</strong>：HITS算法从机制上很容易被作弊者操纵，比如作弊者可以建立一个网页，页面内容增加很多指向高质量网页或者著名网站的网址，这就是一个很好地Hub页面，之后再将这个网页链接指向作弊网页，于是可以提升作弊网页的内容权威度。</li>
+<li><strong>结构不稳定</strong>：如果在原有的扩展网页集合内，添加删除个别网页或者改变少数链接关系，则HITS算法的排名结果会有非常大的改变。</li>
+</ul>
+<h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><table>
+<thead>
+<tr>
+<th>HITS</th>
+<th>PageRank</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>与用户输入的查询请求密切相关</td>
+<td>与查询请求无关</td>
+</tr>
+<tr>
+<td>必须在接收到用户查询后进行实时计算，计算效率较低</td>
+<td>在爬虫抓取完成后离线计算，在线直接使用计算结果，计算效率高</td>
+</tr>
+<tr>
+<td>计算对象数量较少，只需计算扩展集合内网页之间的链接关系</td>
+<td>全局性算法，需要对所有页面节点进行处理</td>
+</tr>
+<tr>
+<td>适合部署在客户端</td>
+<td>适合部署在服务器端</td>
+</tr>
+<tr>
+<td>更易受到链接作弊的影响</td>
+<td>从链接反作弊的角度来说机制更优</td>
+</tr>
+<tr>
+<td>结构不稳定</td>
+<td>后者计算时的远程跳转，表现更稳定</td>
+</tr>
+</tbody></table>
+<h2 id="网页去重"><a href="#网页去重" class="headerlink" title="网页去重"></a>网页去重</h2><p>搜索引擎是在网络爬虫阶段进行近似重复检测（网页去重）的。</p>
+<p><img src="/assets/image-20241202184015876.png" alt="image-20241202184015876"></p>
+<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><ul>
+<li>特征提取：对于给定文档，首先需要进行特征抽取，从文档中抽取出一系列能够表征文档主体内容的特征集合。</li>
+<li>文档指纹生成：在将文档转换为特征集合后，对信息进一步压缩，采用信息指纹相关算法，将特征集合压缩为新的数据集合。</li>
+<li>相似性计算：通过相似性计算来判断哪些网页是近似重复页面。</li>
+</ul>
+<h3 id="Shingling算法"><a href="#Shingling算法" class="headerlink" title="Shingling算法"></a>Shingling算法</h3><p>Shingling算法以Shingles作为文档的特征。</p>
+<p>Shingles，即将文档中出现的连续单词作为一个整体，对这个单词片段进行哈希计算，形成一个数值，每个单词片段对应的哈希值称为一个Shingle。文档的特征集是由多个Shingle构成的。</p>
+<p>以一个固定大小的移动窗口从文档第一个单词（单字）开始依次移动，每次向后移动一个单词（单字），直到文本末尾。</p>
+<p>步骤：</p>
+<ol>
+<li>从文档中抽取出能代表文档内容的特征</li>
+<li>根据两个文档对应的特征集合的重叠程度来判断是否近似重复；</li>
+</ol>
+<p>用Jaccard相似性计算文档特征集的重合程度：</p>
+<p>对于特征集合$A,B$,Jaccard相似性计算为<br>$$<br>{\rm Jaccard}&#x3D;\frac{|A\cap B|}{|A|+|B|}<br>$$<br>Shingling算法在运用过程中，计算效率不高，如果网页数量大，运行时间会过长。</p>
+<p>原因在于把一个文档转换为以Shingles表示的特征集合形式后，这个文档对应的特征集合很大。</p>
+<h3 id="SuperShingle-Trick"><a href="#SuperShingle-Trick" class="headerlink" title="SuperShingle Trick"></a>SuperShingle Trick</h3><p>对于不同的网页，将其转换为固定大小的特征集合，这个特征集合的大小远小于原始Shingling算法转换后特征集合的大小，以此方法来提高运算效率。</p>
+<p>一个改进的Shingleing算法步骤如下：</p>
+<ol>
+<li>将文档转换为由shingles构成的特征集合；</li>
+<li>通过引入m个不同的哈希函数，将文档映射为固定大小，形成哈希函数簇；</li>
+<li>对于某个特定的哈希函数F，对每个shingle都计算出一个对应的哈希数值，取最小的那个哈希值作为代表；</li>
+<li>m个哈希函数便获得了m个哈希值，如此便将文档的特征集合转换为了固定大小m。</li>
+</ol>
+<p><img src="/assets/image-20241202185543679.png" alt="image-20241202185543679"></p>
+<p>在SuperShingle Trick中，取$m&#x3D;84$​,对84个数值进一步压缩，以14个连续数值作为一块，即分为6块，在采用另一个哈希函数对每一块的14个数值进行哈希计算，进一步将文档转换为6个哈希值；若任意两个文档有两个以上的哈希值是相同的，即可认为是近似重复文档；</p>
+<h3 id="SimHash算法"><a href="#SimHash算法" class="headerlink" title="SimHash算法"></a>SimHash算法</h3><p>实践表明，SimHash是目前最优秀的去重算法之一,属于局部敏感哈希算法(Locality-Sensitive Hashing)的一种；</p>
+<ol>
+<li>文档指纹计算：将一篇文本文档转换为固定大小的二进制数值，以此作为文档的信息指纹；</li>
+<li>文档指纹计算：将一篇文本文档转换为固定大小的二进制数值，以此作为文档的信息指纹；</li>
+</ol>
+<p>文档指纹计算是指：通过适当的抽取方法，从文档中抽取一批能表征文档的特征，获得文档的特征及其权值w，利用一个哈希函数将每个特征映射成固定长度的二进制表示，利用权值改写特征的二进制向量，将权重融入向量中，形成一个实数向量。对每个特征向量完成改写之后，累加所有实数向量，获得一个文档整体的实数向量。累加规则，即将对应位置的数值相加即可，最后将得到的实数向量重新妆化成二进制向量。</p>
+<p>这里二进制向量和实数向量转换规则是</p>
+<ul>
+<li>若二进制的某个比特位是数值1，则实数向量中对应位置改写为w；反之，若实数向量位对应大于0，则二进制向量的比特位为1；<br>若二进制的某个比特位是数值0，则实数向量中对应位置改写为-w，即权值的负数；反之，若实数向量位对应小于等于0，则二进制向量的比特位为0；</li>
+</ul>
+<p><img src="/assets/image-20241202191525395.png" alt="image-20241202191525395"></p>
+<p>在实践中一般文档转换为64比特的二进制数值，内容相似性通过海明距离的大小衡量；</p>
+<p>对于64位二进制数来说，判断两个文档是否近似重复的标准是：海明距离是否小于等于3，若两个文档的二进制数值小于等于3位不同，则判定为近似重复文档。</p>
+<p>对于动态出现新网页，找出其近似重复的内容，可采用以下分组算法，将索引网页根据文档指纹进行分组，新网页只在部分分组内进行匹配，以减少新文档和索引网页的比较次数。</p>
+<ol>
+<li>对64位长度的二进制数值进行分块，没16位为一块，则每个二进制数值被划分为4块，分别以A、B、C、D命名。</li>
+<li>对于海量的索引网页，依据分块进行聚类：对于A块来说，根据该块内16位二进制聚类，若16位二进制都相同，则将这些网页看作一个聚类，依据此规则，可将索引网页分为若干组数据。对B、C、D按照相同方法聚类。</li>
+<li>对于新抓取的网页，同样将64比特二进制数据分为4块：Q1、Q2、Q3、Q4。</li>
+<li>在索引网页的分组中，找到对应A块16位和Q1完全相同的分组，然后与分组内的网页一一匹配，查找哪些网页是近似重复的。对Q2、Q3、Q4作同样处理。</li>
+</ol>
+<p>将新网页与分组内的索引网页一一匹配：若两者二进制数值的海明距离小于等于3，则判定为近似重复文档。</p>
+<p><img src="/assets/image-20241202193637979.png" alt="image-20241202193637979"></p>
+<h2 id="网页反作弊"><a href="#网页反作弊" class="headerlink" title="网页反作弊"></a>网页反作弊</h2><h3 id="作弊方法"><a href="#作弊方法" class="headerlink" title="作弊方法"></a>作弊方法</h3><h4 id="内容作弊"><a href="#内容作弊" class="headerlink" title="内容作弊"></a>内容作弊</h4><p>内容作弊是指通过精心更改或者调控网页内容，使得网页在搜索引擎中获得与其网页不相称的高排名。</p>
+<p>搜索引擎排名包含了内容相似性和链接重要性计算，内容作弊针对的是内容相似性计算部分。</p>
+<p>内容作弊方式：关键词重复、无关查询词作弊、图片alt标签文本作弊、网页标题作弊、网页重要标签作弊、网页元信息作弊。</p>
+<h4 id="链接作弊"><a href="#链接作弊" class="headerlink" title="链接作弊"></a>链接作弊</h4><p>链接作弊是指网站拥有者通过操纵页面之间的链接关系，或者操纵页面之间的链接锚文字，以此来增加链接排序因子的得分，影响结果排名。</p>
+<p>链接作弊方式：链接农场、Google轰炸、交换友情链接、购买链接、购买过期域名、“门页”作弊</p>
+<h4 id="页面隐藏作弊"><a href="#页面隐藏作弊" class="headerlink" title="页面隐藏作弊"></a>页面隐藏作弊</h4><p>页面隐藏作弊是指通过一些手段欺骗搜索引擎爬虫，使得搜索引擎抓取的页面内容和用户点击查看到的页面内容不同，从而影响搜索引擎的搜索结果。</p>
+<p>页面隐藏作弊方式：IP地址隐形作弊、HTTP请求隐形作弊、网页重定向、页面内容隐藏。</p>
+<h4 id="Web2-0作弊"><a href="#Web2-0作弊" class="headerlink" title="Web2.0作弊"></a>Web2.0作弊</h4><p>Web2.0作弊是指通过以用户为中心的一些应用产品来作弊。<br>Web2.0作弊方式：博客作弊、点评作弊、标签作弊、SNS作弊、微博作弊。</p>
+<h3 id="反作弊技术"><a href="#反作弊技术" class="headerlink" title="反作弊技术"></a>反作弊技术</h3><h4 id="信任传播模型"><a href="#信任传播模型" class="headerlink" title="信任传播模型"></a>信任传播模型</h4><p>在海量的网页数据中，通过一定的技术手段或者人工半人工手段，从中筛选出部分完全值得信任的页面，也就是<strong>一定不会作弊的页面</strong>（可理解为<strong>白名单</strong>）；</p>
+<p>算法以这些白名单内的页面作为出发点，赋予白名单内的页面节点较高的信任度分值，其他页面是否作弊，根据其和白名单内节点的链接关系来确定。</p>
+<p>白名单内节点通过链接关系将信任度分值向外扩散传播，如果某个节点最后得到的信任度分值高于一定阈值，则认为没有问题，而低于这一阈值的网页则被认为是作弊网页。</p>
+<p><img src="/assets/image-20241202194049282.png" alt="image-20241202194049282"></p>
+<h4 id="不信任传播模型"><a href="#不信任传播模型" class="headerlink" title="不信任传播模型"></a>不信任传播模型</h4><p>从技术框架上来讲，不信任传播模型和信任传播模型是相似的，两者区别在于：初始的页面子集不是值得信任的页面节点，而是确认存在作弊行为的页面集合，即不值得信任的页面集合（可理解为<strong>黑名单</strong>）。</p>
+<p>赋予黑名单内节点不信任分值，通过链接关系将这种不信任关系传播出去，如果最后页面节点的不信任分值大于设定的阈值，则会被认为是作弊网页。</p>
+<p><img src="/assets/image-20241202194110085.png" alt="image-20241202194110085"></p>
+<h4 id="异常发现模型"><a href="#异常发现模型" class="headerlink" title="异常发现模型"></a>异常发现模型</h4><p>异常发现模型基本假设：作弊网页必然存在有异于正常网页的特征，这种特征有可能是内容方面的，也有可能是链接关系方面的。</p>
+<p>该模型具有两种子模型：一种是直接从作弊网页包含的独特特征来构建算法；另一种是将不正常的网页视为作弊网页。</p>
+<h4 id="反内容作弊"><a href="#反内容作弊" class="headerlink" title="反内容作弊"></a>反内容作弊</h4><p>针对内容作弊，通常采用一些启发规则或者内容统计分析地方式进行识别。<br>对于重复出现关键词这种作弊方式，可以判断文本内一定大小的窗口中是否连续出现同一关键词，如果是，则消除重复出现的内容。</p>
+<p>对于标题关键词作弊，可以判断标题词在文本正文出现的比例和权重，如果达到一定条件，则判断为标题关键词作弊。</p>
+<h3 id="反链接作弊"><a href="#反链接作弊" class="headerlink" title="反链接作弊"></a>反链接作弊</h3><p>通用链接反作弊方法，是指这种反作弊方法不需要针对某种具体的作弊方式来做特征分析，并根据分析结果构建有针对性的算法。</p>
+<p>例如TrustRank算法属于信任传播模型中的反链接作弊技术：采取信任分值均分策略：即将网页获得的信任分值按照出链个数平均分配，如果一个网页有K个出链，则每个出链分配得到1&#x2F;K的信任分值，并将这个分值传递给出链指向的页面。</p>
+<p>BadRank属于不信任传播模型的反链接作弊技术：首先构建作弊网页集合，之后利用链接关系来将不信任分值传递到其他网页，和TrustRank计算类似；</p>
+<p>SpamRank算法是一种符合异常发现模型的反作弊方法。计算思路：</p>
+<ul>
+<li>计算网页的PageRank值；</li>
+<li>计算出网页的支持页面；</li>
+<li>判断支持页面的PageRank分布是否违反Power-Law统计分布，若违反则作为作弊页面处理。</li>
+</ul>
+<h4 id="反隐藏作弊"><a href="#反隐藏作弊" class="headerlink" title="反隐藏作弊"></a>反隐藏作弊</h4><p>常见的隐藏作弊方式有<strong>页面隐藏</strong>、<strong>网页重定向</strong>。</p>
+<p>识别页面隐藏：对网页进行两次抓取，第一次是正常的搜索引擎爬虫抓取，第二次以模拟人工访问页面的方式抓取，如果两次抓取到的内容差异较大，则认为是作弊页面。</p>
+<p>识别网页重定向：收集一批作弊页面，据其进行扩展，检测到经常与这些作弊页面链接一起出现的链接，则扩充进可疑页面集合。依次访问这些页面，若某个页面被诸多可疑链接重定向指向，或者重定向到作弊网页的可疑链接，均被认为作弊网页。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A20-%E6%A6%82%E8%BF%B0/" rel="prev" title="信息检索0-概述">
+                  <i class="fa fa-angle-left"></i> 信息检索0-概述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A23-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/" rel="next" title="信息检索3-推荐系统">
+                  信息检索3-推荐系统 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

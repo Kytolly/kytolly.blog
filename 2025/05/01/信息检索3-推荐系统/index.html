@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="推荐系统[TOC] 概念推荐系统的任务：联系用户和物品，解决信息过载的问题；  好友（社会化推荐） 用户的历史兴趣记录（协同过滤推荐） 用户的注册信息  为什么推荐系统收到欢迎：  用户：可以帮助用户发现喜欢的新事物 商家：提高用户信任度和粘性，增加营收  信息过滤技术比较  搜索引擎满足用户有目的地主动查找需求； 推荐系统能够在用户没有明确目的时帮助发现感兴趣的新内容；     搜索引擎 推荐系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息检索3-推荐系统">
+<meta property="og:url" content="http://example.com/2025/05/01/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A23-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="推荐系统[TOC] 概念推荐系统的任务：联系用户和物品，解决信息过载的问题；  好友（社会化推荐） 用户的历史兴趣记录（协同过滤推荐） 用户的注册信息  为什么推荐系统收到欢迎：  用户：可以帮助用户发现喜欢的新事物 商家：提高用户信任度和粘性，增加营收  信息过滤技术比较  搜索引擎满足用户有目的地主动查找需求； 推荐系统能够在用户没有明确目的时帮助发现感兴趣的新内容；     搜索引擎 推荐系">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241101115035625.png">
+<meta property="og:image" content="http://example.com/assets/image-20241101115056935.png">
+<meta property="og:image" content="http://example.com/assets/image-20241107203421873.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.471Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.424Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241101115035625.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A23-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A23-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/","path":"2025/05/01/信息检索3-推荐系统/","title":"信息检索3-推荐系统"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>信息检索3-推荐系统 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.</span> <span class="nav-text">推荐系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%84%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">评测方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A6%BB%E7%BA%BF%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.2.1.</span> <span class="nav-text">离线实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E8%B0%83%E6%9F%A5"><span class="nav-number">1.2.2.</span> <span class="nav-text">用户调查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.2.3.</span> <span class="nav-text">在线实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%84%E6%B5%8B%E6%8C%87%E6%A0%87"><span class="nav-number">1.2.4.</span> <span class="nav-text">评测指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97"><span class="nav-number">1.3.</span> <span class="nav-text">模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7"><span class="nav-number">1.3.1.</span> <span class="nav-text">用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.3.2.</span> <span class="nav-text">推荐对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95"><span class="nav-number">1.3.3.</span> <span class="nav-text">推荐算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AE%B9%E6%8E%A8%E8%8D%90"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">基于内容推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%89%A9%E5%93%81%E7%9A%84%E7%89%B9%E5%BE%81%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.3.3.1.1.</span> <span class="nav-text">物品的特征表示</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%89%B9%E5%BE%81%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.3.3.1.2.</span> <span class="nav-text">用户特征学习</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E6%8E%A8%E8%8D%90%E5%88%97%E8%A1%A8"><span class="nav-number">1.3.3.1.3.</span> <span class="nav-text">生成推荐列表</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%E6%8E%A8%E8%8D%90"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">协同过滤推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E6%95%B0%E6%8D%AE"><span class="nav-number">1.3.3.2.1.</span> <span class="nav-text">用户行为数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E9%82%BB%E5%9F%9F%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.3.2.2.</span> <span class="nav-text">基于邻域的方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%B9%E6%B3%95-%E9%9A%90%E8%AF%AD%E4%B9%89%E6%A8%A1%E5%9E%8B%EF%BC%88%E4%B8%8D%E8%80%83%EF%BC%89"><span class="nav-number">1.3.3.2.3.</span> <span class="nav-text">基于模型的方法&#x2F;隐语义模型（不考）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B7%E5%90%AF%E5%8A%A8%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.4.</span> <span class="nav-text">冷启动问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E5%86%B7%E5%90%AF%E5%8A%A8"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">用户冷启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%A9%E5%93%81%E5%86%B7%E5%90%AF%E5%8A%A8"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">物品冷启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%86%B7%E5%90%AF%E5%8A%A8"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">系统冷启动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AA%E6%80%A7%E5%8C%96%E6%8E%A8%E8%8D%90%E7%9A%84%E6%8C%91%E6%88%98"><span class="nav-number">1.3.5.</span> <span class="nav-text">个性化推荐的挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%A8%80%E7%96%8F"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">数据稀疏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E6%A0%B7%E6%80%A7%E4%B8%8E%E7%B2%BE%E7%A1%AE%E6%80%A7%E7%9A%84%E4%B8%A4%E9%9A%BE%E5%9B%B0%E5%A2%83"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">多样性与精确性的两难困境</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A23-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="信息检索3-推荐系统 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          信息检索3-推荐系统
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="推荐系统"><a href="#推荐系统" class="headerlink" title="推荐系统"></a>推荐系统</h1><p>[TOC]</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>推荐系统的任务：联系用户和物品，解决信息过载的问题；</p>
+<ul>
+<li>好友（社会化推荐）</li>
+<li>用户的历史兴趣记录（协同过滤推荐）</li>
+<li>用户的注册信息</li>
+</ul>
+<p>为什么推荐系统收到欢迎：</p>
+<ul>
+<li>用户：可以帮助用户发现喜欢的新事物</li>
+<li>商家：提高用户信任度和粘性，增加营收</li>
+</ul>
+<p>信息过滤技术比较</p>
+<ul>
+<li>搜索引擎满足用户有目的地主动查找需求；</li>
+<li>推荐系统能够在用户没有明确目的时帮助发现感兴趣的新内容；</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>搜索引擎</th>
+<th>推荐系统</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>由用户主导，包括输入查询词和选择结果，结果不好用户会修改查询再次搜索。</td>
+<td>由系统主导，系统引导用户发现需要的信息。高质量的推荐系统会使用户对该系统产生依赖。</td>
+</tr>
+<tr>
+<td>需要用户提供明确的需求，注重结果之间的排序。</td>
+<td>不需要用户提供明确的需求，通过分析用户的历史行为对用户的兴趣建模，从而主动给用户推荐可能满足他们兴趣和需求的信息。</td>
+</tr>
+</tbody></table>
+<h2 id="评测方法"><a href="#评测方法" class="headerlink" title="评测方法"></a>评测方法</h2><p>一个推荐算法最终上线，必须完成</p>
+<ul>
+<li>离线实验：在离线指标上优于现有算法</li>
+<li>用户调查：确定用户满意度较优</li>
+<li>在线AB测试：确定在关心的指标上较优</li>
+</ul>
+<h3 id="离线实验"><a href="#离线实验" class="headerlink" title="离线实验"></a>离线实验</h3><p>步骤</p>
+<ol>
+<li>通过日志系统获得用户行为数据，并按照一定格式生成一个标准的数据集；</li>
+<li>将数据集按照一定的规则分成训练集和测试集；</li>
+<li>在训练集上训练用户兴趣模型，在测试集上进行预测；</li>
+<li>通过事先定义的离线指标评测算法在测试集上的预测结果。</li>
+</ol>
+<p>优点</p>
+<ul>
+<li>实验都是在数据集上完成的，不需要一个实际的系统来供它实验</li>
+<li>不需要用户参与实验，成本低</li>
+<li>速度快，可以测试大量算法</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>无法计算商业上关心的指标</li>
+<li>离线实验的指标和商业指标存在差距</li>
+</ul>
+<h3 id="用户调查"><a href="#用户调查" class="headerlink" title="用户调查"></a>用户调查</h3><p>步骤</p>
+<ol>
+<li>用户调查需要一些真实的用户，让他们在需要测试的推荐系统上完成一些任务。</li>
+<li>在他们完成任务时，需要观察和记录用户的行为，并让他们回答一些问题。</li>
+<li>最后，我们通过分析他们的行为和答案，了解测试系统的性能。</li>
+</ol>
+<p>优点：</p>
+<ul>
+<li>可以获得用户的主观感受指标，出错后容易弥补</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>招募测试用户代价较大</li>
+<li>无法组织大规模的测试用户，统计意义不足</li>
+</ul>
+<h3 id="在线实验"><a href="#在线实验" class="headerlink" title="在线实验"></a>在线实验</h3><p>在完成离线实验和用户调查之后，可以将系统上线做AB测试，将它和旧算法进行比较。<br>AB测试通过一定的规则将用户随机分成几组，对不同组的用户采用不同的算法，然后通过统计不同组的评测指标，比较不同算法的好坏。</p>
+<ul>
+<li>多个方案并行测试；</li>
+<li>每个方案采用不同的推荐算法；</li>
+<li>以某种规则优胜劣汰。</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>可以公平获得不同算法实际在线的性能指标，包括商业上关注的指标；</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>周期长，必须进行长期的实验才能得到可靠的结果</li>
+<li>设计比较复杂</li>
+</ul>
+<h3 id="评测指标"><a href="#评测指标" class="headerlink" title="评测指标"></a>评测指标</h3><ul>
+<li>用户满意度：描述用户对推荐结果对的满意程度，是最重要的指标，问卷调查&#x2F;监测用户线上行为数据</li>
+<li>预测准确度：描述推荐系统预测用户行为的能力。对用户$u$，推荐的物品集合为$R(u)$,在测试集上喜欢物品的集合$T(u)$，可用$Precision&#x3D;\frac{\sum_u |R(u)\cap T(u) |}{\sum_u |R(u)| }$计算</li>
+<li>覆盖率：描述推荐系统对长尾物品的发掘能力。一般通过所有推荐物品占总物品的比例来计算。比例越大，则覆盖率越大。</li>
+<li>多样性：描述推荐系统中推荐结果能否覆盖用户不同的兴趣领域。一般用不相似度描述；</li>
+<li>新颖性：如果用户没有听说过推荐列表中的大部分物品，则说明该推荐系统的新颖性较好，需要做用户调查；</li>
+<li>惊喜度：如果推荐结果和用户的历史兴趣不相似，但让用户很满意，则可以说这是一个让用户惊喜的推荐。可以用历史兴趣和用户满意度来衡量；</li>
+<li>信任度：描述用户对推荐系统的信任程度。只能问卷调查了解；</li>
+<li>实时性：时效性强的物品在进行推荐时必须考虑推荐系统处理物品冷启动的能力，可以采用人工推荐。</li>
+<li>健壮性：衡量推荐系统抗作弊能力；</li>
+<li>商业目标：平均一个用户是否能为公司带来盈利；</li>
+</ul>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><p><img src="/assets/image-20241101115035625.png" alt="image-20241101115035625"></p>
+<h3 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h3><p>对象：单用户建模&#x2F;群组建模<br>功能：能获取、表示、存储和修改用户兴趣爱好，能够进行推理对用户进行分类和识别，帮助系统更好地理解用户特征和类别，理解用户的需求和任务，从而更好地实现用户所需要的功能</p>
+<p><img src="/assets/image-20241101115056935.png" alt="image-20241101115056935"></p>
+<h3 id="推荐对象"><a href="#推荐对象" class="headerlink" title="推荐对象"></a>推荐对象</h3><p> 基于内容的方法：从对象本身抽取信息来表示对象，常见TF-IDF方法和加权关键词矢量。<br>基于分类的方法：将推荐对象放入不同类，这样可以把同类文档推荐给该类文档感兴趣的用户了。分类常用算法Naive-Bayes,KNN,SVM;<br>潜在问题：</p>
+<ul>
+<li>文本等对象特征提取技术相对比较成熟，但是网络上广泛存在的多媒体数据等的提取技术不够成熟，自动化的特征提取方法需要结合多媒体内容分析领域的相关技术。</li>
+<li>推荐系统推荐给用户的对象首先不能与用户看过的对象重复，其次也不能与用户刚刚看过的太相似或是不相关，这就是所谓的模型过拟合问题。</li>
+<li>推荐系统中出现新的对象时，新对象必须等待一段时间才会有用户查看并进行评价，在此之前推荐系统无法对此对象进行分析和推荐，这就是冷启动问题。</li>
+</ul>
+<h3 id="推荐算法"><a href="#推荐算法" class="headerlink" title="推荐算法"></a>推荐算法</h3><p>推荐算法很大程度上决定了推荐系统类型和性能的优劣；</p>
+<h4 id="基于内容推荐"><a href="#基于内容推荐" class="headerlink" title="基于内容推荐"></a>基于内容推荐</h4><h5 id="物品的特征表示"><a href="#物品的特征表示" class="headerlink" title="物品的特征表示"></a>物品的特征表示</h5><p>为每个物品抽取出一些特征来表示此物品</p>
+<ul>
+<li>结构化特征：属性意义比较明确，取值限定在某个范围，一般可以直接使用，如年龄、性别等。</li>
+<li>非结构化特征：属性意义不明确，取值也没有什么限制，往往要先把它转化为结构化数据后才能在模型里使用。<br>文章特征表示：<br>相似度计算：</li>
+</ul>
+<h5 id="用户特征学习"><a href="#用户特征学习" class="headerlink" title="用户特征学习"></a>用户特征学习</h5><p>利用一个用户过去喜欢（及不喜欢）的物品的特征数据，来学习出此用户的喜好特征。</p>
+<h5 id="生成推荐列表"><a href="#生成推荐列表" class="headerlink" title="生成推荐列表"></a>生成推荐列表</h5><p>通过比较上一步得到的用户喜好特征与候选物品的特征，为此用户推荐一组相关性最大的物品；</p>
+<h4 id="协同过滤推荐"><a href="#协同过滤推荐" class="headerlink" title="协同过滤推荐"></a>协同过滤推荐</h4><h5 id="用户行为数据"><a href="#用户行为数据" class="headerlink" title="用户行为数据"></a>用户行为数据</h5><table>
+<thead>
+<tr>
+<th></th>
+<th>显性反馈行为</th>
+<th>隐形反馈行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>定义</td>
+<td>用户明确表示对物品的喜好，如评分</td>
+<td>不能明确反应用户喜好，如浏览记录</td>
+</tr>
+<tr>
+<td>用户兴趣</td>
+<td>明确</td>
+<td>不明确</td>
+</tr>
+<tr>
+<td>数量</td>
+<td>较少</td>
+<td>庞大</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>数据库</td>
+<td>分布式文件</td>
+</tr>
+<tr>
+<td>实时读取</td>
+<td>实时</td>
+<td>有延迟</td>
+</tr>
+<tr>
+<td>正负反馈</td>
+<td>都有</td>
+<td>只有正反馈</td>
+</tr>
+</tbody></table>
+<h5 id="基于邻域的方法"><a href="#基于邻域的方法" class="headerlink" title="基于邻域的方法"></a>基于邻域的方法</h5><p>基于用户（人以群分）</p>
+<ul>
+<li><p>特点：社会化，着重于反应和用户相似度相似的小群体热点；</p>
+</li>
+<li><p>思路：</p>
+<ol>
+<li>找到目标用户兴趣相似的用户集合</li>
+<li>找到这个集合中的用户喜欢的，且目标用户没有听说过的物品推荐给目标用户；</li>
+</ol>
+</li>
+<li><p>余弦相似度计算:定义用户$u$对所有物品的评价向量$r_u$<br>$$<br>s(u,v)&#x3D;\frac{r_ur_v}{|r_u||r_v|}<br>$$</p>
+</li>
+<li><p>皮尔逊相关系数：对于用户可能对某些物品的打分缺省的情况，定义如下<br>  $$<br>  s(u,v)&#x3D;\frac{\sum_{i\in I_u\cap I_v}(r_u^{(i)}-\overline{r_u})(r_v^{(i)}-\overline{r_v})}{\sqrt{\sum_{i\in I_u\cap I_v}(r_u^{(i)}-\overline{r_u})^2}\sqrt{\sum_{i\in I_u\cap I_v}(r_v^{(i)}-\overline{r_v})^2}}<br>  $$</p>
+</li>
+<li><p>预测分值:记邻居集中对物品$i$有过评分记录的用户集为$N$;<br>  $$<br>  p_{u,i}&#x3D;\overline{r_u}+\frac{\sum_{v\in N}s(u,v)(r_v^{(i)}-\overline {r_v})}{\sum_{v\in N} |s(u,v)|}<br>$$</p>
+</li>
+<li><p>生成推荐列表：按照预测的评分进行降序排序<br>基于物品（物以类聚）</p>
+</li>
+<li><p>特点：更个性化，着重于维护用户的历史兴趣，反映了用户兴趣的历史传承。</p>
+</li>
+<li><p>思路：</p>
+<ol>
+<li>计算物品间的相似度。</li>
+<li>根据物品的相似度和用户的历史行为生成推荐列表。</li>
+</ol>
+</li>
+<li><p>物品相似度计算：<br>  用$N(i)$表示喜欢物品$i$的人数；<br>  两个物品相似度越高，说明两个物品被很多人共同喜欢，但是要惩罚热门物品以挖掘长尾信息；<br>  $$<br>  w_{ij}&#x3D;\frac{|N(i)\cap N(j)|}{\sqrt{|N(i)||N(j)|}}<br>  $$</p>
+</li>
+<li><p>预测分数：<br>  用$N_u$表示用户$u$已评分过的物品集合,以此预测那些未评分的物品的分数<br>  $$<br>  r_{ui}&#x3D;\frac{\sum_{j\in N_u} w_{ij}r_{uj}}{\sum_{j\in N_u} w_{ij}}<br>  $$</p>
+</li>
+<li><p>生成推荐列表：按照预测的评分降序排序</p>
+</li>
+</ul>
+<h5 id="基于模型的方法-隐语义模型（不考）"><a href="#基于模型的方法-隐语义模型（不考）" class="headerlink" title="基于模型的方法&#x2F;隐语义模型（不考）"></a>基于模型的方法&#x2F;隐语义模型（不考）</h5><p>对于海量的物品，让用户子集给音乐分类并给出子集的偏好不现实，我们需要对用户行为数据分析获得评分矩阵$R$;</p>
+<p>在实际应用中，评分矩阵可能相当稀疏，传统的矩阵分解代价太大;</p>
+<p>我们需要从评分矩阵中抽取一组潜在的（隐藏的）因子，并通过这些因子向量描述用户和物品；</p>
+<p>SVD将评价矩阵分解为3个低秩的矩阵，这3个矩阵的乘积能对原始矩阵进行某种程度的复原，从而可以评估出缺失值。</p>
+<p>假设有$n$个用户，$m$个物品，设定$k$个潜在因子</p>
+<ul>
+<li>用户-潜在因子矩阵$P_{n\times k}$:表示不同用户对于不同因子的偏好程度</li>
+<li>物品-潜在因子矩阵$Q_{m\times k}$:每种物品含有各种因子的成分</li>
+</ul>
+<p>则用户$u$对物品$i$的评分为<br>$$<br>p_u\cdot q_i^T &#x3D; \sum_{j &#x3D; 1}^k p_{uj}q_{ji}<br>$$<br>这样作近似<br>$$<br>R \leftarrow \hat{R} &#x3D; P\cdot Q^T<br>$$<br><img src="/assets/image-20241107203421873.png" alt="image-20241107203421873"></p>
+<p>随机初始化$P,Q$,划分训练集$S$,测试集$T$</p>
+<p>误差函数$e(u,i)$,损失函数$l(p,q)$，正则项$r(p,q)$, 目标函数为$C(p,q)$;<br>$$<br>e(u,i)&#x3D;R_{ui}-p_u\cdot q_i^T\<br>C(p,q)&#x3D;l(p,q) + \lambda\cdot r(p,q)\<br>l(p,q)&#x3D;\sum_{(u,i)\in S}e^2(u,i)\<br>r(p,q)&#x3D;\sum_{(u,i)\in S}||p_u||^2+||q_i||^2<br>$$<br>引入正则化项的目的是防止过拟合；</p>
+<p>引入损失函数的目的用户$u$对物品$i$的真实喜爱程度与推算喜爱程度的均方根误差</p>
+<p>测试集的评估也是MSE指标；</p>
+<p>在深度学习中一般采用随机梯度下降(SGD)学习<br>$$<br>\frac{\part C}{\part p_u}&#x3D;-2e(u,i)q_i\<br>\frac{\part C}{\part q_i}&#x3D;-2e(u,i)p_u\<br>p_u\leftarrow p_u+\alpha \frac{\part C}{\part p_u}\<br>q_i\leftarrow q_i+\alpha \frac{\part C}{\part q_i}\<br>$$<br>估计出得分矩阵后，将<strong>用户已经使用的物品</strong>剔除，选择<strong>分数最高</strong>的物品推荐给用户；</p>
+<p>缺点：</p>
+<ul>
+<li>难以做到实时推荐，隐语义模型的训练需要在用户行为记录上反复迭代才能获得比较好的性能</li>
+<li>模型的每次训练都很耗时，一般在实际应用中只能每天训练一次，并且计算出所有用户的推荐结果。</li>
+</ul>
+<h3 id="冷启动问题"><a href="#冷启动问题" class="headerlink" title="冷启动问题"></a>冷启动问题</h3><p>使用协同过滤推荐算法时，新用户或新物品刚加入系统时、系统刚上线时，会因为行为数据的匮乏导致冷启动问题。</p>
+<h4 id="用户冷启动"><a href="#用户冷启动" class="headerlink" title="用户冷启动"></a>用户冷启动</h4><ul>
+<li>利用用户注册信息：尽管是粗粒度的非个性化推荐，但是知道一些基本信息已经可以大大提高精度了；<ul>
+<li>人口统计学信息：年龄，性别，职业，民族，居住地</li>
+<li>用户兴趣的描述：许多网站会在用户注册时让用户勾选部分感兴趣的标签</li>
+<li>从其他网站导入的用户站外行为数据</li>
+</ul>
+</li>
+<li>选择合适的物品启动用户兴趣：<ul>
+<li>热门：要让用户对一个物品进行反馈的前提是用户知道这个物品是什么东西。</li>
+<li>区分度强：启动用户兴趣的物品不能是老少皆宜的，这样的物品对用户的兴趣没有区分性。</li>
+<li>多样性好：用户兴趣的可能性很多，我们需要提供具有很高覆盖率的启动物品集合，这些物品能覆盖大部分主流的用户兴趣。</li>
+</ul>
+</li>
+</ul>
+<h4 id="物品冷启动"><a href="#物品冷启动" class="headerlink" title="物品冷启动"></a>物品冷启动</h4><p>网站中时时刻刻都有新加入的物品，而且每个物品必须能够在第一时间展现给用户，否则经过一段时间后，物品的价值就大大降低了。</p>
+<ul>
+<li>利用物品内容信息的表示<ul>
+<li>物品的内容可以通过向量空间模型表示</li>
+<li>不过在绝大多数应用中，向量空间模型对于文本的分类、聚类、相似度计算已经可以给出令人满意的结果。</li>
+</ul>
+</li>
+</ul>
+<h4 id="系统冷启动"><a href="#系统冷启动" class="headerlink" title="系统冷启动"></a>系统冷启动</h4><p>系统冷启动的解决办法：专家标注</p>
+<p>很多系统在建立的时候，既没有用户的行为数据，也没有充足的物品内容信息来计算物品相似度。这种情况下，很多系统都利用专家进行标注。</p>
+<h3 id="个性化推荐的挑战"><a href="#个性化推荐的挑战" class="headerlink" title="个性化推荐的挑战"></a>个性化推荐的挑战</h3><h4 id="数据稀疏"><a href="#数据稀疏" class="headerlink" title="数据稀疏"></a>数据稀疏</h4><p>现在待处理的推荐系统规模越来越大，用户和商品数目动辄上亿，两个用户之间选择的重叠非常少，淘宝网的数据稀疏度在百万分之一以下。</p>
+<p>数据非常稀疏导致绝大部分基于关联分析的算法效果都不好。这个问题本质上是无法完全克服的。</p>
+<h4 id="多样性与精确性的两难困境"><a href="#多样性与精确性的两难困境" class="headerlink" title="多样性与精确性的两难困境"></a>多样性与精确性的两难困境</h4><p> 如果要给用户推荐他喜欢的商品，最“保险”的方式就是给他特别流行的商品，因为这些商品有更大的可能性被喜欢。</p>
+<ul>
+<li>盲目崇拜精确性指标可能会导致用户的视野变得越来越狭窄，难以激发用户新的购物需求。</li>
+<li>推荐多样的商品与推荐的精确性之间存在矛盾，因为前者风险很大。</li>
+</ul>
+<p> 一种可行之策是直接对推荐列表进行处理，从而提升其多样性。</p>
+<p>一些心怀不轨的用户通过提供一些虚假恶意的行为，故意增加或者压制某些商品被推荐的可能性，需要推荐系统提升鲁棒性；</p>
+<p>譬如通过分析对比真实用户和疑似恶意用户之间打分行为模式的差异，提前对恶意行为进行判断，从而阻止其进入系统或赋予疑似恶意用户比较低的影响力。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A22-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" rel="prev" title="信息检索2-搜索引擎">
+                  <i class="fa fa-angle-left"></i> 信息检索2-搜索引擎
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/git%E5%85%A5%E9%97%A8/" rel="next" title="git入门">
+                  git入门 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

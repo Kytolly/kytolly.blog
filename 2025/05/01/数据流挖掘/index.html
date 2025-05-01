@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="数据流挖掘BackgroundContent数据流的三个特征 One by one Potentially Unbounded Concept Drift  数据流挖掘的四个挑战 单程处理Single Pass Handling 内存限制Memory Limitation 时间复杂度Low Time Complexity 概念漂移 Concept Drift  什么是概念漂移In predicti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据流挖掘">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E6%B5%81%E6%8C%96%E6%8E%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据流挖掘BackgroundContent数据流的三个特征 One by one Potentially Unbounded Concept Drift  数据流挖掘的四个挑战 单程处理Single Pass Handling 内存限制Memory Limitation 时间复杂度Low Time Complexity 概念漂移 Concept Drift  什么是概念漂移In predicti">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405272105463.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405272109051.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405272117997.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405272207360.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.359Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.786Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405272105463.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E6%B5%81%E6%8C%96%E6%8E%98/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E6%B5%81%E6%8C%96%E6%8E%98/","path":"2025/05/01/数据流挖掘/","title":"数据流挖掘"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据流挖掘 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E6%8C%96%E6%8E%98"><span class="nav-number">1.</span> <span class="nav-text">数据流挖掘</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">1.1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Content"><span class="nav-number">1.2.</span> <span class="nav-text">Content</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E4%B8%89%E4%B8%AA%E7%89%B9%E5%BE%81"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据流的三个特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E6%8C%96%E6%8E%98%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%8C%91%E6%88%98"><span class="nav-number">1.2.2.</span> <span class="nav-text">数据流挖掘的四个挑战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A6%82%E5%BF%B5%E6%BC%82%E7%A7%BB"><span class="nav-number">1.2.3.</span> <span class="nav-text">什么是概念漂移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Real-concept-drift-vs-Virtual-concept-drift"><span class="nav-number">1.2.4.</span> <span class="nav-text">Real concept drift vs. Virtual concept drift</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E6%BC%82%E7%A7%BB%E7%9A%84%E6%A3%80%E6%B5%8B"><span class="nav-number">1.2.5.</span> <span class="nav-text">概念漂移的检测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E5%88%86%E7%B1%BB"><span class="nav-number">1.3.</span> <span class="nav-text">数据流分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E8%81%9A%E7%B1%BB"><span class="nav-number">1.4.</span> <span class="nav-text">数据流聚类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E7%B0%87Micro-Clusters"><span class="nav-number">1.4.1.</span> <span class="nav-text">微簇Micro-Clusters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop-Spark"><span class="nav-number">1.4.2.</span> <span class="nav-text">Hadoop&#x2F;Spark</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop"><span class="nav-number">1.4.3.</span> <span class="nav-text">Hadoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark"><span class="nav-number">1.4.4.</span> <span class="nav-text">Spark</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%94%E8%BE%83"><span class="nav-number">1.4.5.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.4.6.</span> <span class="nav-text">适用场景</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E6%B5%81%E6%8C%96%E6%8E%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据流挖掘 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据流挖掘
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="数据流挖掘"><a href="#数据流挖掘" class="headerlink" title="数据流挖掘"></a>数据流挖掘</h1><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><h3 id="数据流的三个特征"><a href="#数据流的三个特征" class="headerlink" title="数据流的三个特征"></a>数据流的三个特征</h3><ul>
+<li>One by one</li>
+<li>Potentially Unbounded</li>
+<li>Concept Drift</li>
+</ul>
+<h3 id="数据流挖掘的四个挑战"><a href="#数据流挖掘的四个挑战" class="headerlink" title="数据流挖掘的四个挑战"></a>数据流挖掘的四个挑战</h3><ul>
+<li>单程处理Single Pass Handling</li>
+<li>内存限制Memory Limitation</li>
+<li>时间复杂度Low Time Complexity</li>
+<li>概念漂移 Concept Drift</li>
+</ul>
+<h3 id="什么是概念漂移"><a href="#什么是概念漂移" class="headerlink" title="什么是概念漂移"></a>什么是概念漂移</h3><p>In predictive analytics and machine learning, the concept drift means that the statistical properties of the target variable, which the model is trying to predict, change over time in unforeseen ways.</p>
+<p>在预测分析和机器学习中，概念漂移意味着模型试图预测的目标变量的统计属性会随着时间而以不可预见的方式发生变化；</p>
+<p>模型的概率分布发生变化，表现三个方面：$P(C),P(X),P(C|X)$ </p>
+<p>这些变化可能是重要的，例如，对较旧的历史数据进行训练的模型所做的预测不再正确或者如果模型是根据最近的历史数据进行训练那么正确。</p>
+<p>反过来，可以检测这些变化，并且如果检测到，则可以更新学习的模型以反映这些变化。</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405272105463.png" alt="image-20240527210515291"></p>
+<h3 id="Real-concept-drift-vs-Virtual-concept-drift"><a href="#Real-concept-drift-vs-Virtual-concept-drift" class="headerlink" title="Real concept drift vs. Virtual concept drift"></a>Real concept drift vs. Virtual concept drift</h3><p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405272109051.png" alt="image-20240527210943942"></p>
+<p>真实概念漂移指的是数据的分布和目标概念（即预测的目标变量的条件分布）同时发生变化。也就是说，输入特征与输出变量之间的关系发生了变化。这种漂移对机器学习模型的影响更为显著，因为模型的预测准确性可能会显著下降。真实概念漂移通常发生在以下情况中：</p>
+<ul>
+<li><strong>市场变化</strong>：消费者的偏好和行为模式随着时间的推移而变化。例如，一个预测消费者购买行为的模型在几年后可能变得不准确，因为消费者的偏好和市场趋势发生了变化。</li>
+<li><strong>环境变化</strong>：自然环境的变化可能影响预测模型的准确性。例如，气候变化可能影响农业产量预测模型的准确性，因为气候条件与作物产量之间的关系发生了变化。</li>
+<li><strong>社会变化</strong>：社会和政策变化也会导致真实概念漂移。例如，新的法规可能改变企业运营的方式，从而影响金融风险预测模型的准确性。</li>
+</ul>
+<p><strong>虚拟概念漂移（Virtual Concept Drift）</strong>：<br>虚拟概念漂移指的是数据的分布发生变化，但目标概念（即预测的目标变量的条件分布）没有变化。这种漂移主要影响输入特征的分布，而不改变输入特征与输出变量之间的关系。虚拟概念漂移的主要特征是，虽然输入特征的统计特性改变了，但这些变化不会导致模型预测目标的条件概率发生变化。因此，模型的准确性可能不会受到显著影响，但如果模型包含假设输入特征的分布是静态的，那么它可能需要更新以更好地适应新的输入分布。例如：</p>
+<ul>
+<li>在天气预报中，如果温度的分布在不同季节中变化，但温度与预测的天气（如晴天、雨天等）之间的关系保持不变，则属于虚拟概念漂移。</li>
+<li>在一个电子商务平台上，用户的浏览行为模式可能随时间变化（例如假期期间），但这些行为与购买意图之间的关系未变。</li>
+</ul>
+<h3 id="概念漂移的检测"><a href="#概念漂移的检测" class="headerlink" title="概念漂移的检测"></a>概念漂移的检测</h3><ul>
+<li><p>ADWIN算法（Adaptive Windowing）：基于分布的办法</p>
+<p>Monitoring the change of data distributions between two fixed or adaptive windows of data.</p>
+<p>监视两个固定或自适应数据窗口之间的数据分布变化。</p>
+<p>The idea is simple: whenever two “large enough” subwindows of W exhibit “distinct enough” averages, one can conclude that the  corresponding expected values are different,and the older portion of the  window is dropped</p>
+<p>这个想法很简单：每当 W 的两个“足够大”的子窗口表现出“足够明显”的平均值时，就可以得出结论，相应的期望值是不同的，并且窗口的较旧部分被丢弃</p>
+<p>可能的三个挑战：</p>
+<ul>
+<li>Hard to determine window size；难以确定窗口大小</li>
+<li>Learn concept drift slower；学习概念漂移的速度较慢</li>
+<li>Virtual concept drift；虚拟概念漂移</li>
+</ul>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405272117997.png" alt="image-20240527211724942"></p>
+</li>
+<li><p>PHT 基于错误率的办法</p>
+<p>Capture concept drift based on the change of the classification performance. (i.e. comparing the current classification performance to the average historical error rate with statistical analysis.) (e.g. PHT)</p>
+<p>根据分类性能的变化捕获概念漂移。（即通过统计分析将当前分类性能与平均历史错误率进行比较。（例如：PHT）</p>
+<ul>
+<li>Sensitive to noise 对噪音敏感</li>
+<li>Hard to deal with gradual concept drift 难以应对渐进式概念漂移</li>
+<li>Depend on learning model itself heavily 严重依赖学习模型本身</li>
+</ul>
+<p>漂移检测方法：DDM</p>
+<p>The theory guarantees that while the class distribution of the examples is stationary , the error rate of the learning algorithm will decrease when i increases. A significant increase in the error of the algorithm, suggest a change in the class distribution, and whether is a significant increase is based on following formula.</p>
+<p>该理论保证了当样本的类分布是平稳的时，学习算法的错误率会随着i的增加而降低。算法误差的显著增加，表明类分布发生了变化，是否显著增加取决于以下公式;<br>$$<br>p_i+s_i\ge p_{min}+3s_{min}<br>$$</p>
+</li>
+</ul>
+<h2 id="数据流分类"><a href="#数据流分类" class="headerlink" title="数据流分类"></a>数据流分类</h2><ol>
+<li>Process an example at a time, and  inspect it only once  </li>
+<li>Be ready to predict at any point </li>
+<li>Use a limited amount of memory </li>
+<li>Work in a limited amount of time</li>
+</ol>
+<ul>
+<li><p>VFDT (Very Fast Decision Tree)</p>
+<p>A decision-tree learning system based on the Hoeffding tree algorithm </p>
+<p>基于Hoeffding树算法的决策树学习系统</p>
+<p>In order to find the best attribute at a node, it may be  sufficient to consider only a small subset of the  training examples that pass through that node. </p>
+<p>为了在节点上找到最佳属性，只需考虑通过该节点的训练示例的一小部分就足够了。</p>
+<p>Given a stream of examples, use the first ones to  choose the root attribute. </p>
+<p>给定一系列示例，使用第一个示例来选择 root 属性</p>
+<p>Once the root attribute is chosen, the successive  examples are passed down to the corresponding  leaves, and used to choose the attribute there, and so  on recursively. </p>
+<p>一旦选择了根属性，连续的例子就会传递到相应的叶子上，并用于选择那里的属性，依此类推递归。</p>
+<p> Use Hoeffding bound to decide how many examples are  enough at each node</p>
+<p>使用 Hoeffding bound 来决定每个节点上有多少个示例就足够了</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202405272207360.png" alt="image-20240527220722258"></p>
+</li>
+</ul>
+<h2 id="数据流聚类"><a href="#数据流聚类" class="headerlink" title="数据流聚类"></a>数据流聚类</h2><h3 id="微簇Micro-Clusters"><a href="#微簇Micro-Clusters" class="headerlink" title="微簇Micro-Clusters"></a>微簇Micro-Clusters</h3><p>A Micro-Cluster is a set of individual data points that are close to  each other and will be treated as a single unit in further offline  Macro-clustering</p>
+<p>微簇是一组彼此接近的单个数据点，在进一步的离线宏集群中将被视为单个单元</p>
+<p>Online micro-cluster maintenance在线微集群维护</p>
+<p>Initial creation of q micro-clusters q 微簇的初始创建</p>
+<p>q is usually significantly larger than the number of natural  clusters  q通常明显大于自然簇的数量</p>
+<p> Online incremental update of micro-clusters  微集群在线增量更新</p>
+<p>If new point is within max-boundary, insert into the micro cluster  </p>
+<p>o.w., create a new cluster  May delete obsolete micro-cluster or merge two closest ones</p>
+<p>Offline Phase: Query-based macro-clustering </p>
+<p>Based on a user-specified time-horizon h and the number of  macro-clusters k, compute macroclusters using the k-means  algorithm</p>
+<p>Cluster Feature: CF &#x3D; (N, LS, SS)</p>
+<ol>
+<li><strong>(N) - 数量</strong>：<ul>
+<li>(N) 是簇中数据点的总数。这提供了簇的规模信息。</li>
+</ul>
+</li>
+<li><strong>(LS) - 线性和</strong>：<ul>
+<li>(LS) 是簇中所有数据点向量的逐元素和。对于d维数据点，如果簇中有k个数据点，则<br>$$LS &#x3D; \sum_{i&#x3D;1}^{k} \mathbf{x}_i$$<br>其中$ (\mathbf{x}_i)$ 是第 (i) 个数据点向量。这一项用于计算簇的质心（中心点）。</li>
+</ul>
+</li>
+<li><strong>(SS) - 平方和</strong>：<ul>
+<li>(SS) 是簇中所有数据点向量的逐元素平方和。即<br>$$SS &#x3D; \sum_{i&#x3D;1}^{k} \mathbf{x}_i^2$$<br>其中 $(\mathbf{x}_i^2) $表示第 (i) 个数据点向量的逐元素平方和。这一项用于计算簇的散布（方差或标准差）。</li>
+</ul>
+</li>
+</ol>
+<h3 id="Hadoop-Spark"><a href="#Hadoop-Spark" class="headerlink" title="Hadoop&#x2F;Spark"></a>Hadoop&#x2F;Spark</h3><p>设计准则：大规模数据处理，并行化，容错率及恢复，简明接口</p>
+<h3 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h3><p>Hadoop是一个开源的分布式计算框架，用于处理和存储大规模数据集。它由Apache软件基金会开发和维护，提供了高可靠性、可扩展性和分布式处理能力。Hadoop的核心组件包括：</p>
+<ol>
+<li><p><strong>HDFS（Hadoop Distributed File System）</strong>：</p>
+<ul>
+<li>HDFS是一个分布式文件系统，负责存储大规模数据。它将数据分成块（通常64MB或128MB），并在集群中的多个节点上进行复制存储，以提高数据的可靠性和可用性。</li>
+</ul>
+</li>
+<li><p><strong>MapReduce</strong>：</p>
+<ul>
+<li>MapReduce是Hadoop的分布式计算模型。它将计算任务分为两个阶段：Map阶段和Reduce阶段。Map阶段处理输入数据并生成中间结果，Reduce阶段合并中间结果以生成最终输出。</li>
+</ul>
+</li>
+<li><p><strong>YARN（Yet Another Resource Negotiator）</strong>：</p>
+<ul>
+<li>YARN是Hadoop的资源管理系统，负责管理和调度集群资源，协调不同应用程序的执行。</li>
+</ul>
+</li>
+<li><p><strong>Hadoop生态系统</strong>：</p>
+<ul>
+<li>Hadoop有一个庞大的生态系统，包括Pig（数据流脚本语言）、Hive（数据仓库基础设施）、HBase（分布式数据库）、Sqoop（数据导入导出工具）、Flume（日志数据收集工具）等。</li>
+</ul>
+</li>
+</ol>
+<h3 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h3><p>Spark是一个开源的分布式计算系统，旨在提高数据处理速度和效率。由UC Berkeley的AMP实验室开发，后来成为Apache软件基金会的顶级项目。Spark提供了一个统一的分析引擎，可以处理批处理、流处理、交互式查询和机器学习任务。其核心组件包括：</p>
+<ol>
+<li><p><strong>RDD（Resilient Distributed Dataset）</strong>：</p>
+<ul>
+<li>RDD是Spark的核心抽象，表示一个分布式的、不可变的数据集合。RDD支持两种操作：转换（如map、filter）和动作（如count、collect）。RDD的弹性体现在其自动容错和重计算能力上。</li>
+</ul>
+</li>
+<li><p><strong>Spark SQL</strong>：</p>
+<ul>
+<li>Spark SQL提供了对结构化数据的支持，允许使用SQL查询和数据框（DataFrame）API来处理数据。它集成了Hive元数据，可以直接查询Hive表。</li>
+</ul>
+</li>
+<li><p><strong>Spark Streaming</strong>：</p>
+<ul>
+<li>Spark Streaming支持实时数据流处理。它将实时数据流分成小批次，并使用Spark引擎进行处理，适用于日志分析、实时监控等场景。</li>
+</ul>
+</li>
+<li><p><strong>MLlib（机器学习库）</strong>：</p>
+<ul>
+<li>MLlib是Spark的机器学习库，提供了多种机器学习算法，如分类、回归、聚类和协同过滤等，以及特征提取和评估工具。</li>
+</ul>
+</li>
+<li><p><strong>GraphX</strong>：</p>
+<ul>
+<li>GraphX是Spark的图计算库，支持图结构的并行计算和图算法，如PageRank、Connected Components等。</li>
+</ul>
+</li>
+<li><p><strong>Spark生态系统</strong>：</p>
+<ul>
+<li>Spark的生态系统包括各种与数据处理相关的工具和库，如Delta Lake（数据湖管理）、Koalas（Pandas与Spark DataFrame的统一API）、MLflow（机器学习生命周期管理）等。</li>
+</ul>
+</li>
+</ol>
+<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><ol>
+<li><p><strong>处理模式</strong>：</p>
+<ul>
+<li>Hadoop主要适用于批处理，数据处理延迟较高。</li>
+<li>Spark不仅支持批处理，还支持实时流处理和交互式查询，处理速度更快。</li>
+</ul>
+</li>
+<li><p><strong>编程模型</strong>：</p>
+<ul>
+<li>Hadoop的MapReduce模型较为复杂，需要显式地编写Map和Reduce函数。</li>
+<li>Spark提供了更高层次的API，如DataFrame和Dataset，使编程更加简洁和易用。</li>
+</ul>
+</li>
+<li><p><strong>性能</strong>：</p>
+<ul>
+<li>Hadoop的MapReduce在处理大量小文件时性能较差。</li>
+<li>Spark在内存中进行计算，性能显著提升，尤其在迭代计算和交互式查询中表现更佳。</li>
+</ul>
+</li>
+<li><p><strong>生态系统</strong>：</p>
+<ul>
+<li>Hadoop有一个成熟的生态系统，支持广泛的数据存储和处理工具。</li>
+<li>Spark的生态系统不断扩展，提供了强大的实时处理和高级分析功能。</li>
+</ul>
+</li>
+</ol>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
+<li><strong>Hadoop</strong>：适用于批处理、大规模数据存储和离线分析任务，如日志分析、数据仓库构建等。</li>
+<li><strong>Spark</strong>：适用于实时数据处理、机器学习、图计算和交互式数据分析，如实时流处理、推荐系统、数据科学等。</li>
+</ul>
+<p>总之，Hadoop和Spark各有优劣，适用于不同类型的数据处理需求。根据具体的业务需求和数据特性选择合适的框架可以最大化数据处理效率和效果。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/K-Shingle%E5%A6%82%E4%BD%95%E4%BD%9C%E4%B8%80%E4%B8%AA%E6%96%87%E6%A1%A3%E7%9A%84%E8%A1%A8%E5%BE%81/" rel="prev" title="K-Shingle如何作一个文档的表征">
+                  <i class="fa fa-angle-left"></i> K-Shingle如何作一个文档的表征
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/code/" rel="next" title="code">
+                  code <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="概念原子操作：一个函数或者动作，由一个或多个指令序列实现，  对外不可见，没有其他进程可以看到其中间状态或者中断这个操作 保证指令序列要么都执行，要么都不执行 保证了并发进程的隔离  同步：为了完成任务而建立的多个进程，这些进程为了需要在某些位置上协调工作而等待，传递信息而产生的制约关系  空闲让进：没有进程处于临界区时，可以允许一个请求进入临界区 忙则等待：已有进程进入临界区时，其他试图进入临界">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统3-并发性">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3-%E5%B9%B6%E5%8F%91%E6%80%A7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="概念原子操作：一个函数或者动作，由一个或多个指令序列实现，  对外不可见，没有其他进程可以看到其中间状态或者中断这个操作 保证指令序列要么都执行，要么都不执行 保证了并发进程的隔离  同步：为了完成任务而建立的多个进程，这些进程为了需要在某些位置上协调工作而等待，传递信息而产生的制约关系  空闲让进：没有进程处于临界区时，可以允许一个请求进入临界区 忙则等待：已有进程进入临界区时，其他试图进入临界">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241026152806438.png">
+<meta property="og:image" content="http://example.com/assets/image-20241026162308732.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.486Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.596Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241026152806438.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3-%E5%B9%B6%E5%8F%91%E6%80%A7/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3-%E5%B9%B6%E5%8F%91%E6%80%A7/","path":"2025/05/01/操作系统3-并发性/","title":"操作系统3-并发性"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>操作系统3-并发性 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E5%B9%B6%E5%8F%91%E9%9D%A2%E4%B8%B4%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">进程并发面临问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E4%BA%92%E6%96%A5%E5%92%8C%E5%90%8C%E6%AD%A5"><span class="nav-number">3.</span> <span class="nav-text">硬件方法实现互斥和同步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD"><span class="nav-number">3.1.</span> <span class="nav-text">中断屏蔽</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TestAndSet%EF%BC%8CSwap-TS%E6%8C%87%E4%BB%A4-TSL%E6%8C%87%E4%BB%A4-Swap%E6%8C%87%E4%BB%A4"><span class="nav-number">3.2.</span> <span class="nav-text">TestAndSet，Swap(TS指令&#x2F;TSL指令&#x2F;Swap指令)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E5%BD%A2%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="nav-number">4.</span> <span class="nav-text">整形信号量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%B0%E5%BD%95%E5%9E%8B%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="nav-number">5.</span> <span class="nav-text">记录型信号量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AND%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="nav-number">6.</span> <span class="nav-text">AND信号量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E9%9B%86"><span class="nav-number">7.</span> <span class="nav-text">信号量集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%A8%8BMonitor"><span class="nav-number">8.</span> <span class="nav-text">管程Monitor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Producer-Consumer-Problem"><span class="nav-number">9.</span> <span class="nav-text">Producer-Consumer Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reader-Writer-Problem"><span class="nav-number">10.</span> <span class="nav-text">Reader-Writer Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%BB%E9%94%81"><span class="nav-number">11.</span> <span class="nav-text">死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%B2%E5%AD%A6%E5%AE%B6%E8%BF%9B%E9%A4%90%E9%97%AE%E9%A2%98"><span class="nav-number">11.1.</span> <span class="nav-text">哲学家进餐问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A7%E7%94%9F%E5%8E%9F%E5%9B%A0"><span class="nav-number">11.2.</span> <span class="nav-text">产生原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%85%E5%88%86%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">11.3.</span> <span class="nav-text">充分必要条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%AD%BB%E9%94%81"><span class="nav-number">11.4.</span> <span class="nav-text">预防死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81"><span class="nav-number">11.5.</span> <span class="nav-text">避免死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E5%92%8C%E8%A7%A3%E9%99%A4%E6%AD%BB%E9%94%81"><span class="nav-number">11.6.</span> <span class="nav-text">检测和解除死锁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="nav-number">12.</span> <span class="nav-text">进程间通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">12.1.</span> <span class="nav-text">共享存储器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92"><span class="nav-number">12.2.</span> <span class="nav-text">消息传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%A1%E9%81%93"><span class="nav-number">12.3.</span> <span class="nav-text">管道</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3-%E5%B9%B6%E5%8F%91%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="操作系统3-并发性 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          操作系统3-并发性
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><strong>原子操作</strong>：一个函数或者动作，由一个或多个指令序列实现，</p>
+<ul>
+<li>对外不可见，没有其他进程可以看到其中间状态或者中断这个操作</li>
+<li>保证指令序列要么都执行，要么都不执行</li>
+<li>保证了并发进程的隔离</li>
+</ul>
+<p><strong>同步</strong>：为了完成任务而建立的多个进程，这些进程为了需要在某些位置上协调工作而等待，传递信息而产生的制约关系</p>
+<ul>
+<li>空闲让进：没有进程处于临界区时，可以允许一个请求进入临界区</li>
+<li>忙则等待：已有进程进入临界区时，其他试图进入临界区的进程必须等待</li>
+<li>有限等待：对要求访问临界资源的进程，保证要在有限时间内进入临界区</li>
+<li>让权等待：当进程不能进入临界区时，应该释放处理机</li>
+</ul>
+<p><strong>互斥</strong>：当一个进程在临界区访问共享资源时，其他进程不能进入临界区访问共享资源<br><strong>临界区</strong>：进程将访问共享资源的一段代码</p>
+<ul>
+<li><p>一个进程在临界区运行时，另一个进程无法进入临界区</p>
+</li>
+<li><p>一次只有一个程序在临界区</p>
+</li>
+</ul>
+<p><strong>死锁</strong>：多个进程相互等待导致都不能执行<br><strong>活锁</strong>：进程为像一个其他进程的变化，持续改变自己的状态，但不做有用的工作<br><strong>竞争</strong>：多个进程读写一个共享变量，该变量的最终指依赖它们的相对调度<br><strong>饥饿</strong>：进程已经完全具备了了执行条件，但是得不到CPU资源</p>
+<h2 id="进程并发面临问题"><a href="#进程并发面临问题" class="headerlink" title="进程并发面临问题"></a>进程并发面临问题</h2><ul>
+<li>忙等：没有执行有用的事情但是一直占用处理机，违背了让权等待的原则；</li>
+<li>永久阻塞：需要得到临界资源的进程永远得不到资源，违背了有限等待的原则；</li>
+<li>死锁：每个进程误以为对方进入了临界区，使自己处于阻塞</li>
+<li>互斥礼让：代表进入临界资源区的标志为不断的重置和检查，重置序列无限延伸，任何进程不能进入自己的临界区</li>
+</ul>
+<h2 id="硬件方法实现互斥和同步"><a href="#硬件方法实现互斥和同步" class="headerlink" title="硬件方法实现互斥和同步"></a>硬件方法实现互斥和同步</h2><h3 id="中断屏蔽"><a href="#中断屏蔽" class="headerlink" title="中断屏蔽"></a>中断屏蔽</h3><ul>
+<li>利用开关中断指令实现，类似于原语</li>
+<li>即先关中断，关中断后即不允许当前进程被中断，也必然不会发生进程切换，然后进入临界区，直到当前进程访问完临界区，再执行开中断指令，才有可能有别的进程上处理机访问临界区。</li>
+<li>简单高效，但是不适合多处理机，只适用于操作系统内核进程，不适合用户进程</li>
+</ul>
+<h3 id="TestAndSet，Swap-TS指令-TSL指令-Swap指令"><a href="#TestAndSet，Swap-TS指令-TSL指令-Swap指令" class="headerlink" title="TestAndSet，Swap(TS指令&#x2F;TSL指令&#x2F;Swap指令)"></a>TestAndSet，Swap(TS指令&#x2F;TSL指令&#x2F;Swap指令)</h3><ul>
+<li>TSL指令是用硬件实现的，执行的过程不允许被中断，只能一气呵成。相比软件实现方法，TSL 指令把“上锁”和“检查”操作用硬件的方式变成了一气呵成的原子操作。</li>
+<li>实现简单，无需像软件实现方法那样严格检查是否会有逻辑漏洞</li>
+<li>适用于多处理机环境</li>
+<li>不满足“让权等待”原则，暂时无法进入临界区的进程会占用CPU并循环执行TSL指令，从而导致“忙等”</li>
+</ul>
+<h2 id="整形信号量"><a href="#整形信号量" class="headerlink" title="整形信号量"></a>整形信号量</h2><p>将可用的资源数定义为一个整型量$S$，初始化后可通过两个原子操作访问</p>
+<ul>
+<li><code>wait(S)</code>:P操作,<code>while(S&lt;=0);S—-;</code></li>
+<li><code>signal(S)</code>:V操作,&#96;S++<br>整形信号量不遵循让权等待原则；</li>
+</ul>
+<h2 id="记录型信号量"><a href="#记录型信号量" class="headerlink" title="记录型信号量"></a>记录型信号量</h2><p>由两部分构成：</p>
+<ul>
+<li>代表资源数目的整型变量<code>Value</code></li>
+<li>表示所有等待进程的进程链表<code>L</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Semaphore</span> &#123;</span></span><br><span class="line">	<span class="type">int</span> Value;</span><br><span class="line">	List_of_Process L;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Wait</span><span class="params">(Semaphore s)</span>&#123;</span><br><span class="line">    s.Value --;</span><br><span class="line">    <span class="keyword">if</span>(s.Value &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    	L.push(now_process);</span><br><span class="line">        block(now_process);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Signal</span><span class="params">(Semaphore s)</span>&#123;</span><br><span class="line">    s.Value ++;</span><br><span class="line">    <span class="keyword">if</span>(s.Value &lt;= <span class="number">0</span> ) &#123;</span><br><span class="line">        next_process = L.top();</span><br><span class="line">        wakeup(next_process);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>当<code>Value</code>初值为1，表示只允许一个进程访问临界资源，转化为互斥信号量（二元信号量）；</p>
+<p>简单说明互斥锁和二元信号量的区别：</p>
+<ul>
+<li>为互斥量加锁和解锁的进程只能是同一进程；</li>
+<li>可能有某个进程对二元信号量加锁，另一个进程为其解锁；</li>
+</ul>
+<p>一般来说，对于多个进程互斥访问临界资源的情况，每个进程应该都要设计代表访问临界资源的锁；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Semaphore mutex(1);</span><br><span class="line">void Process1&#123;</span><br><span class="line">	// 申请访问其他资源</span><br><span class="line">	</span><br><span class="line">	P(mutex); // 申请进入临界区</span><br><span class="line">	// Critical Section 临界区代码</span><br><span class="line">	V(mutex); // 释放临界区资源</span><br><span class="line">	</span><br><span class="line">	// 释放已申请的其余资源</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>进一步还可以利用信号量设计进程间的前趋关系；</p>
+<h2 id="AND信号量"><a href="#AND信号量" class="headerlink" title="AND信号量"></a>AND信号量</h2><p>将进程在整个运行过程中需要的所有资源，一次性全部地分配给进程，待进程使用完后再一起释放。只要尚有一个资源未能分配给进程，其它所有可能为之分配的资源，也不分配给他。<br>对临界资源的分配采用原子操作的方式；</p>
+<h2 id="信号量集"><a href="#信号量集" class="headerlink" title="信号量集"></a>信号量集</h2><p>对每一类资源，设定一个下限值$t$和需求单位值$d$；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Swait(S1, t1, d1, …, Sn, tn, dn)</span><br><span class="line"> 	if ( S1≥t1 and … and Sn≥tn )</span><br><span class="line"> 	for  ( i=1;i&lt;=n; i++)</span><br><span class="line"> 		Si =Si-di;</span><br><span class="line"> 	else</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><code>Swait(S, d, d)</code> 此时在信号量集中只有一个信号量$S$，  但允许它每次申请<code>d</code>个资源，当现有资源数少于<code>d</code>时，不予分配;</li>
+<li><code>Swait(S, 1, 1) </code>此时的信号量集已退化为一般的记录型信号量($S＞1$时)或互斥信号量($S&#x3D;1$时);</li>
+<li><code>Swait(S, 1, 0)</code>这是一种很特殊且很有用的信号量 操作。当$S≥1$时，允许多个进程进入某特定区；当$S$变为0后， 将阻止任何进程进入特定区。换言之，它相当于一个可控开关。</li>
+</ul>
+<h2 id="管程Monitor"><a href="#管程Monitor" class="headerlink" title="管程Monitor"></a>管程Monitor</h2><p>管程是由一个或多个过程，一个初始化序列和局部数据组成的软件模块</p>
+<ul>
+<li>局部变量数据只能被管程的过程访问，外部过程无法访问</li>
+<li>一个进程通过调用管程的一个过程进入管程，设计一个入口，进入管程之前先进入管程的待进入队列中；</li>
+<li>只能有一个进程在管程中执行，其他调用管程的进程将被阻塞；</li>
+</ul>
+<p><img src="/assets/image-20241026152806438.png" alt="image-20241026152806438"></p>
+<p>管程通过<strong>条件变量</strong>支持同步,其原子操作和普通的信号量不同；</p>
+<ul>
+<li><code>cwait(c)</code>: 调用进程的执行 在条件c阻塞，管程可以被另一个进程使用；</li>
+<li><code>csignal(c)</code>：恢复在<code>cwait(c)</code>之后因为某些条件被阻塞的进程；</li>
+</ul>
+<p>在一个进程在管程中时，因为某种原因，这个进程发送<code>cwait(x)</code>将自己暂时阻塞在条件<code>x</code>上，此时加入条件<code>x</code>的条件队列，之后这个进程等待条件<code>x</code>的改变，以重新进入管程的待进入队列中，若进程发现条件<code>x</code>真的发生了改变，则发送<code>csignal(x)</code>通知相应的条件队列条件已经改变；</p>
+<h2 id="Producer-Consumer-Problem"><a href="#Producer-Consumer-Problem" class="headerlink" title="Producer-Consumer Problem"></a>Producer-Consumer Problem</h2><p>描述</p>
+<ul>
+<li>有一个或多个生产者生产某种资源，放入缓冲池</li>
+<li>有一个消费者从缓冲池读取资源，每次读取一项</li>
+<li>任何时候仅有一个生产者&#x2F;消费者可以访问缓冲池，</li>
+<li>缓冲池已满时，生产者不再往其中添加资源；</li>
+<li>缓冲池为空时，消费者不会从中移走资源；</li>
+</ul>
+<p>信号量实现</p>
+<ul>
+<li>利用互斥信号量<code>mutex</code>实现对缓冲池的互斥使用</li>
+<li>利用信号量<code>empty full</code>表示缓冲池中空区和满区的数量；</li>
+</ul>
+<p><img src="/assets/image-20241026162308732.png" alt="image-20241026162308732"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> n;</span><br><span class="line">Semaphore <span class="title function_">mutex</span><span class="params">(<span class="number">1</span>)</span>;</span><br><span class="line">Semaphore <span class="title function_">full</span><span class="params">(<span class="number">0</span>)</span>, <span class="title function_">empty</span><span class="params">(n)</span>;</span><br><span class="line">Item Buffer[n];</span><br><span class="line"><span class="type">int</span> in=<span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> out=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">append</span><span class="params">(Item v)</span>&#123;</span><br><span class="line">	Buffer[in] = v;</span><br><span class="line">    in = (in+<span class="number">1</span>)%n;</span><br><span class="line">&#125;</span><br><span class="line">Item <span class="title function_">take</span><span class="params">()</span>&#123;</span><br><span class="line">    v = Buffer[out];</span><br><span class="line">    out = (out+<span class="number">1</span>)%n;</span><br><span class="line">    <span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Producer</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">        v = produce();</span><br><span class="line">        </span><br><span class="line">        P(empty);</span><br><span class="line">        P(mutex);</span><br><span class="line">        append(v);</span><br><span class="line">        V(mutex);</span><br><span class="line">        V(empty);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Consumer</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        P(full);</span><br><span class="line">        P(mutex);</span><br><span class="line">        v = take();</span><br><span class="line">        V(mutex);</span><br><span class="line">        V(full);</span><br><span class="line">        </span><br><span class="line">        comsume(v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于一系列P操作和V操作，也可以用AND信号量实现，不过注意，对P操作的顺序不能颠倒，否则将可能导致死锁；</p>
+<h2 id="Reader-Writer-Problem"><a href="#Reader-Writer-Problem" class="headerlink" title="Reader-Writer Problem"></a>Reader-Writer Problem</h2><p>描述</p>
+<ul>
+<li>多个进程对同一个文件进行读写</li>
+<li>不能同时写文件</li>
+<li>不能同时读和写文件</li>
+<li>可以同时读文件</li>
+</ul>
+<p>信号量实现</p>
+<ul>
+<li>设置写锁<code>Wmutex</code>,由于最多有一个进程在写，因此这应该是一个互斥信号量</li>
+<li>设置读锁<code>Rmutex</code>，用于记录目前在读文件的进程数<code>ReaderCnt</code>，这些进程应该互斥地修改它；</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Semaphore <span class="title function_">Rmutex</span><span class="params">(<span class="number">1</span>)</span></span><br><span class="line">Semaphore <span class="title function_">Wmutex</span><span class="params">(<span class="number">1</span>)</span>;</span><br><span class="line"><span class="type">int</span> ReaderCnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Reader</span><span class="params">(file)</span> &#123;</span><br><span class="line">	P(Rmutex);</span><br><span class="line">    <span class="keyword">if</span>(ReaderCnt == <span class="number">0</span>) P(Wmutex);</span><br><span class="line"> 	ReaderCnt ++;</span><br><span class="line">    V(Rmutex);</span><br><span class="line">    </span><br><span class="line">    open(file);</span><br><span class="line">    read(file);</span><br><span class="line">    close(file);</span><br><span class="line">    </span><br><span class="line">    P(Rmutex);</span><br><span class="line">    ReaderCnt --;</span><br><span class="line">    <span class="keyword">if</span>(ReaderCnt == <span class="number">0</span>) V(Wmutex);</span><br><span class="line">    V(Rmutex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Writer</span><span class="params">(file)</span> &#123;</span><br><span class="line">    P(Wmutex);</span><br><span class="line">    </span><br><span class="line">    open(file);</span><br><span class="line">    write(file);</span><br><span class="line">    close(file);</span><br><span class="line">    </span><br><span class="line">    V(Wmutex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><h3 id="哲学家进餐问题"><a href="#哲学家进餐问题" class="headerlink" title="哲学家进餐问题"></a>哲学家进餐问题</h3><ul>
+<li>5个哲学家坐在圆桌，他们中间穿插5只筷子</li>
+<li>哲学家进餐必须同时具备左边和右边的筷子</li>
+<li>一只筷子在同一时刻只能由一位哲学家使用，</li>
+<li>哲学家在进餐完毕后必须将筷子放回原处，然后思考哲学问题；</li>
+</ul>
+<p>一般我们将5只筷子设置为5个信号量，哲学家进餐前默认先拿起左边的筷子，再拿起右边的筷子后，进餐，完毕后先放下右手的筷子，再放下左手的筷子，然后思考或等待下一次进餐；</p>
+<p>注意：</p>
+<p>假如五位哲学家同时饥饿而都拿起的左边的筷子，就会使代表筷子的5个信号量同时置0，这时他们试图拿起右边的筷子时，都因为相互等待二陷入死锁；</p>
+<p>可以进行如下的改进策略：</p>
+<ul>
+<li>限制并发量：至多允许4个哲学家同时进餐</li>
+<li>解除环路等待：指定一位哲学家必须先拿起右边的筷子</li>
+<li>恢复策略：死锁发生时，指定一位哲学家放下自己的筷子；</li>
+<li>检测策略：哲学家进餐前，同时申请两只筷子；</li>
+<li>管程优化：每次只有一个进程进入管程</li>
+</ul>
+<h3 id="产生原因"><a href="#产生原因" class="headerlink" title="产生原因"></a>产生原因</h3><ul>
+<li>竞争资源：资源包括可剥夺资源和非剥夺性资源，一般是竞争非剥夺性资源，竞争临时性资源引起；</li>
+<li>进程间推进顺序不当；</li>
+</ul>
+<h3 id="充分必要条件"><a href="#充分必要条件" class="headerlink" title="充分必要条件"></a>充分必要条件</h3><ol>
+<li>互斥条件：至少有一个资源是非剥夺性的</li>
+<li>请求并保持条件：进程因请求新的资源而保持对已有资源的占有</li>
+<li>不可剥夺条件：已获得的资源在未使用完之前，不能被其他进程抢占</li>
+<li>环路等待条件：存在一组进程，使得每个进程都在等待其他进程所持有的资源</li>
+</ol>
+<p>注意，前三者是死锁发生的必要条件，而非充分的；</p>
+<h3 id="预防死锁"><a href="#预防死锁" class="headerlink" title="预防死锁"></a>预防死锁</h3><p>预防死锁发生的可能（一般不会禁止互斥条件，如果操作系统实现了互斥的话）</p>
+<ul>
+<li>预防请求并保持条件<ul>
+<li>进程在执行前，一次申请完执行过程中可能用到的所有资源；</li>
+</ul>
+</li>
+<li>预防不可剥夺条件<ul>
+<li>进程已占用一些资源，但后续资源得不到满足，必须释放已经占用的资源；</li>
+<li>高优先级进程申请被低优先级进程占用的资源，系统将后者资源抢占，分配给前者；</li>
+</ul>
+</li>
+<li>预防环路等待条件<ul>
+<li>将资源进行排序（定义资源的线性顺序），若进程获得资源$R_i$，后续资源序号只能都大于或都小于$i$;</li>
+</ul>
+</li>
+</ul>
+<p>注意，预防死锁可能会导致资源的低效使用和低效的进程执行</p>
+<h3 id="避免死锁"><a href="#避免死锁" class="headerlink" title="避免死锁"></a>避免死锁</h3><p>死锁避免允许三个必要条件的发生，但是明智的选择确保不会到达死锁点，因此允许了更多的进程并发；</p>
+<p><strong>安全状态</strong><br>系统能找到<strong>进程的执行序列</strong>，为每个进程分配所需资源，直到每个进程的最大需求 ，使得每个进程都可以顺利完成</p>
+<ul>
+<li>允许进程动态地申请资源</li>
+<li>分配之前检查会不会导致系统进入不安全的状态</li>
+</ul>
+<p>考虑一个有$n$个进程，$m$个不同类型资源的系统，定义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">state</span> &#123;</span></span><br><span class="line">	<span class="type">int</span> resource[m]; 		<span class="comment">// 系统中每种资源的总量，向量R</span></span><br><span class="line">    <span class="type">int</span> avalaible[m];		<span class="comment">// 未分配给进程的每种资源的总量,向量V</span></span><br><span class="line">    <span class="type">int</span> claim[n][m];		<span class="comment">// 进程i对资源j的最大需求,矩阵C</span></span><br><span class="line">    <span class="type">int</span> allocation[n][m];	<span class="comment">// 	系统为进程i分配资源j的数量,矩阵A</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不难看出以下关系成立：</p>
+<ul>
+<li>对于每类资源，要么可用，要么已被分配：$\forall j,R_j&#x3D;V_j+\sum_{i&#x3D;1}^n A_{ij}$</li>
+<li>任何进程对任何资源的请求不能超过这个系统中的资源总量：$C_{ij}\le R_i$</li>
+<li>任何进程得到的资源数不会超过最开始声明得到此资源的最大数量：$A_{ij}\le C_{ij}$</li>
+<li>启动新进程$P_{n+1}$的充分必要条件：$\forall j,R_j\ge C_{(n+1)j}+\sum_{i&#x3D;1}^n C_{ij}$</li>
+</ul>
+<p><strong>安全性检查算法</strong></p>
+<p>系统如果要将资源分配给进程$i$,必须满足：<br>$$<br>\forall j, C_{ij}-A_{ij}\le V_j<br>$$<br>那么只需要以此找到满足上述约束关系的进程，执行完成后释放，找到下一个满足的进程；</p>
+<p>安全性检查算法描述如下：</p>
+<ol>
+<li><p>设置工作向量<code>work[m]</code>:表示系统可提供给进程继续运行所需的各类资源的数目； <code>finish[n]</code>：表示系统是否有足够的资源分配给进程，使之运行完成；</p>
+</li>
+<li><p>初始化<code>work := available  finish := false</code></p>
+</li>
+<li><p>从满足<code>finish[i]=false</code>的进程集合找到满足上述约束条件的进程<code>i</code></p>
+<ul>
+<li>若能找到，执行4</li>
+<li>若不能找到，执行5</li>
+</ul>
+</li>
+<li><p>进程<code>i</code>得到资源执行后，释放其资源，应该执行</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">work[j] += allocation[i][j]</span><br><span class="line">finish[j] = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>后，返回2</p>
+</li>
+<li><p>若所有进程的<code>finish</code>值均为<code>true</code>，则说明系统安全，否则系统处于不安全状态；</p>
+</li>
+</ol>
+<p><strong>银行家算法</strong></p>
+<p>某一时刻收到进程<code>i</code>的对系统资源的请求向量<code>request_i</code>；</p>
+<p>按照以下步骤对系统资源状态进行检查：</p>
+<ol>
+<li><p>检查<code>request_i[j]&lt;=claim[i][j]-allocation[i][j]</code></p>
+<ul>
+<li>真，则进行2；</li>
+<li>否则认为系统出错，资源数不满足其先决条件；</li>
+</ul>
+</li>
+<li><p>检查<code>request_i[j]&lt;=available[j]</code></p>
+<ul>
+<li>真，则进行3；</li>
+<li>否则认为尚无足够的资源，进程<code>i</code>必须等待；</li>
+</ul>
+</li>
+<li><p>系统尝试为进程<code>i</code>分配资源，状态修改如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">available[j] -= request_i[j];</span><br><span class="line">allocation[i][j] += request_i[j];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>系统执行安全性检查算法</p>
+<ul>
+<li>若通过检查，则正式分配资源给进程<code>i</code></li>
+<li>否则恢复原来的资源状态，宣布让进程<code>i</code>等待；</li>
+</ul>
+</li>
+</ol>
+<h3 id="检测和解除死锁"><a href="#检测和解除死锁" class="headerlink" title="检测和解除死锁"></a>检测和解除死锁</h3><p>额外定义请求矩阵<code>Q[n][m]</code>，表示进程<code>i</code>请求资源<code>j</code>的数量；</p>
+<p>维护一个标记表<code>L</code>,最初所有进程都是未标记的；</p>
+<p>检测死锁按照以下步骤进行：</p>
+<ol>
+<li>标记<code>allocation</code>矩阵中一行全为0的进程；</li>
+<li>初始化临时向量<code>w := available</code></li>
+<li>尝试查找下标<code>i</code>，使进程<code>i</code>当前未被标记，且其请求小于<code>w</code>;<ul>
+<li>若查找失败，终止算法</li>
+</ul>
+</li>
+<li>进程<code>i</code>加入标记表<code>L</code>,更新<code>w[k] += allocation[i][k]</code></li>
+<li>当且仅当算法结束时存在未被标记的进程时，意味着死锁存在于这些进程之中</li>
+</ol>
+<p>解除死锁的思路比较简单，以下是常见的设计：</p>
+<ul>
+<li>撤销所有死锁的进程：这是操作系统最常用的办法；</li>
+<li>死锁进程回滚到某些检查点，重新启动</li>
+<li>连续撤销死锁进程直到死锁不存在</li>
+<li>连续抢占资源直到不存在死锁</li>
+</ul>
+<h2 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h2><p>对于PV操作可以用于进程的同步和互斥，属于低级进程通信，对网络进程通信和数据交换量较大的单机进程通信不适用；<br>进程间通信可以利用<strong>共享存储器&#x2F;消息传递&#x2F;管道</strong>实现；</p>
+<h3 id="共享存储器"><a href="#共享存储器" class="headerlink" title="共享存储器"></a>共享存储器</h3><ul>
+<li>基于共享数据结构的通信方式：公用某一个数据结实现信息交换</li>
+<li>基于共享存储器的通信方式：划分一块存储空间作为公用</li>
+</ul>
+<h3 id="消息传递"><a href="#消息传递" class="headerlink" title="消息传递"></a>消息传递</h3><ul>
+<li>直接消息传递：多个进程利用系统调用相互发送消息；<ul>
+<li>利用send，receive原语</li>
+<li>可能产生安全问题：消息丢失，对象假冒，消息篡改</li>
+<li>一般通信有三种情况：阻塞send+阻塞receiver，无阻塞send+阻塞receiver，无阻塞send+无阻塞receiver</li>
+</ul>
+</li>
+<li>简介消息传递：不直接发送消息给接收者，而是发到某个共享空间<ul>
+<li>接受者和发送者的关系不确定：一对一，多对多，一对多，多对一</li>
+<li>需要解决共享空间的所有权问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h3><p>在UNIX中，一般采用半双工的方式工作；<br>利用pipe函数创建管道</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># include &lt;unistd.h&gt;</span><br><span class="line">int pipe(int fd[2]);</span><br></pre></td></tr></table></figure>
+<p><code>fd[1]</code>的输出<code>fd[0]</code>的输入；创建成功返回0，失败返回-1；</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2-%E8%B0%83%E5%BA%A6/" rel="prev" title="操作系统2-调度">
+                  <i class="fa fa-angle-left"></i> 操作系统2-调度
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" rel="next" title="操作系统4-存储管理">
+                  操作系统4-存储管理 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

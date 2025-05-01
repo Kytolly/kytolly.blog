@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Markov链Markov过程对于${X(t),t\in T}$为一随机过程，$S$为其状态空间，若对参数集中的任意$n$个时刻$t_1&lt;t_2&lt;\cdots&lt;t_n\in T$,任意的$x_1,x_2,\ldots,x_n\in\mathcal{S}$ 有$$\begin{aligned}&amp;P{X(t_n)\leq x_n|X(t_1)&#x3D;x_1,X(t_2)&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markov链">
+<meta property="og:url" content="http://example.com/2025/05/01/Markov%E9%93%BE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Markov链Markov过程对于${X(t),t\in T}$为一随机过程，$S$为其状态空间，若对参数集中的任意$n$个时刻$t_1&lt;t_2&lt;\cdots&lt;t_n\in T$,任意的$x_1,x_2,\ldots,x_n\in\mathcal{S}$ 有$$\begin{aligned}&amp;P{X(t_n)\leq x_n|X(t_1)&#x3D;x_1,X(t_2)&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.494Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.206Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/Markov%E9%93%BE/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/Markov%E9%93%BE/","path":"2025/05/01/Markov链/","title":"Markov链"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Markov链 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Markov%E9%93%BE"><span class="nav-number">1.</span> <span class="nav-text">Markov链</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Markov%E8%BF%87%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Markov过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB%E6%A6%82%E7%8E%87%EF%BC%88%E7%9F%A9%E9%98%B5%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">转移概率（矩阵）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">Mark</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapman-Kolmogorov%E6%96%B9%E7%A8%8B%EF%BC%8Cn%E6%AD%A5%E8%BD%AC%E7%A7%BB%E6%A6%82%E7%8E%87"><span class="nav-number">1.3.</span> <span class="nav-text">Chapman-Kolmogorov方程，n步转移概率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83%E5%90%91%E9%87%8F"><span class="nav-number">1.4.</span> <span class="nav-text">概率分布向量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%B8%E6%94%B6%E6%80%81%EF%BC%8C%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%92%8C%E4%BA%92%E9%80%9A%E6%80%A7%EF%BC%8C%E5%8F%AF%E7%BA%A6%E6%80%A7"><span class="nav-number">1.5.</span> <span class="nav-text">吸收态，可达性和互通性，可约性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-1"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">Mark</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%BF%94%E6%80%A7"><span class="nav-number">1.6.</span> <span class="nav-text">常返性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-1"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">Property</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-2"><span class="nav-number">1.6.0.2.</span> <span class="nav-text">Mark</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%A8%E6%9C%9F%E6%80%A7"><span class="nav-number">1.7.</span> <span class="nav-text">周期性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-3"><span class="nav-number">1.7.0.1.</span> <span class="nav-text">Mark</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%8D%E5%8E%86%E6%80%A7"><span class="nav-number">1.8.</span> <span class="nav-text">遍历性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-2"><span class="nav-number">1.8.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B3%E7%A8%B3%E5%88%86%E5%B8%83%EF%BC%8C%E6%9E%81%E9%99%90%E5%88%86%E5%B8%83"><span class="nav-number">1.9.</span> <span class="nav-text">平稳分布，极限分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-3"><span class="nav-number">1.9.0.1.</span> <span class="nav-text">Property</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mark-4"><span class="nav-number">1.9.0.2.</span> <span class="nav-text">Mark</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E6%97%B6%E9%97%B4%E7%9A%84Markov%E9%93%BE"><span class="nav-number">1.10.</span> <span class="nav-text">连续时间的Markov链</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-4"><span class="nav-number">1.10.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99Markov%E9%93%BE%EF%BC%8C%E8%BD%AC%E7%A7%BB%E9%80%9F%E7%8E%87-%E7%9F%A9%E9%98%B5"><span class="nav-number">1.11.</span> <span class="nav-text">正则Markov链，转移速率(矩阵)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Property-5"><span class="nav-number">1.11.0.1.</span> <span class="nav-text">Property</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kolmogorov%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B"><span class="nav-number">1.12.</span> <span class="nav-text">Kolmogorov微分方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Remark"><span class="nav-number">1.13.</span> <span class="nav-text">Remark</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/Markov%E9%93%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Markov链 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Markov链
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Markov链"><a href="#Markov链" class="headerlink" title="Markov链"></a>Markov链</h1><h2 id="Markov过程"><a href="#Markov过程" class="headerlink" title="Markov过程"></a>Markov过程</h2><p>对于${X(t),t\in T}$为一随机过程，$S$为其状态空间，若对参数集中的任意$n$个时刻$t_1&lt;t_2&lt;\cdots&lt;t_n\in T$,任意的$x_1,x_2,\ldots,x_n\in\mathcal{S}$ 有<br>$$<br>\begin{aligned}&amp;P{X(t_n)\leq x_n|X(t_1)&#x3D;x_1,X(t_2)&#x3D;x_2,\cdots,X(t_{n-1})&#x3D;x_{n-1}}\&#x3D;&amp;P{X(t_n)\leq x_n|X(t_{n-1})&#x3D;x_{n-1}},\end{aligned}<br>$$<br>即随机变量$X(t_n)$在已知${X(t_1)&#x3D;x_1,\cdots,X(t_{n-1})&#x3D;x_{n-1}}$ 情况下，条件分布函数只与${X(t_{n-1})&#x3D;x_{n-1}}$有关，则称随机过程${ X( t) , t\in T}$为Markov过程.</p>
+<p>这条性质也就是著名的Markov性，也就是无记忆性或无后效性；</p>
+<p>若对于离散的状态集的随机过程也具有Markov性，那么就变成Markov链：</p>
+<p>随机过程${X_n,n&#x3D;0,1,2,\cdots}$称为Markov链，若它只取有限或可列个值(若不另外说明，以非负整数集${0,1,2,\cdots}$来表示),并且对任意的$n\geq 0$及 任 意 状 态 $i_0, i_1\cdots , i_n, i_{n+ 1}\in \mathcal{S}$ 有 </p>
+<p>$$<br>\begin{aligned}P{X_{n+1}&#x3D;i_{n+1}|X_0&#x3D;i_0,X_1&#x3D;i_1,\cdots,X_n&#x3D;i_n}&amp;&#x3D;P{X_{n+1}&#x3D;i_{n+1}|X_n&#x3D;i_n}.\end{aligned}<br>$$<br>其中$X_n&#x3D;i$表示过程在时刻$n$处于状态$i.$</p>
+<h2 id="转移概率（矩阵）"><a href="#转移概率（矩阵）" class="headerlink" title="转移概率（矩阵）"></a>转移概率（矩阵）</h2><p>称Markov链${X_n,n&#x3D;0,1,2,\cdots}$中的条件概率$P{X_{n+1}&#x3D;j|X_n&#x3D;i}$为一步转移概率，简称转移概率，记为$p_{ij}$.它代表处于状态$i$的过程下一步转移到状态$j$的概率.</p>
+<p>当Markov链的状态为有限时，称为有限链，否则称为无限链。但无论状态有限还是无限，我们都可以将$p_{ij}(i,j\in\mathcal{S})$排成一个矩阵的形式，令<br>$$<br>\left.\mathbf{P}&#x3D;(p_{ij})&#x3D;\left(\begin{array}{cccc}p_{00}&amp;p_{01}&amp;p_{02}&amp;\cdots\p_{10}&amp;p_{11}&amp;p_{12}&amp;\cdots\p_{20}&amp;p_{21}&amp;p_{22}&amp;\cdots\\vdots&amp;\vdots&amp;\vdots&amp;\ddots\end{array}\right.\right)<br>$$<br>称P为转移概率矩阵，简称转移矩阵.这显然是个随机矩阵，满足下面性质：</p>
+<ul>
+<li>$p_{ij}\ge 0$;</li>
+<li>$\sum_{j\in S}p_{ij}&#x3D;1, \forall i \in S$​</li>
+</ul>
+<h4 id="Mark"><a href="#Mark" class="headerlink" title="Mark"></a>Mark</h4><p>关于判定Markov链有一个小定理十分实用：</p>
+<p>设随机过程${X_n,n&#x3D;0,1,2\cdots}$ 满足</p>
+<ol>
+<li>$X_n&#x3D; f( X_{n- 1}, \xi _n) , ( n\geq 1)$, 其 中  $f: \mathcal{S} \times \mathcal{S} \to \mathcal{S}$,且 $\xi _n$取 值<br>在$\mathcal{S}$上。</li>
+<li>${\xi_n,n&#x3D;1,2,\cdots}$为独立同分布随机变量，且$X_0$与${\xi_n,n&#x3D;1,2,\cdots}$也相互独立；</li>
+</ol>
+<p>则${X_n,n&#x3D;0,1,2\cdots}$是Markov链，且一步转移概率为$$p_{ij}&#x3D;P(f(i,\xi_1)&#x3D;j)$$</p>
+<h2 id="Chapman-Kolmogorov方程，n步转移概率"><a href="#Chapman-Kolmogorov方程，n步转移概率" class="headerlink" title="Chapman-Kolmogorov方程，n步转移概率"></a>Chapman-Kolmogorov方程，n步转移概率</h2><p>称条件概率<br>$$<br>p_{ij}^{(n)}&#x3D;P{X_{m+n}&#x3D;j|X_m&#x3D;i},:i,j\in S,m\geq0,n\geq1\quad(1<br>$$<br>为Markov链的$n$步 转 移 概 率 , 相 应 地 称$P^{(n)} &#x3D; ( p_{ij}^{( n) })$ 为 $n$步 转 移矩阵</p>
+<p>为求n步转移概率，有如下C-K方程，表述如下：</p>
+<p>$\begin{aligned}\text{对一切}n,m\geq0,i,j\in\mathcal{S}\text{有}\end{aligned}$</p>
+<ol>
+<li>$$p_{ij}^{(m+n)}&#x3D;\sum_{k\in\mathcal{S}}p_{ik}^{(m)}p_{kj}^{(n)}$$</li>
+<li>$\mathbf{P}^{(n)}&#x3D;\mathbf{P}\cdot\mathbf{P}^{(n-1)}&#x3D;\mathbf{P}\cdot\mathbf{P}\cdot\mathbf{P}^{(n-2)}&#x3D;\cdots&#x3D;\mathbf{P}^n$</li>
+</ol>
+<h2 id="概率分布向量"><a href="#概率分布向量" class="headerlink" title="概率分布向量"></a>概率分布向量</h2><p>记$\boldsymbol{\pi }^{( n) }&#x3D; ( \pi _1^{( n) }, \pi _2^{( n) }, \cdots , \pi _i^{( n) }, \cdots )$为$n$时刻$X_n$的 概 率 分 布 向 量 ,其中$\pi_i^{(n)}&#x3D;P(X_n&#x3D;i).$</p>
+<p>称$\boldsymbol{\pi}^{(0)}&#x3D;(\pi_1^{(0)},\pi_2^{(0)},\cdots,\pi_i^{(0)},\cdots)$为Markov链的初始分布.</p>
+<h4 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h4><ol>
+<li>$\sum_i\pi_i^{(n)}&#x3D;1$ 对任意的$n$均成立。</li>
+<li>一个Markov链的特性完全由一步转移矩阵P和初始分布向量$\pi^{(0)}$决定；</li>
+<li>$\boldsymbol{\pi}^{(n+1)}&#x3D;\boldsymbol{\pi}^{(n)}\mathbf{P},\boldsymbol{\pi}^{(n)}&#x3D;\boldsymbol{\pi}^{(0)}\mathbf{P}^n.$</li>
+</ol>
+<h2 id="吸收态，可达性和互通性，可约性"><a href="#吸收态，可达性和互通性，可约性" class="headerlink" title="吸收态，可达性和互通性，可约性"></a>吸收态，可达性和互通性，可约性</h2><p>称状态$i\in \mathcal{S}$ 为 吸收态 , 如果 $p_{ii}&#x3D; 1.$</p>
+<p>若$p_{ii}&lt;1$,则称状态$i\in \mathcal S$为过渡态；</p>
+<p>称状态$i$可 达 状 态 $j, ( i, j\in \mathcal{S} )$,若存在$n\geq0$使得$p_{ij}^{(n)}&gt;0$,记为$i\to j$. </p>
+<p>若 同 时 有$j\to i$, 则 称 $i$与$j$互 通 , 记 为  $i\leftrightarrow j$​;</p>
+<p>任何两个互通的状态归为一类，若markov链只存在一类，那么称这是不可约的，否则是可约的；</p>
+<h4 id="Mark-1"><a href="#Mark-1" class="headerlink" title="Mark"></a>Mark</h4><p>互通是一种等价关系，满足自反性，对称性和传递性；</p>
+<p>互通的状态形成等价类；</p>
+<h2 id="常返性"><a href="#常返性" class="headerlink" title="常返性"></a>常返性</h2><p>对于任何状态$i,j$,以$f_{ij}^{(n)}$记从$i$出发经$n$步后首次到达$j$的概率：<br>$$<br>f_{ij}^{(n)}&#x3D;P{X_n&#x3D;j,X_k\neq j,k&#x3D;1,2,\cdots,n-1|X_0&#x3D;i},:n\geq1<br>$$<br>则$f_{ij}&#x3D;\sum_{n&#x3D;1}^\infty f_{ij}^{(n)}$为由$i$出发，经有限步首次到达$j$的概率。</p>
+<p>定义平均回返时间<br>$$<br>\mu_i&#x3D;\sum^\infty nf_{ii}^{(n)}<br>$$</p>
+<ul>
+<li>若$f_{ii}&#x3D;1\Leftrightarrow \sum_{i&#x3D;1}^n p_{ii}^n&#x3D;\infty $,称为常返状态；<ul>
+<li>$\mu_i&lt;\infty$,则称$i$​为正常返状态；</li>
+<li>$\mu_i&#x3D;\infty$,则称$i$为零常返状态；</li>
+</ul>
+</li>
+<li>若$f_{ii}&lt;1$,则称$i$为瞬过状态,$\Leftrightarrow \sum_{i&#x3D;1}^n p_{ii}^n&#x3D;\frac{1}{1-f_{ii}}&lt;\infty $</li>
+</ul>
+<h4 id="Property-1"><a href="#Property-1" class="headerlink" title="Property"></a>Property</h4><ol>
+<li>若$i\leftrightarrow j$,则$i,j$同为常返或非常返状态.因此常返性是一个类性质。.</li>
+<li>若$i\leftrightarrow j$且$i$为常返状态,则$j$必为常返状态,且$f_{ji}&#x3D;1$.</li>
+</ol>
+<h4 id="Mark-2"><a href="#Mark-2" class="headerlink" title="Mark"></a>Mark</h4><p>证明上述等价命题需要用到小引理：</p>
+<p>对任意状态$i,j$及1$\leq n&lt; + \infty$ 有<br>$$<br>p_{ij}^{(n)}&#x3D;\sum_{l&#x3D;1}^nf_{ij}^{(l)}p_{jj}^{(n-l)}<br>$$</p>
+<h2 id="周期性"><a href="#周期性" class="headerlink" title="周期性"></a>周期性</h2><p>若集合${n:n\geq1,p_{ii}^{(n)}&gt;0}$非空，则称该数集的最大公约数<br>$$<br>d&#x3D;d(i)<br>$$<br>为状态$i$的周期 . </p>
+<p>若$d&gt; 1$,称$i$为 周 期 的 ; </p>
+<p>若$d&#x3D; 1$,称$i$为非周期的;</p>
+<p>规定上述集合为空集时，称$i$的周期为无穷大;</p>
+<p>基本极限定理表述如下：</p>
+<p>若状态$i$是周期为$d$的常返状态，则<br>$$<br>\lim_{n\to\infty}p_{ii}^{(nd)}&#x3D;\frac d{\mu_i}<br>$$<br>当$\mu _i&#x3D; \infty$时，$\frac d{\mu_i}&#x3D;0.$​</p>
+<p>当$i$是瞬过状态，$\sum_{n&#x3D;1}^\infty p_{ii}^{(n)}&lt;\infty$,必有$\lim_{n\to \infty}p_{ii}^{(n)}&#x3D;0$​;</p>
+<p>若$j$为瞬过(非常返)状态或零常返状态，则$\forall i\to j,i\in\mathcal{S}$<br>$$<br>\lim_{n\to\infty}p_{ij}^{(n)}&#x3D;0<br>$$</p>
+<h4 id="Mark-3"><a href="#Mark-3" class="headerlink" title="Mark"></a>Mark</h4><p>若状态$i$的周期为$d$并不意味着$p_{ii}^{(d)}&gt;0$​;</p>
+<p>设$i$为常返状态，则$i$为零常返状态 $\Longleftrightarrow \lim_{n\to\infty} p_{ii}^{(n)}&#x3D;0$​;</p>
+<p>设$i\leftrightarrow j$为常返状态,则$i,j$​同为正常返状态或零常返状态.</p>
+<h2 id="遍历性"><a href="#遍历性" class="headerlink" title="遍历性"></a>遍历性</h2><p>若$i$为正常返状态，且是非周期的，则称$i$为 遍 历 状 态.吸收态是遍历状态的一种特殊情况。<br>如果一个Markov链的所有状态都是遍历状态，则称其为遍历Markov链，简称遍历链。</p>
+<h4 id="Property-2"><a href="#Property-2" class="headerlink" title="Property"></a>Property</h4><ol>
+<li><p>类性质：若状态$i,j$属于同一类，则$d(i)&#x3D;d(j)$;</p>
+</li>
+<li><p>若Markov链为不可约，正常返，且非周期，则对任意$i, j\in S\textbf{, 有 }$<br>$$<br>\lim_{n\to\infty}p_{ij}^{(n)}&#x3D;\frac1{\mu_j}<br>$$</p>
+</li>
+<li><p>有限状态的Markov链没有零常返状态；</p>
+</li>
+<li><p>有限状态的Markov链不可能全为瞬过状态；</p>
+</li>
+<li><p>不可约的有限Markov链状态都是正常返的；</p>
+</li>
+<li><p>若Markov链有一个零常返状态，那么必然有无限个零常返状态；</p>
+</li>
+</ol>
+<h2 id="平稳分布，极限分布"><a href="#平稳分布，极限分布" class="headerlink" title="平稳分布，极限分布"></a>平稳分布，极限分布</h2><p>一个定义在状态空间$S$上的概率分布 $\pi&#x3D;(\pi_1,\pi_2,\cdots,\pi_i,\cdots)$称为Markov链的平稳分布，如有<br>$$<br>\pi&#x3D;\pi\mathrm{P}<br>$$<br>即$\forall j\in\mathcal{S}$,有<br>$$<br>\pi_j&#x3D;\sum_{i\in S}\pi_ip_{ij}<br>$$<br>若$\lim_{n\to\infty}\pi_j^{(n)}&#x3D;\pi_j^<em>$存在，$j\in\mathcal{S}$,则称$\pi^</em>&#x3D;(\pi_1^<em>,\pi_2^</em>,\cdots,\pi_j^*,\cdots)$为Markov链的极限分布.</p>
+<h4 id="Property-3"><a href="#Property-3" class="headerlink" title="Property"></a>Property</h4><ol>
+<li><p>对于不可约的遍历Markov链，极限分布存在：<br>$$<br>\pi_j^*&#x3D;\lim_{n\to\infty}p_{ij}^{(n)}&#x3D;\frac{1}{\mu_j},\quad j\in\mathcal{S}<br>$$</p>
+</li>
+<li><p>对于不可约、非周期的Markov链，</p>
+<ul>
+<li>若 它 是 遍 历 的 , 则 平 稳 分 布 为$\pi _j&#x3D; \pi _j^* &#x3D; \lim <em>{n\to \infty }p</em>{ij}^{( n) }&gt; 0$, $j\in\mathcal{S}$,并且是唯一的平稳分布；</li>
+<li>若状态都是瞬过的或全为零常返的，则平稳分布不存在.</li>
+</ul>
+</li>
+</ol>
+<h4 id="Mark-4"><a href="#Mark-4" class="headerlink" title="Mark"></a>Mark</h4><p>对于不可约的遍历Markov链，其极限分布等于平稳分布，而后者的求解只是一个线性齐次方程问题，因此这个定理给我们一个通过先求解平稳分布(极限分布)得到平均回返时间的一个办法.</p>
+<h2 id="连续时间的Markov链"><a href="#连续时间的Markov链" class="headerlink" title="连续时间的Markov链"></a>连续时间的Markov链</h2><p>随机过程${X(t),t\geq0}$的状态空间$S$为离散空间，为方便书写设$\mathcal{S}$为${0,1,2,\cdots}.$ 若对任意$0\leq t_0\leq t_1&lt;\cdots&lt;t_n&lt;t_n+1$,以及任意的$i_0,i_1,\ldots,i_n,i_{n+1}\in\mathcal{S}$,有<br>$$<br>\begin{aligned} &amp;\quad P{X(t_{n+1})&#x3D;i_{n+1}|X(t_0)&#x3D;i_0,X(t_1)&#x3D;i_1,\cdots,X(t_n)&#x3D;i_n}\&amp;&#x3D;P{X(t_{n+1})&#x3D;i_{n+1}|X(t_n)&#x3D;i_n},\end{aligned}<br>$$<br>则称${ X( t) , t\geq 0}$为 连 续 时 间 Markov链 , 又 称 连 续 参 数Markov链.</p>
+<p>我们默认我们讨论的Markov链是时齐的，也即 $p_{ij}(s,t)$与$s$无关。简记为$p_{ij}(s, t) &#x3D; p_{ij}( t) $称 $P( t) &#x3D; ( p_{ij}( t) )$​​为相应的转移概率矩阵.</p>
+<p>我们熟知的Poisson过程是连续时间Markov链.它的初始分布为$\boldsymbol\pi(0)&#x3D;(1,0,0,\cdots)$.对$i,j\in\mathcal{S}$,它的转移概率为<br>$$<br>p_{ij}(t)&#x3D;\begin{cases}\frac{(\lambda t)^{j-i}}{(j-i)!}e^{-\lambda t}&amp;,j\geq i\0&amp;,j&lt;i\end{cases}<br>$$<br>和离散版本的Markov链作对比不难得到如下性质：</p>
+<h4 id="Property-4"><a href="#Property-4" class="headerlink" title="Property"></a>Property</h4><ol>
+<li>$p_{ij}( 0)$ 是$\delta$函数：</li>
+</ol>
+<p>$$<br>p_{ij}(0)&#x3D;\delta_{ij}&#x3D;\begin{cases}1,&amp;i&#x3D;j\0,&amp;i\neq j.\end{cases}<br>$$</p>
+<ol start="2">
+<li><p>对于$t&gt;0$,在已知$X(t)&#x3D;i$的条件下，“将来”${X(u),u&gt;t}$与“过去”${ X( v) , 0\leq v&lt; t} $​独 立.</p>
+</li>
+<li><p>$$<br>p_{ij}(t)\geq0;\sum_{j\in S}p_{ij}(t)&#x3D;1;<br>$$</p>
+</li>
+<li><p>$\forall s, t\geq 0,$ 有 C-K方程：<br>$$<br>p_{ij}(t+s)&#x3D;\sum_{k\in\mathcal{S}}p_{ik}(t)p_{kj}(s)\<br>\Longleftrightarrow \mathbf{P}(t+s)&#x3D;\mathbf{P}(t)\mathbf{P}(s)<br>$$</p>
+</li>
+<li><p>设$\pi_i(t)&#x3D;P(X(t)&#x3D;i),i\in\mathcal{S}.$$t$时 刻 的 概 率 分 布 向 量 $\boldsymbol{\pi }( t) &#x3D; ( \pi _0( t) , \pi _1( t) , \cdots , \pi _i( t) , \cdots ) .$</p>
+<p>则$X(t)$的概率分布为$\boldsymbol\pi(t)&#x3D;\boldsymbol{\pi}(0)\mathbf{P}(t).$</p>
+</li>
+<li><p>连续时间Markov链的有限维分布由转移概率矩阵$\mathbf{P}(t)$和初始分布$\boldsymbol\pi(0)$完全决定：对$0&#x3D;t_0&lt;t_1&lt;t_1&lt;\cdots&lt;t_n$,<br>$$<br>\begin{aligned}&amp;P(X(t_0)&#x3D;i_0,X(t_1)&#x3D;i_1,\cdots,X(t_n)&#x3D;i_n)\&#x3D;&amp;\pi_{i_0}(0)p_{i_0,i_1}(t_1)p_{i_1,i_2}(t_2-t_1)\cdots p_{i_{n-1},i_n}(t_n-t_{n-1})\end{aligned}<br>$$</p>
+</li>
+<li><p>对于$s,t\geq0$,有<br>$$<br>p_{jj}(s+t)\geq p_{jj}(s)p_{jj}(t),\quad p_{jj}(t)\geq[p_{jj}(\frac tn)]^n<br>$$</p>
+</li>
+<li><p>假定在时刻0过程刚刚到达$i(i\in\mathcal{S}).$ 以$\tau_i$记过程在离开$i$之前在$i$停留的时间，即在条件$X(0)&#x3D;i$的条件下$\tau_i$服从指数分布$Exp(\lambda_i)$.</p>
+<ul>
+<li><p>当$\lambda_i&#x3D;\infty$时，它在状态$i$停留的平均时间为0，即一旦进入马上离开，称这样的状态为瞬过状态.</p>
+</li>
+<li><p>当$\lambda_i&#x3D;0$时，则称$i$为 吸 收 态 , 即 一 旦 进 入 , 将 停 留 的 平 均时间为无限长。</p>
+</li>
+<li><p>当$0&lt;\lambda_i&lt;\infty$,称$i$为 逗 留 态 , 这 时 过 程 停 留 在 状 态 $i$,若干时间后跳到别的状态，停留时间服从指数分布.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="正则Markov链，转移速率-矩阵"><a href="#正则Markov链，转移速率-矩阵" class="headerlink" title="正则Markov链，转移速率(矩阵)"></a>正则Markov链，转移速率(矩阵)</h2><p>称一个连续时间Markov链是正则的，若以概率1在任意有限长的时间内转移的次数是有限的.从而可得连续性条件<br>$$<br>\left.\lim\limits_{t\to0}p_{ij}(t)&#x3D;\delta_{ij}&#x3D;\left{\begin{array}{cc}1,&amp;i&#x3D;j\0,&amp;i\neq j\end{array}\right.\right.<br>$$<br>以下我们总假定所考虑的Markov链都满足正则性条件.</p>
+<p>定义状态转移速率：<br>$$<br>q_{ij}&#x3D;\lim_{t\to 0}\frac{p_{ij}(t)-p_{ij}(0)}{t}<br>$$</p>
+<ul>
+<li>对$i\in\mathcal{S}$,极限$$q_i:&#x3D;-q_{ii}&#x3D;\lim_{t\to0}\frac{1-p_{ii}(t)}{t}\leq+\infty $$存在，但可能是无限.</li>
+<li>对$i,j\in\mathcal{S},i\neq j$,极限$$q_{ij}&#x3D;\lim_{t\to0}\frac{p_{ij}(t)}{t}&lt;\infty $$存在且有限.</li>
+</ul>
+<p>设状态空间为$\mathcal{S}&#x3D;{1,2,\cdots,n,\cdots}$,此时记<br>$$<br>\left.\mathbf{Q}&#x3D;\left(\begin{array}{cccccc}q_{11}&amp;q_{12}&amp;q_{13}&amp;\cdots&amp;q_{1n}&amp;\cdots\q_{21}&amp;q_{22}&amp;q_{23}&amp;\cdots&amp;q_{2n}&amp;\cdots\\vdots&amp;\vdots&amp;\vdots&amp;\cdots&amp;\vdots&amp;\cdots\q_{n1}&amp;q_{n2}&amp;q_{n3}&amp;\cdots&amp;q_{nn}&amp;\cdots\\vdots&amp;\vdots&amp;\vdots&amp;\cdots&amp;\vdots&amp;\ddots\end{array}\right.\right)<br>$$<br>称为连续时间Markov链的Q-矩阵(转移速率矩阵).</p>
+<p>当矩阵元素满足 $\forall i\in\mathcal{S},q_i&#x3D;-q_{ii}&#x3D;\sum_{j\neq i}q_{ij}&lt;\infty$时，称该矩阵为保守的.</p>
+<p>类比Poisson过程，我们能得到如下性质：</p>
+<h4 id="Property-5"><a href="#Property-5" class="headerlink" title="Property"></a>Property</h4><p>对于Markov链$X(t),t\geq0$,$q_i&#x3D;-q_{ii}&#x3D;|q_{ii}|$. 用$\tau$表示过程在状态$i$的停留时间,则有:</p>
+<ol>
+<li>$P(\tau&gt;t|X(0)&#x3D;i)&#x3D;e^{-q_it},t\geq0$</li>
+<li>$E(\tau|X(0)&#x3D;i)&#x3D;\frac{1}{q_i}$.</li>
+<li>当$j\neq i$时,$P(X(\tau)&#x3D;j|X(0)&#x3D;i)&#x3D;\frac{q_{ij}}{q_i}$</li>
+<li>在条件$X(0)&#x3D;i$下,$\tau$和$X(\tau)$独立.</li>
+<li>当$j\neq i$时,$P(X(\tau)&#x3D;j,\tau\leq t|X(0)&#x3D;i)&#x3D;\frac{q_{ij}}{q_i}(1-e^{-q_it})$​.</li>
+</ol>
+<h2 id="Kolmogorov微分方程"><a href="#Kolmogorov微分方程" class="headerlink" title="Kolmogorov微分方程"></a>Kolmogorov微分方程</h2><p>对一切$i,j\in\mathcal{S},t\geq0$且$\mathbf Q$为保守矩阵时，有</p>
+<ol>
+<li><p>Kolmogorov向后方程：<br>$$<br>  \mathbf{P^{\prime}}(t)&#x3D;\mathbf{QP}(t)\p_{ij}’(t)&#x3D;\sum_{k\in S}q_{ik}p_{kj}(t)&#x3D;-q_ip_{ij}(t)+\sum_{k\neq i}q_{ik}p_{kj}(t)<br>$$</p>
+</li>
+<li><p>Kolmogorov向前方程：<br>$$<br>\mathbf{P^{\prime}}(t)&#x3D;\mathbf{P}(t)\mathbf{Q}\p_{ij}’(t)&#x3D;\sum_{k\in S}p_{ik}(t)q_{kj}&#x3D;-p_{ij}(t)q_j+\sum_{k\neq j}p_{ik}(t)q_{kj}<br>$$</p>
+</li>
+</ol>
+<h2 id="Remark"><a href="#Remark" class="headerlink" title="Remark"></a>Remark</h2><ul>
+<li><input disabled="" type="checkbox"> 正则Markov链Property3</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Brown%E8%BF%90%E5%8A%A8/" rel="prev" title="Brown运动">
+                  <i class="fa fa-angle-left"></i> Brown运动
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90/" rel="next" title="应用随机过程中的一些例子">
+                  应用随机过程中的一些例子 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

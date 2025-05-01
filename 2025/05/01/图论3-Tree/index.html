@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="图论3：Tree树&amp;森林若一个连通图没有圈，称这个图为树(Tree); 若一个图没有圈，称这个图为森林(forest); Theorem若树$T$至少有$n\ge 2$个点，那么$T$至少包含2个叶子结点； proof:取最长路的两个端点； Theorem对于含有$n$个结点的简单图，以下命题等价：  $T$是一棵树； $T$有$n-1$条边且没有圈； $T$有$n-1$条边且连通； $T">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论3-Tree">
+<meta property="og:url" content="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA3-Tree/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="图论3：Tree树&amp;森林若一个连通图没有圈，称这个图为树(Tree); 若一个图没有圈，称这个图为森林(forest); Theorem若树$T$至少有$n\ge 2$个点，那么$T$至少包含2个叶子结点； proof:取最长路的两个端点； Theorem对于含有$n$个结点的简单图，以下命题等价：  $T$是一棵树； $T$有$n-1$条边且没有圈； $T$有$n-1$条边且连通； $T">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20241110170746044.png">
+<meta property="og:image" content="http://example.com/assets/image-20241110173825906.png">
+<meta property="og:image" content="http://example.com/assets/image-20241110174953351.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.446Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.468Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20241110170746044.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA3-Tree/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA3-Tree/","path":"2025/05/01/图论3-Tree/","title":"图论3-Tree"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>图论3-Tree | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA3%EF%BC%9ATree"><span class="nav-number">1.</span> <span class="nav-text">图论3：Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91-%E6%A3%AE%E6%9E%97"><span class="nav-number">1.1.</span> <span class="nav-text">树&amp;森林</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem"><span class="nav-number">1.1.1.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-1"><span class="nav-number">1.1.2.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Corollary"><span class="nav-number">1.1.3.</span> <span class="nav-text">Corollary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spanning-Tree"><span class="nav-number">1.2.</span> <span class="nav-text">Spanning Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-2"><span class="nav-number">1.2.1.</span> <span class="nav-text">Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prufer%E5%BA%8F%E5%88%97"><span class="nav-number">1.3.</span> <span class="nav-text">Prufer序列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Caylay"><span class="nav-number">1.3.1.</span> <span class="nav-text">Theorem(Caylay)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Corollary-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">Corollary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E6%A0%91"><span class="nav-number">1.4.</span> <span class="nav-text">矩阵树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-3"><span class="nav-number">1.4.1.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-4"><span class="nav-number">1.4.2.</span> <span class="nav-text">Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%AD%E7%9A%84%E6%9C%80%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98"><span class="nav-number">1.5.</span> <span class="nav-text">树中的最优化问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Connector-Problem"><span class="nav-number">1.5.1.</span> <span class="nav-text">The Connector Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kruskal%E7%AE%97%E6%B3%95"><span class="nav-number">1.5.2.</span> <span class="nav-text">Kruskal算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prim%E7%AE%97%E6%B3%95"><span class="nav-number">1.5.3.</span> <span class="nav-text">Prim算法</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA3-Tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="图论3-Tree | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图论3-Tree
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="图论3：Tree"><a href="#图论3：Tree" class="headerlink" title="图论3：Tree"></a>图论3：Tree</h1><h2 id="树-森林"><a href="#树-森林" class="headerlink" title="树&amp;森林"></a>树&amp;森林</h2><p>若一个连通图没有圈，称这个图为<strong>树</strong>(Tree);</p>
+<p>若一个图没有圈，称这个图为<strong>森林</strong>(forest);</p>
+<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><p>若树$T$至少有$n\ge 2$个点，那么$T$至少包含2个叶子结点；</p>
+<p><strong>proof</strong>:取最长路的两个端点；</p>
+<h3 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem"></a>Theorem</h3><p>对于含有$n$个结点的简单图，以下命题等价：</p>
+<ol>
+<li>$T$是一棵树；</li>
+<li>$T$有$n-1$条边且没有圈；</li>
+<li>$T$有$n-1$条边且连通；</li>
+<li>$T$连通，且每条边都是桥；</li>
+<li>$T$中任意两个点有且仅有一条路径；</li>
+<li>$T$没有圈，但是任意添加一条边恰好形成一个圈；</li>
+</ol>
+<p><strong>proof</strong>:</p>
+<p>$1\Rightarrow 2$:归纳，删去叶子</p>
+<p>$2\Rightarrow 3$:归纳，每个连通分量无圈，说明分量是树，统计边发现只有一个连通 分量；</p>
+<p>$3\Rightarrow 4$:只需证$n$个点的连通图至少有$n-1$条边，归纳，删叶子即可；</p>
+<p>$4\Rightarrow 5$:由连通性至少有一条，若存在两条，则这两条路径上的边不是桥，矛盾；</p>
+<p>$5\Rightarrow 6$:若有圈则任意两点至少两条路径，矛盾；加一条边至少形成一个圈，若多余1个，说明原图有圈，矛盾；</p>
+<p>$6\Rightarrow 1$:反证，若不连通，每个分量是树，在分量之间添加一条边无法形成圈，矛盾；</p>
+<h3 id="Corollary"><a href="#Corollary" class="headerlink" title="Corollary"></a>Corollary</h3><p>若图$G$是一个森林,则$|E(G)|&#x3D;|V(G)|-\omega(G)$ </p>
+<h2 id="Spanning-Tree"><a href="#Spanning-Tree" class="headerlink" title="Spanning Tree"></a>Spanning Tree</h2><p>图$G$的<strong>生成子树</strong>(spanning tree)是指图$G$的一个生成子图，这个子图是树；</p>
+<p>对于连通图$G$,一定包含一个生成子树；定义<strong>陪树</strong>(cotree)为$G$中去除$T$得到的图；</p>
+<p>对于一个具有$n$个顶点，$m$条边，$k$个连通分量的图$G$,通过删除图$G$中任意一条边，直到没有圈剩下，得到的图是图$G$的一个生成森林；</p>
+<ul>
+<li>圈阶$\gamma(G)$:在这个过程删除的边数$\gamma(G)&#x3D;m-n+k$</li>
+<li>键阶$\xi(G)$:最小边割的边数$\xi(G)&#x3D;n-k$;</li>
+</ul>
+<p>对与连通图$G$和其生成子树$T$，</p>
+<p>定义子树$T$的<strong>键基本集</strong>(bond fundamental set)：删去子树$T$将图$G$划分为两个顶点集$V_1,V_2$，连接$V_1,V_2$的所有边构成图$G$的键，通过这种方式获得的键的全体构成基本集；</p>
+<p>类似定义子树$T$的<strong>圈基本集</strong>(cycle fundamental set)</p>
+<h3 id="Theorem-2"><a href="#Theorem-2" class="headerlink" title="Theorem"></a>Theorem</h3><p>对于图$G$的任意生成子树$T$,有</p>
+<ul>
+<li>图$G$的任意键和$T$至少有一条公共边；</li>
+<li>图$G$的任意圈和$T$的陪树至少有一条公共边；</li>
+</ul>
+<p><strong>proof</strong>:取$C^<em>$是图$G$的键，删去$C^</em>$将图$G$分成两部分，$T$一定有边连接这两部分，这条边一定属于键；若圈和陪树没有公共边，那么圈一定包含在$T$中，矛盾；</p>
+<h2 id="Prufer序列"><a href="#Prufer序列" class="headerlink" title="Prufer序列"></a>Prufer序列</h2><p>给定由$n$个数构成的集合$S$，记$T$是定义在$S$上的一棵树；</p>
+<p>定义$T$的<strong>Prufer编码</strong>$f(T)$,$f(T)$是长度为$n-2$的序列，显然$f(T)\in S^{n-2}$；</p>
+<p>编码算法如下：</p>
+<ol>
+<li>维护$T$的叶子集合$L$;</li>
+<li>在第$i$步，找到$L$中标号最小的叶子$b_i$, 令$a_i$是叶子的父亲；</li>
+<li>更新$L\leftarrow L-b_i, f(T)\leftarrow f(T)+a_i$；若$a_i$因为删去$b_i$成为叶子，$L\leftarrow L+a_i$</li>
+<li>直到只剩下一条边，停止；</li>
+</ol>
+<p>解码算法如下：</p>
+<ol>
+<li>维护未加标记点集$V$和未使用的编码点集$F$,初始化$V:&#x3D;S,F:&#x3D;f(T)$，初始化图$T$为$n$个孤立点</li>
+<li>准备第$i$步，取出$f_i(T)$,此时$|V|&#x3D;n-i+1,|F|&#x3D;n-i-1$,$V$中至少有2个点不会出现在$F$中，即$|V-F|\ge 2$;</li>
+<li>取$x$为$V-F$中标号最小的顶点，添加$xf_i(T)$到$T$，标记$x$，$F\leftarrow F-f_i(T)$(即从$i+1$位开始，指针右移)；</li>
+<li>重复2，3一共$n-2$次，剩下两个未标记的顶点，连边并加入$T$;</li>
+</ol>
+<p>举例：以下树的Prufer编码为<code>[6,5,6,5,1]</code>,发现编码删边的顺序和解码加边的顺序相同；</p>
+<p><img src="/assets/image-20241110170746044.png" alt="image-20241110170746044"></p>
+<h3 id="Theorem-Caylay"><a href="#Theorem-Caylay" class="headerlink" title="Theorem(Caylay)"></a>Theorem(Caylay)</h3><p>对于$n$个顶点，一共有$n^{n-2}$个不同的标号树；</p>
+<p><strong>proof</strong>:只需要证明树$T$作Prufer编码和解码，依然得到树$T$,完成双射，归纳即可（删去第一个叶子后采用归纳假设）；</p>
+<h3 id="Corollary-1"><a href="#Corollary-1" class="headerlink" title="Corollary"></a>Corollary</h3><p>$K_n$有$n^{n-2}$个生成子树；</p>
+<h2 id="矩阵树"><a href="#矩阵树" class="headerlink" title="矩阵树"></a>矩阵树</h2><p>定义连通图$G$，定义其生成子树的数量为$\tau(G)$;记其Laplacian矩阵为$L&#x3D;(l_{ij})$；</p>
+<p>对于图$G$和其中一条边$e$，定义其缩边$G\cdot e$为合并$e$的两个顶点为一个顶点，原来和两个顶点关联的边都和新顶点相关联；</p>
+<h3 id="Theorem-3"><a href="#Theorem-3" class="headerlink" title="Theorem"></a>Theorem</h3><p>若$e\in E(G)$且不是自环，则<br>$$<br>\tau(G)&#x3D;\tau(G-e)+\tau(G\cdot e)<br>$$<br>为此只需证明$G\cdot e$的生成树和$G$中包含$e$的生成树之间可建立双射即可；</p>
+<p><img src="/assets/image-20241110173825906.png" alt="image-20241110173825906"></p>
+<h3 id="Theorem-4"><a href="#Theorem-4" class="headerlink" title="Theorem"></a>Theorem</h3><p>假设$L^<em>$是从$L$中删除$s$行$t$列得到的矩阵，则生成树的数目等于$L$的任何余子式的值；<br>$$<br>\tau(G)&#x3D;(-1)^{s+t}\det L^</em><br>$$<br>proof:为此只需证明$s&#x3D;t$的情况</p>
+<h2 id="树中的最优化问题"><a href="#树中的最优化问题" class="headerlink" title="树中的最优化问题"></a>树中的最优化问题</h2><h3 id="The-Connector-Problem"><a href="#The-Connector-Problem" class="headerlink" title="The Connector Problem"></a>The Connector Problem</h3><p>将建立连接多个城镇的铁路网。考虑到在城镇$v_i$和$v_j$之间建造直接连接的成本$c_{ij}$，设计这样的网络以最大限度地降低建设总成本;</p>
+<p>这个问题可进一步形式化描述如下：</p>
+<p>给定一个连通加权图$G$，如果$T$的边权之和不超过$G$的任何其他生成树之和，则生成树$T$称为最小权重生成树,现需要找到图$G$的最小生成子树权和；</p>
+<h3 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h3><p>Kruskal算法用于解决一类<strong>稀疏带权</strong>图的最小生成树问题,这是一类基于<strong>添加当前最优边</strong>的贪心策略；</p>
+<ol>
+<li>初始化$E(T)&#x3D;\varnothing，V(T)&#x3D;V(G)$,对边权值排序；</li>
+<li>若下一条权值最小的边$e$将$T$的两个分量连接起来，则$E(T)\leftarrow E(T)+e$，否则丢弃它；</li>
+<li>迭代总共$V(G)-1$步加边操作，此时$T$变得连通；</li>
+</ol>
+<p><img src="/assets/image-20241110174953351.png" alt="image-20241110174953351"></p>
+<p>Kruskal算法最优性证明：</p>
+<p>假设Kruskal生成树$T$，其一定不包含圈，否则一定存在某次加边操作，没有连接两个分量而是在某一个分量内部连接；</p>
+<p>假设最小代价树$T^<em>\neq T$，边排序后，考虑它们不相同的第一条边$e$;$T^</em>+e$将产生圈$C$，取$e^<em>\in C-T$,那么$T+e-e^</em>$是比$T^*$更小代价的生成树，矛盾；</p>
+<p>数据结构实现：</p>
+<p>顺序迭代边可采用<strong>优先队列</strong>（堆）；</p>
+<p>为每个顶点$v$记录包含$v$的<strong>连通分量标号</strong>$c(v)$，初始为其序号；</p>
+<p>对于选用某条边$uv$时，应该有$c(u)\neq c(v)$，否则被弃用；</p>
+<p>添加边后，应该更新$c(u)&#x3D;c(v)\leftarrow\min(c(u),c(v))$;</p>
+<p>时间复杂度应为$O(|V|log|M|)$;</p>
+<p>或是维护边的并查集</p>
+<h3 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h3><p>Prim算法用于一类稠密带权图的最小生成树问题，这时一类逐步归并顶点的策略；</p>
+<ol>
+<li>任意选择树的根节点$r$，初始化已包含顶点集$S&#x3D;{r}$,树$T:V(T)&#x3D;V(G),E(T)&#x3D;\varnothing$;</li>
+<li>选择连接$S$和$V(G)-S$中的边权值最小者$uv,u\in S,v\in V(G)-S$,更新$S\leftarrow S+v,E(T)\leftarrow E(T)+uv$;</li>
+<li>重复添加顶点，直到$S&#x3D;V(G)$;</li>
+</ol>
+<p>Prim算法最优性证明：</p>
+<p>假设Prim生成树$T$，其一定不包含圈，因为每次加边操作都是在不相交的集合中选择的；</p>
+<p>假设最小代价树$T^<em>\neq T$，边排序后，考虑它们不相同的第一条边$e\in T$;取$e^</em>\in T^<em>$,由$T^</em>$的最小性，$\omega(e^<em>)&lt; \omega(e)$，由算法最小性$\omega(e)\le \omega(e^</em>)$;</p>
+<p>数据结构实现：</p>
+<p>存取图使用邻接表,采用斐波那契堆优化，可达到$O(|E|+|V|log|V|)$;</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%9B%BE%E8%AE%BA2-Path%20and%20cycles/" rel="prev" title="图论2-Path and cycles">
+                  <i class="fa fa-angle-left"></i> 图论2-Path and cycles
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%9B%BE%E8%AE%BA4-Planarity/" rel="next" title="图论4-Planarity">
+                  图论4-Planarity <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

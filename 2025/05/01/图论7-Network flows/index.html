@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="图论7-Network FlowsMatching图$G$中的**极大匹配(**maximal matching)是指不能添加更多的边的匹配；最大匹配(maximum matching)是指图$G$中拥有最多边数的匹配；  显然每个最大匹配都是极大的，反之未必；  给定匹配$M$，一个$M$-交替路径是指一个交替选择$M$中的边和不在$M$中的边的路径；一个$M$-增广路径是指其两个端点不被$M$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论7-Network flows">
+<meta property="og:url" content="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA7-Network%20flows/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="图论7-Network FlowsMatching图$G$中的**极大匹配(**maximal matching)是指不能添加更多的边的匹配；最大匹配(maximum matching)是指图$G$中拥有最多边数的匹配；  显然每个最大匹配都是极大的，反之未必；  给定匹配$M$，一个$M$-交替路径是指一个交替选择$M$中的边和不在$M$中的边的路径；一个$M$-增广路径是指其两个端点不被$M$">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20250112155607024.png">
+<meta property="og:image" content="http://example.com/assets/image-20250112162708568.png">
+<meta property="og:image" content="http://example.com/assets/image-20250113154526967.png">
+<meta property="og:image" content="http://example.com/assets/image-20250113171531290.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.451Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.489Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20250112155607024.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA7-Network%20flows/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA7-Network%20flows/","path":"2025/05/01/图论7-Network flows/","title":"图论7-Network flows"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>图论7-Network flows | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA7-Network-Flows"><span class="nav-number">1.</span> <span class="nav-text">图论7-Network Flows</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Matching"><span class="nav-number">1.1.</span> <span class="nav-text">Matching</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lemma"><span class="nav-number">1.1.1.</span> <span class="nav-text">Lemma</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Berge"><span class="nav-number">1.1.2.</span> <span class="nav-text">Theorem(Berge)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Hall"><span class="nav-number">1.1.3.</span> <span class="nav-text">Theorem(Hall)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Corollary"><span class="nav-number">1.1.4.</span> <span class="nav-text">Corollary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Konig"><span class="nav-number">1.1.5.</span> <span class="nav-text">Theorem(Konig)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flow"><span class="nav-number">1.2.</span> <span class="nav-text">Flow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Menger"><span class="nav-number">1.2.1.</span> <span class="nav-text">Theorem(Menger)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Menger-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">Theorem(Menger)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Corollary-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">Corollary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lemma-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">Lemma</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Max-flow-Min-cut"><span class="nav-number">1.2.5.</span> <span class="nav-text">Theorem(Max-flow Min-cut)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Algorithm-Ford-Fulkerson"><span class="nav-number">1.2.6.</span> <span class="nav-text">Algorithm(Ford-Fulkerson)</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA7-Network%20flows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="图论7-Network flows | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图论7-Network flows
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="图论7-Network-Flows"><a href="#图论7-Network-Flows" class="headerlink" title="图论7-Network Flows"></a>图论7-Network Flows</h1><h2 id="Matching"><a href="#Matching" class="headerlink" title="Matching"></a>Matching</h2><p>图$G$中的**极大匹配(**maximal matching)是指不能添加更多的边的匹配；<strong>最大匹配</strong>(maximum matching)是指图$G$中拥有最多边数的匹配；</p>
+<ul>
+<li>显然每个最大匹配都是极大的，反之未必；</li>
+</ul>
+<p>给定匹配$M$，一个$M$-<strong>交替路径</strong>是指一个交替选择$M$中的边和不在$M$中的边的路径；一个$M$-<strong>增广路径</strong>是指其两个端点不被$M$浸润的$M$-交替路径；</p>
+<ul>
+<li>给定$M$-增广路径$P$，我们可以替换$M$中的边形成多一条的边的新的匹配$M’$;</li>
+</ul>
+<p>对于定义在顶点集$V$上的图$G,H$,其<strong>对称差</strong>(symmetric difference)$G\triangle H$定义为顶点集为$V$，边集中的边只属于$G$和$H$其中之一的图,通常具有<strong>异或</strong>(exclusive-or)性质；</p>
+<p>对于两个匹配$M,M’$，$M\triangle M’&#x3D;(M-M’)\cup(M’-M)$;</p>
+<p>对于二部图$G(V_1;V_2)$，一个完美匹配是指一个从$V_1$到$V_2$的一对一的对应关系使得每个具有对应关系的顶点都相邻；</p>
+<p><strong>结婚条件</strong>(Marriage condition)形象来说一组$k$个女孩d至少总共认识$k$个男孩；</p>
+<h3 id="Lemma"><a href="#Lemma" class="headerlink" title="Lemma"></a>Lemma</h3><p>两个匹配的对称差的每个分量是偶圈或者路径；</p>
+<p><strong>proof</strong>：注意到$\Delta(F)\le 2,\chi’(F)&#x3D;2$;</p>
+<h3 id="Theorem-Berge"><a href="#Theorem-Berge" class="headerlink" title="Theorem(Berge)"></a>Theorem(Berge)</h3><p>图$G$中的匹配$M$是最大匹配当且仅当$G$中没有$M$增广路径；</p>
+<p><strong>proof</strong>: 充分性显然，下证必要性，若$M$没有增广路径也不是最大匹配，取$G$中的最大匹配$M’$，令$F&#x3D;M\triangle M’$，$F$只包含偶圈和路径，注意到$\mid M’\mid&gt;\mid M\mid$，$F$必须包含一个分量是路径，其两个端点属于$M’$的边，这个路径就是$M$的增广路径，矛盾；</p>
+<h3 id="Theorem-Hall"><a href="#Theorem-Hall" class="headerlink" title="Theorem(Hall)"></a>Theorem(Hall)</h3><p>对于二部图$G(X;Y)$，存在$X$到$Y$的完美匹配的充分必要条件是对任意子集$S\sube X$，均有$\mid S\mid\le \mid N(S)\mid$;</p>
+<p><strong>proof</strong>:这说明结婚条件是充分必要的；必要性显然，下证充分性</p>
+<p>取$G$中的最大匹配$M$,$M$没有浸润$X$,我们说明存在子集$S\sub X$使得$\mid N(S)\mid&lt; \mid S\mid$;</p>
+<p>取$u\in X$且$u$未被$M$浸润,取$u$通过$M$交替路径到达的所有点中在$X$的部分为$S$,在$Y$中的部分为$T$,注意有$u\in S$;</p>
+<p><img src="/assets/image-20250112155607024.png" alt="image-20250112155607024"></p>
+<ul>
+<li><p>断言:$M$匹配$T$和$S-{u}$</p>
+<p>每个在$S-{u}$的顶点都可以通过$M$中的一条边到达$T$中顶点；$M$没有增广路径因此$T$中顶点都是浸润的，因此一个到达顶点$y\in T$的$M$交替路径也通过$M$的边到达$S-{u}$，因此有$\mid S-{u}\mid &#x3D; \mid T\mid$</p>
+</li>
+<li><p>由于$T\sube N(S)$，于是必有$T&#x3D;N(S)$，故<br>$$<br>\mid N(S)\mid&#x3D;\mid T\mid &#x3D;\mid{S-{u}}\mid &#x3D; \mid S\mid -1&lt; \mid S\mid<br>$$</p>
+</li>
+</ul>
+<p>由此证明了充分性；</p>
+<p>也可以用归纳法证明；也可以使用Menger定理证明；</p>
+<h3 id="Corollary"><a href="#Corollary" class="headerlink" title="Corollary"></a>Corollary</h3><p>对于$k$-正则的二部图有完美匹配；</p>
+<p><strong>proof</strong>:统计边数验证满足结婚条件；</p>
+<h3 id="Theorem-Konig"><a href="#Theorem-Konig" class="headerlink" title="Theorem(Konig)"></a>Theorem(Konig)</h3><p>二部图中最大匹配数等于最小点覆盖数；</p>
+<p><strong>proof</strong>:相互构造</p>
+<p> <img src="/assets/image-20250112162708568.png" alt="image-20250112162708568"></p>
+<h2 id="Flow"><a href="#Flow" class="headerlink" title="Flow"></a>Flow</h2><p> 称两条从$u$到$v$的路径是<strong>边不相交的</strong>(edge-disjoint)，如果它们没有公共边；</p>
+<p> 称两条从$u$到$v$的路径是<strong>点不相交的</strong>(vertex-disjoint)，如果它们没有公共点；</p>
+<p>考虑图$G$中不相邻的两个顶点$v,w$，$vw$<strong>断集</strong>(vw-disconnected set)指图$G$中的一个边集$E$，每条从$v$到$w$的路径包括$E$中的一条边；$vw$<strong>分离集</strong>(vw-seperated set)指图$G$中的一个点集$S$，每条从$v$到$w$的路径包括$S$中的一条点;</p>
+<p>一个<strong>网络</strong>(network)$N$是一个带权有向图，每一条箭头$a$分配一个容量$c(a)$；</p>
+<p>一个<strong>流</strong>(flow)$f$为每个箭头分配一个流量$f(a)$；</p>
+<p>对于顶点$v$，定义<strong>流出量</strong>$f^+(v)$为离开$v$的箭头总流量，流进量$f^-(v)$为进入$v$的箭头总流量；</p>
+<p>称一个流$f$是<strong>可行</strong>(feasible)，如果满足</p>
+<ul>
+<li><strong>流量约束</strong>：对于每个箭头$a$，$f(a)\le c(a)$；</li>
+<li><strong>守恒约束</strong>：对于每个顶点$v$，$f^+(v)&#x3D;f^-(v)$;</li>
+</ul>
+<p>零流显然是可行，定义<strong>流的净流量&#x2F;值</strong>为在汇点$t$处<br>$$<br>f^-(t)-f^+(t)<br>$$<br>一个<strong>最大流</strong>是一个拥有最大净流量的可行流；</p>
+<p>对于网络$N$中的流$f$，一个$f$<strong>增广路径</strong>(f-augmenting path)是一个从源点$s$到汇点$t$的路径$P$，在底图$G$中的边$e\in E(P)$满足如下性质：</p>
+<ul>
+<li>若$P$在$e$上同向，则$f(e)&lt; c(e)$,定义$\epsilon(e)&#x3D;c(e)-f(e)$;</li>
+<li>若$P$在$e$上反向，则$f(e)&gt;0$,定义$\epsilon(e)&#x3D;f(e)$;</li>
+</ul>
+<p>称路径$P$的<strong>容忍度</strong>(tolerance)为<br>$$<br>\min_{e\in E(P)} \epsilon(e)<br>$$<br>一个$f$增广路径对应一个大值流，这样的定义确保了容忍度为正；</p>
+<p>一个s&#x2F;t割(source&#x2F;sink cut)$[S,T]$由点集$S$出发的到点集$T$的箭头组成，$S,T$构成点集的划分；</p>
+<p>源&#x2F;汇割的<strong>容量</strong>${\rm cap}(S,T)$,是这些箭头的总容量；</p>
+<p>一个最小割是指拥有最小总容量的割；</p>
+<p><img src="/assets/image-20250113154526967.png" alt="image-20250113154526967"></p>
+<h3 id="Theorem-Menger"><a href="#Theorem-Menger" class="headerlink" title="Theorem(Menger)"></a>Theorem(Menger)</h3><p>连通图$G$中相异顶点$v,w$之间的边不相交路径最大条数等于$vw$不连通集的最少边数；</p>
+<p><strong>proof</strong>:显然后者不超过前者，只需证明前者不超过后者即可；</p>
+<p>对边数归纳，考虑非平凡情况，假设图$G$中最小的$vw$不连通集$E$的边满足$\mid E\mid &#x3D;k$</p>
+<ul>
+<li>不是所有的边和$v$相关联</li>
+<li>不是所有的边和$w$相关联</li>
+</ul>
+<p>$G-E$有两个分别包括顶点$v,w$的不相交的子图$V,W$;</p>
+<p>定义$G_1$为$G$收缩$V$中的每一条边形成的图，$G_2$为类似收缩$W$的每一条边形成的；由归纳假设，$G_1,G_2$给出$k$个边不相交的路径，所求的$k$个边不相交路径显然就是给出的路径的并；</p>
+<p>对于平凡情况，可以假设$G$中每条边都在$E$中，否则可以删去它使用归纳假设，考虑$vw$间的最短路$P$，$P$包括至多一条边在$E$中；对$G-E(P)$采用归纳假设，至少有$k-1$条边不相交路径，算上$P$即可；</p>
+<h3 id="Theorem-Menger-1"><a href="#Theorem-Menger-1" class="headerlink" title="Theorem(Menger)"></a>Theorem(Menger)</h3><p>连通图$G$中相异顶点$v,w$之间的点不相交路径最大条数等于$vw$分离集的最少点数；</p>
+<h3 id="Corollary-1"><a href="#Corollary-1" class="headerlink" title="Corollary"></a>Corollary</h3><p>对于图$G$是$k$-连通的当且仅当任意相异顶点之间有至少$k$条边不相交的路径；</p>
+<p>对于至少有$k+1$个顶点的图$G$，$G$是$k$-连通的当且仅当任意相异顶点间至少有$k$个点不相交的路径；</p>
+<p>值得一提的是，Menger定理对有向图也成立，因此一般表述成连通图中最大流等于最小割；手动添加两个顶点也可证明Hall定理；</p>
+<h3 id="Lemma-1"><a href="#Lemma-1" class="headerlink" title="Lemma"></a>Lemma</h3><p>令$P$是$f$增广路径，具有容忍度$z$，通过以下方式改变流</p>
+<ul>
+<li>$+z$:在与$P$同向的箭头上</li>
+<li>$-z$:在与$P$反向的箭头上</li>
+</ul>
+<p>形成的新可行流$f’$，其值${\rm val}(f’)&#x3D;{\rm val}(f)+z$</p>
+<h3 id="Theorem-Max-flow-Min-cut"><a href="#Theorem-Max-flow-Min-cut" class="headerlink" title="Theorem(Max-flow Min-cut)"></a>Theorem(Max-flow Min-cut)</h3><p>在任意网络中，最大流的值等于最小割的容量；</p>
+<p><strong>proof</strong>:容量为整数情形时可以看作Menger定理视作有向图中连接对应容量个箭头；</p>
+<p>只需要找到一个流值等于一个割流量即可；</p>
+<p>取$f$为最大流，如下定义点集划分$S,T$：点$z\in S$当且仅当存在路径$v&#x3D;v_0\to v_1\to \cdots \to v_{m-1}\to v_m &#x3D; z$使得$\epsilon(v_iv_{i+1})&gt;0$或$\epsilon(v_{i+1}v_i)&#x3D;f(v_{i+1v_i})&gt;0$</p>
+<p>由引理,源点$s\in S$,汇点$t\in T$;显然对每个$(x,z)\in [S,T]$,有$\epsilon(xz)&#x3D;0$,对于每个$[z,x]\in [T,S]$，我们有$f(z,x)&#x3D;0$，否则$z$应该属于$s$;</p>
+<p>因此有<br>$$<br>{\rm cap}([S,T])&#x3D;{\rm val}(f)<br>$$<br>$[S,T]$是所求的最小割；</p>
+<h3 id="Algorithm-Ford-Fulkerson"><a href="#Algorithm-Ford-Fulkerson" class="headerlink" title="Algorithm(Ford-Fulkerson)"></a>Algorithm(Ford-Fulkerson)</h3><p><img src="/assets/image-20250113171531290.png" alt="image-20250113171531290"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%9B%BE%E8%AE%BA6-Digraph/" rel="prev" title="图论6-Digraph">
+                  <i class="fa fa-angle-left"></i> 图论6-Digraph
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Keyword%20Table/" rel="next" title="Keyword Table">
+                  Keyword Table <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

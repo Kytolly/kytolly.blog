@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="聚类Background如果我们相信聚集在一起，有较高相似性的簇一定有有趣的知识的话，那么聚类分析就是获得数据内部结构，发现簇的意义的方法。 在讨论聚类算法时，都是在无监督学习的框架下进行的，也就是已知的数据集是没有标签可以学习的。 Content聚类的概念聚类：将数据分为多个簇(Clusters)，使得在同一个簇内对象之间具有较高的相似度，而不同簇之间的对象差别较大。 聚类的任务已知无标记样本集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聚类(Clustering)前置知识">
+<meta property="og:url" content="http://example.com/2025/05/01/%E8%81%9A%E7%B1%BB(Clustering)%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="聚类Background如果我们相信聚集在一起，有较高相似性的簇一定有有趣的知识的话，那么聚类分析就是获得数据内部结构，发现簇的意义的方法。 在讨论聚类算法时，都是在无监督学习的框架下进行的，也就是已知的数据集是没有标签可以学习的。 Content聚类的概念聚类：将数据分为多个簇(Clusters)，使得在同一个簇内对象之间具有较高的相似度，而不同簇之间的对象差别较大。 聚类的任务已知无标记样本集">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.390Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.890Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E8%81%9A%E7%B1%BB(Clustering)%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E8%81%9A%E7%B1%BB(Clustering)%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/","path":"2025/05/01/聚类(Clustering)前置知识/","title":"聚类(Clustering)前置知识"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>聚类(Clustering)前置知识 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">聚类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">1.1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Content"><span class="nav-number">1.2.</span> <span class="nav-text">Content</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.1.</span> <span class="nav-text">聚类的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB%E7%9A%84%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.2.2.</span> <span class="nav-text">聚类的任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-number">1.2.3.</span> <span class="nav-text">聚类的功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB%E7%9A%84%E6%9C%89%E6%95%88%E6%80%A7%E6%8C%87%E6%A0%87"><span class="nav-number">1.2.4.</span> <span class="nav-text">聚类的有效性指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E6%8C%87%E6%A0%87"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">外部指标</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95%E7%9A%84%E8%B7%9D%E7%A6%BB%E5%BA%A6%E9%87%8F"><span class="nav-number">1.3.</span> <span class="nav-text">聚类算法的距离度量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.3.1.</span> <span class="nav-text">聚类算法的分类</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E8%81%9A%E7%B1%BB(Clustering)%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="聚类(Clustering)前置知识 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          聚类(Clustering)前置知识
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h1><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>如果我们相信聚集在一起，有较高相似性的簇一定有有趣的知识的话，那么聚类分析就是获得数据内部结构，发现簇的意义的方法。</p>
+<p>在讨论聚类算法时，都是在<strong>无监督学习</strong>的框架下进行的，也就是已知的数据集是没有标签可以学习的。</p>
+<h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><h3 id="聚类的概念"><a href="#聚类的概念" class="headerlink" title="聚类的概念"></a>聚类的概念</h3><p>聚类：将数据分为多个簇(Clusters)，使得在同一个簇内对象之间具有较高的相似度，而不同簇之间的对象差别较大。</p>
+<h3 id="聚类的任务"><a href="#聚类的任务" class="headerlink" title="聚类的任务"></a>聚类的任务</h3><p>已知无标记样本集$D&#x3D;{\boldsymbol{x}<em>{1},\boldsymbol{x}</em>{2},\ldots,\boldsymbol{x}<em>{m}}$,聚类的算法的任务就是划分样本集成$k$个互不相交的簇，集 $D$ 划分为 $k$​ 个不相交的簇：<br>$$<br>D&#x3D;\bigcup</em>{l&#x3D;1}^kC_l，C_{l^{\prime}}\bigcap C_l&#x3D;\varnothing ({l^{\prime}\neq l})<br>$$<br>对样本$\boldsymbol{x}<em>{j}$,应有唯一的下标$\lambda_j\in{1,2,\ldots,k}$,使得$x_j\in C</em>{\lambda_j}$；</p>
+<p>聚类的结果可用包含 $m$ 个元素的簇标记向量$\lambda&#x3D;(\lambda_1;\lambda_2;\ldots;\lambda_m)$​ 表示；</p>
+<h3 id="聚类的功能"><a href="#聚类的功能" class="headerlink" title="聚类的功能"></a>聚类的功能</h3><p>聚类分析是获得数据内部结构的有效方法。通过观察聚类得到的每个簇的特点，可以集中对特定的某些簇作进一步分析。 </p>
+<p>聚类分析可以作为其它算法的预处理步骤；</p>
+<p>聚类分析可以完成噪声点&#x2F;孤立点的挖掘；</p>
+<h3 id="聚类的有效性指标"><a href="#聚类的有效性指标" class="headerlink" title="聚类的有效性指标"></a>聚类的有效性指标</h3><p>对于聚类任务，我们希望物以类聚，直观上有两个指标：</p>
+<ul>
+<li>「簇内相似度（intra-cluster similarity）」高</li>
+<li>「簇间相似度(inter-cluster similarity)」低</li>
+</ul>
+<h4 id="外部指标"><a href="#外部指标" class="headerlink" title="外部指标"></a>外部指标</h4><p>对数据集 $D&#x3D;{\boldsymbol{x}_1,\boldsymbol{x}_2,\ldots,\boldsymbol{x}_m}$,聚类簇划分 $\mathcal{C}&#x3D;{C_1$, $C_2,\ldots,C_k}$, 参考模型簇划分为$C^<em>&#x3D;{C_1^</em>,C_2^<em>,\ldots,C_s^</em>}$令$\lambda$ 与$\lambda^<em>$ 分别表示与$C$ 和$C^</em>$​ 对应的簇标记向量. </p>
+<p>对样本配对，一定是下面四种情况之一：<br>$$<br>\begin{gathered}<br>a&#x3D; |SS|, SS&#x3D;{(\boldsymbol{x}<em>{i},\boldsymbol{x}</em>{j})\mid\lambda_{i}&#x3D;\lambda_{j},\lambda_{i}^{<em>}&#x3D;\lambda_{j}^{</em>},i&lt;j)}\<br>b&#x3D; |SD|, SD&#x3D;{(\boldsymbol{x}<em>{i},\boldsymbol{x}</em>{j})\mid\lambda_{i}&#x3D;\lambda_{j},\lambda_{i}^{<em>}\neq\lambda_{j}^{</em>},i&lt;j)} \<br>c&#x3D; |DS|, DS&#x3D;{(\boldsymbol{x}<em>{i},\boldsymbol{x}</em>{j})\mid\lambda_{i}\neq\lambda_{j},\lambda_{i}^{<em>}&#x3D;\lambda_{j}^{</em>},i&lt;j)} \<br>d&#x3D; |DD|, DD&#x3D;{(\boldsymbol{x}<em>{i},\boldsymbol{x}</em>{j})\mid\lambda_{i}\neq\lambda_{j},\lambda_{i}^{<em>}\neq\lambda_{j}^{</em>},i&lt;j)}<br>\end{gathered}<br>$$<br>显然，$a+b+c+d&#x3D;\binom{m}{2}$</p>
+<ul>
+<li><p>Jaccard 系数(Jaccard Coefficient, JC)<br>$$<br>JC&#x3D;\frac a {a+b+c}<br>$$</p>
+</li>
+<li><p>FMI 指数(Fowlkes and Mallows Index, FMI)<br>$$<br>\mathrm{FMI}&#x3D;\sqrt{\frac{a}{a+b}\cdot\frac{a}{a+c}} .<br>$$</p>
+</li>
+<li><p>Rand指数(Rand Index, RI)<br>$$<br>RI&#x3D; \frac{a+d}{a+b+c+d}<br>$$</p>
+</li>
+</ul>
+<h2 id="聚类算法的距离度量"><a href="#聚类算法的距离度量" class="headerlink" title="聚类算法的距离度量"></a>聚类算法的距离度量</h2><p>四种方式：最小距离，最大距离，中心距离，平均距离<br>$$<br>\begin{aligned}<br>&amp;dist_{min}(C_i,C_j) &#x3D;\min_{p\in C_i,p^{\prime}\in C_j}{|p-p^{\prime}|} \<br>&amp;dist_{max}(C_i,C_j) &#x3D;\max_{p\in C_i,p^{\prime}\in C_j}{|p-p^{\prime}|} \<br>&amp;dist_{mean}(C_i,C_j)&#x3D;|m_i-m_j| \<br>&amp; dist_{a\nu g}(C_i,C_j)&#x3D;\frac1{n_in_j}\sum_{p\in C_i,p^{\prime}\in C_j}|p-p^{\prime}|<br>\end{aligned}<br>$$</p>
+<h3 id="聚类算法的分类"><a href="#聚类算法的分类" class="headerlink" title="聚类算法的分类"></a>聚类算法的分类</h3><ul>
+<li>基于划分的办法：K-Means, K-Medoids </li>
+<li>基于层次的办法：AGENS, DIANA</li>
+<li>基于密度的办法：DBSCAN</li>
+<li>基于网络的办法：STING</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%9F%BA%E4%BA%8E%E7%BD%91%E6%A0%BC%E7%9A%84%E8%81%9A%E7%B1%BB%EF%BC%9ASTING/" rel="prev" title="基于网格的聚类：STING">
+                  <i class="fa fa-angle-left"></i> 基于网格的聚类：STING
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/PCA%E6%96%B9%E6%B3%95/" rel="next" title="PCA方法">
+                  PCA方法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

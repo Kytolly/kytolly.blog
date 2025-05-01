@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Adversarial Search对抗搜索也称为博弈搜索：在一个竞争环境中，两个或两个以上的Agents之间通过竞争实现相反的利益，一方最大化这个利益，另外一方最小化这个利益。 Games对于人工智能方向的博弈，往往有以下分类：  Deterministic (确定性的)&amp;stochastic (随机性的)?  One, two, &amp;more players?  Zero sum">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Adversarial Search">
+<meta property="og:url" content="http://example.com/2025/05/01/Adversarial%20Search/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Adversarial Search对抗搜索也称为博弈搜索：在一个竞争环境中，两个或两个以上的Agents之间通过竞争实现相反的利益，一方最大化这个利益，另外一方最小化这个利益。 Games对于人工智能方向的博弈，往往有以下分类：  Deterministic (确定性的)&amp;stochastic (随机性的)?  One, two, &amp;more players?  Zero sum">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406131121461.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406131759679.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.312Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:21.935Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406131121461.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/Adversarial%20Search/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/Adversarial%20Search/","path":"2025/05/01/Adversarial Search/","title":"Adversarial Search"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Adversarial Search | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Adversarial-Search"><span class="nav-number">1.</span> <span class="nav-text">Adversarial Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Games"><span class="nav-number">2.</span> <span class="nav-text">Games</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Minimax-Search"><span class="nav-number">3.</span> <span class="nav-text">Minimax Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#alpha-beta-Pruning"><span class="nav-number">4.</span> <span class="nav-text">$\alpha-\beta$ Pruning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%8C%E6%A3%8B%E6%8E%92%E5%BA%8F"><span class="nav-number">5.</span> <span class="nav-text">行棋排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%AE%8C%E7%BE%8E%E7%9A%84%E5%AE%9E%E6%97%B6%E5%86%B3%E7%AD%96"><span class="nav-number">6.</span> <span class="nav-text">不完美的实时决策</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%AA%E6%96%AD%E6%90%9C%E7%B4%A2"><span class="nav-number">7.</span> <span class="nav-text">截断搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E5%89%8D%E5%89%AA%E6%9E%9D"><span class="nav-number">8.</span> <span class="nav-text">向前剪枝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%A1%A8"><span class="nav-number">9.</span> <span class="nav-text">查表</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/Adversarial%20Search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Adversarial Search | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Adversarial Search
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:21" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="Adversarial-Search"><a href="#Adversarial-Search" class="headerlink" title="Adversarial Search"></a>Adversarial Search</h2><p>对抗搜索也称为博弈搜索：在一个竞争环境中，两个或两个以上的Agents之间通过竞争实现相反的利益，一方最大化这个利益，另外一方最小化这个利益。</p>
+<h2 id="Games"><a href="#Games" class="headerlink" title="Games"></a>Games</h2><p>对于人工智能方向的博弈，往往有以下分类：</p>
+<ul>
+<li><p>Deterministic (确定性的)&amp;stochastic (随机性的)?</p>
+</li>
+<li><p>One, two, &amp;more players?</p>
+</li>
+<li><p>Zero sum?（零和游戏：对一方有利的东西将对另一方同等程度有害，不存在“双赢”结果）</p>
+</li>
+<li><p>Perfect information (states完全可被观察)?</p>
+</li>
+</ul>
+<p>我们通常用以下形式化描述博弈：</p>
+<ul>
+<li>States: 状态空间$S$，初始状态为$s_0$；</li>
+<li>Players:行动玩家集合$P$；</li>
+<li>Actions: 某状态下的合法行动集合$A$；</li>
+<li>Transition Function（Result）: 转移模型$S \times A\to S$</li>
+<li>Terminal Test:终止测试，判断game是否结束；</li>
+<li>Terminal Utilities: 效用函数,描述游戏者$p$在终止状态$s$下的数值，$S\times P \to \mathbb R$， 在零和博弈中，玩家总收益 之和一样；</li>
+<li>Policy：玩家采取的策略$S\to A$</li>
+</ul>
+<p>其中$s_0$,Actions, Result定义这个游戏的博弈树：结点是状态，边是此时合法的行动，对于双人博弈来说，奇数层MAX希望效用值最大化，偶数层MIN希望效用值最小化；</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406131121461.png" alt="image-20240613112057346"></p>
+<p>给定一棵博弈树，最优策略可以通过检查每个结点的极小极大值来确定，终止状态的极小极大只就是自身的效用值；</p>
+<p>对于给定的选择，MAX希望移动到到达极大值的状态，MIN希望移动到极小值的状态；<br>$$<br>\mathsf{MINIMAX}(s)&#x3D;\begin{cases}<br>\mathsf {Utility}(s)&amp;s为终止状态\<br>\max_{a\in A}\mathsf{MINIMAX}(\mathsf{Result}(s,a))&amp;s为\mathsf{MAX}结点\<br>\min_{a\in A}\mathsf{MINIMAX}(\mathsf{Resilt}(s,a))&amp;s为\mathsf{MIN}结点<br>\end{cases}<br>$$</p>
+<h2 id="Minimax-Search"><a href="#Minimax-Search" class="headerlink" title="Minimax Search"></a>Minimax Search</h2><p>对于简单的博弈问题，可以生成整棵博弈树，找到必胜策略；对于复杂的博弈问题，不可能生成整个搜索树；</p>
+<p>一种可行的方法是用当前正在考察的节点生成一棵部分博弈树，并利用代价函数$f(n)$对叶节点进行估值；</p>
+<p>对于一棵状态搜索树，玩家交替行棋，已知叶子结点（终止状态）的效用值，求每个结点的Minimax值，也就是best achievable utility；</p>
+<p>Minimax就是这样的一个递归算法，一直向下进行到叶节点然后随着递归的展开通过搜索树倒推极小化极大值；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">def max-value(state):</span><br><span class="line">    initialize v = -∞</span><br><span class="line">    for each successor of state:</span><br><span class="line">    	v = max(v, value(successor))</span><br><span class="line">    return v</span><br><span class="line">    </span><br><span class="line">def min-value(state):</span><br><span class="line">	initialize v = +∞</span><br><span class="line">	for each successor of state:</span><br><span class="line">		v = min(v, value(successor))</span><br><span class="line">	return v</span><br><span class="line">	</span><br><span class="line">def value(state):</span><br><span class="line">	if the state is a terminal state: </span><br><span class="line">		return the state’s utility</span><br><span class="line">	if the next agent is MAX: </span><br><span class="line">		return max-value(state)</span><br><span class="line">	if the next agent is MIN: </span><br><span class="line">		return min-value(state)</span><br></pre></td></tr></table></figure>
+
+<p>对于上面举例的两层博弈树，max在根节点的最佳移动是$a_1$，因为它指向值最高的状态;而min的最佳响应是$b1$，因为它指向值最低的状态。 </p>
+<h2 id="alpha-beta-Pruning"><a href="#alpha-beta-Pruning" class="headerlink" title="$\alpha-\beta$ Pruning"></a>$\alpha-\beta$ Pruning</h2><p>上述的递归程序时间开销是指数级的，完全不使用，我们考虑一个能得到相同结果，剪去不影响结果的搜索分支的剪枝方式；</p>
+<p>注意到Minimax Search是一种深度优先的搜索，因此只需要考虑书上某一单一路径上的结点，对于每一个结点，维护两个参数$\alpha,\beta$:</p>
+<ul>
+<li>$\alpha$：目前未知路径上发现的MAX的最佳选择；</li>
+<li>$\beta$:目前为止的路径上发现MIN的最佳选择；</li>
+</ul>
+<p>通过维护这两个参数，我们可以省去一些结点的Minimax值计算;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">def max-value(state, α, β):</span><br><span class="line">	initialize v = -∞</span><br><span class="line">	for each successor of state:</span><br><span class="line">		v = max(v, value(successor, α, β))</span><br><span class="line">		if v ≥ β </span><br><span class="line">			return v</span><br><span class="line">		α = max(α, v)</span><br><span class="line">	return v</span><br><span class="line">	</span><br><span class="line">def min-value(state , α, β):</span><br><span class="line">	initialize v = +∞</span><br><span class="line">	for each successor of state:</span><br><span class="line">		v = min(v, value(successor, α, β))</span><br><span class="line">		if v ≤ α </span><br><span class="line">			return v</span><br><span class="line">		β = min(β, v)</span><br><span class="line">	return v</span><br><span class="line">	</span><br><span class="line">def value(state):</span><br><span class="line">	if the state is a terminal state: </span><br><span class="line">		return the state’s utility</span><br><span class="line">	if the next agent is MAX: </span><br><span class="line">		return max-value(state, -∞, +∞)</span><br><span class="line">	if the next agent is MIN: </span><br><span class="line">		return min-value(state, -∞, +∞)</span><br></pre></td></tr></table></figure>
+
+<p>以下是一个较为复杂的样例：</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406131759679.png" alt="image-20240613175919506"></p>
+<p>可以看到，经过剪枝，原本需要访问26个结点的搜索树，现在只需要访问17个结点就得到了根的Minimax值，该技术能有效减少访问搜索树中的结点个数；</p>
+<h2 id="行棋排序"><a href="#行棋排序" class="headerlink" title="行棋排序"></a>行棋排序</h2><p>$\alpha-\beta$剪枝算法的效率很大程度上取决于检查后继状态的顺序，但是对于状态做出排序事实上是困难的，假设后继状态检查采取的是随机顺序，检查的总结点树大约是$O(b^{\frac{3m}{4}})$;</p>
+<p>对重复状态的搜索可能会导致搜索代价的指数级增长，不同的行棋顺序可能会导致相同的结果，因此需要将第一次遇到的棋局以及评估值用Hash表存储起来，一般称为换位表；</p>
+<p>如果评估的速度过快，那么换位表就不太可能保存所有评估了，也许保留一些有价值的结点可能是比较好的方案；</p>
+<h2 id="不完美的实时决策"><a href="#不完美的实时决策" class="headerlink" title="不完美的实时决策"></a>不完美的实时决策</h2><p>由于下棋的时间有限，所以Agent应该尽早截断搜索,将启发式评估函数值$h(s)$近似为终端结点的Minimax值，假设$d$为截断搜索的最大深度，截断测试表示为<code>CUTOFF(s,d)</code>转移方程应变为：<br>$$<br>h(s)&#x3D;\begin{cases}<br>\mathsf {Eval}(s)&amp; \mathsf{CUTOFF}(s,d)&#x3D;True\<br>\max_{a\in A}h(\mathsf{Result}(s,a))&amp;s为\mathsf{MAX}结点\<br>\min_{a\in A}h(\mathsf{Resilt}(s,a))&amp;s为\mathsf{MIN}结点<br>\end{cases}<br>$$<br>为了避免Agent出昏招，评估函数对终止状态的排序要和真正的效用函数排序结果一样；</p>
+<p>评估函数的计算开销不能太大，而且应该和取胜几率密切相关；</p>
+<p>假如说对于国际象棋这种状态完全可观察的博弈问题来说，可以由子力价值，关键位置，王的安全性等等，这往往是设计者的先验知识；</p>
+<p>我们从不同的角度评估棋局，最终可得到一个加权平均的方案作为评估函数值如下：<br>$$<br>Eval(s)&#x3D;\sum_{i&#x3D;1}^{n}\omega_i f_i(s)<br>$$<br>对于更复杂的博弈问题，人们往往很难总结经验，也许机器学习的技术将更有利于确定评估函数的权值，比如一个象值三个兵；</p>
+<h2 id="截断搜索"><a href="#截断搜索" class="headerlink" title="截断搜索"></a>截断搜索</h2><h2 id="向前剪枝"><a href="#向前剪枝" class="headerlink" title="向前剪枝"></a>向前剪枝</h2><h2 id="查表"><a href="#查表" class="headerlink" title="查表"></a>查表</h2>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/8Queue/" rel="prev" title="8Queue">
+                  <i class="fa fa-angle-left"></i> 8Queue
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/Agent&Environment/" rel="next" title="Agent&amp;Environment">
+                  Agent&Environment <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

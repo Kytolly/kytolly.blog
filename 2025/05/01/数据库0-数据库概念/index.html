@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="绪论数据库是什么数据库：长期存储在计算机内，有组织，可共享的海量数据集合 数据库相关理论及相关问题：  数据模型，规范化理论：如何组织这些数据? 数据定义和操作语言；如何存取和操作数据？ 数据安全：哪些人可以操作这些数据？ 并发控制：多人如何操作统一数据？ 数据恢复：出现故障怎么办？ 数据挖掘：如何分析数据和发现数据价值？  数据库相关人员职责：  数据库开发者 数据库设计者 数据库管理员 数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库0-数据库概念">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%930-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="绪论数据库是什么数据库：长期存储在计算机内，有组织，可共享的海量数据集合 数据库相关理论及相关问题：  数据模型，规范化理论：如何组织这些数据? 数据定义和操作语言；如何存取和操作数据？ 数据安全：哪些人可以操作这些数据？ 并发控制：多人如何操作统一数据？ 数据恢复：出现故障怎么办？ 数据挖掘：如何分析数据和发现数据价值？  数据库相关人员职责：  数据库开发者 数据库设计者 数据库管理员 数据库">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.402Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.657Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%930-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%930-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5/","path":"2025/05/01/数据库0-数据库概念/","title":"数据库0-数据库概念"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据库0-数据库概念 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%AA%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.1.</span> <span class="nav-text">数据库是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">数据概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF"><span class="nav-number">1.2.2.</span> <span class="nav-text">信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86"><span class="nav-number">1.2.3.</span> <span class="nav-text">知识</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5"><span class="nav-number">1.3.</span> <span class="nav-text">数据库概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93DB"><span class="nav-number">1.3.1.</span> <span class="nav-text">数据库DB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9FDBMS"><span class="nav-number">1.3.2.</span> <span class="nav-text">数据库管理系统DBMS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.3.3.</span> <span class="nav-text">数据库系统</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%930-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据库0-数据库概念 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库0-数据库概念
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><h2 id="数据库是什么"><a href="#数据库是什么" class="headerlink" title="数据库是什么"></a>数据库是什么</h2><p>数据库：长期存储在计算机内，有组织，可共享的海量数据集合</p>
+<p>数据库相关理论及相关问题：</p>
+<ul>
+<li>数据模型，规范化理论：如何组织这些数据?</li>
+<li>数据定义和操作语言；如何存取和操作数据？</li>
+<li>数据安全：哪些人可以操作这些数据？</li>
+<li>并发控制：多人如何操作统一数据？</li>
+<li>数据恢复：出现故障怎么办？</li>
+<li>数据挖掘：如何分析数据和发现数据价值？</li>
+</ul>
+<p>数据库相关人员职责：</p>
+<ol>
+<li>数据库开发者</li>
+<li>数据库设计者</li>
+<li>数据库管理员</li>
+<li>数据库实现者</li>
+</ol>
+<h2 id="数据概念"><a href="#数据概念" class="headerlink" title="数据概念"></a>数据概念</h2><h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><p>数据是一种符号序列，它的内容是事物特性的反映，能被计算机识别，存储；</p>
+<p>数据的类型：</p>
+<ul>
+<li>数字，字母，文字</li>
+<li>图形， 图像，声音…</li>
+</ul>
+<h3 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h3><p>信息是经过加工处理的数据，是数据的具体含义；</p>
+<p>数据和信息的联系：</p>
+<ol>
+<li>数据是信息的载体，数据是信息的外延；</li>
+<li>信息是数据的具体含义，信息是数据的内含；</li>
+<li>信息是抽象的，不随数据形式而变化；</li>
+<li>信息对应的数据表现形式具有可选择性；</li>
+</ol>
+<h3 id="知识"><a href="#知识" class="headerlink" title="知识"></a>知识</h3><p>知识是有用的信息；</p>
+<p>知识获取的过程既是从大量、已知信息出发、根据事物之间的固有联系和规律，提出有价值、有意义的信息</p>
+<h2 id="数据库概念"><a href="#数据库概念" class="headerlink" title="数据库概念"></a>数据库概念</h2><h3 id="数据库DB"><a href="#数据库DB" class="headerlink" title="数据库DB"></a>数据库DB</h3><p>数据库是长期储存在计算机内、有组织的、可共享的大量数据集合。</p>
+<ul>
+<li>按一定的数据模型组织，描述和存储；</li>
+<li>可为各种用户共享；</li>
+<li>冗余度小；</li>
+<li>数据独立性高；</li>
+<li>易拓展；</li>
+</ul>
+<h3 id="数据库管理系统DBMS"><a href="#数据库管理系统DBMS" class="headerlink" title="数据库管理系统DBMS"></a>数据库管理系统DBMS</h3><p>定义：一个能让用户定义，创建和维护数据库以及控制对数据库访问的软件系统；</p>
+<h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4><ol>
+<li><p><strong>数据库定义DDL</strong>：对各级数据库模式进行精确定义（create, alter, drop），包括创建模式，数据库，表，视图；</p>
+</li>
+<li><p><strong>数据操纵DML</strong>：对数据库中的数据进行处理(select, insert, update, delete)，包括增加、删除、修改、查询；</p>
+</li>
+<li><p><strong>数据库运行控制DCL</strong>：数据库恢复，数据库并发控制，数据完整性控制，数据安全性控制(grant, revoke)</p>
+</li>
+<li><p><strong>数据库的维护功能</strong>：</p>
+<ul>
+<li>初始数据的载入；</li>
+<li>数据库的转储；</li>
+<li>数据库性质监视，分析功能；</li>
+</ul>
+</li>
+<li><p><strong>数据字典DD</strong>：存放数据库的三级模式的描述</p>
+</li>
+</ol>
+<h3 id="数据库系统"><a href="#数据库系统" class="headerlink" title="数据库系统"></a>数据库系统</h3><p>定义：引入数据库后的计算机系统；</p>
+<ul>
+<li>硬件</li>
+<li>软件（数据库，数据库管理系统和相关软件）</li>
+<li>用户（数据库管理员，数据库开发者， 最终用户）</li>
+</ul>
+<p>一般认为DBS包含DB，DBMS，但是DB和DBMS没有包含关系；</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%AE%9E%E9%AA%8C1-hotel%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="prev" title="实验1-hotel数据库">
+                  <i class="fa fa-angle-left"></i> 实验1-hotel数据库
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%931-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/" rel="next" title="数据库1-数据库管理技术">
+                  数据库1-数据库管理技术 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

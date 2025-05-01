@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="逻辑的一般原理基于知识的Agent通过对知识的内部表示进行操作而推理，其核心部件是知识库KB，知识库作为语句的集合，用知识表示语言表达，用以表示关于世界的某些断言，某些语句直接给定，我们尊称其为公理； Agent如何维护其知识库？  Tell：告诉知识库Agent感知的内容； Ask：询问知识库应该采取什么行动，这个过程可能包括大量的推理； Tell:告诉知识库Agent选择的行动后并执行；  如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="知识推理">
+<meta property="og:url" content="http://example.com/2025/05/01/%E7%9F%A5%E8%AF%86%E6%8E%A8%E7%90%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="逻辑的一般原理基于知识的Agent通过对知识的内部表示进行操作而推理，其核心部件是知识库KB，知识库作为语句的集合，用知识表示语言表达，用以表示关于世界的某些断言，某些语句直接给定，我们尊称其为公理； Agent如何维护其知识库？  Tell：告诉知识库Agent感知的内容； Ask：询问知识库应该采取什么行动，这个过程可能包括大量的推理； Tell:告诉知识库Agent选择的行动后并执行；  如">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614234959767.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.325Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.825Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614234959767.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E7%9F%A5%E8%AF%86%E6%8E%A8%E7%90%86/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E7%9F%A5%E8%AF%86%E6%8E%A8%E7%90%86/","path":"2025/05/01/知识推理/","title":"知识推理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>知识推理 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E7%9A%84%E4%B8%80%E8%88%AC%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">逻辑的一般原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E4%B9%89"><span class="nav-number">3.</span> <span class="nav-text">语义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E7%90%86%E8%AF%81%E6%98%8E"><span class="nav-number">4.</span> <span class="nav-text">定理证明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%B8%E7%9C%9F%E8%95%B4%E5%90%AB%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">永真蕴含式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%AE%E6%8D%A2%E5%92%8C%E6%8E%A8%E7%90%86"><span class="nav-number">6.</span> <span class="nav-text">置换和推理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%92%E7%BB%93-%E6%B6%88%E8%A7%A3-%E6%BC%94%E7%BB%8E%E6%8E%A8%E7%90%86%E8%83%8C%E6%99%AF"><span class="nav-number">7.</span> <span class="nav-text">归结(消解)演绎推理背景</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E7%9F%A5%E8%AF%86%E6%8E%A8%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="知识推理 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          知识推理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="逻辑的一般原理"><a href="#逻辑的一般原理" class="headerlink" title="逻辑的一般原理"></a>逻辑的一般原理</h2><p>基于知识的Agent通过对知识的内部表示进行操作而推理，其核心部件是知识库KB，知识库作为语句的集合，用知识表示语言表达，用以表示关于世界的某些断言，某些语句直接给定，我们尊称其为公理；</p>
+<p>Agent如何维护其知识库？</p>
+<ul>
+<li>Tell：告诉知识库Agent感知的内容；</li>
+<li>Ask：询问知识库应该采取什么行动，这个过程可能包括大量的推理；</li>
+<li>Tell:告诉知识库Agent选择的行动后并执行；</li>
+</ul>
+<p>如果Agent感知到的可用信息正确，那么Agent得出的结论也一定是正确的，这就是逻辑推理的本质；</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ol>
+<li><p>命题：具有确切真值的陈述句；</p>
+<ul>
+<li>原子命题：不能继续分解的命题；<ul>
+<li>常值命题：不是真就是假的命题；</li>
+<li>变量命题：没有具体内容的原子命题；</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>复合命题：可以继续分解的命题，由简单命题用括号和联结词组成；<ul>
+<li>简单命题是变量命题时，可看作其函数；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>联结词：五种常用的联结词如下：</p>
+<ul>
+<li>否定式:非P，$\neg P$</li>
+<li>合取式：P且Q，$P\wedge Q$</li>
+<li>析取式：P或Q，$P\vee Q$​</li>
+<li>蕴含：规则语句，若P则Q,$P\Rightarrow  Q$</li>
+<li>等价：P当且仅当Q，$P \Leftrightarrow Q$​</li>
+</ul>
+</li>
+<li><p>命题公式：我们递归地定义公式WFF</p>
+<ul>
+<li>命题变元$P$本身就是公式</li>
+<li>$\neg P, P\wedge Q,P\vee Q,P\Rightarrow  Q, P \Leftrightarrow Q $都是公式；</li>
+<li>仅通过有限步使用上述两规则进行命题的联结得到的才是公式</li>
+</ul>
+<p>对于含有$n$个命题变元$P_1,P_2,…,P_n$的公式$G$,记为$G(P_1,P_2,…,P_n)$;</p>
+</li>
+</ol>
+<h2 id="语义"><a href="#语义" class="headerlink" title="语义"></a>语义</h2><ol>
+<li><p>模型&#x2F;解释：可能的模型就是对命题$\alpha$的真值所有可能赋值，用$M(\alpha)$​表示；</p>
+<p>对公式$G(P_1,P_2,…,P_n)$,指定$(P_1,P_2,…,P_n)$的一组真值，这组真值称为$G$的解释；</p>
+</li>
+<li><p>语义：每个命题在每个模型内的真值，命题的真值必须通过指定模型确定；</p>
+</li>
+<li><p>真值表：联结词的运算规则，用如下表来概括</p>
+<p><img src="C:\Users\13928\AppData\Roaming\Typora\typora-user-images\image-20240614234959767.png" alt="image-20240614234959767"></p>
+</li>
+<li><p>逻辑推理：用蕴含关系推导出结论；</p>
+<ul>
+<li>可靠性：只导出蕴含句的推理算法称为可靠的；</li>
+<li>完备的：若推理算法可以生成任意蕴含句；</li>
+</ul>
+</li>
+<li><p>模型检验：枚举可能的模型检验KB为真时命题$\alpha$为真,即检验$M(KB)\subseteq  M(\alpha)$​</p>
+</li>
+</ol>
+<h2 id="定理证明"><a href="#定理证明" class="headerlink" title="定理证明"></a>定理证明</h2><ol>
+<li>逻辑等价：命题$\alpha,\beta$ 在同样的模型集合中为真，记为$\alpha \equiv   \beta$</li>
+<li>有效性（永真性）：若命题在任何模型都是真的；</li>
+<li>可满足性：若命题在某些模型中为真；</li>
+<li>永假性：若命题在任何模型都是假的；</li>
+</ol>
+<h2 id="永真蕴含式"><a href="#永真蕴含式" class="headerlink" title="永真蕴含式"></a>永真蕴含式</h2><ul>
+<li>化 简 式 $P \land Q \Rightarrow P$, $P \land Q \Rightarrow Q$​</li>
+<li>附加式$ P  \Rightarrow  P \vee Q$, $ Q \Rightarrow  P \vee Q$</li>
+<li>析取三段论$﹁P, P∨Q ⇒Q$</li>
+<li>假言推理 $P, P→Q ⇒Q$</li>
+<li>拒取式$ ¬Q, P→Q ⇒¬P$​</li>
+<li>假言三段论 $P→Q, Q→R ⇒P→R$​</li>
+<li>二难推理$ P∨Q, P→R, Q→R ⇒R $</li>
+<li>全称固化$ (∀x)P(x) ⇒P(y)$</li>
+<li>存在固化$ (∃x)P(x) ⇒P(y)$​</li>
+</ul>
+<h2 id="置换和推理"><a href="#置换和推理" class="headerlink" title="置换和推理"></a>置换和推理</h2><ol>
+<li><p>谓词：带有参数的命题；</p>
+<ul>
+<li><p>谓词公式的解释：设D是谓词公式P的非空个体域，若对P中的常量，函数和谓词按如下规定赋值:</p>
+<ol>
+<li><p>为每个个体常量指派D中的一个元素；</p>
+</li>
+<li><p>为每个n元函数指派一个从Dn到D的一个映射，其中<br>$$<br>Dn &#x3D; {(x_1, x_2, · · · , x_n)|x_1, x_2, · · · , x_n ∈ D}<br>$$</p>
+</li>
+<li><p>为每个n元谓词指派一个从$D^n$到{0,1}的映射，则称这些指派为P在D上的一个解释</p>
+</li>
+</ol>
+</li>
+<li><p>谓词公式的永真性：如果谓词公式P对非空个体域D上的任一解释都取得真值T，则称P在D上是永真的；如果P在任何非空个体域上都是永真的，则称P是永真。</p>
+</li>
+<li><p>谓词公式的可满足性：对于谓词公式P，如果至少存在D上的一个解释，使公式P在此解释下的真值为T，则称公式P在D上是可满足的。 </p>
+</li>
+<li><p>谓词公式的永假性：如果谓词公式P对非空个体域D上的任一解释都取真值F，则称P在D上是永假的；如果P在任何非空个体域上均是永假的，则称P永假。</p>
+</li>
+<li><p>谓词公式的等价性：设P与Q是D上的两个谓词公式，若对D上的任意解释，P与Q都有相同的真值，则称P与Q在D上是等价的。如果D是任意非空个体域，则称P与Q是等价的，记作P⇔Q。</p>
+</li>
+</ul>
+</li>
+<li><p>​    在不同谓词公式中，往往会出现谓词名相同但其个体不同的情况，此时推理过程是不能直接进行匹配的，需要先进行置换； W (a) 和W(x)→Q(x)</p>
+<p> 对谓词W (a)与W (x)谓词名相同，但个体不同，不能直接进行推理。</p>
+<p>​    要使用假言推理，首先需要找到项a对变元x的置换，使W (a)与W (x)一致。这种寻找项对变元的置换，使谓词一致的过程叫做合一的过程。</p>
+</li>
+<li><p>置换是形如 ${t_1 &#x2F;x_1 ,t_2 &#x2F;x_2 ,…,t_n &#x2F;x_n }$</p>
+<p>的有限集合。其中，$t_1 ,t_2 ,…,t_n $是项；$x_1 ,x_2 ,…,x_n $是互不相同的变元；$t_i &#x2F;x_i$ 表示用$t_i $替换$x_i$ 。要求：$t_i $与$x_i$ 不能相同，$x_i $不能循环地出现在另一个$t_i$ 中。</p>
+<p>通常，置换是用希腊字母$θ、σ、α、λ$等来表示的</p>
+</li>
+<li><p>设$θ&#x3D;{t_1 &#x2F;x_1 ,t_2 &#x2F;x_2 ,…,t_n &#x2F;x_n }$是一个置换，$F$是一个谓词公式，把公式$F$中出现的所有$x_i$ 换成$t_i (i&#x3D;1,2,…,n)$，得到一个新的公式$G$，称$G$为$F$在置换$θ $下的例示，记作$G&#x3D;Fθ$</p>
+</li>
+</ol>
+<h2 id="归结-消解-演绎推理背景"><a href="#归结-消解-演绎推理背景" class="headerlink" title="归结(消解)演绎推理背景"></a>归结(消解)演绎推理背景</h2><p>归结演绎推理是一种基于鲁宾逊(Robinson)归结原理的机器推理技术。鲁宾逊归结原理亦称消解原理, 鲁宾逊于1965年在海伯伦(Herbrand)理论的基础上提出一种基于逻辑的”反证法”</p>
+<p>在人工智能中, 几乎所有的问题都可转化为一个定理证明问题。定理证明的实质, 就是对 前提P、结论Q, 证明 P→Q 永真。</p>
+<p>要证明P→Q永真, 就要证明P→Q在任何一个非空的个体域上都是永真的。这是非常困难, 甚至是不可实现的。</p>
+<p>人们发现可采用反证法的思想, 把关于永真性的证明转化为关于不可满足性的证明。</p>
+<p>即要证明P→Q永真, 只要能够证明P∧﹁Q是不可满足的就可。</p>
+<p>因 ： ﹁ (P→Q) ⇔ ﹁ (﹁ P∨Q) ⇔  P∧﹁ Q </p>
+<p>这方面最有成效的工作就是鲁宾逊归结原理。它使定理证明的机械化成为现实。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E7%88%AC%E5%B1%B1%E7%AE%97%E6%B3%95%EF%BC%8C%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB%E7%AE%97%E6%B3%95/" rel="prev" title="爬山算法，模拟退火算法">
+                  <i class="fa fa-angle-left"></i> 爬山算法，模拟退火算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" rel="next" title="遗传算法">
+                  遗传算法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

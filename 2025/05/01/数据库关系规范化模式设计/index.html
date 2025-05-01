@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="概念关系模式的五元组表示： R(U, D, DOM, F)  R：关系名 U：组成该关系的属性名集合 D：属性组U中属性所来自的域 DOM：属性向域的映象集合 F：属性间数据的依赖关系集合  关系模式的简化三元组表示： R（U, F） 不好的数据库模式设计可鞥会导致如下问题：  数据冗余：浪费存储空间，引起异常。 操作异常：更新，删除，插入异常。  通常用模式分解的办法消除冗余和异常现象。但是注意">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库关系规范化模式设计">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%B3%E7%B3%BB%E8%A7%84%E8%8C%83%E5%8C%96%E6%A8%A1%E5%BC%8F%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="概念关系模式的五元组表示： R(U, D, DOM, F)  R：关系名 U：组成该关系的属性名集合 D：属性组U中属性所来自的域 DOM：属性向域的映象集合 F：属性间数据的依赖关系集合  关系模式的简化三元组表示： R（U, F） 不好的数据库模式设计可鞥会导致如下问题：  数据冗余：浪费存储空间，引起异常。 操作异常：更新，删除，插入异常。  通常用模式分解的办法消除冗余和异常现象。但是注意">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406180501743.png">
+<meta property="og:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406180516120.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.429Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.771Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406180501743.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%B3%E7%B3%BB%E8%A7%84%E8%8C%83%E5%8C%96%E6%A8%A1%E5%BC%8F%E8%AE%BE%E8%AE%A1/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%B3%E7%B3%BB%E8%A7%84%E8%8C%83%E5%8C%96%E6%A8%A1%E5%BC%8F%E8%AE%BE%E8%AE%A1/","path":"2025/05/01/数据库关系规范化模式设计/","title":"数据库关系规范化模式设计"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据库关系规范化模式设计 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E4%B8%8E%E6%95%B0%E6%8D%AE%E4%BE%9D%E8%B5%96"><span class="nav-number">2.</span> <span class="nav-text">函数依赖与数据依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E5%88%86%E8%A7%A3%E5%92%8C%E8%A7%84%E8%8C%83%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">模式分解和规范化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1NF"><span class="nav-number">4.</span> <span class="nav-text">1NF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2NF"><span class="nav-number">5.</span> <span class="nav-text">2NF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3NF"><span class="nav-number">6.</span> <span class="nav-text">3NF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BCNF"><span class="nav-number">7.</span> <span class="nav-text">BCNF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="nav-number">8.</span> <span class="nav-text">模式设计原则</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%B3%E7%B3%BB%E8%A7%84%E8%8C%83%E5%8C%96%E6%A8%A1%E5%BC%8F%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据库关系规范化模式设计 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库关系规范化模式设计
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>关系模式的五元组表示： R(U, D, DOM, F)</p>
+<ul>
+<li>R：关系名</li>
+<li>U：组成该关系的属性名集合</li>
+<li>D：属性组U中属性所来自的域</li>
+<li>DOM：属性向域的映象集合</li>
+<li>F：属性间数据的依赖关系集合</li>
+</ul>
+<p>关系模式的简化三元组表示： R（U, F）</p>
+<p>不好的数据库模式设计可鞥会导致如下问题：</p>
+<ol>
+<li>数据冗余：浪费存储空间，引起异常。</li>
+<li>操作异常：更新，删除，插入异常。</li>
+</ol>
+<p>通常用模式分解的办法消除冗余和异常现象。但是注意，范式可能不是数据库的最佳实践；</p>
+<h2 id="函数依赖与数据依赖"><a href="#函数依赖与数据依赖" class="headerlink" title="函数依赖与数据依赖"></a>函数依赖与数据依赖</h2><p>什么是数据依赖？</p>
+<ul>
+<li>是现实世界属性间相互联系的抽象</li>
+<li>是数据内在的性质</li>
+<li>是语义的体现</li>
+</ul>
+<p>数据依赖的类型</p>
+<ul>
+<li>函数依赖（Functional Dependency，简记为FD）</li>
+<li>多值依赖（Multivalued Dependency，简记为MVD）</li>
+</ul>
+<p>函数依赖：</p>
+<ul>
+<li>属性（列）之间的联系</li>
+<li>属性之间在语义上的关联特性</li>
+<li>两个属性或属性集之间的约束</li>
+</ul>
+<p>数据库设计者根据对关系R中的属性的语义理解确定函数依赖，确定约束R的所有元组r的函数依赖集，并获知属性间的语义关联。</p>
+<p>平凡函数依赖：如果Y⊆X,显然X→Y成立；</p>
+<ul>
+<li>例如：{Dname,Pname}→{Pname}</li>
+<li>不反映新的语义；</li>
+</ul>
+<p>完全函数依赖：</p>
+<ul>
+<li>X、Y是某关系不同属性集；</li>
+<li>不存在X’⊂X,使得 X’→Y成立；</li>
+</ul>
+<p>部分函数依赖：</p>
+<ul>
+<li>X、Y是某关系不同属性集；</li>
+<li>存在X’⊂X,使得 x’→Y成立；</li>
+</ul>
+<p>传递函数依赖</p>
+<ul>
+<li>X、Y、Z是某关系不同属性集</li>
+<li>如果X→Y， Y→Z， X→Z且不存在Y → X；</li>
+<li>条件Y → X说明，X和Y不是一一对应；</li>
+</ul>
+<p>候选码与主码：设$K$为$R(U,F)$ 中的属性或属性组合，若$K \xrightarrow{f} U$,则$K$为$R$​的候选码(Candidate Key)。若候选码多于一个，则选定其中的一个为主码(Primary Key)。</p>
+<p>在一个学生表（Student）中，可能有以下列：学号（StudentID）、身份证号（IDNumber）、电子邮件（Email）。每一个列都可以单独作为候选码，因为它们都能够唯一地标识一个学生记录。如果选择学号（StudentID）作为主码，那么学号列将被用作唯一标识每一行学生记录的主键。</p>
+<p>包含在任何候选码中的属性称为主属性（Prime Attribute）。不包含在任何候选码中的属性称为非主属性（Non-Key Attribute）。<br>最简单的情况，单个属性是码。最极端的情况，整个属性组是码，称为全码（All-key）</p>
+<p>关系模式$R_l$中属性或属性组合$X$并非 $R_l$的码,但$X$是另一个关系模式 $R_2$的码,则称$X$是$R_l$的外码(Foreign Key)。</p>
+<h2 id="模式分解和规范化"><a href="#模式分解和规范化" class="headerlink" title="模式分解和规范化"></a>模式分解和规范化</h2><p>函数依赖可能引起的更新异常问题<br>解决方法：“一事一地” ，对关系模式进行分解，使之表达的语义概念单纯化。<br>关系模式R的分解就是用两个或两个以上关系来替换R，分解后的关系模式的属性集都是R中属性的子集，其并集与R的属性集相同。<br>模式分解帮助消除不良设计中的一些问题，如冗余、不一致或异常。<br>模式分解的定义</p>
+<p>设有关系模式 $R(U)$,属性集为$U$,若用一关系模式的集合${R_1(U_1),R_2(U_2),\cdots,R_k(U_k)}$来取代,其中$U&#x3D;\bigcup_{i&#x3D;1}^{k}U_{i}$则称此关系模式的集合为$R$的一个分解,以$\rho&#x3D;{R_{1},\cdots,R_{k}}$表示。</p>
+<p>无损连接分解：通过连接被分解后的小表可以获得原始表的内容</p>
+<p>范式（Normal Forma，NF）是一种关系的状态，是衡量关系模式的标准。<br>范式的种类（ 1NF，2NF，3NF，BCNF ）与数据依赖有着直接的联系<br>数据冗余浪费存储空间，导致数据库难以保持一致性。<br>范式确保数据库模式的一致性。<br>为确定特定关系是否符合范式，需要检查关系中属性间的函数依赖，而不是检查关系中的当前实例。<br>规范化主要作为验证和改进逻辑数据库设计的工具，使得逻辑设计能够：<br>满足特定约束<br>避免不必要的数据重复。<br>例如：就诊关系模式R（Dname，Dlevel，Dsal，Pname，Fsum）存在冗余信息（重复存储的职称和工资），不是一个好的设计</p>
+<h2 id="1NF"><a href="#1NF" class="headerlink" title="1NF"></a>1NF</h2><p>在关系模式R的每个关系r中，如果每个属性值都是不可再分的原子值，那么称R是第一范式（1NF）的模式。<br>满足1NF的关系称为规范化的关系；否则称为非规范化的关系。<br>关系数据库研究的关系都是规范化的关系。<br>1NF中不允许出现“表中有表”的现象。</p>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406180501743.png" alt="image-20240618050126646"></p>
+<h2 id="2NF"><a href="#2NF" class="headerlink" title="2NF"></a>2NF</h2><p>如果关系模式R∈1NF，且每个非主属性（不是组成候选码的属性）完全函数依赖于候选码，那么称R属于2NF的模式。<br>只有在主键是复合属性下才可能不符合2NF<br>2NF举例</p>
+<ul>
+<li>设有关系模式R（Dname，Pname，Dlevel，Dsal，Fsum)的属性分别表示医生编号、患者编号、医生职称级别、医生工资和诊疗费用。（Dname，Pname）是R的候选码。</li>
+<li>如果R上有两个FD：（ Dname ， Pname ）→（Dlevel，Dsal）和Dname →（Dlevel，Dsal），因此前面一个FD是局部依赖，所以R不是2NF。此时R会出现冗余和异常。例如，某个医生为N个病人看病，则在关系中会出现N个元组，而医生的职称级别和工资就会重复N次。</li>
+<li>如果将R分解为R1（ Dname ，Dlevel，Dsal）和R2（ Dname ， Pname ，Fsum）后，局部依赖（ Dname ， Pname ）→（Dlevel，Dsal）就消失了，R1和R2都是2NF了。</li>
+</ul>
+<p>2NF分解算法：将关系模式R分解成2NF模式子集<br>设有关系模式R(U)，主键是W，R上还存在函数依赖X→Z，其中Z是非主属性和X ⊂ W，则W→Z就是一个局部依赖。此时应该把R分解成两个模式：<br>① R1（XZ），主键是X；<br>② R2（U-Z），主键仍为W，外键是X（参考R1）。<br>利用外键和主键的连接可以从R1和R2重新得到R。<br>如果R1和R2还不是2NF，则重复上述过程，一直到数据库模式中每一个关系模式都是2NF为止。</p>
+<h2 id="3NF"><a href="#3NF" class="headerlink" title="3NF"></a>3NF</h2><p>如果关系模式R∈1NF，且每个非主属性都不传递依赖于R的候选码，那么称R属于3NF的模式。<br>两个条件:<br>（1）R中的非主属性相互独立；<br>（2）R中的非主属性函数依赖于主键。<br>举例：</p>
+<ul>
+<li>R2（ Dname ，Pname，Fsum）是2NF模式，而且也是3NF模式。</li>
+<li>但是R1（ Dname ，Dlevel，Dsal）是2NF模式，但不一定是3NF。因为如果R1中存在函数依赖Dname →Dlevel和Dlevel→Dsal，那么Dname→Dsal就是一个传递依赖，即R1不是3NF模式。</li>
+<li>此时R1的关系也会出现冗余和异常。例如，R2中存在M个职称同为主任级别的医生，则R1中需要重复存储M个相同的工资数目。</li>
+<li>如果将R1分解为R11（ Dname ，Dlevel）和R12（Dlevel，Dsal）后，Dname→Dsal就不会出现在R11和R12中，因此R11和R12都是3NF的模式。</li>
+</ul>
+<h2 id="BCNF"><a href="#BCNF" class="headerlink" title="BCNF"></a>BCNF</h2><p>定义：如果关系模式R∈1NF，且每个属性都不传递依赖于R的候选码，那么称R是BCNF的模式。<br>原因： 3NF模式中，并未排除主属性对候选键的传递依赖<br>满足BCNF的关系模式有：</p>
+<ul>
+<li>所有非主属性对每一个码都是完全函数依赖。</li>
+<li>所有的主属性对每一个不包含它的码，也是完全函数依赖。</li>
+<li>没有任何属性完全函数依赖于非码的任何一组属性。</li>
+</ul>
+<p>以下是一个例子：</p>
+<p>关系模式R（Bno，Bname，Author）的属性分别表示书号、书名和作者名。假如每个书号只有一个书名，但不同的书号可以有相同的书名；每本书可以有多个作者合写，但每个作者参与编著的书名应该互不相同。</p>
+<ul>
+<li>R上的FD如下：Bno→Bname和（Bname，Author）→Bno</li>
+<li>因此R的关键码是（Bno，Author）或（Bname，Author），因而模式R的属性都是主属性，R是3NF模式。</li>
+<li>但根据两个FD可知，属性Bname传递依赖于关键码（Bname，Author），因此R不是BCNF。</li>
+<li>例如，一本书由多个作者编写时，其书名与书号之间的联系在关系中将多次出现，会导致数据冗余和操作异常。</li>
+<li>如果将R分解为R1（Bno，Bname）和R2（Bno，Author），则能够解决上述问题，且R1和R2都是BCNF。</li>
+<li>但这样分解可能会导致新的问题，例如，这个分解把（Bname，Author）→Bno丢失了，数据语义将会引起新的矛盾。</li>
+</ul>
+<p>BCNF分解算法：将R无损分解且保持依赖地分解成3NF模式集。<br>① 对于关系模式R和R上成立的FD集F，先求出F的最小依赖集，然后再把最小依赖集中那些左部相同的FD用合并性合并起来。<br>② 对最小依赖集中每个FD X→Y去构成一个模式(XY)。<br>③ 在构成的模式集中，如果每个模式都不包含R的候选码，那么把候选码作为一个模式放入模式集中。<br>举例：</p>
+<ul>
+<li>设关系模式R（ABCDE），R的最小依赖集为{A→B，C→D}。从依赖集可知R的候选码为ACE。</li>
+<li>先根据最小依赖集，可知ρ&#x3D;{AB,CD}。然后再加入由候选码组成的模式ACE。因此最后结果ρ&#x3D;{AB,CD,ACE}是一个3NF模式集，R相对于该依赖集是无损分解且保持函数依赖。</li>
+</ul>
+<h2 id="模式设计原则"><a href="#模式设计原则" class="headerlink" title="模式设计原则"></a>模式设计原则</h2><p>满足范式要求的数据库设计是结构清晰的，同时可避免数据冗余和操作异常。这并意味着不符合范式要求的设计一定是错误的。<br>关系模式分解一般应具有3个特性：</p>
+<ul>
+<li>达到BCNF，或3NF；</li>
+<li>无损分解；</li>
+<li>保持函数依赖。</li>
+</ul>
+<p>一个好的模式设计方法应符合3条原则：表达性、分离性和最小冗余性。</p>
+<ul>
+<li>表达性：数据等价和语义等价；即无损分解和保持依赖集</li>
+<li>分离性：关系中只存储有直接联系的属性值；清除冗余和异常现象</li>
+<li>最小冗余性：模式个数和模式中属性总数应最少；</li>
+</ul>
+<p><img src="https://kytolly-1318202921.cos.ap-chengdu.myqcloud.com/202406180516120.png" alt="image-20240618051626993"></p>
+<p>数据库有如下的设计方法：</p>
+<ul>
+<li><p>直观设计方法（手工试凑法） </p>
+<p>依赖于设计者的经验和技巧，设计质量难以保证。 </p>
+</li>
+<li><p>新奥尔良（New Orleans）设计方法</p>
+<p>运行软件工程的思想和方法，提出了数据库设计的规范 .新奥尔良法将数据库设计分成：需求分析、概念设计、逻辑设计和物理设计。 </p>
+</li>
+<li><p>基于实体-关系（E-R）模型的数据库设计方法</p>
+<p>在需求分析的基础上，用E-R图构造一个反映现实世界实体之间联系的企业模式转换成基于某一特定的DBMS的概念模式；</p>
+</li>
+</ul>
+<ul>
+<li>3NF设计方法<br>在需求分析的基础上，确定数据库模式中的全部属性和属性间的依赖关系，将它们组织在一个单一的关系模式中，然后再分析模式中不符合3NF的约束条件，将其进行投影分解，规范成若干个3NF关系模式的集合。 </li>
+<li>面向对象的数据库设计方法 （ODL）<br>使用面向对象的概念和术语来描述和完成数据库的结构设计，并可方便地转换为面向对象的数据库。 </li>
+<li>用于数据库设计的计算机辅助软件工具(CASE)<br>SYSBASE公司的PowerDesigner、Oracle公司的Design er2000、CA公司的ERWin、Rational公司的Rational Rose、Microsoft公司的Visio。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%93SQL%E8%AF%AD%E8%A8%80/" rel="prev" title="数据库SQL语言">
+                  <i class="fa fa-angle-left"></i> 数据库SQL语言
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/" rel="next" title="数据库基础">
+                  数据库基础 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

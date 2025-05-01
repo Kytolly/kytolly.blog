@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="图论5-ColoringVertex Coloring为图的每个顶点分配某种颜色，称一种着色是正确的，如果没有两个相邻的顶点着色相同； 一个独立集(independent set)是指内部没有任意两个点相邻的点集； 因此，在一个正确的着色中，位于不同独立集的点集可以被不同颜色着色； 一个$k$-点着色的无环图可以被划分为$k$个独立集$V_1\cup V_2\cup \cdots\cup V_k$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论5-Coloring">
+<meta property="og:url" content="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA5-Coloring/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="图论5-ColoringVertex Coloring为图的每个顶点分配某种颜色，称一种着色是正确的，如果没有两个相邻的顶点着色相同； 一个独立集(independent set)是指内部没有任意两个点相邻的点集； 因此，在一个正确的着色中，位于不同独立集的点集可以被不同颜色着色； 一个$k$-点着色的无环图可以被划分为$k$个独立集$V_1\cup V_2\cup \cdots\cup V_k$">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/assets/image-20250106184555304.png">
+<meta property="og:image" content="http://example.com/assets/image-20250106184606381.png">
+<meta property="og:image" content="http://example.com/assets/image-20250106184854521.png">
+<meta property="og:image" content="http://example.com/assets/image-20250106185019264.png">
+<meta property="og:image" content="http://example.com/assets/image-20250106185621087.png">
+<meta property="og:image" content="http://example.com/assets/image-20250106201754800.png">
+<meta property="og:image" content="http://example.com/assets/image-20250106202314043.png">
+<meta property="og:image" content="http://example.com/assets/image-20250106203612297.png">
+<meta property="og:image" content="http://example.com/assets/image-20250106231317930.png">
+<meta property="article:published_time" content="2025-05-01T12:47:10.448Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.479Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/assets/image-20250106184555304.png">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA5-Coloring/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA5-Coloring/","path":"2025/05/01/图论5-Coloring/","title":"图论5-Coloring"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>图论5-Coloring | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA5-Coloring"><span class="nav-number">1.</span> <span class="nav-text">图论5-Coloring</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vertex-Coloring"><span class="nav-number">1.1.</span> <span class="nav-text">Vertex Coloring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem"><span class="nav-number">1.1.1.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-1"><span class="nav-number">1.1.2.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Five-color-Theorem"><span class="nav-number">1.1.3.</span> <span class="nav-text">Five-color Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Brooks-Theorem"><span class="nav-number">1.1.4.</span> <span class="nav-text">Brooks Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map-Coloring"><span class="nav-number">1.2.</span> <span class="nav-text">Map Coloring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-2"><span class="nav-number">1.2.1.</span> <span class="nav-text">Theorem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Edge-Coloring"><span class="nav-number">1.3.</span> <span class="nav-text">Edge Coloring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-3"><span class="nav-number">1.3.1.</span> <span class="nav-text">Theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Vizing"><span class="nav-number">1.3.2.</span> <span class="nav-text">Theorem(Vizing)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-Konig"><span class="nav-number">1.3.3.</span> <span class="nav-text">Theorem(Konig)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chromatic-Polynomial"><span class="nav-number">1.4.</span> <span class="nav-text">Chromatic Polynomial</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Theorem-4"><span class="nav-number">1.4.1.</span> <span class="nav-text">Theorem</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E5%9B%BE%E8%AE%BA5-Coloring/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="图论5-Coloring | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图论5-Coloring
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="图论5-Coloring"><a href="#图论5-Coloring" class="headerlink" title="图论5-Coloring"></a>图论5-Coloring</h1><h2 id="Vertex-Coloring"><a href="#Vertex-Coloring" class="headerlink" title="Vertex Coloring"></a>Vertex Coloring</h2><p>为图的每个顶点分配某种颜色，称一种着色是正确的，如果没有两个相邻的顶点着色相同；</p>
+<p>一个<strong>独立集</strong>(independent set)是指内部没有任意两个点相邻的点集；</p>
+<p>因此，在一个正确的着色中，位于不同独立集的点集可以被不同颜色着色；</p>
+<p>一个$k$-点着色的无环图可以被划分为$k$个独立集$V_1\cup V_2\cup \cdots\cup V_k$;</p>
+<p>图的一个$k$-点着色是用$k$个颜色对其顶点进行着色；若图是一个$k$-点可着色的，如果图有一个正确的$k$-点着色方式；</p>
+<p>图$G$的<strong>色数</strong>(chromatic number)$\chi (G)$等于最小的使得$G$是$k$-点着色的整数；</p>
+<p>称图$G$是$k$-色(k-chromatic)图，如果$\chi(G)&#x3D;k$;</p>
+<p>确定一个图是否是3-可着色的是一个NPC问题，对于平面图，计算机已经证明四色定理：对于任何平面图$G$均有$\chi(G)\le 4$;</p>
+<p>对于给定的图确定色数是一个NP问题，但是色数有一个平凡上界$\chi(G)\le n$;</p>
+<h3 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h3><p>$$<br>\chi(K_n)&#x3D;n\<br>\chi(C_n)&#x3D;2+(n% 2)\<br>$$</p>
+<p>值得一提的是，Petersen图的色数为3；</p>
+<h3 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem"></a>Theorem</h3><p>$$<br>\chi(G)\le \Delta(G)+1<br>$$</p>
+<p><strong>Proof</strong>:以下贪心算法是一种 正确的着色方案，这说明我们找到了色数的一个上界；</p>
+<p>假设第$i$个颜色记作$C_i$,列举图$G$的顶点$v_1,v_2,\cdots.v_n$;</p>
+<ol>
+<li>为$v_1$分配颜色$C_1$;</li>
+<li>对于状态$i+1$,假定$v_1,v_2,\cdots,v_i$已经着色，分配$v_{i+1}$颜色$C_j$,$j$为$v_{i+1}$相邻顶点尚未使用的颜色最小下标；</li>
+</ol>
+<p>等号在奇圈和完全图上成立；</p>
+<h3 id="Five-color-Theorem"><a href="#Five-color-Theorem" class="headerlink" title="Five-color Theorem"></a>Five-color Theorem</h3><p>简单平面图是5-可着色的；</p>
+<p><strong>proof</strong>：对$|V(G)|$归纳，若$|V(G)|\le 5$,结论平凡，假设$|V(G)|\le n$成立，考虑度数最小的点$v$，一定有$d(v)\le 5$,由归纳假设，对于除去点$v$的图存在$5-$着色方案，若$d(v)\le 4$，则$v$的邻居一定为$v$留出一个颜色；</p>
+<p><img src="/assets/image-20250106184555304.png" alt="image-20250106184555304"></p>
+<p>考虑$d(v)&#x3D;5$,记邻居顺时针方向为$v_1,v_2,v_3,v_4,v_5$,若这5个点只用了4个颜色，剩下的颜色留给$v$即可；若这5个点颜色各不相同，假设$v_1$染1色，$v_2$染2色，将$v_3$改染1色，$c$染1色的邻居改染2色，依次类推；</p>
+<p><img src="/assets/image-20250106184606381.png" alt="image-20250106184606381"></p>
+<p>若这样的操作不i能持续下去，一定出现如下情况的子图</p>
+<p><img src="/assets/image-20250106184854521.png" alt="image-20250106184854521"></p>
+<p>由平面性，$v_2,v_4$不会有这样的通路，对$v_2,v_4$进行上述操作即可；</p>
+<p><img src="/assets/image-20250106185019264.png" alt="image-20250106185019264"></p>
+<p>进一步，我们有四色定理(Four-color theorem, Appel and Haken):任意简单平面图都是4-可着色的，即$\chi(G)\le 4,\forall G\text{is planar graph}$;</p>
+<p>经过对偶图变换可以得知，世界地图可以用4种颜色进行染色；</p>
+<p><img src="/assets/image-20250106185621087.png" alt="image-20250106185621087"></p>
+<h3 id="Brooks-Theorem"><a href="#Brooks-Theorem" class="headerlink" title="Brooks Theorem"></a>Brooks Theorem</h3><p>对于非奇圈的非完全的简单连通图$G$,有$\chi(G)\le \Delta(G)$;</p>
+<p><strong>proof</strong>：若存在度数小于$\Delta(G)$的顶点$v$，我们需要精心安排顶点的顺序，使得每个顶点在染色时，排在它前面并与之相邻的顶点数不超过$\Delta-1$,以$v$为根的图$G$生成树的后序遍历序列满足条件，因为除$v$外，其余顶点在这棵生成树的父亲一定位于这个点序列的后面；</p>
+<p>假设图$G$是$\Delta$正则的；进一步假设$\Delta(G)\ge 3$；</p>
+<p>若$G$有割点，取图$G$的割点$v_n$，以及两个连通分量$C_1,C_2$,取$v_1\in C_1,v_2\in C_2$,且$v_1,v_2$均是$v_n$的邻居；</p>
+<p>对于$G-{v_n}$的任意连通分量$G_i$，可以对$H_i&#x3D;G_i\cup{v_n}$进行$k$着色，对这样方案下每个$H_i$的着色顺序进行置换，使得他们在$v_n$的颜色一致；</p>
+<p>进一步假设$\kappa(G)&#x3D;2$，即$G$是2连通的，断言图$G$存在三个顶点$v_1,v_2,v_n$,使得$G-{v_1.v_2}$连通，且<br>$$<br>v_1v_n\in E(G),v_2v_n\in E(G),v_1v_2\notin E(G)<br>$$<br>先将$v_1,v_2$染成同色，对于$G-{v_1,v_2}$,考虑令$v&#x3D;v_n$,贪心地为其他点染色后，最后染$v_n$时，由于有两个邻点$v_1,v_2$同色，因此一定留有一种颜色；</p>
+<p>下证明断言：若$G$是3连通的，因为$G$是正则且不完全的，故选取距离为2的两点$v_1,v_2$和公共邻点$v_n$即可；</p>
+<p>若$G$不是3连通的，但是是2连通的，由于$G$没有割点，每个叶块均有$v_n$的相邻顶点，由于$\Delta \ge 3$，因此可以选取两个不直接相邻的叶块中与$v_n$的邻点$v_1,v_2$；</p>
+<p><img src="/assets/image-20250106201754800.png" alt="image-20250106201754800"></p>
+<h2 id="Map-Coloring"><a href="#Map-Coloring" class="headerlink" title="Map Coloring"></a>Map Coloring</h2><p>在地图着色问题中，不考虑地图之间的桥梁；</p>
+<p><img src="/assets/image-20250106202314043.png" alt="image-20250106202314043"></p>
+<p>定义<strong>地图</strong>(map)为一个3连通的平面图；</p>
+<p>称一个地图是$k$-面可着色的，如果它的面可以被$k$个颜色着色且有公共边相邻的面颜色不同；</p>
+<h3 id="Theorem-2"><a href="#Theorem-2" class="headerlink" title="Theorem"></a>Theorem</h3><p>地图$G$是2-面可着色当且仅当$G$是欧拉图；</p>
+<p><strong>proof</strong>：对于每个顶点，一定有偶数个围绕它的面(两种颜色的面个数相同)，意味着其度为偶数，$G$为欧拉图</p>
+<p>如果$G$为欧拉图，则选取任意一个面染为红色，对于其他面，到$F$的曲线穿过偶数条边染为红色，奇数条边染为蓝色，这样的染法是良定义的，因为每个顶点有偶数度</p>
+<p><img src="/assets/image-20250106203612297.png" alt="image-20250106203612297"></p>
+<h2 id="Edge-Coloring"><a href="#Edge-Coloring" class="headerlink" title="Edge Coloring"></a>Edge Coloring</h2><p>图的一个$k$-边着色是用$k$个颜色对其边进行着色；</p>
+<p>一个正确的边着色满足任意两个相关联的边颜色不同；</p>
+<p>若图是一个$k$-边可着色的，如果图有一个正确的$k$-边着色方式；</p>
+<p>不相关联的独立边集合称作一个<strong>匹配</strong>(matching)，更确切地说，在图$G$中的一个匹配$M$是一组互相没有公共顶点无环边集合，称顶点$v$被匹配$M$<strong>浸润的</strong>(saturated),若$v$关联$M$中的一条边，否则称为<strong>未浸润的</strong>(unsaturated);</p>
+<p>一个正确的$k$-边可着色可以认为对边集进行划分<br>$$<br>E&#x3D;E_1\cup E_2\cup\cdots E_k<br>$$<br>其中$E_i$是一个匹配，每个匹配分配相同的颜色；</p>
+<p>边色数(edge chromatic number)$\chi’(G)$定义为最小正整数$k$使得$G$为$k$-边可着色的；</p>
+<p>一个平凡下界为$\chi’(G)\ge \Delta(G)$;</p>
+<h3 id="Theorem-3"><a href="#Theorem-3" class="headerlink" title="Theorem"></a>Theorem</h3><p>$$<br>\chi’(K_n)&#x3D;n-1+(n%2)<br>$$</p>
+<p>对于奇数$n$，任何匹配至多拥有$\frac{n-1}{2}$条边，但是$K_n$有$\frac{n(n-1)}{2}$条边，因此$\chi’(G)\ge n$；</p>
+<p>给出$n$-边着色的构造：边界用$n$种颜色染色，对角线的颜色和与之平行的边颜色相同；</p>
+<p><img src="/assets/image-20250106231317930.png" alt="image-20250106231317930"></p>
+<p>对于偶数$n$，我们给出$n-1$-边着色的构造：</p>
+<p>取出点$v$,先为$K_{n-1}$子图的用上述方案染色，每个顶点的关联边共$n-2$种颜色，留下一个颜色与$v$相连的边染色即可；</p>
+<h3 id="Theorem-Vizing"><a href="#Theorem-Vizing" class="headerlink" title="Theorem(Vizing)"></a>Theorem(Vizing)</h3><p>对于有限图$G$，两点间最大连边数为$\mu$，则$G$为$\Delta(G)+\mu$-可染色的；</p>
+<p>对于简单图来说，$\chi’(G)&#x3D;\Delta\rm{or}\Delta + 1$</p>
+<h3 id="Theorem-Konig"><a href="#Theorem-Konig" class="headerlink" title="Theorem(Konig)"></a>Theorem(Konig)</h3><p>对于二部图$G$，$\chi’(G)&#x3D;\Delta(G)$</p>
+<p><strong>proof</strong>:对边数归纳，假设在较小的边数成立，考虑删除一条边$vw$，子图最大度不超过$\Delta(G)$,对子图$\Delta(G)$边染色，在子图中，$d(v)&lt; \Delta(G),d(w)&lt;\Delta(G)$,因此这样的边染色方案中，$v,w$关联的边至少剩余一种颜色没有使用，设为$c_v,c_w$，若$c_v&#x3D;c_w$,将$vw$染为该色即可；否则，考虑关联$v$的染$c_w$色的边$vu_1$,依次用$c_v,c_w$色边增广它，得到增广路径不会经过$w$点(因为没有奇圈)，反转增广路径的颜色后将$uw$染为$c_w$色即为最终的染色方案；</p>
+<h2 id="Chromatic-Polynomial"><a href="#Chromatic-Polynomial" class="headerlink" title="Chromatic Polynomial"></a>Chromatic Polynomial</h2><p>对于简单图$G$，定义<strong>色数函数</strong>$P_G(k)$为将$G$顶点用$k$种颜色染色，相邻顶点不同色的方案$(f:V(G)\to [k])$数;</p>
+<h3 id="Theorem-4"><a href="#Theorem-4" class="headerlink" title="Theorem"></a>Theorem</h3><p>对于简单图$G$，有<br>$$<br>P_G(k)&#x3D;P_{G-e}(k)-P_{G\cdot e}(k)<br>$$<br><strong>proof</strong>:考虑删除一条边后的子图之间的关系，$G-e$可以看作边顶点没有限制关系，$G&#x2F;e$可以看作边顶点必须同色；</p>
+<p>显然$P_G(k)$是一个$|V|$次多项式，满足如下性质</p>
+<ul>
+<li>系数正负交替；</li>
+<li>$x^{|V|-1}$的系数是$-|E|$；</li>
+<li>常数项为0；</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%9B%BE%E8%AE%BA4-Planarity/" rel="prev" title="图论4-Planarity">
+                  <i class="fa fa-angle-left"></i> 图论4-Planarity
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E5%9B%BE%E8%AE%BA6-Digraph/" rel="next" title="图论6-Digraph">
+                  图论6-Digraph <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="数据预处理为什么要进行数据的预处理 现实世界的数据是“肮脏的” 不完整的：有些感兴趣的属性缺少属性值，或仅包含聚集数据 含噪声的：包含错误或者“孤立点” 不一致的：在编码或者命名上存在差异   没有高质量的数据，就没有高质量的挖掘结果 准确性 完整性 一致性 时效性：及时更新 可信性：数据是否被用户信赖 可解释性：数据是否容易理解    主要任务 数据清理  空缺值，噪声数据，删除孤立点，解决不一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据预处理">
+<meta property="og:url" content="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据预处理为什么要进行数据的预处理 现实世界的数据是“肮脏的” 不完整的：有些感兴趣的属性缺少属性值，或仅包含聚集数据 含噪声的：包含错误或者“孤立点” 不一致的：在编码或者命名上存在差异   没有高质量的数据，就没有高质量的挖掘结果 准确性 完整性 一致性 时效性：及时更新 可信性：数据是否被用户信赖 可解释性：数据是否容易理解    主要任务 数据清理  空缺值，噪声数据，删除孤立点，解决不一">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-01T12:47:10.378Z">
+<meta property="article:modified_time" content="2025-05-01T12:58:22.794Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/","path":"2025/05/01/数据预处理/","title":"数据预处理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据预处理 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">1.0.1.</span> <span class="nav-text">为什么要进行数据的预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.0.2.</span> <span class="nav-text">主要任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%B8%85%E7%90%86"><span class="nav-number">1.0.3.</span> <span class="nav-text">数据清理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E6%88%90"><span class="nav-number">1.0.4.</span> <span class="nav-text">数据集成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%97%E4%BD%99%E5%92%8C%E7%9B%B8%E5%85%B3%E5%88%86%E6%9E%90"><span class="nav-number">1.0.5.</span> <span class="nav-text">冗余和相关分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%A7%84%E7%BA%A6"><span class="nav-number">1.0.6.</span> <span class="nav-text">数据规约</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E6%B3%A2%E5%8F%98%E6%8D%A2"><span class="nav-number">1.0.6.1.</span> <span class="nav-text">小波变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PCA%E6%96%B9%E6%B3%95-K-L%E5%8F%98%E6%8D%A2"><span class="nav-number">1.0.6.2.</span> <span class="nav-text">PCA方法&amp;K-L变换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E7%AD%9B%E9%80%89"><span class="nav-number">1.0.6.3.</span> <span class="nav-text">特征筛选</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE"><span class="nav-number">1.0.6.4.</span> <span class="nav-text">直方图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92"><span class="nav-number">1.0.6.5.</span> <span class="nav-text">回归</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB"><span class="nav-number">1.0.6.6.</span> <span class="nav-text">聚类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%BD%E6%A0%B7"><span class="nav-number">1.0.6.7.</span> <span class="nav-text">抽样</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%98%E6%8D%A2"><span class="nav-number">1.0.7.</span> <span class="nav-text">数据变换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F-%E6%9C%80%E5%A4%A7%E8%A7%84%E8%8C%83%E5%8C%96"><span class="nav-number">1.0.7.1.</span> <span class="nav-text">最小-最大规范化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9B%B6%E5%9D%87%E5%80%BC%E8%A7%84%E8%8C%83%E5%8C%96"><span class="nav-number">1.0.7.2.</span> <span class="nav-text">零均值规范化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96%E5%92%8C%E6%A6%82%E5%BF%B5%E5%88%86%E5%B1%82"><span class="nav-number">1.0.7.3.</span> <span class="nav-text">离散化和概念分层</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/01/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据预处理 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据预处理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-01 20:47:10 / Modified: 20:58:22" itemprop="dateCreated datePublished" datetime="2025-05-01T20:47:10+08:00">2025-05-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h1><h3 id="为什么要进行数据的预处理"><a href="#为什么要进行数据的预处理" class="headerlink" title="为什么要进行数据的预处理"></a>为什么要进行数据的预处理</h3><ul>
+<li>现实世界的数据是“肮脏的”<ul>
+<li>不完整的：有些感兴趣的属性缺少属性值，或仅包含聚集数据</li>
+<li>含噪声的：包含错误或者“孤立点”</li>
+<li>不一致的：在编码或者命名上存在差异</li>
+</ul>
+</li>
+<li>没有高质量的数据，就没有高质量的挖掘结果<ul>
+<li>准确性</li>
+<li>完整性</li>
+<li>一致性</li>
+<li>时效性：及时更新</li>
+<li>可信性：数据是否被用户信赖</li>
+<li>可解释性：数据是否容易理解</li>
+</ul>
+</li>
+</ul>
+<h3 id="主要任务"><a href="#主要任务" class="headerlink" title="主要任务"></a>主要任务</h3><ol>
+<li><p>数据清理</p>
+<ul>
+<li><p>空缺值，噪声数据，删除孤立点，解决不一致性</p>
+</li>
+<li><p>如果用户认为数据是脏的，那么可信性会降低</p>
+</li>
+</ul>
+</li>
+<li><p>数据集成</p>
+<ul>
+<li>集成多个数据库、数据立方体或文件</li>
+</ul>
+</li>
+<li><p>数据归约</p>
+<ul>
+<li><p>得到数据集的压缩表示，但可以得到相同或相近的结果</p>
+</li>
+<li><p>维归约：小波变换，主成分分析，属性子集选择，属性构造</p>
+</li>
+<li><p>数值规约：参数模型，非参数模型</p>
+</li>
+</ul>
+</li>
+<li><p>数据变换</p>
+<ul>
+<li>规范化和聚集</li>
+</ul>
+</li>
+<li><p>数据离散化</p>
+<ul>
+<li>将连续数据进行离散处理</li>
+</ul>
+</li>
+</ol>
+<h3 id="数据清理"><a href="#数据清理" class="headerlink" title="数据清理"></a>数据清理</h3><ol>
+<li><p>空缺值</p>
+<ul>
+<li><p>忽略元组 ：当类标号缺少时通常这么做（假定挖掘任务设计分类或描述），当每个属性缺少值的百分比变化很大时，它的效果非常差。</p>
+</li>
+<li><p>人工填写空缺值</p>
+<ul>
+<li><p>工作量大，可行性低</p>
+</li>
+<li><p>使用一个全局变量填充空缺值：比如使用$unknown$或$-∞$替换</p>
+<ul>
+<li>尽管简单，但程序可能会认为这些空缺形成了一个有趣的概念：unknown，也可能会使数据有偏</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>使用属性的平均值填充空缺值：可能有偏</p>
+</li>
+<li><p>使用与给定元组属同一类的所有样本的平均值：可能有偏</p>
+<ul>
+<li>使用最可能的值填充空缺值：使用像Bayesian公式或判定树这样预测的方法，可能有偏</li>
+</ul>
+</li>
+<li><p>相当场合下，数据有空缺不意味着错误</p>
+</li>
+</ul>
+</li>
+<li><p>噪声：一个测量变量中的随机错误或偏差</p>
+<ul>
+<li>处理噪声数据<ul>
+<li>分箱binning：首先排序数据，并将他们分到等深的箱中然后可以按箱的平均值平滑、按箱中值平滑、按箱的边界平滑等等</li>
+<li>回归regression：用回归函数预测</li>
+<li>离群点分析outlierAnalysis：利用聚类检测离群点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="数据集成"><a href="#数据集成" class="headerlink" title="数据集成"></a>数据集成</h3><p>困难：数据语义的多样性和结构带来的实体识别问题</p>
+<ul>
+<li>匹配来自不同数据源的现实世界的实体</li>
+<li>检测并解决数据值的冲突<ul>
+<li>对现实世界中的同一实体，来自不同数据源的属性值可能是不同的</li>
+<li>可能的原因：不同的数据表示，不同的度量等等</li>
+</ul>
+</li>
+</ul>
+<h3 id="冗余和相关分析"><a href="#冗余和相关分析" class="headerlink" title="冗余和相关分析"></a>冗余和相关分析</h3><ul>
+<li>标称数据的$\chi^2$相关检验<ul>
+<li>相依表：![alt text](D:&#x2F;Desktop&#x2F;myfile&#x2F;UESTC undergraduate course&#x2F;Grade Ⅳ&#x2F;数据挖掘和大数据分析&#x2F;notes&#x2F;认识数据和数据预处理&#x2F;image-5.png)</li>
+<li>期望频度：$e_{ij}&#x3D;\frac{N(A&#x3D;a_i)N(B&#x3D;b_j)}{n}$</li>
+<li>观测频度：相依表中的实际计数$\sigma_{ij}$</li>
+<li>$Pearson \chi^2$统计量：$\chi^2 &#x3D; \sum_{i}\sum_{j}\frac{(\sigma_{ij}-e_{ij})^2}{e_{ij}}$</li>
+</ul>
+</li>
+<li>数值数据的相关系数<ul>
+<li>$Pearson$相关系数：$r_{A,B}&#x3D;\frac{\sum_{i}(a_i-\bar{A})(b_i-\bar{B})}{(n-1)\sigma_A\sigma_B}$</li>
+<li>$R_{A,B}&#x3D;0$意味着两类属性独立，$R_{A,B}$越接近1，意味着某一个越可能是冗余项,越接近-1，意味着存在相互阻碍的效应，但是相关性不蕴含因果关系</li>
+</ul>
+</li>
+<li>数据数值的协方差<ul>
+<li>协方差：$Cov(A,B)&#x3D;\frac{\sum_{i}(a_i-\bar{A})(b_i-\bar{B})}{n}$</li>
+<li>$r_{A,B}&#x3D;\frac{Cov(A,B)}{\sigma_A\sigma_B}$</li>
+<li>$Cov(A,B)&#x3D;E(AB)-E(A)E(B)$</li>
+<li>描述两个属性如何一起变化</li>
+<li>协方差0不蕴含独立性</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据规约"><a href="#数据规约" class="headerlink" title="数据规约"></a>数据规约</h3><p>用来得到数据集的归约表示，它小得多，但可以产生相同的（或几乎相同的）分析结果</p>
+<ul>
+<li>维归约： 减少考虑的属性个数</li>
+<li>数量规约：用较小的数据表示形式替代原数据，分为 参数的和非参数的</li>
+<li>数据压缩：使用某种变换</li>
+</ul>
+<h4 id="小波变换"><a href="#小波变换" class="headerlink" title="小波变换"></a>小波变换</h4><ul>
+<li>离散小波变换DWT<ul>
+<li>变换后的数据可以仅存放一小部分最强的小波系数</li>
+<li>对于相同的近似，DWT比DFT需要的空间少，局部性更好</li>
+<li>适合高维数据</li>
+</ul>
+</li>
+<li>属于维规约，保存小波较大的系数进行原始数据的压缩，主要用于图像分析中。</li>
+<li>属于有损压缩</li>
+</ul>
+<h4 id="PCA方法-K-L变换"><a href="#PCA方法-K-L变换" class="headerlink" title="PCA方法&amp;K-L变换"></a>PCA方法&amp;K-L变换</h4><ul>
+<li><ul>
+<li>搜索k个最能代表数据的n维正交向量</li>
+<li>适合处理稀疏的和倾斜的数据</li>
+<li>可以作为多元回归和聚类分析的输入</li>
+</ul>
+</li>
+<li>找到一个投影，其能表示数据的最大变化</li>
+<li>属于维规约</li>
+</ul>
+<h4 id="特征筛选"><a href="#特征筛选" class="headerlink" title="特征筛选"></a>特征筛选</h4><p>目的：通过删除不相干的属性或维减少数据量</p>
+<p>挑战：d个属性有$2^d$个可能的子集 ,枚举所有几乎不可行</p>
+<p>策略：启发式的方法:逐步向前选择,逐步向后删除,向前选择和向后删除相结合</p>
+<p>算法：信息增益, 互信息, Relief,卡方分析</p>
+<h4 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h4><p>将数据划分成不相交的桶</p>
+<p>规则：等宽，等深，V-最优，MaxDiff</p>
+<h4 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h4><p>回归：将数据拟合成直线</p>
+<p>对数线性模型：近似离散的多维概率分布</p>
+<h4 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h4><p>将数据元组看成对象，将他们划分成簇，每一簇的对象互相相似，簇的直径越大，质量越好</p>
+<h4 id="抽样"><a href="#抽样" class="headerlink" title="抽样"></a>抽样</h4><ul>
+<li>无放回简单随机抽样SRSWOR</li>
+<li>有放回简单随机抽样SRSWR</li>
+<li>簇抽样</li>
+<li>分层抽样</li>
+</ul>
+<h3 id="数据变换"><a href="#数据变换" class="headerlink" title="数据变换"></a>数据变换</h3><h4 id="最小-最大规范化"><a href="#最小-最大规范化" class="headerlink" title="最小-最大规范化"></a>最小-最大规范化</h4><p>将数据集X映射到区间A</p>
+<p>$Normal(v)&#x3D;min(A)+\frac{x-min(X)}{max(X)-min(X)}(max(A)-min(A))$​</p>
+<h4 id="零均值规范化"><a href="#零均值规范化" class="headerlink" title="零均值规范化"></a>零均值规范化</h4><p>实际最大值最小值未知，或者离群点影响对最大最小规范化影响太大时，该方效果较好</p>
+<p>$Normal(v)&#x3D;\frac{x-\bar X}{\sigma_X}$​</p>
+<h4 id="离散化和概念分层"><a href="#离散化和概念分层" class="headerlink" title="离散化和概念分层"></a>离散化和概念分层</h4><ol>
+<li><p>分箱（binning）：分箱技术递归的用于结果划分</p>
+</li>
+<li><p>直方图分析（histogram）：直方图分析方法递归的应用于每一部分，可以自动产生多级概念分层。</p>
+</li>
+<li><p>聚类分析：将数据划分成簇，每个簇形成同一个概念层上的一个节点，每个簇可再分成多个子簇，形成子节点。</p>
+</li>
+<li><p>基于信息熵的方法等</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%92%8C%E8%81%94%E6%9C%BA%E5%88%86%E6%9E%90%E5%A4%84%E7%90%86/" rel="prev" title="数据仓库和联机分析处理">
+                  <i class="fa fa-angle-left"></i> 数据仓库和联机分析处理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/05/01/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E6%B8%85%E5%8D%95/" rel="next" title="期末复习清单">
+                  期末复习清单 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
