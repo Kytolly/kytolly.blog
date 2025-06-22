@@ -1,0 +1,13 @@
+.post-content .image-figure {
+  /* This makes the figure shrink-wrap its content, allowing margin:auto to work */
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-content .image-figure figcaption {
+  margin-top: 0.8em;
+  font-size: 0.9em;
+  color: #888;
+  text-align: center; /* Explicitly center the caption text */
+}

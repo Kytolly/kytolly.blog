@@ -1,0 +1,72 @@
+/*
+
+Name:       VSCode Modern Light
+Author:     S.T.A.L.K.E.R. (https://github.com/-STALKER-)
+Website:    https://github.com/highlightjs/highlight.js/pull/3533
+
+*/
+
+/* 
+  VSCode Modern Light Theme
+  - This file now ONLY defines the text colors for syntax highlighting.
+  - All background, border, and structural colors are handled by CSS variables 
+    in `code-block-base.css`.
+  - Specificity is increased by using a more detailed selector to win CSS priority wars.
+  - The `hljs-` prefix is removed to match the output of Hexo's highlighter when `hljs: false`.
+*/
+
+.post-content figure.highlight.theme-light .code {
+  color: #383a42; /* Default text color */
+}
+
+.post-content figure.highlight.theme-light .code .comment {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+.post-content figure.highlight.theme-light .code .keyword,
+.post-content figure.highlight.theme-light .code .name,
+.post-content figure.highlight.theme-light .code .selector-tag,
+.post-content figure.highlight.theme-light .code .meta-keyword {
+  color: #a626a4;
+}
+
+.post-content figure.highlight.theme-light .code .number,
+.post-content figure.highlight.theme-light .code .literal {
+  color: #d19a66;
+}
+
+.post-content figure.highlight.theme-light .code .string,
+.post-content figure.highlight.theme-light .code .regexp {
+  color: #50a14f;
+}
+
+.post-content figure.highlight.theme-light .code .title,
+.post-content figure.highlight.theme-light .code .variable,
+.post-content figure.highlight.theme-light .code .template-variable,
+.post-content figure.highlight.theme-light .code .function {
+  color: #4078f2;
+}
+
+.post-content figure.highlight.theme-light .code .type,
+.post-content figure.highlight.theme-light .code .built_in {
+  color: #c18401;
+}
+
+.post-content figure.highlight.theme-light .code .symbol,
+.post-content figure.highlight.theme-light .code .bullet {
+  color: #4078f2;
+}
+
+.post-content figure.highlight.theme-light .code .section,
+.post-content figure.highlight.theme-light .code .meta {
+  color: #e45649;
+}
+
+.post-content figure.highlight.theme-light .code .emphasis {
+  font-style: italic;
+}
+
+.post-content figure.highlight.theme-light .code .strong {
+  font-weight: bold;
+} 

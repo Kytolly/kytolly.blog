@@ -1,0 +1,18 @@
+/*
+  mathjax.css
+  用于美化 MathJax 渲染的数学公式字体和排版
+*/
+
+.mathjax-formula {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.05em;
+    line-height: 1.5;
+}
+  
+/* 让公式在小屏幕下自动换行 */
+.MathJax_Display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
