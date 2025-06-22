@@ -1,0 +1,51 @@
+/* themes/shiroi/source/css/code-block-mac-enhancer.css */
+
+.code-block-header.mac-style {
+  position: relative;
+  padding-left: 70px; /* Make space for buttons */
+}
+
+.code-block-header.mac-style .code-lang-name {
+  text-align: center;
+  flex-grow: 1; /* Allow language name to center properly */
+}
+
+.mac-traffic-lights {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 6px; /* Space between circles */
+}
+
+.mac-traffic-lights .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.mac-traffic-lights .dot.red {
+  background-color: #ff5f56;
+}
+
+.mac-traffic-lights .dot.yellow {
+  background-color: #ffbd2e;
+}
+
+.mac-traffic-lights .dot.green {
+  background-color: #27c93f;
+}
+
+/* Code block collapse/expand styles */
+figure.highlight.is-collapsed table.hljs {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+figure.highlight table.hljs {
+  max-height: 9999px; /* A large value to ensure content is visible when expanded */
+  transition: max-height 0.3s ease-in;
+} 

@@ -9,13 +9,13 @@ window.addThemeToggleButton = function(actionsContainer, codeBlock, themeToggleC
   const lightButton = document.createElement('button');
   lightButton.className = 'theme-toggle-btn light';
   const lightIcon = document.createElement('img');
-  lightIcon.src = '/' + themeToggleConfig.to_dark_button;
+  lightIcon.src = '/' + themeToggleConfig.to_light_button;
   lightButton.appendChild(lightIcon);
 
   const darkButton = document.createElement('button');
   darkButton.className = 'theme-toggle-btn dark';
   const darkIcon = document.createElement('img');
-  darkIcon.src = '/' + themeToggleConfig.to_light_button;
+  darkIcon.src = '/' + themeToggleConfig.to_dark_button;
   darkButton.appendChild(darkIcon);
 
   // Initial state: assume light theme is default

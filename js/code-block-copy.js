@@ -4,6 +4,9 @@
  */
 
 window.addCopyButton = function(actionsContainer, codeBlock, copyButtonConfig) {
+  const container = document.createElement('div');
+  container.className = 'copy-btn-container';
+
   const copyButton = document.createElement('button');
   copyButton.className = 'copy-btn';
 
@@ -19,7 +22,8 @@ window.addCopyButton = function(actionsContainer, codeBlock, copyButtonConfig) {
     originalContent = 'copy';
   }
 
-  actionsContainer.appendChild(copyButton);
+  container.appendChild(copyButton);
+  actionsContainer.appendChild(container);
 
   copyButton.addEventListener('click', () => {
     const codeToCopy = codeBlock.querySelector('.code').innerText;

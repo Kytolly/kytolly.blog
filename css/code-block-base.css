@@ -66,7 +66,8 @@ figure.highlight.theme-dark {
   opacity: 1;
 }
 
-.copy-btn-container .copy-btn img {
+.copy-btn-container .copy-btn img,
+.code-block-actions .theme-toggle-btn img {
   width: 16px;
   height: 16px;
   vertical-align: middle;
