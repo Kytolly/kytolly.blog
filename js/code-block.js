@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // *** 函数定义：添加Mac风格交通灯 ***
-  function addMacTrafficLights(header) {
+  function addMacTrafficLights(header, codeBlock) {
     header.classList.add('mac-style');
 
     const trafficLightsContainer = document.createElement('div');
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 添加Mac风格增强
     if (macEnhancerEnable) {
-      addMacTrafficLights(header);
+      addMacTrafficLights(header, codeBlock);
       // 如果init_folded_status为true，则初始自动折叠代码块
       if (initFoldedStatus) {
         codeBlock.classList.add('is-collapsed');

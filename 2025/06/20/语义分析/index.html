@@ -78,6 +78,12 @@
   
 <link rel="stylesheet" href="/css/post.css">
 
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+<link rel="stylesheet" href="/css/tags.css">
+
 
   <!-- 代码块基础样式 -->
   
@@ -97,6 +103,11 @@
 <link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
 
   
+
+  <!-- 标签过滤器脚本 -->
+  
+<script src="/js/tags-filter.js"></script>
+
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
@@ -125,6 +136,8 @@
       <li><a href="/archives">archives</a></li>
       
       <li><a href="/about">about</a></li>
+      
+      <li><a href="/tags">tags</a></li>
       
     </ul>
   </section>
@@ -389,7 +402,26 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">i:=E1;</span><br><span class="line">goto over;</span><br><span class="line">again: i = i + E2;</span><br><span class="line">over: if i &lt;= E3 then </span><br><span class="line">		S1;</span><br><span class="line">		goto again;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">(1) F1 → for i:=1 &#123;</span><br><span class="line">	P = entry(i.NAME);</span><br><span class="line">	emit(:=, 1,_, P);</span><br><span class="line">	F1.PLACE = P;</span><br><span class="line">	</span><br><span class="line">	F1.CHAIN = ip; // 代表标签over</span><br><span class="line">	emit(goto 0);  // 向后转移，不知道over的入口等待回填</span><br><span class="line">	</span><br><span class="line">	F1.AGAIN = ip; // 上一步ip自增，就代表again的入口</span><br><span class="line">&#125;</span><br><span class="line">(2) F2 → F1 step 1 &#123;</span><br><span class="line">	F2.AGAIN = F1.AGAIN;</span><br><span class="line">	F2.PLACE = F1.PLACE;</span><br><span class="line">	</span><br><span class="line">	emit(F2.PLACE, F2.PLACE, + , 1);</span><br><span class="line">	backpatch(F1.CHAIN, ip); //此时ip已加1，代表over的入口，可以回填</span><br><span class="line">&#125;</span><br><span class="line">(3) F3 → F2 to N &#123;</span><br><span class="line">	F3.AGAIN = F2.AGAIN;</span><br><span class="line">	F3.CHAIN = ip; // F3的出口取决于S1，暂时未知，等待回填</span><br><span class="line">	emit(if F2.PLACE &gt; N goto 0;) // 直接用F2.PLACE，因为没有更新操作</span><br><span class="line">&#125;</span><br><span class="line">(4) S → F3 do S1 &#123;</span><br><span class="line">	emit(goto F3.AGAIN);</span><br><span class="line">	backpatch(S1.CHAIN, F3.AGAIN); // 向前转移，S1上链上语句转移到again</span><br><span class="line">	</span><br><span class="line">	S.CHAIN = F3.CHAIN; // 获得程序的出口,但是依然未知</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </main>
-
+  
+  <!-- 插入giscus评论区 -->
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="Kytolly/MyGiscus"
+      data-repo-id="R_kgDOK_0_0A"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOK_0_0A"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="light"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async>
+    </script>
+  
 </article>
 
 

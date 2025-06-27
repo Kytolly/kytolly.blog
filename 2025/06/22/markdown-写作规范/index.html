@@ -78,6 +78,12 @@
   
 <link rel="stylesheet" href="/css/post.css">
 
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+<link rel="stylesheet" href="/css/tags.css">
+
 
   <!-- 代码块基础样式 -->
   
@@ -97,6 +103,11 @@
 <link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
 
   
+
+  <!-- 标签过滤器脚本 -->
+  
+<script src="/js/tags-filter.js"></script>
+
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
@@ -126,6 +137,8 @@
       
       <li><a href="/about">about</a></li>
       
+      <li><a href="/tags">tags</a></li>
+      
     </ul>
   </section>
 </header>
@@ -143,25 +156,44 @@
   </div>
   
 
-  <main class="post-content"><p>本主题按照本人使用的 Typora 编辑器风格定制，旨在打造一款轻量级的<code>TeX</code>笔记样式。
+  <main class="post-content"><h1 id="这是一个一级标题"><a href="#这是一个一级标题" class="headerlink" title="这是一个一级标题"></a>这是一个一级标题</h1>
+<p>本主题按照本人使用的 Typora 编辑器风格定制，旨在打造一款轻量级的<code>TeX</code>笔记样式。
 本主题改编自 <a target="_blank" rel="noopener" href="https://github.com/rankangkang/hexo-theme-typo">Typo</a>。</p>
+<h2 id="这是一个二级标题"><a href="#这是一个二级标题" class="headerlink" title="这是一个二级标题"></a>这是一个二级标题</h2>
 <p>如果你使用本主题，作者建议按照如下规则组织你的写作：</p>
 <ol>
-<li>
-<p>中英文混杂时，应该确保中间有空格，不直接连接。如果有连接的必要，使用 <code></code> <code></code> 语法。</p>
-</li>
+<li>中英文混杂时，应该确保中间有空格，不直接连接。如果有连接的必要，使用 <code></code> <code></code> 语法。</li>
+</ol>
+<h3 id="这是一个三级标题"><a href="#这是一个三级标题" class="headerlink" title="这是一个三级标题"></a>这是一个三级标题</h3>
+<ol start="2">
 <li>
 <p>本主题的数学公式采用内联公式使用<code>$ symbol $</code>， 块内公式使用<code>&lt;br&gt;$$&lt;br&gt; formular &lt;br&gt;$$&lt;br&gt;</code>的格式，即内联公式和前后的字符应该有一个空格，块内公式的标志应该另起一行；</p>
-</li>
-<li>
-<p>写作原文的标题不建议采用标号，因为作者按照标题等级设置了标号计数。如果你的作文已经有自定义的标号，可以在设置中将开关<code>heading_numbering:</code>置为 <code>false</code>。 值得注意的是， 这个开关是全局生效的。</p>
 </li>
 <li>
 <p>不建议在无序列表中嵌套两次以上</p>
 </li>
 </ol>
 </main>
-
+  
+  <!-- 插入giscus评论区 -->
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="Kytolly/MyGiscus"
+      data-repo-id="R_kgDOK_0_0A"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOK_0_0A"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="light"
+      data-lang="zh-CN"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async>
+    </script>
+  
 </article>
 
 
