@@ -26,7 +26,8 @@
 
   --color-hashtag: #51525d;
 
-  --main-width: 1080px;
+  --main-width: 1280px;
+  --list-max-width: 800px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -66,78 +67,4 @@
   html:focus-within {
     scroll-behavior: auto;
   }
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-figure,
-blockquote,
-dl,
-dd {
-  margin: 0;
-}
-
-/* ul,
-ol {
-  list-style: none;
-} */
-.post-content ul {
-  list-style: disc;
-  padding-left: 2em; /* 保证缩进美观 */
-}
-.post-content ul ul {
-  list-style: circle;
-}
-
-ul {
-  padding-inline-start: 0;
-}
-
-html,
-body {
-  scroll-behavior: smooth;
-}
-
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-}
-
-img,
-picture {
-  width: auto;
-  max-width: 100%;
-  display: block;
-}
-
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
-body::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-body::-webkit-scrollbar-thumb {
-  border-radius: 3px;
-  background-color: #c1c1c2;
-}
-
-body::-webkit-scrollbar-track {
-  background-color: transparent;
 }

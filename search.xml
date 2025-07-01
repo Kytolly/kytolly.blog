@@ -1,0 +1,2037 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Artificial Neural Network</title>
+    <url>/2025/06/21/Artificial-Neural-Network/</url>
+    <content><![CDATA[Idea
+人工神经网络（ANN，Artificial Neural Networks）是在人类对大脑神经网络认识理解的基础上，人工构造的能够实现某种功能的神经网络。它是理论化的人脑神经网络的数学模型，是基于模仿大脑神经网络结构和功能而建立起来的一种信息处理系统。
+
+并行分布式的处理结构
+具有局部内存，可以完成局部操作
+每个处理单元有一个单一的输出连接；
+
+神经网络结构和工作机理基本上是以人脑的组织结构和活动规律为背景的，它反映了脑的某些基本特征，但并不是要对人脑部分的真正实现，可以说它是某种抽象、简化或模仿。
+如果将大量功能简单的形式神经元通过一定的拓扑结构组织起来，构成群体并行分布式处理的计算结构，那么这种结构就是人工神经网络，在不引起混淆的情况下，统称为神经网络。
+ANN有三大要素如下：
+
+神经元的激活规则：主要是指神经元输入到输出之间的映射关系，一般为非线性函数
+网络的拓扑结构：不同神经元之间的连接关系
+学习算法：通过训练数据来学习神经网络的参数
+
+激活函数
+性质要求
+
+连续并可导（允许少数点上不可导）的非线性函数。
+可导的激活函数 可以直接利用数值优化的方法来学习网络参数。
+激活函数及其导函数要尽可能的简单，有利于提高网络计算效率。
+激活函数的导函数的值域要在一个合适的区间内，不能太大也不能太小，否则会影响训练的效率和稳定性。
+
+Logistic函数系
+
+它有一个良好的性质：
+它具有挤压的功能，输出可以看作某种概率分布；
+
+有一个线性近似函数
+
+可降低计算开销
+Tanh函数系
+
+特点是零中心化，可以提升收敛速度
+
+也存在如下线性近似
+
+
+ReLU函数系
+
+性质如下：
+
+ReLU：是目前最常用的激活函数，具有单侧抑制、宽兴奋边界的生物学合理性，可缓解梯度消失问题，但有可能导致神经元的死亡
+带泄露的ReLU：在时也保持一个很小的梯度，避免 永远不能被激活的情况，为超参
+指数线性单元ELU:近似零中心化,为超参
+Softplus可以看成ReLU的平滑版本，其导数刚好为Logistic函数 也有单侧抑制、宽兴奋边界的特性，但不具有稀疏性
+
+多层感知机
+两层感知机构造
+要解决复杂问题，单层神经网络是不够用的，因此引入隐层和多层前反馈神经网络：其中输入层神经元接收外界输入，隐层与输出层神经元对信号进行加工，最终结果由输出层神经元输出；
+采用多层感知机可以解决异或问题;输入仍为
+
+隐藏层：包含两个神经元
+输出层包含一个神经元
+隐藏层采用线性整流激活函数ReLU
+
+
+取
+
+
+可以看到，学习的隐藏空间时一个非线性的空间变换
+
+万能近似定理
+万能近似定理（universal approximation theorem）表述如下：一个两层人工神经网络如果具有足够多的隐藏单元，它可以以任意的精度来近似任何一个函数（即可以表示任意的复杂输入-输出关系）。
+神经网络可以作为一个万能函数来使用，可以用来进行复杂的特征转换，或逼近一个复杂的条件分布。
+根据万能近似定理，对于具有线性输出层和至少一个使用"挤压"性质的激活函数的隐藏层组成的前馈神经网络，只要其隐藏层神经元的数量足够，它可以以任意的精度来近似任何从一个定义在实数空间中的有界闭集函数。因此神经网络经常被当作一个万能函数使用，进行复杂的特征转换，或者逼近一个复杂的条件分布；
+前馈神经网络如何学习分类器？
+
+若为Logistic回归，那么Logistic回归分类器可以看成神经网络的最后一层；
+如果使用softmax回归分类器，相当于网络最后一层设置  个神经元，其输出经过softmax函数进行归一化后可以作为每个类的后验概率，\hat{\mathbf{y}}=\mathrm{softmax}(\mathbf{z}^{(L)})
+采用交叉熵损失函数，对于样本(x, y)，其损失函数为
+
+
+神经网络能够通过训练，改变其内部表示，使输入-输出变换朝好的方向发展。训练实质是用同一个训练集的样本反复作用于网络，网络按照一定的训练规则（学习规则或学习算法），自动调节神经元之间的连接强度或拓扑结构，当网络的实际输出满足期望的要求，或者趋于稳定，这认为训练圆满结束。神经网络的学习成果蕴含在权值和阈值当中；
+但是有如下潜在问题：
+
+
+单隐层网络可以近似任何函数，但其规模可能巨大，在最坏的情况下，需要指数级的隐藏单元才能近似某个函数；
+
+
+随着深度的增加，网络的表示能力呈指数增加，一个具有个输入、深度为、每个隐藏层具有个单元的深度整流网络可以描述线性区域的数量为
+
+
+
+有研究注意到，更深层的网络具有更好的泛化能力，参数数量的增加未必一定会带来模型效果的提升；
+更深的模型往往表现更好，不仅仅是因为模型更大。 想要学得的函数应该由许多更简单的函数复合在一起而得到
+多层感知机
+在多层感知机(Multi-layer Perceptron, MLP)中，更常见的名字是前馈神经网络(Feedforward Neural Network, FNN)
+
+输入层神经元接收外界输入，隐层与输出层神经元对信号进行
+加工，最终结果由输出层神经元输出；
+各神经元分别属于不同的层，层内无连接
+相邻两层之间的神经元全部两两连接
+整个网络中无反馈，信号从输入层向输出层单向传播，可用一个有向无环图表示
+
+
+FNN一般采取交叉熵损失函数,对样本
+
+其中， 为标签的one-hot编码表示；
+考察结构化风险函数
+
+正则化项
+
+前馈神经网络信息向前（单向）传递，层内节点之间并不连接，适合于处理静态数据分析，如回归、分类等任务；
+对于全连接前馈神经网络来说，有不少缺点：
+
+容易过拟合；
+训练比较慢，可解释性差;
+权重矩阵参数非常多，不满足局部不变性特征；
+
+
+局部不变性特征：自然图像中的物体都具有局部不变性特征，比如尺度缩放、平 移、旋转等操作不影响其语义信息。而全连接前馈网络很难提取这些局部不变性 特征，一般需要进行数据增强来提高性能。
+
+其他网络结构
+记忆网络/反馈网络
+神经元不但可以接收其他神经元的信息，也可以接收自己的历史信息神经元具有记忆功能，在不同的时刻具有不同的状态，信息传播可以是单向或者双向传递，可用一个有向循环图或无向图来表示记忆网络包括循环神经网络、Hopfield网络、玻尔兹曼机、受限玻尔兹曼机等
+
+图网络
+图网络是定义在图结构数据上的神经网络,图中的每个节点都是由一个或者一组神经元构成节点之间的连接可以是有向的，也可以是无向的,每个节点可以接收来自相邻节点或者自身的信息,图网络是前馈网络和记忆网络的方法，包含许多
+不同的实现方式，如图卷积网络、图注意力网络、消息传递网络等
+
+残差连接
+残差连接 (residual connection)是指,增加跳跃连接从第层与第层甚至更高层之间建立连接 ，使得梯度更容易从输出层流向更接近输入的层，利于模型优化
+
+除残差连接外，还可以改变层与层之间的连接方式
+
+前一层的每个单元仅与后一层的一个小单元子集相连
+可以极大地减少参数的数量
+具体的连接方式高度依赖于具体的问题
+
+
+梯度计算
+误差反向传播算法
+BP(误差反向传播)算法是指，一个BP网络（BP算法训练的多层前反馈神经网络）
+会连续不断地在相对于误差函数斜率下降的方向上计算网络权值和偏差的变化而逐渐逼近目标的。
+每一次权值和偏差的变化都与网络误差的影响成正比，并以反向传播的方式传递到每一层的。
+具体来说，设置学习率,将阈值看作固定输入-1的 dummy node；将对权重和阈值的学习统一看成权重的调整，前向计算迭代过程为：
+
+学习率控制着算法每一轮迭代中的更新步长，若太大则容易振荡，太小则收敛速度又会过慢.
+
+
+各神经元分别属于不同的层，层内无连接
+
+
+相邻两层之间的神经元全部两两连接
+
+
+整个网络中无反馈，信号从输入层向输出层单向传播，可用一个有向无环图表示
+
+
+对于训练样例,ANN的预测结果为
+
+BP算法的目标是最小化均方误差：
+
+BP算法的策略是基于梯度下降的，也即，以目标的负梯度方向对参数进行调整：
+
+数学上：
+
+得到BP算法的迭代方程：
+
+如果取损失函数为结构化风险函数：
+
+那么梯度下降策略可表示为：
+
+算法流程：
+
+将输入样本提供给输入层神经元
+逐层将信号前传至隐层、输出层，产生输出层的结果
+计算输出层误差
+将误差反向传播至隐藏层神经元行调整
+根据隐层神经元对连接权重和阈值进
+上述过程循环进行，直至达到某些停止条件为止
+
+
+自动梯度计算
+自动微分将符号微分法应用于最基本的算子，比如常数、幂函数、指数函数、对 数函数、三角函数等，将其代入数值，保留中间结果，最后再应用于整个函数；
+现代深度学习框架(Pytorch, Tensorflow etc)多采用计算图(computer graph)的方式进行自动梯度计算
+
+将复合函数分解为一系列基本操作，并以图的形式连接起来
+是数学运算的图结构表示，每个非叶子节点代表一个基本操作，每个叶子节点代表一个输入变量或常量
+
+
+通常分为静态计算图和动态计算图，在当前深度学习框架中，Theano和Tensorflow采用的是静态计算图，而DyNet、Chainer和PyTorch采用的是动态计图。Tensorflow 2.0 也开始支持动态计算图。
+
+静态计算图在编译时构建计算图，构建好后在程序运行时不能改变，在构建时可以进行优化、并行能力强，灵活性较差
+动态计算图 在程序运行时动态构建计算图，不容易优化，当不同输入所使用的网络结构不一样时，难以并行计算，灵活性比较高
+
+]]></content>
+      <tags>
+        <tag>Machine-Learning</tag>
+        <tag>Coursework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Autoencoder</title>
+    <url>/2025/06/21/Autoencoder/</url>
+    <content><![CDATA[Introduction
+架构
+CNN的训练样本是带有标签的。在很多实际应用中， 训练样本是没有标签的。应用误差反向传播算法来训练网络会遇到一些困难。
+自编码器(autoencoder)采用让输入和输出相等的idea， 隐含层用于记录数据特征，这是典型的表示学习(representation learning)/特征学习(feature learning)办法,由Hinton等人提出；
+
+autoencder是一种尽可能重构输入信号的神经网络，必须捕捉可以代表输入数据的最重要的内在因素
+
+给定输入和输出相同的一个神经网络
+训练网络获得隐藏层的权重，每一层就是一种表示/特征(representation);
+
+训练
+具体来说，在第一次编解码训练中/网络表达中
+
+
+为input序列增加一个encoder，得到输入的一个representaion,记作
+
+
+继续增加一个decoder，输出最终的使用信号重构的方式评估这个representaion的质量
+
+
+目标是最小化输入输出的差异,训练隐含层的权重矩阵；
+
+
+
+
+Autoencoder的训练过程是逐层静态进行的，通过对encoder的stack，不断将前一层输出的code作为后一层输入的信号；
+
+在完成Autoencoder 的学习任务之后，在实际应用中，在解码阶段学习得到的权重将不进行考虑。因此，编码阶段获得的网络系统其实质是一种特征学习。层级越高，结构特征越大越明显。
+
+对于分类任务，可以事先用Autoencoder 对数据进行学习。然后以学习得 到的权值作为始初权重，采用带有标签的数据对网络进行再次学习，即fine tuning技术。
+为了实现分类任务，需要在编码阶段的最后一层加上一个分类器，比如一个 多层感知器（MLP）
+
+扩展
+在早期Hinton的工作中，采用RBM 来 预训练网络，同时采用对称的网络结构，即解码器中的权重矩阵与编码器中的权重矩 阵呈转置关系。一个原因是当时训练数据少，且计算能力有限；
+正则编码器(regularized AE): 可以使得提取的特征符合某种性质，应用惩罚大权重的L2正则化
+
+稀疏自编码器(Spare AE)基于高维稀疏表示的假设，提取稀疏的特征表示，采用神经元平均激活度为度量
+
+采用如下的稀疏约束限制神经元平均激活度在一个很小的度
+
+去噪自编码器(denoising AE)基于对噪声化的原始数据根据编码和解码，能还原真正原始数据的鲁棒特征，通过提取鲁棒的特征表示，完成去噪工作；
+它假定污染是如下过程
+
+采用如下的编解码过程
+
+总的来说，这些自编码器的工作，它们的目的都是数据将为，都具有编码器和解码器的结构，具有窄的bottleneck，通过对输入信号的重建，将输入降维成一种表征；因此，autoencoder不是一种生成模型。
+]]></content>
+      <tags>
+        <tag>Machine-Learning</tag>
+        <tag>Coursework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Cluster</title>
+    <url>/2025/06/21/Cluster/</url>
+    <content><![CDATA[Introduction
+如果我们相信聚集在一起，有较高相似性的簇一定有有趣的知识的话，那么聚类分析就是获得数据内部结构，发现簇的意义的方法。
+在讨论聚类算法时，都是在无监督学习的框架下进行的，也就是已知的数据集是没有标签可以学习的。
+聚类：将数据分为多个簇(Clusters)，使得在同一个簇内对象之间具有较高的相似度，而不同簇之间的对象差别较大。
+任务
+已知无标记样本集 , 聚类的算法的任务就是划分样本集成个互不相交的簇，集  划分为  个不相交的簇：
+
+对样本,应有唯一的下标,使得;
+聚类的结果可用包含  个元素的簇标记向量 ​ 表示；
+功能
+聚类分析是获得数据内部结构的有效方法。通过观察聚类得到的每个簇的特点，可以集中对特定的某些簇作进一步分析。
+聚类分析可以作为其它算法的预处理步骤；
+聚类分析可以完成噪声点/孤立点的挖掘；
+指标
+对于聚类任务，我们希望物以类聚，直观上有两个指标：
+
+「簇内相似度（intra-cluster similarity）」高
+「簇间相似度(inter-cluster similarity)」低
+
+外部指标
+对数据集 ,聚类簇划分 , 参考模型簇划分为 ,令  与  分别表示与  和  对应的簇标记向量.
+对样本配对，一定是下面四种情况之一：
+
+显然，
+
+
+Jaccard 系数(Jaccard Coefficient, JC)
+
+
+
+FMI 指数(Fowlkes and Mallows Index, FMI)
+
+
+
+Rand指数(Rand Index, RI)
+
+
+
+聚类算法的距离度量
+四种方式：最小距离，最大距离，中心距离，平均距离
+
+聚类算法的分类
+
+基于原型/划分的办法：K-Means, K-Medoids
+基于层次的办法：AGENS, DIANA
+基于密度的办法：DBSCAN
+基于网络的办法：STING
+
+prototype-based  clustering
+Idea
+基于原型的聚类算法(prototype-based  clustering)法假设聚类结构能通过一组原型刻
+初始化一个划分，之后通过迭代的办法优化这个划分方式；
+如何定义优化？我们需要一个聚类目标函数作为指标：簇对象到簇中心平方误差
+
+Kmeans
+对于K-means算法，我们提出一种基于expectation maximization的实现；
+损失函数是最小化平方误差
+
+此损失函数刻画了簇内样本围绕簇均值向量的紧密程度，J 值越小，则簇内样本相似度越高；
+优化目标是找到使得代价最小化的和向量；
+初始均值-簇分配-更新均值-收敛，如下：
+
+一个直观的例子如图所示：
+
+优点：经典算法，简单、快速， 对处理大数据集，该算法是相对可伸缩和高效率的。
+缺点：
+
+初始值敏感；
+K需要预先设定，不是**Parameter-free **的；
+只能发现类球状簇,不适合于发现非球形状的簇或者大小差别很大的簇；
+离群点敏感；
+
+这里K值的选取可以根据肘部法则，我们可能会得到一条类似于人的肘部的曲线。 代价函数的值会迅速下降，在𝐾=3的时候达 到一个肘点。在此之后，代价函数的值会就下降得非常 慢，所以，我们选择𝐾=3；
+
+中心点的选取一般是随机初始化，计算更新为簇内数据的平均向量；通常几轮时间就收敛了；
+这里有一个trick： 二分K均值方案，不容易受到初始化问题的影响，类似于一种层次聚类的思想  基本思想，为了得到K个簇，先分为2个簇，然后不断选择其中一个分裂；可以看作一个逐步求精的过程；
+
+基于高斯混合模型的聚类实现
+高斯混合聚类 (Mixture-of-Gaussian, MoG) 是一种基于概率模型的聚类方法。
+与 K-Means 等基于距离原型的算法不同，MOG认为观测到的数据集是由  个不同的高斯分布混合生成的。对于数据集中的每一个点，它属于某个特定簇的可能性可以用概率来衡量。
+模型假设：假设数据集  是由  个高斯分量混合生成，其概率密度函数为：
+
+其中：
+
+ 是第  个高斯分量的混合系数（或称先验概率），表示数据点来自第  个簇的概率，满足  且 ;
+ 是第  个高斯分量概率密度，参数为均值向量  和协方差矩阵 ;
+
+目标： 学习这些高斯分量的参数  ，使得这些模型参数能够最大化似然函数,问题在于数据是未标记的，学习是无监督的；
+算法： 通常使用EM算法来估计模型的参数。EM 算法是一个迭代过程，包含两个步骤：
+
+
+E 步 (Expectation Step)：估计观察到数据点后，每个高斯分量的后验概率（称为"责任"或"soft assignment"）。对于每个数据点  和每个簇 ，计算其属于簇  的概率 ：
+
+这步利用当前的模型参数来计算每个点属于每个簇的概率。
+
+
+M 步 (Maximization Step)：利用 E 步计算出的后验概率，重新估计每个高斯分量的参数 ，以最大化加权后的数据点的似然。这步根据每个点对每个簇的"贡献度"（后验概率）来更新簇的参数。
+似然函数为
+
+更新均值：
+
+更新协方差：
+
+更新混合系数:
+
+
+
+重复 E 步和 M 步，在算法收敛后，每个数据点  可以被分配到其后验概率  最大的那个簇 。这是一种hard assignment。或者，可以保留其属于各个簇的概率信息(soft assignment)。
+优点
+
+概率解释： 提供了每个点属于每个簇的概率，不仅仅是简单的簇分配。
+簇形状灵活： 通过协方差矩阵可以建模非球状的簇（K-Means 隐式假设簇是球状且方差相等）。
+
+缺点
+
+参数敏感： 需要预先指定簇的数量 。
+局部最优： EM 算法容易陷入局部最优解，结果可能依赖于参数的初始化。
+计算成本： 相对于 K-Means，计算成本更高，特别是对于大数据集或高维数据。
+假设前提： 假设数据是由高斯分布生成的，如果数据分布与高斯分布差异较大，效果可能不好。
+对噪声和离群点敏感： 离群点可能会对均值和协方差的估计产生较大影响。
+
+算法流程伪代码如下：
+
+基于层次的办法
+层次聚类方法对给定的数据集进行层次的分解，直到某种条件满足为止。
+凝聚的层次聚类：
+
+一种自底向上的策略，首先将每个对象作为一个簇，然后合并这些原子簇为越来越大的簇，直到某个终结条件被满足，
+代表是AGNES算法
+
+
+最小距离法（Single Linkage）
+
+
+定义：在两个簇之间的所有可能配对样本点中，选择距离最小的一对样本点的距离作为簇间距离。
+
+
+链状效应：由于只考虑最接近的一对点，最小距离法容易形成链状结构，即若干个样本逐个连接在一起，形成较长的"链"。
+
+
+噪声敏感：对噪声和离群点（outliers）较为敏感，因为离群点可能会导致簇之间的最小距离变小，从而错误地合并簇。
+
+
+效率较高：计算简单，效率较高，但结果可能不稳定。
+
+
+适用场景：适用于数据集中的簇呈现不规则形状或链状结构的情况。
+
+
+最大距离法（Complete Linkage）
+
+定义：在两个簇之间的所有可能配对样本点中，选择距离最大的一对样本点的距离作为簇间距离。
+紧密簇：最大距离法倾向于形成紧密、球形的簇，因为它考虑了簇中最远样本点之间的距离，从而避免形成链状结构。
+抗噪声能力强：对噪声和离群点较为鲁棒，不容易被离群点影响，因为离群点的存在不会显著改变簇的最大距离。
+计算复杂度高：由于需要计算所有样本点的最大距离，计算复杂度相对较高。
+适用场景：适用于数据集中簇的形状较为规则、且希望得到更紧密的簇的情况。
+
+分裂的层次聚类：
+
+
+采用自顶向下的策略，它首先将所有对象置于一个簇中，然后逐渐细分为越来越小的簇，直到达到了某个终结条件。
+
+
+代表是DIANA算法;
+算法    DIANA（自顶向下分裂算法）输入：包含n个对象的数据库，终止条件簇的数目k。输出：k个簇，达到终止条件规定簇数目。（1）将所有对象整个当成一个初始簇；（2） FOR (i=1; i≠k; i++) DO BEGIN（3）       在所有簇中挑出具有最大直径的簇C；（4）      找出C中与其它点平均相异度最大的一个点p并把p放入splinter group，剩余的放在old party中；（5）.      REPEAT（6）             在old party里找出到最近的splinter group中的点的距离不大于到old party中最近点的距离的点，并将该点加入splinter group。（7）       UNTIL 没有新的old party的点被分配给splinter group；（8）   splinter group和old party为被选中的簇分裂成的两个簇，与其它簇一起组成新的簇集合。（9） END.
+
+
+基于密度的聚类算法：DBSCAN
+只要一个区域中的点的密度大于某个阈值，就把它加到与之相近的聚类中去。
+对于一个类中的每个对象，在其给定半径的领域中包含的对象不能少于某一给定的最小数目；
+概念：
+设置半径阈值,数量阈值;
+核心对象的-邻域至少包个对象；
+从核心对象出发，对任何邻域内的点直接密度可达；
+如果存在一个对象链，，，，，，对，，是从关于直接密度可达的，则对象是从对象相互密度可达的。
+如果存在一个对象，使得对象和是从关于密度可达的，那么对象和是密度相连的。
+一个基于密度的簇是基于密度可达性的最大的密度相连对象的集合 ;
+
+连接性：密度相连；
+最大性：由密度可达，
+
+DBSCAN算法先任选数据集中的一个核心对象为"种子" ,再由此出发确定相应的聚类簇;
+算法类似于BFS搜索，维护一个队列；
+
+优点：
+
+能克服基于距离的算法只能发现"类圆形"的聚类的缺点，可发现任意形状的聚类；
+对噪声数据不敏感；
+
+缺点：
+
+计算复杂度大，需要建立空间索引来降低计算量；
+数据维数的伸缩性较差；
+对参数非常敏感；
+如果数据库比较大的时候要进行大量的I/O 开销;
+很难找到不同密度的簇;
+
+基于网格的聚类：STING
+基本思想：将对象空间量化为有限数目的单元，形成一个网格结构，所有的聚类都在这个网格结构中上进行。
+其优点是处理速度很快，其处理时间独立于数据对象的数目，只与量化空间中每一维的单元数目有关。
+在网格聚类方法中有利用存储在网格单元中的统计信息进行聚类的STING算法和在高维数据空间基于网格和密度的聚类方法等。
+STING是一种基于网格的多分辨率聚类技术，它将空间区域划分为矩形单元。针对不同级别的分辨率，通常存在多个级别的矩形单元，这些单元形成了一个层次结构：高层的每个单元被划分为多个低一层的单元。高层单元的统计参数可以很容易的从底层单元的计算得到。这些参数包括属性无关的参数count、属性相关的参数m（平均值）、s(标准偏差)、min(最小值)、max(最大值)以及该单元中属性值遵循的分布类型。
+STING算法采用了一种多分辨率的方法来较粗，则聚类质量会受到影响。进行聚类分析，该聚类算法的质量取决于网格结构最低层的粒度。如果粒度比较细，处理的代价会显著增加；
+STING算法的主要优点是效率高，通过对数据集的一次扫描来计算单元的统计信息，因此产生聚类的时间复杂度是O(n)。在建立层次结构以后，查询的时间复杂度是O(g), g远小于n。STING算法采用网格结构，有利于并行处理和增量更新。
+]]></content>
+      <tags>
+        <tag>Machine-Learning</tag>
+        <tag>papers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Convolution Neural Network</title>
+    <url>/2025/06/21/Convolution-Neural-Network/</url>
+    <content><![CDATA[Introduction
+卷积神经网络是受生物学上感受野(receptive Field)的机制而提出的
+
+在视觉神经系统中，一个神经元的感受野是指视网膜上的特定区域，只有这个区域内的刺激才能够激活该神经元;
+感受野机制主要是指听觉、视觉等神经系统中一些 神经元的特性，即神经元只接受其所支配的刺激区域内的信号。
+
+架构
+卷积神经网络一般是由卷积层、池化层 和全连接层交叉堆叠而成的前馈神经网络。全连接层一般在卷积网络的最顶层。
+
+卷积神经网络有三个结构上的特性：局部连接、权重共享以及 池化。这些特性使得卷积神经网络具有一定程度上的平移、缩放和旋转 不变性。和前馈神经网络相比，卷积神经网络的参数少。
+
+卷积
+一维卷积
+给定一个输入信号序列和滤波器(filter)/卷积核(convolution kernel)，其卷积输出为
+
+
+一维卷积常用于信号处理，用于计算信号的累计延迟；
+滤波器可以看作信息的衰减率，输出结果为当前时刻产生的信息和以前的延迟信息的叠加；
+不同的滤波器可以用来提取序列中的不同特征；定义
+
+滑动步长(stride):卷积核在滑动时的时间间隔
+零填充(Zero Padding);在输入向量两端进行补零
+
+
+对于大小为的滤波器，根据输出长度的不同可以分为三类
+
+窄卷积：步长为1，两端不补零,卷积输出长度为
+宽卷积：步长，两端补零，卷积后输出长度
+等宽卷积：步长，两端补零，卷积后输出长度
+
+二维卷积
+对于输入图像矩阵,卷积核矩阵,步幅为,卷积结果是一个阶为的方阵;
+一般认为,卷积结果具体为
+
+
+二维卷积有两种不同的方式：通常没有零填充的最优数量处于有效卷积和相同卷积中间的某个位置；
+
+有效卷积：没有padding
+相同卷积：输入和输出相同
+
+即是卷积前后图像的宽度，是滤波器的宽度，是零填充的数量，是步长，是卷积前后后图像的高度;
+
+Feature Map
+一幅图像在经过卷积操作后得到结果称为特征映射（Feature Map）;
+![Feature Map示意图](/assets/Machine-Learning/Feature Map示意图.png)
+以下是一个图像中的二维卷积的例子：卷积神经网络是针对图像处理设计的特殊的网络结构，在图像处理中，卷积经常作为特征提取的办法，常用的均值滤波就是二维卷积，将当前位置的像素值设置为卷积核内所有像素的平均值；
+
+卷积层
+在FFN中，连接边的数量为前后两层神经元个数的乘积，当神经元数量巨大，权重矩阵训练效率较低；卷积运算具有特征抽取的能力，卷积层中每一个神经元都只和下一层某个局部窗口的神经元相连，因此连接边数降至为后一层神经元数量和卷积核大小的乘积；
+
+一个常见的减少连接边的常见trick是权值共享，我们认为同一个卷积核能对应提取一个特征，卷积核对于第层的所有的神经元都是相同的。权重共享可以理解为一个卷积核只捕捉输入数据中的
+一种特定的局部特征。因此，如果要提取多种特征就需要使用多个不同的卷积核。
+这样的稀疏交互方式，即局部连接或者局部感受野的方式，既能进行特征提取，又加快了计算效率；但是卷积层并没有显著减少特征映射中的神经元个数；
+池化层
+池化层(Pooling Layer),也即子采样层(subsampling layer)，用于卷积层之后，降低特征维数，减少参数数量，从而避免过拟合；
+
+对于池化层的输入图特征映射组为,对于其中每一个特征映射,将它们划分为多个区域(可以重叠也可以不重叠)，池化操作就是对每个区域进行下采样，作为这个区域的概括。
+一般分为两种：
+
+
+最大池化(max pooling):对于一个区域，选择该区域的最大活性值的神经元,主要用来抑制邻域值之间差别过大，造成的方差过大。对纹理的提取较好；
+
+
+
+平均池化(mean pooling):是取区域内所有神经元活性值的平均值,能够抑制网络参数误差造成的估计均值偏移的现象。对背景的保留效果较好；
+
+
+
+
+从定义方式我们可以看出来，池化操作可以更高地获取平移不变性，减少了神经元数量，并获得了更高的计算效率；
+全连接
+图像特征图的“分布式特征表示”映射到样本标记空间。在整个卷积神经网络中起到“分类器”的作用。最后一层的全连接层起到的作用就是输出结果;
+
+通过Softmax函数将多个标量映射为一个概率分布，输出分类结果的置信度。
+]]></content>
+      <tags>
+        <tag>Machine-Learning</tag>
+        <tag>papers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown 写作规范</title>
+    <url>/2025/06/22/markdown-%E5%86%99%E4%BD%9C%E8%A7%84%E8%8C%83/</url>
+    <content><![CDATA[这是一个一级标题
+本主题按照本人使用的 Typora 编辑器风格定制，旨在打造一款轻量级的TeX样式。
+本主题改编自 Typo。
+这是一个二级标题
+如果你使用本主题，作者建议按照如下规则组织你的写作：
+
+中英文混杂时，应该确保中间有空格，不直接连接。如果有连接的必要，使用   语法。
+
+这是一个三级标题
+
+
+本主题的数学公式采用内联公式使用$ symbol $， 块内公式使用&lt;br&gt;$$&lt;br&gt; formular &lt;br&gt;$$&lt;br&gt;的格式，即内联公式和前后的字符应该有一个空格，块内公式的标志应该另起一行；
+
+
+不建议在无序列表中嵌套两次以上
+
+
+]]></content>
+      <tags>
+        <tag>Musings</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Shiroi 魔改日志</title>
+    <url>/2025/06/22/Shiroi-%E9%AD%94%E6%94%B9%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[项目结构描述
+Shiroi 魔改(typo)日志
+(解耦合) 标签页
+标签页用于显示标题和站点图标.
+
+创建文件layout/_partial/label.ejs.
+
+
+标签页将实现使用icon.svg为图标
+标题可在站点配置文件_config.yml或者主题配置文件_config.shiroi.yml中配置(存在优先关系).
+
+  &lt;!-- 标签页 --&gt;&lt;title&gt;  &lt;%= page.title || config.title || theme.title  %&gt;&lt;/title&gt;&lt;% if (theme.favicon)&#123; %&gt;&lt;%- favicon_tag(theme.favicon) %&gt;&lt;% &#125; %&gt;
+
+在layout/layout.ejs中注入配置
+
+  &lt;!-- 标签页 --&gt;&lt;%- partial(&#x27;_partial/label&#x27;) %&gt;
+(解耦合) 字体
+字体是全局主题使用的字体,继承了 typo 主题的配置
+
+创建文件layout/_partial/font.ejs.
+
+    &lt;!-- 字体 --&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&lt;link href=&quot;https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+
+在layout/_partial/global.ejs中注入配置
+
+  &lt;!-- 字体 --&gt;&lt;%- partial(&#x27;_partial/font.ejs&#x27;) %&gt;
+(解耦合) 导航栏
+导航栏是每个页面最上方的 top bar, 用于展示站点配置文件中的选项menu.
+
+创建文件layout/_partial/header.ejs.
+
+
+导航栏将实现使用icon.svg为图标
+左侧标题可在站点配置文件中配置.
+右侧图标可以在icon/文件夹中找到对应名字更换.
+右侧图标后名字取决于主题配置文件的 menu 中的配置.
+
+  &lt;!--(头部 top bar) Header 样式 --&gt;&lt;%- css(&#x27;css/header.css&#x27;) %&gt;&lt;header class=&quot;header&quot;&gt;  &lt;section class=&quot;header-container&quot;&gt;    &lt;a class=&quot;header-logo&quot; href=&quot;&lt;%- url_for(&#x27;icon.svg&#x27;) %&gt;&quot;&gt;&lt;%= config.title %&gt;&lt;/a&gt;    &lt;ul class=&quot;header-nav&quot;&gt;      &lt;%        for (const name in theme.menu) &#123;          const iconName = name;      %&gt;      &lt;li&gt;        &lt;a href=&quot;&lt;%- url_for(theme.menu[name]) %&gt;&quot;&gt;          &lt;img src=&quot;&lt;%- url_for(&#x27;icon/&#x27; + iconName + &#x27;.svg&#x27;) %&gt;&quot; alt=&quot;&lt;%= name %&gt; icon&quot; style=&quot;width:1.2em;height:1.2em;vertical-align:middle;&quot;&gt;          &lt;%= name %&gt;        &lt;/a&gt;      &lt;/li&gt;      &lt;% &#125; %&gt;    &lt;/ul&gt;  &lt;/section&gt;&lt;/header&gt;
+
+在layout/layout.ejs中注入配置
+
+  &lt;!-- 导航栏 --&gt;&lt;%- partial(&#x27;_partial/header&#x27;) %&gt;
+
+创建样式文件source/css/header.css
+
+  .header &#123;position: sticky;top: -48px;background: inherit;margin: 0;padding: 64px 8vw 0;max-width: 100%;width: 100%;&#125;.header-container &#123;  display: flex;  justify-content: space-between;  align-items: center;  border-bottom: 1px solid var(--color-hr);&#125;.header-logo &#123;    font-size: 2rem;    font-weight: 600;    color: var(--font-color);    margin-bottom: 16px;&#125;.header-nav &#123;    margin: 0 0 4px;    display: flex;    flex-direction: row;    flex-wrap: wrap;    justify-content: flex-start;    align-content: center;    list-style: none;&#125;.header-nav li &#123;    padding: 2px 0;    margin-right: 24px;&#125;.header-nav li:last-of-type &#123;    margin-right: 0;&#125;.header-nav li a &#123;    color: var(--font-color);&#125;.header-nav li a img &#123;    margin-right: 0.3em;    vertical-align: middle;    display: inline-block;&#125;.header-nav li a:hover &#123;    text-decoration: underline;&#125;
+页脚
+页脚是底部的版权注释, 可在主题配置文件中的选项copyright修改相关描述.
+typo 中已有layout/_partial/footer.ejs文件,用于描述页脚的配置.
+数学公式支持
+
+如果你的markdown渲染器和作者一样为hexo-renderer-syzoj-renderer;那么此开关不是必要的；
+如果是其他渲染器，可能需要这个开关的支持。
+
+
+在主题配置文件中添加开关
+
+  mathjax: true
+
+在layout/global.ejs添加如下代码，以使得渲染器支持数学公式
+
+  &lt;!-- 数学公式 --&gt;&lt;%- css(&#x27;css/mathjax.css&#x27;) %&gt;&lt;%- js(&#x27;js/mathjax.js&#x27;) %&gt;
+
+添加样式文件source/css/mathjax.css使得渲染器渲染出字体为Times New Roman。以及支持让公式在小屏幕下自动换行
+
+  /*  mathjax.css  用于美化 MathJax 渲染的数学公式字体和排版*/.mathjax-formula &#123;    font-family: &#x27;Times New Roman&#x27;, Times, serif;    font-size: 1.05em;    line-height: 1.5;&#125;  /* 让公式在小屏幕下自动换行 */.MathJax_Display &#123;    overflow-x: auto;    overflow-y: hidden;    width: 100%;    box-sizing: border-box;&#125;
+
+添加脚本文件source/js/mathjax.js如下：
+
+  /** * highlight.js * 代码块功能主入口，负责： * 1. 语法高亮初始化 * 2. 代码块头部（语言、复制、主题切换）生成 * 3. 主题切换逻辑 */(function() &#123;    // 动态加载 MathJax 脚本    var script = document.createElement(&#x27;script&#x27;);    script.type = &#x27;text/javascript&#x27;;    script.src = window.THEME_CONFIG.mathjax.src ||      &#x27;https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js&#x27;;    script.async = true;      // 可选：自定义 MathJax 配置    window.MathJax = &#123;      tex: &#123;        inlineMath: [[&#x27;$&#x27;, &#x27;$&#x27;], [&#x27;\\(&#x27;, &#x27;\\)&#x27;]]      &#125;      // 其他配置可按需添加    &#125;;      document.head.appendChild(script);  &#125;)();
+(文章主体) 去掉标题前的符号#
+作者不喜欢标题符号的设计，注释掉上面source/css/post.css中的以下代码即可：
+  .post-content h1::before,.post-content h2::before,.post-content h3::before,.post-content h4::before,.post-content h5::before,.post-content h6::before &#123;  content: &quot;⌗&quot;;  padding-right: 10px;  color: var(--color-hashtag);  font-weight: 600;&#125;
+(文章主体) 在无序列表前面加点
+作者更习惯在无序列表前加点，修改source/css/root.css中的全局样式，
+注释掉原来的样式，替换成如下样式
+  /* ul,ol &#123;  list-style: none;&#125; */.post-content ul &#123;  list-style: disc;  padding-left: 2em; /* 保证缩进美观 */&#125;.post-content ul ul &#123;  list-style: circle;&#125;
+(文章可选配置) 标题自动编号
+
+在配置文件（如 _config.typo.yml 或 themes/shiroi/_config.yml）中添加开关
+
+  heading_numbering: true
+
+在 layout/_partial/head.ejs 的 &lt;/head&gt; 前注入两个文件。
+
+  &lt;!-- 标题编号 --&gt;&lt;% if (theme.heading_numbering || config.heading_numbering) &#123; %&gt;  &lt;%- css(&#x27;css/heading-numbering.css&#x27;) %&gt;  &lt;%- js(&#x27;js/heading-numbering.js&#x27;) %&gt;&lt;% &#125; %&gt;&lt;/head&gt;
+
+新建一个文件 source/js/heading-numbering.js，内容如下：
+
+  document.addEventListener(&#x27;DOMContentLoaded&#x27;, function () &#123;    // 只在文章页生效    if (!document.querySelector(&#x27;.post&#x27;)) return;      // 只处理 h2-h6    const headings = document.querySelectorAll(&#x27;.post h2, .post h3, .post h4, .post h5, .post h6&#x27;);    const nums = [0, 0, 0, 0, 0]; // 对应 h2-h6      headings.forEach(heading =&gt; &#123;      const level = parseInt(heading.tagName[1]) - 2; // h2-&gt;0, h3-&gt;1, ...      if (level &lt; 0) return; // 跳过 h1        // 当前级别+1，低级别归零      nums[level]++;      for (let i = level + 1; i &lt; nums.length; i++) nums[i] = 0;        // 生成编号字符串      const numbering = nums.slice(0, level + 1).join(&#x27;.&#x27;);        // 插入编号      heading.innerHTML = `&lt;span class=&quot;heading-number&quot;&gt;$&#123;numbering&#125; &lt;/span&gt;` + heading.innerHTML;    &#125;);  &#125;);
+
+新建一个文件 source/css/heading-numbering.css，内容如下：
+
+  .heading-number &#123;  color: #888;  font-weight: normal;  margin-right: 0.5em;  font-size: 0.95em;&#125;
+(文章可选配置) 三线表样式
+此功能用于将标准的 Markdown 表格渲染为学术论文中常见的三线表样式，以增强可读性和专业性。该功能可通过主题配置文件中的开关进行控制。
+
+首先，在主题配置文件 _config.yml 中添加以下开关：
+
+  # Table stylethree_line_table: true
+
+在 themes/shiroi/layout/_partial/head.ejs 中添加以下代码，以根据配置开关加载样式文件：
+
+  &lt;!-- 三线表样式 --&gt;&lt;% if (theme.three_line_table) &#123; %&gt;  &lt;%- css(&#x27;css/three-line-table.css&#x27;) %&gt;&lt;% &#125; %&gt;
+
+新建一个文件source/css/three-line-table.css ，内容如下。
+
+
+为了避免样式污染用于代码块的表格（它们在渲染后也是 &lt;table&gt; 结构）,
+所有规则都使用了 :not(.hljs) 选择器进行限定。
+
+  /* Three-line table style, excluding tables used for code blocks */.post-content table:not(.hljs) &#123;  width: 100%;  border-collapse: collapse;  border-top: 2px solid var(--color-post-content, #333);  border-bottom: 2px solid var(--color-post-content, #333);  margin: 1.5em 0;  font-size: 0.95em;&#125;.post-content table:not(.hljs) th,.post-content table:not(.hljs) td &#123;  border: none;  padding: 0.75em 1em;  text-align: left;&#125;.post-content table:not(.hljs) thead th &#123;  border-bottom: 1px solid var(--color-post-content, #333);  text-align: center;  font-weight: 600;&#125;.post-content table:not(.hljs) tbody tr:nth-child(even) &#123;  background-color: var(--color-table-row, #f9f9f9);&#125;.post-content table:not(.hljs) caption &#123;  caption-side: bottom;  text-align: center;  font-size: 0.9em;  color: #888;  margin-top: 0.5em;&#125;
+(文章可选配置) 图片样式
+此功能用于自动居中图片，并将其 alt 文本作为带编号的图注（例如"图1：xxx"）显示。
+
+在主题配置文件 _config.yaml 中添加以下开关：
+
+  # Image settingsimage:  enable: true  # 总开关  center: true  # 居中图片  caption: true # 将 alt 文本作为带编号的图注显示
+
+修改布局文件来注入样式资源
+
+在 layout/_partial/head.ejs 中注入样式：
+  &lt;!-- 图片样式 --&gt;&lt;% if (theme.image &amp;&amp; theme.image.enable) &#123; %&gt;&lt;%- css(&#x27;css/image-handler.css&#x27;) %&gt;&lt;% &#125; %&gt;
+在 layout/layout.ejs 的 &lt;body&gt; 标签内部添加配置注入：
+  &lt;body  &lt;% if (theme.image &amp;&amp; theme.image.enable) &#123; %&gt;    data-image-center=&quot;&lt;%= theme.image.center ? &#x27;true&#x27; : &#x27;false&#x27; %&gt;&quot;    data-image-caption=&quot;&lt;%= theme.image.caption ? &#x27;true&#x27; : &#x27;false&#x27; %&gt;&quot;  &lt;% &#125; %&gt;&gt;
+
+新建文件 source/css/image-handler.css 。
+
+
+我们使用 display: table; 技巧让 &lt;figure&gt; 元素的宽度自适应其内容，
+从而使 margin: auto; 能够生效，实现真正的居中。
+
+  .post-content .image-figure &#123;  /* This makes the figure shrink-wrap its content, allowing margin:auto to work */  display: table;  margin-left: auto;  margin-right: auto;&#125;.post-content .image-figure figcaption &#123;  margin-top: 0.8em;  font-size: 0.9em;  color: #888;  text-align: center; /* Explicitly center the caption text */&#125;
+
+新建文件 source/js/image-handler.js 。
+
+
+此脚本会查找文章中被单独包裹在 &lt;p&gt; 标签里的图片，
+用一个带有 .image-figure 类的 &lt;figure&gt; 元素替换掉原来的 &lt;p&gt; 标签，
+并根据配置添加图注。
+通过 document.body.dataset 读取配置，完全解耦 JS 与模板。
+
+  /** * image-handler.js * 自动居中图片，并为图片添加带编号的图注（如 &quot;图1：xxx&quot;） * 配置通过 &lt;body data-image-center=&quot;true&quot; data-image-caption=&quot;true&quot;&gt; 注入 */document.addEventListener(&#x27;DOMContentLoaded&#x27;, () =&gt; &#123;  const body = document.body;  const center = body.dataset.imageCenter === &#x27;true&#x27;;  const caption = body.dataset.imageCaption === &#x27;true&#x27;;  if (!center &amp;&amp; !caption) return;  let imageCounter = 0;  const content = document.querySelector(&#x27;.post-content&#x27;);  if (!content) return;  const images = content.querySelectorAll(&#x27;img&#x27;);  images.forEach(img =&gt; &#123;    const parent = img.parentNode;    // 只处理被单独包裹在 &lt;p&gt; 标签里的图片    if (parent.tagName === &#x27;P&#x27; &amp;&amp; parent.children.length === 1) &#123;      if (caption &amp;&amp; img.alt) &#123;        imageCounter++;        const figure = document.createElement(&#x27;figure&#x27;);        figure.classList.add(&#x27;image-figure&#x27;);        const figcaption = document.createElement(&#x27;figcaption&#x27;);        figcaption.innerText = `图 $&#123;imageCounter&#125;: $&#123;img.alt&#125;`;        // 移动图片到新 figure        figure.appendChild(img);        figure.appendChild(figcaption);        // 替换原 &lt;p&gt; 标签        parent.parentNode.replaceChild(figure, parent);      &#125; else if (center) &#123;        // 没有图注时，仅居中        parent.style.textAlign = &#x27;center&#x27;;      &#125;    &#125;  &#125;);&#125;);
+(文章可选配置) 代码块样式升级
+此功能旨在将默认的代码块替换为一个功能更丰富、样式更现代的组件。
+它包含一个标题栏，用于显示代码语言和提供一键复制功能，并采用了仅保留关键分割线的极简设计。
+最小化注释全局干扰样式
+在source/css/post.css中，注释掉如下代码。
+/*.post-content table td,.post-content table th &#123;  border: 1px solid #6b6b6b;  padding: 6px 13px;&#125;.post-content table tr &#123;  border-top: 1px solid #c6cbd1;&#125;*/
+功能开关与配置
+在主题配置文件 _config.shiroi.yml 中添加以下配置，用于控制复制按钮的显示内容。
+# Code block settingscode_block:  # When copy_button is empty, the button displays the word &quot;copy&quot;.  # If a path to an SVG is provided, the SVG will be displayed as a clickable button.  copy_button: icon/copy.svg
+代码块逻辑集成
+在 themes/shiroi/source/js/code-block.js 文件中，实现了如下功能
+
+初始化 highlight.js;
+创建代码块头部;
+添加复制功能;
+主题切换功能;
+
+
+此项目依赖 highlight.js 库，确保它已被引入。
+
+// themes/shiroi/source/js/code-block.js// 确保 highlight.js 库已初始化if (typeof hljs !== &#x27;undefined&#x27;) &#123;  hljs.highlightAll();&#125;document.addEventListener(&#x27;DOMContentLoaded&#x27;, () =&gt; &#123;  const codeBlocks = document.querySelectorAll(&#x27;figure.highlight&#x27;);  const bodyDataset = document.body.dataset;  // 从 body 的 data-属性中获取配置  const copyButtonConfig = bodyDataset.codeBlockCopyButton;  const themeToggleEnable = bodyDataset.codeBlockThemeToggleEnable === &#x27;true&#x27;;  const themeToggleConfig = &#123;    enable: themeToggleEnable,    to_light_button: bodyDataset.codeBlockThemeToggleToLightButton,    to_dark_button: bodyDataset.codeBlockThemeToggleToDarkButton,  &#125;;  codeBlocks.forEach(codeBlock =&gt; &#123;    // 防止重复创建头部    if (codeBlock.querySelector(&#x27;.code-block-header&#x27;)) return;    // 添加 .hljs 类以防止三线表样式冲突    const table = codeBlock.querySelector(&#x27;table&#x27;);    if (table) &#123;      table.classList.add(&#x27;hljs&#x27;);    &#125;    // 获取语言名称    const lang = Array.from(codeBlock.classList).find(cls =&gt; cls !== &#x27;highlight&#x27;) || &#x27;code&#x27;;    // *** 函数定义：创建代码块头部 ***    const createCodeBlockHeader = (langName) =&gt; &#123;      const header = document.createElement(&#x27;div&#x27;);      header.className = &#x27;code-block-header&#x27;;      const langSpan = document.createElement(&#x27;span&#x27;);      langSpan.className = &#x27;code-lang-name&#x27;;      langSpan.innerText = langName;      header.appendChild(langSpan);      const actionsContainer = document.createElement(&#x27;div&#x27;);      actionsContainer.className = &#x27;code-block-actions&#x27;;      header.appendChild(actionsContainer);      return &#123; header, actionsContainer &#125;;    &#125;;    // *** 函数定义：添加复制按钮 ***    const addCopyButton = (actionsContainer, codeBlock, copyButtonPath) =&gt; &#123;      const container = document.createElement(&#x27;div&#x27;);      container.className = &#x27;copy-btn-container&#x27;;      const copyButton = document.createElement(&#x27;button&#x27;);      copyButton.className = &#x27;copy-btn&#x27;;      let originalContent;      if (copyButtonPath) &#123;        const icon = document.createElement(&#x27;img&#x27;);        icon.src = &#x27;/&#x27; + copyButtonPath;        copyButton.appendChild(icon);        originalContent = icon.outerHTML;      &#125; else &#123;        copyButton.innerText = &#x27;copy&#x27;;        originalContent = &#x27;copy&#x27;;      &#125;      container.appendChild(copyButton);      actionsContainer.appendChild(container);      copyButton.addEventListener(&#x27;click&#x27;, () =&gt; &#123;        const codeToCopy = codeBlock.querySelector(&#x27;.code&#x27;).innerText;        navigator.clipboard.writeText(codeToCopy).then(() =&gt; &#123;          copyButton.innerText = &#x27;copied!&#x27;;          setTimeout(() =&gt; &#123;            copyButton.innerHTML = originalContent;          &#125;, 3000);        &#125;).catch(err =&gt; &#123;          console.error(&#x27;Failed to copy text: &#x27;, err);        &#125;);      &#125;);    &#125;;    // *** 函数定义：添加主题切换按钮 ***    const addThemeToggleButton = (actionsContainer, codeBlock, toggleConfig) =&gt; &#123;      if (!toggleConfig || !toggleConfig.enable) return;      const lightButton = document.createElement(&#x27;button&#x27;);      lightButton.className = &#x27;theme-toggle-btn light&#x27;;      const lightIcon = document.createElement(&#x27;img&#x27;);      lightIcon.src = &#x27;/&#x27; + toggleConfig.to_dark_button;      lightButton.appendChild(lightIcon);      const darkButton = document.createElement(&#x27;button&#x27;);      darkButton.className = &#x27;theme-toggle-btn dark&#x27;;      const darkIcon = document.createElement(&#x27;img&#x27;);      darkIcon.src = &#x27;/&#x27; + toggleConfig.to_light_button;      darkButton.appendChild(darkIcon);      // Initial state: assume light theme is default      darkButton.style.display = &#x27;inline-block&#x27;;      lightButton.style.display = &#x27;none&#x27;;      actionsContainer.appendChild(lightButton);      actionsContainer.appendChild(darkButton);      darkButton.addEventListener(&#x27;click&#x27;, () =&gt; &#123;        const figure = darkButton.closest(&#x27;figure.highlight&#x27;);        if (figure) &#123;          figure.classList.remove(&#x27;theme-light&#x27;);          figure.classList.add(&#x27;theme-dark&#x27;);        &#125;        darkButton.style.display = &#x27;none&#x27;;        lightButton.style.display = &#x27;inline-block&#x27;;      &#125;);      lightButton.addEventListener(&#x27;click&#x27;, () =&gt; &#123;        const figure = lightButton.closest(&#x27;figure.highlight&#x27;);        if (figure) &#123;          figure.classList.remove(&#x27;theme-dark&#x27;);          figure.classList.add(&#x27;theme-light&#x27;);        &#125;        lightButton.style.display = &#x27;none&#x27;;        darkButton.style.display = &#x27;inline-block&#x27;;      &#125;);    &#125;;    // 创建代码块头部    const &#123; header, actionsContainer &#125; = createCodeBlockHeader(lang);    codeBlock.prepend(header);    // 添加复制按钮    if (copyButtonConfig) &#123;      addCopyButton(actionsContainer, codeBlock, copyButtonConfig);    &#125;    // 添加主题切换按钮    if (themeToggleConfig.enable) &#123;      addThemeToggleButton(actionsContainer, codeBlock, themeToggleConfig);      // 默认设置为浅色主题，与CSS变量的默认值保持一致      codeBlock.classList.add(&#x27;theme-light&#x27;);    &#125;  &#125;);&#125;);
+CSS 样式集成
+在 themes/shiroi/source/css/code-block-base.css 文件中集成所有基础样式。
+
+这份样式表经过了多次迭代，拥有极高的优先级，能够覆盖主题中其他冲突的全局样式，确保最终效果的稳定。
+
+/* themes/shiroi/source/css/code-block-base.css *//*  Shiroi Code Block Styling - FINAL  - A clean, headered code block with CSS Variables for theming.  - Language display and copy button  - Only two separator lines: one under the header, one between line numbers and code.  - Fix for rounded corners and persistent borders.*//*  Define all themeable properties as CSS variables with light theme defaults.  Dark theme (or any other theme) will override these variables.*/figure.highlight &#123;  --code-bg: #f7f7f7; /* Overall background of the container */  --header-bg: #f7f7f7; /* Header background */  --table-bg: white; /* Code area background */  --gutter-bg: #f7f7f7; /* Line number background, same as header */  --border-color: #eee; /* All separator lines */  --lang-name-color: #555; /* Language name text color */  border-radius: 8px;  margin: 1.5em 0;  overflow: hidden;  background-color: var(--code-bg);&#125;/* Add a class to the figure when in dark mode to switch themes */figure.highlight.theme-dark &#123;  --code-bg: #282c34;  --header-bg: #21252b;  --table-bg: #282c34;  --gutter-bg: #21252b;  --border-color: #3a4049;  --lang-name-color: #abb2bf;&#125;/* Header for language name and copy button */.code-block-header &#123;  display: flex;  justify-content: space-between;  align-items: center;  padding: 0.5em 1em;  background-color: var(--header-bg);  border-bottom: 1px solid var(--border-color); /* Horizontal separator */&#125;.code-lang-name &#123;  font-size: 0.9em;  color: var(--lang-name-color);  text-transform: capitalize;  font-family: &#x27;JetBrains Mono&#x27;, monospace;&#125;/* Copy button styling */.copy-btn-container .copy-btn &#123;  border: none;  cursor: pointer;  background-color: transparent;  opacity: 0.6;&#125;.copy-btn-container .copy-btn:hover &#123;  opacity: 1;&#125;/* Ensure all button images (copy and theme toggle) have consistent size */.copy-btn-container .copy-btn img,.code-block-actions .theme-toggle-btn img &#123;  width: 16px;  height: 16px;  vertical-align: middle;&#125;/* --- OVERRIDES FOR CONFLICTING GLOBAL STYLES --- *//* This is the container for the code proper */figure.highlight table.hljs &#123;  background-color: var(--table-bg);  width: 100%;  margin: 0;  border-spacing: 0;  border-radius: 0 0 8px 8px;&#125;/* Nuke all borders on table cells from other stylesheets with high specificity */.post-content figure.highlight table.hljs td &#123;  border: none !important;  padding: 0 !important; /* Reset padding before applying it below */&#125;/* Apply padding and the vertical separator ONLY where intended */.post-content figure.highlight table.hljs .gutter &#123;  background-color: var(--gutter-bg);  padding: 1em !important;  border-right: 1px solid var(--border-color) !important; /* The one true vertical line */&#125;.post-content figure.highlight table.hljs .code &#123;  padding: 1em !important;&#125;/* Also color the gutter text */.post-content figure.highlight table.hljs .gutter .line &#123;  color: var(--lang-name-color); /* Use the same color as the lang name for now */  opacity: 0.5;&#125;
+模板注入
+为了让上述功能生效，需要在模板文件中引入对应的CSS和JS，并将配置通过 body 标签的 data- 属性注入。
+在 themes/shiroi/layout/_partial/head.ejs 中添加：
+&lt;!-- 代码块基础样式 --&gt;&lt;%- css(&#x27;css/code-block-base.css&#x27;) %&gt;&lt;!-- Codeblock Theme Toggler CSS --&gt;&lt;% if (theme.code_block &amp;&amp; theme.code_block.theme_toggle &amp;&amp; theme.code_block.theme_toggle.enable) &#123; %&gt;&lt;%- css(&#x27;css/codeblock-theme-toggle.css&#x27;) %&gt;&lt;% &#125; %&gt;
+在 themes/shiroi/layout/layout.ejs 的 &lt;body&gt; 标签内部添加配置注入：
+&lt;body  &lt;% if (theme.image &amp;&amp; theme.image.enable) &#123; %&gt;    data-image-center=&quot;&lt;%= theme.image.center ? &#x27;true&#x27; : &#x27;false&#x27; %&gt;&quot;    data-image-caption=&quot;&lt;%= theme.image.caption ? &#x27;true&#x27; : &#x27;false&#x27; %&gt;&quot;  &lt;% &#125; %&gt;  &lt;% if (theme.code_block) &#123; %&gt;    data-code-block-copy-button=&quot;&lt;%= theme.code_block.copy_button || &#x27;&#x27; %&gt;&quot;    data-code-block-theme-toggle-enable=&quot;&lt;%= (theme.code_block.theme_toggle &amp;&amp; theme.code_block.theme_toggle.enable) ? &#x27;true&#x27; : &#x27;false&#x27; %&gt;&quot;    data-code-block-theme-toggle-to-light-button=&quot;&lt;%= (theme.code_block.theme_toggle &amp;&amp; theme.code_block.theme_toggle.to_light_button) || &#x27;&#x27; %&gt;&quot;    data-code-block-theme-toggle-to-dark-button=&quot;&lt;%= (theme.code_block.theme_toggle &amp;&amp; theme.code_block.theme_toggle.to_dark_button) || &#x27;&#x27; %&gt;&quot;  &lt;% &#125; %&gt;&gt;
+在 themes/shiroi/layout/post.ejs 的末尾引入逻辑脚本：
+&lt;%- js(&#x27;js/code-block-header.js&#x27;) %&gt;&lt;%- js(&#x27;js/code-block-copy.js&#x27;) %&gt;&lt;%- js(&#x27;js/code-block-theme-toggle.js&#x27;) %&gt;&lt;%- js(&#x27;js/code-block.js&#x27;) %&gt;
+代码块昼夜切换主题样式,
+在code_block:中添加子选项
+theme_toggle:  enable: true  to_light_button: icon/light-codeblock.svg  to_dark_button: icon/dark-codeblock.svg
+我们的设计是将点击代码块右上方的昼夜切换按钮，可以实现代码块内部的深浅主题切换。
+
+当按钮是to_light_button，切换至浅色主题。
+当按钮是to_dark_button，切换至深色主题。
+代码块内部的主题由  light_theme dark_theme配置，
+它们可以是source/css中的css文件；
+也可以是指向css的 URL。
+
+最终架构的基础布局的颜色由一组CSS变量控制，这些变量在 code-block-base.css 中定义并拥有浅色主题的默认值。
+切换主题时，JavaScript仅在代码块的根元素(&lt;figure&gt;)上添加一个 .theme-dark 类，这个类会激活一组新的CSS变量值，从而瞬间改变所有基础颜色。
+vscode-modern-light.css 和 vscode-modern-dark.css 文件只负责定义对应主题下的语法高亮文本颜色，并且其规则分别被 .theme-light 和 .theme-dark 类所限定。
+我们设计了一个 themes/shiroi/source/js/code-block.js 的统一脚本。所有DOM操作，包括创建标题栏、语言名称、主题切换按钮和复制按钮的逻辑，全部被整合到该脚本中，确保了正确的执行顺序，避免了时序冲突和元素重复创建。
+类名切换能即时生效
+我们在 layout/_partial/head.ejs 中同时加载浅色和深色两个主题的CSS文件。
+&lt;!-- themes/shiroi/layout/_partial/head.ejs --&gt;&lt;% if (is_post())&#123; %&gt;  &lt;% if (theme.code_block &amp;&amp; theme.code_block.theme_toggle &amp;&amp; theme.code_block.theme_toggle.enable) &#123; %&gt;    &lt;%- css(theme.code_block.theme_toggle.light_theme) %&gt;    &lt;%- css(theme.code_block.theme_toggle.dark_theme) %&gt;  &lt;% &#125; else &#123; %&gt;    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.css&quot;&gt;  &lt;% &#125; %&gt;  &lt;script src=&quot;https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js&quot;&gt;&lt;/script&gt;&lt;% &#125; %&gt;
+设计核心样式
+code-block-base.css文件被重构为使用CSS变量。它定义了浅色主题的默认颜色，并包含一个 .theme-dark 类用于覆盖这些变量以实现深色主题。
+/* themes/shiroi/source/css/code-block-base.css */figure.highlight &#123;  --code-bg: #f7f7f7;  --header-bg: #f7f7f7;  --table-bg: white;  --gutter-bg: #f7f7f7;  --border-color: #eee;  --lang-name-color: #555;  /* ...其他样式... */  background-color: var(--code-bg);&#125;figure.highlight.theme-dark &#123;  --code-bg: #282c34;  --header-bg: #21252b;  --table-bg: #282c34;  --gutter-bg: #21252b;  --border-color: #3a4049;  --lang-name-color: #abb2bf;&#125;
+vscode-modern-dark.css 和 vscode-modern-light.css这两个文件现在只包含被 .theme-dark 或 .theme-light 限定的文本颜色规则。这两个文件可以充分的自定义。
+统一脚本 (code-block.js)
+这是所有魔法发生的地方。它在页面加载后执行以下操作：
+
+遍历所有代码块。
+检查并防止重复创建标题栏。
+为每个代码块默认添加 .theme-light 类。
+从 body 标签的 data- 属性中读取配置。
+动态创建完整的标题栏，包括语言名称、主题切换器和复制按钮，所有相关函数均在此文件中定义。
+为按钮绑定事件监听器。点击时，脚本只做一件事：在 &lt;figure&gt; 元素上切换 .theme-light 和 .theme-dark 类。
+至此，整个功能改造完成，系统稳定、高效且易于维护。在完成上述重构后，语法高亮功能得以完美实现。
+
+
+注意1：解决根源上的类名不匹配问题
+之前遇到的问题根源在于Hexo的 _config.yml 文件中的 highlight.hljs: false 配置，它阻止了hljs-前缀的生成。我们通过以下方式解决了这个问题：
+
+恢复配置: 我们将 _config.yml 中的 hljs 选项保持为 false，确保代码块能正确地渲染为多行。
+改造主题CSS: 我们对 vscode-modern-light.css 和 vscode-modern-dark.css 其中所有的 .hljs- 前缀全部移除，并修正了基础文本颜色的选择器，使其与渲染器输出的HTML完全匹配。
+例如，在 vscode-modern-dark.css 中：
+
+/* 修改前 */.post-content figure.highlight.theme-dark .code .hljs-keyword &#123; color: #c678dd;&#125;/* 修改后 */.post-content figure.highlight.theme-dark .code .keyword &#123; color: #c678dd;&#125;
+通过这次修改，CSS规则最终与渲染器输出的HTML完全匹配，语法高亮功能也得以完美实现。
+
+
+注意2: 解决样式冲突！我们采用高优先级地办法保证了功能的独立性和可维护性。
+在调试过程中，我们发现全局样式对代码块造成了严重干扰。为了确保样式稳定生效，我们采取了以下方案：
+
+在 themes/shiroi/source/css/post.css 中注释掉了旧的表格样式。
+在 themes/shiroi/source/css/code-block-base.css 中使用了高优先级、高特异性的CSS选择器来覆盖其他冲突样式。
+
+
+代码块标题栏 Mac 主题风格增强
+代码块标题栏 Mac主题增强可以通过开关打开，在配置文件中添加
+# codeblockcode_block:  style: default  copy_button: icon/copy.svg    # Theme toggling for code blocks  # Requires `light_theme` and `dark_theme` to be enabled.  theme_toggle:    enable: true    to_light_button: icon/light-codeblock.svg    to_dark_button: icon/dark-codeblock.svg    light_theme: css/vscode-modern-light.css    dark_theme: css/vscode-modern-dark.css    mac_enhancier:       enable: true      init_folded_status: true # 新增：控制代码块初始是否折叠，仅在mac_enhancier启用时生效
+此功能将在代码块标题栏左侧添加Mac风格的交通灯图标，点击交通灯可以实现代码块的折叠与展开。
+当 mac_enhancier 启用且 init_folded_status 为 true 时，代码块将默认以折叠状态显示。
+实现细节
+
+
+CSS 文件 (themes/shiroi/source/css/code-block-mac-enhancer.css)：
+新建 themes/shiroi/source/css/code-block-mac-enhancer.css，用于定义Mac风格标题栏的样式和代码块折叠/展开的动画效果。
+/* themes/shiroi/source/css/code-block-mac-enhancer.css */.code-block-header.mac-style &#123;  position: relative;  padding-left: 70px; /* Make space for buttons */&#125;.code-block-header.mac-style .code-lang-name &#123;  text-align: center;  flex-grow: 1; /* Allow language name to center properly */&#125;.mac-traffic-lights &#123;  position: absolute;  left: 15px;  top: 50%;  transform: translateY(-50%);  display: flex;  gap: 6px; /* Space between circles */&#125;.mac-traffic-lights .dot &#123;  width: 12px;  height: 12px;  border-radius: 50%;  border: 0.5px solid rgba(0, 0, 0, 0.1);&#125;.mac-traffic-lights .dot.red &#123;  background-color: #ff5f56;&#125;.mac-traffic-lights .dot.yellow &#123;  background-color: #ffbd2e;&#125;.mac-traffic-lights .dot.green &#123;  background-color: #27c93f;&#125;/* Code block collapse/expand styles */figure.highlight.is-collapsed table.hljs &#123;  max-height: 0;  overflow: hidden;  transition: max-height 0.3s ease-out;&#125;figure.highlight table.hljs &#123;  max-height: 9999px; /* A large value to ensure content is visible when expanded */  transition: max-height 0.3s ease-in;&#125;
+
+
+JavaScript 逻辑 (themes/shiroi/source/js/code-block.js)：
+在 themes/shiroi/source/js/code-block.js 文件中，新增 macEnhancerEnable 和 initFoldedStatus 的配置读取，并在 macEnhancerEnable 启用时，根据 initFoldedStatus 的值来初始折叠代码块。
+同时，为交通灯容器添加点击事件监听器，用于切换代码块的 is-collapsed 类。
+以下是相关核心逻辑的更新：
+// themes/shiroi/source/js/code-block.js// ... (其他现有代码) ...document.addEventListener(&#x27;DOMContentLoaded&#x27;, () =&gt; &#123;  const codeBlocks = document.querySelectorAll(&#x27;figure.highlight&#x27;);  const bodyDataset = document.body.dataset;  // 从 body 的 data-属性中获取配置  const copyButtonConfig = bodyDataset.codeBlockCopyButton;  const themeToggleEnable = bodyDataset.codeBlockThemeToggleEnable === &#x27;true&#x27;;  const macEnhancerEnable = bodyDataset.codeBlockMacEnhancer === &#x27;true&#x27;;  const initFoldedStatus = bodyDataset.codeBlockMacEnhancerInitFoldedStatus === &#x27;true&#x27;; // 新增：初始折叠状态开关    const themeToggleConfig = &#123;    enable: themeToggleEnable,    to_light_button: bodyDataset.codeBlockThemeToggleToLightButton,    to_dark_button: bodyDataset.codeBlockThemeToggleToDarkButton,  &#125;;  codeBlocks.forEach(codeBlock =&gt; &#123;    // ... (其他现有代码) ...    // *** 函数定义：添加Mac风格交通灯 ***    const addMacTrafficLights = (header) =&gt; &#123;      header.classList.add(&#x27;mac-style&#x27;);      const trafficLightsContainer = document.createElement(&#x27;div&#x27;);      trafficLightsContainer.className = &#x27;mac-traffic-lights&#x27;;      const redDot = document.createElement(&#x27;span&#x27;);      redDot.className = &#x27;dot red&#x27;;      trafficLightsContainer.appendChild(redDot);      const yellowDot = document.createElement(&#x27;span&#x27;);      yellowDot.className = &#x27;dot yellow&#x27;;      trafficLightsContainer.appendChild(yellowDot);      const greenDot = document.createElement(&#x27;span&#x27;);      greenDot.className = &#x27;dot green&#x27;;      trafficLightsContainer.appendChild(greenDot);      header.prepend(trafficLightsContainer);      // Add click event to toggle collapse      trafficLightsContainer.addEventListener(&#x27;click&#x27;, () =&gt; &#123;        codeBlock.classList.toggle(&#x27;is-collapsed&#x27;);      &#125;);    &#125;;    // 添加Mac风格增强    if (macEnhancerEnable) &#123;      addMacTrafficLights(header);      // 如果init_folded_status为true，则初始自动折叠代码块      if (initFoldedStatus) &#123;        codeBlock.classList.add(&#x27;is-collapsed&#x27;);      &#125;    &#125;  &#125;);&#125;);
+
+
+布局文件更新:
+
+themes/shiroi/layout/layout.ejs：
+在 &lt;body&gt; 标签中添加 data-code-block-mac-enhancer 和 data-code-block-mac-enhancer-init-folded-status 属性。&lt;body  &lt;% if (theme.image &amp;&amp; theme.image.enable) &#123; %&gt;    data-image-center=&quot;&lt;%= theme.image.center ? &#x27;true&#x27; : &#x27;false&#x27; %&gt;&quot;    data-image-caption=&quot;&lt;%= theme.image.caption ? &#x27;true&#x27; : &#x27;false&#x27; %&gt;&quot;  &lt;% &#125; %&gt;  &lt;% if (theme.code_block) &#123; %&gt;    data-code-block-copy-button=&quot;&lt;%= theme.code_block.copy_button || &#x27;&#x27; %&gt;&quot;    data-code-block-theme-toggle-enable=&quot;&lt;%= (theme.code_block.theme_toggle &amp;&amp; theme.code_block.theme_toggle.enable) ? &#x27;true&#x27; : &#x27;false&#x27; %&gt;&quot;    data-code-block-theme-toggle-to-light-button=&quot;&lt;%= (theme.code_block.theme_toggle &amp;&amp; theme.code_block.theme_toggle.to_light_button) || &#x27;&#x27; %&gt;&quot;    data-code-block-theme-toggle-to-dark-button=&quot;&lt;%= (theme.code_block.theme_toggle &amp;&amp; theme.code_block.theme_toggle.to_dark_button) || &#x27;&#x27; %&gt;&quot;    &lt;% if (theme.code_block.theme_toggle &amp;&amp; theme.code_block.theme_toggle.mac_enhancier) &#123; %&gt;    data-code-block-mac-enhancer=&quot;true&quot;    data-code-block-mac-enhancer-init-folded-status=&quot;&lt;%= (theme.code_block.theme_toggle.mac_enhancier.init_folded_status) ? &#x27;true&#x27; : &#x27;false&#x27; %&gt;&quot;    &lt;% &#125; else &#123; %&gt;    data-code-block-mac-enhancer=&quot;false&quot;    data-code-block-mac-enhancer-init-folded-status=&quot;false&quot;    &lt;% &#125; %&gt;  &lt;% &#125; %&gt;&gt;
+
+themes/shiroi/layout/_partial/head.ejs：
+条件性地加载 code-block-mac-enhancer.css。&lt;!-- Codeblock Mac Enhancer CSS --&gt;&lt;% if (theme.code_block &amp;&amp; theme.code_block.theme_toggle &amp;&amp; theme.code_block.theme_toggle.mac_enhancier &amp;&amp; theme.code_block.theme_toggle.mac_enhancier.enable) &#123; %&gt;&lt;%- css(&#x27;css/code-block-mac-enhancer.css&#x27;) %&gt;&lt;% &#125; %&gt;
+
+
+
+
+最终调试和样式冲突：
+
+此功能的实现也遵循了之前解决类名不匹配和样式冲突的原则，确保了新样式能正确应用且不干扰其他部分。
+
+
+
+(文章可选配置) 添加跟随目录
+
+在主题配置文件中添加选项
+
+  toc:  enable: true  position: left   # 自定义 left/right/none
+
+创建文件latout/_partial/toc.ejs
+
+    &lt;% if (theme.toc &amp;&amp; theme.toc.enable &amp;&amp; page.toc !== false) &#123; %&gt;    &lt;aside class=&quot;toc-container toc-left&quot;&gt;      &lt;%- toc(post.content) %&gt;    &lt;/aside&gt;  &lt;% &#125; %&gt;  ```  3. 在`layout/_partial/head.ejs`中注入配置  ```ejs    &lt;% if (theme.toc &amp;&amp; theme.toc.enable) &#123; %&gt;    &lt;%- css(&#x27;css/toc.css&#x27;) %&gt;    &lt;% &#125; %&gt;
+
+配置样式，创建文件cource/css/_custom/toc.styl
+
+添加标签页
+
+执行hexo new page tags, 在生成的index.md的Front Matter前添加
+选项
+
+  title: tagsdate: 2025-06-26 13:52:55type: &quot;tags&quot;layout: &quot;tags&quot;
+
+创建文件layout/tags.ejs
+
+    &lt;div class=&quot;tag-overview-container&quot;&gt;  &lt;!-- &lt;h2 class=&quot;page-title&quot;&gt;所有标签&lt;/h2&gt; --&gt;  &lt;div class=&quot;tag-card-grid&quot;&gt;    &lt;% site.tags.sort(&#x27;name&#x27;).each(function(tag)&#123; %&gt;      &lt;a class=&quot;tag-card&quot; data-tag-name=&quot;&lt;%= tag.name %&gt;&quot;&gt;        &lt;div class=&quot;tag-card-icon&quot;&gt;          &lt;img src=&quot;&lt;%= url_for(&#x27;icon/tag-icon.svg&#x27;) %&gt;&quot; alt=&quot;Tag Icon&quot; style=&quot;width:1.2em;height:1.2em;vertical-align:middle;&quot;&gt;        &lt;/div&gt;        &lt;div class=&quot;tag-card-info&quot;&gt;          &lt;span class=&quot;tag-card-name&quot;&gt;&lt;%= tag.name %&gt;&lt;/span&gt;          &lt;span class=&quot;tag-card-count&quot;&gt;(&lt;%= tag.posts.length %&gt;)&lt;/span&gt;        &lt;/div&gt;      &lt;/a&gt;    &lt;% &#125;) %&gt;  &lt;/div&gt;  &lt;div id=&quot;filtered-articles-container&quot; class=&quot;filtered-articles-container&quot;&gt;    &lt;!-- Articles will be dynamically loaded here --&gt;  &lt;/div&gt;  &lt;div id=&quot;all-posts-data&quot; data-posts=&#x27;&lt;%- JSON.stringify(site.posts.map(function(post)&#123; return &#123;title: post.title, path: url_for(post.path), tags: post.tags.map(function(tag)&#123; return tag.name; &#125;), date: date(post.date, &quot;YYYY-MM-DD&quot;)&#125; &#125;)) %&gt;&#x27;&gt;&lt;/div&gt;&lt;/div&gt; 
+
+创建脚本文件source/js/tags-filters.js文件
+
+    document.addEventListener(&#x27;DOMContentLoaded&#x27;, function() &#123;  const allPostsDataElement = document.getElementById(&#x27;all-posts-data&#x27;);  const filteredArticlesContainer = document.getElementById(&#x27;filtered-articles-container&#x27;);  let allPosts = [];  if (allPostsDataElement &amp;&amp; allPostsDataElement.dataset.posts) &#123;    try &#123;      allPosts = JSON.parse(allPostsDataElement.dataset.posts);    &#125; catch (e) &#123;      console.error(&#x27;Error parsing posts data:&#x27;, e);    &#125;  &#125;  const tagCards = document.querySelectorAll(&#x27;.tag-card&#x27;);  function renderArticles(articles) &#123;    if (articles.length === 0) &#123;      filteredArticlesContainer.innerHTML = &#x27;&lt;p&gt;暂无相关文章。&lt;/p&gt;&#x27;;      return;    &#125;    let html = &#x27;&lt;ul class=&quot;filtered-article-list&quot;&gt;&#x27;;    articles.forEach(article =&gt; &#123;      html += `        &lt;li class=&quot;filtered-article-list-item&quot;&gt;          &lt;span class=&quot;filtered-article-date&quot;&gt;$&#123;article.date&#125;&lt;/span&gt;          &lt;a href=&quot;$&#123;article.path&#125;&quot; class=&quot;filtered-article-title&quot;&gt;$&#123;article.title&#125;&lt;/a&gt;        &lt;/li&gt;      `;    &#125;);    html += &#x27;&lt;/ul&gt;&#x27;;    filteredArticlesContainer.innerHTML = html;  &#125;  tagCards.forEach(card =&gt; &#123;    card.addEventListener(&#x27;click&#x27;, function(event) &#123;      event.preventDefault(); // Prevent default link behavior      const tagName = this.dataset.tagName;      const filteredPosts = allPosts.filter(post =&gt; &#123;        return post.tags &amp;&amp; post.tags.includes(tagName);      &#125;);      renderArticles(filteredPosts);    &#125;);  &#125;);  // Optional: Initial rendering of all articles or a default tag&#x27;s articles  // renderArticles(allPosts);&#125;); 
+
+创建样式文件tags.css
+
+  .tag-overview-container &#123;  max-width: 900px;  margin: 40px auto;  padding: 20px;  background-color: #fff;&#125;.page-title &#123;  text-align: center;  margin-bottom: 30px;  color: #333;  font-size: 2em;&#125;.tag-card-grid &#123;  display: flex; /* Changed to Flexbox for better centering with wrapping */  flex-wrap: wrap; /* Allow items to wrap to the next line */  justify-content: center; /* Center flex items within their rows */  /* Removed grid-template-columns and gap as they are grid-specific */&#125;.tag-card &#123;  margin: 10px; /* Add margin for spacing between flex items */  display: flex;  align-items: center;  padding: 15px;  border: 1px solid #eee;  border-radius: 10px; /* Rounded corners for the card */  text-decoration: none;  color: inherit;  box-shadow: 0 2px 5px rgba(0,0,0,0.05);  transition: all 0.3s ease;&#125;.tag-card:hover &#123;  transform: translateY(-3px);  box-shadow: 0 4px 10px rgba(0,0,0,0.1);&#125;.tag-card-icon &#123;  width: 30px;  height: 30px;  margin-right: 10px;  display: flex; /* For centering SVG */  align-items: center;  justify-content: center;&#125;.tag-card-icon svg &#123;  width: 100%;  height: 100%;  fill: #007bff; /* Color for the SVG icon */&#125;.tag-card-info &#123;  flex-grow: 1;&#125;.tag-card-name &#123;  font-size: 1.2em;  font-weight: bold;  color: #333;&#125;.tag-card-count &#123;  font-size: 0.9em;  color: #777;  margin-left: 5px;&#125;/* Remove old styles no longer used */.tag-item-group,.tag-name,.tag-name a,.tag-name a:hover,.tag-post-list,.tag-post-list-item,.tag-post-list-item a,.tag-post-list-item a:hover,.tag-post-list-item time &#123;  display: none; /* Hide old elements */&#125;.filtered-articles-container &#123;  margin-top: 40px;  padding-top: 20px;  border-top: 1px solid #eee;&#125;.filtered-article-list &#123;  list-style: none;  padding-left: 0;&#125;.filtered-article-list-item &#123;  padding: 10px 0;  border-bottom: 1px dotted #f0f0f0;&#125;.filtered-article-list-item:last-child &#123;  border-bottom: none;&#125;.filtered-article-title &#123;  text-decoration: none;  color: #333;  font-size: 1.1em;  transition: color 0.2s ease;&#125;.filtered-article-title:hover &#123;  color: #007bff;&#125; 
+添加about页（同步Github Profile）
+
+
+本地克隆远端仓库git clone https://github.com/Kytolly/Kytolly.git
+
+
+编写站点目录下编写同步脚本scripts/sync-about-page.js
+
+
+  const fs = require(&#x27;fs&#x27;);const path = require(&#x27;path&#x27;);const LOCAL_README_PATH = path.join(__dirname, &#x27;..&#x27;, &#x27;resume&#x27;, &#x27;Kytolly&#x27;, &#x27;README.md&#x27;);const ABOUT_PAGE_PATH = path.join(__dirname, &#x27;..&#x27;, &#x27;source&#x27;, &#x27;about&#x27;, &#x27;index.md&#x27;);async function syncAboutPage() &#123;  try &#123;    console.log(&#x27;Reading local README content...&#x27;);    let githubReadmeContent = fs.readFileSync(LOCAL_README_PATH, &#x27;utf8&#x27;);    // Remove GitHub specific elements and unnecessary lines    githubReadmeContent = githubReadmeContent.replace(/&lt;\&gt;.*?&lt;\&gt;/g, &#x27;&#x27;); // Remove &lt; &gt; logo &lt; &gt;    githubReadmeContent = githubReadmeContent.replace(/!\[.*\]\(https:\/\/github-readme-stats\.vercel\.app\/api.*?\)/g, &#x27;&#x27;); // Remove GitHub stats images    githubReadmeContent = githubReadmeContent.replace(/&lt;script src=&quot;.*?&lt;\/script&gt;/g, &#x27;&#x27;); // Remove script tags    githubReadmeContent = githubReadmeContent.replace(/##\s*Repository files navigation[\s\S]*?##\s*About/g, &#x27;## About&#x27;); // Remove GitHub navigation section    githubReadmeContent = githubReadmeContent.split(&#x27;## About&#x27;)[0] + &#x27;## About\n&#x27; + githubReadmeContent.split(&#x27;## About&#x27;)[1]; // Keep the &#x27;About&#x27; section for now and manually adjust    githubReadmeContent = githubReadmeContent.replace(/\s*###\s*\n/g, &#x27;&#x27;); // Remove empty ### lines    // Read existing about page to preserve front-matter    const existingContent = fs.readFileSync(ABOUT_PAGE_PATH, &#x27;utf8&#x27;);    const frontMatterEndIndex = existingContent.indexOf(&#x27;---&#x27;, 3); // Find second --- after initial front-matter    let frontMatter = &#x27;&#x27;;    if (frontMatterEndIndex !== -1) &#123;      frontMatter = existingContent.substring(0, frontMatterEndIndex + 3);    &#125; else &#123;      // Fallback if no second --- found, assume basic front-matter      frontMatter = `---      title: 关于      date: $&#123;new Date().toISOString().split(&#x27;T&#x27;)[0]&#125; 12:00:00      layout: page      ---      `;    &#125;    // Combine front-matter with new content    const newContent = `$&#123;frontMatter&#125;\n\n$&#123;githubReadmeContent&#125;`;    fs.writeFileSync(ABOUT_PAGE_PATH, newContent, &#x27;utf8&#x27;);    console.log(&#x27;About page synchronized successfully with local README.&#x27;);  &#125; catch (error) &#123;    console.error(&#x27;Error synchronizing about page:&#x27;, error.message);  &#125;&#125;syncAboutPage(); 
+
+创建页面hexo new page about
+
+主题外配置
+启用 syzoj_renderer
+
+安装渲染器hexo-renderer-syzoj-renderer
+
+  npm uninstall hexo-renderer-markednpm install hexo-renderer-syzoj-renderer
+
+在配置文件_config_yml添加选项
+
+  # syzoj-renderer configsyzoj_renderer:  cache_file: cache.json       # File to store cache, related to Hexo&#x27;s base directory.  highlighter: hexo           # Code highlighter, &#x27;prism&#x27; or &#x27;hexo&#x27;, the later uses highlight.js.  options:                     # syzoj-renderer&#x27;s options, see https://github.com/syzoj/syzoj-renderer.    highlight:      expandTab: null          # expandTab &gt; 0 to enable expand tab, which replaces one tab to that namy spaces.      wrapper:                 # Strings that&#x27;ll be added to highlighted code&#x27;s beginning and ending.        - &lt;pre&gt;&lt;code&gt;        - &lt;/code&gt;&lt;/pre&gt;    markdownItMergeCells: false # Enable markdown-it-merge-cells or not, which&#x27;ll merge adjacent cells with same                              # content in Markdown tables.    markdownIt:                # markdown-it&#x27;s options, see https://github.com/markdown-it/markdown-it.      html: true      breaks: false      linkify: true      typographer: false    markdownItMath:            # markdown-it-math-loose&#x27;s options, see https://github.com/Menci/markdown-it-math-loose.      inlineOpen: $      inlineClose: $      blockOpen: $$      blockClose: $$
+启用 giscus
+
+在站点配置文件_config.yml添加选项
+
+  giscus:  enable: true  repo: Kytolly/MyGiscus  repo_id: R_kgDOK2X_9Q  category: Announcements  category_id: DIC_kwDOK2X_9c4Cbicm  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 1  input_position: top  theme: preferred_color_scheme  lang: zh-CN  # loading: lazy
+
+创建文件layout/_partial/giscus.ejs，内容如下：
+
+  &lt;% if (config.giscus.enable &amp;&amp; (page.giscus !== false) ) &#123; %&gt;    &lt;script src=&quot;https://giscus.app/client.js&quot;      data-repo=&quot;&lt;%= config.giscus.repo %&gt;&quot;      data-repo-id=&quot;&lt;%= config.giscus.repo_id %&gt;&quot;      data-category=&quot;&lt;%= config.giscus.category %&gt;&quot;      data-category-id=&quot;&lt;%= config.giscus.category_id %&gt;&quot;      data-mapping=&quot;&lt;%= config.giscus.mapping %&gt;&quot;      data-strict=&quot;&lt;%= config.giscus.strict %&gt;&quot;      data-reactions-enabled=&quot;&lt;%= config.giscus.reactions_enabled %&gt;&quot;      data-emit-metadata=&quot;&lt;%= config.giscus.emit_metadata %&gt;&quot;      data-input-position=&quot;&lt;%= config.giscus.input_position %&gt;&quot;      data-theme=&quot;&lt;%= config.giscus.theme %&gt;&quot;      data-lang=&quot;&lt;%= config.giscus.lang %&gt;&quot;      data-loading=&quot;&lt;%= config.giscus.loading %&gt;&quot;      crossorigin=&quot;anonymous&quot;      async&gt;    &lt;/script&gt;  &lt;% &#125; %&gt;
+
+在layout/post.ejs文件末尾注入配置
+
+  &lt;!-- 插入giscus评论区 --&gt;&lt;%- partial(&#x27;_partial/giscus&#x27;) %&gt;
+
+若有必要在某个文章中关闭评论区，在文章的Front Matter添加
+
+giscus: false
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Log</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Transformer</title>
+    <url>/2025/06/19/Transformer/</url>
+    <content><![CDATA[Transformer介绍
+Seq2Seq任务
+对于一类Seq2Seq任务，输入和输出都是序列的任务，输出的长度不确定时采用的模型，常见于机器翻译中；
+
+针对一类序列模型和 transduction-problem(语言处理，机器翻译等)，Google提出一种简单的网络架构Transformer
+
+只基于注意力机制(attention mechanisms) 构建输入输出的全局依赖
+完全舍弃RNN和CNN的transduction model
+允许并行化提高计算效率，减少串行计算(现有模型运算次数和输入输出所在位置距离有关)，引入多头注意力机制(Multi-Head Attention)
+
+Tokenization
+观察到长句子总是由单词组成的，我们把语句中有意义的词块组成为token，这些token一般需要训练形成token表，最终设计的效果是意思相近的token具有接近的embedding；
+
+embedding是一种嵌入技术，可以直接理解为词向量
+
+对于一个句子或一篇文章，每个位置的重要性和信息都不同；比如在标题和摘要部分的重要性显著高于其他部分；
+每个位置拥有一个独特的position_embedding，好的向量可以训练得到；
+这些token embedding在训练的过程中，没有考虑上下文的关系；但是在实际运用过程中，同样的单词或token在不同语境下可能有不同含义；
+架构
+大多数的 transduction model 都具有encoder-decoder结构
+
+Encoder会构建一个输出序列到连续的中间表示序列的映射
+在某一时刻，对于给定的,Decoder 将产生输出序列
+Transformer通过逐步堆叠自注意力层，将Encoder和Decoder全连接
+
+
+Encoder
+Encoder模块堆叠个相同的layer.每个layer有两个sublayer.
+
+子层1:Multi-Head Attenion；
+子层2:feed-forward network.
+
+在进入下一个子层前，使用残差连接(residual connection)和层正则化(layer normalization)
+处理后，加上原来的输入，换言之，每个子层的输出为
+
+所有的子层输出维度为，这样做有利于残差连接；
+Decoder
+Decoder模块同样堆叠个相同的layer.每个layer有3个sublayer.
+
+子层0: Mask Multi-Head Attention
+子层1:Multi-Head Attenion；
+子层2:feed-forward network.
+
+类似于Encoder，每个子层的输出都嵌套了残差连接和层正则化运算；
+在进入多头注意力层之前，需要添加一个掩码层，这样做是因为考虑到输出的embedding 偏离了一个位置，确保位置i上的预测只依赖于该位置之前的已知输出；
+Position-wise FFN
+在encoder和decoder后独立添加了相同的全连接的前馈神经网络，包含了两层线性变换和一个ReLU激活层,FFN输入输出层维度为，内部层维度为;
+
+Embedding
+类似于其他序列模型，使用Embedding将输入和输出token转化为维度的向量，并使用线性变换和softmax激活函数来预测下一个token的可能性；
+在两个embedding层和pre-softmax层中间使用同一个权重矩阵，在embedding层，使用一个扩大了  的权重矩阵；
+Position Encoding
+由于放弃了RNN，所有必须在每个token注入位置信息，Transformer在encoder和decoder堆的底部采用position encoding层，维度都是使得它们可以相加；
+Transformer选择了如下的位置编码的方式,这是基于模型可以容易地学习其他位置的信息；
+
+这个函数有个独特的性质，可以表示为的线性表示；
+Attention
+Attention函数可以被描述为关于query,key,value向量的函数；Attention的输出是一类对value的加权平均，权重通过query相关的key的匹配程度计算；
+
+记为key向量的维度，为value的维度，下式描述了左边的缩放点积注意力机制
+
+加性注意力机制和点性注意力机制是流行的注意力计算方式；
+
+点性注意力机制：计算更快，效率更高，因为矩阵乘法已经被高度优化了，被transformer借鉴
+加性注意力机制：复杂度相近，计算单隐藏层的前馈网络
+
+Transformer采用多头注意力机制(Multi-Head Attention)，将query，key，value划分为个线性部分，维度为，每个部分的计算是并行的；最后将计算结果拼接(concat)；
+
+其中
+
+本文取;
+Transformer在三个地方采用注意力机制
+
+encoder-decoder attention层中，query来自前一个decoder，而key和value来自encoder的输出，这使得decoder的每个位置都有来自先前序列的贡献，这是典型的encoder-decoder机制；
+encoder包含一个自注意力层，key, value,query都来自上一个encoder的输出，encoder每个位置都可以处理编码器上一层的所有位置；
+decoder包含的自注意力层也可以实现decoder每个位置都参与对当前位置之前的所有位置，为了防止信息向左流动，以保持auto-regressive属性，通过在缩放点注意力层，设置掩码()屏蔽来自softmax输入中非法连接；
+
+这种自注意力机制有三个方面的优势
+
+总计算复杂度降低
+可并行化计算
+解决在transduction tasks中长程依赖(long-range dependency)的挑战，输入输出序列的位置组合路径越短，长程依赖越容易学习
+
+Other Tricks
+
+翻译任务表现：在WMT2014英德翻译达到28.4 BLEU，英法翻译41.0 BLEU，训练耗时仅为3.5天（8 GPU），成本低于主流模型5-20倍
+训练优化：采用Adam优化器（, ）、标签平滑（）和动态学习率调整;
+位置编码对比：学习式嵌入与正弦编码效果相当，但后者支持更长序列外推
+多头注意力有效性：8个头时性能最优，过多或过少均导致质量下降
+
+]]></content>
+      <tags>
+        <tag>Machine-Learning</tag>
+        <tag>papers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>下推自动机</title>
+    <url>/2025/06/20/%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA/</url>
+    <content><![CDATA[下推自动机
+下推自动机(Pushdown Automaton, PDA)是一种带有栈存储器组件的有限自动机；
+它比有限自动机更强大，因为栈提供了无限存储能力；
+构造PDA可识别一类CFL，CFG和PDA对CFL的表达上是等价的；二者可以互相转化；
+形式定义
+一个PDA可由六元组定义
+
+其中：
+
+有限状态集: 全体状态构成的集合
+输入字母表: 所有可能的输入字母；
+栈字母表: 所有可能进栈的输入字母；
+转移函数
+初始状态: 状态机的初始状态；
+终态集: 为状态机最终接受的状态；
+
+工作原理
+
+PDA假设从初始状态开始，开始符为, 栈底符，输入指针指向输入串的第一个符号；
+任意时刻，假设下推栈的栈顶符号,当前的输入符号为，PDA可以：
+
+读取输入符号
+查看栈顶符号
+改变状态
+修改栈（压入或弹出符号）
+
+
+
+转移函数
+称自动机接受单词流 若存在状态序列和字符串序列,满足
+
+接受一个单词流意味着序列中每个状态转移都是合法的；
+转移函数的形式为：
+
+对于一个自动机内部的合法的状态转移(transition)，可被描述为根据当前状态读取(read)输入后，决定弹出(pop)栈的元素，并选择进栈(push-in)的元素，进入下一个状态的过程，简记为a,b-&gt;t;
+
+当前状态
+输入符号a（可以是）
+栈顶符号b
+新状态
+要压入栈的符号串c
+
+PDA有两种接受方式：
+
+终态接受：当输入串读完且PDA处于终态时接受
+空栈接受：当输入串读完且栈为空时接受
+
+确定性PDA
+如果PDA的转移函数满足：
+
+对于每个状态、输入符号和栈顶符号，最多有一个转移
+对于每个状态和栈顶符号，如果有转移，则不能有其他转移
+
+则称该PDA为确定性的(DPDA)。
+示例
+识别语言的PDA：
+
+状态集：
+输入字母表：
+栈字母表：
+初始状态：
+初始栈符号：
+终态集：
+
+转移函数：
+
+
+
+
+
+
+
+]]></content>
+      <tags>
+        <tag>Coursework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>有限自动机</title>
+    <url>/2025/06/20/%E6%9C%89%E9%99%90%E8%87%AA%E5%8A%A8%E6%9C%BA/</url>
+    <content><![CDATA[有限自动机
+形式定义
+在词法分析中，有限自动机 (Finite Automata, FA) 是识别词素模式的核心理论基础。
+有限自动机可以非常高效地处理输入字符流，判断它们是否符合某个模式，比如正则语言 (Regular Languages)。
+对于一个有限自动机(FA),定义如下：
+
+字符集  :规定自动机输入的字符范围；
+状态集合  :DFA有向图上的顶点；
+唯一起始状态  :  ,为自动机的起点，转移到其他状态；
+接受状态集合  : 满足  ;
+转移函数  : 输入为当前状态和读入字符，输出为下一步状态，为DFA有向图的边；
+
+定义自动机,若其能识别字符串,则，否则为不接受/识别；
+一个NFA接受字符串，当且仅当对应的转换图存在一条从开始状态到某个接受状态的路径，路径上的标号组成该字符串；
+若状态不存在对字符的转移，定义为 ,也代指无法转移中任何一个状态；
+正则语言
+不确定的有限自动机(NFA)对边上的标号没有任何限制，一个符号标记离开同一状态的多条边，并且空串也可以当作标号；
+确定有限自动机(DFA)对每个状态和字母表的每个符号，DFA有且仅有一条离开该状态，以该符号为标号的边；
+DFA和NFA能识别的语言集合是相同的，也正好是能用正则表达式描述的语言的集合，我们统称为正则语言(regular language);
+子集构造技术
+我们可以尝试将DFA或者NFA表示为一张转换图
+
+结点表示状态；
+带标号的边表示自动机的转换函数；同一个符号可以标记同一状态出发到达多个目标状态的多条边，一条边的标号可以是字母表的符号或者空串；
+
+对于正则表达式(a|b)*abb，下图给出了NFA示意图和对应的状态转换表；
+
+
+DFA相较于NFA，具有如下特性，区别在于转换函数：
+
+没有输入空串的转换动作；
+对于每个状态和每个输入符号，有且仅有一条标号的边离开;
+
+下图给出了正则表达式(a|b)*abb对应的DFA；
+
+我们可以通过子集构造(subset construction)技术，实现从NFA到DFA的转换；
+对于输入的NFA，定义三类操作
+
+closure(T)：找到状态集合通过NFA中不经过有意义的符号转换可以到达的状态集合；显然;
+move(T,a)：找到T中某个状态s出发通过标号a的转换可以到达的NFA状态集合；
+
+
+
+在上图的例子中，MOVE({0,1,2,4,7}, a)={3, 8};MOVE({6},ε) = {1,7};closure({0}) = {0,1,7,2,4}; closure({6})={6,1,7,2,4},closure({3,8})={3,8,6,1,7,2,4};
+
+计算closure的算法如下：
+
+算法流程如下：
+输入：NFA可表示为;
+输出：等价的DFA，表示为
+
+，起初只有一个元素,，且未加标记；
+两个FA的字符表相同；
+;
+
+
+过程如下图：
+
+值得注意的是，该算法维护了一张表格Dtran；
+
+最后输出的DFA如下图：
+
+DFA构造
+自动机在词法分析中的工作流程: 🚶➡️🪙
+
+定义模式: 使用正则表达式为每种记号类型（如标识符、数字、关键字、操作符）定义模式。
+构造自动机:
+
+为每个正则表达式构造一个 NFA。
+将所有 NFA 合并为一个大的 NFA（通过引入新的起始状态和到各个 NFA 起始状态的 ε-转移）。
+将合并后的 NFA 转换为一个 DFA (例如，使用子集构造法)。
+（可选但推荐）最小化该 DFA,指消除死状态；
+
+
+
+
+DFA运行
+
+
+词法分析器从 DFA 的起始状态开始。
+
+
+逐个读取输入字符流中的字符。
+
+
+根据当前状态和输入字符，DFA 转换到下一个状态。
+
+
+如果 DFA 到达一个**接受状态 **，这意味着已经识别出一个与该接受状态关联的模式的词素。
+
+最长匹配原则 (Longest Match Principle): 如果输入串的多个前缀都能匹配一个或多个模式，词法分析器会选择匹配最长可能词素的那个。
+例如，如果 if 是关键字，iffy 是标识符，输入 iffy 时，会匹配 iffy 而不是 if。
+
+
+
+如果 DFA 在某个点无法进行有效转换（即卡在某个非接受状态，且没有对应当前输入字符的转移），或者输入结束但未处于接受状态，则可能发生词法错误。
+
+
+]]></content>
+      <tags>
+        <tag>Coursework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>程序设计语言</title>
+    <url>/2025/06/20/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/</url>
+    <content><![CDATA[语言处理器 ⚙️
+概述
+通常来说，一个编译器(compiler) 👨‍💻➡️💻 将程序设计语言翻译成被计算机执行的形式；
+
+阅读宿主语言(host language)，通过宿主机器(host machine)，翻译成等价的目标语言。
+需要将翻译过程的错误抛出 ⚠️。
+如果目标语言是机器可执行的语言程序，执行目标程序，可以处理用户的输入得到输出。
+
+解释器(interpreter) 🗣️ 逐行执行：
+
+没有显式的翻译步骤，直接解释执行源程序。
+利用用户的输入，执行源程序中的操作，得到输出。
+
+比较来看，编译器编译后运行获得输出相对较快 🚀，但是解释器错误诊断和调试通常更好 👍。
+若编译程序生成宿主机执行的机器代码，称为自驻留的编译程序；若编译程序是用源语言编写的，则为自编译的编译程序；若编译程序生成的不是宿主机执行的机器代码，称为交叉编译；
+这里详细介绍交叉编译：
+在一个Host平台上生成另一个Target平台可执行代码的编译过程，常用于嵌入式开发、跨平台应用构建等场景，通常出于以下考虑：
+
+资源限制：目标设备（如物联网设备）无法运行完整编译器
+效率需求：在高性能Host平台编译可加速构建过程
+跨平台支持：为Windows/MacOS/Linux生成多平台二进制文件
+
+在C和C++的实践中，通常使用CMake等工具链实现交叉编译，而在一些语言(比如Golang)的编译器天然支持交叉编译选项；
+结构
+一个预处理器(preprocessor) 🧩：
+
+
+负责将独立文件中的源程序多个模块组合在一起；
+
+
+根据编译选项，选择条件编译；
+
+
+删除注释，合并空白符；
+
+大部分语言允许此法单元之间出现任意数量的空白，注释也当空白处理；
+
+
+
+将宏 (macro) 的缩写转化成源语言语句。
+
+比如C语言中遇到 #include &lt;iostream&gt; 负责将 iostream 库中的内容组合到目标程序；
+遇到 #define PI 3.14159，则会将文件中的 PI 替换成 3.14159。
+
+
+
+汇编器(assembler) 🛠️：
+
+处理编译器产生的汇编语言程序。
+生成可重定位的机器代码 (object code)。
+大型程序一般多个文件分部分编译，这些可重定位的机器代码和库文件需要连接到一起。
+
+链接器(linker) 🔗：
+
+一个文件的代码可能引用另一个文件定义的符号 (如函数或变量)。
+链接器解决这些外部内存地址的问题，将多个目标文件和库文件合并成一个可执行文件。
+
+加载器(loader) 🚀：
+
+将可执行文件从磁盘加载到内存中准备执行。
+
+
+流程
+编译器将源程序映射为语义等价的目标程序，由两部分构成：
+
+前端/分析(analysis):将源程序分解，加上先验的语法结构
+
+创建源程序的中间表示；
+创建符号表(symbol table);
+报语法错误；
+
+
+后端/综合(synthesis): 输入中间表示和符号表，输出期待的目标程序；
+
+
+具体分工如下：
+
+词法分析 (Lexical Analysis) 🧐: 读入源程序字符流，将其组织成有意义的词素 (lexeme) 序列，然后为每个词素生成并输出一个记号 (token) 流。例如，将 count = count + 5; 转换为 id(count), assign_op, id(count), add_op, number(5), semicolon。
+语法分析 (Syntax Analysis) 🌳: 根据词法分析器产生的记号流，使用语言的语法规则 (grammar) 来构造程序的层次结构，通常表示为一棵语法树 (syntax tree) 或分析树 (parse tree)。这一步检查程序的结构是否正确。(参考 [[第2章-语法分析#语法树|语法树]])
+语义分析 (Semantic Analysis) 🤔: 使用语法树和符号表中的信息来检查源程序是否与其语言定义的语义一致。主要任务包括类型检查 (type checking)，确保操作符和操作数类型兼容，以及其他静态检查（如变量声明、函数参数匹配等）。同时收集类型信息供后续阶段使用。
+中间代码生成 (Intermediate Code Generation) ⚙️: 在将源程序翻译成目标代码之前，许多编译器会先生成一个明确的、机器无关的中间表示 (Intermediate Representation, IR)。常见形式有三地址码 (three-address code)，它易于生成和优化。
+代码优化 (Code Optimization) ✨: (可选阶段) 尝试改进中间代码，以产生性能更好（运行更快、占用内存更少、能耗更低等）的目标代码。优化可以在不同层面进行，如局部优化、全局优化、循环优化等。
+代码生成 (Code Generation) 💻: 将（优化后的）中间代码映射到目标机器的指令集。此阶段涉及指令选择 (instruction selection)、寄存器分配 (register allocation) 和指令调度 (instruction scheduling)。最终为每个变量选择内存地址或寄存器。
+
+符号表
+符号表(symbol table)是供编译器用于保存有关源程序构造的各种信息的数据结构；
+声明周期
+符号表在分析阶段逐步收集，用于生成目标代码；
+
+每项包含一个与标识符有关的信息，如词素，类型，存储位置；
+需要支持同一个标识符的多重声明；
+每个带有声明的程序块都有自己的符号表，因此需要对每个作用域建立单独的符号表；
+
+
+数据结构
+一个典型的符号表链如下:
+
+一个典型的符号表Env的实现
+
+C语言编译器示例 🔬
+现在我们拥有一个main.c文件，内容如下：
+#define MYMAX 20int add(int a, int b)&#123;    return a + 2 * b + MYMAX;&#125;;int main() &#123;    int c = 0;    c = add(1, 2);    return 0;&#125;
+预处理
+执行命令gcc -E -o hello.i hello.c,得到文件hello.i，内容如下，这样我们完成了文件通过了预处理器，完成了预处理的步骤，这一步不处理语法错误，执行预处理指令,可以看到MYMAX替换成20了；
+# 0 &quot;main.c&quot;# 0 &quot;&lt;built-in&gt;&quot;# 0 &quot;&lt;command-line&gt;&quot;# 1 &quot;/usr/include/stdc-predef.h&quot; 1 3 4# 0 &quot;&lt;command-line&gt;&quot; 2# 1 &quot;main.c&quot;int add(int a, int b)&#123;    return a + 2 * b + 20;&#125;;int main() &#123;    int c = 0;    c = add(1, 2);    return 0;&#125;
+编译
+执行命令gcc -S -o main.s main.i，得到文件main.s，内容如下，这样的汇编语言程序结果和硬件架构相关；
+	.file	&quot;main.c&quot;	.text	.globl	add	.type	add, @functionadd:.LFB0:	.cfi_startproc	endbr64	pushq	%rbp	.cfi_def_cfa_offset 16	.cfi_offset 6, -16	movq	%rsp, %rbp	.cfi_def_cfa_register 6	movl	%edi, -4(%rbp)	movl	%esi, -8(%rbp)	movl	-8(%rbp), %eax	leal	(%rax,%rax), %edx	movl	-4(%rbp), %eax	addl	%edx, %eax	addl	$20, %eax	popq	%rbp	.cfi_def_cfa 7, 8	ret	.cfi_endproc.LFE0:	.size	add, .-add	.globl	main	.type	main, @functionmain:.LFB1:	.cfi_startproc	endbr64	pushq	%rbp	.cfi_def_cfa_offset 16	.cfi_offset 6, -16	movq	%rsp, %rbp	.cfi_def_cfa_register 6	subq	$16, %rsp	movl	$0, -4(%rbp)	movl	$2, %esi	movl	$1, %edi	call	add	movl	%eax, -4(%rbp)	movl	$0, %eax	leave	.cfi_def_cfa 7, 8	ret	.cfi_endproc.LFE1:	.size	main, .-main	.ident	&quot;GCC: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0&quot;	.section	.note.GNU-stack,&quot;&quot;,@progbits	.section	.note.gnu.property,&quot;a&quot;	.align 8	.long	1f - 0f	.long	4f - 1f	.long	50:	.string	&quot;GNU&quot;1:	.align 8	.long	0xc0000002	.long	3f - 2f2:	.long	0x33:	.align 84:
+汇编
+执行命令gcc -c -o main.o main.s，得到main.o文件，编辑器已经不可查看了,而且系统也不能执行该文件，内容为机器码；
+不可执行的原因是还未进行重定位操作，数据的地址没有确定；
+链接
+执行命令gcc -o main main.o，得到最终的可执行文件main;
+]]></content>
+      <tags>
+        <tag>Coursework</tag>
+        <tag>Compilers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>词法分析</title>
+    <url>/2025/06/20/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[词法分析
+概述
+词法分析(Lexical Analysis / Scanning)是编译过程的第一个阶段。
+它接收源程序的字符流 (character stream)作为输入，并将其组织成一系列有意义的词素 (lexeme)。随后，对于每个词素，词法分析器会生成一个记号 (token) 作为输出，传递给语法分析器。
+这个记号就是一个词法单元，就是一个带有附加信息的终结符号；
+核心任务 🎯
+扫描源程序的字符串,按照词法规则,识别出单词符号作为输出;
+
+读取输入: 逐个读取源程序中的字符。
+识别词素: 将字符组合成词素(Lexeme) 📜，源程序中与某个记号的模式匹配的实际字符序列。例如，在语句 count = count + 5; 中, count, =, +, 5, ; 都是词素。词素内部的空格通常被忽略（除非它们是字符串字面量的一部分或用于分隔词素）。
+生成记号: 为每个识别出的词素生成一个记号；
+
+记号 (Token) 🪙: 一个抽象的符号，代表一类词法单元。通常表示为一个二元组：(token-name, attribute-value)。
+
+token-name: 词法单元的类别，如 identifier, keyword, operator, number, punctuation。
+attribute-value (可选): 指向符号表中关于这个词素的条目。对于标识符，它可能是标识符的字符串；对于数字，它可能是数值。对于关键字或操作符，此字段可能为空或不使用。
+
+
+模式(Pattern) 🧩: 描述一个记号的词素可能具有的形式的规则。通常用正则表达式来定义。例如，一个标识符的模式可能是"一个字母后跟零个或多个字母、数字或下划线"。
+
+
+
+举例说明 🌰
+考虑以下C语言语句:
+result = initial_value + rate * 60;
+词法分析器会将其转换为如下的记号流 (token stream):
+
+词素 result  ➡️ 记号 &lt;id, "result"&gt;
+词素 =       ➡️ 记号 &lt;assign_op&gt;
+词素 initial_value ➡️ 记号 &lt;id, "initial_value"&gt;
+词素 +       ➡️ 记号 &lt;add_op&gt;
+词素 rate    ➡️ 记号 &lt;id, "rate"&gt;
+词素 *       ➡️ 记号 &lt;mul_op&gt;
+词素 60      ➡️ 记号 &lt;number, 60&gt;
+词素 ;       ➡️ 记号 &lt;semicolon&gt;
+
+其他职责 🛠️
+
+去除空白和注释: 词法分析器通常会跳过源程序中的空格、制表符、换行符和注释，因为它们通常不影响程序的语义（除非它们用于分隔词素）。
+错误报告 ⚠️: 报告词法错误，例如遇到不符合任何模式的字符（如非法符号）。
+与符号表交互 📇: 将标识符等词素的属性信息存入符号表。
+
+在编译过程中，词法分析可以仅仅执行一次；
+
+也可以执行多次；
+
+数据结构🧱
+enum kind &#123;IF, LPAREN, ID, INTLIT, …&#125;;struct token &#123;	enum kind k;	char* lexme;&#125;
+在多数程序语言设计中，单词种类一般有如下种类：
+
+标识符：标识符、常量由用户定义/使用, 语言未加限制,只规定了相应的词法规则；
+关键字，运算符，分界符：数目是确定的，每个单词与其类别码一一对应，因此采取一字一码，即第二元可以空缺；
+常量：整型、实型、字符型、布尔型等分类
+
+词法分析器
+输入 &amp; 输出 &amp; 流程
+
+
+读入源字符串
+
+
+输出二元式序列
+
+
+包括单词符号 + 种别
+
+
+如果有错误，则改输出错误信息
+
+格式：LINE &lt;id&gt;: &lt;error info&gt;
+一般有三种错误：非法字符，冒号不匹配，标识符长度溢出
+
+
+
+
+
+进入一个阶段，需要先检查错误信息
+
+
+peek技术
+在决定像语法分析器返回token之前，词法分析器可能需要预先读入一些字符；
+
+比如遇到&gt;后需要检查下一个是否是=,标识符是否在下一位结束等；
+
+一个通用的预读办法是使用输入缓冲区，由于通常只需预读一个字符，所以缓冲区大小为1，即将下一个输入字符保存在一个变量peek中;
+当词法单元返回一个token时，peek要么保存了该token的词素后面一个字符，要么为空白符；
+我们可以使用一个指针跟踪已经被分析的输入部分，放回缓冲区通过回移指针实现；
+对于大型编译器的实现，往往采用双缓冲技术；
+解析常量
+当输入流中出现一个数位序列时，词法分析器将它解析为一个数字常量；
+
+解析关键字和标识符
+关键字也满足标识符组成规则：开头为字母或下划线，往后为数字或下划线或字母；通常实践下，词法分析器使用一个表保存在字符串，后续通过引用操作字符串；
+词法分析器在初始化应该在构建关键字表(reserve table)，每一项包括保留的字符串和对应的词法单元；还有空的标识符表words;
+
+当读到一个可以组成标识符的词素时，应该先检查关键字表；
+检索到，则返回关键字表中的词法单元；
+否则，与words交互，查到返回位置编号，否则将它存入符号表并返回新编号；
+
+
+扫描算法
+
+基于状态转换的框架
+
+
+当前字符：用一个变量cha记录
+
+
+case：当前字符的值识别不同类型单词
+
+
+每个状态对应于一段代码：
+
+
+分支状态：if或case语句
+
+
+循环状态：while语句
+
+
+
+
+进入某个接受状态时，某个单词识别结束。
+
+终态：return语句
+错误
+
+
+
+注意自动机状态有错误标记*
+
+
+实现原理
+算法需要设计如下变量和函数：
+
+cha:最新读入的字符；顺便维护所在wei'zhi
+token:已读入的字符串；
+getchar(): 从源程序文件读入下一个字符；
+getnbc(): 读入非空白字符；
+concat(): 把cha加入到token的末尾；
+isLetter(): 判断是否为字母；
+isDigit(): 判断是否为数字；
+reverse():  对token查关键字表，查到返回关键字的编码种类，否则返回0表示不是任何单词符号；
+retract(): 回退字符，把刚读入的cha中的字符回退到输入字符串中，cha置空；
+buildList(): 对token查符号表，查到返回位置编号，否则将它存入符号表并返回新编号；
+dtb(): 将token的数字串转换成二进制，查常数表；查到返回位置编号，否则将它存入常数表并返回新编号；
+return()-&gt;(num, value): 返回编码种类 + 位置编号
+error(): 处理可能的词法错误；
+
+可能存在一类词法错误，比如写错关键字，标识符带有空格，这种错误一般会推迟到语法分析抛出；
+词法分析程序作为语法分析程序的一个子程序，当语法分析需要下一个新单词时，就调用该程序，从输入字符串中识别一个单词后返回。
+词法分析程序另一种被调用方法，这一般是主流实践；
+
+被编译程序只调用一次
+增加一个大循环（文件是否结束）
+return改为 向文件写入二元式 ；
+该文件保存所有的二元式，语法分析程序通过该文件获取单词；
+
+词法错误
+比如以下程序片段
+fi(a == b) ...
+词法分析器无法判断if是否拼写对，它会将fi识别成一个普通标识符，可能有两种场景
+
+未定义标识符：如果该符号之前没有定义过，而fi前面没有声明语句，就会直接抛出该错误；
+其他：如果已经被定义过了，则词法分析不报错，推迟到语法分析处理错误；
+
+如果遇到所有词法单元模式均无法与剩余的输入前缀匹配，则词法分析器将陷入恐慌，无法继续处理；
+一般会执行一个恐慌恢复策略：从剩余输入中不断删除字符，直到输入开头出现一个正确的词法单元为止；
+]]></content>
+      <tags>
+        <tag>Coursework</tag>
+        <tag>Compilers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>语义分析</title>
+    <url>/2025/06/20/%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[语义
+定义：语言的单词符号和语法单位的作用和意义的规则组合；
+一般用自然语言描述语义，使用抽象机(grammar abstract machine)的行为来描述语言语法单位的作用和意义，GAM主要用于实现惰性求值和图归约；
+GAM
+组件
+
+存储区：分为代码段和数据段；
+
+代码段存放执行的指令代码的内容不允许修改；
+数据段存放必要的信息和程序中的数据；
+
+
+控制器
+处理器
+指令指针ip：指向代码段单元的地址，表示当前指令；自增操作：ip = ip + 4表示指针指向下一条指令，如果每条指令占4个字节的话；
+
+工作方式
+GAM一旦启动，由专门的装入程序将待运行的程序装入代码存储区，并设置ip指向第一条指令，并执行如下操作
+
+执行ip指向的当前指令；
+若ip指向STOP指令，则终止执行；
+若指令未修改ip，则ip自增，指向下一条指令；
+若修改了ip，则跳转到修改后ip指向的指令；
+
+语义分析
+语义分析(semantic analyzer)使用语法树和符号表检查源程序是否和语言定义的语义一致，同时收集类型信息；语义定义了程序的含义；
+主要工作分为
+
+静态语义检查：类型检查(type checking)，控制流检查，一致性检查等
+语义处理：自动类型转换(coercion)，说明语句登记信息，执行语句生成中间代码等
+
+静态检查一般由编译器前端完成，抛出特定类型错误；
+
+语法检查：部分包括在语法分析的文法中的语法要求；
+类型检查：部分语言实现自动类型转换(coercion)；
+左值和右值：考虑运算符的结合问题；
+
+符号表
+形式
+符号表中每个名字对应一个表项，包括名字域和信息域；
+
+信息域设置若干子域和标志位，包括属性，类型，长度，相对地址，形参标志，说明标志，赋值标志等；
+每个表项的组成和长度可能是不同的，需要采用简洁表技术；
+
+符号表
+符号表除了记录名字本身而外,还记录了与名字关联的各种属性信息。
+每个名字对应一个表项，一个表项包括名字域和信息域。信息域通常设若干子域及标志位，其内容可以是和名字有关的任何信息，比如类型,种属,长度,相对地址，形参标志,说明标志,赋值标志等。
+结构
+实现结构可以采取线性表，或者Hash表实现；
+语义分析
+语义分析(semantic analyzer)使用语法树和符号表检查源程序是否和语言定义的语义一致，同时收集类型信息；
+
+类型检查(type checking)
+自动类型转换(coercion)
+
+语义定义了程序的含义；
+语法制导翻译
+定义
+上下文无关文法不仅可以描述一个语言的语法，还可以制导程序的翻译过程，这种技术称为 语法制导翻译(syntax-directed translation);
+一个属性(attribute)是指某个与程序构造相关的量；
+
+比如表达式的数据类型，生成代码的指令数；在语法分析树上体现为结点上标记了相应的属性值，这样的树也称作注释分析树；
+
+对于一个语法制导定义(syntax-directed definition)实现了
+
+将每个文法符号和一个属性集合相关联;
+把产生式和一组语义规则(semantic rule)相关联;
+
+
+换而言之，为每个产生式配上一个语义子程序 ,在语法分析过程中,使用一个产生式进行匹配或归约后；
+就调用相应的语义子程序，进行语义分析。
+对于一个语法制导的翻译方案(translation scheme)，定义为将程序片段附加到一个文法的各个产生式的表示法；
+
+在语法分析使用一个产生式时，相应的程序片段将被执行；
+顺序组合这些方案，执行可以得到源程序的翻译结果；
+根据产生式，生成了中间代码,语法分析完成时，也就获得了完整的与源代码等价的中间代码。
+
+对注释语法树来说
+
+一次深度优先遍历，会自顶向下地计算子结点属性后，得出根节点的属性值；
+可采用前序遍历和后序遍历的方式，根据相关动作执行时间来定义结点次序
+
+语法制导翻译方案是一种在文法产生式中附加程序片段来描述翻译结果的表示方法；
+
+语义动作：被嵌入到产生式体中的程序片段称为语义动作；
+生成翻译方案的语法分析树时，需要为每个语义动作构造一个额外的，产生式头部的子节点；
+在一次后续遍历中，先所有执行语义动作，然后访问没有语义动作的子节点；
+
+比如在LR分析过程中，使用一个产生式进行句柄的规约后，调用该产生式的响应的语义子程序，完成语义分析；
+
+包括语义检查和语义处理；
+核心是生成中间代码；
+在分析过程中每一次规约时，必须保存语义值；
+
+考虑一个翻译方案
+expr -&gt; expr + term &#123;print(&#x27;+&#x27;)&#125;	   |expr - term &#123;print(&#x27;-&#x27;)&#125;	   |termterm -&gt; 0 &#123;print(&#x27;0&#x27;)&#125;	   |1 &#123;print(&#x27;1&#x27;)&#125;	   ...	   |9 &#123;print(&#x27;9&#x27;)&#125;
+
+通过拓展文法得到一个翻译器，我们可以拓展一个预测分析器来获得一个语法制导翻译器；
+消除左递归
+将上述翻译方案的左递归消除后
+expr -&gt; term restrest -&gt; + term &#123;print(&#x27;+&#x27;)&#125; rest	   |- term &#123;print(&#x27;-&#x27;)&#125; rest	   |εterm -&gt; 0 &#123;print(&#x27;0&#x27;)&#125;	   |1 &#123;print(&#x27;1&#x27;)&#125;	   ...	   |9 &#123;print(&#x27;9&#x27;)&#125;
+
+消除尾递归
+若过程体执行的最后一条语句时对该过程的递归调用，则称这个调用是尾递归的(tail recursive);
+对于一个没有参数的尾递归调用可以改写为迭代；
+调用符号表
+符号表的作用是将信息从声明的地方传递给实际使用的地方；
+分析标识符的声明时，定义一个语义动作将有关从符号表中取出这个给标识符的信息；
+中间表示形式 &amp; 虚拟机
+后缀表示
+对于我们熟悉的一个中缀表达式,其后缀表示(postfix notation)/逆波兰表示(reverse Polish notation)定义如下，记作
+
+
+若是一个变量或常量,则;
+
+
+若是形如的表达式，则
+
+
+
+若是形如的表达式，则
+
+
+如上性质表明后缀表达是一种无括号的数学表达式表示法，其核心为运算操作符后置，无需括号也可明确运算顺序；
+这样的数据结构可以对应一类栈式自动机；
+抽象语法树(abstract syntax tree)
+
+内部节点代表程序构造;
+每个内部结点和一个运算符关联；没有对应于单产生式，也没有空产生式；
+
+树型结构包括语法分析树和抽象语法树；实际上，抽象语法树的结构不会被存储在特定数据结构中，在编译过程中，它被假装构造出来，伴随着三地址代码的生成；
+当语法树生帮助生成的三地址代码构造成功后就会释放那部分树；
+三地址代码 &amp; 四元式
+三地址代码时最重要的线性表示形式；通常包括一个操作码op,和三个操作数x,y,z，使用相对地址表示；
+
+二元运算类语句的一般形式为x:= y op z或者(op,x,y,z); 对于运算类操作，y,z指出运算的两个对象，x用来存放运算的结果，op为二元算术或逻辑运算符;
+一元运算类赋值语句   x:=op z,op为一元运算符，如一元负uminus，逻辑否定not，类型转换itr等
+复制类赋值语句x:=y
+无条件转移语句goto L,流程转移到序号为L的语句
+条件转移语句if x rop y goto L或if a goto L,rop为关系运算符  &lt;、&lt;=、==、&gt;、&gt;=、&lt;&gt;
+若x和y满足关系rop，或a为true时，就转向执行序号为L的语句,否则顺序执行下一语句。
+
+四元式顺序和表达式计值顺序一致;四元式之间通过临时变量实现关联。使用ip表示四元式编号(序号,从1开始)
+特别的，我们约定(itr, x, _, t)的含义是将符号表入口x的整数变量转换为实数类型t；(rti, x, _, t)的含义是将符号表入口x的实数变量转换为整数类型t；
+翻译
+语义变量和语义过程
+
+
+
+语义
+类别
+作用
+
+
+
+
+i.NAME
+语义变量
+表示变量的标识符字符串
+
+
+E.PLACE
+语义变量
+表示变量在符号表的地址或整数编码
+
+
+newtemp()
+语义过程
+创建临时变量，返回整数编码
+
+
+entry(i)
+语义过程
+为变量i查符号表
+
+
+emit(res, s1, op, s2)
+语义过程
+产生三地址语句res:=s1 op s2，同时ip自增，这里s1,s2都是指符号表某个地址
+
+
+error()
+语义过程
+报语义错误
+
+
+enter(name, type, offset)
+语义过程
+将变量的名字，类型和相对地址写入符号表
+
+
+backpatch(r, ip)
+语义过程
+把r为链首的三地址语句转移地址填为ip的当前值
+
+
+merge(p1,p2)
+语义过程
+将p1,p2为链首的两条链拼接起来
+
+
+
+翻译说明语句
+对于单个变量的说明，文法表示为
+S → MDM → εD → D;D | i:TT → real | integer | ↑T1
+则产生的说明语句子程序/方案为
+(1) M → ε &#123;OFFSET = 0;&#125;(2) D → i:T &#123;enter(i.NAME, TYPE, OFFSET); OFFSET := OFFSET + T.WIDTH;&#125;(3) T → real | integer | ↑T1 &#123;T.TYPE=..., T.WIDTH=...&#125;(4) D → D;D &#123;&#125;(5) S → MD &#123;&#125;
+翻译赋值语句
+对于赋值简单变量，文法表示为
+S → AA → i := EE → E1 op E2 | -E1 | (E1) | i
+对于已经声明的变量，应该先查找变量名表；
+对于赋值语句的翻译，需要进行类型检查和自动类型转换，翻译的顺序按照语法制导来，产生的说明语句子程序/方案为
+S → A &#123;S.CHAIN = 0;&#125;A → i := E &#123;P = entry(i.NAME); if(P != 0) &#123;emit(:=,E.PLACE,_, i);&#125; else error(); &#125; E → E1 op E2 &#123;E.PLACE = newtemp(); &#123;check&#125;emit(E.PLACE, E1.PLACE(), op, E2.PLACE()); &#125;E → -E1 &#123;E.PLACE = newtemp(); emit(E.PLACE, unimus, E1.PLACE);&#125;E → (E1) &#123;E.PLACE = E1.PLACE; &#125;E → i &#123;P = entry(i.NAME); if(P != 0) &#123;E.PLACE = P;&#125; else error();&#125;
+其中{check}表示类型检查的步骤，具体来说是个形如以下(op为+)的过程；
+E.place :=newtemp( );if E1.type=integer and T.type=integer then   begin emit(+i,E1.place,T,place, E.place);   	    E.type:=integer   endelse if E1.type=real and T.type=real then     begin emit(+r,E1.place,T.place, E.place);     	E.type:=real     endelse if E1.type=integer then    begin t:=newtemp( );    	emit(itr,E1.place,_,t);    	emit(+r,t,T.place, E.place);    	E.type:=real    endelse 	begin          t:=newtemp( );         emit(itr,T.place,_,t);                                              emit(+r,E1.place,t, E.place);         E.type:=real      end
+布尔表达式的翻译
+我们考虑位于控制语句中的布尔表达式，在读到转移语句的时候，具体转移的目的地尚不可知，暂记为0；
+对于布尔变量和布尔表达式对应的语义子程序都有4步，对真假分别判断；
+B → b&#123; B.T = ip; emit(if b goto 0); B.F = ip;emit(if b goto 0);&#125;B → a op b&#123; B.T = ip; emit(if a op b goto 0); B.F = ip;emit(if b goto 0);&#125;
+无条件转移语句的翻译
+通常goto语句的产生式如下，也可能具有如下的向前转移和向后转移形式；
+label → i:S → goto label;L:...goto L;goto K;...K:
+条件跳转语句的翻译
+条件跳转语句的复杂之处在于嵌套；我们考虑如下产生式
+S → MS1M → if B then
+
+整个语句翻译完成后，仍然不确定B.F，只能将它作为S.CHAIN暂时保留下来，那么对应的语义子程序为
+(1) M → if B then &#123;backpatch(B.T, ip); M.CHAIN = B.F&#125;(2) S → MS1 &#123;S.CHAIN = merge(S1.CHAIN, M.CHAIN);&#125;
+对于更复杂的嵌套情况
+
+S → NS2N → MS1 else M → if B then
+我们需要更多的合并和跳转的操作
+(1) M → if B then &#123;backpatch(B.T, ip); M.CHAIN = B.F&#125;(2) N → MS1 else &#123;q = ip; emit(goto 0); backpatch(M.CHAIN, ip); N.CHAIN = merge(S1.CHAIN, q);&#125;(3) S → NS2 &#123;S.CHAIN = merge(S2.CHAIN, M.CHAIN);&#125;
+while语句的翻译
+
+根据文法建立子程序
+(1) W → while &#123;W.CODE = ip;&#125; // 这里的CODE只是个标签(2) D→ while B do &#123;backpatch(B,T, ip); D.CHAIN=B.F; D.CODE=W.CODE;&#125;(3) S → DS &#123;backpatch(S1.CHAIN, D.CODE); emit(goto D.CODE); S.CHAIN=D.CHAIN;&#125;
+for语句的翻译
+for语句的目标结构如下图所示,一个典型的文法结构为S→ for i:=E1 step E2 until E3 do S1
+
+相当于实现语句
+i:=E1;goto over;again: i = i + E2;over: if i &lt;= E3 then 		S1;		goto again;
+(1) F1 → for i:=1 &#123;	P = entry(i.NAME);	emit(:=, 1,_, P);	F1.PLACE = P;		F1.CHAIN = ip; // 代表标签over	emit(goto 0);  // 向后转移，不知道over的入口等待回填		F1.AGAIN = ip; // 上一步ip自增，就代表again的入口&#125;(2) F2 → F1 step 1 &#123;	F2.AGAIN = F1.AGAIN;	F2.PLACE = F1.PLACE;		emit(F2.PLACE, F2.PLACE, + , 1);	backpatch(F1.CHAIN, ip); //此时ip已加1，代表over的入口，可以回填&#125;(3) F3 → F2 to N &#123;	F3.AGAIN = F2.AGAIN;	F3.CHAIN = ip; // F3的出口取决于S1，暂时未知，等待回填	emit(if F2.PLACE &gt; N goto 0;) // 直接用F2.PLACE，因为没有更新操作&#125;(4) S → F3 do S1 &#123;	emit(goto F3.AGAIN);	backpatch(S1.CHAIN, F3.AGAIN); // 向前转移，S1上链上语句转移到again		S.CHAIN = F3.CHAIN; // 获得程序的出口,但是依然未知&#125;
+]]></content>
+      <tags>
+        <tag>Coursework</tag>
+        <tag>Compilers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>高级语言程序设计</title>
+    <url>/2025/06/20/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[语言设计 🎨
+定义
+程序设计语言是一组规则的集合，可以看作 语言 = 语法 + 语义
+
+字母表的定义
+词法规则：单词符号的形成规则，比如关键字，标识符，运算符，常量，分界符
+语法规则：语法单位的形成规则，比如表达式，语句，函数，程序
+语义规则：包括但此符号和语法单位的含义规则；
+语用规则：语义规则的发展和延申；
+其他规则：包括类型使用规则，参数传递规则，作用域规则；
+
+历史发展
+
+第一代语言 (1GL) 🤖: 机器语言 (Machine Language)
+
+直接由计算机硬件执行的二进制指令。
+
+
+第二代语言 (2GL) 🛠️: 汇编语言 (Assembly Language)
+
+使用助记符表示机器指令，需要汇编器转换为机器语言。
+
+
+第三代语言 (3GL) 🚀: 高级程序设计语言 (High-Level Languages)
+
+如 C, C++, Java, Python, Fortran, COBOL。更接近人类语言，具有更强的抽象能力，可移植性更好。
+包括命令式和过程式
+
+
+第四代语言 (4GL) 📊: 为特定应用领域设计的语言 (Domain-Specific Languages - DSLs)
+
+如 SQL (数据库查询), MATLAB (数值计算)。通常用于特定问题领域，提供更高层次的抽象。
+包括说明性语言，超高级语言
+
+
+第五代语言 (5GL) 🧠: (概念较模糊，通常指用于人工智能和逻辑编程的语言，如 Prolog，或基于约束求解的语言)
+
+包括函数式，逻辑式语言
+
+
+
+范式分类
+
+
+强制式语言 (Imperative Languages) ➡️:
+
+描述计算过程如何执行，通过一系列改变程序状态的命令来完成任务。
+如 C, C++, Java, Pascal, Fortran。
+
+
+
+声明式语言 (Declarative Languages) 📜:
+
+描述计算应该做什么，而不是如何做。程序的执行逻辑由语言的解释器或编译器负责。
+子范式包括：
+
+函数式语言 (Functional Languages) λ: 如 Haskell, Lisp, Scheme, F#, Scala。计算被视为数学函数的求值，强调无副作用和不可变性。
+逻辑式语言 (Logic Languages) 💡: 如 Prolog。基于形式逻辑规则进行推理。
+数据流语言 (Dataflow Languages): 如部分响应式编程框架。
+
+
+
+
+
+冯诺依曼语言 (Von Neumann Languages) 🏛️:
+
+程序设计语言的计算模型基于冯诺依曼计算机体系结构（即，指令和数据存储在同一内存中，CPU按顺序执行指令）。大多数强制式语言属于此类。
+在命令式语言上的表现为：变量，赋值。重复
+
+
+
+面向对象语言 (Object-Oriented Languages) 🧩:
+
+基于"对象"概念进行编程，对象包含数据（属性）和操作数据的代码（方法）。支持封装、继承、多态。
+如 Java, C++, Python, Ruby, Smalltalk。
+
+
+
+脚本语言 (Scripting Languages) 🐍:
+
+通常是解释执行的，语法相对简单，用于编写"脚本"来自动化任务、快速原型开发或作为大型应用的扩展语言。
+如 Python, JavaScript, Perl, Ruby, PHP, Shell。
+
+
+
+逻辑式语言
+
+数理逻辑，谓词演算
+
+
+
+对象式语言
+
+抽象数据类型
+
+
+
+语言设计实践
+静态/动态
+静态策略 (Static Strategy) 🧊: 指语言的某个方面或问题在编译时刻 (compile time) 就可以确定或处理。
+
+例如：C语言的变量类型是静态确定的（静态类型检查），大多数内存分配（全局/静态变量）在编译时规划。
+
+动态策略 (Dynamic Strategy) 🔥: 指语言的某个方面或问题必须等到运行时刻 (run time) 才能确定或处理。例如：C语言中的动态内存分配 (malloc, free)，某些面向对象语言中的方法动态分派 (dynamic dispatch)。
+C语言主要是一种静态类型的编译型语言，但它也提供了一些动态特性（如 void* 指针的灵活性，动态内存分配）。
+若绑定(Binding)在编译时完成，且在运行时不会改变，则成为静态绑定，若绑定在运行时完成，则成为动态绑定；
+
+语言实现采用编译还是解释方式，强相关于变量与类型绑定规则；
+静态绑定语言是面向编译的语言
+动态绑定语言是面向解释的语言
+
+变量/赋值
+变量是对若干个存储单元的抽象，用名字来标识；
+
+一个存储单元至少有一个字节；一个变量至少占用一个存储单元；
+作用域：可绑定静态作用域或动态作用域，依此划分为全局变量，局部变量，非局部变量；
+生存期：变量绑定于存储区的时间区间，分配指变量获得存储区，变量长度为变量对应存储单元的个数；
+
+全局变量静态分配；
+局部变量和非局部变量可静态分配和动态分配(自动、显式请求)；
+匿名变量：通过指针实现访问，属于动态分配
+
+
+值：存储区的内容，二进制编码；
+类型：变量值按照所绑定的类型解释；
+
+赋值是对修改存储单元内容的抽象；
+初始化问题：不同语言规定不同；
+环境/状态
+环境 (Environment) 🗺️: 在程序执行的某一点，环境是一个从名字 (identifier) 到存储位置 (storage location/address) 的映射。它定义了哪些名字是可见的以及它们所代表的实体（如变量、函数）。
+状态 (State) 🔄: 在程序执行的某一点，状态是一个从存储位置 (storage location/address) 到其值 (value) 的映射。它反映了程序当前内存中存储的数据。
+环境将名字映射到左值 (L-values) (表示位置)，状态将左值映射到其对应的右值 (R-values) (表示内容)。
+静态作用域/块 (Static Scoping / Blocks)
+静态作用域 (Static Scoping / Lexical Scoping) 📖:
+
+一个声明的作用域（即该声明有效的程序文本区域）由其在源代码中的位置决定，可以在编译时通过分析程序文本来确定。
+C语言采用静态作用域。当引用一个名字时，编译器会查找包含该引用的最内层词法块中的声明，然后是外层块，直至全局作用域。
+
+块 (Block) {}:
+在C语言中，一对花括号 { ... } 定义了一个块。在块内声明的变量（局部变量）其作用域仅限于该块及其内部嵌套的块，从声明点开始到块结束。
+动态作用域 (Dynamic Scoping)📞
+
+一个名字的引用会解析到程序执行时调用栈 (call stack) 上最近的、活动的该名字的声明。
+作用域取决于函数调用的顺序，而不是它们在源代码中的词法位置。
+C语言不使用动态作用域。一些早期的Lisp方言、Perl（通过 local 关键字）曾使用或支持动态作用域。动态作用域通常会使程序更难理解和维护。
+
+显式访问控制 (Explicit Access Control) 🛡️
+
+(此概念主要用于支持面向对象的语言如 C++, Java，C语言本身对结构体成员没有显式访问控制关键字)
+在C++等语言中，关键字 public, private, protected 用于控制类成员的访问权限，以实现封装 (encapsulation)：
+
+私有 (private): 成员只能被其所在的类的成员函数访问。
+保护 (protected): 成员可以被其所在的类的成员函数以及其派生类 (子类) 的成员函数访问。
+公共 (public): 成员可以从任何地方访问。
+
+
+C语言中，虽然没有这些关键字用于结构体成员，但可以通过 static 关键字限制全局变量和函数的作用域到当前文件（文件作用域），提供一种模块级别的封装。结构体成员默认是"公共"的。
+
+参数传递机制 (Parameter Passing Mechanisms) 🎁
+值调用 (Call by Value):
+
+实际参数的值被复制到函数的形式参数中。函数内部对形式参数的修改不影响调用者处的实际参数。
+C语言默认采用值调用。
+
+引用调用 (Call by Reference) 🔗:
+
+传递的是实际参数的地址（或一个指向实际参数的引用）。函数内部对形式参数的修改会影响调用者处的实际参数。
+C语言通过传递指针并解引用来模拟引用调用 (e.g., void swap(int *a, int *b)).
+C++ 提供了真正的引用类型 (e.g., void swap(int &amp;a, int &amp;b)).
+
+名调用 (Call by Name) 📝:
+
+一种较早的参数传递机制 (如 Algol 60)。实际参数的表达式在每次于函数体中被引用时，都会在调用者的环境中重新求值。可以想象成文本替换（但有作用域处理，类似无冲突的宏）。
+由于其复杂性和潜在的性能问题及副作用，现代语言中已不再采用。
+
+共享调用 (Call by Sharing / Call by Object / Call by Object-Sharing): 常见于Python, Java (对象类型), Ruby等。函数接收的是对象引用的副本。如果对象是可变的，函数内部通过该引用修改对象会影响原始对象。如果函数给形式参数赋一个新的引用（指向不同对象），原始对象的引用不受影响。
+别名 (Aliasing) 🎭
+
+
+别名 (Aliasing): 当同一个内存位置可以通过两个或多个不同的名字（标识符、指针、引用）来访问时，就发生了别名。
+
+
+例如，在C中：
+int x = 10;int *p1 = &amp;x;  // p1 指向 xint *p2 = p1;  // p2 也指向 x (通过 p1)// 此时，x, *p1, *p2 都是访问同一内存位置的别名*p1 = 20;      // x 的值变为 20// printf(&quot;%d&quot;, *p2); // 会输出 20
+
+
+别名会使程序分析、理解和优化更加复杂，因为一个变量的修改可能会通过一个看似不相关的名字隐式地影响到其他部分的代码。编译器在进行优化时需要保守地处理可能存在别名的情况。
+
+
+数据类型
+抽象
+数据类型本质上是对存储器中存储的数据进行的抽象，包含一组值和一组操作;
+根据语言面向的机器和语言面向的领域，可抽象为三个层次
+
+内部类型：基本表示不可见，能进行静态类型检查，编译时可确定无二义性操作，允许运算符的重载，实现精度控制
+用户定义类型：提供数据的组合/聚合机制
+
+笛卡尔积：比如C中的结构体
+有限映像：从定义域的优先级和到至于的有限集合，值域对象通过下标变量方式对应，下标有编译时绑定，对象建立时绑定，对象处理时绑定三种策略
+序列：任意多个数据项组成，数据项成为序列的成分，类型相同
+递归：数据类型包含属于同一种类型的成分，通常利用指针实现，直接递归通常不被允许
+判定或：根据不同的成员构造机制，比如联合类型union
+幂集：类型所有子集的集合
+
+
+抽象数据类型
+
+C语言数据类型
+在C语言中，实现如下数据类型
+
+值得注意的是，在C语言中
+
+联合类型是不安全的
+文件类型FILE被视作字符字节的序列；
+不允许定义空类型变量，只能定义空类型指针；
+不支持幂集
+
+类型检查
+定义：对数据操作和对应类型是否匹配的一致性检查
+
+例子：非法运算，赋值，形参实参是否匹配
+动态检查：编程方便，但是影响力可靠性，降低了执行效率
+静态检查：使得程序更加有效
+
+语言按照类型检查可以分为
+
+无类型语言：没有任何数据类型，如一些函数式语言和泛函程序设计语言
+弱类型语言：类型检查部分或全部在运行时完成，如Python
+强类型语言：所有类型检查在编译时完成，如C
+
+类型转换
+一般语言提供类型转换机制
+
+隐式/自动转换：比如FORTRAN语言
+显式/强制转换：比如Golang，在C语言中两者都有
+
+类型转换可能发生在以下场景：
+
+混合运算
+表达式值赋值给变量
+实参想函数传形参
+函数返回值
+
+控制结构
+控制结构规定了程序语句和程序单元的执行流程和控制戒指；
+语句级控制结构：基本的，有一定意义的抽象控制结构，具体来说是对PC + 1指令的抽象 &amp; GOTO指令的抽象，相对于显式控制结构更好；
+
+顺序：通常带有结束标记；
+选择：单选，二选一，多选一(比如多层嵌套或者switch的简洁表达)
+循环：计数器制导，条件制导，
+最终由条件转移和无条件转移的指令实现，由编译器生成，用户不可见
+
+单元级控制结构：在程序顺序执行的过程中，遇到一个分程序，就建立一个新的引用环境，并执行这个分程序；显式调用单元，把控制从一个单元转移到另一个单元
+
+
+显式调用从属单元：比如C中的函数，单元间的通信，可使用参数传递实现，也可以通过全局变量和非局部变量实现
+
+
+
+异常处理：导致程序正常执行中止的事件，要靠发信号来引发，用异常条件来表示。
+
+
+协同程序
+
+
+
+并发
+并发提供了同时执行多个程序单元的途径，是多处理器和分布式系统的重要基础。
+C语言没有原生支持，但是可以通过操作系统提供或者第三方库提供实现，比如pthread.h
+
+
+]]></content>
+      <tags>
+        <tag>Coursework</tag>
+        <tag>Compilers</tag>
+      </tags>
+  </entry>
+</search>

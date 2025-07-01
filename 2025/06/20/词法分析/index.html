@@ -1,164 +1,236 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-  <title>
-    
-    词法分析 丨
-    
-    typo
-  </title>
+  
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    词法分析
+</title>
 
-  
-  <link rel="shortcut icon" href="/icon.svg">
-  
 
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body 
     
+      data-image-center="true"
+      data-image-caption="true"
+    
+    
+      data-code-block-copy-button="icon/copy.svg"
+      data-code-block-theme-toggle-enable="true"
+      data-code-block-theme-toggle-to-light-button="icon/light-codeblock.svg"
+      data-code-block-theme-toggle-to-dark-button="icon/dark-codeblock.svg"
+      data-code-block-mac-enhancer="true"
       
-<link rel="stylesheet" href="/css/vscode-modern-light.css">
-
+      data-code-block-mac-enhancer-init-folded-status="true"
       
-<link rel="stylesheet" href="/css/vscode-modern-dark.css">
-
-    
-  
-  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
-
-  <!-- 字体 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
-
-  <!-- 数学公式 -->
-  
-<link rel="stylesheet" href="/css/mathjax.css">
-
-  
-<script src="/js/mathjax.js"></script>
-
-  
-  <!-- 标题编号 -->
-  
-    
-<link rel="stylesheet" href="/css/heading-numbering.css">
-
-    
-<script src="/js/heading-numbering.js"></script>
-
-  
-  
-  <!-- 三线表样式 -->
-  
-    
-<link rel="stylesheet" href="/css/three-line-table.css">
-
-  
-
-  <!-- 图片样式 -->
-  
-    
-<link rel="stylesheet" href="/css/image-handler.css">
-
-    
-<script src="/js/image-handler.js"></script>
-
-  
-  
-
-  
-<link rel="stylesheet" href="/css/root.css">
-
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-<link rel="stylesheet" href="/css/post.css">
-
-  
-<link rel="stylesheet" href="/css/toc.css">
-
-  
-<link rel="stylesheet" href="/css/tags.css">
-
-
-  <!-- 代码块基础样式 -->
-  
-<link rel="stylesheet" href="/css/code-block-base.css">
-
-
-  <!-- Codeblock Theme Toggler CSS -->
-  
-  
-<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
-
-  
-
-  <!-- Codeblock Mac Enhancer CSS -->
-  
-  
-<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
-
-  
-
-  <!-- 标签过滤器脚本 -->
-  
-<script src="/js/tags-filter.js"></script>
-
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
-
-<body
-  
-    data-image-center="true"
-    data-image-caption="true"
-  
-  
-    data-code-block-copy-button="icon/copy.svg"
-    data-code-block-theme-toggle-enable="true"
-    data-code-block-theme-toggle-to-light-button="icon/light-codeblock.svg"
-    data-code-block-theme-toggle-to-dark-button="icon/dark-codeblock.svg"
-    data-code-block-mac-enhancer="true"
-    
-    data-code-block-mac-enhancer-init-folded-status="true"
-    
   
 >
-  <header class="header">
+    <script> window.THEME_CONFIG = {}; </script>
+              
+    <!-- 配置引用 -->
+    
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        
+<link rel="stylesheet" href="/css/vscode-modern-light.css">
+
+        
+<link rel="stylesheet" href="/css/vscode-modern-dark.css">
+
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+
+  
+</head>
+    
+    <!-- 导航栏 -->
+    <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
   <section class="header-container">
-    <a class="logo" href="/">Kytolly&#39;s Blog</a>
-    <ul class="nav">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/list">
+            <img src="/icon/list.svg" alt="list icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            list
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
       
-      <li><a href="/archives">archives</a></li>
       
-      <li><a href="/about">about</a></li>
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
       
-      <li><a href="/tags">tags</a></li>
-      
-    </ul>
+    </div>
   </section>
 </header>
-  <main class="main">
-    <article class="post">
+
+
+<script src="/js/search.js"></script>
+
+
+    <!-- 路由 根据页面类型决定渲染内容 -->
+    <main class="main">
   
-  <div class="post-title">词法分析</div>
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">词法分析</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">词法分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%BB%E5%8A%A1-%F0%9F%8E%AF"><span class="toc-number">1.2.</span> <span class="toc-text">核心任务 🎯</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E-%F0%9F%8C%B0"><span class="toc-number">1.3.</span> <span class="toc-text">举例说明 🌰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%81%8C%E8%B4%A3-%F0%9F%9B%A0%EF%B8%8F"><span class="toc-number">1.4.</span> <span class="toc-text">其他职责 🛠️</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%F0%9F%A7%B1"><span class="toc-number">1.5.</span> <span class="toc-text">数据结构🧱</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">词法分析器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5-%E8%BE%93%E5%87%BA-%E6%B5%81%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">输入 &amp; 输出 &amp; 流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#peek%E6%8A%80%E6%9C%AF"><span class="toc-number">2.2.</span> <span class="toc-text">peek技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E5%B8%B8%E9%87%8F"><span class="toc-number">2.3.</span> <span class="toc-text">解析常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="toc-number">2.4.</span> <span class="toc-text">解析关键字和标识符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%AE%97%E6%B3%95"><span class="toc-number">2.5.</span> <span class="toc-text">扫描算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E7%9A%84%E6%A1%86%E6%9E%B6"><span class="toc-number">2.6.</span> <span class="toc-text">基于状态转换的框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">2.7.</span> <span class="toc-text">实现原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%8D%E6%B3%95%E9%94%99%E8%AF%AF"><span class="toc-number">2.8.</span> <span class="toc-text">词法错误</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">词法分析</div>
   <div class="post-meta">
     <div class="date">2025 六月 20日</div>
     <div class="tags">
       
-      <div class="tag-item">Coursework</div>
-      
-      <div class="tag-item">Compilers</div>
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">Compilers</div>
+        
       
     </div>
   </div>
-  
 
-  <main class="post-content"><h2 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h2>
+<main class="post-content"><h2 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h2>
 <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3>
 <p><strong>词法分析</strong>(Lexical Analysis / Scanning)是编译过程的第一个阶段。</p>
 <p>它接收源程序的<strong>字符流 (character stream)<strong>作为输入，并将其组织成一系列有意义的</strong>词素 (lexeme)</strong>。随后，对于每个词素，词法分析器会生成一个<strong>记号 (token)</strong> 作为输出，传递给语法分析器。</p>
@@ -167,7 +239,7 @@
 <p>扫描源程序的字符串,按照词法规则,识别出单词符号作为输出;</p>
 <ol>
 <li>读取输入: 逐个读取源程序中的字符。</li>
-<li>识别词素: 将字符组合成**词素 **(Lexeme) 📜，源程序中与某个记号的模式匹配的实际字符序列。例如，在语句 <code>count = count + 5;</code> 中, <code>count</code>, <code>=</code>, <code>+</code>, <code>5</code>, <code>;</code> 都是词素。词素内部的空格通常被忽略（除非它们是字符串字面量的一部分或用于分隔词素）。</li>
+<li>识别词素: 将字符组合成<strong>词素</strong>(Lexeme) 📜，源程序中与某个记号的模式匹配的实际字符序列。例如，在语句 <code>count = count + 5;</code> 中, <code>count</code>, <code>=</code>, <code>+</code>, <code>5</code>, <code>;</code> 都是词素。词素内部的空格通常被忽略（除非它们是字符串字面量的一部分或用于分隔词素）。</li>
 <li>生成记号: 为每个识别出的词素生成一个记号；
 <ul>
 <li><strong>记号</strong> (Token) 🪙: 一个抽象的符号，代表一类词法单元。通常表示为一个二元组：<code>(token-name, attribute-value)</code>。
@@ -327,9 +399,29 @@
 <p>如果遇到所有词法单元模式均无法与剩余的输入前缀匹配，则词法分析器将陷入恐慌，无法继续处理；</p>
 <p>一般会执行一个恐慌恢复策略：从剩余输入中不断删除字符，直到输入开头出现一个正确的词法单元为止；</p>
 </main>
-  
-  <!-- 插入giscus评论区 -->
-  
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
     <script src="https://giscus.app/client.js"
       data-repo="Kytolly/MyGiscus"
       data-repo-id="R_kgDOK_0_0A"
@@ -347,41 +439,52 @@
       async>
     </script>
   
+  </div>
 </article>
+  
+</main>
 
-
-<script src="/js/code-block-header.js"></script>
-
-
-<script src="/js/code-block-copy.js"></script>
-
-
-<script src="/js/code-block-theme-toggle.js"></script>
-
-
-<script src="/js/code-block.js"></script>
-
-  </main>
-  <footer class="footer">
+    <!-- 页脚 -->
+    <footer class="footer">
   
   <span>Copyright © Kytolly(shiroi)</span>
   
 </footer>
 
-  <script>
-    // Initialize a global config object for theme features
-    window.THEME_CONFIG = {};
-  </script>
 
-  <!-- Code Block Feature Config -->
-  <!-- Removed: Configuration now passed via data-attributes on body tag -->
+<link rel="stylesheet" href="/css/footer.css">
 
-  
-<script src="/js/code-block.js"></script>
 
-  
-<script src="/js/theme.js"></script>
+    
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
 
-</body>
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+  </body>
 
 </html>

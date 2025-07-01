@@ -1,164 +1,236 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-  <title>
-    
-    Autoencoder 丨
-    
-    typo
-  </title>
+  
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    Autoencoder
+</title>
 
-  
-  <link rel="shortcut icon" href="/icon.svg">
-  
 
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body 
     
+      data-image-center="true"
+      data-image-caption="true"
+    
+    
+      data-code-block-copy-button="icon/copy.svg"
+      data-code-block-theme-toggle-enable="true"
+      data-code-block-theme-toggle-to-light-button="icon/light-codeblock.svg"
+      data-code-block-theme-toggle-to-dark-button="icon/dark-codeblock.svg"
+      data-code-block-mac-enhancer="true"
       
-<link rel="stylesheet" href="/css/vscode-modern-light.css">
-
+      data-code-block-mac-enhancer-init-folded-status="true"
       
-<link rel="stylesheet" href="/css/vscode-modern-dark.css">
-
-    
-  
-  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
-
-  <!-- 字体 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
-
-  <!-- 数学公式 -->
-  
-<link rel="stylesheet" href="/css/mathjax.css">
-
-  
-<script src="/js/mathjax.js"></script>
-
-  
-  <!-- 标题编号 -->
-  
-    
-<link rel="stylesheet" href="/css/heading-numbering.css">
-
-    
-<script src="/js/heading-numbering.js"></script>
-
-  
-  
-  <!-- 三线表样式 -->
-  
-    
-<link rel="stylesheet" href="/css/three-line-table.css">
-
-  
-
-  <!-- 图片样式 -->
-  
-    
-<link rel="stylesheet" href="/css/image-handler.css">
-
-    
-<script src="/js/image-handler.js"></script>
-
-  
-  
-
-  
-<link rel="stylesheet" href="/css/root.css">
-
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-<link rel="stylesheet" href="/css/post.css">
-
-  
-<link rel="stylesheet" href="/css/toc.css">
-
-  
-<link rel="stylesheet" href="/css/tags.css">
-
-
-  <!-- 代码块基础样式 -->
-  
-<link rel="stylesheet" href="/css/code-block-base.css">
-
-
-  <!-- Codeblock Theme Toggler CSS -->
-  
-  
-<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
-
-  
-
-  <!-- Codeblock Mac Enhancer CSS -->
-  
-  
-<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
-
-  
-
-  <!-- 标签过滤器脚本 -->
-  
-<script src="/js/tags-filter.js"></script>
-
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
-
-<body
-  
-    data-image-center="true"
-    data-image-caption="true"
-  
-  
-    data-code-block-copy-button="icon/copy.svg"
-    data-code-block-theme-toggle-enable="true"
-    data-code-block-theme-toggle-to-light-button="icon/light-codeblock.svg"
-    data-code-block-theme-toggle-to-dark-button="icon/dark-codeblock.svg"
-    data-code-block-mac-enhancer="true"
-    
-    data-code-block-mac-enhancer-init-folded-status="true"
-    
   
 >
-  <header class="header">
+    <script> window.THEME_CONFIG = {}; </script>
+              
+    <!-- 配置引用 -->
+    
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        
+<link rel="stylesheet" href="/css/vscode-modern-light.css">
+
+        
+<link rel="stylesheet" href="/css/vscode-modern-dark.css">
+
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+
+  
+</head>
+    
+    <!-- 导航栏 -->
+    <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
   <section class="header-container">
-    <a class="logo" href="/">Kytolly&#39;s Blog</a>
-    <ul class="nav">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/list">
+            <img src="/icon/list.svg" alt="list icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            list
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
       
-      <li><a href="/archives">archives</a></li>
       
-      <li><a href="/about">about</a></li>
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
       
-      <li><a href="/tags">tags</a></li>
-      
-    </ul>
+    </div>
   </section>
 </header>
-  <main class="main">
-    <article class="post">
+
+
+<script src="/js/search.js"></script>
+
+
+    <!-- 路由 根据页面类型决定渲染内容 -->
+    <main class="main">
   
-  <div class="post-title">Autoencoder</div>
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">Autoencoder</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83"><span class="toc-number">1.2.</span> <span class="toc-text">训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95"><span class="toc-number">1.3.</span> <span class="toc-text">扩展</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">Autoencoder</div>
   <div class="post-meta">
     <div class="date">2025 六月 21日</div>
     <div class="tags">
       
-      <div class="tag-item">Machine Learning</div>
-      
-      <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">Machine-Learning</div>
+        
+        <div class="tag-item">Coursework</div>
+        
       
     </div>
   </div>
-  
 
-  <main class="post-content"><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2>
+<main class="post-content"><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2>
 <h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3>
 <p>CNN的训练样本是带有标签的。在很多实际应用中， 训练样本是没有标签的。应用误差反向传播算法来训练网络会遇到一些困难。</p>
 <p><strong>自编码器</strong>(autoencoder)采用让输入和输出相等的idea， 隐含层用于记录数据特征，这是典型的<strong>表示学习</strong>(representation learning)/特征学习(feature learning)办法,由Hinton等人提出；</p>
@@ -205,9 +277,29 @@
 <p><span style="margin-left: 50%; transform: translateX(-50%); display: inline-block; "><svg style="vertical-align: -0.667ex;" xmlns="http://www.w3.org/2000/svg" width="31.157ex" height="3.045ex" role="img" focusable="false" viewBox="0 -1051 13771.2 1346" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-9-TEX-I-210E" d="M137 683Q138 683 209 688T282 694Q294 694 294 685Q294 674 258 534Q220 386 220 383Q220 381 227 388Q288 442 357 442Q411 442 444 415T478 336Q478 285 440 178T402 50Q403 36 407 31T422 26Q450 26 474 56T513 138Q516 149 519 151T535 153Q555 153 555 145Q555 144 551 130Q535 71 500 33Q466 -10 419 -10H414Q367 -10 346 17T325 74Q325 90 361 192T398 345Q398 404 354 404H349Q266 404 205 306L198 293L164 158Q132 28 127 16Q114 -11 83 -11Q69 -11 59 -2T48 16Q48 30 121 320L195 616Q195 629 188 632T149 637H128Q122 643 122 645T124 664Q129 683 137 683Z"></path><path id="MJX-9-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path id="MJX-9-TEX-I-1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path><path id="MJX-9-TEX-I-1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"></path><path id="MJX-9-TEX-N-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path id="MJX-9-TEX-I-1D44A" d="M436 683Q450 683 486 682T553 680Q604 680 638 681T677 682Q695 682 695 674Q695 670 692 659Q687 641 683 639T661 637Q636 636 621 632T600 624T597 615Q597 603 613 377T629 138L631 141Q633 144 637 151T649 170T666 200T690 241T720 295T759 362Q863 546 877 572T892 604Q892 619 873 628T831 637Q817 637 817 647Q817 650 819 660Q823 676 825 679T839 682Q842 682 856 682T895 682T949 681Q1015 681 1034 683Q1048 683 1048 672Q1048 666 1045 655T1038 640T1028 637Q1006 637 988 631T958 617T939 600T927 584L923 578L754 282Q586 -14 585 -15Q579 -22 561 -22Q546 -22 542 -17Q539 -14 523 229T506 480L494 462Q472 425 366 239Q222 -13 220 -15T215 -19Q210 -22 197 -22Q178 -22 176 -15Q176 -12 154 304T131 622Q129 631 121 633T82 637H58Q51 644 51 648Q52 671 64 683H76Q118 680 176 680Q301 680 313 683H323Q329 677 329 674T327 656Q322 641 318 637H297Q236 634 232 620Q262 160 266 136L501 550L499 587Q496 629 489 632Q483 636 447 637Q428 637 422 639T416 648Q416 650 418 660Q419 664 420 669T421 676T424 680T428 682T436 683Z"></path><path id="MJX-9-TEX-I-1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path><path id="MJX-9-TEX-N-5E" d="M112 560L249 694L257 686Q387 562 387 560L361 531Q359 532 303 581L250 627L195 580Q182 569 169 557T148 538L140 532Q138 530 125 546L112 560Z"></path><path id="MJX-9-TEX-N-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path><path id="MJX-9-TEX-I-1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z"></path><path id="MJX-9-TEX-N-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path><path id="MJX-9-TEX-I-1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path id="MJX-9-TEX-I-1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path><path id="MJX-9-TEX-I-1D45E" d="M33 157Q33 258 109 349T280 441Q340 441 372 389Q373 390 377 395T388 406T404 418Q438 442 450 442Q454 442 457 439T460 434Q460 425 391 149Q320 -135 320 -139Q320 -147 365 -148H390Q396 -156 396 -157T393 -175Q389 -188 383 -194H370Q339 -192 262 -192Q234 -192 211 -192T174 -192T157 -193Q143 -193 143 -185Q143 -182 145 -170Q149 -154 152 -151T172 -148Q220 -148 230 -141Q238 -136 258 -53T279 32Q279 33 272 29Q224 -10 172 -10Q117 -10 75 30T33 157ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="210E" xlink:href="#MJX-9-TEX-I-210E"></use></g><g data-mml-node="mo" transform="translate(853.8,0)"><use data-c="3D" xlink:href="#MJX-9-TEX-N-3D"></use></g><g data-mml-node="msub" transform="translate(1909.6,0)"><g data-mml-node="mi"><use data-c="1D460" xlink:href="#MJX-9-TEX-I-1D460"></use></g><g data-mml-node="mi" transform="translate(502,-150) scale(0.707)"><use data-c="1D453" xlink:href="#MJX-9-TEX-I-1D453"></use></g></g><g data-mml-node="mo" transform="translate(2850.5,0)"><use data-c="28" xlink:href="#MJX-9-TEX-N-28"></use></g><g data-mml-node="mi" transform="translate(3239.5,0)"><use data-c="1D44A" xlink:href="#MJX-9-TEX-I-1D44A"></use></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(4287.5,0)"><g data-mml-node="mover"><g data-mml-node="mi"><use data-c="1D465" xlink:href="#MJX-9-TEX-I-1D465"></use></g><g data-mml-node="mo" transform="translate(313.8,16) translate(-250 0)"><use data-c="5E" xlink:href="#MJX-9-TEX-N-5E"></use></g></g></g><g data-mml-node="mo" transform="translate(5081.7,0)"><use data-c="2B" xlink:href="#MJX-9-TEX-N-2B"></use></g><g data-mml-node="mi" transform="translate(6081.9,0)"><use data-c="1D45D" xlink:href="#MJX-9-TEX-I-1D45D"></use></g><g data-mml-node="mo" transform="translate(6584.9,0)"><use data-c="29" xlink:href="#MJX-9-TEX-N-29"></use></g><g data-mml-node="mspace" transform="translate(6973.9,0)"></g><g data-mml-node="mi" transform="translate(6973.9,0)"><use data-c="1D466" xlink:href="#MJX-9-TEX-I-1D466"></use></g><g data-mml-node="mo" transform="translate(7741.7,0)"><use data-c="3D" xlink:href="#MJX-9-TEX-N-3D"></use></g><g data-mml-node="msub" transform="translate(8797.5,0)"><g data-mml-node="mi"><use data-c="1D460" xlink:href="#MJX-9-TEX-I-1D460"></use></g><g data-mml-node="mi" transform="translate(502,-150) scale(0.707)"><use data-c="1D454" xlink:href="#MJX-9-TEX-I-1D454"></use></g></g><g data-mml-node="mo" transform="translate(9686.8,0)"><use data-c="28" xlink:href="#MJX-9-TEX-N-28"></use></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(10075.8,0)"><g data-mml-node="mover"><g data-mml-node="mi"><use data-c="1D44A" xlink:href="#MJX-9-TEX-I-1D44A"></use></g><g data-mml-node="mo" transform="translate(550,257) translate(-250 0)"><use data-c="5E" xlink:href="#MJX-9-TEX-N-5E"></use></g></g></g><g data-mml-node="mi" transform="translate(11123.8,0)"><use data-c="210E" xlink:href="#MJX-9-TEX-I-210E"></use></g><g data-mml-node="mo" transform="translate(11922,0)"><use data-c="2B" xlink:href="#MJX-9-TEX-N-2B"></use></g><g data-mml-node="mi" transform="translate(12922.2,0)"><use data-c="1D45E" xlink:href="#MJX-9-TEX-I-1D45E"></use></g><g data-mml-node="mo" transform="translate(13382.2,0)"><use data-c="29" xlink:href="#MJX-9-TEX-N-29"></use></g></g></g></svg></span></p>
 <p>总的来说，这些自编码器的工作，它们的目的都是数据将为，都具有编码器和解码器的结构，具有窄的bottleneck，通过对输入信号的重建，将输入降维成一种表征；因此，autoencoder不是一种生成模型。</p>
 </main>
-  
-  <!-- 插入giscus评论区 -->
-  
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
     <script src="https://giscus.app/client.js"
       data-repo="Kytolly/MyGiscus"
       data-repo-id="R_kgDOK_0_0A"
@@ -225,41 +317,52 @@
       async>
     </script>
   
+  </div>
 </article>
+  
+</main>
 
-
-<script src="/js/code-block-header.js"></script>
-
-
-<script src="/js/code-block-copy.js"></script>
-
-
-<script src="/js/code-block-theme-toggle.js"></script>
-
-
-<script src="/js/code-block.js"></script>
-
-  </main>
-  <footer class="footer">
+    <!-- 页脚 -->
+    <footer class="footer">
   
   <span>Copyright © Kytolly(shiroi)</span>
   
 </footer>
 
-  <script>
-    // Initialize a global config object for theme features
-    window.THEME_CONFIG = {};
-  </script>
 
-  <!-- Code Block Feature Config -->
-  <!-- Removed: Configuration now passed via data-attributes on body tag -->
+<link rel="stylesheet" href="/css/footer.css">
 
-  
-<script src="/js/code-block.js"></script>
 
-  
-<script src="/js/theme.js"></script>
+    
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
 
-</body>
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+  </body>
 
 </html>

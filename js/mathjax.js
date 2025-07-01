@@ -6,9 +6,6 @@
  * 3. 主题切换逻辑
  */
 (function() {
-    // 检查全局配置
-    if (!window.THEME_CONFIG || !window.THEME_CONFIG.mathjax) return;
-  
     // 动态加载 MathJax 脚本
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -21,7 +18,6 @@
       tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']]
       }
-      // 其他配置可按需添加
     };
   
     document.head.appendChild(script);

@@ -1,0 +1,25 @@
+.footer {
+    width: 100%;
+    max-width: var(--main-width);
+    margin: 0 auto;
+    padding: 72px 8vw 24px;
+    background: var(--color-background);
+    overflow-x: hidden;
+    text-align: center;
+}
+
+.footer span {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.footer a {
+    color: var(--font-color-extra);
+    transition: color ease-in-out 0.5s;
+}
+
+.footer a:hover {
+    color: var(--font-color);
+    transition: color ease-in-out 0.5s;
+}
+  
