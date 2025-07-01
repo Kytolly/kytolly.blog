@@ -548,31 +548,6 @@ Feature Map
       </tags>
   </entry>
   <entry>
-    <title>Markdown 写作规范</title>
-    <url>/2025/06/22/markdown-%E5%86%99%E4%BD%9C%E8%A7%84%E8%8C%83/</url>
-    <content><![CDATA[这是一个一级标题
-本主题按照本人使用的 Typora 编辑器风格定制，旨在打造一款轻量级的TeX样式。
-本主题改编自 Typo。
-这是一个二级标题
-如果你使用本主题，作者建议按照如下规则组织你的写作：
-
-中英文混杂时，应该确保中间有空格，不直接连接。如果有连接的必要，使用   语法。
-
-这是一个三级标题
-
-
-本主题的数学公式采用内联公式使用$ symbol $， 块内公式使用&lt;br&gt;$$&lt;br&gt; formular &lt;br&gt;$$&lt;br&gt;的格式，即内联公式和前后的字符应该有一个空格，块内公式的标志应该另起一行；
-
-
-不建议在无序列表中嵌套两次以上
-
-
-]]></content>
-      <tags>
-        <tag>Musings</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Shiroi 魔改日志</title>
     <url>/2025/06/22/Shiroi-%E9%AD%94%E6%94%B9%E6%97%A5%E5%BF%97/</url>
     <content><![CDATA[项目结构描述
@@ -1015,6 +990,31 @@ Other Tricks
       <tags>
         <tag>Machine-Learning</tag>
         <tag>papers</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown 写作规范</title>
+    <url>/2025/06/22/markdown-%E5%86%99%E4%BD%9C%E8%A7%84%E8%8C%83/</url>
+    <content><![CDATA[这是一个一级标题
+本主题按照本人使用的 Typora 编辑器风格定制，旨在打造一款轻量级的TeX样式。
+本主题改编自 Typo。
+这是一个二级标题
+如果你使用本主题，作者建议按照如下规则组织你的写作：
+
+中英文混杂时，应该确保中间有空格，不直接连接。如果有连接的必要，使用   语法。
+
+这是一个三级标题
+
+
+本主题的数学公式采用内联公式使用$ symbol $， 块内公式使用&lt;br&gt;$$&lt;br&gt; formular &lt;br&gt;$$&lt;br&gt;的格式，即内联公式和前后的字符应该有一个空格，块内公式的标志应该另起一行；
+
+
+不建议在无序列表中嵌套两次以上
+
+
+]]></content>
+      <tags>
+        <tag>Musings</tag>
       </tags>
   </entry>
   <entry>
