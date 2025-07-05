@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  
+<meta charset="utf-8" />
   <!-- 标签页 -->
   <!-- 标签页 -->
 <title>
@@ -11,26 +11,63 @@
 <link rel="shortcut icon" href="/icon.svg">
 
 
-  <body 
-    
-      data-image-center="true"
-      data-image-caption="true"
-    
-    
-      data-code-block-copy-button="icon/copy.svg"
-      data-code-block-theme-toggle-enable="true"
-      data-code-block-theme-toggle-to-light-button="icon/light-codeblock.svg"
-      data-code-block-theme-toggle-to-dark-button="icon/dark-codeblock.svg"
-      data-code-block-mac-enhancer="true"
-      
-      data-code-block-mac-enhancer-init-folded-status="true"
-      
-  
->
-    <script> window.THEME_CONFIG = {}; </script>
-              
+  <body>  
     <!-- 配置引用 -->
-    
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'true'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -39,8 +76,8 @@
     <!-- 字体 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <!-- 代码块 -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -120,12 +157,12 @@
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
   <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
-
-  
 </head>
-    
-    <!-- 导航栏 -->
-    <!--(头部 top bar) Header 样式 -->
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
 
 <link rel="stylesheet" href="/css/header.css">
 
@@ -140,13 +177,6 @@
           <a href="/">
             <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
             index
-          </a>
-        </li>
-        
-        <li>
-          <a href="/list">
-            <img src="/icon/list.svg" alt="list icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
-            list
           </a>
         </li>
         
@@ -187,25 +217,262 @@
 <script src="/js/search.js"></script>
 
 
-    <!-- 路由 根据页面类型决定渲染内容 -->
-    <main class="main">
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
   
+    <div class="post-list">
     
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B7-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">面向过程的系统设计</a>
+        <div class="post-item-summary">
+        总体设计
+
+首先研究、分析和审查数据流图。从软件的需求规格说明中弄清数 据流加工的过程，对于发现的问题及时解决。
+然后根据数据流图决定问题的类型。数据处理问题典
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B7-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B8-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">软件测试概论</a>
+        <div class="post-item-summary">
+        软件质量保证与测试相关概念
+软件质量
+定义：明确表示是否包含功能和性能需求，明确记载开发标准和所有专业开发软件的期望的隐性特点
+关键点
+
+软件测试时软件质量测量
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B8-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B9-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF/">软件测试技术</a>
+        <div class="post-item-summary">
+        分类
+
+白盒测试：考虑系统或组件的内部机制的测试形式（如分支测试、路径测试、语句测试等）
+黑盒测试：忽略系统或组件的内部机制，仅关注于那些响应所选择的输入及相应
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B9-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Rasterization/">Rasterization</a>
+        <div class="post-item-summary">
+        Screen
+对于一个宽高为width, height的屏幕来说，从一个视点来看可以形成一个视锥：
+定义一个宽高比
+
+以及一个垂直视角 Vertical Fie
+        <a class="read-more" href="/2025/07/05/Rasterization/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Shading/">Shading</a>
+        <div class="post-item-summary">
+        Visibility
+绘画算法：从远到近将物体画在屏幕上，近处的物体覆盖远处的对应的图层；
+将模型三角光栅化，考虑对三角形按照距离屏幕的深度排序，复杂度为,但是
+        <a class="read-more" href="/2025/07/05/Shading/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Transformation/"></a>
+        <div class="post-item-summary">
+        2D Transforms
+Transform in Scale
+对于二维平面上的一个点, 将向量变换成原来的倍，只需要左乘缩放矩阵：
+
+非均匀缩放：如果对坐标
+        <a class="read-more" href="/2025/07/05/Transformation/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">推荐系统</a>
+        <div class="post-item-summary">
+        概念
+推荐系统的任务：联系用户和物品，解决信息过载的问题；
+
+好友（社会化推荐）
+用户的历史兴趣记录（协同过滤推荐）
+用户的注册信息
+
+为什么推荐系统收到欢迎：
+        <a class="read-more" href="/2025/07/02/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Information-Retrieval/">Information-Retrieval</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">搜索引擎</a>
+        <div class="post-item-summary">
+        技术架构
+网络爬虫：搜索引擎的信息源来自于互联网网页，通过网络爬虫将整个互联网获取到本地。
+网页去重：互联网页面中有相当大比例的内容是完全相同或者近似重复的，网
+        <a class="read-more" href="/2025/07/02/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Information-Retrieval/">Information-Retrieval</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%931-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/">数据库管理技术</a>
+        <div class="post-item-summary">
+        问题和挑战
+数据库管理技术研究研究如何对数据进行科学管理，从而为人们提供可共享的、安全的、可靠的数据；
+数据库管理技术可能面临的挑战：垃圾信息，数据类型多样化和
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%931-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%930-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/">数据库理论</a>
+        <div class="post-item-summary">
+        数据库是什么
+数据库：长期存储在计算机内，有组织，可共享的海量数据集合
+数据库相关理论及相关问题：
+
+数据模型，规范化理论：如何组织这些数据?
+数据定义和操作语
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%930-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+</div>
+
+
+<div class="paginator">
+  <a class="extend prev" rel="prev" href="/page/4/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">&gt;</a>
+</div>
+
+
+
+<link rel="stylesheet" href="/css/paginator.css">
+
+
+<link rel="stylesheet" href="/css/list.css">
+
+
   
 </main>
 
-    <!-- 页脚 -->
-    <footer class="footer">
+      <!-- 页脚 -->
+      <footer class="footer">
   
   <span>Copyright © Kytolly(shiroi)</span>
   
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
 </footer>
 
 
 <link rel="stylesheet" href="/css/footer.css">
 
 
-    
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
   <div class="search-pop-overlay">
     <div class="popup search-popup">
       <div class="search-header">
@@ -234,6 +501,10 @@
 <link rel="stylesheet" href="/css/search.css">
 
 
+
+    </div>
+    
+<script src="/js/background.js"></script>
 
   </body>
 

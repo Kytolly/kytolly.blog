@@ -13,18 +13,19 @@ if (typeof hljs !== 'undefined') {
 
 document.addEventListener('DOMContentLoaded', () => {
   const codeBlocks = document.querySelectorAll('figure.highlight');
-  const bodyDataset = document.body.dataset;
 
-  // 从 body 的 data-属性中获取配置
-  const copyButtonConfig = bodyDataset.codeBlockCopyButton;
-  const themeToggleEnable = bodyDataset.codeBlockThemeToggleEnable === 'true';
-  const macEnhancerEnable = bodyDataset.codeBlockMacEnhancer === 'true';
-  const initFoldedStatus = bodyDataset.codeBlockMacEnhancerInitFoldedStatus === 'true'; // 新增：初始折叠状态开关
+  // 从 window.THEME_CONFIG 中获取配置
+  const copyButtonConfig = window.THEME_CONFIG.code_block.copy_button;
+  const themeToggleEnable = window.THEME_CONFIG.code_block.theme_toggle.enable === 'true';
+  const macEnhancerEnable = window.THEME_CONFIG.code_block.mac_enhancer.enable === 'true';
+  const initFoldedStatus = window.THEME_CONFIG.code_block.mac_enhancer.init_folded_status === 'true'; // 新增：初始折叠状态开关
   
   const themeToggleConfig = {
     enable: themeToggleEnable,
-    to_light_button: bodyDataset.codeBlockThemeToggleToLightButton,
-    to_dark_button: bodyDataset.codeBlockThemeToggleToDarkButton,
+    to_light_button: window.THEME_CONFIG.code_block.theme_toggle.to_light_button,
+    to_dark_button: window.THEME_CONFIG.code_block.theme_toggle.to_dark_button,
+    light_theme: window.THEME_CONFIG.code_block.theme_toggle.light_theme,
+    dark_theme: window.THEME_CONFIG.code_block.theme_toggle.dark_theme,
   };
 
   // *** 函数定义：创建代码块头部 ***
@@ -80,50 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // *** 函数定义：添加主题切换按钮 ***
-  function addThemeToggleButton(actionsContainer, codeBlock, toggleConfig) {
-    if (!toggleConfig || !toggleConfig.enable) return;
-
-    const lightButton = document.createElement('button');
-    lightButton.className = 'theme-toggle-btn light';
-    const lightIcon = document.createElement('img');
-    lightIcon.src = '/' + toggleConfig.to_dark_button;
-    lightButton.appendChild(lightIcon);
-
-    const darkButton = document.createElement('button');
-    darkButton.className = 'theme-toggle-btn dark';
-    const darkIcon = document.createElement('img');
-    darkIcon.src = '/' + toggleConfig.to_light_button;
-    darkButton.appendChild(darkIcon);
-
-    // Initial state: assume light theme is default
-    darkButton.style.display = 'inline-block';
-    lightButton.style.display = 'none';
-
-    actionsContainer.appendChild(lightButton);
-    actionsContainer.appendChild(darkButton);
-
-    darkButton.addEventListener('click', () => {
-      const figure = darkButton.closest('figure.highlight');
-      if (figure) {
-        figure.classList.remove('theme-light');
-        figure.classList.add('theme-dark');
-      }
-      darkButton.style.display = 'none';
-      lightButton.style.display = 'inline-block';
-    });
-
-    lightButton.addEventListener('click', () => {
-      const figure = lightButton.closest('figure.highlight');
-      if (figure) {
-        figure.classList.remove('theme-dark');
-        figure.classList.add('theme-light');
-      }
-      lightButton.style.display = 'none';
-      darkButton.style.display = 'inline-block';
-    });
-  }
-
   // *** 函数定义：添加Mac风格交通灯 ***
   function addMacTrafficLights(header, codeBlock) {
     header.classList.add('mac-style');
@@ -175,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 添加主题切换按钮
     if (themeToggleConfig.enable) {
-      addThemeToggleButton(actionsContainer, codeBlock, themeToggleConfig);
+      window.addThemeToggleButton(actionsContainer, codeBlock, themeToggleConfig);
       // 默认设置为浅色主题，与CSS变量的默认值保持一致
       codeBlock.classList.add('theme-light');
     }

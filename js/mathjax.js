@@ -9,8 +9,7 @@
     // 动态加载 MathJax 脚本
     var script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = window.THEME_CONFIG.mathjax.src ||
-      'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
     script.async = true;
   
     // 可选：自定义 MathJax 配置

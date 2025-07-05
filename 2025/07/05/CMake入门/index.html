@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    CMake入门
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'true'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">CMake入门</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CMake%E5%85%A5%E9%97%A8"><span class="toc-number">1.</span> <span class="toc-text">CMake入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.1.</span> <span class="toc-text">CMake简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95%E8%AE%BE%E8%AE%A1%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.2.</span> <span class="toc-text">C++工程目录设计最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.3.</span> <span class="toc-text">CMake基本编译原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.4.</span> <span class="toc-text">CMakeLists.txt编写原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.5.</span> <span class="toc-text">CMakeLists.txt配置具体含义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.5.1.</span> <span class="toc-text">指定CMake的最低版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%91%BD%E5%90%8D"><span class="toc-number">1.5.2.</span> <span class="toc-text">项目命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E5%AE%9AC-%E6%A0%87%E5%87%86"><span class="toc-number">1.5.3.</span> <span class="toc-text">指定C++标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%BC%96%E8%AF%91%E5%99%A8%E8%B7%AF%E5%BE%84"><span class="toc-number">1.5.4.</span> <span class="toc-text">设置编译器路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%BA%90%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-number">1.5.5.</span> <span class="toc-text">设置源文件目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84"><span class="toc-number">1.5.6.</span> <span class="toc-text">添加头文件路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E7%9B%AE%E6%A0%87%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6"><span class="toc-number">1.5.7.</span> <span class="toc-text">生成目标可执行文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E5%BA%93%E7%9A%84%E5%BC%95%E7%94%A8"><span class="toc-number">1.6.</span> <span class="toc-text">外部库的引用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fmt%E5%BA%93"><span class="toc-number">1.6.1.</span> <span class="toc-text">fmt库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-number">1.7.</span> <span class="toc-text">注意</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.7.1.</span> <span class="toc-text">相对路径问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.8.</span> <span class="toc-text">示例</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">CMake入门</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 5日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Cpp</div>
+        
+        <div class="tag-item">CMake</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h1 id="CMake入门"><a href="#CMake入门" class="headerlink" title="CMake入门"></a>CMake入门</h1>
+<h2><code>CMake</code>简介</h2>
+<p><code>CMake</code> 是一个跨平台的构建系统生成工具，用于管理编译过程，其主要功能如下：</p>
+<ul>
+<li>通过读取配置文件（<code>CMakeLists.txt</code>）</li>
+<li>生成特定于平台的构建文件（如 <code>Makefile</code> 或 Visual Studio 工程文件）；</li>
+<li>帮助用户管理项目的依赖关系、编译流程等；</li>
+</ul>
+<p>也就是说<code>CMake</code>是一套交叉编译的工具链，通过<code>CMake</code>我们可以更好地管理项目结构；</p>
+<p><code>CMake</code> 相比于传统的构建工具（如直接编写 <code>Makefile</code>），具有以下几个核心特性：</p>
+<ul>
+<li>
+<p><strong>跨平台</strong>：CMake 支持多个平台（如 <code>Windows</code>、<code>Linux</code>、<code>macOS</code>)和编译器(<code>GCC</code>、<code>Clang</code>、<code>MSVC</code> 等），通过生成平台特定的构建系统文件，能够帮助开发者更轻松地在不同平台上编译项目。</p>
+</li>
+<li>
+<p><strong>依赖管理</strong>：<code>CMake</code> 能够自动检测并配置项目的依赖库，确保在编译过程中正确地链接外部库。例如，它可以通过 <code>find_package</code> 指令查找和配置第三方库。</p>
+</li>
+<li>
+<p><strong>增量编译</strong>：<code>CMake</code> 支持增量编译机制。当源代码部分更新时，它只会重新编译受影响的部分，减少不必要的编译时间。</p>
+</li>
+<li>
+<p><strong>模块化与可扩展性</strong>：<code>CMake</code> 允许用户编写模块和脚本，用于管理更复杂的项目结构。它提供了丰富的指令集来配置编译流程，并且可以通过编写自定义的模块扩展其功能。</p>
+</li>
+<li>
+<p><strong>可集成性</strong>：<code>CMake</code> 可以生成多种构建工具的配置文件，支持不同的 IDE 和构建系统；</p>
+</li>
+</ul>
+<h2 id="C-工程目录设计最佳实践"><a href="#C-工程目录设计最佳实践" class="headerlink" title="C++工程目录设计最佳实践"></a>C++工程目录设计最佳实践</h2>
+<p>一个典型的 C++ 项目目录结构应该具有清晰的分层，常见的目录和文件如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/project-root</span><br><span class="line">├── CMakeLists.txt       # 项目的主 CMake 配置文件</span><br><span class="line">├── src/                 # 源文件目录</span><br><span class="line">│   ├── main.cpp         # 主程序入口</span><br><span class="line">│   ├── module1.cpp      # 模块1的源文件</span><br><span class="line">│   ├── module2.cpp      # 模块2的源文件</span><br><span class="line">├── include/             # 公共头文件目录</span><br><span class="line">│   ├── module1.h        # 模块1的头文件</span><br><span class="line">│   ├── module2.h        # 模块2的头文件</span><br><span class="line">├── lib/                 # 外部库（静态或动态库）存放目录</span><br><span class="line">├── bin/                 # 存放二进制文件</span><br><span class="line">├── tests/               # 测试代码</span><br><span class="line">│   ├── CMakeLists.txt   # 测试目录的 CMake 文件</span><br><span class="line">│   ├── test_module1.cpp # 测试模块1的单元测试</span><br><span class="line">├── examples/            # 示例代码</span><br><span class="line">├── docs/                # 文档（用户指南、API 文档等）</span><br><span class="line">├── build/               # 构建生成目录（通常不放入源码控制系统中）</span><br><span class="line">├── scripts/             # 构建、部署、运行等自动化脚本</span><br><span class="line">├── README.md            # 项目说明文件</span><br><span class="line">└── LICENSE              # 项目许可证</span><br></pre></td></tr></table></figure>
+<p>除此之外，仍有一些细节需要注意：</p>
+<ol>
+<li>
+<p><strong><code>src/</code> 和 <code>include/</code> 目录分离</strong></p>
+<ul>
+<li>
+<p><code>src/</code> 中应该存放项目的 <code>.cpp</code>、<code>.c</code> 文件，即项目的具体实现代码。</p>
+</li>
+<li>
+<p><code>include/</code>则存放公共的 <code>.h</code>、<code>.hpp</code> 文件，这些头文件定义了接口，并且其他项目或模块可以包含这些头文件。</p>
+</li>
+<li>
+<p>使用这种分离策略有助于清晰地定义哪些文件是实现细节，哪些文件是对外暴露的接口；</p>
+</li>
+<li>
+<p>注意在头文件中不要<code>using namespace std;</code>;</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>模块化管理</strong></p>
+<ul>
+<li>
+<p>对于中大型项目，将代码划分为多个逻辑模块或库会使项目更具可维护性和可扩展性;</p>
+</li>
+<li>
+<p>每个模块通常有自己的源文件和头文件;</p>
+</li>
+<li>
+<p>每个模块应该尽量自包含，模块的头文件和实现文件可以放在各自的子目录下,例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/project-root</span><br><span class="line">├── src/</span><br><span class="line">│   ├── module1/</span><br><span class="line">│   │   ├── module1.cpp</span><br><span class="line">│   │   └── CMakeLists.txt</span><br><span class="line">│   ├── module2/</span><br><span class="line">│   │   ├── module2.cpp</span><br><span class="line">│   │   └── CMakeLists.txt</span><br><span class="line">├── include/</span><br><span class="line">│   ├── module1/</span><br><span class="line">│   │   └── module1.h</span><br><span class="line">│   ├── module2/</span><br><span class="line">│   │   └── module2.h</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>依赖管理</strong></p>
+<ul>
+<li><code>lib/</code> 目录：推荐通过自动化脚本或包管理工具自动下载和构建依赖，而非手动放入外部库的二进制文件；</li>
+<li><code>third_party/</code> 目录：将外部依赖源代码放在 <code>third_party/</code> 目录中，并使用 <code>CMake</code> 或其他工具集成；</li>
+</ul>
+</li>
+<li>
+<p><strong>测试目录结构</strong></p>
+<ul>
+<li><code>tests/</code> 目录应该用于存放所有的测试代码；</li>
+<li>推荐使用与项目主目录相同的模块化结构，保证测试代码清晰、独立，方便集成到 CI/CD 流程中</li>
+</ul>
+</li>
+<li>
+<p><strong>文档目录</strong></p>
+<ul>
+<li><code>docs/</code> 目录用于存放项目的文档资料，文档可以包含项目概述、API 文档、使用指南、开发者指南等。</li>
+<li>推荐使用 <code>Doxygen</code>并将其保存在此目录中;</li>
+</ul>
+</li>
+<li>
+<p><strong>构建输出目录</strong></p>
+<ul>
+<li><code>build/</code>** 目录用于存放项目的构建输出文件（如中间文件、可执行文件等）。</li>
+<li>为了避免污染源码目录，建议将构建生成的文件放入单独的 <code>build/</code> 目录中，并将此目录加入 <code>.gitignore</code> 中，防止其被加入版本控制;</li>
+</ul>
+</li>
+<li>
+<p><strong>使用脚本自动化流程</strong></p>
+<ul>
+<li><code>scripts/</code> 目录可以用于存放一些常用的自动化脚本，如构建、清理、测试、打包、发布等脚本。</li>
+<li>通常包括<code>build.sh, test.sh, deploy.sh</code></li>
+</ul>
+</li>
+<li></li>
+</ol>
+<h2><code>CMake</code>基本编译原理</h2>
+<p><code>CMake</code> 的编译过程可以分为几个主要步骤：</p>
+<ol>
+<li>
+<p><strong>配置阶段</strong>：</p>
+<ol>
+<li>读取 <code>CMakeLists.txt</code> 文件：
+<ul>
+<li><code>CMake</code> 通过解析项目中的 <code>CMakeLists.txt</code> 文件来获取项目信息（源文件、依赖库、编译选项等）;</li>
+</ul>
+</li>
+<li>生成构建系统：
+<ul>
+<li>``CMake<code>解析</code>CMakeLists.txt` 后，基于当前平台和用户指定的生成器生成特定的构建系统文件这些生成的文件控制项目的编译流程;</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>生成阶段</strong>：</p>
+<ul>
+<li><code>CMake</code> 根据配置阶段的结果，生成构建文件(如<code>IDE</code>工程文件)，详细描述了如何从源代码生成目标文件;</li>
+<li><code>CMake</code>不直接编译代码，而是通过生成的构建系统文件调用具体的编译工具链来进行编译。</li>
+</ul>
+</li>
+<li>
+<p><strong>编译阶段</strong>：</p>
+<ul>
+<li>用户运行生成的构建系统（例如执行 <code>make</code> 命令），调用编译器编译源代码，生成目标文件（如 <code>.o</code> 文件）。</li>
+<li>链接目标文件，生成最终的可执行文件或库文件（如 <code>.exe</code> 或 <code>.so/.dll</code> 文件）。</li>
+</ul>
+</li>
+</ol>
+<p>简要来说，如果我的项目遵循上述的最佳实践的话，可以通过一个文件编写两条命令实现：</p>
+<ul>
+<li>编写<code>CMakeLists.txt</code>;</li>
+<li><code>cmake .</code></li>
+<li><code>cmake --build .</code></li>
+</ul>
+<h2><code>CMakeLists.txt</code>编写原则</h2>
+<ol>
+<li>
+<p><strong>模块化</strong>:</p>
+<ul>
+<li>将项目配置划分为多个 <code>CMake</code> 文件；</li>
+<li>使用变量来避免重复代码，并通过函数/宏封装复杂的操作。</li>
+</ul>
+</li>
+<li>
+<p><strong>指定最低版本要求</strong></p>
+<ul>
+<li>每个项目的 <code>CMakeLists.txt</code> 中明确指定所需的最低 CMake 版本；</li>
+</ul>
+</li>
+<li>
+<p><strong>项目声明</strong></p>
+<ul>
+<li>定义项目名称和相关语言</li>
+</ul>
+</li>
+<li>
+<p><strong>管理编译选项</strong>：</p>
+<ul>
+<li>设置编译器选项：通过 <code>target_compile_options()</code> 为目标指定编译器选项，而不是使用全局变量 <code>CMAKE_CXX_FLAGS</code>，这样可以避免全局配置导致的不必要副作用。</li>
+<li>使用 <code>CMAKE_BUILD_TYPE</code>：通过 <code>CMAKE_BUILD_TYPE</code> 设置构建模式（如 <code>Debug</code> 或 <code>Release</code>）。在实际项目中，建议允许用户在命令行中指定，而非硬编码在 <code>CMakeLists.txt</code> 中；</li>
+</ul>
+</li>
+<li>
+<p><strong>处理依赖项</strong>：</p>
+<ul>
+<li>如果项目依赖于外部库，使用 <code>find_package()</code> 查找库，并根据需要设置是否强制要求该库；</li>
+<li>对于一些外部库，可以使用 <code>FetchContent</code> 下载和构建它们，避免手动配置；</li>
+</ul>
+</li>
+<li>
+<p><strong>管理源文件</strong></p>
+<ul>
+<li>将源文件列表集中管理，并根据项目结构清晰划分。例如，可以将源文件分组，并使用 <code>file()</code> 或变量存储文件路径；</li>
+</ul>
+</li>
+<li>
+<p><strong>启用自动化测试</strong>：</p>
+<ul>
+<li>建议为项目配置测试框架，并使用 CMake 的 <code>enable_testing()</code> 和 <code>add_test()</code> 来集成测试</li>
+</ul>
+</li>
+<li>
+<p><strong>多平台支持</strong>：</p>
+<ul>
+<li>
+<p><strong>检查系统特性</strong>：使用 <code>if()</code> 检查不同的平台或编译器选项，并在 <code>CMakeLists.txt</code> 中做出适应性调整。</p>
+</li>
+<li>
+<p><strong>设置跨平台编译选项</strong>：使用 <code>target_compile_options()</code> 和 <code>target_link_libraries()</code> 管理特定平台的编译选项；</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>支持安装和打包</strong>：</p>
+<ul>
+<li>为了方便部署项目，可以在 <code>CMakeLists.txt</code> 中配置安装和打包规则。使用 <code>install()</code> 命令设置如何将生成的可执行文件、库和其他资源安装到系统路径;</li>
+</ul>
+</li>
+</ol>
+<h2><code>CMakeLists.txt</code>配置具体含义</h2>
+<h3>指定<code>CMake</code>的最低版本</h3>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.15</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="项目命名"><a href="#项目命名" class="headerlink" title="项目命名"></a>项目命名</h3>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">project</span>(MyDraft)</span><br></pre></td></tr></table></figure>
+<h3 id="指定C-标准"><a href="#指定C-标准" class="headerlink" title="指定C++标准"></a>指定C++标准</h3>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="设置编译器路径"><a href="#设置编译器路径" class="headerlink" title="设置编译器路径"></a>设置编译器路径</h3>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span>(CMAKE_C_COMPILER <span class="string">&quot;/usr/bin/gcc&quot;</span>)</span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_COMPILER <span class="string">&quot;/usr/bin/g++&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>确保它们<strong>只在项目第一次运行时配置</strong>, 避免重复配置,或者即使清除<code>CMake</code>缓存；</p>
+<h3 id="设置源文件目录"><a href="#设置源文件目录" class="headerlink" title="设置源文件目录"></a>设置源文件目录</h3>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">file</span>(GLOB SRC_LIST <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/src/tb/*.cpp&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="添加头文件路径"><a href="#添加头文件路径" class="headerlink" title="添加头文件路径"></a>添加头文件路径</h3>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include_directories</span>(<span class="keyword">include</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="生成目标可执行文件"><a href="#生成目标可执行文件" class="headerlink" title="生成目标可执行文件"></a>生成目标可执行文件</h3>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">add_executable</span>(tb <span class="variable">$&#123;SRC_LIST&#125;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="外部库的引用"><a href="#外部库的引用" class="headerlink" title="外部库的引用"></a>外部库的引用</h2>
+<h3 id="fmt库"><a href="#fmt库" class="headerlink" title="fmt库"></a>fmt库</h3>
+<p>从 CMake 3.11 开始，可以使用 FetchContent 自动 在 configure 时下载 {fmt} 作为依赖项：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span>(FetchContent)</span><br><span class="line"></span><br><span class="line">FetchContent_Declare(</span><br><span class="line">  fmt</span><br><span class="line">  GIT_REPOSITORY https://github.com/fmtlib/fmt</span><br><span class="line">  GIT_TAG        e69e5f977d458f2650bb346dadf2ad30c5320281) <span class="comment"># 10.2.1</span></span><br><span class="line">FetchContent_MakeAvailable(fmt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span>(&lt;your-<span class="keyword">target</span>&gt; fmt::fmt)</span><br></pre></td></tr></table></figure>
+<p>注意<code>&lt;your-target&gt;</code>应填写可执行文件的名称</p>
+<ul>
+<li>在编译的最后一步，链接器会把编译后的目标文件（即 <code>.o</code> 文件或 <code>.obj</code> 文件）与所依赖的外部库（如静态库 <code>.a</code> 文件或动态库 <code>.so</code>/<code>.dll</code> 文件）链接在一起，生成最终的可执行文件。因此，<code>target</code> 通常是这个最终生成的可执行文件的名称；</li>
+<li>如果项目中包含多个不同的可执行文件，每个可执行文件可能会依赖不同的库。在这种情况下，你可以为每个目标定义一个不同的 <code>target</code>，以便生成多个不同的可执行文件；</li>
+</ul>
+<p>在头文件内加入</p>
+<figure class="highlight hpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">define</span> FMT_HEADER_ONLY 	<span class="comment">//  推荐</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&quot;fmt/core.h&quot;</span> 		<span class="comment">//  char UTF-8主要的格式化函数，支持C++20编译时检查，依赖最小化。</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&quot;fmt/format.h&quot;</span> 	<span class="comment">//  完整的格式化API，除了额外的格式化函数之外，支持本地化（多语言支持）。</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&quot;fmt/ranges.h&quot;</span> 	<span class="comment">//  格式化ranges 和 tuples</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&quot;fmt/chrono.h&quot;</span> 	<span class="comment">// 	日期和时间的格式化。</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&quot;fmt/std.h&quot;</span> 		<span class="comment">// 	c++标准库类型的格式化支持。</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&quot;fmt/compile.&quot;</span> 	<span class="comment">//  格式化字符串的编译 (编译时格式化字符串检测)。FMT_STRING(s)</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&quot;fmt/color.h&quot;</span> 	<span class="comment">// 	端颜色和文本样式。</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&quot;fmt/os.h&quot;</span> 		<span class="comment">// 	提供系API。</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&quot;fmt/ostream.&quot;</span> 	<span class="comment">//  支持std::ostream。</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&quot;fmt/printf.h&quot;</span> 	<span class="comment">//  支持printf格式化。</span></span></span><br><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&quot;fmt/xchar.h&quot;</span> 	<span class="comment">//  选的wchar_t支持。</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2>
+<h3 id="相对路径问题"><a href="#相对路径问题" class="headerlink" title="相对路径问题"></a>相对路径问题</h3>
+<p>通常，工作目录是在命令行中运行可执行文件的地方;</p>
+<p>如果设置<code>bin/</code>为输出目录，那么需要一个上级目录<code>..</code>才能回到项目根目录；</p>
+<p>对于头文件的相对路径，通常会设置<code>include_directories(include)</code>,直接引用对应模块即可；</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2>
+<p>以下是一个<code>CMakeLists.txt</code></p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定`CMake`的最低版本</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.15</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 项目命名</span></span><br><span class="line"><span class="keyword">project</span>(MyDraft)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定 C++ 标准</span></span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_STANDARD <span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置编译器路径</span></span><br><span class="line"><span class="comment"># set(CMAKE_C_COMPILER &quot;/usr/bin/gcc&quot;)</span></span><br><span class="line"><span class="comment"># set(CMAKE_CXX_COMPILER &quot;/usr/bin/g++&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置可执行文件的输出目录</span></span><br><span class="line"><span class="keyword">SET</span>(CMAKE_RUNTIME_OUTPUT_DIRECTORY <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/bin&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加头文件路径</span></span><br><span class="line"><span class="keyword">include_directories</span>(<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置源文件目录</span></span><br><span class="line"><span class="keyword">file</span>(GLOB SRC_LIST <span class="string">&quot;$&#123;PROJECT_SOURCE_DIR&#125;/src/hello/*.cpp&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成目标可执行文件</span></span><br><span class="line"><span class="keyword">add_executable</span>(hello <span class="variable">$&#123;SRC_LIST&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 引入外部库</span></span><br><span class="line"><span class="keyword">include</span>(FetchContent)</span><br><span class="line"></span><br><span class="line">FetchContent_Declare(</span><br><span class="line">  fmt</span><br><span class="line">  GIT_REPOSITORY https://github.com/fmtlib/fmt</span><br><span class="line">  GIT_TAG        e69e5f977d458f2650bb346dadf2ad30c5320281) <span class="comment"># 10.2.1</span></span><br><span class="line">FetchContent_MakeAvailable(fmt)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span>(hello fmt::fmt)</span><br></pre></td></tr></table></figure>
+<p>我的目录树如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br></pre></td><td class="code"><pre><span class="line">.MyCMake</span><br><span class="line">├── bin</span><br><span class="line">│   └── hello</span><br><span class="line">├── build</span><br><span class="line">│   ├── CMakeCache.txt</span><br><span class="line">│   ├── CMakeFiles</span><br><span class="line">│   │   ├── 3.30.3</span><br><span class="line">│   │   │   ├── CMakeCCompiler.cmake</span><br><span class="line">│   │   │   ├── CMakeCXXCompiler.cmake</span><br><span class="line">│   │   │   ├── CMakeDetermineCompilerABI_C.bin</span><br><span class="line">│   │   │   ├── CMakeDetermineCompilerABI_CXX.bin</span><br><span class="line">│   │   │   ├── CMakeSystem.cmake</span><br><span class="line">│   │   │   ├── CompilerIdC</span><br><span class="line">│   │   │   │   ├── a.out</span><br><span class="line">│   │   │   │   ├── CMakeCCompilerId.c</span><br><span class="line">│   │   │   │   └── tmp</span><br><span class="line">│   │   │   └── CompilerIdCXX</span><br><span class="line">│   │   │       ├── a.out</span><br><span class="line">│   │   │       ├── CMakeCXXCompilerId.cpp</span><br><span class="line">│   │   │       └── tmp</span><br><span class="line">│   │   ├── cmake.check_cache</span><br><span class="line">│   │   ├── CMakeConfigureLog.yaml</span><br><span class="line">│   │   ├── CMakeDirectoryInformation.cmake</span><br><span class="line">│   │   ├── CMakeScratch</span><br><span class="line">│   │   ├── hello.dir</span><br><span class="line">│   │   │   ├── build.make</span><br><span class="line">│   │   │   ├── cmake_clean.cmake</span><br><span class="line">│   │   │   ├── compiler_depend.make</span><br><span class="line">│   │   │   ├── compiler_depend.ts</span><br><span class="line">│   │   │   ├── DependInfo.cmake</span><br><span class="line">│   │   │   ├── depend.make</span><br><span class="line">│   │   │   ├── flags.make</span><br><span class="line">│   │   │   ├── link.txt</span><br><span class="line">│   │   │   ├── progress.make</span><br><span class="line">│   │   │   └── src</span><br><span class="line">│   │   │       └── hello</span><br><span class="line">│   │   │           ├── hello.cpp.o</span><br><span class="line">│   │   │           └── hello.cpp.o.d</span><br><span class="line">│   │   ├── Makefile2</span><br><span class="line">│   │   ├── Makefile.cmake</span><br><span class="line">│   │   ├── pkgRedirects</span><br><span class="line">│   │   ├── progress.marks</span><br><span class="line">│   │   └── TargetDirectories.txt</span><br><span class="line">│   ├── cmake_install.cmake</span><br><span class="line">│   ├── _deps</span><br><span class="line">│   │   ├── fmt-build</span><br><span class="line">│   │   │   ├── CMakeFiles</span><br><span class="line">│   │   │   │   ├── CMakeDirectoryInformation.cmake</span><br><span class="line">│   │   │   │   ├── Export</span><br><span class="line">│   │   │   │   │   └── b834597d9b1628ff12ae4314c3a2e4b8</span><br><span class="line">│   │   │   │   │       ├── fmt-targets.cmake</span><br><span class="line">│   │   │   │   │       └── fmt-targets-noconfig.cmake</span><br><span class="line">│   │   │   │   ├── fmt.dir</span><br><span class="line">│   │   │   │   │   ├── build.make</span><br><span class="line">│   │   │   │   │   ├── cmake_clean.cmake</span><br><span class="line">│   │   │   │   │   ├── cmake_clean_target.cmake</span><br><span class="line">│   │   │   │   │   ├── compiler_depend.make</span><br><span class="line">│   │   │   │   │   ├── compiler_depend.ts</span><br><span class="line">│   │   │   │   │   ├── DependInfo.cmake</span><br><span class="line">│   │   │   │   │   ├── depend.make</span><br><span class="line">│   │   │   │   │   ├── flags.make</span><br><span class="line">│   │   │   │   │   ├── link.txt</span><br><span class="line">│   │   │   │   │   ├── progress.make</span><br><span class="line">│   │   │   │   │   └── src</span><br><span class="line">│   │   │   │   │       ├── format.cc.o</span><br><span class="line">│   │   │   │   │       ├── format.cc.o.d</span><br><span class="line">│   │   │   │   │       ├── os.cc.o</span><br><span class="line">│   │   │   │   │       └── os.cc.o.d</span><br><span class="line">│   │   │   │   └── progress.marks</span><br><span class="line">│   │   │   ├── cmake_install.cmake</span><br><span class="line">│   │   │   ├── fmt-config.cmake</span><br><span class="line">│   │   │   ├── fmt-config-version.cmake</span><br><span class="line">│   │   │   ├── fmt.pc</span><br><span class="line">│   │   │   ├── fmt-targets.cmake</span><br><span class="line">│   │   │   ├── libfmt.a</span><br><span class="line">│   │   │   └── Makefile</span><br><span class="line">│   │   ├── fmt-src</span><br><span class="line">│   │   │   ├── ChangeLog.md</span><br><span class="line">│   │   │   ├── CMakeLists.txt</span><br><span class="line">│   │   │   ├── CONTRIBUTING.md</span><br><span class="line">│   │   │   ├── doc</span><br><span class="line">│   │   │   │   ├── api.rst</span><br><span class="line">│   │   │   │   ├── basic-bootstrap</span><br><span class="line">│   │   │   │   │   ├── layout.html</span><br><span class="line">│   │   │   │   │   ├── README</span><br><span class="line">│   │   │   │   │   └── theme.conf</span><br><span class="line">│   │   │   │   ├── bootstrap</span><br><span class="line">│   │   │   │   │   ├── alerts.less</span><br><span class="line">│   │   │   │   │   ├── badges.less</span><br><span class="line">│   │   │   │   │   ├── bootstrap.less</span><br><span class="line">│   │   │   │   │   ├── breadcrumbs.less</span><br><span class="line">│   │   │   │   │   ├── button-groups.less</span><br><span class="line">│   │   │   │   │   ├── buttons.less</span><br><span class="line">│   │   │   │   │   ├── carousel.less</span><br><span class="line">│   │   │   │   │   ├── close.less</span><br><span class="line">│   │   │   │   │   ├── code.less</span><br><span class="line">│   │   │   │   │   ├── component-animations.less</span><br><span class="line">│   │   │   │   │   ├── dropdowns.less</span><br><span class="line">│   │   │   │   │   ├── forms.less</span><br><span class="line">│   │   │   │   │   ├── glyphicons.less</span><br><span class="line">│   │   │   │   │   ├── grid.less</span><br><span class="line">│   │   │   │   │   ├── input-groups.less</span><br><span class="line">│   │   │   │   │   ├── jumbotron.less</span><br><span class="line">│   │   │   │   │   ├── labels.less</span><br><span class="line">│   │   │   │   │   ├── list-group.less</span><br><span class="line">│   │   │   │   │   ├── media.less</span><br><span class="line">│   │   │   │   │   ├── mixins</span><br><span class="line">│   │   │   │   │   │   ├── alerts.less</span><br><span class="line">│   │   │   │   │   │   ├── background-variant.less</span><br><span class="line">│   │   │   │   │   │   ├── border-radius.less</span><br><span class="line">│   │   │   │   │   │   ├── buttons.less</span><br><span class="line">│   │   │   │   │   │   ├── center-block.less</span><br><span class="line">│   │   │   │   │   │   ├── clearfix.less</span><br><span class="line">│   │   │   │   │   │   ├── forms.less</span><br><span class="line">│   │   │   │   │   │   ├── gradients.less</span><br><span class="line">│   │   │   │   │   │   ├── grid-framework.less</span><br><span class="line">│   │   │   │   │   │   ├── grid.less</span><br><span class="line">│   │   │   │   │   │   ├── hide-text.less</span><br><span class="line">│   │   │   │   │   │   ├── image.less</span><br><span class="line">│   │   │   │   │   │   ├── labels.less</span><br><span class="line">│   │   │   │   │   │   ├── list-group.less</span><br><span class="line">│   │   │   │   │   │   ├── nav-divider.less</span><br><span class="line">│   │   │   │   │   │   ├── nav-vertical-align.less</span><br><span class="line">│   │   │   │   │   │   ├── opacity.less</span><br><span class="line">│   │   │   │   │   │   ├── pagination.less</span><br><span class="line">│   │   │   │   │   │   ├── panels.less</span><br><span class="line">│   │   │   │   │   │   ├── progress-bar.less</span><br><span class="line">│   │   │   │   │   │   ├── reset-filter.less</span><br><span class="line">│   │   │   │   │   │   ├── resize.less</span><br><span class="line">│   │   │   │   │   │   ├── responsive-visibility.less</span><br><span class="line">│   │   │   │   │   │   ├── size.less</span><br><span class="line">│   │   │   │   │   │   ├── tab-focus.less</span><br><span class="line">│   │   │   │   │   │   ├── table-row.less</span><br><span class="line">│   │   │   │   │   │   ├── text-emphasis.less</span><br><span class="line">│   │   │   │   │   │   ├── text-overflow.less</span><br><span class="line">│   │   │   │   │   │   └── vendor-prefixes.less</span><br><span class="line">│   │   │   │   │   ├── mixins.less</span><br><span class="line">│   │   │   │   │   ├── modals.less</span><br><span class="line">│   │   │   │   │   ├── navbar.less</span><br><span class="line">│   │   │   │   │   ├── navs.less</span><br><span class="line">│   │   │   │   │   ├── normalize.less</span><br><span class="line">│   │   │   │   │   ├── pager.less</span><br><span class="line">│   │   │   │   │   ├── pagination.less</span><br><span class="line">│   │   │   │   │   ├── panels.less</span><br><span class="line">│   │   │   │   │   ├── popovers.less</span><br><span class="line">│   │   │   │   │   ├── print.less</span><br><span class="line">│   │   │   │   │   ├── progress-bars.less</span><br><span class="line">│   │   │   │   │   ├── responsive-embed.less</span><br><span class="line">│   │   │   │   │   ├── responsive-utilities.less</span><br><span class="line">│   │   │   │   │   ├── scaffolding.less</span><br><span class="line">│   │   │   │   │   ├── tables.less</span><br><span class="line">│   │   │   │   │   ├── theme.less</span><br><span class="line">│   │   │   │   │   ├── thumbnails.less</span><br><span class="line">│   │   │   │   │   ├── tooltip.less</span><br><span class="line">│   │   │   │   │   ├── type.less</span><br><span class="line">│   │   │   │   │   ├── utilities.less</span><br><span class="line">│   │   │   │   │   ├── variables.less</span><br><span class="line">│   │   │   │   │   └── wells.less</span><br><span class="line">│   │   │   │   ├── build.py</span><br><span class="line">│   │   │   │   ├── CMakeLists.txt</span><br><span class="line">│   │   │   │   ├── conf.py</span><br><span class="line">│   │   │   │   ├── contents.rst</span><br><span class="line">│   │   │   │   ├── fmt.less</span><br><span class="line">│   │   │   │   ├── index.rst</span><br><span class="line">│   │   │   │   ├── python-license.txt</span><br><span class="line">│   │   │   │   ├── _static</span><br><span class="line">│   │   │   │   │   ├── bootstrap.min.js</span><br><span class="line">│   │   │   │   │   ├── breathe.css</span><br><span class="line">│   │   │   │   │   └── fonts</span><br><span class="line">│   │   │   │   │       ├── glyphicons-halflings-regular.eot</span><br><span class="line">│   │   │   │   │       ├── glyphicons-halflings-regular.svg</span><br><span class="line">│   │   │   │   │       ├── glyphicons-halflings-regular.ttf</span><br><span class="line">│   │   │   │   │       └── glyphicons-halflings-regular.woff</span><br><span class="line">│   │   │   │   ├── syntax.rst</span><br><span class="line">│   │   │   │   ├── _templates</span><br><span class="line">│   │   │   │   │   ├── layout.html</span><br><span class="line">│   │   │   │   │   └── search.html</span><br><span class="line">│   │   │   │   └── usage.rst</span><br><span class="line">│   │   │   ├── include</span><br><span class="line">│   │   │   │   └── fmt</span><br><span class="line">│   │   │   │       ├── args.h</span><br><span class="line">│   │   │   │       ├── chrono.h</span><br><span class="line">│   │   │   │       ├── color.h</span><br><span class="line">│   │   │   │       ├── compile.h</span><br><span class="line">│   │   │   │       ├── core.h</span><br><span class="line">│   │   │   │       ├── format.h</span><br><span class="line">│   │   │   │       ├── format-inl.h</span><br><span class="line">│   │   │   │       ├── os.h</span><br><span class="line">│   │   │   │       ├── ostream.h</span><br><span class="line">│   │   │   │       ├── printf.h</span><br><span class="line">│   │   │   │       ├── ranges.h</span><br><span class="line">│   │   │   │       ├── std.h</span><br><span class="line">│   │   │   │       └── xchar.h</span><br><span class="line">│   │   │   ├── LICENSE</span><br><span class="line">│   │   │   ├── README.md</span><br><span class="line">│   │   │   ├── src</span><br><span class="line">│   │   │   │   ├── fmt.cc</span><br><span class="line">│   │   │   │   ├── format.cc</span><br><span class="line">│   │   │   │   └── os.cc</span><br><span class="line">│   │   │   ├── support</span><br><span class="line">│   │   │   │   ├── AndroidManifest.xml</span><br><span class="line">│   │   │   │   ├── Android.mk</span><br><span class="line">│   │   │   │   ├── bazel</span><br><span class="line">│   │   │   │   │   ├── BUILD.bazel</span><br><span class="line">│   │   │   │   │   ├── README.md</span><br><span class="line">│   │   │   │   │   └── WORKSPACE.bazel</span><br><span class="line">│   │   │   │   ├── build-docs.py</span><br><span class="line">│   │   │   │   ├── build.gradle</span><br><span class="line">│   │   │   │   ├── cmake</span><br><span class="line">│   │   │   │   │   ├── FindSetEnv.cmake</span><br><span class="line">│   │   │   │   │   ├── fmt-config.cmake.in</span><br><span class="line">│   │   │   │   │   ├── fmt.pc.in</span><br><span class="line">│   │   │   │   │   └── JoinPaths.cmake</span><br><span class="line">│   │   │   │   ├── compute-powers.py</span><br><span class="line">│   │   │   │   ├── C++.sublime-syntax</span><br><span class="line">│   │   │   │   ├── docopt.py</span><br><span class="line">│   │   │   │   ├── manage.py</span><br><span class="line">│   │   │   │   ├── printable.py</span><br><span class="line">│   │   │   │   ├── README</span><br><span class="line">│   │   │   │   ├── rtd</span><br><span class="line">│   │   │   │   │   ├── conf.py</span><br><span class="line">│   │   │   │   │   ├── index.rst</span><br><span class="line">│   │   │   │   │   └── theme</span><br><span class="line">│   │   │   │   │       ├── layout.html</span><br><span class="line">│   │   │   │   │       └── theme.conf</span><br><span class="line">│   │   │   │   └── Vagrantfile</span><br><span class="line">│   │   │   └── test</span><br><span class="line">│   │   │       ├── add-subdirectory-test</span><br><span class="line">│   │   │       │   ├── CMakeLists.txt</span><br><span class="line">│   │   │       │   └── main.cc</span><br><span class="line">│   │   │       ├── args-test.cc</span><br><span class="line">│   │   │       ├── assert-test.cc</span><br><span class="line">│   │   │       ├── chrono-test.cc</span><br><span class="line">│   │   │       ├── CMakeLists.txt</span><br><span class="line">│   │   │       ├── color-test.cc</span><br><span class="line">│   │   │       ├── compile-error-test</span><br><span class="line">│   │   │       │   └── CMakeLists.txt</span><br><span class="line">│   │   │       ├── compile-fp-test.cc</span><br><span class="line">│   │   │       ├── compile-test.cc</span><br><span class="line">│   │   │       ├── core-test.cc</span><br><span class="line">│   │   │       ├── cuda-test</span><br><span class="line">│   │   │       │   ├── CMakeLists.txt</span><br><span class="line">│   │   │       │   ├── cpp14.cc</span><br><span class="line">│   │   │       │   └── cuda-cpp14.cu</span><br><span class="line">│   │   │       ├── detect-stdfs.cc</span><br><span class="line">│   │   │       ├── enforce-checks-test.cc</span><br><span class="line">│   │   │       ├── find-package-test</span><br><span class="line">│   │   │       │   ├── CMakeLists.txt</span><br><span class="line">│   │   │       │   └── main.cc</span><br><span class="line">│   │   │       ├── format-impl-test.cc</span><br><span class="line">│   │   │       ├── format-test.cc</span><br><span class="line">│   │   │       ├── fuzzing</span><br><span class="line">│   │   │       │   ├── build.sh</span><br><span class="line">│   │   │       │   ├── chrono-duration.cc</span><br><span class="line">│   │   │       │   ├── chrono-timepoint.cc</span><br><span class="line">│   │   │       │   ├── CMakeLists.txt</span><br><span class="line">│   │   │       │   ├── float.cc</span><br><span class="line">│   │   │       │   ├── fuzzer-common.h</span><br><span class="line">│   │   │       │   ├── main.cc</span><br><span class="line">│   │   │       │   ├── named-arg.cc</span><br><span class="line">│   │   │       │   ├── one-arg.cc</span><br><span class="line">│   │   │       │   ├── README.md</span><br><span class="line">│   │   │       │   └── two-args.cc</span><br><span class="line">│   │   │       ├── gtest</span><br><span class="line">│   │   │       │   ├── CMakeLists.txt</span><br><span class="line">│   │   │       │   ├── gmock</span><br><span class="line">│   │   │       │   │   └── gmock.h</span><br><span class="line">│   │   │       │   ├── gmock-gtest-all.cc</span><br><span class="line">│   │   │       │   └── gtest</span><br><span class="line">│   │   │       │       ├── gtest.h</span><br><span class="line">│   │   │       │       └── gtest-spi.h</span><br><span class="line">│   │   │       ├── gtest-extra.cc</span><br><span class="line">│   │   │       ├── gtest-extra.h</span><br><span class="line">│   │   │       ├── gtest-extra-test.cc</span><br><span class="line">│   │   │       ├── header-only-test.cc</span><br><span class="line">│   │   │       ├── mock-allocator.h</span><br><span class="line">│   │   │       ├── module-test.cc</span><br><span class="line">│   │   │       ├── noexception-test.cc</span><br><span class="line">│   │   │       ├── os-test.cc</span><br><span class="line">│   │   │       ├── ostream-test.cc</span><br><span class="line">│   │   │       ├── posix-mock.h</span><br><span class="line">│   │   │       ├── posix-mock-test.cc</span><br><span class="line">│   │   │       ├── printf-test.cc</span><br><span class="line">│   │   │       ├── ranges-odr-test.cc</span><br><span class="line">│   │   │       ├── ranges-test.cc</span><br><span class="line">│   │   │       ├── scan.h</span><br><span class="line">│   │   │       ├── scan-test.cc</span><br><span class="line">│   │   │       ├── static-export-test</span><br><span class="line">│   │   │       │   ├── CMakeLists.txt</span><br><span class="line">│   │   │       │   ├── library.cc</span><br><span class="line">│   │   │       │   └── main.cc</span><br><span class="line">│   │   │       ├── std-test.cc</span><br><span class="line">│   │   │       ├── test-assert.h</span><br><span class="line">│   │   │       ├── test-main.cc</span><br><span class="line">│   │   │       ├── unicode-test.cc</span><br><span class="line">│   │   │       ├── util.cc</span><br><span class="line">│   │   │       ├── util.h</span><br><span class="line">│   │   │       └── xchar-test.cc</span><br><span class="line">│   │   └── fmt-subbuild</span><br><span class="line">│   │       ├── CMakeCache.txt</span><br><span class="line">│   │       ├── CMakeFiles</span><br><span class="line">│   │       │   ├── 3.30.3</span><br><span class="line">│   │       │   │   └── CMakeSystem.cmake</span><br><span class="line">│   │       │   ├── cmake.check_cache</span><br><span class="line">│   │       │   ├── CMakeConfigureLog.yaml</span><br><span class="line">│   │       │   ├── CMakeDirectoryInformation.cmake</span><br><span class="line">│   │       │   ├── CMakeRuleHashes.txt</span><br><span class="line">│   │       │   ├── fmt-populate-complete</span><br><span class="line">│   │       │   ├── fmt-populate.dir</span><br><span class="line">│   │       │   │   ├── build.make</span><br><span class="line">│   │       │   │   ├── cmake_clean.cmake</span><br><span class="line">│   │       │   │   ├── compiler_depend.make</span><br><span class="line">│   │       │   │   ├── compiler_depend.ts</span><br><span class="line">│   │       │   │   ├── DependInfo.cmake</span><br><span class="line">│   │       │   │   ├── Labels.json</span><br><span class="line">│   │       │   │   ├── Labels.txt</span><br><span class="line">│   │       │   │   └── progress.make</span><br><span class="line">│   │       │   ├── Makefile2</span><br><span class="line">│   │       │   ├── Makefile.cmake</span><br><span class="line">│   │       │   ├── pkgRedirects</span><br><span class="line">│   │       │   ├── progress.marks</span><br><span class="line">│   │       │   └── TargetDirectories.txt</span><br><span class="line">│   │       ├── cmake_install.cmake</span><br><span class="line">│   │       ├── CMakeLists.txt</span><br><span class="line">│   │       ├── fmt-populate-prefix</span><br><span class="line">│   │       │   ├── src</span><br><span class="line">│   │       │   │   └── fmt-populate-stamp</span><br><span class="line">│   │       │   │       ├── fmt-populate-build</span><br><span class="line">│   │       │   │       ├── fmt-populate-configure</span><br><span class="line">│   │       │   │       ├── fmt-populate-done</span><br><span class="line">│   │       │   │       ├── fmt-populate-download</span><br><span class="line">│   │       │   │       ├── fmt-populate-gitclone-lastrun.txt</span><br><span class="line">│   │       │   │       ├── fmt-populate-gitinfo.txt</span><br><span class="line">│   │       │   │       ├── fmt-populate-install</span><br><span class="line">│   │       │   │       ├── fmt-populate-mkdir</span><br><span class="line">│   │       │   │       ├── fmt-populate-patch</span><br><span class="line">│   │       │   │       ├── fmt-populate-patch-info.txt</span><br><span class="line">│   │       │   │       ├── fmt-populate-test</span><br><span class="line">│   │       │   │       └── fmt-populate-update-info.txt</span><br><span class="line">│   │       │   └── tmp</span><br><span class="line">│   │       │       ├── fmt-populate-cfgcmd.txt</span><br><span class="line">│   │       │       ├── fmt-populate-gitclone.cmake</span><br><span class="line">│   │       │       ├── fmt-populate-gitupdate.cmake</span><br><span class="line">│   │       │       └── fmt-populate-mkdirs.cmake</span><br><span class="line">│   │       └── Makefile</span><br><span class="line">│   └── Makefile</span><br><span class="line">├── CMakeLists.txt</span><br><span class="line">├── doc</span><br><span class="line">│   └── CMake入门.md</span><br><span class="line">├── include</span><br><span class="line">│   └── hello</span><br><span class="line">│       └── hello.hpp</span><br><span class="line">├── lib</span><br><span class="line">└── src</span><br><span class="line">    └── hello</span><br><span class="line">        └── hello.cpp</span><br><span class="line">61 directories, 294 files</span><br></pre></td></tr></table></figure>
+<p>我编写了一个引用外部库<code>fmt</code>输出<code>hello,world</code>的程序<code>src/hello/hello.cpp</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># include &quot;hello/hello.hpp&quot;</span><br><span class="line"></span><br><span class="line">void stdSayHello(int i)&#123;</span><br><span class="line">    while(i--) fmt::print(&quot;hello world_&#123;&#125;\n&quot;, i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void fmtSayHello(int i)&#123;</span><br><span class="line">    while(i--) std::cout&lt;&lt; &quot;hello world_&quot;&lt;&lt;i&lt;&lt;std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    stdSayHello(3);</span><br><span class="line">    fmtSayHello(3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>include/</code>中，头文件<code>include/hello/hello.hpp</code>也很简单：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line"># define FMT_HEADER_ONLY 	//  推荐</span><br><span class="line"># include &quot;fmt/core.h&quot; </span><br></pre></td></tr></table></figure>
+<p><code>cd build &amp; cmake .. &amp; cmake --build .</code>执行便在<code>bin/</code>生成了可执行文件，这表明我们编译成功了！</p>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

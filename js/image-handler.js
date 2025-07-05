@@ -4,9 +4,9 @@
  * 配置通过 <body data-image-center="true" data-image-caption="true"> 注入
  */
 document.addEventListener('DOMContentLoaded', () => {
-  const body = document.body;
-  const center = body.dataset.imageCenter === 'true';
-  const caption = body.dataset.imageCaption === 'true';
+  // const body = document.body; // 移除此行
+  const center = window.THEME_CONFIG.image.center === 'true';
+  const caption = window.THEME_CONFIG.image.caption === 'true';
 
   if (!center && !caption) return;
 

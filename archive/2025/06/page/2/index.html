@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  
+<meta charset="utf-8" />
   <!-- 标签页 -->
   <!-- 标签页 -->
 <title>
@@ -11,26 +11,63 @@
 <link rel="shortcut icon" href="/icon.svg">
 
 
-  <body 
-    
-      data-image-center="true"
-      data-image-caption="true"
-    
-    
-      data-code-block-copy-button="icon/copy.svg"
-      data-code-block-theme-toggle-enable="true"
-      data-code-block-theme-toggle-to-light-button="icon/light-codeblock.svg"
-      data-code-block-theme-toggle-to-dark-button="icon/dark-codeblock.svg"
-      data-code-block-mac-enhancer="true"
-      
-      data-code-block-mac-enhancer-init-folded-status="true"
-      
-  
->
-    <script> window.THEME_CONFIG = {}; </script>
-              
+  <body>  
     <!-- 配置引用 -->
-    
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'true'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -39,8 +76,8 @@
     <!-- 字体 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <!-- 代码块 -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -120,12 +157,12 @@
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
   <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
-
-  
 </head>
-    
-    <!-- 导航栏 -->
-    <!--(头部 top bar) Header 样式 -->
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
 
 <link rel="stylesheet" href="/css/header.css">
 
@@ -140,13 +177,6 @@
           <a href="/">
             <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
             index
-          </a>
-        </li>
-        
-        <li>
-          <a href="/list">
-            <img src="/icon/list.svg" alt="list icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
-            list
           </a>
         </li>
         
@@ -187,12 +217,18 @@
 <script src="/js/search.js"></script>
 
 
-    <!-- 路由 根据页面类型决定渲染内容 -->
-    <main class="main">
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
   
     <div class="archive">
 
       <h2>2025</h2>
+
+  <div class="timenode">
+    <a class="meta" href="/2025/06/20/%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90/">
+      <time>06-20</time> 语义分析
+    </a>
+  </div>
 
   <div class="timenode">
     <a class="meta" href="/2025/06/20/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">
@@ -214,7 +250,7 @@
 
 </div>
 
-<!-- 
+
 <div class="paginator">
   <a class="extend prev" rel="prev" href="/archive/2025/06/">&lt;</a><a class="page-number" href="/archive/2025/06/">1</a><span class="page-number current">2</span>
 </div>
@@ -222,7 +258,7 @@
 
 
 <link rel="stylesheet" href="/css/paginator.css">
- -->
+
 
 
 <link rel="stylesheet" href="/css/archive.css">
@@ -230,18 +266,34 @@
   
 </main>
 
-    <!-- 页脚 -->
-    <footer class="footer">
+      <!-- 页脚 -->
+      <footer class="footer">
   
   <span>Copyright © Kytolly(shiroi)</span>
   
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
 </footer>
 
 
 <link rel="stylesheet" href="/css/footer.css">
 
 
-    
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
   <div class="search-pop-overlay">
     <div class="popup search-popup">
       <div class="search-header">
@@ -270,6 +322,10 @@
 <link rel="stylesheet" href="/css/search.css">
 
 
+
+    </div>
+    
+<script src="/js/background.js"></script>
 
   </body>
 

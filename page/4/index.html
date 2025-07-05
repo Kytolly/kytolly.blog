@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  
+<meta charset="utf-8" />
   <!-- 标签页 -->
   <!-- 标签页 -->
 <title>
@@ -11,26 +11,63 @@
 <link rel="shortcut icon" href="/icon.svg">
 
 
-  <body 
-    
-      data-image-center="true"
-      data-image-caption="true"
-    
-    
-      data-code-block-copy-button="icon/copy.svg"
-      data-code-block-theme-toggle-enable="true"
-      data-code-block-theme-toggle-to-light-button="icon/light-codeblock.svg"
-      data-code-block-theme-toggle-to-dark-button="icon/dark-codeblock.svg"
-      data-code-block-mac-enhancer="true"
-      
-      data-code-block-mac-enhancer-init-folded-status="true"
-      
-  
->
-    <script> window.THEME_CONFIG = {}; </script>
-              
+  <body>  
     <!-- 配置引用 -->
-    
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'true'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -39,8 +76,8 @@
     <!-- 字体 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <!-- 代码块 -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -120,12 +157,12 @@
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
   <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
-
-  
 </head>
-    
-    <!-- 导航栏 -->
-    <!--(头部 top bar) Header 样式 -->
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
 
 <link rel="stylesheet" href="/css/header.css">
 
@@ -140,13 +177,6 @@
           <a href="/">
             <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
             index
-          </a>
-        </li>
-        
-        <li>
-          <a href="/list">
-            <img src="/icon/list.svg" alt="list icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
-            list
           </a>
         </li>
         
@@ -187,25 +217,292 @@
 <script src="/js/search.js"></script>
 
 
-    <!-- 路由 根据页面类型决定渲染内容 -->
-    <main class="main">
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
   
+    <div class="post-list">
     
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/">常见分布的数字特征</a>
+        <div class="post-item-summary">
+        退化分布(单点分布)
+若随机变量只取常数,即
+
+则并不随机，但我们把它看作随机变量的退化情况更为方便，因此称之为退化分布，又称单点分布.
+离散均匀分布
+若随机变
+        <a class="read-more" href="/2025/07/05/%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Random%20Process/">Random Process</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B0-%E7%BB%AA%E8%AE%BA/">软件工程绪论</a>
+        <div class="post-item-summary">
+        软件
+1946年，世界上第一台计算机诞生；
+1958年，John Wilder Tukey正式提出软件的概念；
+软件是指计算机程序及其相关文档的集合。它是由一系
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B0-%E7%BB%AA%E8%AE%BA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B10-%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4%E6%8A%80%E6%9C%AF/">软件维护技术</a>
+        <div class="post-item-summary">
+        概念
+定义：由于软件产品出现问题 或需要改进，而对代码及相关文档进行 修改，其目的是对现有软件产品进行修 改的同时保持其完整性。
+必要性
+
+改正错误；
+改善设计
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B10-%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4%E6%8A%80%E6%9C%AF/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B1-%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/">软件过程模型</a>
+        <div class="post-item-summary">
+        软件生命周期
+定义：软件产品或软件系统从设计、投入使用到被淘汰 的全过程。
+
+软件过程
+定义： 软件过程定义了软件生产的一些列活动，这些活动贯穿于软件开发的全过
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B1-%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B11-%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/">软件管理技术</a>
+        <div class="post-item-summary">
+        概念
+定义
+计划、协调、度量、监控、控制及报告等管理方法在软件开 发和维护中的具体应用，以保证整个过程是系统的、有原则 的、可量化的
+四要素4P
+
+
+人员Peo
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B11-%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B2-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">需求分析</a>
+        <div class="post-item-summary">
+        概述
+定义
+
+确认系统必须具备的功能、性能、系统要求的运行环境，预测发展的前景；
+以一种清晰，简洁，一致性且无二义性的方式，对待开发系统中各个有意义的方面的陈述
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B2-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B3-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">面向过程的需求分析</a>
+        <div class="post-item-summary">
+        结构化分析方法
+
+面对数据流进行需求分析的方法；
+适合于数据处理类型的需求分析；
+建立模型：
+
+功能模型：数据流图（DFD）
+数据模型（数据对象描述）：数据字典
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B3-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B5-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%A6%82%E8%BF%B0/">系统设计概述</a>
+        <div class="post-item-summary">
+        概述
+软件设计：软件系统或组件的架构，构件，接口和其他特性的定义过程以及过程的结果
+
+软件工程生命周期的一个活动
+进行软件编码的基础
+需求分析被转化成软件的内部
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B5-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%A6%82%E8%BF%B0/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B4-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">面向对象的需求分析</a>
+        <div class="post-item-summary">
+        统一建模语言UML
+概念
+
+
+系统及其边界
+
+
+目的：识别什么在系统内，什么在系统外，进而识别出系统的职责；
+
+
+典型的系统边界：硬件设备，组织，部门
+
+
+方框
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B4-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B6-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">面向对象的系统设计</a>
+        <div class="post-item-summary">
+        面向对象设计活动
+包括系统架构设计，用例设计，类设计，数据库设计，用户界面设计；
+架构设计
+架构设计的目的是要勾画出系统的总体结构，这项工作由经验丰富的架构设计
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B6-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+</div>
+
+
+<div class="paginator">
+  <a class="extend prev" rel="prev" href="/page/3/">&lt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/">&gt;</a>
+</div>
+
+
+
+<link rel="stylesheet" href="/css/paginator.css">
+
+
+<link rel="stylesheet" href="/css/list.css">
+
+
   
 </main>
 
-    <!-- 页脚 -->
-    <footer class="footer">
+      <!-- 页脚 -->
+      <footer class="footer">
   
   <span>Copyright © Kytolly(shiroi)</span>
   
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
 </footer>
 
 
 <link rel="stylesheet" href="/css/footer.css">
 
 
-    
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
   <div class="search-pop-overlay">
     <div class="popup search-popup">
       <div class="search-header">
@@ -234,6 +531,10 @@
 <link rel="stylesheet" href="/css/search.css">
 
 
+
+    </div>
+    
+<script src="/js/background.js"></script>
 
   </body>
 

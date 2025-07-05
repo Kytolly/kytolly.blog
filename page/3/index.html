@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  
+<meta charset="utf-8" />
   <!-- 标签页 -->
   <!-- 标签页 -->
 <title>
@@ -11,26 +11,63 @@
 <link rel="shortcut icon" href="/icon.svg">
 
 
-  <body 
-    
-      data-image-center="true"
-      data-image-caption="true"
-    
-    
-      data-code-block-copy-button="icon/copy.svg"
-      data-code-block-theme-toggle-enable="true"
-      data-code-block-theme-toggle-to-light-button="icon/light-codeblock.svg"
-      data-code-block-theme-toggle-to-dark-button="icon/dark-codeblock.svg"
-      data-code-block-mac-enhancer="true"
-      
-      data-code-block-mac-enhancer-init-folded-status="true"
-      
-  
->
-    <script> window.THEME_CONFIG = {}; </script>
-              
+  <body>  
     <!-- 配置引用 -->
-    
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'true'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -39,8 +76,8 @@
     <!-- 字体 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <!-- 代码块 -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -120,12 +157,12 @@
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
   <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
-
-  
 </head>
-    
-    <!-- 导航栏 -->
-    <!--(头部 top bar) Header 样式 -->
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
 
 <link rel="stylesheet" href="/css/header.css">
 
@@ -140,13 +177,6 @@
           <a href="/">
             <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
             index
-          </a>
-        </li>
-        
-        <li>
-          <a href="/list">
-            <img src="/icon/list.svg" alt="list icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
-            list
           </a>
         </li>
         
@@ -187,25 +217,292 @@
 <script src="/js/search.js"></script>
 
 
-    <!-- 路由 根据页面类型决定渲染内容 -->
-    <main class="main">
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
   
+    <div class="post-list">
     
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Coloring/">Coloring</a>
+        <div class="post-item-summary">
+        Vertex Coloring
+为图的每个顶点分配某种颜色，称一种着色是正确的，如果没有两个相邻的顶点着色相同；
+一个独立集(independent set)是
+        <a class="read-more" href="/2025/07/05/Coloring/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Planarity/">Planarity</a>
+        <div class="post-item-summary">
+        Planarity
+一个平面图(planar)被定义为：在平面上绘制没有交叉的图；
+若图不能在平面上绘制或表示，称为非平面图；
+若两个图可以在同一个图的边插入一
+        <a class="read-more" href="/2025/07/05/Planarity/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Tree/">Tree</a>
+        <div class="post-item-summary">
+        树&amp;森林
+若一个连通图没有圈，称这个图为树(Tree);
+若一个图没有圈，称这个图为森林(forest);
+Theorem
+若树至少有个点，那么至少包含
+        <a class="read-more" href="/2025/07/05/Tree/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Path-and-Cycle/">Path and Cycle</a>
+        <div class="post-item-summary">
+        Walk/Trail/Path/Circle
+在图中，途径(Walk)是指如下形式的 边序列
+
+
+边的数量是迹的长度
+简单图可以表示为
+起始点initial v
+        <a class="read-more" href="/2025/07/05/Path-and-Cycle/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Graph-Introduction/">Graph Introduction</a>
+        <div class="post-item-summary">
+        Graph
+对于三元组,满足：
+
+顶点集有限；
+边集是顶点无序对组成的(可重)集合，也即；
+
+Simple Graph
+当边集有重复元素，称相同的边为重边/平行
+        <a class="read-more" href="/2025/07/05/Graph-Introduction/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Brown%E8%BF%90%E5%8A%A8/">Brown运动</a>
+        <div class="post-item-summary">
+        Brown运动
+随机过程如果满足：
+
+
+
+
+
+有平稳独立增量；
+
+
+对 每 个, 服从正态分布;
+
+
+则称​为Brown运动，也称为Wiener过程.
+等价定义
+        <a class="read-more" href="/2025/07/05/Brown%E8%BF%90%E5%8A%A8/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Random%20Process/">Random Process</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Markov%E9%93%BE/">Markov链</a>
+        <div class="post-item-summary">
+        Markov过程
+对于为一随机过程，为其状态空间，若对参数集中的任意个时刻,任意的 有
+
+即随机变量在已知 情况下，条件分布函数只与有关，则称随机过程为Mark
+        <a class="read-more" href="/2025/07/05/Markov%E9%93%BE/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Random%20Process/">Random Process</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Poisson%E8%BF%87%E7%A8%8B/">Poisson过程</a>
+        <div class="post-item-summary">
+        Poisson过程
+计数过程
+随机过程 称为计数过程，如果表示从时刻0到某一特定事件发生的次数，它具备以下两个特点：
+
+且取值为整数；
+时， 且 表示时间内事件
+        <a class="read-more" href="/2025/07/05/Poisson%E8%BF%87%E7%A8%8B/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Random%20Process/">Random Process</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%BE%8B%E5%AD%90/">应用随机过程中的例子</a>
+        <div class="post-item-summary">
+        平稳白噪声序列
+设为一列两两互不相关的随机变量序列，满足,且
+当当
+
+
+白噪声序列为平稳的.
+这是因为协方差函数 只与有关
+
+
+滑动平均序列
+设为 一 列 互 
+        <a class="read-more" href="/2025/07/05/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%BE%8B%E5%AD%90/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Random%20Process/">Random Process</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E6%B5%8B%E5%BA%A6%E8%AE%BA%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/">测度论预备知识</a>
+        <div class="post-item-summary">
+        a322ca41-1252-4fd9-a9d5-560fb8a44559代数，可测空间，随机事件
+设是一个样本空间(或任意一个集合),是的某些子集组成的集簇.如
+        <a class="read-more" href="/2025/07/05/%E6%B5%8B%E5%BA%A6%E8%AE%BA%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Random%20Process/">Random Process</a>
+            
+        </div>
+        </div>
+    </section>
+    
+</div>
+
+
+<div class="paginator">
+  <a class="extend prev" rel="prev" href="/page/2/">&lt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">&gt;</a>
+</div>
+
+
+
+<link rel="stylesheet" href="/css/paginator.css">
+
+
+<link rel="stylesheet" href="/css/list.css">
+
+
   
 </main>
 
-    <!-- 页脚 -->
-    <footer class="footer">
+      <!-- 页脚 -->
+      <footer class="footer">
   
   <span>Copyright © Kytolly(shiroi)</span>
   
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
 </footer>
 
 
 <link rel="stylesheet" href="/css/footer.css">
 
 
-    
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
   <div class="search-pop-overlay">
     <div class="popup search-popup">
       <div class="search-header">
@@ -234,6 +531,10 @@
 <link rel="stylesheet" href="/css/search.css">
 
 
+
+    </div>
+    
+<script src="/js/background.js"></script>
 
   </body>
 

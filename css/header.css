@@ -1,18 +1,22 @@
 .header {
     position: sticky;
-    top: 20px;
-    background: inherit;
+    top: 0;
+    background: transparent;
+    backdrop-filter: blur(2px);
+    transition: background 0.3s ease;
     margin: 0;
     padding: 20px 4vw 0;
     max-width: 100%;
     width: 100%;
+    z-index: 10;
   }
-  
+
 .header-container {
-display: flex;
-justify-content: space-between;
-align-items: center;
-border-bottom: 1px solid var(--color-hr);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border-bottom: 1px solid var(--color-hr);
 }
 
 .header-logo {

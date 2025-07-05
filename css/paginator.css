@@ -35,13 +35,13 @@
   .paginator a:hover {
     color: var(--font-color);
     border-bottom: 2px solid var(--font-color);
-    cursor: not-allowed;
+    cursor: pointer;
   }
   
   .paginator .current {
     color: var(--font-color);
     border-bottom: 2px solid var(--font-color);
-    cursor: not-allowed;
+    cursor: default;
   }
   
   .post-layout-wrapper {

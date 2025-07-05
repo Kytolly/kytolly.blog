@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  
+<meta charset="utf-8" />
   <!-- 标签页 -->
   <!-- 标签页 -->
 <title>
@@ -11,26 +11,63 @@
 <link rel="shortcut icon" href="/icon.svg">
 
 
-  <body 
-    
-      data-image-center="true"
-      data-image-caption="true"
-    
-    
-      data-code-block-copy-button="icon/copy.svg"
-      data-code-block-theme-toggle-enable="true"
-      data-code-block-theme-toggle-to-light-button="icon/light-codeblock.svg"
-      data-code-block-theme-toggle-to-dark-button="icon/dark-codeblock.svg"
-      data-code-block-mac-enhancer="true"
-      
-      data-code-block-mac-enhancer-init-folded-status="true"
-      
-  
->
-    <script> window.THEME_CONFIG = {}; </script>
-              
+  <body>  
     <!-- 配置引用 -->
-    
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'true'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
@@ -39,19 +76,17 @@
     <!-- 字体 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <!-- 代码块 -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
       
-        
-<link rel="stylesheet" href="/css/vscode-modern-light.css">
-
-        
-<link rel="stylesheet" href="/css/vscode-modern-dark.css">
-
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
       
     
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
@@ -129,12 +164,12 @@
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
   <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
-
-  
 </head>
-    
-    <!-- 导航栏 -->
-    <!--(头部 top bar) Header 样式 -->
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
 
 <link rel="stylesheet" href="/css/header.css">
 
@@ -149,13 +184,6 @@
           <a href="/">
             <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
             index
-          </a>
-        </li>
-        
-        <li>
-          <a href="/list">
-            <img src="/icon/list.svg" alt="list icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
-            list
           </a>
         </li>
         
@@ -196,8 +224,8 @@
 <script src="/js/search.js"></script>
 
 
-    <!-- 路由 根据页面类型决定渲染内容 -->
-    <main class="main">
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
   
     <article class="post-container">
   <!-- 可选：左侧跟随目录 -->
@@ -213,6 +241,9 @@
 
 <script src="/js/toc.js"></script>
 
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
 
   <div class="post-main-wrapper">
     <!-- 文章 -->
@@ -1057,40 +1088,41 @@ URL 相当于一个文件名在网络范围的扩展，可以理解是与因特�
     
     <!-- giscus评论区 -->
     
-    <script src="https://giscus.app/client.js"
-      data-repo="Kytolly/MyGiscus"
-      data-repo-id="R_kgDOK_0_0A"
-      data-category="Announcements"
-      data-category-id="DIC_kwDOK_0_0A"
-      data-mapping="pathname"
-      data-strict="0"
-      data-reactions-enabled="1"
-      data-emit-metadata="0"
-      data-input-position="top"
-      data-theme="light"
-      data-lang="zh-CN"
-      data-loading="lazy"
-      crossorigin="anonymous"
-      async>
-    </script>
-  
+  <div id="giscus_thread"></div>
+
   </div>
 </article>
   
 </main>
 
-    <!-- 页脚 -->
-    <footer class="footer">
+      <!-- 页脚 -->
+      <footer class="footer">
   
   <span>Copyright © Kytolly(shiroi)</span>
   
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
 </footer>
 
 
 <link rel="stylesheet" href="/css/footer.css">
 
 
-    
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
   <div class="search-pop-overlay">
     <div class="popup search-popup">
       <div class="search-header">
@@ -1119,6 +1151,10 @@ URL 相当于一个文件名在网络范围的扩展，可以理解是与因特�
 <link rel="stylesheet" href="/css/search.css">
 
 
+
+    </div>
+    
+<script src="/js/background.js"></script>
 
   </body>
 

@@ -13,6 +13,11 @@
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
 }
+
+body.dark-mode .toc-container {
+  background-color: transparent;
+}
+
 .toc-container::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }

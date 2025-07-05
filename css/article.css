@@ -14,6 +14,12 @@ flex: 0 0 100%;
 margin-bottom: 32px;
 }
 
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em; /* Add some space between tags */
+}
+
 .tags>.tag-item::before {
 content: "⌗";
 color: var(--font-color-extra);
@@ -27,12 +33,23 @@ color: var(--color-post-content);
 -ms-text-size-adjust: 100%;
 -webkit-text-size-adjust: 100%;
 line-height: 1.5;
-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
-    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+font-family: "Times New Roman", "Noto Serif SC", serif;
 font-size: 16px;
 line-height: 1.5;
 word-wrap: break-word;
 letter-spacing: 1px;
+}
+
+/* ul,
+ol {
+  list-style: none;
+} */
+.post-content ul {
+  list-style: disc;
+  padding-left: 2em; /* 保证缩进美观 */
+}
+.post-content ul ul {
+  list-style: circle;
 }
 
 /* 去掉标题前 # 符号的设计 */
@@ -83,8 +100,8 @@ max-width: 100%;
 
 .post-content code,
 .post-content kbd,
-.post-content pre {
-font-family: monospace, monospace;
+.post-content pre:not(figure.highlight pre) {
+font-family: "Ubuntu Mono", monospace;
 font-size: 1em;
 }
 
@@ -143,13 +160,17 @@ display: table;
 }
 
 .post-content table {
-border-collapse: collapse;
-border-spacing: 0;
+overflow: auto;
+width: 100%;
+}
+
+.post-content table th {
+font-weight: 600;
 }
 
 .post-content td,
 .post-content th {
-padding: 0;
+padding: initial;
 }
 
 .post-content details summary {
@@ -212,6 +233,10 @@ margin-top: 0;
 
 .post-content blockquote {
 margin: 0;
+border-left: 0.25em solid var(--color-blockquote-border);
+padding: 0 1em;
+color: var(--font-color-secondary);
+background-color: var(--color-blockquote-bg);
 }
 
 .post-content ol,
@@ -238,9 +263,8 @@ margin-left: 0;
 }
 
 .post-content code,
-.post-content pre {
-font-family: JetBrains Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo,
-    Courier, monospace;
+.post-content pre:not(figure.highlight pre) {
+font-family: "Ubuntu Mono", monospace;
 font-size: 14px;
 }
 
@@ -292,13 +316,6 @@ border: 0;
 border-bottom: 1px dashed var(--color-hr);
 margin: 1.5em 0;
 overflow: hidden;
-}
-
-.post-content blockquote {
-border-left: 0.25em solid var(--font-color-refer);
-color: var(--font-color-refer);
-padding: 0 1em;
-/* margin-left: 1em; */
 }
 
 .post-content blockquote > :first-child {
@@ -393,7 +410,6 @@ padding: 0 16px;
 }
 
 .post-content table {
-display: block;
 overflow: auto;
 width: 100%;
 }
@@ -436,8 +452,13 @@ padding: 0.2em 0.4em;
 vertical-align: text-top;
 }
 
-.post-content pre {
-word-wrap: normal;
+.post-content pre:not(figure.highlight pre) {
+  background-color: var(--color-general-pre-bg);
+  border: 1px solid var(--color-general-pre-border);
+  color: var(--font-color);
+  padding: 1em;
+  overflow: auto;
+  border-radius: 5px;
 }
 
 /* 键盘按键 */
@@ -449,43 +470,11 @@ border-radius: 3px;
 box-shadow: inset 0 -1px 0 #c6cbd1;
 color: #444d56;
 display: inline-block;
-font: 11px JetBrains Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
+font: 11px "Ubuntu Mono", SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
     monospace;
 line-height: 10px;
 padding: 3px 5px;
 vertical-align: middle;
-}
-
-
-.hljs {
-    width: 100%;
-    margin-left: 0px;
-    background: var(--color-background-code);
-    border-radius: 3px;
-    border: 1px solid var(--color-border-code);
-    margin: 15px 0;
-  }
-
-.hljs table td,
-.hljs table th,
-.hljs table tr {
-  border: none;
-  padding: 0px;
-}
-
-.hljs-ln-line.hljs-ln-numbers {
-  text-align: center;
-  padding-right: 10px;
-  border-right: 1px solid #dddddd;
-  margin-right: 12px;
-}
-
-.hljs > table {
-  margin-bottom: 0;
-}
-
-.hljs .code {
-  width: 100%;
 }
 
 pre {

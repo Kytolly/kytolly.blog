@@ -2,33 +2,38 @@
 .post-content table:not(.hljs) {
   width: 100%;
   border-collapse: collapse;
-  border-top: 2px solid var(--color-post-content, #333);
-  border-bottom: 2px solid var(--color-post-content, #333);
+  border-top: 2px solid var(--color-post-content);
+  border-bottom: 2px solid var(--color-post-content);
   margin: 1.5em 0;
   font-size: 0.95em;
+  table-layout: fixed;
 }
 
 .post-content table:not(.hljs) th,
 .post-content table:not(.hljs) td {
   border: none;
-  padding: 0.75em 1em;
+  padding: 0.6em 1em !important;
   text-align: left;
+  line-height: 1.2em !important;
 }
 
 .post-content table:not(.hljs) thead th {
-  border-bottom: 1px solid var(--color-post-content, #333);
+  border-bottom: 1px solid var(--color-post-content);
   text-align: center;
   font-weight: 600;
+  vertical-align: middle;
+  padding-top: 0.3em !important;
+  padding-bottom: 0.3em !important;
 }
 
 .post-content table:not(.hljs) tbody tr:nth-child(even) {
-  background-color: var(--color-table-row, #f9f9f9);
+  background-color: var(--color-table-row-even);
 }
 
 .post-content table:not(.hljs) caption {
   caption-side: bottom;
   text-align: center;
   font-size: 0.9em;
-  color: #888;
+  color: var(--color-table-caption);
   margin-top: 0.5em;
 } 
