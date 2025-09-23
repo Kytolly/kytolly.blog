@@ -1,0 +1,16 @@
+.post-container {
+  display: grid;
+  grid-template-columns: 1fr var(--main-width) 1fr; /* Left sidebar, Main content, Right sidebar */
+  justify-content: center;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.post-main-wrapper {
+  flex: 1;
+  max-width: var(--main-width);
+  margin: 0 auto; /* Centers the content */
+  padding: 0 8vw; /* Add some horizontal padding to match header/footer */
+  grid-column: 2;
+}
+

@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    文件系统
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">文件系统</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.2.</span> <span class="toc-text">文件系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">文件类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.</span> <span class="toc-text">文件系统模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.</span> <span class="toc-text">文件操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">组织结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.</span> <span class="toc-text">文件结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="toc-number">2.2.</span> <span class="toc-text">文件系统架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%BB%84%E7%BB%87"><span class="toc-number">3.</span> <span class="toc-text">文件组织</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A0%86"><span class="toc-number">3.0.1.</span> <span class="toc-text">堆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E6%96%87%E4%BB%B6"><span class="toc-number">3.0.2.</span> <span class="toc-text">顺序文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E9%A1%BA%E5%BA%8F%E6%96%87%E4%BB%B6"><span class="toc-number">3.0.3.</span> <span class="toc-text">索引顺序文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E6%96%87%E4%BB%B6"><span class="toc-number">3.0.4.</span> <span class="toc-text">索引文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E6%88%96%E6%95%A3%E5%88%97%E6%96%87%E4%BB%B6"><span class="toc-number">3.0.5.</span> <span class="toc-text">直接或散列文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">存储空间管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%88%86%E9%85%8D%E6%96%B9%E6%B3%95"><span class="toc-number">4.1.</span> <span class="toc-text">文件分配方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E9%97%B2%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86%E6%96%B9%E6%B3%95"><span class="toc-number">4.2.</span> <span class="toc-text">空闲空间管理方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">文件目录管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="toc-number">5.1.</span> <span class="toc-text">文件目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%8E%A7%E5%88%B6%E5%9D%97%E5%92%8C%E7%B4%A2%E5%BC%95%E7%BB%93%E7%82%B9"><span class="toc-number">5.2.</span> <span class="toc-text">文件控制块和索引结点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">5.3.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%9F%A5%E8%AF%A2%E6%8A%80%E6%9C%AF"><span class="toc-number">5.4.</span> <span class="toc-text">目录查询技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FAT%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">6.</span> <span class="toc-text">FAT文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NTFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">7.</span> <span class="toc-text">NTFS文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">8.</span> <span class="toc-text">Linux文件系统</span></a></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">文件系统</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 5日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">System</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2>
+<h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3>
+<p>文件中常保存的信息：</p>
+<ul>
+<li>基本信息：文件名、文件类型、文件组织</li>
+<li>地址信息：卷、起始地址、使用大小、分配大小</li>
+<li>访问控制信息：所有者、访问信息、许可的行为</li>
+<li>使用信息：数据创建、创建者身份、最后一次读 访问的日期、最后一次读用户的身份、最后一次 修改的日期、最后一次修改者的身份、最后一次 备份的日期、当前使用</li>
+</ul>
+<p>文件(file)的属性</p>
+<ul>
+<li>长期存在：文件存储在硬盘或其他辅存中，用户退出 系统时文件不会丢失</li>
+<li>进程间共享：文件有名字，具有允许受控共享的 相关访问权限</li>
+<li>结构化：取决于具体的文件系统，一个文件具有针对某 个特定应用的内部结构</li>
+</ul>
+<h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3>
+<p>文件系统(file system)是操作系统的重要组成部分 ，允许用户创建成为文件的数据集；</p>
+<h3 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h3>
+<ul>
+<li>按用途分类：系统文件/用户文件/库文件</li>
+<li>按数据形式分类：源文件/目标文件/可执行文件</li>
+<li>按存取控制属性分类：只执行文件/只读文件/读写文件</li>
+<li>按组织和处理方式分类：普通文件/目录文件/特殊文件</li>
+</ul>
+<h3 id="文件系统模型"><a href="#文件系统模型" class="headerlink" title="文件系统模型"></a>文件系统模型</h3>
+<ul>
+<li>管理对象：文件，目录，磁盘存储空间</li>
+<li>对象操作和管理的软件集合：实现文件系统的功能</li>
+<li>文件系统接口：命令接口/程序接口</li>
+</ul>
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3>
+<p>文件系统不但提供存储数据（组织为文件）的手段，而且 提供一系列对文件进行操作的功能接口。</p>
+<ul>
+<li>创建文件</li>
+<li>删除文件</li>
+<li>打开文件</li>
+<li>关闭文件</li>
+<li>读文件，写文件</li>
+<li>截断文件</li>
+<li>设置文件读写位置...</li>
+</ul>
+<h2 id="组织结构"><a href="#组织结构" class="headerlink" title="组织结构"></a>组织结构</h2>
+<h3 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h3>
+<p>文件：具有文件名的一组相似记录的集合</p>
+<ol>
+<li>域：基本的数据单元，一个域包含一个值，定长或变长</li>
+<li>记录：一组相关域的集合，定长或变长，通常包含长度域</li>
+</ol>
+<p>逻辑结构：从用户观点出发所观察到的文件组织形式，是用户可 以直接处理的数据及其结构，它独立于文件的物理特 性，又称为文件组织。</p>
+<p>物理结构：指文件在外存上的存储组织形式。</p>
+<h3 id="文件系统架构"><a href="#文件系统架构" class="headerlink" title="文件系统架构"></a>文件系统架构</h3>
+<ul>
+<li>设备驱动：程序直接和外围设备或其通道通信，驱动负责启动设备上的IO操作，处理IO请求的完成</li>
+<li>基本文件系统：物理IO层，处理磁盘间交换的数据块，操作系统关注这些块在辅存和缓冲区的位置</li>
+<li>逻辑IO：使得用户程序能访问记录，记录必须组成块进行IO操作</li>
+<li>文件组织：用户访问文件的方法</li>
+</ul>
+<h2 id="文件组织"><a href="#文件组织" class="headerlink" title="文件组织"></a>文件组织</h2>
+<h4 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h4>
+<p>堆是最简单的文件组织形式</p>
+<ul>
+<li>数据按它们到达的顺序被收集。</li>
+<li>堆的目的仅仅是积累大量的数据并 保存</li>
+<li>堆文件没有结构，堆对记录的访问是通过<strong>穷举查找</strong>方式进行的。</li>
+</ul>
+<h4 id="顺序文件"><a href="#顺序文件" class="headerlink" title="顺序文件"></a>顺序文件</h4>
+<ul>
+<li>每条记录都使用一种固定的格式</li>
+<li>所有记录都具有相同的长度 由相同 ，并且 数量、长度固定的域按特定 顺序组成</li>
+<li>每个域的域名和长度是该文件结构 的属性。</li>
+<li>关键域是记录的唯一标识，记录按关键域来存储</li>
+</ul>
+<p>在顺序文件中，逻辑记录的顺序：</p>
+<ul>
+<li>串结构：按照记录录入的时间排序</li>
+<li>按关键字排序：有利于提高查询速度</li>
+</ul>
+<p>对顺序文件的读写：</p>
+<ul>
+<li>定长记录：易于定位，可随机读取</li>
+<li>变长记录：不易定位，只能顺序读取</li>
+<li>维护一个日志文件log：用于存放将更新到主文件的记录 。</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>批处理时效率是所有逻辑文件中最高的</li>
+<li>可存在于磁带上</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>交互应用时“效率低”（如要查找单个记录），尤其 是对变长记录的顺序文件。</li>
+<li>增加、删除记录涉及到排序问题，开销大。</li>
+</ul>
+<h4 id="索引顺序文件"><a href="#索引顺序文件" class="headerlink" title="索引顺序文件"></a>索引顺序文件</h4>
+<p>索引顺序文件是克服顺序文件缺点的常用办法</p>
+<ul>
+<li>保留顺序文件的关键特征：记录按照关键域的顺序组织</li>
+<li>用于支持随机访问的文件索引：提供了快速接近目标 记录的查找能力</li>
+<li>溢出文件：类似于顺序文件中使用的日志文件，但溢 出文件中的记录可根据它前面记录的指针进行定位</li>
+</ul>
+<p><img src="/assets/Operate-System/image-20241208215304798.png" alt="image-20241208215304798"></p>
+<p>检索文件：</p>
+<ol>
+<li>利用用户(程序)所提供的关键字以及某种查找 算法去检索索引表</li>
+<li>找到该记录所在记录组中第一个 记录的表项，从中得到该记录组第一个记录在主文件 中的位置。</li>
+<li>再利用顺序查找法去查找主文件，从中找到所要求的 记录。</li>
+</ol>
+<p>对于有N条记录的顺序文件中，设定一个M项的索引文件，索引的关键域均匀分布在主文件中，找到某条记录平均需要在索引文件中访问O(M/2)次，在主文件平均访问O(N/2M)次，索引顺序文件组织的开销为O(M/2+N/2M), 顺序文件组织查找某条记录平均开销为O(N/2);</p>
+<h4 id="索引文件"><a href="#索引文件" class="headerlink" title="索引文件"></a>索引文件</h4>
+<p>顺序文件和索引顺序文件都只允许按记录的唯一关键字检索记 录，这不符合某些应用需要按多个字段检索记录的要求;</p>
+<p>采用多索引的结构，成为查找条件的每个域都可能有一个索引;</p>
+<ul>
+<li>完全索引：包含主文件中每条记录的索引项</li>
+<li>部分索引：只包含那些有感兴趣域的记录的索引项</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>建立有序的索引表，查找很快，提高了速度，增加了存储开销(索引文件);</li>
+<li>增、删记录时，对索引表作相应的修改</li>
+</ul>
+<p>note:有时删除文件可能只是删除了其索引,这也是利用某些软件可以找回删除文件的原因；</p>
+<p><img src="/assets/Operate-System/image-20241208222417285.png" alt="image-20241208222417285"></p>
+<h4 id="直接或散列文件"><a href="#直接或散列文件" class="headerlink" title="直接或散列文件"></a>直接或散列文件</h4>
+<p>而对于直接文件，则可根据给定的记录键值，直接获 得指定记录的物理地址。换言之，记录键值本身就决 定了记录的物理地址。</p>
+<p>这是目前应用最为广泛的一种直接文件，它利用Hash  函数(或称散列函数)，可将记录键值转换为相应记录的 地址。</p>
+<h2 id="存储空间管理"><a href="#存储空间管理" class="headerlink" title="存储空间管理"></a>存储空间管理</h2>
+<h3 id="文件分配方法"><a href="#文件分配方法" class="headerlink" title="文件分配方法"></a>文件分配方法</h3>
+<p>连续分配： 连续分配是指在创建文件时，给文件分配一组连续的块。 以该方式管理的文件称为连续文件，可采用紧缩技术整理；</p>
+<ul>
+<li>优点：简单、容易实现，对于顺序文件，能很快检索文件中的数据块,连续读/写 多个数据块内容时，性能较好。</li>
+<li>缺点：它不利于文件尺寸的动态增长，该分配方案可能会导致磁盘碎片，严重降低外存空间的 利用率。</li>
+</ul>
+<p>链式分配：为文件分配非连续的若干数据块，数据块之间用指针相连，，以该方式管理的文件称为链接 文件，包含隐式链接和显式链接；</p>
+<ul>
+<li>隐式链接：在文件目录的每个目录项中都须含有指向链接文件第一 个盘块和最后一个盘块的指针，文件目录表中有start块号，每块中有下一块号；只适合于顺序访问，对随机访问效率低，可靠性差</li>
+<li>显式链接：把用于链接文件各物理块的指针，显式地存放在<strong>内存</strong> 的一张链接表中（整个磁盘仅设置一张）。查找在内存中进行，由于分配给文件的所有盘块号都放在该表中，故把该 表称为文件分配表FAT(File Allocation Table)；</li>
+<li>优点：链接分配技术不要求文件存储到彼此相邻的数据块中， 消除连续分配引起的碎片，<strong>提高了外存空间的利用率</strong>。能适应<strong>文件尺寸的动态增长</strong>。</li>
+<li>缺点：对于随机存取却相当低效，局部性原理不再适用；</li>
+</ul>
+<p>索引分配：每个文件在文件分配表中存在一个一级索引，文件每个分区在索引上都有一个表项</p>
+<h3 id="空闲空间管理方法"><a href="#空闲空间管理方法" class="headerlink" title="空闲空间管理方法"></a>空闲空间管理方法</h3>
+<ol>
+<li>
+<p>位示图法：</p>
+<ul>
+<li>
+<p>每一位对应一个磁盘 块。位的值为0或1，分别表示磁盘块空闲，或磁盘块已分配；</p>
+</li>
+<li>
+<p>利用位表容易找到一个或一组空闲盘块  位表适合于以上各种文件分配方法 ；</p>
+</li>
+<li>
+<p>位表很小，可以装入内存；</p>
+</li>
+</ul>
+</li>
+<li>
+<p>链接空闲区</p>
+<ul>
+<li>每个空闲分区包含一个指向下一个分区的指针，并 记载分区大小</li>
+<li>无空闲分区表空间开销</li>
+<li>适合于各种文件分配方法</li>
+<li>若每次分配一个磁盘块，则可取空闲分区链的第一 个盘块进行分配，并调整空闲分区链首指针和分区 链大小</li>
+<li>若采用可变分区法，可用首次适应算法，从链表头 开始查找，找到的第一个适合的分区则可分配，然 后调整空闲分区链首指针和分区链大小</li>
+</ul>
+</li>
+<li>
+<p>索引</p>
+<ul>
+<li>将空闲分区视为文件，按文件存储空间分配法为空 闲分区建立索引</li>
+<li>索引表中为每一个空闲分区建立一个索引项</li>
+<li>为可变分区建立索引比为磁盘块建立索引效率高</li>
+<li>适合于各种文件分配法</li>
+</ul>
+</li>
+<li>
+<p>空闲块列表</p>
+<ul>
+<li>在这种方法中，每块都指定一个序号，所有空闲 块的序号保存在磁盘的一个保留区中。</li>
+<li>两种有效技术把该表一小部分保存到内存中：将表看作堆栈/FIFO队列；</li>
+</ul>
+</li>
+</ol>
+<h2 id="文件目录管理"><a href="#文件目录管理" class="headerlink" title="文件目录管理"></a>文件目录管理</h2>
+<h3 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h3>
+<p>有的 系统将其中部分信息保存在文件头部，只将一些 必要信息如文件名、文件大小、外存中的存储位 置等保存在文件目录中；</p>
+<p>典型操作： 查找、创建文件、删除 文件、显示目录、修改目录</p>
+<p>管理要求：实现“按名存取”，提高对目录的检索速度，文件共享，允许文件重名</p>
+<h3 id="文件控制块和索引结点"><a href="#文件控制块和索引结点" class="headerlink" title="文件控制块和索引结点"></a>文件控制块和索引结点</h3>
+<p>文件控制块(file control block, FCB):用于描述和控制文件的数据结构,用于记载文件 在内存中的使用情况;</p>
+<ul>
+<li>基本信息类：文件名，文件物理位置，文件逻辑结构，文件的 物理结构</li>
+<li>存取控制类信息：权限</li>
+<li>使用信息：记录信息，如日期等</li>
+</ul>
+<p>索引结点：包含文件描述信息，把文件名与文件描述信息分开，在文件目录中的每个 目录项仅由文件名和指向该文件所对应的 i 结点的指 针所构成。目录结构</p>
+<ul>
+<li>磁盘索引结点：包含文件主标识，文件类型，文件存取权限，物理地址，文件长度，连接（共享）计数，存取时间等；</li>
+<li>内存索引结点：文件打开后，将磁盘索引结点的内容部分或全部子集 拷贝到内存，并增加以下内容：编号，状态，共享计数，逻辑设备号，链接指针</li>
+</ul>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3>
+<ol>
+<li>
+<p>单级目录结构：所有用户的全部文件目录保存在一张目 录表中，每个文件的目录项占用一个表项，目录项中主要记载的信息有：文件名及扩展名，文件 的物理地址，其它属性，如文件长度、建立日期、文 件类型等</p>
+<p>优点：简单且按名存取</p>
+<p>缺点：查找速度慢，不允许重名，不便于实现文件共享；</p>
+</li>
+<li>
+<p>两级目录结构：每一个用户建立一个单独的用户文件目录UFD，再 建立一个主文件目录MFD。在主文件目录中，每个用 户目录文件都占有一个目录项，其目录项中包括用户 名和指向该用户目录文件的指针</p>
+<p>优点：提高了检索目录的速度，在不同的用户目录中，可以使用相同的文件名，不同用户还可使用不同的文件名来访问系统中的同 一个共享文件</p>
+</li>
+<li>
+<p>树型目录结构：</p>
+<p>主目录在这里被称为根目录，把数据文件称为树叶， 其它的目录均作为树的结点</p>
+<p>路径名：从树的根（即主目录）开始，把全部目录文件名与数 据文件名，依次地用“/”连接起来，即构成该数据文件 的路径名</p>
+<p>工作目录：即当前目录，进程对各文件的访问都相对于“当前目录”而进行， 通常称为相对路径。</p>
+</li>
+</ol>
+<p>增加目录：在用户要创建一个新文件时，只需查看在自己的 UFD及其子目录中，有无与新建文件相同的文件名。 若无，便可在UFD或其某个子目录中增加一个新目 录项。</p>
+<p>删除目录：例如Linux中，不删除非空目录<code>rmdir</code>如果该目录内包含文件或子目录，系统会拒绝执行删除操作,可删除非空目录<code>rm -r</code>在尝试删除一个目录时，即使该目录内包含文件或子目录，系统也会允许执行删除操作</p>
+<h3 id="目录查询技术"><a href="#目录查询技术" class="headerlink" title="目录查询技术"></a>目录查询技术</h3>
+<p>过程：文件名-目录项（FCB）或索引结点-盘块号-启动磁盘-驱动程序</p>
+<p>例如查询：<code>/usr/ast/mbox</code></p>
+<ul>
+<li>根中得<code>usr</code>的索引结点号6</li>
+<li>6中得<code>usr</code>目录文件为132#</li>
+<li>132#中得<code>/usr/ast</code>的索引结点是26</li>
+<li>26中的<code>/usr/ast</code>目录文件中406#</li>
+<li>406#中得<code>/usr/ast/mbox</code>的索引结点是60</li>
+<li>60中得<code>/usr/ast/mbox</code>的物理地址</li>
+</ul>
+<h2 id="FAT文件系统"><a href="#FAT文件系统" class="headerlink" title="FAT文件系统"></a>FAT文件系统</h2>
+<p>早期的MS-DOS采用FAT12,后演变为FAT16,在windows95和98中升级成FAT32；</p>
+<p>FAT12：以盘块为基本分配单位，每个分区设置两张文件分配表FAT1,FAT2,系统设置文件分配表FAT，在 FAT 的每个表项中存放下一个盘块号；当达到文件尾的时候，存入0xFFF，标志结束</p>
+<ul>
+<li>为了适应更大容量的磁盘，因而以簇为单位进行分配， 簇越小磁盘浪费的空间就越小；</li>
+<li>簇一般由2n个盘块组成，与扇区的数量、磁盘容量的大小 直接有关</li>
+<li>对所允许的磁盘容量存在着严重的限制，虽然可以用继续增加簇的大小来提高所允许的最大磁 盘容量，但随着支持的硬盘容量的增加，相应的簇内 碎片也将随之成倍地增加。</li>
+</ul>
+<p><img src="/assets/Operate-System/image-20241209140316205.png" alt="image-20241209140316205"></p>
+<p>FAT16： FAT 表的宽度增至16 位，最大表项数将增至<svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-1-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-1-TEX-N-36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-1-TEX-N-32"></use></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-1-TEX-N-31"></use><use data-c="36" xlink:href="#MJX-1-TEX-N-36" transform="translate(500,0)"></use></g></g></g></g></g></svg>个 ，此时便能将一个磁盘分区分为<svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-2-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-2-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-2-TEX-N-36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-2-TEX-N-32"></use></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-2-TEX-N-31"></use><use data-c="36" xlink:href="#MJX-2-TEX-N-36" transform="translate(500,0)"></use></g></g></g></g></g></svg>个 簇。可以管理的最大分区空间为(1&lt;&lt;16 )×64 ×512B =  2048 MB</p>
+<ul>
+<li>当磁盘容量迅速增加时，如果再继续使用FAT16， 由此所形成的簇内碎片所造成的浪费也越大。(簇越 大，一般磁盘的碎片就越多</li>
+</ul>
+<p>FAT32: FAT32保留扇区的数目默认为32个而不是FAT16的1个</p>
+<ul>
+<li>FAT32的根目录等同于普通的文件;</li>
+<li>根目录储在分区内可 寻址的任意簇内，不过通常根目录是最早建立的</li>
+<li>根目录下的所有文件及其子目录在根目录的文件目录表 FDT中都有一个“目录项”，系统以32个字节为单位进 行目录文件所占簇的分配，因此32个扇区的根目录FDT 最多可以记录32*512/32=512个文件或子目录。</li>
+<li>DATA区是实际的文件和目录数据存储的区域，它占据 了分区的绝大部分。 每个簇只能被一个文件占有，因而常常文件的尾部会出 现不可利用的空间，所以簇越大，文件数目越多时，零 头就越多，造成资源浪费，因此簇的大小不应该太大。FAT32采用4KB的簇的大小。</li>
+<li>不能采用太小的单位进行分配。如采用大小为512B的 扇区管理会增加FAT表的项数，对大文件存取增加消耗 ，文件系统效率不高</li>
+</ul>
+<p>文件系统格式化</p>
+<ul>
+<li>格式化程序并没有把DATA区的数据清除，只是重写了 FAT表而已，至于分区硬盘，也只是修改了MBR和 DBR，绝大部分的DATA区的数据并没有被改变;</li>
+<li>因而 进行上述操作后，数据仍然可以得到恢复</li>
+</ul>
+<p><img src="/assets/Operate-System/image-20241209150412186.png" alt="image-20241209150412186"></p>
+<h2 id="NTFS文件系统"><a href="#NTFS文件系统" class="headerlink" title="NTFS文件系统"></a>NTFS文件系统</h2>
+<ul>
+<li>使用了64 位磁盘地址;</li>
+<li>很好地支持长文件名;</li>
+<li>具有系统容错功能;</li>
+<li>提供了数据的一致性;</li>
+</ul>
+<p>磁盘组织:以簇作为磁盘空间分配和回收的基本单位,卷上簇的大小称为“卷因子”（一个簇包含2n个 盘块）,对于簇的定位，采用逻辑簇号LCN和虚拟簇号VCN进行的。</p>
+<p>文件组织：在NTFS 中，以卷为单位，将一个卷中的所有文件信 息、目录信息以及可用的未分配空间信息，都以文件 记录的方式记录在一张主控文件表MFT中。卷中的每个文件作为一条记录，在MFT 表中占有一行， 其中还包括MFT 自己的这一行。每行大小固定为1  KB，每行称为该行所对应文件的元数据(metadata)， 也称为文件控制字。 NTFS 文件不能被FAT 等文件系统所存取，缺乏兼容性。文件通过主文件表（MFT）来确定其在磁盘上的存储 位置。主文件表是一个对应的数据库，由一系列的文 件记录组成--卷中每一个文件都有一个文件记录（对于 大型文件还可能有多个记录与之相对应）。NTFS卷上的每个文件都有一个64位（bit）称为文件引 用号（File Reference Number，也称文件索引号）的 唯一标识。文件引用号由两部分组成：一是文件号， 二是文件顺序号。NTFS使用逻辑簇号（Logical Cluster Number，LCN）和 虚拟簇号（Virtual Cluster Number，VCN）来进行簇的定 位。LCN是对整个卷中所有的簇从头到尾所进行的简单编 号。VCN则是对属于特定文件的簇从头到尾进行编号，以 便于引用文件中的数据。VCN可以映射成LCN，而不必要 求在物理上连续。</p>
+<p>文件系统结构：</p>
+<ul>
+<li>启动扇区文件<code>$BOOT</code>位于磁盘头部，<code>$BOOT</code>中包含 MFT的位置数据。</li>
+<li>主文件表索引的第一个文件为<code>$MFT</code>。主文件的每一个 表项表示一个文件索引，每个文件索引由一系列的属 性组成。</li>
+</ul>
+<p><img src="/assets/Operate-System/image-20241209151442406.png" alt="image-20241209151442406"></p>
+<p>NTFS元文件: MFT的前16个元数据文件非常重要，为了防止数据的丢失， NTFS系统在该卷文件存储部分的正中央对它们进行了备份。</p>
+<ul>
+<li>MFT中的第1个记录就是MFT自身;</li>
+<li>由于MFT文件本身 的重要性，为了确保文件系统结构的可靠性，系统专门 为它准备了一个镜像文件<code>$MftMirr</code>，也就是MFT中 的第2个记录。</li>
+<li>第3个记录是日志文件<code>$LogFile</code>。该文件是NTFS为 实现可恢复性和安全性而设计的。当系统运行时NTFS 就会在日志文件中记录所有影响NTFS卷结构的操作， 包括文件的创建和改变目录结构的命令，例如复制，从 而在系统失败时能够恢复NTFS卷。</li>
+<li>第4个记录是卷文件<code>$Volume</code>，它包含了卷名、被 格式化的卷的NTFS版本和一个标明该磁盘是否损坏的 标志位。</li>
+<li>第5个记录是属性定义表<code>$AttrDef</code>，其中存放了卷所支持的所有文件属性， 并指出它们是否可以被索引和恢复等;</li>
+<li>第6个记录是根目录（\），其中保存了存放于该卷根目 录下所有文件和目录的索引。在访问了一个文件后， NTFS就保留该文件的MFT引用，第二次就能够直接进 行对该文件的访问</li>
+<li>第7个记录是位图文件<code>$Bitmap</code>。NTFS卷的分配状 态都存放在位图文件中，其中每一位（bit）代表卷中的 一簇，标识该簇是空闲的还是已被分配了的，由于该文 件可以很容易的被扩大，所以NTFS的卷可以很方便的 动态的扩大，而FAT格式的文件系统由于涉及到FAT表 的变化，所以不能随意的对分区大小进行调整。</li>
+<li>第8个记录是引导文件<code>$Boot</code>，它是另一个重要的 系统文件。</li>
+<li>第9个记录是坏簇文件<code>$BadClus</code>，它记录了磁盘上 该卷中所有的损坏的簇号，防止系统对其进行分配使用。</li>
+<li>第10个记录是安全文件<code>$Secure</code>，它存储了整个卷 的安全描述符数据库。NTFS文件和目录都有各自的安 全描述符，为了节省空间，NTFS将具有相同描述符的 文件和目录存放在一个公共文件中。</li>
+<li>第11个记录为大写文件<code>$UpCase</code>， 该文件包含一个大小写字符转换表。</li>
+<li>第12个记录是扩展元数据目录<code>$Extended metadata directory</code>。</li>
+<li>第13个记录是重解析点文件<code>$Extend\$Reparse</code></li>
+</ul>
+<p><img src="/assets/Operate-System/image-20241209151929072.png" alt="image-20241209151929072"></p>
+<h2 id="Linux文件系统"><a href="#Linux文件系统" class="headerlink" title="Linux文件系统"></a>Linux文件系统</h2>
+<p>Linux是一个unix类操作系统,用EXT2文件系统结构,以下是查找文件的过程</p>
+<ol>
+<li>当访问一个文件时，通过文件名在“目录表”中查到 其“索引节点号”。</li>
+<li>通过“索引节点号”查“索引节点表”。</li>
+<li>通过“索引节点表”得到其“索引节点”；</li>
+<li>通过索引节点得到文件数据所在位置</li>
+</ol>
+<p>EXT2文件系统的物理结构：整个盘卷由多个数据块组构成。一个数据块代表一个 文件系统</p>
+<ul>
+<li>超级块：存储着描述文件系统大小和形状的基本信息；</li>
+<li>组描述符：描述它的数据结构。（块位图大小、索引节 点位图大小、索引节点表大小、空闲块数、空闲索引节 点数、已用目录数等重要信息）；</li>
+<li>块位图：描述了该块组中数据块空间的使用情况，在数 据块分配和数据块撤销时使用；</li>
+<li>索引节点位图：描述了该块组索引节点表所占空间的信 息，在索引节点的分配和撤销中使用；</li>
+<li>索引节点表：记录了本块组中索引节点集合；</li>
+<li>数据块：用于存放文件数据；</li>
+</ul>
+<p><img src="/assets/Operate-System/image-20241209152202486.png" alt="image-20241209152202486"></p>
+<p>EXT2的目录</p>
+<ul>
+<li>一个文件对应有一个目录项；</li>
+<li>目录项包含该文件对应的索引节点号、文件名、名字 长度等信息；</li>
+<li>目录是一些特殊的文件，称为目录文件，其中包含了 该目录下所有文件的目录项集合。</li>
+</ul>
+<p><img src="/assets/Operate-System/image-20241209152534513.png" alt="image-20241209152534513"></p>
+<p>EXT2的索引节点</p>
+<ul>
+<li>Mode：用户拥有的权限<code>r,w,e</code></li>
+<li>Owner Information：文件或目录所有者的用户和组标 识符</li>
+<li>Size：文件大小</li>
+<li>Timestamps：索引节点建立的时间和索引节点最后修 改的时间</li>
+<li>Data blocks：描述文件的数据块</li>
+</ul>
+<p><img src="/assets/Operate-System/image-20241209152648940.png" alt="image-20241209152648940"></p>
+<p>文件控制块</p>
+<ul>
+<li>当打开一个EXT2文件时，把要打开文件的管理控制信 息从辅存的目录项和索引节点中读到内存，形成FCB， 并将该FCB的地址以一个文件描述符（FD）的形式返 回给用户进程;</li>
+<li>根据FD可获得文件的描述信息,通过这些信息用户可对实际物理文件进行操作</li>
+</ul>
+<p>linux的虚拟文件系统VFS: 将实际的文件系统 的数据结构转换成统一的内存VFS的数据结构来兼容多种 文件系统类型</p>
+<ul>
+<li>
+<p>数据缓存：任何一个从块设备中读取的数据块或者往块设备中写 入的数据块都要通过缓存，缓存中的数据块是以拥有此数据块的设备的设备标识 符和缓冲区的块号来唯一标识的；</p>
+<ol>
+<li>空闲的缓冲区链表</li>
+<li>非空闲的缓冲区：由指针数组构成的散列表， 散列表中hash值由设备的标识符和数据块的块号产生 的，表中的指针指向具有相同hash值的缓冲区。</li>
+</ol>
+<p><img src="/assets/Operate-System/image-20241209153612426.png" alt="image-20241209153612426"></p>
+<p>缓冲区的状态类型：clean,locked,dirty,shared, unshared</p>
+<p>bdflush守护进程: 使用bdflush内核守护进程来完成缓存管理,在系统启动时作为一个系 统的线程运行，在大部分时间中，此守护进程都处 于睡眠状态，等待系统中被改动的数据块缓冲区的 数量增大到一定的值，bdflush守护进程将被唤醒,任务是当缓存中被改动的缓 冲区数量太多时，提供一个管理功能</p>
+</li>
+<li>
+<p>索引结点缓存：索引节点缓存可以加快对系统中文件的存取,使用散列表实现，表项的hash值是通 过索引节点号和存储文件系统的物理设备号计算出来的， 各表项指向具有相同hash值的VFS索引节点链表的指针。</p>
+<p>操作：如果系统在索引节点缓存中找到索引节点，那么此索 引节点的计数器将加1，表明又有一个进程在使用该 索引节点。否则，系统必须申请一个空闲的VFS索引 节点，系统读取该索引节点到内存缓存。如果系统已经没有可分配的空闲索引节点时，那么必 须查找一个已用的索引节点，将那些用户计数器为0 的索引节点重新分配（说明系统中没有任何进程正在 使用这些索引节点），一些非常重要的索引节点，如文件系统的根目录索引 节点，它们的索引节点计数器总是大于0，以保证永 远不能被重新分配。不论用什么方法找到一个新的索引节点，系统都必须 调用一个特殊的子程序来把实际文件的信息添加到此 索引节点中。当向新的索引节点中写入信息时，锁定此索引节点， 将索引节点计数器置为1，直到索引节点中的信息写完 后，再解锁。如果它被锁定时，则其他需要访问该索引节点必须等 到解锁后才能进行。</p>
+</li>
+<li>
+<p>目录缓存：为了加速对常用目录的存取， VFS维护一个两层LRU目录 缓存链表。 目录缓存包括一个散列表， 表的hash值由设备号和目录 名来计算，每个表项指向具 有相同hash值的目录缓存链 表的指针。当读取一个目录时，目录的 详细信息将添加到目录缓存 中</p>
+<p><img src="/assets/Operate-System/image-20241209153555479.png" alt="image-20241209153555479"></p>
+</li>
+</ul>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    需求分析
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">需求分析</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.2.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.4.</span> <span class="toc-text">任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">1.5.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.6.</span> <span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.7.</span> <span class="toc-text">需求分析模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.7.1.</span> <span class="toc-text">分析建模</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%BB%BA%E6%A8%A1%E5%B7%A5%E5%85%B7"><span class="toc-number">1.7.2.</span> <span class="toc-text">需求建模工具</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E5%8E%9F%E5%88%99"><span class="toc-number">1.8.</span> <span class="toc-text">软件需求规格说明原则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84"><span class="toc-number">1.8.1.</span> <span class="toc-text">结构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">面向过程的需求分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">结构化分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE"><span class="toc-number">2.2.</span> <span class="toc-text">数据流图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%88%90%E5%88%86"><span class="toc-number">2.2.1.</span> <span class="toc-text">基本成分</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">数据流</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%B7%A5"><span class="toc-number">2.2.1.2.</span> <span class="toc-text">数据加工</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8"><span class="toc-number">2.2.1.3.</span> <span class="toc-text">数据存储</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DFD%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.2.</span> <span class="toc-text">DFD的表示方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-number">3.</span> <span class="toc-text">面向对象的需求分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80UML"><span class="toc-number">3.1.</span> <span class="toc-text">统一建模语言UML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%8F%8A%E5%85%B6%E8%BE%B9%E7%95%8C"><span class="toc-number">3.2.</span> <span class="toc-text">系统及其边界</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E4%B8%8E%E8%80%85actor"><span class="toc-number">3.3.</span> <span class="toc-text">参与者actor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E4%BE%8Buse-case"><span class="toc-number">3.4.</span> <span class="toc-text">用例use case</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96use-case"><span class="toc-number">3.4.1.</span> <span class="toc-text">如何获取use case</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E4%BE%8B%E7%89%B9%E7%82%B9"><span class="toc-number">3.4.2.</span> <span class="toc-text">用例特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E4%BE%8B%E5%9B%BE%E4%B8%AD%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">3.4.3.</span> <span class="toc-text">用例图中的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B3%E8%81%94association"><span class="toc-number">3.4.3.1.</span> <span class="toc-text">关联association</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%9B%E5%8C%96generalization"><span class="toc-number">3.4.3.2.</span> <span class="toc-text">泛化generalization</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8C%85%E5%90%ABinclude"><span class="toc-number">3.4.3.3.</span> <span class="toc-text">包含include</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%A9%E5%B1%95extend"><span class="toc-number">3.4.3.4.</span> <span class="toc-text">扩展extend</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E4%BE%8B%E6%8F%8F%E8%BF%B0"><span class="toc-number">3.4.4.</span> <span class="toc-text">用例描述</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">需求分析</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 5日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">Software-Engineering</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3>
+<ul>
+<li>确认系统必须具备的<strong>功能</strong>、<strong>性能</strong>、系统要求的<strong>运行环境</strong>，预测发展的前景；</li>
+<li>以一种清晰，简洁，一致性且无二义性的方式，对待开发系统中各个有意义的方面的陈述的集合；</li>
+</ul>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3>
+<ul>
+<li>需求分析错误和变更导致软件开发失败占软件失败因素1/3：缺少用户的输入，不完整的需求和规格说明书，需求和规格说明书变更；</li>
+<li>希望对开发进行指导；</li>
+<li>希望开发人员对用户要求理解；</li>
+<li>希望用户理解开发人员；</li>
+<li>测试部门有理可依；</li>
+</ul>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3>
+<ol>
+<li><strong>需求确认</strong>
+<ul>
+<li>获取-提炼-描述-验证</li>
+</ul>
+</li>
+<li><strong>需求变更</strong>
+<ul>
+<li>随着开发过程，实时发生；</li>
+<li>变更管理是将个人、团队和组织从现有状态转移/过渡到期望状态的结构化方法。 它授权雇员接受并理解当前业务环境中的变更。</li>
+<li>在项目管理中，变更管理是指项目 变更被引入和接受后的项目管理过程，管理和控制需求基线的过程</li>
+<li>需求变更控制系统 ：一个正式的文档，说明如何控制需求变更，建立变更审批系统</li>
+</ul>
+</li>
+</ol>
+<h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3>
+<ul>
+<li>建立分析模型：清晰准确的语言描述需求；</li>
+<li>编写需求说明：《需求规格说明书》</li>
+</ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3>
+<ul>
+<li>功能性需求：描述系统应该做什么，为用户和其它系统完成的功能，提供的服务（典型的是<strong>IPO：Input输入,Output输出,Process处理，以及数据存储,计算方式</strong>）；</li>
+<li>非功能性需求：必须遵循的标准，外部界面的细节，实现的<strong>约束条件</strong>，质量属性（比如可拓展性，有效性...）</li>
+</ul>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3>
+<ol>
+<li>需求获取
+<ul>
+<li>软件需求的<strong>来源</strong>以及获取需求的<strong>方法</strong></li>
+<li>来源：用户目标，领域知识，投资者，运行环境，组织环境；</li>
+<li>需求获取技术：采访，设定情景，原型，会议，观察商业过程和工作流</li>
+</ul>
+</li>
+<li>需求提炼
+<ul>
+<li>对应用问题和环境进行理解和分析，为问题设计的信息，功能和系统行为建立模型，将用户需求明确化，完全化</li>
+<li>核心：建立分析模型</li>
+<li>采用多种形式描述需求，建立需求的多种视图，解释更深的问题；</li>
+<li>明确哪些需求更重要，尽早对项目达成共识</li>
+</ul>
+</li>
+<li>需求描述：
+<ul>
+<li>编写《需求规格说明书》SRS</li>
+<li>对待开发系统的行为的完整描述，包含功能性需求和非功能性需求</li>
+<li>完成的基本标志：形成完整规范的需求规格说明书；</li>
+<li>SRS是为了用户和软件开发者双方对软件初始规定有共同理解，成为开发的基础</li>
+</ul>
+</li>
+<li>需求验证
+<ul>
+<li>后续开发发现前期需求文档的错误，返工的代价很大</li>
+<li>有效性检查：检查不同功能使用不同功能的有效性</li>
+<li>一致性检查：需求不应该冲突</li>
+<li>完备性检查：应该包括所有用户想要的功能和约束</li>
+<li>可行性检查：保证技术可实现</li>
+<li>需求验证技术：需求评审，原型，编写测试用例，用户手册，自动化一致性分析</li>
+</ul>
+</li>
+</ol>
+<h3 id="需求分析模型"><a href="#需求分析模型" class="headerlink" title="需求分析模型"></a>需求分析模型</h3>
+<ol>
+<li>当前系统-物理模型：模型化；</li>
+<li>物理模型-逻辑模型：抽象化；</li>
+<li>逻辑模型-逻辑模型：理解需求，表达需求；</li>
+<li>逻辑模型-物理模型：实例化；</li>
+<li>物理模型-目标系统：具体化；</li>
+</ol>
+<h4 id="分析建模"><a href="#分析建模" class="headerlink" title="分析建模"></a>分析建模</h4>
+<ul>
+<li>结构化分析模型：结构化，模块化，自顶向下</li>
+<li>面向对象模型：5层次（主题层，对象类曾，结构层，属性层，服务层）5活动（标识对象类，标识结构，定义主题，定义属性，定义服务）</li>
+<li>面向过程模型；</li>
+</ul>
+<p>分析模型描述工具：</p>
+<ul>
+<li>数据流图，数据字典和加工规约</li>
+<li>控制流图，控制规约和状态变迁图</li>
+<li>E-R图</li>
+<li>用例图，对象关系图，对象行为图</li>
+</ul>
+<h4 id="需求建模工具"><a href="#需求建模工具" class="headerlink" title="需求建模工具"></a>需求建模工具</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>面向对象</th>
+<th>面向过程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据模型</td>
+<td>实体-联系图（ERD），数据字典（DD）</td>
+<td>类图，类关系图</td>
+</tr>
+<tr>
+<td>功能模型</td>
+<td>数据流图（DFD）</td>
+<td>用例图</td>
+</tr>
+<tr>
+<td>行为模型</td>
+<td>状态变迁图（STD）</td>
+<td>活动图，时序图，状态图</td>
+</tr>
+</tbody>
+</table>
+<h3 id="软件需求规格说明原则"><a href="#软件需求规格说明原则" class="headerlink" title="软件需求规格说明原则"></a>软件需求规格说明原则</h3>
+<ol>
+<li>描述做什么而不是怎样实现；</li>
+<li>系统定义语言；</li>
+<li>若软件是大型系统的一个元素，那么大系统也将包括在内；</li>
+<li>系统运行环境；</li>
+<li>认识模型；</li>
+<li>可操作；</li>
+<li>容许不完备性和扩充；</li>
+<li>局部化和耦合；</li>
+</ol>
+<h4 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h4>
+<ol>
+<li>引言
+<ul>
+<li>需求分档的目的；</li>
+<li>文档约定；</li>
+<li>预期的读者和阅读建议；</li>
+<li>产品范围；</li>
+<li>参考文献；</li>
+</ul>
+</li>
+<li>综合描述
+<ul>
+<li>产品前景</li>
+<li>产品功能与优先级</li>
+<li>用户特征</li>
+<li>运行环境</li>
+<li>设计与实现上的限制</li>
+<li>假设和依赖性</li>
+</ul>
+</li>
+<li><strong>需求描述</strong>
+<ul>
+<li>功能需求</li>
+<li>数据需求</li>
+<li>性能需求</li>
+<li>外部接口</li>
+<li>设计约束</li>
+<li>软件质量属性</li>
+</ul>
+</li>
+<li>附录（词汇表，分析模型，待定问题列表）</li>
+<li>索引</li>
+</ol>
+<h2 id="面向过程的需求分析"><a href="#面向过程的需求分析" class="headerlink" title="面向过程的需求分析"></a>面向过程的需求分析</h2>
+<h3 id="结构化分析方法"><a href="#结构化分析方法" class="headerlink" title="结构化分析方法"></a>结构化分析方法</h3>
+<ul>
+<li>面对数据流进行需求分析的方法；</li>
+<li>适合于数据处理类型的需求分析；</li>
+<li>建立模型：
+<ul>
+<li><strong>功能模型</strong>：数据流图（DFD）</li>
+<li><strong>数据模型</strong>：数据字典（DD），实体联系图（ERD），</li>
+<li><strong>行为模型</strong>：状态变迁图（STD）</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/Software-Engineering/image-20240926141453478.png" alt="image-20240926141453478"></p>
+<h3 id="数据流图"><a href="#数据流图" class="headerlink" title="数据流图"></a>数据流图</h3>
+<h4 id="基本成分"><a href="#基本成分" class="headerlink" title="基本成分"></a>基本成分</h4>
+<ul>
+<li>数据加工：表示对数据进行的操作；</li>
+<li>外部实体：数据源和终点，表示位于系统之外的信息提供者或使用者；</li>
+<li>数据流：表示数据和数据流向, 由一组固定成分的数据组成；</li>
+<li>数据存储：表示需要保存的数据流向；</li>
+</ul>
+<p><img src="/assets/Software-Engineering/image-20240926142818513.png" alt="image-20240926142818513"></p>
+<h5 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h5>
+<ul>
+<li>流向：
+<ol>
+<li>加工之间</li>
+<li>加工与数据存储</li>
+<li>加工和外部实体</li>
+</ol>
+</li>
+<li>命名：
+<ol>
+<li>具体意义的名字；</li>
+<li>现有系统已有的名字</li>
+</ol>
+</li>
+<li>注意：
+<ol>
+<li>不需要激发条件；</li>
+<li>不要动词（控制流）</li>
+</ol>
+</li>
+</ul>
+<p>合法的数据流：</p>
+<p><img src="/assets/Software-Engineering/image-20240926142111459.png" alt="image-20240926142111459"></p>
+<p>非法的数据流：</p>
+<p><img src="/assets/Software-Engineering/image-20240926142132486.png" alt="image-20240926142132486"></p>
+<h5 id="数据加工"><a href="#数据加工" class="headerlink" title="数据加工"></a>数据加工</h5>
+<ul>
+<li>编号：说明层次分解的位置（分层DFD）</li>
+<li>命名：顶层为项目名，避免只用动词，可以用操作+对象</li>
+</ul>
+<p><img src="/assets/Software-Engineering/image-20240926142403072.png" alt="image-20240926142403072"></p>
+<h5 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h5>
+<ul>
+<li>一般局限在某几层，命名和数据流相似；</li>
+<li><strong>流向存储或从存储流出</strong>的数据流不必命名；</li>
+</ul>
+<h4 id="DFD的表示方法"><a href="#DFD的表示方法" class="headerlink" title="DFD的表示方法"></a>DFD的表示方法</h4>
+<ol>
+<li>只描述数据的流动；</li>
+<li>分为多层，子图和父图表示，逐步展开数据流的细节；</li>
+<li>先画顶层DFD，自顶向下进行；</li>
+<li>先考虑稳定状态，忽略系统的工作条件，出错处理，随时准备重画；</li>
+</ol>
+<p>局部数据存储，只有出现在接口处的才有必要画出来；</p>
+<p>字图图号为父图的加工号，顶层不编号；</p>
+<p>默认原则：</p>
+<ol>
+<li>父图-子图平衡：父图输入输出数据流 = 子图输入输出数据流</li>
+<li>局部数据存储：出现在加工之间的接口时，才画出来</li>
+<li>编号：子图图号为分解的父图中的加工号，同级子图在最后以数字序号区别，顶层不编号</li>
+<li>分解程度合适：一般设定深度为<svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="5.028ex" height="1.692ex" role="img" focusable="false" viewBox="0 -666 2222.4 748" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-N-33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path id="MJX-1-TEX-N-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path id="MJX-1-TEX-N-35" d="M164 157Q164 133 148 117T109 101H102Q148 22 224 22Q294 22 326 82Q345 115 345 210Q345 313 318 349Q292 382 260 382H254Q176 382 136 314Q132 307 129 306T114 304Q97 304 95 310Q93 314 93 485V614Q93 664 98 664Q100 666 102 666Q103 666 123 658T178 642T253 634Q324 634 389 662Q397 666 402 666Q410 666 410 648V635Q328 538 205 538Q174 538 149 544L139 546V374Q158 388 169 396T205 412T256 420Q337 420 393 355T449 201Q449 109 385 44T229 -22Q148 -22 99 32T50 154Q50 178 61 192T84 210T107 214Q132 214 148 197T164 157Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="33" xlink:href="#MJX-1-TEX-N-33"></use></g><g data-mml-node="mo" transform="translate(722.2,0)"><use data-c="2212" xlink:href="#MJX-1-TEX-N-2212"></use></g><g data-mml-node="mn" transform="translate(1722.4,0)"><use data-c="35" xlink:href="#MJX-1-TEX-N-35"></use></g></g></g></svg>层，各章各数据流图加工数目为<svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="5.028ex" height="1.579ex" role="img" focusable="false" viewBox="0 -676 2222.4 698" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-2-TEX-N-37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z"></path><path id="MJX-2-TEX-N-B1" d="M56 320T56 333T70 353H369V502Q369 651 371 655Q376 666 388 666Q402 666 405 654T409 596V500V353H707Q722 345 722 333Q722 320 707 313H409V40H707Q722 32 722 20T707 0H70Q56 7 56 20T70 40H369V313H70Q56 320 56 333Z"></path><path id="MJX-2-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="37" xlink:href="#MJX-2-TEX-N-37"></use></g><g data-mml-node="mo" transform="translate(722.2,0)"><use data-c="B1" xlink:href="#MJX-2-TEX-N-B1"></use></g><g data-mml-node="mn" transform="translate(1722.4,0)"><use data-c="32" xlink:href="#MJX-2-TEX-N-32"></use></g></g></g></svg></li>
+</ol>
+<p>改进原则：</p>
+<ol>
+<li>
+<p>检查正确性</p>
+<ul>
+<li>
+<p><strong>数据不守恒</strong>：某个加工输出的数据没有响应的数据来源，可能某个数据流被遗漏了；一个加工的输入并没有被用到；</p>
+</li>
+<li>
+<p><strong>数据存储的使用</strong>：判断是否存在只写不读，或者只读不写的数据存储</p>
+</li>
+<li>
+<p>父图-子图平衡</p>
+</li>
+</ul>
+</li>
+<li>
+<p>提高可理解性</p>
+<ul>
+<li>简化加工之间的联系：应该尽量减少加工返回输入输出数据流的数目，数据流越少，数据越独立；</li>
+<li>注意分解的均匀；</li>
+<li>适当的命名；</li>
+</ul>
+</li>
+<li>
+<p>重新分解：子图发现问题后应该对父图重新分解</p>
+</li>
+</ol>
+<h2 id="面向对象的需求分析"><a href="#面向对象的需求分析" class="headerlink" title="面向对象的需求分析"></a>面向对象的需求分析</h2>
+<h3 id="统一建模语言UML"><a href="#统一建模语言UML" class="headerlink" title="统一建模语言UML"></a>统一建模语言UML</h3>
+<p>UML是面向对象的系统分析与设计的建模语言，统一了面向对象建模的基本概念、术语及其图形符号，为不同领域的人员提供一个交流的标准。</p>
+<p><img src="/assets/Software-Engineering/image-20240926150417441.png" alt="image-20240926150417441"></p>
+<h3 id="系统及其边界"><a href="#系统及其边界" class="headerlink" title="系统及其边界"></a>系统及其边界</h3>
+<ul>
+<li>
+<p>目的：识别什么在系统内，什么在系统外，进而识别出系统的职责；</p>
+</li>
+<li>
+<p>典型的系统边界：硬件设备，组织，部门</p>
+</li>
+<li>
+<p>方框代表边界</p>
+</li>
+</ul>
+<h3 id="参与者actor"><a href="#参与者actor" class="headerlink" title="参与者actor"></a>参与者actor</h3>
+<ul>
+<li>系统之外的需要用系统或者与系统交互的东西；</li>
+<li>表示形式：actor，lable，decoration</li>
+<li>小人表示actor</li>
+</ul>
+<h3 id="用例use-case"><a href="#用例use-case" class="headerlink" title="用例use case"></a>用例use case</h3>
+<ul>
+<li>系统，子系统或者类和外部的参与者交互的<strong>动作序列的说明</strong>；</li>
+<li>包括可选的动作序列，会出现异常的动作序列；</li>
+<li>用例是系统提供给外部可感知的功能单元，<strong>描述使用的情况</strong>；</li>
+<li>目的：定义清晰的系统行为，但不解释系统的内部结构</li>
+<li>椭圆+动宾结构：创建索引...</li>
+</ul>
+<h4 id="如何获取use-case"><a href="#如何获取use-case" class="headerlink" title="如何获取use case"></a>如何获取use case</h4>
+<ol>
+<li>参与者希望系统执行的任务；</li>
+<li>参与者在系统访问的信息；</li>
+<li>外界信息如何提供给系统；</li>
+<li>系统的什么事情告知参与者；</li>
+<li>如何维护系统；</li>
+</ol>
+<h4 id="用例特点"><a href="#用例特点" class="headerlink" title="用例特点"></a>用例特点</h4>
+<ul>
+<li>用例从<strong>使用系统</strong>的角度描述系统；</li>
+<li>用例描述了用户提出了<strong>可见需求</strong>，<strong>对应具体的用户目标</strong>，注意：非功能性需求就是不可见的，登陆也一般不是具体的用户目标；</li>
+<li>用例是对系统的动态描述，属于UML的动态建模部分；</li>
+<li>识别用例时一个常见的错误是：把用例当成是单独的步骤、操作或事务的处理。</li>
+</ul>
+<h4 id="用例图中的关系"><a href="#用例图中的关系" class="headerlink" title="用例图中的关系"></a>用例图中的关系</h4>
+<ul>
+<li>关联：参与者和其参与的用例之间的通信途径；</li>
+<li>泛化：一般和特殊之间的关系，其中特殊用例继承了一般用例的特性并增加了新的特性</li>
+<li>包含：其中一个用例的<strong>行为包含</strong>另一个用例，在基础用例上插入附加的行为，并且具有明确的描述</li>
+<li>扩展：在基础用例上插入基础用例不能说明的扩展部分</li>
+</ul>
+<h5 id="关联association"><a href="#关联association" class="headerlink" title="关联association"></a>关联association</h5>
+<p><img src="/assets/Software-Engineering/image-20240926150933437.png" alt="image-20240926150933437"></p>
+<h5 id="泛化generalization"><a href="#泛化generalization" class="headerlink" title="泛化generalization"></a>泛化generalization</h5>
+<ul>
+<li>子用例继承父用例的行为和含义；</li>
+<li>子用例也可以新增或覆盖父用例的行为和含义</li>
+</ul>
+<p><img src="/assets/Software-Engineering/image-20240926151102777.png" alt="image-20240926151102777"></p>
+<h5 id="包含include"><a href="#包含include" class="headerlink" title="包含include"></a>包含include</h5>
+<ul>
+<li>箭头由<strong>基本用例指向被包含用例</strong>；</li>
+<li>被包含用例在基本用例执行时必须被执行；</li>
+<li>被包含用例也可单独执行;</li>
+<li>如果两个以上的用例有共同的功能，则可以将这个功能分解到另一个用例中．</li>
+<li>一个用例的功能太多时，可以用包含关系建模两个小用例。</li>
+</ul>
+<p><img src="/assets/Software-Engineering/image-20240926151238220.png" alt="image-20240926151238220"></p>
+<h5 id="扩展extend"><a href="#扩展extend" class="headerlink" title="扩展extend"></a>扩展extend</h5>
+<ul>
+<li>箭头由拓展用例指向基本用例；</li>
+<li>扩展用例无法单独被执行；</li>
+<li>一个基本用例执行时，可以执行、也可以不执行扩展用例部分；</li>
+<li>基本用例必须声明若干扩展点，扩展用例只能在扩展点增加新的新为和含义；</li>
+</ul>
+<h4 id="用例描述"><a href="#用例描述" class="headerlink" title="用例描述"></a>用例描述</h4>
+<p>主要组成</p>
+<p><img src="/assets/Software-Engineering/image-20240926152057627.png" alt="image-20240926152057627"></p>
+<p>易犯的错误</p>
+<ol>
+<li>只描述系统的行为，没有描述参与者的行为；</li>
+<li>只描述参与者行为，不描述系统的行为；</li>
+<li>在用用例描述中设计用户界面的设计</li>
+<li>描述冗长</li>
+</ol>
+<p>用例识别的两种方法：</p>
+<ol>
+<li>基于参与者：识别与系统相关的参与者，对于每个参与者，识别出他们发起或参加的执行过程</li>
+<li>基于执行过程：</li>
+</ol>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

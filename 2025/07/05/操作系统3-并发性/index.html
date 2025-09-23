@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    并发
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">并发</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%B9%B6%E5%8F%91%E9%9D%A2%E4%B8%B4%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">进程并发面临问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E4%BA%92%E6%96%A5%E5%92%8C%E5%90%8C%E6%AD%A5"><span class="toc-number">3.</span> <span class="toc-text">硬件方法实现互斥和同步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD"><span class="toc-number">3.1.</span> <span class="toc-text">中断屏蔽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TestAndSet%EF%BC%8CSwap-TS%E6%8C%87%E4%BB%A4-TSL%E6%8C%87%E4%BB%A4-Swap%E6%8C%87%E4%BB%A4"><span class="toc-number">3.2.</span> <span class="toc-text">TestAndSet，Swap(TS指令&#x2F;TSL指令&#x2F;Swap指令)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E5%BD%A2%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">整形信号量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E5%9E%8B%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="toc-number">5.</span> <span class="toc-text">记录型信号量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AND%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="toc-number">6.</span> <span class="toc-text">AND信号量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E9%9B%86"><span class="toc-number">7.</span> <span class="toc-text">信号量集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%A8%8BMonitor"><span class="toc-number">8.</span> <span class="toc-text">管程Monitor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Producer-Consumer-Problem"><span class="toc-number">9.</span> <span class="toc-text">Producer-Consumer Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reader-Writer-Problem"><span class="toc-number">10.</span> <span class="toc-text">Reader-Writer Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%BB%E9%94%81"><span class="toc-number">11.</span> <span class="toc-text">死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%B2%E5%AD%A6%E5%AE%B6%E8%BF%9B%E9%A4%90%E9%97%AE%E9%A2%98"><span class="toc-number">11.1.</span> <span class="toc-text">哲学家进餐问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A7%E7%94%9F%E5%8E%9F%E5%9B%A0"><span class="toc-number">11.2.</span> <span class="toc-text">产生原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%85%E5%88%86%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-number">11.3.</span> <span class="toc-text">充分必要条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E9%98%B2%E6%AD%BB%E9%94%81"><span class="toc-number">11.4.</span> <span class="toc-text">预防死锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81"><span class="toc-number">11.5.</span> <span class="toc-text">避免死锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E5%92%8C%E8%A7%A3%E9%99%A4%E6%AD%BB%E9%94%81"><span class="toc-number">11.6.</span> <span class="toc-text">检测和解除死锁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="toc-number">12.</span> <span class="toc-text">进程间通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8%E5%99%A8"><span class="toc-number">12.1.</span> <span class="toc-text">共享存储器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92"><span class="toc-number">12.2.</span> <span class="toc-text">消息传递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E9%81%93"><span class="toc-number">12.3.</span> <span class="toc-text">管道</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">并发</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 5日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">System</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2>
+<p><strong>原子操作</strong>：一个函数或者动作，由一个或多个指令序列实现，</p>
+<ul>
+<li>对外不可见，没有其他进程可以看到其中间状态或者中断这个操作</li>
+<li>保证指令序列要么都执行，要么都不执行</li>
+<li>保证了并发进程的隔离</li>
+</ul>
+<p><strong>同步</strong>：为了完成任务而建立的多个进程，这些进程为了需要在某些位置上协调工作而等待，传递信息而产生的制约关系</p>
+<ul>
+<li>空闲让进：没有进程处于临界区时，可以允许一个请求进入临界区</li>
+<li>忙则等待：已有进程进入临界区时，其他试图进入临界区的进程必须等待</li>
+<li>有限等待：对要求访问临界资源的进程，保证要在有限时间内进入临界区</li>
+<li>让权等待：当进程不能进入临界区时，应该释放处理机</li>
+</ul>
+<p><strong>互斥</strong>：当一个进程在临界区访问共享资源时，其他进程不能进入临界区访问共享资源
+<strong>临界区</strong>：进程将访问共享资源的一段代码</p>
+<ul>
+<li>
+<p>一个进程在临界区运行时，另一个进程无法进入临界区</p>
+</li>
+<li>
+<p>一次只有一个程序在临界区</p>
+</li>
+</ul>
+<p><strong>死锁</strong>：多个进程相互等待导致都不能执行
+<strong>活锁</strong>：进程为像一个其他进程的变化，持续改变自己的状态，但不做有用的工作
+<strong>竞争</strong>：多个进程读写一个共享变量，该变量的最终指依赖它们的相对调度
+<strong>饥饿</strong>：进程已经完全具备了了执行条件，但是得不到CPU资源</p>
+<h2 id="进程并发面临问题"><a href="#进程并发面临问题" class="headerlink" title="进程并发面临问题"></a>进程并发面临问题</h2>
+<ul>
+<li>忙等：没有执行有用的事情但是一直占用处理机，违背了让权等待的原则；</li>
+<li>永久阻塞：需要得到临界资源的进程永远得不到资源，违背了有限等待的原则；</li>
+<li>死锁：每个进程误以为对方进入了临界区，使自己处于阻塞</li>
+<li>互斥礼让：代表进入临界资源区的标志为不断的重置和检查，重置序列无限延伸，任何进程不能进入自己的临界区</li>
+</ul>
+<h2 id="硬件方法实现互斥和同步"><a href="#硬件方法实现互斥和同步" class="headerlink" title="硬件方法实现互斥和同步"></a>硬件方法实现互斥和同步</h2>
+<h3 id="中断屏蔽"><a href="#中断屏蔽" class="headerlink" title="中断屏蔽"></a>中断屏蔽</h3>
+<ul>
+<li>利用开关中断指令实现，类似于原语</li>
+<li>即先关中断，关中断后即不允许当前进程被中断，也必然不会发生进程切换，然后进入临界区，直到当前进程访问完临界区，再执行开中断指令，才有可能有别的进程上处理机访问临界区。</li>
+<li>简单高效，但是不适合多处理机，只适用于操作系统内核进程，不适合用户进程</li>
+</ul>
+<h3 id="TestAndSet，Swap-TS指令-TSL指令-Swap指令"><a href="#TestAndSet，Swap-TS指令-TSL指令-Swap指令" class="headerlink" title="TestAndSet，Swap(TS指令/TSL指令/Swap指令)"></a>TestAndSet，Swap(TS指令/TSL指令/Swap指令)</h3>
+<ul>
+<li>TSL指令是用硬件实现的，执行的过程不允许被中断，只能一气呵成。相比软件实现方法，TSL 指令把“上锁”和“检查”操作用硬件的方式变成了一气呵成的原子操作。</li>
+<li>实现简单，无需像软件实现方法那样严格检查是否会有逻辑漏洞</li>
+<li>适用于多处理机环境</li>
+<li>不满足“让权等待”原则，暂时无法进入临界区的进程会占用CPU并循环执行TSL指令，从而导致“忙等”</li>
+</ul>
+<h2 id="整形信号量"><a href="#整形信号量" class="headerlink" title="整形信号量"></a>整形信号量</h2>
+<p>将可用的资源数定义为一个整型量<svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.459ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 645 727" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-I-1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D446" xlink:href="#MJX-1-TEX-I-1D446"></use></g></g></g></svg>，初始化后可通过两个原子操作访问</p>
+<ul>
+<li><code>wait(S)</code>:P操作,<code>while(S&lt;=0);S—-;</code></li>
+<li><code>signal(S)</code>:V操作,`S++
+整形信号量不遵循让权等待原则；</li>
+</ul>
+<h2 id="记录型信号量"><a href="#记录型信号量" class="headerlink" title="记录型信号量"></a>记录型信号量</h2>
+<p>由两部分构成：</p>
+<ul>
+<li>代表资源数目的整型变量<code>Value</code></li>
+<li>表示所有等待进程的进程链表<code>L</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Semaphore</span> &#123;</span></span><br><span class="line">	<span class="type">int</span> Value;</span><br><span class="line">	List_of_Process L;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Wait</span><span class="params">(Semaphore s)</span>&#123;</span><br><span class="line">    s.Value --;</span><br><span class="line">    <span class="keyword">if</span>(s.Value &lt; <span class="number">0</span>)&#123;</span><br><span class="line">    	L.push(now_process);</span><br><span class="line">        block(now_process);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Signal</span><span class="params">(Semaphore s)</span>&#123;</span><br><span class="line">    s.Value ++;</span><br><span class="line">    <span class="keyword">if</span>(s.Value &lt;= <span class="number">0</span> ) &#123;</span><br><span class="line">        next_process = L.top();</span><br><span class="line">        wakeup(next_process);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>当<code>Value</code>初值为1，表示只允许一个进程访问临界资源，转化为互斥信号量（二元信号量）；</p>
+<p>简单说明互斥锁和二元信号量的区别：</p>
+<ul>
+<li>为互斥量加锁和解锁的进程只能是同一进程；</li>
+<li>可能有某个进程对二元信号量加锁，另一个进程为其解锁；</li>
+</ul>
+<p>一般来说，对于多个进程互斥访问临界资源的情况，每个进程应该都要设计代表访问临界资源的锁；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Semaphore mutex(1);</span><br><span class="line">void Process1&#123;</span><br><span class="line">	// 申请访问其他资源</span><br><span class="line">	</span><br><span class="line">	P(mutex); // 申请进入临界区</span><br><span class="line">	// Critical Section 临界区代码</span><br><span class="line">	V(mutex); // 释放临界区资源</span><br><span class="line">	</span><br><span class="line">	// 释放已申请的其余资源</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>进一步还可以利用信号量设计进程间的前趋关系；</p>
+<h2 id="AND信号量"><a href="#AND信号量" class="headerlink" title="AND信号量"></a>AND信号量</h2>
+<p>将进程在整个运行过程中需要的所有资源，一次性全部地分配给进程，待进程使用完后再一起释放。只要尚有一个资源未能分配给进程，其它所有可能为之分配的资源，也不分配给他。
+对临界资源的分配采用原子操作的方式；</p>
+<h2 id="信号量集"><a href="#信号量集" class="headerlink" title="信号量集"></a>信号量集</h2>
+<p>对每一类资源，设定一个下限值<svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.817ex" height="1.441ex" role="img" focusable="false" viewBox="0 -626 361 637" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-2-TEX-I-1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D461" xlink:href="#MJX-2-TEX-I-1D461"></use></g></g></g></svg>和需求单位值<svg style="vertical-align: -0.023ex;" xmlns="http://www.w3.org/2000/svg" width="1.176ex" height="1.593ex" role="img" focusable="false" viewBox="0 -694 520 704" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-3-TEX-I-1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D451" xlink:href="#MJX-3-TEX-I-1D451"></use></g></g></g></svg>；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Swait(S1, t1, d1, …, Sn, tn, dn)</span><br><span class="line"> 	if ( S1≥t1 and … and Sn≥tn )</span><br><span class="line"> 	for  ( i=1;i&lt;=n; i++)</span><br><span class="line"> 		Si =Si-di;</span><br><span class="line"> 	else</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>Swait(S, d, d)</code> 此时在信号量集中只有一个信号量<svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.459ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 645 727" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-4-TEX-I-1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D446" xlink:href="#MJX-4-TEX-I-1D446"></use></g></g></g></svg>，  但允许它每次申请<code>d</code>个资源，当现有资源数少于<code>d</code>时，不予分配;</li>
+<li><code>Swait(S, 1, 1)</code>此时的信号量集已退化为一般的记录型信号量(<svg style="vertical-align: -0.452ex;" xmlns="http://www.w3.org/2000/svg" width="4.853ex" height="2.149ex" role="img" focusable="false" viewBox="0 -750 2145 950" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-5-TEX-I-1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path><path id="MJX-5-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D446" xlink:href="#MJX-5-TEX-I-1D446"></use></g><g data-mml-node="mi" transform="translate(645,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">＞</text></g><g data-mml-node="mn" transform="translate(1645,0)"><use data-c="31" xlink:href="#MJX-5-TEX-N-31"></use></g></g></g></svg>时)或互斥信号量(<svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="5.608ex" height="1.781ex" role="img" focusable="false" viewBox="0 -705 2478.6 787" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-6-TEX-I-1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path><path id="MJX-6-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path id="MJX-6-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D446" xlink:href="#MJX-6-TEX-I-1D446"></use></g><g data-mml-node="mo" transform="translate(922.8,0)"><use data-c="3D" xlink:href="#MJX-6-TEX-N-3D"></use></g><g data-mml-node="mn" transform="translate(1978.6,0)"><use data-c="31" xlink:href="#MJX-6-TEX-N-31"></use></g></g></g></svg>时);</li>
+<li><code>Swait(S, 1, 0)</code>这是一种很特殊且很有用的信号量 操作。当<svg style="vertical-align: -0.312ex;" xmlns="http://www.w3.org/2000/svg" width="5.608ex" height="1.907ex" role="img" focusable="false" viewBox="0 -705 2478.6 843" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-7-TEX-I-1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path><path id="MJX-7-TEX-N-2265" d="M83 616Q83 624 89 630T99 636Q107 636 253 568T543 431T687 361Q694 356 694 346T687 331Q685 329 395 192L107 56H101Q83 58 83 76Q83 77 83 79Q82 86 98 95Q117 105 248 167Q326 204 378 228L626 346L360 472Q291 505 200 548Q112 589 98 597T83 616ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path><path id="MJX-7-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D446" xlink:href="#MJX-7-TEX-I-1D446"></use></g><g data-mml-node="mo" transform="translate(922.8,0)"><use data-c="2265" xlink:href="#MJX-7-TEX-N-2265"></use></g><g data-mml-node="mn" transform="translate(1978.6,0)"><use data-c="31" xlink:href="#MJX-7-TEX-N-31"></use></g></g></g></svg>时，允许多个进程进入某特定区；当<svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="1.459ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 645 727" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-8-TEX-I-1D446" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D446" xlink:href="#MJX-8-TEX-I-1D446"></use></g></g></g></svg>变为0后， 将阻止任何进程进入特定区。换言之，它相当于一个可控开关。</li>
+</ul>
+<h2 id="管程Monitor"><a href="#管程Monitor" class="headerlink" title="管程Monitor"></a>管程Monitor</h2>
+<p>管程是由一个或多个过程，一个初始化序列和局部数据组成的软件模块</p>
+<ul>
+<li>局部变量数据只能被管程的过程访问，外部过程无法访问</li>
+<li>一个进程通过调用管程的一个过程进入管程，设计一个入口，进入管程之前先进入管程的待进入队列中；</li>
+<li>只能有一个进程在管程中执行，其他调用管程的进程将被阻塞；</li>
+</ul>
+<p><img src="/assets/Operate-System/image-20241026152806438.png" alt="image-20241026152806438"></p>
+<p>管程通过<strong>条件变量</strong>支持同步,其原子操作和普通的信号量不同；</p>
+<ul>
+<li><code>cwait(c)</code>: 调用进程的执行 在条件c阻塞，管程可以被另一个进程使用；</li>
+<li><code>csignal(c)</code>：恢复在<code>cwait(c)</code>之后因为某些条件被阻塞的进程；</li>
+</ul>
+<p>在一个进程在管程中时，因为某种原因，这个进程发送<code>cwait(x)</code>将自己暂时阻塞在条件<code>x</code>上，此时加入条件<code>x</code>的条件队列，之后这个进程等待条件<code>x</code>的改变，以重新进入管程的待进入队列中，若进程发现条件<code>x</code>真的发生了改变，则发送<code>csignal(x)</code>通知相应的条件队列条件已经改变；</p>
+<h2 id="Producer-Consumer-Problem"><a href="#Producer-Consumer-Problem" class="headerlink" title="Producer-Consumer Problem"></a>Producer-Consumer Problem</h2>
+<p>描述</p>
+<ul>
+<li>有一个或多个生产者生产某种资源，放入缓冲池</li>
+<li>有一个消费者从缓冲池读取资源，每次读取一项</li>
+<li>任何时候仅有一个生产者/消费者可以访问缓冲池，</li>
+<li>缓冲池已满时，生产者不再往其中添加资源；</li>
+<li>缓冲池为空时，消费者不会从中移走资源；</li>
+</ul>
+<p>信号量实现</p>
+<ul>
+<li>利用互斥信号量<code>mutex</code>实现对缓冲池的互斥使用</li>
+<li>利用信号量<code>empty full</code>表示缓冲池中空区和满区的数量；</li>
+</ul>
+<p><img src="/assets/Operate-System/image-20241026162308732.png" alt="image-20241026162308732"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> n;</span><br><span class="line">Semaphore <span class="title function_">mutex</span><span class="params">(<span class="number">1</span>)</span>;</span><br><span class="line">Semaphore <span class="title function_">full</span><span class="params">(<span class="number">0</span>)</span>, <span class="title function_">empty</span><span class="params">(n)</span>;</span><br><span class="line">Item Buffer[n];</span><br><span class="line"><span class="type">int</span> in=<span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> out=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">append</span><span class="params">(Item v)</span>&#123;</span><br><span class="line">	Buffer[in] = v;</span><br><span class="line">    in = (in+<span class="number">1</span>)%n;</span><br><span class="line">&#125;</span><br><span class="line">Item <span class="title function_">take</span><span class="params">()</span>&#123;</span><br><span class="line">    v = Buffer[out];</span><br><span class="line">    out = (out+<span class="number">1</span>)%n;</span><br><span class="line">    <span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Producer</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">        v = produce();</span><br><span class="line">        </span><br><span class="line">        P(empty);</span><br><span class="line">        P(mutex);</span><br><span class="line">        append(v);</span><br><span class="line">        V(mutex);</span><br><span class="line">        V(empty);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Consumer</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        P(full);</span><br><span class="line">        P(mutex);</span><br><span class="line">        v = take();</span><br><span class="line">        V(mutex);</span><br><span class="line">        V(full);</span><br><span class="line">        </span><br><span class="line">        comsume(v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于一系列P操作和V操作，也可以用AND信号量实现，不过注意，对P操作的顺序不能颠倒，否则将可能导致死锁；</p>
+<h2 id="Reader-Writer-Problem"><a href="#Reader-Writer-Problem" class="headerlink" title="Reader-Writer Problem"></a>Reader-Writer Problem</h2>
+<p>描述</p>
+<ul>
+<li>多个进程对同一个文件进行读写</li>
+<li>不能同时写文件</li>
+<li>不能同时读和写文件</li>
+<li>可以同时读文件</li>
+</ul>
+<p>信号量实现</p>
+<ul>
+<li>设置写锁<code>Wmutex</code>,由于最多有一个进程在写，因此这应该是一个互斥信号量</li>
+<li>设置读锁<code>Rmutex</code>，用于记录目前在读文件的进程数<code>ReaderCnt</code>，这些进程应该互斥地修改它；</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Semaphore <span class="title function_">Rmutex</span><span class="params">(<span class="number">1</span>)</span></span><br><span class="line">Semaphore <span class="title function_">Wmutex</span><span class="params">(<span class="number">1</span>)</span>;</span><br><span class="line"><span class="type">int</span> ReaderCnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Reader</span><span class="params">(file)</span> &#123;</span><br><span class="line">	P(Rmutex);</span><br><span class="line">    <span class="keyword">if</span>(ReaderCnt == <span class="number">0</span>) P(Wmutex);</span><br><span class="line"> 	ReaderCnt ++;</span><br><span class="line">    V(Rmutex);</span><br><span class="line">    </span><br><span class="line">    open(file);</span><br><span class="line">    read(file);</span><br><span class="line">    close(file);</span><br><span class="line">    </span><br><span class="line">    P(Rmutex);</span><br><span class="line">    ReaderCnt --;</span><br><span class="line">    <span class="keyword">if</span>(ReaderCnt == <span class="number">0</span>) V(Wmutex);</span><br><span class="line">    V(Rmutex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Writer</span><span class="params">(file)</span> &#123;</span><br><span class="line">    P(Wmutex);</span><br><span class="line">    </span><br><span class="line">    open(file);</span><br><span class="line">    write(file);</span><br><span class="line">    close(file);</span><br><span class="line">    </span><br><span class="line">    V(Wmutex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2>
+<h3 id="哲学家进餐问题"><a href="#哲学家进餐问题" class="headerlink" title="哲学家进餐问题"></a>哲学家进餐问题</h3>
+<ul>
+<li>5个哲学家坐在圆桌，他们中间穿插5只筷子</li>
+<li>哲学家进餐必须同时具备左边和右边的筷子</li>
+<li>一只筷子在同一时刻只能由一位哲学家使用，</li>
+<li>哲学家在进餐完毕后必须将筷子放回原处，然后思考哲学问题；</li>
+</ul>
+<p>一般我们将5只筷子设置为5个信号量，哲学家进餐前默认先拿起左边的筷子，再拿起右边的筷子后，进餐，完毕后先放下右手的筷子，再放下左手的筷子，然后思考或等待下一次进餐；</p>
+<p>注意：</p>
+<p>假如五位哲学家同时饥饿而都拿起的左边的筷子，就会使代表筷子的5个信号量同时置0，这时他们试图拿起右边的筷子时，都因为相互等待二陷入死锁；</p>
+<p>可以进行如下的改进策略：</p>
+<ul>
+<li>限制并发量：至多允许4个哲学家同时进餐</li>
+<li>解除环路等待：指定一位哲学家必须先拿起右边的筷子</li>
+<li>恢复策略：死锁发生时，指定一位哲学家放下自己的筷子；</li>
+<li>检测策略：哲学家进餐前，同时申请两只筷子；</li>
+<li>管程优化：每次只有一个进程进入管程</li>
+</ul>
+<h3 id="产生原因"><a href="#产生原因" class="headerlink" title="产生原因"></a>产生原因</h3>
+<ul>
+<li>竞争资源：资源包括可剥夺资源和非剥夺性资源，一般是竞争非剥夺性资源，竞争临时性资源引起；</li>
+<li>进程间推进顺序不当；</li>
+</ul>
+<h3 id="充分必要条件"><a href="#充分必要条件" class="headerlink" title="充分必要条件"></a>充分必要条件</h3>
+<ol>
+<li>互斥条件：至少有一个资源是非剥夺性的</li>
+<li>请求并保持条件：进程因请求新的资源而保持对已有资源的占有</li>
+<li>不可剥夺条件：已获得的资源在未使用完之前，不能被其他进程抢占</li>
+<li>环路等待条件：存在一组进程，使得每个进程都在等待其他进程所持有的资源</li>
+</ol>
+<p>注意，前三者是死锁发生的必要条件，而非充分的；</p>
+<h3 id="预防死锁"><a href="#预防死锁" class="headerlink" title="预防死锁"></a>预防死锁</h3>
+<p>预防死锁发生的可能（一般不会禁止互斥条件，如果操作系统实现了互斥的话）</p>
+<ul>
+<li>预防请求并保持条件
+<ul>
+<li>进程在执行前，一次申请完执行过程中可能用到的所有资源；</li>
+</ul>
+</li>
+<li>预防不可剥夺条件
+<ul>
+<li>进程已占用一些资源，但后续资源得不到满足，必须释放已经占用的资源；</li>
+<li>高优先级进程申请被低优先级进程占用的资源，系统将后者资源抢占，分配给前者；</li>
+</ul>
+</li>
+<li>预防环路等待条件
+<ul>
+<li>将资源进行排序（定义资源的线性顺序），若进程获得资源<svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="2.457ex" height="1.902ex" role="img" focusable="false" viewBox="0 -683 1086 840.8" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-9-TEX-I-1D445" d="M230 637Q203 637 198 638T193 649Q193 676 204 682Q206 683 378 683Q550 682 564 680Q620 672 658 652T712 606T733 563T739 529Q739 484 710 445T643 385T576 351T538 338L545 333Q612 295 612 223Q612 212 607 162T602 80V71Q602 53 603 43T614 25T640 16Q668 16 686 38T712 85Q717 99 720 102T735 105Q755 105 755 93Q755 75 731 36Q693 -21 641 -21H632Q571 -21 531 4T487 82Q487 109 502 166T517 239Q517 290 474 313Q459 320 449 321T378 323H309L277 193Q244 61 244 59Q244 55 245 54T252 50T269 48T302 46H333Q339 38 339 37T336 19Q332 6 326 0H311Q275 2 180 2Q146 2 117 2T71 2T50 1Q33 1 33 10Q33 12 36 24Q41 43 46 45Q50 46 61 46H67Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628Q287 635 230 637ZM630 554Q630 586 609 608T523 636Q521 636 500 636T462 637H440Q393 637 386 627Q385 624 352 494T319 361Q319 360 388 360Q466 361 492 367Q556 377 592 426Q608 449 619 486T630 554Z"></path><path id="MJX-9-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><use data-c="1D445" xlink:href="#MJX-9-TEX-I-1D445"></use></g><g data-mml-node="mi" transform="translate(792,-150) scale(0.707)"><use data-c="1D456" xlink:href="#MJX-9-TEX-I-1D456"></use></g></g></g></g></svg>，后续资源序号只能都大于或都小于<svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-10-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-10-TEX-I-1D456"></use></g></g></g></svg>;</li>
+</ul>
+</li>
+</ul>
+<p>注意，预防死锁可能会导致资源的低效使用和低效的进程执行</p>
+<h3 id="避免死锁"><a href="#避免死锁" class="headerlink" title="避免死锁"></a>避免死锁</h3>
+<p>死锁避免允许三个必要条件的发生，但是明智的选择确保不会到达死锁点，因此允许了更多的进程并发；</p>
+<p><strong>安全状态</strong>
+系统能找到<strong>进程的执行序列</strong>，为每个进程分配所需资源，直到每个进程的最大需求 ，使得每个进程都可以顺利完成</p>
+<ul>
+<li>允许进程动态地申请资源</li>
+<li>分配之前检查会不会导致系统进入不安全的状态</li>
+</ul>
+<p>考虑一个有<svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.357ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 600 453" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-11-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D45B" xlink:href="#MJX-11-TEX-I-1D45B"></use></g></g></g></svg>个进程，<svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.986ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 878 453" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-12-TEX-I-1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D45A" xlink:href="#MJX-12-TEX-I-1D45A"></use></g></g></g></svg>个不同类型资源的系统，定义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">state</span> &#123;</span></span><br><span class="line">	<span class="type">int</span> resource[m]; 		<span class="comment">// 系统中每种资源的总量，向量R</span></span><br><span class="line">    <span class="type">int</span> avalaible[m];		<span class="comment">// 未分配给进程的每种资源的总量,向量V</span></span><br><span class="line">    <span class="type">int</span> claim[n][m];		<span class="comment">// 进程i对资源j的最大需求,矩阵C</span></span><br><span class="line">    <span class="type">int</span> allocation[n][m];	<span class="comment">// 	系统为进程i分配资源j的数量,矩阵A</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不难看出以下关系成立：</p>
+<ul>
+<li>对于每类资源，要么可用，要么已被分配：<svg style="vertical-align: -0.777ex;" xmlns="http://www.w3.org/2000/svg" width="22.355ex" height="2.563ex" role="img" focusable="false" viewBox="0 -789.6 9880.9 1132.9" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-13-TEX-N-2200" d="M0 673Q0 684 7 689T20 694Q32 694 38 680T82 567L126 451H430L473 566Q483 593 494 622T512 668T519 685Q524 694 538 694Q556 692 556 674Q556 670 426 329T293 -15Q288 -22 278 -22T263 -15Q260 -11 131 328T0 673ZM414 410Q414 411 278 411T142 410L278 55L414 410Z"></path><path id="MJX-13-TEX-I-1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path><path id="MJX-13-TEX-N-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path id="MJX-13-TEX-I-1D445" d="M230 637Q203 637 198 638T193 649Q193 676 204 682Q206 683 378 683Q550 682 564 680Q620 672 658 652T712 606T733 563T739 529Q739 484 710 445T643 385T576 351T538 338L545 333Q612 295 612 223Q612 212 607 162T602 80V71Q602 53 603 43T614 25T640 16Q668 16 686 38T712 85Q717 99 720 102T735 105Q755 105 755 93Q755 75 731 36Q693 -21 641 -21H632Q571 -21 531 4T487 82Q487 109 502 166T517 239Q517 290 474 313Q459 320 449 321T378 323H309L277 193Q244 61 244 59Q244 55 245 54T252 50T269 48T302 46H333Q339 38 339 37T336 19Q332 6 326 0H311Q275 2 180 2Q146 2 117 2T71 2T50 1Q33 1 33 10Q33 12 36 24Q41 43 46 45Q50 46 61 46H67Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628Q287 635 230 637ZM630 554Q630 586 609 608T523 636Q521 636 500 636T462 637H440Q393 637 386 627Q385 624 352 494T319 361Q319 360 388 360Q466 361 492 367Q556 377 592 426Q608 449 619 486T630 554Z"></path><path id="MJX-13-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path id="MJX-13-TEX-I-1D449" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"></path><path id="MJX-13-TEX-N-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path><path id="MJX-13-TEX-SO-2211" d="M61 748Q64 750 489 750H913L954 640Q965 609 976 579T993 533T999 516H979L959 517Q936 579 886 621T777 682Q724 700 655 705T436 710H319Q183 710 183 709Q186 706 348 484T511 259Q517 250 513 244L490 216Q466 188 420 134T330 27L149 -187Q149 -188 362 -188Q388 -188 436 -188T506 -189Q679 -189 778 -162T936 -43Q946 -27 959 6H999L913 -249L489 -250Q65 -250 62 -248Q56 -246 56 -239Q56 -234 118 -161Q186 -81 245 -11L428 206Q428 207 242 462L57 717L56 728Q56 744 61 748Z"></path><path id="MJX-13-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path id="MJX-13-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path><path id="MJX-13-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-13-TEX-I-1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="2200" xlink:href="#MJX-13-TEX-N-2200"></use></g><g data-mml-node="mi" transform="translate(556,0)"><use data-c="1D457" xlink:href="#MJX-13-TEX-I-1D457"></use></g><g data-mml-node="mo" transform="translate(968,0)"><use data-c="2C" xlink:href="#MJX-13-TEX-N-2C"></use></g><g data-mml-node="msub" transform="translate(1412.7,0)"><g data-mml-node="mi"><use data-c="1D445" xlink:href="#MJX-13-TEX-I-1D445"></use></g><g data-mml-node="mi" transform="translate(792,-150) scale(0.707)"><use data-c="1D457" xlink:href="#MJX-13-TEX-I-1D457"></use></g></g><g data-mml-node="mo" transform="translate(2823.8,0)"><use data-c="3D" xlink:href="#MJX-13-TEX-N-3D"></use></g><g data-mml-node="msub" transform="translate(3879.6,0)"><g data-mml-node="mi"><use data-c="1D449" xlink:href="#MJX-13-TEX-I-1D449"></use></g><g data-mml-node="mi" transform="translate(616,-150) scale(0.707)"><use data-c="1D457" xlink:href="#MJX-13-TEX-I-1D457"></use></g></g><g data-mml-node="mo" transform="translate(5059.1,0)"><use data-c="2B" xlink:href="#MJX-13-TEX-N-2B"></use></g><g data-mml-node="munderover" transform="translate(6059.3,0)"><g data-mml-node="mo"><use data-c="2211" xlink:href="#MJX-13-TEX-SO-2211"></use></g><g data-mml-node="mi" transform="translate(1089,477.1) scale(0.707)"><use data-c="1D45B" xlink:href="#MJX-13-TEX-I-1D45B"></use></g><g data-mml-node="TeXAtom" transform="translate(1089,-285.4) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-13-TEX-I-1D456"></use></g><g data-mml-node="mo" transform="translate(345,0)"><use data-c="3D" xlink:href="#MJX-13-TEX-N-3D"></use></g><g data-mml-node="mn" transform="translate(1123,0)"><use data-c="31" xlink:href="#MJX-13-TEX-N-31"></use></g></g></g><g data-mml-node="msub" transform="translate(8512.6,0)"><g data-mml-node="mi"><use data-c="1D434" xlink:href="#MJX-13-TEX-I-1D434"></use></g><g data-mml-node="TeXAtom" transform="translate(783,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-13-TEX-I-1D456"></use></g><g data-mml-node="mi" transform="translate(345,0)"><use data-c="1D457" xlink:href="#MJX-13-TEX-I-1D457"></use></g></g></g></g></g></svg></li>
+<li>任何进程对任何资源的请求不能超过这个系统中的资源总量：<svg style="vertical-align: -0.666ex;" xmlns="http://www.w3.org/2000/svg" width="8.49ex" height="2.261ex" role="img" focusable="false" viewBox="0 -705 3752.8 999.2" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-14-TEX-I-1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path><path id="MJX-14-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path><path id="MJX-14-TEX-I-1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path><path id="MJX-14-TEX-N-2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path><path id="MJX-14-TEX-I-1D445" d="M230 637Q203 637 198 638T193 649Q193 676 204 682Q206 683 378 683Q550 682 564 680Q620 672 658 652T712 606T733 563T739 529Q739 484 710 445T643 385T576 351T538 338L545 333Q612 295 612 223Q612 212 607 162T602 80V71Q602 53 603 43T614 25T640 16Q668 16 686 38T712 85Q717 99 720 102T735 105Q755 105 755 93Q755 75 731 36Q693 -21 641 -21H632Q571 -21 531 4T487 82Q487 109 502 166T517 239Q517 290 474 313Q459 320 449 321T378 323H309L277 193Q244 61 244 59Q244 55 245 54T252 50T269 48T302 46H333Q339 38 339 37T336 19Q332 6 326 0H311Q275 2 180 2Q146 2 117 2T71 2T50 1Q33 1 33 10Q33 12 36 24Q41 43 46 45Q50 46 61 46H67Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628Q287 635 230 637ZM630 554Q630 586 609 608T523 636Q521 636 500 636T462 637H440Q393 637 386 627Q385 624 352 494T319 361Q319 360 388 360Q466 361 492 367Q556 377 592 426Q608 449 619 486T630 554Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><use data-c="1D436" xlink:href="#MJX-14-TEX-I-1D436"></use></g><g data-mml-node="TeXAtom" transform="translate(748,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-14-TEX-I-1D456"></use></g><g data-mml-node="mi" transform="translate(345,0)"><use data-c="1D457" xlink:href="#MJX-14-TEX-I-1D457"></use></g></g></g><g data-mml-node="mo" transform="translate(1611.1,0)"><use data-c="2264" xlink:href="#MJX-14-TEX-N-2264"></use></g><g data-mml-node="msub" transform="translate(2666.8,0)"><g data-mml-node="mi"><use data-c="1D445" xlink:href="#MJX-14-TEX-I-1D445"></use></g><g data-mml-node="mi" transform="translate(792,-150) scale(0.707)"><use data-c="1D456" xlink:href="#MJX-14-TEX-I-1D456"></use></g></g></g></g></svg></li>
+<li>任何进程得到的资源数不会超过最开始声明得到此资源的最大数量：<svg style="vertical-align: -0.666ex;" xmlns="http://www.w3.org/2000/svg" width="9.129ex" height="2.286ex" role="img" focusable="false" viewBox="0 -716 4035.1 1010.2" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-15-TEX-I-1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path><path id="MJX-15-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path><path id="MJX-15-TEX-I-1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path><path id="MJX-15-TEX-N-2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path><path id="MJX-15-TEX-I-1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><use data-c="1D434" xlink:href="#MJX-15-TEX-I-1D434"></use></g><g data-mml-node="TeXAtom" transform="translate(783,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-15-TEX-I-1D456"></use></g><g data-mml-node="mi" transform="translate(345,0)"><use data-c="1D457" xlink:href="#MJX-15-TEX-I-1D457"></use></g></g></g><g data-mml-node="mo" transform="translate(1646.1,0)"><use data-c="2264" xlink:href="#MJX-15-TEX-N-2264"></use></g><g data-mml-node="msub" transform="translate(2701.8,0)"><g data-mml-node="mi"><use data-c="1D436" xlink:href="#MJX-15-TEX-I-1D436"></use></g><g data-mml-node="TeXAtom" transform="translate(748,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-15-TEX-I-1D456"></use></g><g data-mml-node="mi" transform="translate(345,0)"><use data-c="1D457" xlink:href="#MJX-15-TEX-I-1D457"></use></g></g></g></g></g></svg></li>
+<li>启动新进程<svg style="vertical-align: -0.471ex;" xmlns="http://www.w3.org/2000/svg" width="4.645ex" height="2.016ex" role="img" focusable="false" viewBox="0 -683 2052.9 891" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-16-TEX-I-1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"></path><path id="MJX-16-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path id="MJX-16-TEX-N-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path><path id="MJX-16-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><use data-c="1D443" xlink:href="#MJX-16-TEX-I-1D443"></use></g><g data-mml-node="TeXAtom" transform="translate(675,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D45B" xlink:href="#MJX-16-TEX-I-1D45B"></use></g><g data-mml-node="mo" transform="translate(600,0)"><use data-c="2B" xlink:href="#MJX-16-TEX-N-2B"></use></g><g data-mml-node="mn" transform="translate(1378,0)"><use data-c="31" xlink:href="#MJX-16-TEX-N-31"></use></g></g></g></g></g></svg>的充分必要条件：<svg style="vertical-align: -0.8ex;" xmlns="http://www.w3.org/2000/svg" width="26.823ex" height="2.586ex" role="img" focusable="false" viewBox="0 -789.6 11856 1143.1" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-17-TEX-N-2200" d="M0 673Q0 684 7 689T20 694Q32 694 38 680T82 567L126 451H430L473 566Q483 593 494 622T512 668T519 685Q524 694 538 694Q556 692 556 674Q556 670 426 329T293 -15Q288 -22 278 -22T263 -15Q260 -11 131 328T0 673ZM414 410Q414 411 278 411T142 410L278 55L414 410Z"></path><path id="MJX-17-TEX-I-1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path><path id="MJX-17-TEX-N-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path id="MJX-17-TEX-I-1D445" d="M230 637Q203 637 198 638T193 649Q193 676 204 682Q206 683 378 683Q550 682 564 680Q620 672 658 652T712 606T733 563T739 529Q739 484 710 445T643 385T576 351T538 338L545 333Q612 295 612 223Q612 212 607 162T602 80V71Q602 53 603 43T614 25T640 16Q668 16 686 38T712 85Q717 99 720 102T735 105Q755 105 755 93Q755 75 731 36Q693 -21 641 -21H632Q571 -21 531 4T487 82Q487 109 502 166T517 239Q517 290 474 313Q459 320 449 321T378 323H309L277 193Q244 61 244 59Q244 55 245 54T252 50T269 48T302 46H333Q339 38 339 37T336 19Q332 6 326 0H311Q275 2 180 2Q146 2 117 2T71 2T50 1Q33 1 33 10Q33 12 36 24Q41 43 46 45Q50 46 61 46H67Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628Q287 635 230 637ZM630 554Q630 586 609 608T523 636Q521 636 500 636T462 637H440Q393 637 386 627Q385 624 352 494T319 361Q319 360 388 360Q466 361 492 367Q556 377 592 426Q608 449 619 486T630 554Z"></path><path id="MJX-17-TEX-N-2265" d="M83 616Q83 624 89 630T99 636Q107 636 253 568T543 431T687 361Q694 356 694 346T687 331Q685 329 395 192L107 56H101Q83 58 83 76Q83 77 83 79Q82 86 98 95Q117 105 248 167Q326 204 378 228L626 346L360 472Q291 505 200 548Q112 589 98 597T83 616ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path><path id="MJX-17-TEX-I-1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path><path id="MJX-17-TEX-N-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path id="MJX-17-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path id="MJX-17-TEX-N-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path><path id="MJX-17-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-17-TEX-N-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path><path id="MJX-17-TEX-SO-2211" d="M61 748Q64 750 489 750H913L954 640Q965 609 976 579T993 533T999 516H979L959 517Q936 579 886 621T777 682Q724 700 655 705T436 710H319Q183 710 183 709Q186 706 348 484T511 259Q517 250 513 244L490 216Q466 188 420 134T330 27L149 -187Q149 -188 362 -188Q388 -188 436 -188T506 -189Q679 -189 778 -162T936 -43Q946 -27 959 6H999L913 -249L489 -250Q65 -250 62 -248Q56 -246 56 -239Q56 -234 118 -161Q186 -81 245 -11L428 206Q428 207 242 462L57 717L56 728Q56 744 61 748Z"></path><path id="MJX-17-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path><path id="MJX-17-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="2200" xlink:href="#MJX-17-TEX-N-2200"></use></g><g data-mml-node="mi" transform="translate(556,0)"><use data-c="1D457" xlink:href="#MJX-17-TEX-I-1D457"></use></g><g data-mml-node="mo" transform="translate(968,0)"><use data-c="2C" xlink:href="#MJX-17-TEX-N-2C"></use></g><g data-mml-node="msub" transform="translate(1412.7,0)"><g data-mml-node="mi"><use data-c="1D445" xlink:href="#MJX-17-TEX-I-1D445"></use></g><g data-mml-node="mi" transform="translate(792,-150) scale(0.707)"><use data-c="1D457" xlink:href="#MJX-17-TEX-I-1D457"></use></g></g><g data-mml-node="mo" transform="translate(2823.8,0)"><use data-c="2265" xlink:href="#MJX-17-TEX-N-2265"></use></g><g data-mml-node="msub" transform="translate(3879.6,0)"><g data-mml-node="mi"><use data-c="1D436" xlink:href="#MJX-17-TEX-I-1D436"></use></g><g data-mml-node="TeXAtom" transform="translate(748,-176.7) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mo"><use data-c="28" xlink:href="#MJX-17-TEX-N-28"></use></g><g data-mml-node="mi" transform="translate(389,0)"><use data-c="1D45B" xlink:href="#MJX-17-TEX-I-1D45B"></use></g><g data-mml-node="mo" transform="translate(989,0)"><use data-c="2B" xlink:href="#MJX-17-TEX-N-2B"></use></g><g data-mml-node="mn" transform="translate(1767,0)"><use data-c="31" xlink:href="#MJX-17-TEX-N-31"></use></g><g data-mml-node="mo" transform="translate(2267,0)"><use data-c="29" xlink:href="#MJX-17-TEX-N-29"></use></g><g data-mml-node="mi" transform="translate(2656,0)"><use data-c="1D457" xlink:href="#MJX-17-TEX-I-1D457"></use></g></g></g><g data-mml-node="mo" transform="translate(7069.2,0)"><use data-c="2B" xlink:href="#MJX-17-TEX-N-2B"></use></g><g data-mml-node="munderover" transform="translate(8069.4,0)"><g data-mml-node="mo"><use data-c="2211" xlink:href="#MJX-17-TEX-SO-2211"></use></g><g data-mml-node="mi" transform="translate(1089,477.1) scale(0.707)"><use data-c="1D45B" xlink:href="#MJX-17-TEX-I-1D45B"></use></g><g data-mml-node="TeXAtom" transform="translate(1089,-285.4) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-17-TEX-I-1D456"></use></g><g data-mml-node="mo" transform="translate(345,0)"><use data-c="3D" xlink:href="#MJX-17-TEX-N-3D"></use></g><g data-mml-node="mn" transform="translate(1123,0)"><use data-c="31" xlink:href="#MJX-17-TEX-N-31"></use></g></g></g><g data-mml-node="msub" transform="translate(10522.7,0)"><g data-mml-node="mi"><use data-c="1D436" xlink:href="#MJX-17-TEX-I-1D436"></use></g><g data-mml-node="TeXAtom" transform="translate(748,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-17-TEX-I-1D456"></use></g><g data-mml-node="mi" transform="translate(345,0)"><use data-c="1D457" xlink:href="#MJX-17-TEX-I-1D457"></use></g></g></g></g></g></svg></li>
+</ul>
+<p><strong>安全性检查算法</strong></p>
+<p>系统如果要将资源分配给进程<svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-18-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-18-TEX-I-1D456"></use></g></g></g></svg>,必须满足：</p>
+<p><span style="margin-left: 50%; transform: translateX(-50%); display: inline-block; "><svg style="vertical-align: -0.666ex;" xmlns="http://www.w3.org/2000/svg" width="17.257ex" height="2.286ex" role="img" focusable="false" viewBox="0 -716 7627.6 1010.2" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-19-TEX-N-2200" d="M0 673Q0 684 7 689T20 694Q32 694 38 680T82 567L126 451H430L473 566Q483 593 494 622T512 668T519 685Q524 694 538 694Q556 692 556 674Q556 670 426 329T293 -15Q288 -22 278 -22T263 -15Q260 -11 131 328T0 673ZM414 410Q414 411 278 411T142 410L278 55L414 410Z"></path><path id="MJX-19-TEX-I-1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path><path id="MJX-19-TEX-N-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path><path id="MJX-19-TEX-I-1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"></path><path id="MJX-19-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path><path id="MJX-19-TEX-N-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path id="MJX-19-TEX-I-1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path><path id="MJX-19-TEX-N-2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path><path id="MJX-19-TEX-I-1D449" d="M52 648Q52 670 65 683H76Q118 680 181 680Q299 680 320 683H330Q336 677 336 674T334 656Q329 641 325 637H304Q282 635 274 635Q245 630 242 620Q242 618 271 369T301 118L374 235Q447 352 520 471T595 594Q599 601 599 609Q599 633 555 637Q537 637 537 648Q537 649 539 661Q542 675 545 679T558 683Q560 683 570 683T604 682T668 681Q737 681 755 683H762Q769 676 769 672Q769 655 760 640Q757 637 743 637Q730 636 719 635T698 630T682 623T670 615T660 608T652 599T645 592L452 282Q272 -9 266 -16Q263 -18 259 -21L241 -22H234Q216 -22 216 -15Q213 -9 177 305Q139 623 138 626Q133 637 76 637H59Q52 642 52 648Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="2200" xlink:href="#MJX-19-TEX-N-2200"></use></g><g data-mml-node="mi" transform="translate(556,0)"><use data-c="1D457" xlink:href="#MJX-19-TEX-I-1D457"></use></g><g data-mml-node="mo" transform="translate(968,0)"><use data-c="2C" xlink:href="#MJX-19-TEX-N-2C"></use></g><g data-mml-node="msub" transform="translate(1412.7,0)"><g data-mml-node="mi"><use data-c="1D436" xlink:href="#MJX-19-TEX-I-1D436"></use></g><g data-mml-node="TeXAtom" transform="translate(748,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-19-TEX-I-1D456"></use></g><g data-mml-node="mi" transform="translate(345,0)"><use data-c="1D457" xlink:href="#MJX-19-TEX-I-1D457"></use></g></g></g><g data-mml-node="mo" transform="translate(2968.2,0)"><use data-c="2212" xlink:href="#MJX-19-TEX-N-2212"></use></g><g data-mml-node="msub" transform="translate(3968.4,0)"><g data-mml-node="mi"><use data-c="1D434" xlink:href="#MJX-19-TEX-I-1D434"></use></g><g data-mml-node="TeXAtom" transform="translate(783,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-19-TEX-I-1D456"></use></g><g data-mml-node="mi" transform="translate(345,0)"><use data-c="1D457" xlink:href="#MJX-19-TEX-I-1D457"></use></g></g></g><g data-mml-node="mo" transform="translate(5614.4,0)"><use data-c="2264" xlink:href="#MJX-19-TEX-N-2264"></use></g><g data-mml-node="msub" transform="translate(6670.2,0)"><g data-mml-node="mi"><use data-c="1D449" xlink:href="#MJX-19-TEX-I-1D449"></use></g><g data-mml-node="mi" transform="translate(616,-150) scale(0.707)"><use data-c="1D457" xlink:href="#MJX-19-TEX-I-1D457"></use></g></g></g></g></svg></span></p>
+<p>那么只需要以此找到满足上述约束关系的进程，执行完成后释放，找到下一个满足的进程；</p>
+<p>安全性检查算法描述如下：</p>
+<ol>
+<li>
+<p>设置工作向量<code>work[m]</code>:表示系统可提供给进程继续运行所需的各类资源的数目； <code>finish[n]</code>：表示系统是否有足够的资源分配给进程，使之运行完成；</p>
+</li>
+<li>
+<p>初始化<code>work := available finish := false</code></p>
+</li>
+<li>
+<p>从满足<code>finish[i]=false</code>的进程集合找到满足上述约束条件的进程<code>i</code></p>
+<ul>
+<li>若能找到，执行4</li>
+<li>若不能找到，执行5</li>
+</ul>
+</li>
+<li>
+<p>进程<code>i</code>得到资源执行后，释放其资源，应该执行</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">work[j] += allocation[i][j]</span><br><span class="line">finish[j] = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>后，返回2</p>
+</li>
+<li>
+<p>若所有进程的<code>finish</code>值均为<code>true</code>，则说明系统安全，否则系统处于不安全状态；</p>
+</li>
+</ol>
+<p><strong>银行家算法</strong></p>
+<p>某一时刻收到进程<code>i</code>的对系统资源的请求向量<code>request_i</code>；</p>
+<p>按照以下步骤对系统资源状态进行检查：</p>
+<ol>
+<li>
+<p>检查<code>request_i[j]&lt;=claim[i][j]-allocation[i][j]</code></p>
+<ul>
+<li>真，则进行2；</li>
+<li>否则认为系统出错，资源数不满足其先决条件；</li>
+</ul>
+</li>
+<li>
+<p>检查<code>request_i[j]&lt;=available[j]</code></p>
+<ul>
+<li>真，则进行3；</li>
+<li>否则认为尚无足够的资源，进程<code>i</code>必须等待；</li>
+</ul>
+</li>
+<li>
+<p>系统尝试为进程<code>i</code>分配资源，状态修改如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">available[j] -= request_i[j];</span><br><span class="line">allocation[i][j] += request_i[j];</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>系统执行安全性检查算法</p>
+<ul>
+<li>若通过检查，则正式分配资源给进程<code>i</code></li>
+<li>否则恢复原来的资源状态，宣布让进程<code>i</code>等待；</li>
+</ul>
+</li>
+</ol>
+<h3 id="检测和解除死锁"><a href="#检测和解除死锁" class="headerlink" title="检测和解除死锁"></a>检测和解除死锁</h3>
+<p>额外定义请求矩阵<code>Q[n][m]</code>，表示进程<code>i</code>请求资源<code>j</code>的数量；</p>
+<p>维护一个标记表<code>L</code>,最初所有进程都是未标记的；</p>
+<p>检测死锁按照以下步骤进行：</p>
+<ol>
+<li>标记<code>allocation</code>矩阵中一行全为0的进程；</li>
+<li>初始化临时向量<code>w := available</code></li>
+<li>尝试查找下标<code>i</code>，使进程<code>i</code>当前未被标记，且其请求小于<code>w</code>;
+<ul>
+<li>若查找失败，终止算法</li>
+</ul>
+</li>
+<li>进程<code>i</code>加入标记表<code>L</code>,更新<code>w[k] += allocation[i][k]</code></li>
+<li>当且仅当算法结束时存在未被标记的进程时，意味着死锁存在于这些进程之中</li>
+</ol>
+<p>解除死锁的思路比较简单，以下是常见的设计：</p>
+<ul>
+<li>撤销所有死锁的进程：这是操作系统最常用的办法；</li>
+<li>死锁进程回滚到某些检查点，重新启动</li>
+<li>连续撤销死锁进程直到死锁不存在</li>
+<li>连续抢占资源直到不存在死锁</li>
+</ul>
+<h2 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h2>
+<p>对于PV操作可以用于进程的同步和互斥，属于低级进程通信，对网络进程通信和数据交换量较大的单机进程通信不适用；
+进程间通信可以利用<strong>共享存储器/消息传递/管道</strong>实现；</p>
+<h3 id="共享存储器"><a href="#共享存储器" class="headerlink" title="共享存储器"></a>共享存储器</h3>
+<ul>
+<li>基于共享数据结构的通信方式：公用某一个数据结实现信息交换</li>
+<li>基于共享存储器的通信方式：划分一块存储空间作为公用</li>
+</ul>
+<h3 id="消息传递"><a href="#消息传递" class="headerlink" title="消息传递"></a>消息传递</h3>
+<ul>
+<li>直接消息传递：多个进程利用系统调用相互发送消息；
+<ul>
+<li>利用send，receive原语</li>
+<li>可能产生安全问题：消息丢失，对象假冒，消息篡改</li>
+<li>一般通信有三种情况：阻塞send+阻塞receiver，无阻塞send+阻塞receiver，无阻塞send+无阻塞receiver</li>
+</ul>
+</li>
+<li>简介消息传递：不直接发送消息给接收者，而是发到某个共享空间
+<ul>
+<li>接受者和发送者的关系不确定：一对一，多对多，一对多，多对一</li>
+<li>需要解决共享空间的所有权问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h3>
+<p>在UNIX中，一般采用半双工的方式工作；
+利用pipe函数创建管道</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># include &lt;unistd.h&gt;</span><br><span class="line">int pipe(int fd[2]);</span><br></pre></td></tr></table></figure>
+<p><code>fd[1]</code>的输出<code>fd[0]</code>的输入；创建成功返回0，失败返回-1；</p>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

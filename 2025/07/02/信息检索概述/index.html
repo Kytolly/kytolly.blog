@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    信息检索概述
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">信息检索概述</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2"><span class="toc-number">1.</span> <span class="toc-text">什么是信息检索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98"><span class="toc-number">3.1.</span> <span class="toc-text">核心问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84"><span class="toc-number">3.2.</span> <span class="toc-text">逻辑结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A0%94%E7%A9%B6%E5%86%85%E5%AE%B9"><span class="toc-number">4.</span> <span class="toc-text">研究内容</span></a></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">信息检索概述</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 2日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Information-Retrieval</div>
+        
+        <div class="tag-item">Coursework</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="什么是信息检索"><a href="#什么是信息检索" class="headerlink" title="什么是信息检索"></a>什么是信息检索</h2>
+<ul>
+<li>给定用户需求返回满足该需求信息的一门学科。通常涉及信息的获取、存储、组织和访问。</li>
+<li>从大规模非结构化数据（通常是文本）的集合（通常保存在计算机上）中找出满足用户信息需求的资料（通常是文档）的过程。</li>
+<li>通常需要定义并计算某种匹配“相似度”的学科。</li>
+<li>应用：搜索系统，推荐系统</li>
+</ul>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2>
+<ol>
+<li>
+<p>第一类是广义的，把“信息检索”当作“信息存储与检索”的简称，信息存储是指将有用信息按照一定的方式组织和存放起来，信息检索是指查找或提取所需信息。本课程介绍广义的信息检索。</p>
+<p>第二类是狭义的，是指按照一定的方式从现有的信息集合或数据库中，找出并提取所需要的信息。</p>
+</li>
+<li>
+<p>按对象性质划分：</p>
+<p>文献检索：对象是文献。
+数值检索：对象是以数字形式表示的具体数值。
+事实检索：对象是某一特定的客观事实。</p>
+</li>
+<li>
+<p>按计算机检索技术划分</p>
+<p>脱机检索：计算机检索的最早技术。
+联机检索：功能较强、数据库质量较好。
+光盘检索：分光盘单机系统和联机系统。
+网络检索：基于搜索引擎技术，是信息检索的主要途径。</p>
+</li>
+</ol>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2>
+<h3 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h3>
+<p>如何计算查询式与文档的相似度？</p>
+<p><img src="/assets/Information-Retrieval/image-20241007150522797.png" alt="image-20241007150522797"></p>
+<h3 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h3>
+<p>两大基本功能：存储，检索</p>
+<p>按功能分解子系统：采选子系统、词语子系统、标引子系统、查询子系统、匹配子系统、交互子系统。</p>
+<p><img src="/assets/Information-Retrieval/image-20241007150806411.png" alt="image-20241007150806411"></p>
+<ul>
+<li>采选子系统：从外部的各种信息源向系统进行输入操作；</li>
+<li>标引子系统：使用系统规定的规范化词语，对输入的信息中具有检索价值的特征进行表示和描述；</li>
+<li>词语子系统：对采用规范化词语的系统在标引和查询时所使用的词语进行规范化的控制和处理；</li>
+<li>匹配子系统：完成对用户询问与数据库的匹配过程，并与词语子系统共同实现对信息检索系统的存储与检索两大基本功能的协同和沟通。</li>
+<li>查询子系统：使用系统规定的规范化词语描述用户的检索询问，包括对用户询问进行概念分析和概念转换两个过程，也包括按照系统的既定规则指定检索策略和构建检索式。</li>
+<li>交互子系统：保证系统与用户之间能够进行良好的沟通。一方面，要全面、准确地反映用户的真实需求，形成明确的检索目标；另一方面，把与用户查询全部或部分匹配的检索结果及时地反馈给用户。</li>
+</ul>
+<h2 id="研究内容"><a href="#研究内容" class="headerlink" title="研究内容"></a>研究内容</h2>
+<ul>
+<li>信息检索理论研究：主要集中在四个方面：检索模型、标引理论、信息组织理论、相关性理论。</li>
+<li>信息检索方法研究：检索方法是指查找信息时所采用的具体方法，例如，布尔检索法、截词检索法、加权检索法。</li>
+<li>信息检索技术研究：检索技术是实现信息检索有效性的手段和保障。</li>
+<li>信息检索语言研究：检索语言是信息检索系统不可缺少的工具，是用户与系统交流、互动、沟通的媒介。</li>
+<li>信息检索系统研究：主要包括信息检索系统的结构、功能、类型、分析、开发、运行、维护、管理及评价。
+信息检索服务研究：通常包括用户及其需求的类型以及用户认知、心理行为等特征的调查、分析、研究，各种服务方式和模式的开发及对其实际效果和用户满意度的评价，用户认知和行为模型的建立等。
+信息检索评价研究：</li>
+<li>通常包括检索性能评价、检索效益评价、检索评价方法与步骤、检索评价指标体系以及评价实例研究等。</li>
+</ul>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

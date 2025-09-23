@@ -1,0 +1,69 @@
+.page-container {
+  max-width: 800px; /* Set a max-width for the content */
+  width: 100%;
+  margin: 0 auto; /* Center the container itself */
+  padding: 0 20px; /* Add some padding on the sides */
+}
+
+.page-title {
+  flex: 0 0 100%;
+  margin-bottom: 12px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--font-color);
+}
+
+.page-meta {
+  font-size: 0.875rem;
+  color: var(--font-color-extra);
+  flex: 0 0 100%;
+  margin-bottom: 32px;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--color-post-content);
+  word-break: break-word;
+}
+
+.page-content h1,
+.page-content h2,
+.page-content h3,
+.page-content h4,
+.page-content h5,
+.page-content h6 {
+  width: 100%; /* Ensure headings take full width to be centered */
+}
+
+.page-content p,
+.page-content ul,
+.page-content ol,
+.page-content blockquote,
+.page-content table,
+.page-content .highlight {
+  width: 100%; /* Ensure other content blocks take full width to be centered */
+}
+
+.page-content img {
+  display: block; /* Make images block-level to apply margin auto */
+  margin: 0 auto; /* Center images */
+}
+
+.github-stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: fit-content;
+  margin-left: 0;
+  margin-right: auto;
+  align-self: flex-start; /* Overrides .page-content's align-items: center; */
+}
+
+.github-stats-card {
+  margin-right: 10px; /* Spacing between cards */
+  margin-bottom: 10px; /* Spacing below cards */
+  margin-left: 0; /* Ensure it stays left-aligned within its flex container */
+} 

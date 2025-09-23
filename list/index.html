@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    list
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'true'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <div class="post-list">
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E6%A2%AF%E5%BD%A2%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F%E5%92%8CSimpson%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F/">梯形积分公式和Simpson积分公式</a>
+        <div class="post-item-summary">
+        Background
+在实际工程中许多函数的原函数并不容易求出，因此对它们使用Newton-Lebniz公式是相当困难的，因此衍生出数值积分，基本思想就是对于一
+        <a class="read-more" href="/2025/07/05/%E6%A2%AF%E5%BD%A2%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F%E5%92%8CSimpson%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Taylor%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C%E5%92%8CFourier%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C/">Taylor多项式实验和Fourier多项式实验</a>
+        <div class="post-item-summary">
+        Background
+和动画实验一样，这次也是用matlab和python共同实现，完成对Taylor中值定理，Euler公式，Fourier公式的验证；
+这次
+        <a class="read-more" href="/2025/07/05/Taylor%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C%E5%92%8CFourier%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F0-%E7%BB%AA%E8%AE%BA/">操作系统绪论</a>
+        <div class="post-item-summary">
+        操作系统
+操作系统：控制应用程序执行的程序，是应用程序和硬件之间的接口；
+本课程默认单核单CPU；
+操作系统是一组控制和管理计算机硬件和软件资源，合理地对各类作
+        <a class="read-more" href="/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F0-%E7%BB%AA%E8%AE%BA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/System/">System</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-%E8%BF%9B%E7%A8%8B/">进程</a>
+        <div class="post-item-summary">
+        什么是进程
+程序的顺序执行与并发执行
+顺序执行：若干程序和程序段必须严格按照某种先后顺序执行
+
+顺序性：操作严格按照程序规定的顺序执行；
+封闭性：程序运行时占用
+        <a class="read-more" href="/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-%E8%BF%9B%E7%A8%8B/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/System/">System</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2-%E8%B0%83%E5%BA%A6/">调度</a>
+        <div class="post-item-summary">
+        进程调度
+如果存在多个进程竞争CPU，那么需要选择下一个要运行的进程；
+
+调度程序
+调度算法
+
+目标：满足系统目标（响应时间，吞吐量，处理器效率）的方式，将进程
+        <a class="read-more" href="/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2-%E8%B0%83%E5%BA%A6/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/System/">System</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3-%E5%B9%B6%E5%8F%91%E6%80%A7/">并发</a>
+        <div class="post-item-summary">
+        概念
+原子操作：一个函数或者动作，由一个或多个指令序列实现，
+
+对外不可见，没有其他进程可以看到其中间状态或者中断这个操作
+保证指令序列要么都执行，要么都不执行
+        <a class="read-more" href="/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3-%E5%B9%B6%E5%8F%91%E6%80%A7/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/System/">System</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/">存储管理</a>
+        <div class="post-item-summary">
+        目的
+为多道程序的运行提供良好的环境
+
+方便用户使用存储器
+提高存储器的利用率
+逻辑上扩充存储器容量
+
+基本功能
+
+存储分配和回收
+地址变换
+存储保护
+存储共享
+        <a class="read-more" href="/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/System/">System</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5-IO%E8%AE%BE%E5%A4%87/">I/O 管理</a>
+        <div class="post-item-summary">
+        概述
+I/O设备
+I/O外设大致分为三类
+
+人可读：比如显示器，键盘，鼠标
+机器可读：比如磁盘驱动 器、USB密钥、传感器、控制器和执行器。
+通信：比如数字线路
+        <a class="read-more" href="/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5-IO%E8%AE%BE%E5%A4%87/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/System/">System</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">文件系统</a>
+        <div class="post-item-summary">
+        概述
+文件
+文件中常保存的信息：
+
+基本信息：文件名、文件类型、文件组织
+地址信息：卷、起始地址、使用大小、分配大小
+访问控制信息：所有者、访问信息、许可的行为
+        <a class="read-more" href="/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/System/">System</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB/">二元关系</a>
+        <div class="post-item-summary">
+        集合定义
+序偶(ordered pair)：两个元素按照一定的次序组成的二元组；
+
+
+
+重有序组：个元素按照一定的次序组成的元组
+笛卡尔积(Cartesian 
+        <a class="read-more" href="/2025/07/05/%E4%BA%8C%E5%85%83%E5%85%B3%E7%B3%BB/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Discrete-Mathematics/">Discrete-Mathematics</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/">数理逻辑</a>
+        <div class="post-item-summary">
+        命题
+命题是指具有确切真值的判断语义；
+
+原子命题：无法分解为更简单命题的命题；
+复合命题：可以继续被分解的命题；
+
+命题应该用大写的字母表示；
+联结词
+
+
+
+
+        <a class="read-more" href="/2025/07/05/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Discrete-Mathematics/">Discrete-Mathematics</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E7%BB%84%E5%90%88%E8%AE%A1%E6%95%B0/">组合计数</a>
+        <div class="post-item-summary">
+        加乘原理
+乘法原理：完成一个工程需要分  个步骤， 代表第  个步骤的不同方法数目。那么完成这件事共有  种不同的方法。
+加法原理：完成一个工程可以有  类办法
+        <a class="read-more" href="/2025/07/05/%E7%BB%84%E5%90%88%E8%AE%A1%E6%95%B0/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Discrete-Mathematics/">Discrete-Mathematics</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E9%9B%86%E5%90%88%E8%AE%BA/">集合论</a>
+        <div class="post-item-summary">
+        集合基础
+集合（set）由指定范围内的某些特定对象聚集在一起构成;
+指定范围内的每一个对象称为这个集合的元素(element)。
+通常用大写字母表示集合,用小写
+        <a class="read-more" href="/2025/07/05/%E9%9B%86%E5%90%88%E8%AE%BA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Discrete-Mathematics/">Discrete-Mathematics</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Golang%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6/">Golang中的并发机制</a>
+        <div class="post-item-summary">
+        Golang的并发处理优势
+并发处理是Golang设计的核心目标之一，其通过一条简单的关键字go来启动协程goroutine,在广义上我们可以将协程理解为线程；
+        <a class="read-more" href="/2025/07/05/Golang%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Golang/">Golang</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/CMake%E5%85%A5%E9%97%A8/">CMake入门</a>
+        <div class="post-item-summary">
+        CMake入门
+CMake简介
+CMake 是一个跨平台的构建系统生成工具，用于管理编译过程，其主要功能如下：
+
+通过读取配置文件（CMakeLists.txt
+        <a class="read-more" href="/2025/07/05/CMake%E5%85%A5%E9%97%A8/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Cpp/">Cpp</a>
+            
+            <a class="tag-item" href="/tag/CMake/">CMake</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Network-Flows/">Network Flows</a>
+        <div class="post-item-summary">
+        Matching
+图中的极大匹配(maximal matching)是指不能添加更多的边的匹配；最大匹配(maximum matching)是指图中拥有最多边数
+        <a class="read-more" href="/2025/07/05/Network-Flows/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Digraph/">Digraph</a>
+        <div class="post-item-summary">
+        Conceptions
+有向图(directed graph) 定义为非空有限顶点集和的有序对(箭头，arcs)形成的有限簇；
+箭头的第一个顶点为尾(tail)
+        <a class="read-more" href="/2025/07/05/Digraph/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Coloring/">Coloring</a>
+        <div class="post-item-summary">
+        Vertex Coloring
+为图的每个顶点分配某种颜色，称一种着色是正确的，如果没有两个相邻的顶点着色相同；
+一个独立集(independent set)是
+        <a class="read-more" href="/2025/07/05/Coloring/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Planarity/">Planarity</a>
+        <div class="post-item-summary">
+        Planarity
+一个平面图(planar)被定义为：在平面上绘制没有交叉的图；
+若图不能在平面上绘制或表示，称为非平面图；
+若两个图可以在同一个图的边插入一
+        <a class="read-more" href="/2025/07/05/Planarity/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Tree/">Tree</a>
+        <div class="post-item-summary">
+        树&amp;森林
+若一个连通图没有圈，称这个图为树(Tree);
+若一个图没有圈，称这个图为森林(forest);
+Theorem
+若树至少有个点，那么至少包含
+        <a class="read-more" href="/2025/07/05/Tree/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Path-and-Cycle/">Path and Cycle</a>
+        <div class="post-item-summary">
+        Walk/Trail/Path/Circle
+在图中，途径(Walk)是指如下形式的 边序列
+
+
+边的数量是迹的长度
+简单图可以表示为
+起始点initial v
+        <a class="read-more" href="/2025/07/05/Path-and-Cycle/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Graph-Introduction/">Graph Introduction</a>
+        <div class="post-item-summary">
+        Graph
+对于三元组,满足：
+
+顶点集有限；
+边集是顶点无序对组成的(可重)集合，也即；
+
+Simple Graph
+当边集有重复元素，称相同的边为重边/平行
+        <a class="read-more" href="/2025/07/05/Graph-Introduction/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Brown%E8%BF%90%E5%8A%A8/">Brown运动</a>
+        <div class="post-item-summary">
+        Brown运动
+随机过程如果满足：
+
+
+
+
+
+有平稳独立增量；
+
+
+对 每 个, 服从正态分布;
+
+
+则称​为Brown运动，也称为Wiener过程.
+等价定义
+        <a class="read-more" href="/2025/07/05/Brown%E8%BF%90%E5%8A%A8/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Random%20Process/">Random Process</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Markov%E9%93%BE/">Markov链</a>
+        <div class="post-item-summary">
+        Markov过程
+对于为一随机过程，为其状态空间，若对参数集中的任意个时刻,任意的 有
+
+即随机变量在已知 情况下，条件分布函数只与有关，则称随机过程为Mark
+        <a class="read-more" href="/2025/07/05/Markov%E9%93%BE/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Random%20Process/">Random Process</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Poisson%E8%BF%87%E7%A8%8B/">Poisson过程</a>
+        <div class="post-item-summary">
+        Poisson过程
+计数过程
+随机过程 称为计数过程，如果表示从时刻0到某一特定事件发生的次数，它具备以下两个特点：
+
+且取值为整数；
+时， 且 表示时间内事件
+        <a class="read-more" href="/2025/07/05/Poisson%E8%BF%87%E7%A8%8B/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Random%20Process/">Random Process</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%BE%8B%E5%AD%90/">应用随机过程中的例子</a>
+        <div class="post-item-summary">
+        平稳白噪声序列
+设为一列两两互不相关的随机变量序列，满足,且
+当当
+
+
+白噪声序列为平稳的.
+这是因为协方差函数 只与有关
+
+
+滑动平均序列
+设为 一 列 互 
+        <a class="read-more" href="/2025/07/05/%E5%BA%94%E7%94%A8%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%BE%8B%E5%AD%90/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Random%20Process/">Random Process</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E6%B5%8B%E5%BA%A6%E8%AE%BA%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/">测度论预备知识</a>
+        <div class="post-item-summary">
+        σ 代数，可测空间，随机事件
+设是一个样本空间(或任意一个集合),是的某些子集组成的集簇.如果满足：
+
+
+
+
+
+若,则
+
+
+若则
+
+
+则称为代 数 。称为可测空
+        <a class="read-more" href="/2025/07/05/%E6%B5%8B%E5%BA%A6%E8%AE%BA%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Random%20Process/">Random Process</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/">常见分布的数字特征</a>
+        <div class="post-item-summary">
+        退化分布(单点分布)
+若随机变量只取常数,即
+
+则并不随机，但我们把它看作随机变量的退化情况更为方便，因此称之为退化分布，又称单点分布.
+离散均匀分布
+若随机变
+        <a class="read-more" href="/2025/07/05/%E5%B8%B8%E8%A7%81%E5%88%86%E5%B8%83%E7%9A%84%E6%95%B0%E5%AD%97%E7%89%B9%E5%BE%81/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Random%20Process/">Random Process</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B0-%E7%BB%AA%E8%AE%BA/">软件工程绪论</a>
+        <div class="post-item-summary">
+        软件
+1946年，世界上第一台计算机诞生；
+1958年，John Wilder Tukey正式提出软件的概念；
+软件是指计算机程序及其相关文档的集合。它是由一系
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B0-%E7%BB%AA%E8%AE%BA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B1-%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/">软件过程模型</a>
+        <div class="post-item-summary">
+        软件生命周期
+定义：软件产品或软件系统从设计、投入使用到被淘汰 的全过程。
+
+软件过程
+定义： 软件过程定义了软件生产的一些列活动，这些活动贯穿于软件开发的全过
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B1-%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B10-%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4%E6%8A%80%E6%9C%AF/">软件维护技术</a>
+        <div class="post-item-summary">
+        概念
+定义：由于软件产品出现问题 或需要改进，而对代码及相关文档进行 修改，其目的是对现有软件产品进行修 改的同时保持其完整性。
+必要性
+
+改正错误；
+改善设计
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B10-%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4%E6%8A%80%E6%9C%AF/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B11-%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/">软件管理技术</a>
+        <div class="post-item-summary">
+        概念
+定义
+计划、协调、度量、监控、控制及报告等管理方法在软件开 发和维护中的具体应用，以保证整个过程是系统的、有原则 的、可量化的
+四要素4P
+
+
+人员Peo
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B11-%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B2-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">需求分析</a>
+        <div class="post-item-summary">
+        概述
+定义
+
+确认系统必须具备的功能、性能、系统要求的运行环境，预测发展的前景；
+以一种清晰，简洁，一致性且无二义性的方式，对待开发系统中各个有意义的方面的陈述
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B2-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B3-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">面向过程的需求分析</a>
+        <div class="post-item-summary">
+        结构化分析方法
+
+面对数据流进行需求分析的方法；
+适合于数据处理类型的需求分析；
+建立模型：
+
+功能模型：数据流图（DFD）
+数据模型（数据对象描述）：数据字典
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B3-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B4-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">面向对象的需求分析</a>
+        <div class="post-item-summary">
+        统一建模语言UML
+概念
+
+
+系统及其边界
+
+
+目的：识别什么在系统内，什么在系统外，进而识别出系统的职责；
+
+
+典型的系统边界：硬件设备，组织，部门
+
+
+方框
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B4-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B5-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%A6%82%E8%BF%B0/">系统设计概述</a>
+        <div class="post-item-summary">
+        概述
+软件设计：软件系统或组件的架构，构件，接口和其他特性的定义过程以及过程的结果
+
+软件工程生命周期的一个活动
+进行软件编码的基础
+需求分析被转化成软件的内部
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B5-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%A6%82%E8%BF%B0/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B6-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">面向对象的系统设计</a>
+        <div class="post-item-summary">
+        面向对象设计活动
+包括系统架构设计，用例设计，类设计，数据库设计，用户界面设计；
+架构设计
+架构设计的目的是要勾画出系统的总体结构，这项工作由经验丰富的架构设计
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B6-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B7-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">面向过程的系统设计</a>
+        <div class="post-item-summary">
+        总体设计
+
+首先研究、分析和审查数据流图。从软件的需求规格说明中弄清数 据流加工的过程，对于发现的问题及时解决。
+然后根据数据流图决定问题的类型。数据处理问题典
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B7-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B8-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">软件测试概论</a>
+        <div class="post-item-summary">
+        软件质量保证与测试相关概念
+软件质量
+定义：明确表示是否包含功能和性能需求，明确记载开发标准和所有专业开发软件的期望的隐性特点
+关键点
+
+软件测试时软件质量测量
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B8-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B9-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF/">软件测试技术</a>
+        <div class="post-item-summary">
+        分类
+
+白盒测试：考虑系统或组件的内部机制的测试形式（如分支测试、路径测试、语句测试等）
+黑盒测试：忽略系统或组件的内部机制，仅关注于那些响应所选择的输入及相应
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B9-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/">推荐系统</a>
+        <div class="post-item-summary">
+        概念
+推荐系统的任务：联系用户和物品，解决信息过载的问题；
+
+好友（社会化推荐）
+用户的历史兴趣记录（协同过滤推荐）
+用户的注册信息
+
+为什么推荐系统收到欢迎：
+        <a class="read-more" href="/2025/07/02/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Information-Retrieval/">Information-Retrieval</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">搜索引擎</a>
+        <div class="post-item-summary">
+        技术架构
+网络爬虫：搜索引擎的信息源来自于互联网网页，通过网络爬虫将整个互联网获取到本地。
+网页去重：互联网页面中有相当大比例的内容是完全相同或者近似重复的，网
+        <a class="read-more" href="/2025/07/02/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Information-Retrieval/">Information-Retrieval</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%930-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/">数据库理论</a>
+        <div class="post-item-summary">
+        数据库是什么
+数据库：长期存储在计算机内，有组织，可共享的海量数据集合
+数据库相关理论及相关问题：
+
+数据模型，规范化理论：如何组织这些数据?
+数据定义和操作语
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%930-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%90%86%E8%AE%BA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%931-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/">数据库管理技术</a>
+        <div class="post-item-summary">
+        问题和挑战
+数据库管理技术研究研究如何对数据进行科学管理，从而为人们提供可共享的、安全的、可靠的数据；
+数据库管理技术可能面临的挑战：垃圾信息，数据类型多样化和
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%931-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9310-%E8%A7%86%E5%9B%BE%E4%B8%8E%E7%B4%A2%E5%BC%95/">视图与索引</a>
+        <div class="post-item-summary">
+        视图
+创建视图
+特点：
+
+虚表，从一个或几个基本表导出的表；
+只存放视图的定义，不会出现数据冗余
+基表中数据发生变化，从视图查询出数据也随之改变
+视图建立后，用
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9310-%E8%A7%86%E5%9B%BE%E4%B8%8E%E7%B4%A2%E5%BC%95/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9311-%E6%96%AD%E8%A8%80%E4%B8%8E%E5%8F%82%E7%85%A7%E5%AE%8C%E6%95%B4%E6%80%A7/">断言与参照完整性</a>
+        <div class="post-item-summary">
+        完整性约束
+控制机制
+完整性约束是加在数据库模式上的一个具体条件，规定什么样的数据能够存储到数据库中；
+定义机制：
+
+约束条件：数据模型的组成部分，约束数据库的
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9311-%E6%96%AD%E8%A8%80%E4%B8%8E%E5%8F%82%E7%85%A7%E5%AE%8C%E6%95%B4%E6%80%A7/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9312-%E8%A7%A6%E5%8F%91%E5%99%A8%E4%B8%8E%E6%B8%B8%E6%A0%87/">触发器与游标</a>
+        <div class="post-item-summary">
+        触发器
+概念
+触发器
+
+一组SQL语句
+当插入，更改，删除，事件发生的时候，触发器自动执行
+用以维护数据完整性，或者其他数据处理工作
+属于动态完整性约束
+
+分类
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9312-%E8%A7%A6%E5%8F%91%E5%99%A8%E4%B8%8E%E6%B8%B8%E6%A0%87/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9313-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E4%B8%8E%E5%87%BD%E6%95%B0/">存储过程与函数</a>
+        <div class="post-item-summary">
+        存储过程
+定义
+创建存储过程
+123456CREATE|RPLACE Procedure &lt;过程名&gt;ASDECLARE &lt;变量声明&gt;BE
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9313-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E4%B8%8E%E5%87%BD%E6%95%B0/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9314-%E4%BA%8B%E5%8A%A1%E4%B8%8E%E5%B9%B6%E5%8F%91%E8%B0%83%E5%BA%A6/">事务与并发调度</a>
+        <div class="post-item-summary">
+        事务并发
+某些突发故障可能导致数据库产生不一致的结果；并发执行应用可以提高性能，但是有可能带来数据操作结果不符合预期
+数据库的更新：
+
+读数据库：将数据库中数据
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9314-%E4%BA%8B%E5%8A%A1%E4%B8%8E%E5%B9%B6%E5%8F%91%E8%B0%83%E5%BA%A6/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9315-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E6%8A%80%E6%9C%AF/">数据库恢复技术</a>
+        <div class="post-item-summary">
+        故障恢复
+如何应对系统故障：
+
+提高系统的可靠性
+在系统故障发生后，把数据库恢复到一致状态
+恢复的关键问题是如何建立冗余数据，以及利用冗余数据实施数据库恢复
+恢
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9315-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E6%8A%80%E6%9C%AF/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9316-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/">数据库安全</a>
+        <div class="post-item-summary">
+        概念
+数据共享必然带来数据安全问题，我们认为只允许有合法使用权限的用户允许访问他存取的数据；
+数据库系统的安全保护措施是否有效是数据库系统主要的指标，数据库的安
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9316-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%932-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/">数据模型</a>
+        <div class="post-item-summary">
+        概念
+数据模型用来抽象、表示和处理现实世界的数据和信息；
+数据模型就是现实世界的模拟：
+
+真实地模拟现实世界；
+能为人工所理解；
+易于在计算机实现；
+
+现实世界
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%932-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%933-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%93%E7%B3%BB%E5%92%8C%E7%BB%93%E6%9E%84/">数据库体系和结构</a>
+        <div class="post-item-summary">
+        数据库架构
+数据库架构的演变有两种趋势：
+
+单机架构--多机架构
+集中式--共享存储
+
+
+单机架构
+优点：部署简单，容易实现一致性；
+缺点：拓展性差，系统故障导
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%933-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%93%E7%B3%BB%E5%92%8C%E7%BB%93%E6%9E%84/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%934-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%BC%8F/">数据模式</a>
+        <div class="post-item-summary">
+        模式(Schema)
+
+数据库逻辑结构和特征的描述
+反映的是数据结构及其联系
+模式是相对稳定的
+
+实例(Instance)
+
+模式的一个具体值
+反应数据库的某一
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%934-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%BC%8F/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%935-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F/">关系模式</a>
+        <div class="post-item-summary">
+        关系数据模型
+
+关系实例
+
+关系实例由命名的若干列和行的表
+行也称为元组
+元组的数目成为基数
+列一般需要命名
+
+
+关系模式
+
+关系名R，属性列表U，域D，属性到
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%935-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%936-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%90%86%E8%AE%BA/">关系代数理论</a>
+        <div class="post-item-summary">
+        概述
+域（Domain）：由属性构成，是属性的所有取值，一组具有相同数据类型的值的集合；
+关系：是域作笛卡尔积后的，有一定意义的，有限的子集；
+
+关系名，应该和
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%936-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E7%90%86%E8%AE%BA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%937-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/">数据库设计</a>
+        <div class="post-item-summary">
+        数据库设计
+数据库设计：根据用户需求研制数据库结构的过程
+
+数据库结构设计：针对给定的应用环境，进行数据库的模式和子模式设计，包括概念设计，逻辑设计和物理设计，
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%937-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%938-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8C%83%E5%BC%8F/">数据库范式</a>
+        <div class="post-item-summary">
+        数学表示
+关系模式的五元组表示：
+
+：关系名
+：组成该关系的属性名集合
+：属性组U中属性所来自的域
+：属性向域的映象集合
+：属性间数据的依赖关系集
+
+对于一个简
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%938-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8C%83%E5%BC%8F/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%939-SQL%E5%9F%BA%E7%A1%80/">SQL基础</a>
+        <div class="post-item-summary">
+        特点
+
+高度统一：集DDL，DML，DCL于一体
+高度非过程化：只需要提出做什么，无需声明怎么做
+面向集合的操作：操作的对象和结果均为集合
+两种使用方法：自主式
+        <a class="read-more" href="/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%939-SQL%E5%9F%BA%E7%A1%80/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Database/">Database</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E6%A8%A1%E5%9E%8B/">信息检索模型</a>
+        <div class="post-item-summary">
+        形式特征
+检索策略=文档表示+查询表示+匹配函数
+
+文档表示：反映文档在系统中的存储形式描述，可用一组关键词或标引词表示；
+查询表示：反映对用户信息需求的描述；
+        <a class="read-more" href="/2025/07/02/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E6%A8%A1%E5%9E%8B/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Information-Retrieval/">Information-Retrieval</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E6%A6%82%E8%BF%B0/">信息检索概述</a>
+        <div class="post-item-summary">
+        什么是信息检索
+
+给定用户需求返回满足该需求信息的一门学科。通常涉及信息的获取、存储、组织和访问。
+从大规模非结构化数据（通常是文本）的集合（通常保存在计算机上
+        <a class="read-more" href="/2025/07/02/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E6%A6%82%E8%BF%B0/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Information-Retrieval/">Information-Retrieval</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/A-web-service-recommendation-algorithm-based-on-BaisSVD/">A web service recommendation algorithm  based on BaisSVD</a>
+        <div class="post-item-summary">
+        Source
+Da Sun ,Tong Nie  Beijing Engineering Research Center for IoT Software an
+        <a class="read-more" href="/2025/07/02/A-web-service-recommendation-algorithm-based-on-BaisSVD/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/papers/">papers</a>
+            
+            <a class="tag-item" href="/tag/Information-Retrieval/">Information-Retrieval</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Link/">Link</a>
+        <div class="post-item-summary">
+        数据链路层
+链路层要解决的问题是单段链路的数据传输，物理层解决的是数字信号与电气信号之间的相互转换。
+在这一层中，我们把所有接入数据链路层的实体看作结点，包括主
+        <a class="read-more" href="/2025/07/02/Link/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Computer-Network/">Computer-Network</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Network/">Network</a>
+        <div class="post-item-summary">
+        Network
+设计
+路由器的工作在分组从发送方主机传送到接收方主机 的过程的中间：
+
+发送方将数据段封装成分组
+接收方将分组解封装后将数据段递交给传输层
+网络
+        <a class="read-more" href="/2025/07/02/Network/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Computer-Network/">Computer-Network</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Application/">Application</a>
+        <div class="post-item-summary">
+        网络应用
+协议特点
+每个应用层协议都是为了解决某一类应用问题，而问题的解决又往往是通过位于不同主机中的多个应用进程之间的通信和协同工作来完成的。应用层的具体内容
+        <a class="read-more" href="/2025/07/02/Application/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Computer-Network/">Computer-Network</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Internet/">Internet</a>
+        <div class="post-item-summary">
+        Internet
+描述
+计算机网络是两台以上具有独立操作系统的计算机通过介质连接成互相共享的软硬件资源的集合体；以下是其成分的描述：
+
+主机(hosts)/端系
+        <a class="read-more" href="/2025/07/02/Internet/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Computer-Network/">Computer-Network</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Ensemble-Learning/">Ensemble Learning</a>
+        <div class="post-item-summary">
+        idea
+集成学习 (ensemble learning) 通过构建并结合多个学习器来完成学习任务。
+下图展示了集成学习的一般结构：
+
+先产生一组个体学习器 (
+        <a class="read-more" href="/2025/07/02/Ensemble-Learning/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/SVM/">SVM</a>
+        <div class="post-item-summary">
+        支持向量机
+Idea
+支持向量机(Support Vector Machine)是Vapnik等于1995年首先提出的，它在解决小样本、非线性及高维模式识别中表
+        <a class="read-more" href="/2025/07/02/SVM/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Recurrent-Neural-Network/">Recurrent Neural Network</a>
+        <div class="post-item-summary">
+        RNN介绍
+时序任务
+对于一些任务需要能够更好的处理序列的信息，这些任务的特征是前面的输入和后面的输入是有关系的。比如，当理解一句话意思时，孤立的 理解这句话的
+        <a class="read-more" href="/2025/07/02/Recurrent-Neural-Network/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Perceptron/">Perceptron</a>
+        <div class="post-item-summary">
+        Perceptron
+线性可分
+对于二分类问题，给定一个数据集
+
+其中，。
+如果存在一个超平面：能够将数据集中的正例和负例完全分开，即对于所有的正例有，对于所有
+        <a class="read-more" href="/2025/07/02/Perceptron/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/PCA/">PCA</a>
+        <div class="post-item-summary">
+        维度灾难
+在一维的时候，数据点是非常稠密的，而随着维数的增加（如2维， 3维），整个数据点的空间就形成非常庞大的空间（由 3 个，变 成9个，再变成27个），相
+        <a class="read-more" href="/2025/07/02/PCA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Naive-Bayes/">Naive Bayes</a>
+        <div class="post-item-summary">
+        Naive Bayes 分类器
+贝叶斯分类算法是统计学的一种分类方法，它是一类利用概率统计知识进行分类的算法。在许多场合，朴素贝叶斯(Naïve Bayes，N
+        <a class="read-more" href="/2025/07/02/Naive-Bayes/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/LDA/">LDA</a>
+        <div class="post-item-summary">
+        LDA技术
+Idea
+对于一类二分类问题，还可以采取线性判别分析(Liner Discriminant Analysis);
+给定训练样例集，将样本投影到一条直
+        <a class="read-more" href="/2025/07/02/LDA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/KNN/">KNN</a>
+        <div class="post-item-summary">
+        KNN学习
+idea
+作为最简单的监督学习算法，可概括为"近朱者赤近墨者黑"。
+作为典型的消极学习(lazy learning)，KNN在训练阶段仅仅是把样本保
+        <a class="read-more" href="/2025/07/02/KNN/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/KD-Tree/">KD-Tree</a>
+        <div class="post-item-summary">
+        数据结构
+K-Dimensional Tree (KD-Tree) 是一种用于组织 k 维空间中的点的数据结构，主要用于快速进行范围搜索和最近邻搜索。它可以看作
+        <a class="read-more" href="/2025/07/02/KD-Tree/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Data%20Structure/">Data Structure</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/22/markdown-%E5%86%99%E4%BD%9C%E8%A7%84%E8%8C%83/">Markdown 写作规范</a>
+        <div class="post-item-summary">
+        这是一个一级标题
+本主题按照本人使用的 Typora 编辑器风格定制，旨在打造一款轻量级的TeX样式。
+本主题改编自 Typo。
+这是一个二级标题
+如果你使用本
+        <a class="read-more" href="/2025/06/22/markdown-%E5%86%99%E4%BD%9C%E8%A7%84%E8%8C%83/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.22</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Musings/">Musings</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/21/Convolution-Neural-Network/">Convolution Neural Network</a>
+        <div class="post-item-summary">
+        Introduction
+卷积神经网络是受生物学上感受野(receptive Field)的机制而提出的
+
+在视觉神经系统中，一个神经元的感受野是指视网膜上的特
+        <a class="read-more" href="/2025/06/21/Convolution-Neural-Network/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.21</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/papers/">papers</a>
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/21/Cluster/">Cluster</a>
+        <div class="post-item-summary">
+        Introduction
+如果我们相信聚集在一起，有较高相似性的簇一定有有趣的知识的话，那么聚类分析就是获得数据内部结构，发现簇的意义的方法。
+在讨论聚类算法时
+        <a class="read-more" href="/2025/06/21/Cluster/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.21</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/papers/">papers</a>
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/21/Autoencoder/">Autoencoder</a>
+        <div class="post-item-summary">
+        Introduction
+架构
+CNN的训练样本是带有标签的。在很多实际应用中， 训练样本是没有标签的。应用误差反向传播算法来训练网络会遇到一些困难。
+自编码器
+        <a class="read-more" href="/2025/06/21/Autoencoder/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.21</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/21/Artificial-Neural-Network/">Artificial Neural Network</a>
+        <div class="post-item-summary">
+        Idea
+人工神经网络（ANN，Artificial Neural Networks）是在人类对大脑神经网络认识理解的基础上，人工构造的能够实现某种功能的神经网
+        <a class="read-more" href="/2025/06/21/Artificial-Neural-Network/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.21</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/20/%E6%9C%89%E9%99%90%E8%87%AA%E5%8A%A8%E6%9C%BA/">有限自动机</a>
+        <div class="post-item-summary">
+        有限自动机
+形式定义
+在词法分析中，有限自动机 (Finite Automata, FA) 是识别词素模式的核心理论基础。
+有限自动机可以非常高效地处理输入字符
+        <a class="read-more" href="/2025/06/20/%E6%9C%89%E9%99%90%E8%87%AA%E5%8A%A8%E6%9C%BA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.20</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/20/%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA/">下推自动机</a>
+        <div class="post-item-summary">
+        下推自动机
+下推自动机(Pushdown Automaton, PDA)是一种带有栈存储器组件的有限自动机；
+它比有限自动机更强大，因为栈提供了无限存储能力；
+
+        <a class="read-more" href="/2025/06/20/%E4%B8%8B%E6%8E%A8%E8%87%AA%E5%8A%A8%E6%9C%BA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.20</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/20/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">高级语言程序设计</a>
+        <div class="post-item-summary">
+        语言设计 🎨
+定义
+程序设计语言是一组规则的集合，可以看作 语言 = 语法 + 语义
+
+字母表的定义
+词法规则：单词符号的形成规则，比如关键字，标识符，运算符
+        <a class="read-more" href="/2025/06/20/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.20</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Compilers/">Compilers</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/20/%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90/">语义分析</a>
+        <div class="post-item-summary">
+        语义
+定义：语言的单词符号和语法单位的作用和意义的规则组合；
+一般用自然语言描述语义，使用抽象机(grammar abstract machine)的行为来描述
+        <a class="read-more" href="/2025/06/20/%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.20</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Compilers/">Compilers</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/20/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/">词法分析</a>
+        <div class="post-item-summary">
+        词法分析
+概述
+词法分析(Lexical Analysis / Scanning)是编译过程的第一个阶段。
+它接收源程序的字符流 (character stre
+        <a class="read-more" href="/2025/06/20/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.20</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Compilers/">Compilers</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/20/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/">程序设计语言</a>
+        <div class="post-item-summary">
+        语言处理器 ⚙️
+概述
+通常来说，一个编译器(compiler) 👨‍💻➡️💻 将程序设计语言翻译成被计算机执行的形式；
+
+阅读宿主语言(host lan
+        <a class="read-more" href="/2025/06/20/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.20</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Compilers/">Compilers</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/19/Transformer/">Transformer</a>
+        <div class="post-item-summary">
+        Transformer介绍
+Seq2Seq任务
+对于一类Seq2Seq任务，输入和输出都是序列的任务，输出的长度不确定时采用的模型，常见于机器翻译中；
+
+针对一
+        <a class="read-more" href="/2025/06/19/Transformer/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.19</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/papers/">papers</a>
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+        </div>
+        </div>
+    </section>
+    
+</div>
+
+
+
+
+<link rel="stylesheet" href="/css/paginator.css">
+
+
+<link rel="stylesheet" href="/css/list.css">
+
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    触发器与游标
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">触发器与游标</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">触发器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.</span> <span class="toc-text">触发器操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E6%A0%87"><span class="toc-number">2.</span> <span class="toc-text">游标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text">定义</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">触发器与游标</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 2日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">Database</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3>
+<p>触发器</p>
+<ul>
+<li>一组SQL语句</li>
+<li>当插入，更改，删除，事件发生的时候，触发器自动执行</li>
+<li>用以维护数据完整性，或者其他数据处理工作</li>
+<li>属于动态完整性约束</li>
+</ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3>
+<p>根据事件分类</p>
+<ul>
+<li>DML触发器：发生数据操作事件时调用，包括<code>INSERT UPDATE DELATE</code></li>
+<li>DDL触发器：发生数据定义事件调用，包括<code>CREATE DROP DELETE</code>
+根据发生时间和操作分类</li>
+<li>AFTER触发器：是最常见的触发器，在事件执行之后检查触发条件，若满足则调用触发器</li>
+<li>BEFORE触发器：在事件执行之前检查触发条件，若满足则调用触发器</li>
+<li>INSTEAD OF触发器：一般用于视图，事件执行之前检查触发条件，若满足，则用触发器定义的操作代替原来的数据更新操作
+根据执行粒度分类</li>
+<li>语句级触发器：执行完一条SQL语句，是DBMS的默认值，关键字为<code>FOR EA CH STATEMENT</code></li>
+<li>元祖级触发器：在每一行触发<code>FOR EACH ROW</code></li>
+</ul>
+<h3 id="触发器操作"><a href="#触发器操作" class="headerlink" title="触发器操作"></a>触发器操作</h3>
+<p>创建触发器</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Create</span>｜Replace <span class="keyword">Trigger</span> <span class="operator">&lt;</span>触发器名<span class="operator">&gt;</span></span><br><span class="line">Before<span class="operator">|</span>After<span class="operator">|</span>Instead <span class="keyword">Of</span> <span class="operator">&lt;</span>事件子查询<span class="operator">&gt;</span></span><br><span class="line">[ <span class="keyword">For</span> <span class="keyword">Each</span> <span class="type">Row</span> ]</span><br><span class="line"><span class="keyword">When</span> ( <span class="operator">&lt;</span>条件<span class="operator">&gt;</span>)</span><br><span class="line"><span class="operator">&lt;</span>数据操作<span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure>
+<p>删除触发器</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">Trigger</span> <span class="operator">&lt;</span>触发器名<span class="operator">&gt;</span></span><br></pre></td></tr></table></figure>
+<p>使用触发器可以容易实现参照完整性；</p>
+<h2 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h2>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3>
+<p>声明游标<code>DECLARE</code>
+打开游标<code>OPEN</code>
+从一个游标中逐条获取并处理记录信息<code>FETCH</code>
+关闭游标<code>CLOSE</code>
+以下是一个例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Open</span> GPA36;</span><br><span class="line"><span class="keyword">Fetch</span> Next <span class="keyword">From</span> GPA36 <span class="keyword">Into</span></span><br><span class="line">msID, msName,mGPA,mcName,mmajor;</span><br><span class="line"><span class="keyword">Close</span> GPA36;</span><br></pre></td></tr></table></figure>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

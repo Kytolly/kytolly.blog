@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    Golang中的并发机制
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">Golang中的并发机制</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Golang%E7%9A%84%E5%B9%B6%E5%8F%91%E5%A4%84%E7%90%86%E4%BC%98%E5%8A%BF"><span class="toc-number">1.</span> <span class="toc-text">Golang的并发处理优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%A0%B8CPU%E5%B9%B6%E5%8F%91%E5%88%86%E6%8B%85"><span class="toc-number">2.</span> <span class="toc-text">多核CPU并发分担</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E5%86%B2%E7%AA%81"><span class="toc-number">3.</span> <span class="toc-text">共享冲突</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E5%AE%89%E5%85%A8"><span class="toc-number">4.</span> <span class="toc-text">共享安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E4%BB%A4%E7%89%8C%E7%9A%84%E4%BB%BB%E5%8A%A1"><span class="toc-number">5.</span> <span class="toc-text">获取令牌的任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%BD%92%E5%B9%B6"><span class="toc-number">6.</span> <span class="toc-text">多任务归并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E6%97%B6%E7%BB%88%E6%AD%A2%E6%9C%BA%E5%88%B6"><span class="toc-number">7.</span> <span class="toc-text">超时终止机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">8.</span> <span class="toc-text">sync实现并发处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">9.</span> <span class="toc-text">协程和进程的区别</span></a></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">Golang中的并发机制</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 5日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Golang</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="Golang的并发处理优势"><a href="#Golang的并发处理优势" class="headerlink" title="Golang的并发处理优势"></a>Golang的并发处理优势</h2>
+<p>并发处理是Golang设计的核心目标之一，其通过一条简单的关键字<code>go</code>来启动协程<code>goroutine</code>,在广义上我们可以将协程理解为线程；</p>
+<p>由于Golang轻量级的特性，在一个主程序中可是轻而易举地列举上千条协程，线程安全只需要由通道(<code>chan</code>)数据类型实现，而且先天支持多核CPU的调度；</p>
+<h2 id="多核CPU并发分担"><a href="#多核CPU并发分担" class="headerlink" title="多核CPU并发分担"></a>多核CPU并发分担</h2>
+<p>所谓<code>main()</code>运行在程序的主线程中，当<code>main()</code>退出时，所有的<code>goroutine</code>都将退出，即便这些协程没有完成它的任务；</p>
+<p>因此我们在接下来的示例程序中将引入100ms的睡眠无限循环防止程序提前退出，以便其他协程有机会运行，同时避免主协程无效忙等；</p>
+<p>请注意，<strong>协程的执行是异步的</strong>，主协程不会等待协程，而是直接跳过协程，这就是在协程上打断点无效的原因；</p>
+<p>在Goalng中查看实际硬件CPU数：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cpuCores := runtime.NumCPU()</span><br></pre></td></tr></table></figure>
+<p>将可用CPU核数设为n,对于<code>n&lt;1</code>,配置为默认的机器配置；</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">runtime.GOMAXPROCS(n)</span><br></pre></td></tr></table></figure>
+<p>测试起见我们将CPU数设为2,因为可能配置太高看不出来共享冲突；</p>
+<h2 id="共享冲突"><a href="#共享冲突" class="headerlink" title="共享冲突"></a>共享冲突</h2>
+<p>执行以下代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;runtime&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> valueG <span class="type">int</span> = <span class="number">0</span></span><br><span class="line"><span class="keyword">var</span> stop1 <span class="type">bool</span> = <span class="literal">false</span></span><br><span class="line"><span class="keyword">var</span> stop2 <span class="type">bool</span> = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">routine1</span><span class="params">(countA <span class="type">int</span>, stopA *<span class="type">bool</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; countA; i++ &#123;</span><br><span class="line">		valueG = valueG + <span class="number">2</span></span><br><span class="line">	&#125;</span><br><span class="line">	*stopA = <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	runtime.GOMAXPROCS(<span class="number">2</span>)</span><br><span class="line">	<span class="keyword">go</span> routine1(<span class="number">100000000</span>, &amp;stop1)</span><br><span class="line">	<span class="keyword">go</span> routine1(<span class="number">100000000</span>, &amp;stop2)</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> stop1 &amp;&amp; stop2 &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;valueG: %v\n&quot;</span>, valueG)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<p><img src="/assets/Golang/image-20240919015923605.png" alt=""></p>
+<p>很明显，临界资源的访问没有互斥机制，所以执行的结果也有不同；</p>
+<p>我们加上控制机制来保证<strong>同一时刻只能由一个任务来访问该数据</strong>；</p>
+<h2 id="共享安全"><a href="#共享安全" class="headerlink" title="共享安全"></a>共享安全</h2>
+<p>共享安全：保证在多任务并发处理时共享数据不会因共享冲突而导致错误；</p>
+<p>Golang就提供了这样的数据类型来保证共享安全机制：<code>chan</code>管道, 这是一个先入先出的队列</p>
+<p>执行以下代码：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;runtime&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> valueG <span class="keyword">chan</span> <span class="type">int</span></span><br><span class="line"><span class="keyword">var</span> stop1 <span class="type">bool</span> = <span class="literal">false</span></span><br><span class="line"><span class="keyword">var</span> stop2 <span class="type">bool</span> = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">routine1</span><span class="params">(countA <span class="type">int</span>, stopA *<span class="type">bool</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; countA; i++ &#123;</span><br><span class="line">		tmpC := &lt;-valueG</span><br><span class="line">		valueG &lt;- (tmpC + <span class="number">2</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	*stopA = <span class="literal">true</span>	 </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	runtime.GOMAXPROCS(<span class="number">2</span>)</span><br><span class="line">	valueG = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">defer</span> <span class="built_in">close</span>(valueG)</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">go</span> routine1(<span class="number">10000</span>, &amp;stop1)</span><br><span class="line">	<span class="keyword">go</span> routine1(<span class="number">10000</span>, &amp;stop2)</span><br><span class="line">	valueG &lt;- <span class="number">0</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> stop1 &amp;&amp; stop2 &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;valueG: %v\n&quot;</span>, &lt;-valueG)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果如下，可以看到确实输出结果保持了一致：</p>
+<p><img src="/assets/Golang/image-20240919020628894.png" alt=""></p>
+<p>注意：</p>
+<ul>
+<li>理解<code>-&gt;</code>和<code>&lt;-</code>操作符是阻塞的：
+<ul>
+<li>当从通道接收数据时，如果通道中没有数据，接收操作会阻塞，直到有数据可接收；</li>
+<li>当向通道发送数据时，如果通道没有接收方，发送操作会阻塞，直到有协程准备接收数据；</li>
+<li>这种阻塞行为可以确保并发协程之间的通信是同步的，避免了数据的丢失或竞态条件</li>
+</ul>
+</li>
+</ul>
+<h2 id="获取令牌的任务"><a href="#获取令牌的任务" class="headerlink" title="获取令牌的任务"></a>获取令牌的任务</h2>
+<p>对于一些任务，取到令牌的任务才能访问某些数据，访问完毕之后交回令牌供其他任务使用；</p>
+<p>以下是示例代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;runtime&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> valueG <span class="type">int</span></span><br><span class="line"><span class="keyword">var</span> stop1 <span class="type">bool</span> = <span class="literal">false</span></span><br><span class="line"><span class="keyword">var</span> stop2 <span class="type">bool</span> = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> token <span class="keyword">chan</span> <span class="type">bool</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">routine1</span><span class="params">(countA <span class="type">int</span>, stopA *<span class="type">bool</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; countA; i++ &#123;</span><br><span class="line">		&lt;-token  <span class="comment">// 关键</span></span><br><span class="line">		valueG = valueG +<span class="number">2</span></span><br><span class="line">		token &lt;- <span class="literal">false</span></span><br><span class="line">	&#125;</span><br><span class="line">	*stopA = <span class="literal">true</span>	 </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	runtime.GOMAXPROCS(<span class="number">2</span>)</span><br><span class="line">	token = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">bool</span>, <span class="number">1</span>)</span><br><span class="line">	<span class="keyword">defer</span> <span class="built_in">close</span>(token)</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">go</span> routine1(<span class="number">10000</span>, &amp;stop1)</span><br><span class="line">	<span class="keyword">go</span> routine1(<span class="number">10000</span>, &amp;stop2)</span><br><span class="line">	</span><br><span class="line">	token &lt;- <span class="literal">false</span></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> stop1 &amp;&amp; stop2 &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;valueG: %v\n&quot;</span>, valueG)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在实际应用中，令牌的或许就像这个<code>token</code>一样，等待管道输入过后，任务完成后交回<code>token</code>给下一个任务使用；</p>
+<h2 id="多任务归并"><a href="#多任务归并" class="headerlink" title="多任务归并"></a>多任务归并</h2>
+<p>并发编程中，主任务将任务拆分成子任务并等待所有子任务完成之后再进行下一步处理的过程称作多任务的归并；</p>
+<p>这样做可以充分利用CPU性能，避免资源的过渡浪费；</p>
+<p>观察以下代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;runtime&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">var</span> goroutineCount = runtime.GOMAXPROCS(<span class="number">0</span>) <span class="comment">// 默认CPU核数</span></span><br><span class="line"><span class="keyword">var</span> resultBuffer <span class="keyword">chan</span> <span class="type">float64</span> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addRoutine</span><span class="params">(lenT <span class="type">int</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> sumT <span class="type">float64</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; lenT; i++ &#123;</span><br><span class="line">        sumT += <span class="number">1.0</span></span><br><span class="line">    &#125;</span><br><span class="line">    resultBuffer &lt;- sumT</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addByGoroutine</span><span class="params">(countA <span class="type">int</span>)</span></span> <span class="type">float64</span> &#123;</span><br><span class="line">	sumT := <span class="number">0.0</span></span><br><span class="line">	lenT := countA / goroutineCount</span><br><span class="line">	leftT := countA - lenT*goroutineCount</span><br><span class="line">	<span class="keyword">go</span> addRoutine(lenT + leftT)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt; goroutineCount; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> addRoutine(lenT)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; goroutineCount; i++ &#123;</span><br><span class="line">		sumT += &lt;-resultBuffer</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sumT</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	resultBuffer = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">float64</span>, <span class="number">1</span>)</span><br><span class="line">	<span class="keyword">defer</span> <span class="built_in">close</span>(resultBuffer)</span><br><span class="line"></span><br><span class="line">	res := addByGoroutine(<span class="number">1000000</span>)</span><br><span class="line">	fmt.Print(res)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="超时终止机制"><a href="#超时终止机制" class="headerlink" title="超时终止机制"></a>超时终止机制</h2>
+<p>利用select监听多个通道，我们可以轻松实现超时终止机制：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select &#123;</span><br><span class="line">case tmpF = &lt;-resultBuffer1:</span><br><span class="line">	sumT1 += tmpF // 任务1</span><br><span class="line">case tmpC = &lt;-resultBuffer2:</span><br><span class="line">	sumT2 += tmpC // 任务2</span><br><span class="line">case &lt;-time.After(3 * time.Second):</span><br><span class="line">	timeoutFlag = true // 超时</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：<code>time.After</code>将返回一个定时触发的<code>chan</code>类型值</p>
+<p>我们可以如下自定义超时函数：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 休眠指定的秒数后，向通道中写入一个数值表示超时（数值本身不重要）</span></span><br><span class="line"><span class="comment">// chanA是只能写入的单向通道</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">realTimeout1</span><span class="params">(secondsA time.Duration, chanA <span class="keyword">chan</span>&lt;- <span class="type">bool</span>)</span></span> &#123;</span><br><span class="line">	time.Sleep(secondsA * time.Second)</span><br><span class="line">	chanA &lt;- <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 仅用于新建一个通道后启动真正的超时routine，并将该通道返回让select等待通道中有值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">timeout1</span><span class="params">(secondsA time.Duration)</span></span> &lt;-<span class="keyword">chan</span> <span class="type">bool</span> &#123;</span><br><span class="line">	chan1 := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">bool</span>, <span class="number">1</span>)</span><br><span class="line">	<span class="comment">// 传入realTimeout1的chan1被强制转换为只写通道类型</span></span><br><span class="line">	<span class="keyword">go</span> realTimeout1(secondsA, (<span class="keyword">chan</span>&lt;- <span class="type">bool</span>)(chan1))</span><br><span class="line">	<span class="keyword">return</span> (&lt;-<span class="keyword">chan</span> <span class="type">bool</span>)(chan1) <span class="comment">// 返回时将chan1强制转换为只读通道类型</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><code>sync</code>实现并发处理</h2>
+<p>我们可以利用<code>sync.WaitGroup</code>来实现多任务的归并，初始化<code>sync.WaitGroup</code>,每进行完一个任务计数器减1；</p>
+<p>观察如下代码，执行发现每次结果有所不同：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> groupG sync.WaitGroup</span><br><span class="line"><span class="keyword">var</span> times = <span class="number">100000</span></span><br><span class="line"><span class="keyword">var</span> valueG = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addRoutine</span><span class="params">(countA <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> groupG.Done()</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; countA; i++ &#123;</span><br><span class="line">		valueG = valueG + <span class="number">2</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">minusRoutine</span><span class="params">(countA <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> groupG.Done()</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; countA; i++ &#123;</span><br><span class="line">		valueG = valueG - <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	groupG.Add(<span class="number">2</span>)</span><br><span class="line">	<span class="keyword">go</span> addRoutine(times)</span><br><span class="line">	fmt.Printf(<span class="string">&quot;add value: %d\n&quot;</span>, valueG)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">go</span> minusRoutine(times)</span><br><span class="line">	fmt.Printf(<span class="string">&quot;minus value: %d\n&quot;</span>, valueG)</span><br><span class="line"></span><br><span class="line">	groupG.Wait()</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">&quot;Final value: %d\n&quot;</span>, valueG)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是因为触发了竞态条件：<code>valueG = valueG + 2</code> 和 <code>valueG = valueG - 1</code> 这些操作并不是原子操作，包含多个步骤：读取 <code>valueG</code> 的值，进行计算，然后将结果写回 <code>valueG</code>；</p>
+<p>在并发环境中，这些步骤可能会被其他 Goroutine 打断，导致结果不一致；</p>
+<p>正确的做法是为<code>add</code>和<code>minus</code>加锁：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> groupG sync.WaitGroup</span><br><span class="line"><span class="keyword">var</span> mutexG sync.Mutex</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> times = <span class="number">100000</span></span><br><span class="line"><span class="keyword">var</span> valueG = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addRoutine</span><span class="params">(countA <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> groupG.Done()</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; countA; i++ &#123;</span><br><span class="line">		mutexG.Lock()</span><br><span class="line">		valueG = valueG + <span class="number">2</span></span><br><span class="line">		mutexG.Unlock()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">minusRoutine</span><span class="params">(countA <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> groupG.Done()</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; countA; i++ &#123;</span><br><span class="line">		mutexG.Lock()</span><br><span class="line">		valueG = valueG - <span class="number">1</span></span><br><span class="line">		mutexG.Unlock()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	groupG.Add(<span class="number">2</span>)</span><br><span class="line">	<span class="keyword">go</span> addRoutine(times)</span><br><span class="line">	fmt.Printf(<span class="string">&quot;add value: %d\n&quot;</span>, valueG)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">go</span> minusRoutine(times)</span><br><span class="line">	fmt.Printf(<span class="string">&quot;minus value: %d\n&quot;</span>, valueG)</span><br><span class="line"></span><br><span class="line">	groupG.Wait()</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">&quot;Final value: %d\n&quot;</span>, valueG)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="协程和进程的区别"><a href="#协程和进程的区别" class="headerlink" title="协程和进程的区别"></a>协程和进程的区别</h2>
+<ol>
+<li>一个线程可以有多个协程。</li>
+<li>大多数业务场景下，线程进程可以看做是同步机制，而协程则是异步。</li>
+<li>线程是抢占式，而协程是非抢占式的，所以需要用户代码释放使用权来切换到其他协程，因此同一时间其实只有一个协程拥有运行权，相当于单线程的能力。</li>
+<li>协程并不是取代线程，而且抽象于线程之上。线程是被分割的CPU资源, 协程是组织好的代码流程, 协程需要线程来承载运行。</li>
+</ol>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

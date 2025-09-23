@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    高级语言程序设计
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'true'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">高级语言程序设计</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E8%AE%BE%E8%AE%A1-%F0%9F%8E%A8"><span class="toc-number">1.</span> <span class="toc-text">语言设计 🎨</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E5%8F%91%E5%B1%95"><span class="toc-number">1.2.</span> <span class="toc-text">历史发展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E5%BC%8F%E5%88%86%E7%B1%BB"><span class="toc-number">1.3.</span> <span class="toc-text">范式分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E8%AE%BE%E8%AE%A1%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.4.</span> <span class="toc-text">语言设计实践</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%99%E6%80%81-%E5%8A%A8%E6%80%81"><span class="toc-number">1.4.1.</span> <span class="toc-text">静态&#x2F;动态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F-%E8%B5%8B%E5%80%BC"><span class="toc-number">1.4.2.</span> <span class="toc-text">变量&#x2F;赋值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83-%E7%8A%B6%E6%80%81"><span class="toc-number">1.4.3.</span> <span class="toc-text">环境&#x2F;状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F-%E5%9D%97-Static-Scoping-Blocks"><span class="toc-number">1.4.4.</span> <span class="toc-text">静态作用域&#x2F;块 (Static Scoping &#x2F; Blocks)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F-Dynamic-Scoping-%F0%9F%93%9E"><span class="toc-number">1.4.5.</span> <span class="toc-text">动态作用域 (Dynamic Scoping)📞</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%BE%E5%BC%8F%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6-Explicit-Access-Control-%F0%9F%9B%A1%EF%B8%8F"><span class="toc-number">1.4.6.</span> <span class="toc-text">显式访问控制 (Explicit Access Control) 🛡️</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6-Parameter-Passing-Mechanisms-%F0%9F%8E%81"><span class="toc-number">1.4.7.</span> <span class="toc-text">参数传递机制 (Parameter Passing Mechanisms) 🎁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%AB%E5%90%8D-Aliasing-%F0%9F%8E%AD"><span class="toc-number">1.4.8.</span> <span class="toc-text">别名 (Aliasing) 🎭</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1"><span class="toc-number">2.1.</span> <span class="toc-text">抽象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text">C语言数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%9F%A5"><span class="toc-number">2.3.</span> <span class="toc-text">类型检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.4.</span> <span class="toc-text">类型转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">控制结构</span></a></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">高级语言程序设计</div>
+  <div class="post-meta">
+    <div class="date">2025 六月 20日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">Compilers</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="语言设计-🎨"><a href="#语言设计-🎨" class="headerlink" title="语言设计 🎨"></a>语言设计 🎨</h2>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3>
+<p>程序设计语言是一组规则的集合，可以看作 语言 = 语法 + 语义</p>
+<ul>
+<li>字母表的定义</li>
+<li>词法规则：单词符号的形成规则，比如关键字，标识符，运算符，常量，分界符</li>
+<li>语法规则：语法单位的形成规则，比如表达式，语句，函数，程序</li>
+<li>语义规则：包括但此符号和语法单位的含义规则；</li>
+<li>语用规则：语义规则的发展和延申；</li>
+<li>其他规则：包括类型使用规则，参数传递规则，作用域规则；</li>
+</ul>
+<h3 id="历史发展"><a href="#历史发展" class="headerlink" title="历史发展"></a>历史发展</h3>
+<ul>
+<li><strong>第一代语言 (1GL)</strong> 🤖: <strong>机器语言 (Machine Language)</strong>
+<ul>
+<li>直接由计算机硬件执行的二进制指令。</li>
+</ul>
+</li>
+<li><strong>第二代语言 (2GL)</strong> 🛠️: <strong>汇编语言 (Assembly Language)</strong>
+<ul>
+<li>使用助记符表示机器指令，需要汇编器转换为机器语言。</li>
+</ul>
+</li>
+<li><strong>第三代语言 (3GL)</strong> 🚀: <strong>高级程序设计语言 (High-Level Languages)</strong>
+<ul>
+<li>如 <code>C, C++, Java, Python, Fortran, COBOL</code>。更接近人类语言，具有更强的抽象能力，可移植性更好。</li>
+<li>包括命令式和过程式</li>
+</ul>
+</li>
+<li><strong>第四代语言 (4GL)</strong> 📊: <strong>为特定应用领域设计的语言 (Domain-Specific Languages - DSLs)</strong>
+<ul>
+<li>如 <code>SQL</code> (数据库查询), <code>MATLAB</code> (数值计算)。通常用于特定问题领域，提供更高层次的抽象。</li>
+<li>包括说明性语言，超高级语言</li>
+</ul>
+</li>
+<li><strong>第五代语言 (5GL)</strong> 🧠: (概念较模糊，通常指用于人工智能和逻辑编程的语言，如 <code>Prolog</code>，或基于约束求解的语言)
+<ul>
+<li>包括函数式，逻辑式语言</li>
+</ul>
+</li>
+</ul>
+<h3 id="范式分类"><a href="#范式分类" class="headerlink" title="范式分类"></a>范式分类</h3>
+<ul>
+<li>
+<p><strong>强制式语言 (Imperative Languages)</strong> ➡️:</p>
+<ul>
+<li>描述计算过程如何执行，通过一系列改变程序状态的命令来完成任务。</li>
+<li>如 <code>C, C++, Java, Pascal, Fortran</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>声明式语言 (Declarative Languages)</strong> 📜:</p>
+<ul>
+<li>描述计算应该做什么，而不是如何做。程序的执行逻辑由语言的解释器或编译器负责。</li>
+<li>子范式包括：
+<ul>
+<li><strong>函数式语言 (Functional Languages)</strong> λ: 如 <code>Haskell, Lisp, Scheme, F#, Scala</code>。计算被视为数学函数的求值，强调无副作用和不可变性。</li>
+<li><strong>逻辑式语言 (Logic Languages)</strong> 💡: 如 <code>Prolog</code>。基于形式逻辑规则进行推理。</li>
+<li><strong>数据流语言 (Dataflow Languages)</strong>: 如部分响应式编程框架。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>冯诺依曼语言 (Von Neumann Languages)</strong> 🏛️:</p>
+<ul>
+<li>程序设计语言的计算模型基于冯诺依曼计算机体系结构（即，指令和数据存储在同一内存中，CPU按顺序执行指令）。大多数强制式语言属于此类。</li>
+<li>在命令式语言上的表现为：变量，赋值。重复</li>
+</ul>
+</li>
+<li>
+<p><strong>面向对象语言 (Object-Oriented Languages)</strong> 🧩:</p>
+<ul>
+<li>基于"对象"概念进行编程，对象包含数据（属性）和操作数据的代码（方法）。支持封装、继承、多态。</li>
+<li>如 <code>Java, C++, Python, Ruby, Smalltalk</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>脚本语言 (Scripting Languages)</strong> 🐍:</p>
+<ul>
+<li>通常是解释执行的，语法相对简单，用于编写"脚本"来自动化任务、快速原型开发或作为大型应用的扩展语言。</li>
+<li>如 <code>Python, JavaScript, Perl, Ruby, PHP, Shell</code>。</li>
+</ul>
+</li>
+<li>
+<p>逻辑式语言</p>
+<ul>
+<li>数理逻辑，谓词演算</li>
+</ul>
+</li>
+<li>
+<p>对象式语言</p>
+<ul>
+<li>抽象数据类型</li>
+</ul>
+</li>
+</ul>
+<h3 id="语言设计实践"><a href="#语言设计实践" class="headerlink" title="语言设计实践"></a>语言设计实践</h3>
+<h4 id="静态-动态"><a href="#静态-动态" class="headerlink" title="静态/动态"></a>静态/动态</h4>
+<p><strong>静态策略 (Static Strategy)</strong> 🧊: 指语言的某个方面或问题在<strong>编译时刻 (compile time)</strong> 就可以确定或处理。</p>
+<ul>
+<li>例如：C语言的变量类型是静态确定的（静态类型检查），大多数内存分配（全局/静态变量）在编译时规划。</li>
+</ul>
+<p><strong>动态策略 (Dynamic Strategy)</strong> 🔥: 指语言的某个方面或问题必须等到<strong>运行时刻 (run time)</strong> 才能确定或处理。例如：C语言中的动态内存分配 (<code>malloc</code>, <code>free</code>)，某些面向对象语言中的方法动态分派 (dynamic dispatch)。</p>
+<p>C语言主要是一种静态类型的编译型语言，但它也提供了一些动态特性（如 <code>void*</code> 指针的灵活性，动态内存分配）。</p>
+<p>若<strong>绑定</strong>(Binding)在编译时完成，且在运行时不会改变，则成为静态绑定，若绑定在运行时完成，则成为动态绑定；</p>
+<ul>
+<li>语言实现采用编译还是解释方式，强相关于变量与类型绑定规则；</li>
+<li>静态绑定语言是面向编译的语言</li>
+<li>动态绑定语言是面向解释的语言</li>
+</ul>
+<h4 id="变量-赋值"><a href="#变量-赋值" class="headerlink" title="变量/赋值"></a>变量/赋值</h4>
+<p>变量是对若干个存储单元的抽象，用名字来标识；</p>
+<ul>
+<li>一个存储单元至少有一个字节；一个变量至少占用一个存储单元；</li>
+<li>作用域：可绑定静态作用域或动态作用域，依此划分为全局变量，局部变量，非局部变量；</li>
+<li>生存期：变量绑定于存储区的时间区间，<strong>分配</strong>指变量获得存储区，<strong>变量长度</strong>为变量对应存储单元的个数；
+<ul>
+<li>全局变量静态分配；</li>
+<li>局部变量和非局部变量可静态分配和动态分配(自动、显式请求)；</li>
+<li>匿名变量：通过指针实现访问，属于动态分配</li>
+</ul>
+</li>
+<li>值：存储区的内容，二进制编码；</li>
+<li>类型：变量值按照所绑定的类型解释；</li>
+</ul>
+<p>赋值是对修改存储单元内容的抽象；</p>
+<p>初始化问题：不同语言规定不同；</p>
+<h4 id="环境-状态"><a href="#环境-状态" class="headerlink" title="环境/状态"></a>环境/状态</h4>
+<p><strong>环境 (Environment)</strong> 🗺️: 在程序执行的某一点，环境是一个从<strong>名字 (identifier)</strong> 到<strong>存储位置 (storage location/address)</strong> 的映射。它定义了哪些名字是可见的以及它们所代表的实体（如变量、函数）。</p>
+<p><strong>状态 (State)</strong> 🔄: 在程序执行的某一点，状态是一个从<strong>存储位置 (storage location/address)</strong> 到其<strong>值 (value)</strong> 的映射。它反映了程序当前内存中存储的数据。</p>
+<p>环境将名字映射到<strong>左值 (L-values)</strong> (表示位置)，状态将左值映射到其对应的<strong>右值 (R-values)</strong> (表示内容)。</p>
+<h4 id="静态作用域-块-Static-Scoping-Blocks"><a href="#静态作用域-块-Static-Scoping-Blocks" class="headerlink" title="静态作用域/块 (Static Scoping / Blocks)"></a>静态作用域/块 (Static Scoping / Blocks)</h4>
+<p><strong>静态作用域 (Static Scoping / Lexical Scoping)</strong> 📖:</p>
+<ul>
+<li>一个声明的作用域（即该声明有效的程序文本区域）由其在源代码中的位置决定，可以在编译时通过分析程序文本来确定。</li>
+<li>C语言采用静态作用域。当引用一个名字时，编译器会查找包含该引用的最内层词法块中的声明，然后是外层块，直至全局作用域。</li>
+</ul>
+<p><strong>块 (Block)</strong> <code>{}</code>:</p>
+<p>在C语言中，一对花括号 <code>{ ... }</code> 定义了一个块。在块内声明的变量（局部变量）其作用域仅限于该块及其内部嵌套的块，从声明点开始到块结束。</p>
+<h4 id="动态作用域-Dynamic-Scoping-📞"><a href="#动态作用域-Dynamic-Scoping-📞" class="headerlink" title="动态作用域 (Dynamic Scoping)📞"></a>动态作用域 (Dynamic Scoping)📞</h4>
+<ul>
+<li>一个名字的引用会解析到程序<strong>执行时调用栈 (call stack)</strong> 上最近的、活动的该名字的声明。</li>
+<li>作用域取决于函数调用的顺序，而不是它们在源代码中的词法位置。</li>
+<li>C语言<strong>不使用</strong>动态作用域。一些早期的Lisp方言、Perl（通过 <code>local</code> 关键字）曾使用或支持动态作用域。动态作用域通常会使程序更难理解和维护。</li>
+</ul>
+<h4 id="显式访问控制-Explicit-Access-Control-🛡️"><a href="#显式访问控制-Explicit-Access-Control-🛡️" class="headerlink" title="显式访问控制 (Explicit Access Control) 🛡️"></a>显式访问控制 (Explicit Access Control) 🛡️</h4>
+<ul>
+<li>(此概念主要用于支持面向对象的语言如 C++, Java，C语言本身对结构体成员没有显式访问控制关键字)</li>
+<li>在C++等语言中，关键字 <code>public</code>, <code>private</code>, <code>protected</code> 用于控制类成员的访问权限，以实现<strong>封装 (encapsulation)</strong>：
+<ul>
+<li><strong>私有 (private)</strong>: 成员只能被其所在的类的成员函数访问。</li>
+<li><strong>保护 (protected)</strong>: 成员可以被其所在的类的成员函数以及其派生类 (子类) 的成员函数访问。</li>
+<li><strong>公共 (public)</strong>: 成员可以从任何地方访问。</li>
+</ul>
+</li>
+<li>C语言中，虽然没有这些关键字用于结构体成员，但可以通过 <code>static</code> 关键字限制全局变量和函数的作用域到当前文件（文件作用域），提供一种模块级别的封装。结构体成员默认是"公共"的。</li>
+</ul>
+<h4 id="参数传递机制-Parameter-Passing-Mechanisms-🎁"><a href="#参数传递机制-Parameter-Passing-Mechanisms-🎁" class="headerlink" title="参数传递机制 (Parameter Passing Mechanisms) 🎁"></a>参数传递机制 (Parameter Passing Mechanisms) 🎁</h4>
+<p><strong>值调用 (Call by Value)</strong>:</p>
+<ul>
+<li>实际参数的值被复制到函数的形式参数中。函数内部对形式参数的修改<strong>不影响</strong>调用者处的实际参数。</li>
+<li>C语言默认采用值调用。</li>
+</ul>
+<p><strong>引用调用 (Call by Reference)</strong> 🔗:</p>
+<ul>
+<li>传递的是实际参数的地址（或一个指向实际参数的引用）。函数内部对形式参数的修改<strong>会影响</strong>调用者处的实际参数。</li>
+<li>C语言通过传递指针并解引用来模拟引用调用 (e.g., <code>void swap(int *a, int *b)</code>).</li>
+<li>C++ 提供了真正的引用类型 (e.g., <code>void swap(int &amp;a, int &amp;b)</code>).</li>
+</ul>
+<p><strong>名调用 (Call by Name)</strong> 📝:</p>
+<ul>
+<li>一种较早的参数传递机制 (如 Algol 60)。实际参数的表达式在每次于函数体中被引用时，都会在调用者的环境中重新求值。可以想象成文本替换（但有作用域处理，类似无冲突的宏）。</li>
+<li>由于其复杂性和潜在的性能问题及副作用，现代语言中已不再采用。</li>
+</ul>
+<p><strong>共享调用 (Call by Sharing / Call by Object / Call by Object-Sharing)</strong>: 常见于Python, Java (对象类型), Ruby等。函数接收的是对象引用的副本。如果对象是可变的，函数内部通过该引用修改对象会影响原始对象。如果函数给形式参数赋一个新的引用（指向不同对象），原始对象的引用不受影响。</p>
+<h4 id="别名-Aliasing-🎭"><a href="#别名-Aliasing-🎭" class="headerlink" title="别名 (Aliasing) 🎭"></a>别名 (Aliasing) 🎭</h4>
+<ul>
+<li>
+<p><strong>别名 (Aliasing)</strong>: 当同一个内存位置可以通过两个或多个不同的名字（标识符、指针、引用）来访问时，就发生了别名。</p>
+</li>
+<li>
+<p>例如，在C中：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> *p1 = &amp;x;  <span class="comment">// p1 指向 x</span></span><br><span class="line"><span class="type">int</span> *p2 = p1;  <span class="comment">// p2 也指向 x (通过 p1)</span></span><br><span class="line"><span class="comment">// 此时，x, *p1, *p2 都是访问同一内存位置的别名</span></span><br><span class="line">*p1 = <span class="number">20</span>;      <span class="comment">// x 的值变为 20</span></span><br><span class="line"><span class="comment">// printf(&quot;%d&quot;, *p2); // 会输出 20</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>别名会使程序分析、理解和优化更加复杂，因为一个变量的修改可能会通过一个看似不相关的名字隐式地影响到其他部分的代码。编译器在进行优化时需要保守地处理可能存在别名的情况。</p>
+</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2>
+<h3 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h3>
+<p>数据类型本质上是对存储器中存储的数据进行的抽象，包含一组值和一组操作;</p>
+<p>根据语言面向的机器和语言面向的领域，可抽象为三个层次</p>
+<ul>
+<li>内部类型：基本表示不可见，能进行静态类型检查，编译时可确定无二义性操作，允许运算符的重载，实现精度控制</li>
+<li>用户定义类型：提供数据的组合/聚合机制
+<ol>
+<li><strong>笛卡尔积</strong>：比如C中的结构体</li>
+<li><strong>有限映像</strong>：从定义域的优先级和到至于的有限集合，值域对象通过下标变量方式对应，下标有编译时绑定，对象建立时绑定，对象处理时绑定三种策略</li>
+<li><strong>序列</strong>：任意多个数据项组成，数据项成为序列的成分，类型相同</li>
+<li><strong>递归</strong>：数据类型包含属于同一种类型的成分，通常利用指针实现，直接递归通常不被允许</li>
+<li><strong>判定或</strong>：根据不同的成员构造机制，比如联合类型union</li>
+<li><strong>幂集</strong>：类型所有子集的集合</li>
+</ol>
+</li>
+<li>抽象数据类型</li>
+</ul>
+<h3 id="C语言数据类型"><a href="#C语言数据类型" class="headerlink" title="C语言数据类型"></a>C语言数据类型</h3>
+<p>在C语言中，实现如下数据类型</p>
+<p><img src="/assets/Compilers/C%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png" alt="C语言数据类型"></p>
+<p>值得注意的是，在C语言中</p>
+<ul>
+<li>联合类型是不安全的</li>
+<li>文件类型<code>FILE</code>被视作字符字节的序列；</li>
+<li>不允许定义空类型变量，只能定义空类型指针；</li>
+<li>不支持幂集</li>
+</ul>
+<h3 id="类型检查"><a href="#类型检查" class="headerlink" title="类型检查"></a>类型检查</h3>
+<p>定义：对数据操作和对应类型是否匹配的一致性检查</p>
+<ul>
+<li>例子：非法运算，赋值，形参实参是否匹配</li>
+<li>动态检查：编程方便，但是影响力可靠性，降低了执行效率</li>
+<li>静态检查：使得程序更加有效</li>
+</ul>
+<p>语言按照类型检查可以分为</p>
+<ul>
+<li>无类型语言：没有任何数据类型，如一些函数式语言和泛函程序设计语言</li>
+<li>弱类型语言：类型检查部分或全部在运行时完成，如Python</li>
+<li>强类型语言：所有类型检查在编译时完成，如C</li>
+</ul>
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3>
+<p>一般语言提供类型转换机制</p>
+<ul>
+<li>隐式/自动转换：比如FORTRAN语言</li>
+<li>显式/强制转换：比如Golang，在C语言中两者都有</li>
+</ul>
+<p>类型转换可能发生在以下场景：</p>
+<ul>
+<li>混合运算</li>
+<li>表达式值赋值给变量</li>
+<li>实参想函数传形参</li>
+<li>函数返回值</li>
+</ul>
+<h2 id="控制结构"><a href="#控制结构" class="headerlink" title="控制结构"></a>控制结构</h2>
+<p>控制结构规定了程序语句和程序单元的执行流程和控制戒指；</p>
+<p><strong>语句级控制结构</strong>：基本的，有一定意义的抽象控制结构，具体来说是对<code>PC + 1</code>指令的抽象 &amp; <code>GOTO</code>指令的抽象，相对于显式控制结构更好；</p>
+<ul>
+<li>顺序：通常带有结束标记；</li>
+<li>选择：单选，二选一，多选一(比如多层嵌套或者switch的简洁表达)</li>
+<li>循环：计数器制导，条件制导，</li>
+<li>最终由条件转移和无条件转移的指令实现，由编译器生成，用户不可见</li>
+</ul>
+<p><strong>单元级控制结构</strong>：在程序顺序执行的过程中，遇到一个分程序，就建立一个新的引用环境，并执行这个分程序；显式调用单元，把控制从一个单元转移到另一个单元</p>
+<ul>
+<li>
+<p>显式调用从属单元：比如C中的函数，单元间的通信，可使用参数传递实现，也可以通过全局变量和非局部变量实现</p>
+<p><img src="/assets/Compilers/%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8.png" alt="程序调用"></p>
+</li>
+<li>
+<p>异常处理：导致程序正常执行中止的事件，要靠发信号来引发，用异常条件来表示。</p>
+</li>
+<li>
+<p>协同程序</p>
+<p><img src="/assets/Compilers/%E5%8D%8F%E5%90%8C%E7%A8%8B%E5%BA%8F%E9%97%B4%E7%9A%84%E6%8E%A7%E5%88%B6%E8%BD%AC%E7%A7%BB%E5%85%B3%E7%B3%BB.png" alt="协同程序间的控制转移关系"></p>
+</li>
+<li>
+<p>并发</p>
+<p>并发提供了同时执行多个程序单元的途径，是多处理器和分布式系统的重要基础。</p>
+<p>C语言没有原生支持，但是可以通过操作系统提供或者第三方库提供实现，比如<code>pthread.h</code></p>
+</li>
+</ul>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

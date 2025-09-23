@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    软件过程模型
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">软件过程模型</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.</span> <span class="toc-text">软件生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">软件过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">软件过程模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%80%91%E5%B8%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">瀑布模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.2.</span> <span class="toc-text">增量过程模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B%EF%BC%88RAD%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">快速应用开发模型（RAD）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%94%E5%8C%96%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.4.</span> <span class="toc-text">演化模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%96%B7%E6%B3%89%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.5.</span> <span class="toc-text">喷泉模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%9E%84%E4%BB%B6%E7%9A%84%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.6.</span> <span class="toc-text">基于构件的模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.7.</span> <span class="toc-text">敏捷开发模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">如何选择过程模型？</span></a></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">软件过程模型</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 5日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">Software-Engineering</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="软件生命周期"><a href="#软件生命周期" class="headerlink" title="软件生命周期"></a>软件生命周期</h2>
+<p>定义：软件产品或软件系统从设计、投入使用到被淘汰 的全过程。</p>
+<p><img src="/assets/Software-Engineering/image-20241213113132794.png" alt="image-20241213113132794"></p>
+<h2 id="软件过程"><a href="#软件过程" class="headerlink" title="软件过程"></a>软件过程</h2>
+<p>定义： 软件过程定义了软件生产的一些列活动，这些活动贯穿于软件开发的全过程</p>
+<ul>
+<li>沟通：包括软件设计者和客户，客户提出需求，软件设计者收集材料或其他活动</li>
+<li>计划：讨论使用什么方法实现需求</li>
+<li>建模：设计模型满足需求</li>
+<li>构造：编码和测试</li>
+<li>部署：软件交付给客户</li>
+</ul>
+<p>三个流派：</p>
+<ul>
+<li>
+<p>能力成熟度模型CMM：</p>
+<ul>
+<li>
+<p>CMU-SEI的CMM是公认的有关软件工程和管理实践的最好的软件过程。</p>
+</li>
+<li>
+<p>为评估软件组织的生产能力提供了标准，为提高软件组织的生产过程指明了方向。</p>
+</li>
+<li>
+<p>CMM1初始级：有能力的核心成员发挥；</p>
+<p>CMM2可重复级：基本的项目管理；</p>
+<p>CMM3已定义级：过程标准化，开发过程实现标准化和文档化；</p>
+<p>CMM4量化管理级：产品和过程已建立了定量的质量目标；</p>
+<p>CMM5优化级：持续的过程改进，可集中精力改进过程，采用新技术、新方法；</p>
+</li>
+<li>
+<p><img src="/assets/Software-Engineering/image-20241213170937302.png" alt="image-20241213170937302"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>ISO 9000质量标准</p>
+</li>
+<li>
+<p>软件计数软件过程评估：SPICE</p>
+</li>
+</ul>
+<p>CMM的关键过程域：</p>
+<table>
+<thead>
+<tr>
+<th>CMM</th>
+<th>过程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CMM2:可重复阶段</td>
+<td>1.<br>需求管理： requirement management<br>2.<br>软件项目计划： software project planning<br>3.<br>软件项目跟踪和监督： software project tracking oversight<br>4.<br>软件子合同管理： software subcontract management<br>5.<br>软件质量保证： software quality assurance<br>6.<br>软件配置管理： software configuratione management</td>
+</tr>
+<tr>
+<td>CMM3:已定义阶段</td>
+<td>1.<br>组织过程焦点： organization process focus<br>2.<br>组织过程定义： organization process definition<br>3.<br>培训大纲： training program<br>4.<br>集成软件管理： intergrated software management<br>5.<br>软件产品工程： software product engineering<br>6.<br>组间协调： intergroup coordination<br>7.同行评审： peer review</td>
+</tr>
+<tr>
+<td>CMM4:已管理阶段</td>
+<td>1.<br>定量管理过程： quantitative process management<br>2.<br>软件质量管理： software quality management</td>
+</tr>
+<tr>
+<td>CMM5:优化阶段</td>
+<td>1.<br>缺陷预防： defect prevention<br>2.<br>技术改革管理： technology change management<br>3.<br>过程更改管理： process change management</td>
+</tr>
+</tbody>
+</table>
+<h2 id="软件过程模型"><a href="#软件过程模型" class="headerlink" title="软件过程模型"></a>软件过程模型</h2>
+<p>软件过程模型是软件开发全部过程、活动和任务的 结构框架；
+它能直观表达软件开发全过程，明确规定要完成的主要活动、任务和开发策略。软件过程模型也常称为： 软件开发模型，软件生存周期模型，软件工程范型；</p>
+<p>常见过程模型：</p>
+<ul>
+<li>瀑布模型</li>
+<li>增量模型</li>
+<li>演化过程模型</li>
+<li>喷泉模型</li>
+<li>…</li>
+</ul>
+<h3 id="瀑布模型"><a href="#瀑布模型" class="headerlink" title="瀑布模型"></a>瀑布模型</h3>
+<p>软件开发过程与软件生命周期一致，也是经典的生命周期模型[Winston, 1970];</p>
+<p>经典的瀑布模型</p>
+<p><img src="/assets/Software-Engineering/image-20240911015012657.png" alt="image-20240911015012657"></p>
+<p>特点：</p>
+<ol>
+<li>阶段间具有顺序性和依赖性；</li>
+<li>推迟实现的观点；</li>
+<li>每个阶段必须完成规定的文档；每个阶段结束前完成文档审查，及早改正错误。</li>
+</ol>
+<p>带反馈的瀑布模型</p>
+<p><img src="/assets/Software-Engineering/image-20240911015036829.png" alt="image-20240911015036829"></p>
+<p>主要问题：线性过程太理想化</p>
+<ul>
+<li>各个阶段的划分完全固定，阶段之间产生大量的文档，极大地增加了工作量；</li>
+<li>由于开发模型是线性的，用户只有等到整个过程的末期才能见到开发成果，从而增加了开发的风险；</li>
+<li>早期的错误可能要等到开发后期的测试阶段才能发现，进而带来严重的后果。</li>
+</ul>
+<p>瀑布模型适用于系统需求明确，技术成熟，工程管理较为严格的场合；</p>
+<h3 id="增量过程模型"><a href="#增量过程模型" class="headerlink" title="增量过程模型"></a>增量过程模型</h3>
+<p>增量过程模型是一种非整体开发的模型，是一种进化式的开发过程。
+它允许从部分需求定义出发，先建立一个不完整的系统，通过测试运行这个系统取得经验和反馈，进一步使系统扩充和完善。如此反复进行，直至软件人员和用户对所设计的软件系统满意为止。</p>
+<p><img src="/assets/Software-Engineering/image-20241213164245145.png" alt="image-20241213164245145"></p>
+<p>特点：</p>
+<ol>
+<li>增量适用于小而可用的软件，在前面增量的基础上开发后面的增量</li>
+<li>每个增量的开发可用瀑布或快速原型模型</li>
+<li>快速迭代</li>
+</ol>
+<p>优点：</p>
+<ol>
+<li>增量包概念的引入，以及它不需要提供完整的需求。只要有一个增量包出现，开发就可以进行。</li>
+<li>在项目的初始阶段不需要投入太多的人力资源。</li>
+<li>增量可以有效地管理技术风险。</li>
+</ol>
+<p>缺点：每个增量必须提供一些系统功能，这使得开发者很难根据客户需求给出大小适合的增量。</p>
+<h3 id="快速应用开发模型（RAD）"><a href="#快速应用开发模型（RAD）" class="headerlink" title="快速应用开发模型（RAD）"></a>快速应用开发模型（RAD）</h3>
+<p>作为增量过程模型的一种，是一个增量过程模型，强调短暂的开发周期。
+RAD 模型是瀑布模型的“高速”变体，通过基于<strong>组件</strong>的构建方法实现快速开发。如果需求以及项目范围得到明确界定， RAD 能使开发团队在很短的时间内（如 60 到 90 天）建立一个“全功能系统”。</p>
+<p><img src="/assets/Software-Engineering/image-20241213164316059.png" alt="image-20241213164316059"></p>
+<p>缺点：</p>
+<ol>
+<li>对大型项目而言 RAD 需要足够的人力资源。</li>
+<li>开发者和客户都要实现承诺，否则将导致失败。</li>
+<li>并非所有系统都适合（不能合理模块化的系统、高性能需求并且要调整构件接口的、技术风险很高的系统均不适合）。</li>
+</ol>
+<h3 id="演化模型"><a href="#演化模型" class="headerlink" title="演化模型"></a>演化模型</h3>
+<p>演化模型包括原型模型和螺旋模型，思想是首先实现软件最核心的最重要的功能；</p>
+<ul>
+<li>
+<p>原型模型：客户定义一个总体目标集，但是他们并不清楚系统的具体输入输出；或开发者不确定算法的效率、软件与操作系统是否兼容以及客户与计算机交互的方式。</p>
+<ul>
+<li><img src="assets%5Cimage-20240911020349722.png" alt="image-20240911020349722"></li>
+<li>缺点：设计者在质量和原型间有所折衷，客户意识不到一些质量问题；</li>
+</ul>
+</li>
+<li>
+<p>螺旋模型：结合了瀑布模型和原型模型的特点，强调风险管理，适用于大型系统的开发；</p>
+<ul>
+<li>
+<p><img src="assets%5Cimage-20240911020451111.png" alt="image-20240911020451111"></p>
+</li>
+<li>
+<p>制定计划：确定软件目标，选定实施方案，弄清项目开发的限制条件。
+风险分析：分析所选方案，考虑如何识别和消除风险。
+实施工程：实施软件开发。
+客户评估：评价开发工作，提出修正建议。</p>
+</li>
+<li>
+<p>优点：</p>
+<ul>
+<li>支持用户需求的动态变化。</li>
+<li>原型可看作形式的可执行的需求规格说明，易于为用户和开发人员共同理解，还可作为继续开发的基础，并为用户参与所有关键决策提供了方便。</li>
+<li>螺旋模型特别强调原型的可扩充性和可修改性，原型的进化贯穿整个软件生存周期，这将有助于目标软件的适应能力。</li>
+<li>螺旋模型为项目管理人员及时调整管理决策提供了方便，进而可降低开发风险。</li>
+</ul>
+</li>
+<li>
+<p>缺点：</p>
+<ul>
+<li>如果每次迭代的效率不高，致使迭代次数过多，将会增加成本并推迟提交时间；</li>
+<li>使用该模型需要有相当丰富的风险评估经验和专门知识，要求开发队伍水平较高。</li>
+</ul>
+</li>
+<li>
+<p>适用场合：支持需求不明确、特别是大型软件系统的开发，并支持面向规格说明、面向过程、面向对象等多种软件开发方法，是一种具有广阔前景的模 型。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="喷泉模型"><a href="#喷泉模型" class="headerlink" title="喷泉模型"></a>喷泉模型</h3>
+<p>喷泉模型是一种以 用户需求 为动力，以 对象 为驱动的模型，主要用于描述 <strong>面向对象</strong> 的软件开发过程。</p>
+<p><img src="assets%5C%E5%96%B7%E6%B3%89%E6%A8%A1%E5%9E%8B2.jpg" alt="img"></p>
+<p>优点：该模型的各个阶段没有明显的界限，开发人员可以同步进行开发，可以提高软件项目开发效率，节省开发时间，适应于面向对象的软件开发过程。
+缺点：由于喷泉模型在各个开发阶段是重叠的，在开发过程中需要大量的开发人员，因此不利于项目的管理。此外这种模型要求严格管理文档，使得审核的难度加大，尤其是面对可能随时加入各种信息、需求与资料的情况。</p>
+<h3 id="基于构件的模型"><a href="#基于构件的模型" class="headerlink" title="基于构件的模型"></a>基于构件的模型</h3>
+<p>四阶段：</p>
+<ul>
+<li>需求</li>
+<li>组件分析：根据需求规格搜索可满足该需求的组件。通常情况下，没有完全匹配的情况，因而组件通常需要加以修改。</li>
+<li>系统设计：与其它模型的系统设计有所不同，因为该模型是基于重用的。设计者必须考虑到重用的概念，但遗憾的是，如果没有可重用的组件，还要设计新的软件。</li>
+<li>开发和集成：在这个阶段，组件集成到系统中。</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>组件的重用，降低了成本和风险，节约了时间；</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>模型复杂</li>
+<li>导致需求的折衷，进而导致系统不能完全符合需求</li>
+<li>无法完全控制所开发系统的演化</li>
+<li>项目划分的好坏直接影响项目结果的好坏</li>
+</ul>
+<h3 id="敏捷开发模型"><a href="#敏捷开发模型" class="headerlink" title="敏捷开发模型"></a>敏捷开发模型</h3>
+<p>是一种从 90 年代开始逐渐引起广泛关注的一些新型软件开发方法。</p>
+<ol>
+<li>
+<p><strong>迭代与增量开发</strong>：敏捷开发将整个软件项目分成多个小的迭代（通常是2到4周），每个迭代都是一个完整的开发周期，包括需求分析、设计、编码、测试和交付。在每个迭代结束时，都会交付一个可以运行的产品版本，这个版本可能是部分功能的实现，但能够为用户或利益相关者提供价值。</p>
+</li>
+<li>
+<p><strong>重视客户和用户的反馈</strong>：敏捷开发模型注重与客户和用户的频繁沟通和合作。在每个迭代结束时，团队会向客户展示当前的成果，并根据他们的反馈调整下一步的开发方向。这种方式使得项目可以快速适应需求的变化，确保最终交付的产品更符合用户期望。</p>
+</li>
+<li>
+<p><strong>跨职能团队</strong>：敏捷团队通常是小型的、跨职能的团队，包含开发人员、测试人员、产品经理和用户代表等。这种团队结构使得每个人都能为产品的不同方面贡献力量，并能快速响应问题和需求。</p>
+</li>
+<li>
+<p><strong>自组织和自管理</strong>：敏捷强调团队的自组织能力，团队成员可以根据需求自行安排工作，决定如何实现目标。管理者不会详细指挥每个步骤，而是让团队在一定框架下自行运作，这有助于提升团队的灵活性和响应速度。</p>
+</li>
+<li>
+<p><strong>持续改进</strong>：敏捷开发鼓励持续的反思和改进。团队在每次迭代结束后通常会进行一个回顾会议（Retrospective），讨论在过去的迭代中哪些方面做得好，哪些方面可以改进，以便在下一次迭代中做得更好。</p>
+</li>
+<li>
+<p><strong>早期和持续的交付</strong>：敏捷模型的目标是尽可能早地向用户提供有价值的软件。团队会在项目的早期阶段就交付一个可工作的系统，并在后续的迭代中不断增加新功能。</p>
+</li>
+<li>
+<p><strong>适应性</strong>：敏捷方法强调对变化的接受，认为变化是不可避免的。无论是需求变化还是市场变化，敏捷团队都能快速调整计划和优先级，以适应新的形势。</p>
+</li>
+<li>
+<p><strong>常见框架</strong>：敏捷开发模型下有多种实施框架，其中最常见的包括Scrum、Kanban和Extreme Programming（XP）。这些框架提供了具体的流程和实践，帮助团队有效地进行敏捷开发。</p>
+</li>
+<li>
+<p><strong>工作方式透明</strong>：敏捷团队通过每日站会（Daily Stand-up Meeting）等方式，让所有团队成员了解彼此的工作进展，暴露潜在的问题，并快速做出调整，确保项目的顺利进行。</p>
+</li>
+<li>
+<p><strong>文档减少，但非无文档</strong>：与传统的瀑布模型相比，敏捷开发减少了过多的文档要求，更注重可交付的软件。然而，敏捷并不排斥文档，而是提倡根据项目实际需求编写足够的文档。</p>
+</li>
+</ol>
+<p>优点：</p>
+<ul>
+<li>快速响应变化，适应市场需求</li>
+<li>早期交付可用的产品，增加市场竞争力</li>
+<li>增强团队协作，减少沟通障碍</li>
+<li>持续改进，确保产品质量不断提升</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>需求变化频繁时，可能导致开发团队的工作压力增大</li>
+<li>需要高效的沟通和跨职能合作，否则可能影响效率</li>
+<li>项目初期规划不够详细，可能增加项目后期的复杂性</li>
+</ul>
+<h2 id="如何选择过程模型？"><a href="#如何选择过程模型？" class="headerlink" title="如何选择过程模型？"></a>如何选择过程模型？</h2>
+<ol>
+<li>软件开发模型是不断发展的，各种软件开发模型各有优缺点</li>
+<li>选用时不必拘泥于某种模型，可组合多种模型， 也可根据实际创建新的模型</li>
+</ol>
+<p>参考原则</p>
+<ol>
+<li>在前期需求明确的情况下，尽量采用瀑布模型或改进的瀑布模型。</li>
+<li>在用户无系统使用经验，需求分析人员技能不足情况下一定要借助原型。</li>
+<li>在不确定因素很多，很多东西前面无法计划的情况下尽量采用增量迭代和螺旋模型。</li>
+<li>在需求不稳定的情况下尽量采用增量迭代模型。</li>
+<li>在资金和成本无法一次到位的情况下可采用增量模型，软件产品多个版本进行发布。</li>
+<li>对于完成多个独立功能开发可以在需求分析阶段就进行功能并行，但每个功能内部都应该遵循瀑布模型。</li>
+<li>对于全新系统的开发必须在总体设计完成后再开始增量或并行。</li>
+<li>对于编码人员经验较少的情况下建议不要采用敏捷或迭代等生命周期模型。</li>
+<li>增量、迭代和原型可以综合使用，但每一次增量或迭代都必须有明确的交付和出口原则。</li>
+</ol>
+<p>参考原则：</p>
+<p><img src="/assets/Software-Engineering/image-20240911021919180.png" alt="image-20240911021919180"></p>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,65 @@
+.toc-container {
+  position: fixed; /* Make the TOC stick during scroll */
+  top: 200px; /* Adjust as needed, considering your header height */
+  left: calc((100vw - var(--main-width)) / 4 - 100px); /* Centers it in the left 1fr column */
+  width: 300px; /* Adjust width as needed */
+  padding: 15px;
+  background-color: var(--color-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-height: calc(100vh - 200px - 24px); /* Adjusted to allow more vertical sticking room */
+  overflow-y: auto;
+  z-index: 100;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+body.dark-mode .toc-container {
+  background-color: transparent;
+}
+
+.toc-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.toc-container .toc-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--font-color);
+  cursor: pointer; /* Indicate that the title is clickable */
+}
+
+.toc-container .toc-link {
+  display: block;
+  padding: 5px 0;
+  color: var(--font-color-secondary);
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.toc-container .toc-link:hover {
+  color: var(--font-color);
+  text-decoration: underline;
+}
+
+.toc-container .toc-child {
+  padding-left: 15px;
+}
+
+.toc-container ol,
+.toc-container ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.toc-container .toc-content {
+  max-height: 1000px; /* Adjust as needed to fit all content */
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.toc-container.toc-collapsed .toc-content {
+  max-height: 0;
+} 

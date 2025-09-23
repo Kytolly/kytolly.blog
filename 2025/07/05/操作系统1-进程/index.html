@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    进程
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">进程</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">什么是进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91%E6%89%A7%E8%A1%8C"><span class="toc-number">1.1.</span> <span class="toc-text">程序的顺序执行与并发执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%9D%97"><span class="toc-number">1.3.</span> <span class="toc-text">进程控制块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%89%B9%E5%BE%81"><span class="toc-number">1.4.</span> <span class="toc-text">进程的特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%B8%A6%E6%9D%A5%E7%9A%84%E6%8C%91%E6%88%98"><span class="toc-number">1.5.</span> <span class="toc-text">进程带来的挑战</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">进程状态模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A4%E7%8A%B6%E6%80%81%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.6.1.</span> <span class="toc-text">两状态模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E7%8A%B6%E6%80%81%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.6.2.</span> <span class="toc-text">三状态模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="toc-number">1.6.3.</span> <span class="toc-text">五状态自动机</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8E%92%E9%98%9F%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0%EF%BC%9A%E7%BB%B4%E6%8A%A4%E5%B0%B1%E7%BB%AA%E9%98%9F%E5%88%97%E5%92%8C%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97"><span class="toc-number">1.6.3.1.</span> <span class="toc-text">排队模型实现：维护就绪队列和阻塞队列</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%83%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="toc-number">1.6.4.</span> <span class="toc-text">七状态自动机</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E6%8A%80%E6%9C%AFswapping%E5%92%8C%E6%8C%82%E8%B5%B7suspend"><span class="toc-number">1.6.4.1.</span> <span class="toc-text">交换技术swapping和挂起suspend</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.7.</span> <span class="toc-text">进程描述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%9D%97-1"><span class="toc-number">1.7.1.</span> <span class="toc-text">进程控制块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F"><span class="toc-number">1.7.2.</span> <span class="toc-text">进程的组织方式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">1.7.2.1.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">1.7.2.2.</span> <span class="toc-text">链接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E6%A0%B8"><span class="toc-number">1.8.</span> <span class="toc-text">内核</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.9.</span> <span class="toc-text">执行模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">进程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create%E5%8E%9F%E8%AF%AD%EF%BC%9A%E5%88%9B%E5%BB%BA%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">create原语：创建进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%BB%88%E6%AD%A2%E5%8E%9F%E8%AF%AD"><span class="toc-number">2.2.</span> <span class="toc-text">进程终止原语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%98%BB%E5%A1%9E"><span class="toc-number">2.3.</span> <span class="toc-text">进程阻塞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%94%A4%E9%86%92"><span class="toc-number">2.4.</span> <span class="toc-text">进程唤醒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%8C%82%E8%B5%B7"><span class="toc-number">2.5.</span> <span class="toc-text">进程挂起</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%BF%80%E6%B4%BB"><span class="toc-number">2.6.</span> <span class="toc-text">进程激活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2"><span class="toc-number">2.7.</span> <span class="toc-text">进程切换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81"><span class="toc-number">3.1.</span> <span class="toc-text">状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">3.2.</span> <span class="toc-text">基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">3.3.</span> <span class="toc-text">分类</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">进程</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 5日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">System</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="什么是进程"><a href="#什么是进程" class="headerlink" title="什么是进程"></a>什么是进程</h2>
+<h3 id="程序的顺序执行与并发执行"><a href="#程序的顺序执行与并发执行" class="headerlink" title="程序的顺序执行与并发执行"></a>程序的顺序执行与并发执行</h3>
+<p>顺序执行：若干程序和程序段必须严格按照某种先后顺序执行</p>
+<ul>
+<li>顺序性：操作严格按照程序规定的顺序执行；</li>
+<li>封闭性：程序运行时占用全机资源；</li>
+<li>可再现性：只要程序的执行环境和初始资源的条件相同，结果就相同；</li>
+</ul>
+<p>并发执行：多个时间在同一个时间间隔内发生；</p>
+<ul>
+<li>应用级并发：事务处理系统，数据库管理系统</li>
+<li>系统级并发：操作系统；</li>
+<li>间断性：由于资源的共享和相互合作，程序体现执行-暂停-执行的现象</li>
+<li>失去封闭性：程序在并发执行时，是多个程序共享系统的资源，资源的状态有多个程序来改变；</li>
+<li>不可再现性：程序在并发执行时，由于失去了封闭性，多次重复可以得到不同的结果；</li>
+</ul>
+<p><img src="/assets/Operate-System/image-20240927150453849.png" alt="image-20240927150453849"></p>
+<h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3>
+<p>引入进程的目的：为了 <strong>控制</strong> 多道程序能够 <strong>正确的并发</strong> 执行</p>
+<p>定义：(程序代码program code + 数据集set of data + 进程控制块PCB，process control block)</p>
+<ol>
+<li>一个正在执行的程序；</li>
+<li>一个正在计算机上执行的程序实例；</li>
+<li>一个能够被调度到处理器上执行的实体；</li>
+<li>由一串指令的执行、当前状态和一组正在使用的系统资源表征的活动单元；</li>
+</ol>
+<p>进程的物理存在：进程映像</p>
+<ul>
+<li><code>Process Image=PCB+program+data+stack</code>；</li>
+<li>进程映像取决于文件格式；</li>
+</ul>
+<p>系统中同时存在的诸进程相互独立，也相互关联，这取决于设计模式；</p>
+<p>可以说，并发基于进程；</p>
+<h3 id="进程控制块"><a href="#进程控制块" class="headerlink" title="进程控制块"></a>进程控制块</h3>
+<p>进程执行的任意时刻可以由 <strong>进程控制块</strong> 表征，组成如下：</p>
+<ol>
+<li>标识符</li>
+<li>状态</li>
+<li>优先级</li>
+<li>程序计数器</li>
+<li>内存指针</li>
+<li>I/O状态信息</li>
+<li>记账信息......</li>
+</ol>
+<p>注意，PCB常驻内存，<strong>PCB是进程存在的唯一标志</strong>；</p>
+<h3 id="进程的特征"><a href="#进程的特征" class="headerlink" title="进程的特征"></a>进程的特征</h3>
+<ul>
+<li><strong>动态性</strong>：<strong>最基本特征</strong>，是计算机的执行的程序实例，存在生命周期；</li>
+<li><strong>并发性</strong>：多个进程实体存在于内存中也能在一段时间内同时运行，可以说进程的设计就是为了操作系统的并发；</li>
+<li><strong>独立性</strong>：进程实体是独立运行的基本单位，也是系统独立获得资源和调度的基本单位，各个进程的地址空间相互独立除非进程间相互通信；</li>
+<li><strong>异步性</strong>：各个进程按照独立的，不可预知的速度向前推进；</li>
+</ul>
+<p>注意：进程和程序之间不存在一一对应的关系；</p>
+<h3 id="进程带来的挑战"><a href="#进程带来的挑战" class="headerlink" title="进程带来的挑战"></a>进程带来的挑战</h3>
+<ul>
+<li>空间开销：为进程建立数据结构PCB</li>
+<li>时间开销：管理和协调，跟踪，填写和更新相关的数据结构，切换进程，保护现场</li>
+<li>控制复杂性：协调多个进程对资源的竞争和共享，预防解决多个进程因为资源竞争问题带来的故障</li>
+</ul>
+<h3 id="进程状态模型"><a href="#进程状态模型" class="headerlink" title="进程状态模型"></a>进程状态模型</h3>
+<p>由于进程具有动态性，执行间断性和多种状态的特征，需要建立进程状态的自动机描述；</p>
+<p>进程轨迹trace ：进程执行的指令序列，描述单个进程的行为；</p>
+<p>调度器dispatcher：调度多个进程的执行；</p>
+<p>以下是 <strong>轮转</strong>（round-robin） 的例子：通过指定一个时间片，处理器决定是否切换进程;</p>
+<p><img src="/assets/Operate-System/image-20240927152122797.png" alt="image-20240927152122797"></p>
+<p><img src="/assets/Operate-System/image-20240927152140953.png" alt="image-20240927152140953"></p>
+<h4 id="两状态模型"><a href="#两状态模型" class="headerlink" title="两状态模型"></a>两状态模型</h4>
+<p>进程处于两种状态之一：</p>
+<ol>
+<li>运行态：进程队列的头部进程被系统调度执行；</li>
+<li>非运行态：进程创建后，以非运行态进入进程队列中；</li>
+</ol>
+<p>进程队列：存放指向特定进程的指针；</p>
+<p><img src="/assets/Operate-System/image-20240927152317809.png" alt="image-20240927152317809"></p>
+<h4 id="三状态模型"><a href="#三状态模型" class="headerlink" title="三状态模型"></a>三状态模型</h4>
+<p>进程处于三种基本状态之一：</p>
+<ol>
+<li>就绪ready：
+<ul>
+<li>进程已经<strong>获得除开CPU外的所有必要资源</strong>后，只需获得CPU立即执行进程</li>
+</ul>
+</li>
+<li>执行running：
+<ul>
+<li>进程获得CPU，程序正在执行；</li>
+</ul>
+</li>
+<li>阻塞waiting：
+<ul>
+<li>正在执行的进程因为<strong>其他事件的等待</strong>无法继续执行；</li>
+<li>进程放弃处理机而处于暂停状态；</li>
+</ul>
+</li>
+</ol>
+<p>对于一些嵌入式的操作系统，三状态模型足以描述：</p>
+<p><img src="/assets/Operate-System/image-20240927153655741.png" alt="image-20240927153655741"></p>
+<p>注意：</p>
+<ul>
+<li>状态转换并非都可逆</li>
+<li>一个进程在任何一个指定的时刻必须而且只能处于一
+种状态</li>
+<li>时间片完也不是执行-就绪的唯一原因，可能是高优先级抢占控制权</li>
+<li>在单处理机系统中，只有一个进程处于执行状态</li>
+</ul>
+<h4 id="五状态自动机"><a href="#五状态自动机" class="headerlink" title="五状态自动机"></a>五状态自动机</h4>
+<p>进程新增两个状态后真正称为自动机模型：</p>
+<ul>
+<li>新建New：
+<ul>
+<li>进程刚刚创建，OS完成了进程创建的必要工作(构造了进程标识符，创建了进程管理的表格)</li>
+<li>OS未将进程加入可执行进程组，进程自身未进入主存，进程尚未被同意执行，进程的程序也没有分配空间而保存在辅存；</li>
+<li>进程创建原因：新的批处理作业，交互登陆，提供服务，现有进程派生</li>
+</ul>
+</li>
+<li>终止Exit
+<ul>
+<li>进程不再具有执行资格；</li>
+<li>表格和其他信息暂时保留，OS从可执行进程组释放；</li>
+<li>原因：正常完成，超时，无可用内存，各种错误...</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/Operate-System/image-20240927155128295.png" alt="image-20240927155128295"></p>
+<p>注意：</p>
+<ul>
+<li>加载/接纳：OS做好接纳进程的准备后，将一个进程从新建态转换成就绪态；</li>
+<li>就绪-退出，阻塞-退出：某些系统中，父进程可以在任何时候终止一个子进程，这样的转换可能存在；</li>
+</ul>
+<h5 id="排队模型实现：维护就绪队列和阻塞队列"><a href="#排队模型实现：维护就绪队列和阻塞队列" class="headerlink" title="排队模型实现：维护就绪队列和阻塞队列"></a>排队模型实现：维护就绪队列和阻塞队列</h5>
+<ul>
+<li>进入OS的每个进程放在就绪队列中，OS选择进程运行时在就绪队列中选择一个；</li>
+<li>运行的程序被移除处理器后，要么终止，要么进入就绪队列或阻塞队列</li>
+<li>某事件发生导致阻塞队列中的相应进程进入就绪队列中；</li>
+</ul>
+<p>具体实现：</p>
+<p>多阻塞队列可以避免对很长的队列进行扫描；</p>
+<p><img src="/assets/Operate-System/image-20240927160858477.png" alt="image-20240927160858477"></p>
+<h4 id="七状态自动机"><a href="#七状态自动机" class="headerlink" title="七状态自动机"></a>七状态自动机</h4>
+<h5 id="交换技术swapping和挂起suspend"><a href="#交换技术swapping和挂起suspend" class="headerlink" title="交换技术swapping和挂起suspend"></a>交换技术swapping和挂起suspend</h5>
+<p>进程竞争内存资源：内存紧张，或者所有进程因为某事件等待，但是无就绪进程，处理机实际空闲</p>
+<p>解决方案：扩充内存，swapping</p>
+<ul>
+<li>将内存中处于阻塞、就绪、甚至是执行状态的进程swapping-out进外存(磁盘)</li>
+<li>不再参与CPU的竞争，我们把这种静止状态称为挂起状态；</li>
+<li>在磁盘中维护一个挂起队列，建立虚存；</li>
+<li>当存在已具备运行条件的进程或进程所需要的数据和程序，Swapping-in到内存。</li>
+</ul>
+<p>进程挂起的原因：</p>
+<ul>
+<li>进程全部阻塞，处理机空闲</li>
+<li>交换，如系统负荷过重，内存空间紧张</li>
+<li>操作系统的需要，操作系统可能需要挂起后台进程或一些服务进程，或某些可能导致系统故障的进程。</li>
+<li>终端用户的请求,如调试</li>
+<li>父进程请求</li>
+</ul>
+<p>被挂起进程的特征</p>
+<ul>
+<li>不能立即执行</li>
+<li>挂起条件独立于阻塞条件</li>
+<li>使之挂起的进程：自身、OS、父进程</li>
+<li>激活挂起进程的进程：实施挂起操作的进程</li>
+</ul>
+<p>当被挂起的进程返回内存时，OS不一定执行的准备，进一步划分：</p>
+<ul>
+<li>就绪挂起：进程在外存，只要调入内存并获得CPU即可执行</li>
+<li>阻塞挂起：进程在外存，并等待某事件</li>
+</ul>
+<p><img src="/assets/Operate-System/image-20240927162304899.png" alt="image-20240927162304899"></p>
+<p>注意：</p>
+<ul>
+<li>加载：新建进程后，进程要么加入就绪队列，要么进入就绪挂起队列，视当时的资源而定；
+<ul>
+<li>创建进程的just-in-time原理：尽可能推迟创建进程以减小系统的开销；</li>
+</ul>
+</li>
+<li>运行-就绪挂起：一般来说，运行进程的分配时间到期后就会转换成就绪态，但是某个具有高优先级的进程位于阻塞/挂起队列不被阻塞时，OS会抢占这个进程</li>
+</ul>
+<h3 id="进程描述"><a href="#进程描述" class="headerlink" title="进程描述"></a>进程描述</h3>
+<p>进程的执行必须由操作系统分配资源，操作系统是资源的管理者：采用表格记载资源的信息，进而实现资源的管理，维护和更新；</p>
+<ul>
+<li>内存表</li>
+<li>I/O表</li>
+<li>文件表</li>
+<li>进程表</li>
+</ul>
+<p><img src="/assets/Operate-System/image-20240927163242526.png" alt="image-20240927163242526"></p>
+<h4 id="进程控制块-1"><a href="#进程控制块-1" class="headerlink" title="进程控制块"></a>进程控制块</h4>
+<p>包括信息主要有三类：</p>
+<ul>
+<li>进程标识信息；唯一标识一个进程
+<ul>
+<li>内部标识符：操作系统为每个进程赋予的一个唯一整数，便于系统控制</li>
+<li>父进程标识符</li>
+<li>用户标识符</li>
+</ul>
+</li>
+<li>处理机状态信息：主要是上下文，由处理器的各种寄存器中的内容组成的
+<ul>
+<li>通用寄存器</li>
+<li>控制和状态寄存器</li>
+<li>栈指针</li>
+</ul>
+</li>
+<li>进程控制信息：与进程调度和进程切换有关的信息
+<ul>
+<li>进程状态</li>
+<li>进程优先级</li>
+<li>时间记账</li>
+<li>阻塞原因</li>
+<li>链接指针</li>
+<li>进程间通信</li>
+<li>程序和数据地址</li>
+<li>资源所有权和使用情况</li>
+</ul>
+</li>
+</ul>
+<h4 id="进程的组织方式"><a href="#进程的组织方式" class="headerlink" title="进程的组织方式"></a>进程的组织方式</h4>
+<h5 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h5>
+<p>系统为所有进程的状态建立几张索引表；</p>
+<p><img src="/assets/Operate-System/image-20240927164502164.png" alt="image-20240927164502164"></p>
+<h5 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h5>
+<ul>
+<li>
+<p>单一队列：所有PCB块连接成一个队列</p>
+<p><img src="/assets/Operate-System/image-20240927164522935.png" alt="image-20240927164522935"></p>
+</li>
+<li>
+<p>多级队列：相同状态的PCB块连接成一个队列</p>
+<p><img src="/assets/Operate-System/image-20240927164547710.png" alt="image-20240927164547710"></p>
+</li>
+</ul>
+<h3 id="内核"><a href="#内核" class="headerlink" title="内核"></a>内核</h3>
+<p>内核是操作系统的核心，是包含重要系统功能的部分，常住内存以提高操作系统的系统功能；</p>
+<p>不同操作系统对内核的设计(功能范围的设定)不同；</p>
+<ul>
+<li>
+<p>资源管理</p>
+<ul>
+<li>
+<p>进程管理：进程的创建和终止，调度，分配，切换，同步和进程间通信，管理PCB</p>
+</li>
+<li>
+<p>存储管理：为进程分配地址空间，交换，页和段管理</p>
+</li>
+<li>
+<p>I/O管理：缓冲区管理，为进程分配I/O通道</p>
+</li>
+</ul>
+</li>
+<li>
+<p>支撑功能</p>
+<ul>
+<li>中断：操作系统的一切重要活动最终依赖于中断</li>
+<li>时钟</li>
+<li>记账</li>
+</ul>
+</li>
+</ul>
+<h3 id="执行模式"><a href="#执行模式" class="headerlink" title="执行模式"></a>执行模式</h3>
+<ul>
+<li>大多数处理器至少支持两种模式：内核模式，用户模式</li>
+<li>某些指令只能在特权模式运行，部分内存只能在特权模式下访问</li>
+<li>采用两种模式可以保护操作系统和重要的系统操作表不受程序干扰</li>
+<li>查看运行模式：程序状态字寄存器PSWR下指示执行模式的位</li>
+</ul>
+<p>模式切换：</p>
+<ul>
+<li>原因：系统调用或中断，中断发生时，将程序计数器设置为中断程序处理的开始地址，切换成内核模式使得中断程序可以执行某些特权指令</li>
+<li>中断不一定引发进程切换，也不一定造成模式切换，模式切换和进程切换无决定关系</li>
+</ul>
+<h2 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h2>
+<p>进程控制包括以下事件：</p>
+<ul>
+<li>进程的穿件与撤销</li>
+<li>进程的阻塞和唤醒</li>
+<li>挂起和激活</li>
+<li>进程切换</li>
+</ul>
+<p>实现方式：原语Primitive</p>
+<ul>
+<li>原语用于完成一定功能的过程，定义了原子操作</li>
+<li>其执行过程不允许被中断；</li>
+</ul>
+<h3 id="create原语：创建进程"><a href="#create原语：创建进程" class="headerlink" title="create原语：创建进程"></a>create原语：创建进程</h3>
+<ul>
+<li>为新进程分配唯一一个进程标识符</li>
+<li>为进程分配空间</li>
+<li>初始化进程控制块（标识信息，处理机状态信息，调度信息）</li>
+<li>建立连接，插入就绪（就绪/挂起）队列</li>
+<li>建立扩充其他相关的数据结构</li>
+</ul>
+<p>后面两步是方便操作系统管理进程的必要步骤；</p>
+<h3 id="进程终止原语"><a href="#进程终止原语" class="headerlink" title="进程终止原语"></a>进程终止原语</h3>
+<ul>
+<li>根据标识符找到其PCB，读出进程的状态</li>
+<li>对于执行状态的进程，终止它，调度下一个进程就绪进程的执行</li>
+<li>若进程存在子进程，不同的操作系统有不同的处理方式，挂在其他结点或者终止它</li>
+<li>将进程的全部资源归还（父进程或者OS）</li>
+<li>被终止进程的PCB从队列中移除，等待其他程序搜集信息</li>
+</ul>
+<h3 id="进程阻塞"><a href="#进程阻塞" class="headerlink" title="进程阻塞"></a>进程阻塞</h3>
+<ul>
+<li>对于执行状态的进程发生阻塞时，使用Block（）原语将自己阻塞</li>
+<li>将PCB的状态由执行到阻塞将PCB加入阻塞队列</li>
+<li>将处理剂分配给下一个就绪进程并切换</li>
+</ul>
+<h3 id="进程唤醒"><a href="#进程唤醒" class="headerlink" title="进程唤醒"></a>进程唤醒</h3>
+<ul>
+<li>被阻塞进程期待的事件出现时，有关进程调用唤醒原语wakeup（），等待该事件的进程唤醒</li>
+<li>唤醒进程原语执行：将被阻塞进程从队列移出，将PCB中现行状态由阻塞改为就绪，插入到就绪队列中</li>
+</ul>
+<h3 id="进程挂起"><a href="#进程挂起" class="headerlink" title="进程挂起"></a>进程挂起</h3>
+<p>出现引起进程挂起的事件时，系统将利用挂起原语suspend（）将指定挂起；</p>
+<ul>
+<li>检查被挂起的状态</li>
+<li>插入相应队列</li>
+</ul>
+<h3 id="进程激活"><a href="#进程激活" class="headerlink" title="进程激活"></a>进程激活</h3>
+<ul>
+<li>发生激活进程的事件时，将在外存上处于挂起的进程换入内存
+<ul>
+<li>利用激活原语active（）将指定进程从外存调入内存：检查进程状态，插入相应队列</li>
+</ul>
+</li>
+</ul>
+<h3 id="进程切换"><a href="#进程切换" class="headerlink" title="进程切换"></a>进程切换</h3>
+<p>进程切换：调度另一个就绪进程占用处理器
+进程上下文：进程执行的现场
+发生原因：</p>
+<ul>
+<li>时钟中断</li>
+<li>IO中断</li>
+<li>内存失效</li>
+<li>陷阱</li>
+<li>系统调用</li>
+</ul>
+<p>步骤：</p>
+<ul>
+<li>保存处理器上下文，包括程序计数器和其他寄存器</li>
+<li>更新运行进程的PCB</li>
+<li>将PCB移动到相应队列</li>
+<li>选择另一个进程执行</li>
+<li>更新另一个PCB</li>
+<li>恢复被选择的上下文</li>
+</ul>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2>
+<p>线程是进程的一个实体，是独立调度和分派的基本单位；
+进程是系统进行资源分配和调度的独立单位；
+线程是进程的一个实体，是对调度和分配的基本单位；</p>
+<ul>
+<li>进程是系统中拥有资源的单位，比如进程映像的地址空间，全局变量，打开文件，IO设备</li>
+<li>线程，拥有少量的私有资源（线程控制块，栈…）</li>
+<li>同一进程哪的线程共享全部资源</li>
+<li>同一进程的线程切换不会引发进程切换</li>
+<li>不同进程中线程切换将引起进程切换</li>
+<li>同一进程的多个线程也存在并发，提高系统资源的使用和系统吞吐量</li>
+<li>线程间通信比进程间通信快很多</li>
+<li>线程的系统开销小于进程，同一进程的多个线程同步和通信更容易</li>
+</ul>
+<h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3>
+<ul>
+<li>就绪状态</li>
+<li>执行状态</li>
+<li>阻塞状态</li>
+</ul>
+<p>一般不具有挂起状态，一个进程可以创建和撤销多个线程,同一个进程的多个线程可以并发执行</p>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3>
+<ul>
+<li>派生spawn：</li>
+<li>阻塞block</li>
+<li>解除阻塞ubblock</li>
+<li>结束finish</li>
+</ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3>
+<ul>
+<li>用户级线程</li>
+<li>内核级线程</li>
+<li>混合线程</li>
+</ul>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

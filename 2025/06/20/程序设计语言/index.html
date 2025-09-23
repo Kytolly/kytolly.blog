@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    程序设计语言
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'true'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">程序设计语言</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%99%A8-%E2%9A%99%EF%B8%8F"><span class="toc-number">1.</span> <span class="toc-text">语言处理器 ⚙️</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E8%A1%A8"><span class="toc-number">1.4.</span> <span class="toc-text">符号表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F"><span class="toc-number">1.4.1.</span> <span class="toc-text">声明周期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.2.</span> <span class="toc-text">数据结构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%E7%A4%BA%E4%BE%8B-%F0%9F%94%AC"><span class="toc-number">2.</span> <span class="toc-text">C语言编译器示例 🔬</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">2.1.</span> <span class="toc-text">预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91"><span class="toc-number">2.2.</span> <span class="toc-text">编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%87%E7%BC%96"><span class="toc-number">2.3.</span> <span class="toc-text">汇编</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">2.4.</span> <span class="toc-text">链接</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">程序设计语言</div>
+  <div class="post-meta">
+    <div class="date">2025 六月 20日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">Compilers</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="语言处理器-⚙️"><a href="#语言处理器-⚙️" class="headerlink" title="语言处理器 ⚙️"></a>语言处理器 ⚙️</h2>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3>
+<p>通常来说，一个<strong>编译器</strong>(compiler) 👨‍💻➡️💻 将程序设计语言翻译成被计算机执行的形式；</p>
+<ul>
+<li>阅读<strong>宿主语言</strong>(host language)，通过<strong>宿主机器</strong>(host machine)，翻译成等价的目标语言。</li>
+<li>需要将翻译过程的错误抛出 ⚠️。</li>
+<li>如果目标语言是机器可执行的语言程序，执行目标程序，可以处理用户的输入得到输出。</li>
+</ul>
+<p><strong>解释器</strong>(interpreter) 🗣️ 逐行执行：</p>
+<ul>
+<li>没有显式的翻译步骤，直接解释执行源程序。</li>
+<li>利用用户的输入，执行源程序中的操作，得到输出。</li>
+</ul>
+<p>比较来看，编译器编译后运行获得输出相对较快 🚀，但是解释器错误诊断和调试通常更好 👍。</p>
+<p>若编译程序生成宿主机执行的机器代码，称为<strong>自驻留</strong>的编译程序；若编译程序是用源语言编写的，则为<strong>自编译</strong>的编译程序；若编译程序生成的不是宿主机执行的机器代码，称为<strong>交叉编译</strong>；</p>
+<p>这里详细介绍交叉编译：</p>
+<p>在一个Host平台上生成另一个Target平台可执行代码的编译过程，常用于嵌入式开发、跨平台应用构建等场景，通常出于以下考虑：</p>
+<ul>
+<li>资源限制：目标设备（如物联网设备）无法运行完整编译器</li>
+<li>效率需求：在高性能Host平台编译可加速构建过程</li>
+<li>跨平台支持：为Windows/MacOS/Linux生成多平台二进制文件</li>
+</ul>
+<p>在C和C++的实践中，通常使用CMake等工具链实现交叉编译，而在一些语言(比如Golang)的编译器天然支持交叉编译选项；</p>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3>
+<p>一个<strong>预处理器</strong>(preprocessor) 🧩：</p>
+<ul>
+<li>
+<p>负责将独立文件中的源程序多个模块组合在一起；</p>
+</li>
+<li>
+<p>根据编译选项，选择条件编译；</p>
+</li>
+<li>
+<p>删除注释，合并空白符；</p>
+<blockquote>
+<p>大部分语言允许此法单元之间出现任意数量的空白，注释也当空白处理；</p>
+</blockquote>
+</li>
+<li>
+<p>将宏 (macro) 的缩写转化成源语言语句。</p>
+<blockquote>
+<p>比如C语言中遇到 <code>#include &lt;iostream&gt;</code> 负责将 <code>iostream</code> 库中的内容组合到目标程序；</p>
+<p>遇到 <code>#define PI 3.14159</code>，则会将文件中的 <code>PI</code> 替换成 <code>3.14159</code>。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>汇编器</strong>(assembler) 🛠️：</p>
+<ul>
+<li>处理编译器产生的汇编语言程序。</li>
+<li>生成可重定位的机器代码 (object code)。</li>
+<li>大型程序一般多个文件分部分编译，这些可重定位的机器代码和库文件需要连接到一起。</li>
+</ul>
+<p><strong>链接器</strong>(linker) 🔗：</p>
+<ul>
+<li>一个文件的代码可能引用另一个文件定义的符号 (如函数或变量)。</li>
+<li>链接器解决这些外部内存地址的问题，将多个目标文件和库文件合并成一个可执行文件。</li>
+</ul>
+<p><strong>加载器</strong>(loader) 🚀：</p>
+<ul>
+<li>将可执行文件从磁盘加载到内存中准备执行。</li>
+</ul>
+<p><img src="/assets/Compilers/%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%B3%BB%E7%BB%9F.png" alt="语言处理系统"></p>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3>
+<p>编译器将源程序映射为<strong>语义等价</strong>的目标程序，由两部分构成：</p>
+<ul>
+<li>前端/分析(analysis):将源程序分解，加上先验的语法结构
+<ul>
+<li>创建源程序的中间表示；</li>
+<li>创建<strong>符号表</strong>(symbol table);</li>
+<li>报语法错误；</li>
+</ul>
+</li>
+<li>后端/综合(synthesis): 输入中间表示和符号表，输出期待的目标程序；</li>
+</ul>
+<p><img src="/assets/Compilers/%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E6%AD%A5%E9%AA%A4(phase).png" alt="编译器的步骤(phase)"></p>
+<p>具体分工如下：</p>
+<ol>
+<li><strong>词法分析 (Lexical Analysis)</strong> 🧐: 读入源程序字符流，将其组织成有意义的<strong>词素 (lexeme)</strong> 序列，然后为每个词素生成并输出一个<strong>记号 (token)</strong> 流。例如，将 <code>count = count + 5;</code> 转换为 <code>id(count)</code>, <code>assign_op</code>, <code>id(count)</code>, <code>add_op</code>, <code>number(5)</code>, <code>semicolon</code>。</li>
+<li><strong>语法分析 (Syntax Analysis)</strong> 🌳: 根据词法分析器产生的记号流，使用语言的<strong>语法规则 (grammar)</strong> 来构造程序的层次结构，通常表示为一棵<strong>语法树 (syntax tree)</strong> 或<strong>分析树 (parse tree)</strong>。这一步检查程序的结构是否正确。(参考 [[第2章-语法分析#语法树|语法树]])</li>
+<li><strong>语义分析 (Semantic Analysis)</strong> 🤔: 使用语法树和符号表中的信息来检查源程序是否与其语言定义的语义一致。主要任务包括<strong>类型检查 (type checking)</strong>，确保操作符和操作数类型兼容，以及其他静态检查（如变量声明、函数参数匹配等）。同时收集类型信息供后续阶段使用。</li>
+<li><strong>中间代码生成 (Intermediate Code Generation)</strong> ⚙️: 在将源程序翻译成目标代码之前，许多编译器会先生成一个明确的、机器无关的<strong>中间表示 (Intermediate Representation, IR)</strong>。常见形式有<strong>三地址码 (three-address code)</strong>，它易于生成和优化。</li>
+<li><strong>代码优化 (Code Optimization)</strong> ✨: (可选阶段) 尝试改进中间代码，以产生性能更好（运行更快、占用内存更少、能耗更低等）的目标代码。优化可以在不同层面进行，如局部优化、全局优化、循环优化等。</li>
+<li><strong>代码生成 (Code Generation)</strong> 💻: 将（优化后的）中间代码映射到目标机器的指令集。此阶段涉及<strong>指令选择 (instruction selection)</strong>、<strong>寄存器分配 (register allocation)</strong> 和<strong>指令调度 (instruction scheduling)</strong>。最终为每个变量选择内存地址或寄存器。</li>
+</ol>
+<h3 id="符号表"><a href="#符号表" class="headerlink" title="符号表"></a>符号表</h3>
+<p><strong>符号表</strong>(symbol table)是供编译器用于保存有关源程序构造的各种信息的数据结构；</p>
+<h4 id="声明周期"><a href="#声明周期" class="headerlink" title="声明周期"></a>声明周期</h4>
+<p>符号表在分析阶段逐步收集，用于生成目标代码；</p>
+<ul>
+<li>每项包含一个与标识符有关的信息，如词素，类型，存储位置；</li>
+<li>需要支持同一个标识符的多重声明；</li>
+<li>每个带有声明的程序块都有自己的符号表，因此需要对每个作用域建立单独的符号表；</li>
+</ul>
+<p><img src="/assets/Compilers/%E7%AC%A6%E5%8F%B7%E8%A1%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="符号表生命周期"></p>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4>
+<p>一个典型的符号表链如下:</p>
+<p><img src="/assets/Compilers/%E7%AC%A6%E5%8F%B7%E8%A1%A8%E9%93%BE.png" alt="符号表链"></p>
+<p>一个典型的符号表<code>Env</code>的实现</p>
+<p><img src="/assets/Compilers/%E7%AC%A6%E5%8F%B7%E8%A1%A8%E7%9A%84Java%E5%AE%9E%E7%8E%B0.png" alt="符号表的Java实现"></p>
+<h2 id="C语言编译器示例-🔬"><a href="#C语言编译器示例-🔬" class="headerlink" title="C语言编译器示例 🔬"></a>C语言编译器示例 🔬</h2>
+<p>现在我们拥有一个<code>main.c</code>文件，内容如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MYMAX 20</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + <span class="number">2</span> * b + MYMAX;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> c = <span class="number">0</span>;</span><br><span class="line">    c = add(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h3>
+<p>执行命令<code>gcc -E -o hello.i hello.c</code>,得到文件<code>hello.i</code>，内容如下，这样我们完成了文件通过了预处理器，完成了预处理的步骤，这一步不处理语法错误，执行预处理指令,可以看到<code>MYMAX</code>替换成<code>20</code>了；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># <span class="number">0</span> <span class="string">&quot;main.c&quot;</span></span><br><span class="line"># <span class="number">0</span> <span class="string">&quot;&lt;built-in&gt;&quot;</span></span><br><span class="line"># <span class="number">0</span> <span class="string">&quot;&lt;command-line&gt;&quot;</span></span><br><span class="line"># <span class="number">1</span> <span class="string">&quot;/usr/include/stdc-predef.h&quot;</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">0</span> <span class="string">&quot;&lt;command-line&gt;&quot;</span> <span class="number">2</span></span><br><span class="line"># <span class="number">1</span> <span class="string">&quot;main.c&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + <span class="number">2</span> * b + <span class="number">20</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> c = <span class="number">0</span>;</span><br><span class="line">    c = add(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3>
+<p>执行命令<code>gcc -S -o main.s main.i</code>，得到文件<code>main.s</code>，内容如下，这样的汇编语言程序结果和硬件架构相关；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">	.file	&quot;main.c&quot;</span><br><span class="line">	.text</span><br><span class="line">	.globl	add</span><br><span class="line">	.type	add, @function</span><br><span class="line">add:</span><br><span class="line">.LFB0:</span><br><span class="line">	.cfi_startproc</span><br><span class="line">	endbr64</span><br><span class="line">	pushq	%rbp</span><br><span class="line">	.cfi_def_cfa_offset 16</span><br><span class="line">	.cfi_offset 6, -16</span><br><span class="line">	movq	%rsp, %rbp</span><br><span class="line">	.cfi_def_cfa_register 6</span><br><span class="line">	movl	%edi, -4(%rbp)</span><br><span class="line">	movl	%esi, -8(%rbp)</span><br><span class="line">	movl	-8(%rbp), %eax</span><br><span class="line">	leal	(%rax,%rax), %edx</span><br><span class="line">	movl	-4(%rbp), %eax</span><br><span class="line">	addl	%edx, %eax</span><br><span class="line">	addl	$20, %eax</span><br><span class="line">	popq	%rbp</span><br><span class="line">	.cfi_def_cfa 7, 8</span><br><span class="line">	ret</span><br><span class="line">	.cfi_endproc</span><br><span class="line">.LFE0:</span><br><span class="line">	.size	add, .-add</span><br><span class="line">	.globl	main</span><br><span class="line">	.type	main, @function</span><br><span class="line">main:</span><br><span class="line">.LFB1:</span><br><span class="line">	.cfi_startproc</span><br><span class="line">	endbr64</span><br><span class="line">	pushq	%rbp</span><br><span class="line">	.cfi_def_cfa_offset 16</span><br><span class="line">	.cfi_offset 6, -16</span><br><span class="line">	movq	%rsp, %rbp</span><br><span class="line">	.cfi_def_cfa_register 6</span><br><span class="line">	subq	$16, %rsp</span><br><span class="line">	movl	$0, -4(%rbp)</span><br><span class="line">	movl	$2, %esi</span><br><span class="line">	movl	$1, %edi</span><br><span class="line">	call	add</span><br><span class="line">	movl	%eax, -4(%rbp)</span><br><span class="line">	movl	$0, %eax</span><br><span class="line">	leave</span><br><span class="line">	.cfi_def_cfa 7, 8</span><br><span class="line">	ret</span><br><span class="line">	.cfi_endproc</span><br><span class="line">.LFE1:</span><br><span class="line">	.size	main, .-main</span><br><span class="line">	.ident	&quot;GCC: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0&quot;</span><br><span class="line">	.section	.note.GNU-stack,&quot;&quot;,@progbits</span><br><span class="line">	.section	.note.gnu.property,&quot;a&quot;</span><br><span class="line">	.align 8</span><br><span class="line">	.long	1f - 0f</span><br><span class="line">	.long	4f - 1f</span><br><span class="line">	.long	5</span><br><span class="line">0:</span><br><span class="line">	.string	&quot;GNU&quot;</span><br><span class="line">1:</span><br><span class="line">	.align 8</span><br><span class="line">	.long	0xc0000002</span><br><span class="line">	.long	3f - 2f</span><br><span class="line">2:</span><br><span class="line">	.long	0x3</span><br><span class="line">3:</span><br><span class="line">	.align 8</span><br><span class="line">4:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h3>
+<p>执行命令<code>gcc -c -o main.o main.s</code>，得到<code>main.o</code>文件，编辑器已经不可查看了,而且系统也不能执行该文件，内容为机器码；</p>
+<p>不可执行的原因是还未进行重定位操作，数据的地址没有确定；</p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3>
+<p>执行命令<code>gcc -o main main.o</code>，得到最终的可执行文件<code>main</code>;</p>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

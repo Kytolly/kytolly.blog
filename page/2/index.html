@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    Kytolly&#39;s Blog
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'true'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <div class="post-list">
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/">数理逻辑</a>
+        <div class="post-item-summary">
+        命题
+命题是指具有确切真值的判断语义；
+
+原子命题：无法分解为更简单命题的命题；
+复合命题：可以继续被分解的命题；
+
+命题应该用大写的字母表示；
+联结词
+
+
+
+
+        <a class="read-more" href="/2025/07/05/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Discrete-Mathematics/">Discrete-Mathematics</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E7%BB%84%E5%90%88%E8%AE%A1%E6%95%B0/">组合计数</a>
+        <div class="post-item-summary">
+        加乘原理
+乘法原理：完成一个工程需要分  个步骤， 代表第  个步骤的不同方法数目。那么完成这件事共有  种不同的方法。
+加法原理：完成一个工程可以有  类办法
+        <a class="read-more" href="/2025/07/05/%E7%BB%84%E5%90%88%E8%AE%A1%E6%95%B0/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Discrete-Mathematics/">Discrete-Mathematics</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E9%9B%86%E5%90%88%E8%AE%BA/">集合论</a>
+        <div class="post-item-summary">
+        集合基础
+集合（set）由指定范围内的某些特定对象聚集在一起构成;
+指定范围内的每一个对象称为这个集合的元素(element)。
+通常用大写字母表示集合,用小写
+        <a class="read-more" href="/2025/07/05/%E9%9B%86%E5%90%88%E8%AE%BA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Discrete-Mathematics/">Discrete-Mathematics</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Golang%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6/">Golang中的并发机制</a>
+        <div class="post-item-summary">
+        Golang的并发处理优势
+并发处理是Golang设计的核心目标之一，其通过一条简单的关键字go来启动协程goroutine,在广义上我们可以将协程理解为线程；
+        <a class="read-more" href="/2025/07/05/Golang%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Golang/">Golang</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/CMake%E5%85%A5%E9%97%A8/">CMake入门</a>
+        <div class="post-item-summary">
+        CMake入门
+CMake简介
+CMake 是一个跨平台的构建系统生成工具，用于管理编译过程，其主要功能如下：
+
+通过读取配置文件（CMakeLists.txt
+        <a class="read-more" href="/2025/07/05/CMake%E5%85%A5%E9%97%A8/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Cpp/">Cpp</a>
+            
+            <a class="tag-item" href="/tag/CMake/">CMake</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Network-Flows/">Network Flows</a>
+        <div class="post-item-summary">
+        Matching
+图中的极大匹配(maximal matching)是指不能添加更多的边的匹配；最大匹配(maximum matching)是指图中拥有最多边数
+        <a class="read-more" href="/2025/07/05/Network-Flows/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Digraph/">Digraph</a>
+        <div class="post-item-summary">
+        Conceptions
+有向图(directed graph) 定义为非空有限顶点集和的有序对(箭头，arcs)形成的有限簇；
+箭头的第一个顶点为尾(tail)
+        <a class="read-more" href="/2025/07/05/Digraph/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Coloring/">Coloring</a>
+        <div class="post-item-summary">
+        Vertex Coloring
+为图的每个顶点分配某种颜色，称一种着色是正确的，如果没有两个相邻的顶点着色相同；
+一个独立集(independent set)是
+        <a class="read-more" href="/2025/07/05/Coloring/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Planarity/">Planarity</a>
+        <div class="post-item-summary">
+        Planarity
+一个平面图(planar)被定义为：在平面上绘制没有交叉的图；
+若图不能在平面上绘制或表示，称为非平面图；
+若两个图可以在同一个图的边插入一
+        <a class="read-more" href="/2025/07/05/Planarity/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/Tree/">Tree</a>
+        <div class="post-item-summary">
+        树&amp;森林
+若一个连通图没有圈，称这个图为树(Tree);
+若一个图没有圈，称这个图为森林(forest);
+Theorem
+若树至少有个点，那么至少包含
+        <a class="read-more" href="/2025/07/05/Tree/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Graph-Theory/">Graph-Theory</a>
+            
+        </div>
+        </div>
+    </section>
+    
+</div>
+
+
+<div class="paginator">
+  <a class="extend prev" rel="prev" href="/">&lt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">&gt;</a>
+</div>
+
+
+
+<link rel="stylesheet" href="/css/paginator.css">
+
+
+<link rel="stylesheet" href="/css/list.css">
+
+
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

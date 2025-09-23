@@ -1,0 +1,123 @@
+@charset "utf-8";
+
+:root {
+  /* Light Mode Defaults */
+  --font-color: #000;
+  --font-color-secondary: #666;
+  --font-color-extra: #8c8f9e;
+  --font-color-refer: #1c2032;
+
+  --color-hr: #ddd;
+  --color-link: #4078F2;
+  --color-background: #ffffff;
+  --color-card: #f5f5f5;
+  --color-primary: #42b983;
+  --color-background-header: rgba(255, 255, 255, 0.8);
+
+  /* 激活与未激活状态 */
+  --color-unactive: #eeeeee;
+  --color-active: #000;
+
+  /* 列表项颜色 */
+  --color-list-item-even: #fff;
+  --color-list-item-odd: #fafafa;
+
+  /* Table colors */
+  --color-table-row-even: #f9f9f9;
+  --color-table-caption: #888;
+
+  /* 文章颜色 */
+  --color-post-content: #333333;
+  /* code 背景色 */
+  --color-background-code: #f8f8f8;
+  --color-border-code: #e7eaed;
+
+  /* Code block specific light theme variables */
+  --code-block-light-bg: #f8f8f8;
+  --code-block-light-header-bg: #f8f8f8;
+  --code-block-light-table-bg: #f8f8f8;
+  --code-block-light-gutter-bg: #f8f8f8;
+  --code-block-light-border-color: #e7eaed;
+  --code-block-light-lang-name-color: #8c8f9e;
+
+  /* Blockquote colors */
+  --color-blockquote-bg: #f9f9f9;
+  --color-blockquote-border: #ccc;
+
+  /* General pre tag colors (non-highlighted code blocks) */
+  --color-general-pre-bg: #f8f8f8;
+  --color-general-pre-border: #ddd;
+
+  /* Scrollbar colors */
+  --color-scrollbar-thumb: #c1c1c2;
+
+  --color-hashtag: #51525d;
+
+  --main-width: 1280px;
+  --list-max-width: 800px;
+}
+
+body.dark-mode {
+  --font-color: #f5f5f5;
+  --font-color-secondary: #cccccc;
+  --font-color-extra: #aaaaaa;
+  --font-color-refer: #ccd0e0;
+
+  --color-hr: #cccccc;
+  --color-link: #61AEEE;
+  --color-background: #1a1a1a;
+  --color-card: #2c2c2c;
+  --color-primary: #42b983;
+
+  --color-h2: var(--font-color);
+  --color-text: var(--font-color);
+  --color-list-hl: var(--color-link);
+  --color-meta: var(--font-color-secondary);
+
+  /* 激活与未激活状态 */
+  --color-unactive: #494949;
+  --color-active: #eeeeee;
+
+  /* 列表项颜色 */
+  --color-list-item-even: #3b3e4a;
+  --color-list-item-odd: #383c48;
+
+  /* Table colors */
+  --color-table-row-even: #2f2f2f;
+  --color-table-caption: #bbbbbb;
+
+  /* 文章颜色 */
+  --color-post-content: #fefefe;
+  /* code 背景色 */
+  --color-background-code: #292c34;
+  --color-border-code: #292c34;
+
+  /* Code block specific dark theme variables */
+  --code-block-dark-bg: #282C34;
+  --code-block-dark-header-bg: #282C34;
+  --code-block-dark-table-bg: #282C34;
+  --code-block-dark-gutter-bg: #282C34;
+  --code-block-dark-border-color: #4B5263;
+  --code-block-dark-lang-name-color: #ABB2BF;
+
+  /* Blockquote colors */
+  --color-blockquote-bg: #222222;
+  --color-blockquote-border: #555;
+
+  /* General pre tag colors (non-highlighted code blocks) */
+  --color-general-pre-bg: #292c34;
+  --color-general-pre-border: #444;
+
+  /* Scrollbar colors */
+  --color-scrollbar-thumb: #666666;
+
+  --color-hashtag: #e9ebf1;
+
+  --font-color-post: #dce4dd;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+}

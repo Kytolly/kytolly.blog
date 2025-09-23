@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    断言与参照完整性
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">断言与参照完整性</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%80%A7%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.</span> <span class="toc-text">完整性约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6"><span class="toc-number">1.1.</span> <span class="toc-text">控制机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E7%85%A7%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">参照完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%96%E7%95%A5"><span class="toc-number">2.2.</span> <span class="toc-text">策略</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">断言与参照完整性</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 2日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">Database</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="完整性约束"><a href="#完整性约束" class="headerlink" title="完整性约束"></a>完整性约束</h2>
+<h3 id="控制机制"><a href="#控制机制" class="headerlink" title="控制机制"></a>控制机制</h3>
+<p>完整性约束是加在数据库模式上的一个具体条件，规定什么样的数据能够存储到数据库中；
+定义机制：</p>
+<ul>
+<li>约束条件：数据模型的组成部分，约束数据库的寓意</li>
+<li>DBMS提供定义数据库完整性约束条件，并作为模式的一部分存入数据库</li>
+</ul>
+<p>检查机制：</p>
+<ul>
+<li>检查用户发出的操作是否违背了完整性约束条件</li>
+</ul>
+<p>违约反应：</p>
+<ul>
+<li>发现用户的操作请求使数据违背了完整性约束条件，则采取一定的动作保证数据完整性；</li>
+</ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3>
+<ul>
+<li>主键约束<code>PRIMARY KEY</code> ：一个关系仅一个，属性非空</li>
+<li>唯一约束<code>UNIQUE</code>：一个关系可声明多个，可为空，允许多个空值，不能定义在被主键约束的属性上</li>
+<li>非空约束<code>NOT NULL</code></li>
+<li>自定义约束<code>CHECK</code></li>
+<li>参照完整性约束<code>FOREIGN KEY</code></li>
+<li>断言<code>ASSERTION</code></li>
+</ul>
+<p>还可以根据位置分类为列级，行级和表级约束；以下是一些表建立的约束的例子</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> Diagnosis&#123;</span><br><span class="line">DGno <span class="type">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">Pno <span class="type">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">Dno <span class="type">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">Symptom <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">Diagnosis <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">DGtime DATETIME,</span><br><span class="line">Rfee <span class="type">DECIMAL</span>(<span class="number">18</span>,<span class="number">2</span>) <span class="keyword">NOT NULL</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">CREATE TABLE</span> Doctor&#123;</span><br><span class="line">Dno <span class="type">VARCHAR</span>(<span class="number">10</span>),</span><br><span class="line">Dname <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">Dsex <span class="type">VARCHAR</span>(<span class="number">2</span>) <span class="keyword">CHECK</span>( Dsex <span class="keyword">IN</span> (‘男’, ‘女’)),</span><br><span class="line">Dage <span class="type">INT</span> <span class="keyword">CHECK</span>( Dage <span class="operator">&gt;</span> <span class="number">0</span> <span class="keyword">AND</span> Dage <span class="operator">&lt;</span><span class="number">60</span>),</span><br><span class="line">Ddeptno <span class="type">VARCHAR</span>(<span class="number">10</span>),</span><br><span class="line">Dlevel <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">Dsalary <span class="type">DECIMAL</span>(<span class="number">18</span>,<span class="number">2</span>),</span><br><span class="line"><span class="keyword">PRIMARY KEY</span>(Dno),</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">CREATE TABLE</span> RecipeDetail&#123;</span><br><span class="line">Rno <span class="type">VARCHAR</span>(<span class="number">10</span>),</span><br><span class="line">Mno <span class="type">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">Mamount <span class="type">DECIMAL</span>(<span class="number">18</span>,<span class="number">0</span>),</span><br><span class="line"><span class="keyword">PRIMARY KEY</span>(Rno,Mno),</span><br><span class="line"><span class="keyword">CHECK</span> (Mno <span class="keyword">IN</span> (<span class="keyword">SELECT</span> Mno <span class="keyword">FROM</span> Medicine))<span class="operator">/</span><span class="operator">/</span>这是参照完整性约束，允许出现其他关系的子查询</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>以下是断言的格式和一个例子</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> ASSERTION fk_Diagnosis</span><br><span class="line"><span class="keyword">CHECK</span> </span><br><span class="line">( <span class="keyword">NOT</span> <span class="keyword">EXISTS</span></span><br><span class="line">( <span class="keyword">SELECT</span> <span class="operator">*</span> </span><br><span class="line"><span class="keyword">FROM</span> Diagnosis </span><br><span class="line"><span class="keyword">WHERE</span> Dno <span class="keyword">NOT</span> <span class="keyword">IN</span></span><br><span class="line">(<span class="keyword">SELECT</span> Dno</span><br><span class="line"><span class="keyword">FROM</span> Doctor))); </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> ASSERTION <span class="operator">&lt;</span>断言名<span class="operator">&gt;</span> <span class="keyword">CHECK</span><span class="operator">&lt;</span>谓词<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">Create</span> assertion salarycheck <span class="keyword">check</span>(</span><br><span class="line"><span class="keyword">Not</span> <span class="keyword">exists</span>(</span><br><span class="line"><span class="keyword">Select</span> <span class="operator">*</span> <span class="keyword">from</span> Doctor x</span><br><span class="line"><span class="keyword">Where</span> Dsalary <span class="operator">&gt;=</span> <span class="keyword">some</span> ( <span class="keyword">select</span> Dsalary <span class="keyword">from</span> Doctor y </span><br><span class="line"><span class="keyword">Where</span> x.Deptno<span class="operator">=</span>y.Deptno <span class="keyword">and</span> y.Dno <span class="operator">=</span>(</span><br><span class="line"><span class="keyword">Select</span> Manager <span class="keyword">from</span> Dept </span><br><span class="line"><span class="keyword">Where</span> x.Deptno <span class="operator">=</span>Dept.Deptno)</span><br><span class="line">)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h2>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3>
+<p>给定关系R，S，若存在R.A参照S.B</p>
+<ul>
+<li>R是参照表，S为被参照表</li>
+<li>A取值要么为空，要么来自于S.B</li>
+<li>A为外码</li>
+<li>B是S的主码
+若两张表的属性有参照完整性约束，在创建R表声明</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">REDERENCES S(B)</span><br><span class="line"><span class="keyword">FOREIGN KEY</span>(A) <span class="keyword">REFERENCES</span> S(B)</span><br></pre></td></tr></table></figure>
+<p>可见对R和S的删除，更新，插入都有可能触发完整性违约；</p>
+<ul>
+<li><code>DELETE FROM S</code></li>
+<li><code>UPDETE S.B</code></li>
+<li><code>UPDETE R.A</code></li>
+<li><code>INSERT TO R</code></li>
+</ul>
+<h3 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h3>
+<ul>
+<li>受限策略<code>RESTRICTED</code>:系统的默认方式，出现违约时，系统拒绝执行</li>
+<li>置空策略<code>SET-NULL</code>：根据环境的语义，外码可能为空</li>
+<li>级联策略<code>CASCADE</code>：不用拒绝用户操作请求的处理方式</li>
+<li>定义方式<code>ON (DELETE|UPDATE) (SET NULL|CASCADE)</code></li>
+</ul>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

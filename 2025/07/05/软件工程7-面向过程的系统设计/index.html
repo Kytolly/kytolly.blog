@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    面向过程的系统设计
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">面向过程的系统设计</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">总体设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="toc-number">1.1.</span> <span class="toc-text">系统结构图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97"><span class="toc-number">1.1.1.</span> <span class="toc-text">模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E6%8D%A2%E5%88%86%E6%9E%90"><span class="toc-number">1.1.2.</span> <span class="toc-text">变换分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">事务分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B7%E5%90%88%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text">混合结构分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.</span> <span class="toc-text">组件设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E7%BB%84%E4%BB%B6%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.1.</span> <span class="toc-text">结构化组件设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">2.2.</span> <span class="toc-text">流程图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">2.2.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%AC%A6%E5%8F%B7"><span class="toc-number">2.2.2.</span> <span class="toc-text">基本符号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">2.2.3.</span> <span class="toc-text">基本结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%98%E5%88%B6%E5%8E%9F%E5%88%99"><span class="toc-number">2.2.4.</span> <span class="toc-text">绘制原则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%92%E5%9B%BE%EF%BC%88N-S%E5%9B%BE%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">盒图（N-S图）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%B3%E7%AD%96%E8%A1%A8"><span class="toc-number">2.4.</span> <span class="toc-text">决策表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PDL-%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="toc-number">2.5.</span> <span class="toc-text">PDL(伪代码)</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">面向过程的系统设计</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 5日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">Software-Engineering</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="总体设计"><a href="#总体设计" class="headerlink" title="总体设计"></a>总体设计</h2>
+<ul>
+<li>首先研究、分析和审查数据流图。从软件的需求规格说明中弄清数 据流加工的过程，对于发现的问题及时解决。</li>
+<li>然后根据数据流图决定问题的类型。数据处理问题典型的类型有 两种：<strong>变换型和事务型</strong>。针对两种不同的类型分别进行分析处理。</li>
+<li>由数据流图推导出系统的初始结构图。</li>
+<li>利用一些启发式原则来改进系统的初始结构图，直到得到符合要 求的结构图为止。</li>
+<li>修改和补充数据词典。</li>
+</ul>
+<h3 id="系统结构图"><a href="#系统结构图" class="headerlink" title="系统结构图"></a>系统结构图</h3>
+<h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4>
+<ul>
+<li>传入模块：从下属模块取得数据，经过某些处理，再将其传送给上级模块。 它传送的数据流叫做逻辑输入数据流。</li>
+<li>传出模块：从上级模块获得数据，进行某些处理，再将其传送给下属模块。 它传送的数据流叫做逻辑输出数据流。</li>
+<li>变换模块：它从上级模块取得数据，进行特定的处理，转换成其它形式，再 传送回上级模块。它加工的数据流叫做变换数据流。</li>
+<li>协调模块：对所有下属模块进行协调和管理的模块。</li>
+</ul>
+<p><img src="/assets/Software-Engineering/image-20241028110021277.png" alt="image-20241028110021277"></p>
+<h4 id="变换分析"><a href="#变换分析" class="headerlink" title="变换分析"></a>变换分析</h4>
+<p>变换型数据处理问题的工作过程大致分为三步，即<strong>取得数据，变换数据和给出数据</strong>。</p>
+<p>相应于取得数据、变换数据、给出数据，变换型系统结构图由输入、中心变换和输出等三部分组成。</p>
+<p>变换分析方法由以下四步组成：</p>
+<ol>
+<li>重画数据流图；</li>
+<li>区分有效（逻辑）输入、有效（逻辑） 输出和中心变换部分；</li>
+<li>进行一级分解，设计上层模块；</li>
+<li>进行二级分解，设计输入、输出和中心 变换部分的中、下层模块。</li>
+</ol>
+<p>注意：</p>
+<ul>
+<li>在选择模块设计的次序时，必须对 一个模块的全部直接下属模块都设计完 成之后，才能转向另一个模块的下层模 块的设计；</li>
+<li>在设计下层模块时，应考虑模块的 耦合和内聚问题，以提高初始结构图的 质量。</li>
+<li>使用“黑箱”技术: 在设计当前模块时，先把这个模块的所有下层模块定义成“黑 箱”，在设计中利用它们时，暂时不考虑其内部结构和实现。在这一步定义好的“黑 箱”，在下一步就可以对它们进行设计和加工。这样，又会导致更多的“黑箱”。最 后，全部“黑箱”的内容和结构应完全被确定。</li>
+<li>在模块划分时，一个模块的直接下属模块一般在5个左右。如果直接下属模块超过 10个，可设立中间层次。</li>
+<li>如果出现了以下情况，就停止模块的功能分解：
+<ul>
+<li>模块不能再细分为明显的子任务；</li>
+<li>分解成用户提供的模块或程序库的子程序；</li>
+<li>模块的界面是输入／输出设备传送的信息；</li>
+<li>模块不宜再分解得过小。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/Software-Engineering/image-20241028110206123.png" alt="image-20241028110206123"></p>
+<h3 id="事务分析"><a href="#事务分析" class="headerlink" title="事务分析"></a>事务分析</h3>
+<p>接受一项事务，根据事务处理的特点和性质，选择分派一个适当的处理单元，然后给出结果。</p>
+<p>在事务型系统结构图中，事务中心模块按所接受的事务 的类型，选择某一事务处理模块执行。各事务处理模块 并列。每个事务处理模块可能要调用若干个操作模块， 而操作模块又可能调用若干个细节模块。</p>
+<p>在很多软件应用中，存在某种作业 数据流，它可以引发一个或多个处 理，这些处理能够完成该作业要求 的功能。这种数据流就叫做事务。</p>
+<p>与变换分析一样，事务分析也是从 分析数据流图开始，自顶向下，逐 步分解，建立系统结构图。</p>
+<p>过程：</p>
+<ol>
+<li>识别事务源：利用数据流图和数据词典，从问题定义和需求分析的结果中，找出各种需要处理的事 务。通常，事务来自物理输入装置。有时，设计人员还必须区别系统的输入、中心加 工和输出中产生的事务。</li>
+<li>规定适当的事务型结构：在确定了该数据流图具有事务型特征之后，根据模块划分理论，建立适当的事务型结 构。</li>
+<li>识别各种事务和它们定义的操作：从问题定义和需求分析中找出的事务及其操作所必需的全部信息，对于系统内部产生 的事务，必须仔细地定义它们的操作。</li>
+<li>注意利用公用模块 在事务分析的过程中，如果不同事务的一些中间模块可由具有类似的语法和语义的若 干个低层模块组成，则可以把这些低层模块构造成公用模块</li>
+<li>对每一事务，或对联系密切的一组事务，建立一个事务处理模块；如果发现在系 统中有类似的事务，可以把它们组成一个事务处理模块；</li>
+<li>对事务处理模块规定它们全部的下层操作模块</li>
+<li>对操作模块规定它们的全部细节模块</li>
+</ol>
+<p><img src="/assets/Software-Engineering/image-20241028110631858.png" alt="image-20241028110631858"></p>
+<h3 id="混合结构分析"><a href="#混合结构分析" class="headerlink" title="混合结构分析"></a>混合结构分析</h3>
+<p>变换分析是软件系统结构设计的主要方法。</p>
+<p>一般，一个大型的软件系统是变换型结构和事务型结构的混合结构。</p>
+<p>所以，我们通常利用以变换分析为主、事务分析为辅的方式进行软件结构设计</p>
+<h2 id="组件设计"><a href="#组件设计" class="headerlink" title="组件设计"></a>组件设计</h2>
+<h3 id="结构化组件设计"><a href="#结构化组件设计" class="headerlink" title="结构化组件设计"></a>结构化组件设计</h3>
+<p>组件级设计也称为过程设计，位于数据设计、体系结构设计和接口设计完成之后；</p>
+<p>任何程序总可以用三种结构化的构成元素来设计和实现</p>
+<ul>
+<li>顺序：任何算法规约中的核心处理步骤</li>
+<li>条件：允许根据逻辑情况选择处理的方式</li>
+<li>重复：提供了循环</li>
+</ul>
+<p>详细设计工具可以分为以下三类：</p>
+<ul>
+<li>图形设计符号：流程图、盒图等</li>
+<li>表格设计符号：决策表等</li>
+<li>程序设计语言：PDL等</li>
+</ul>
+<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3>
+<p>利用各种方块图形、线条及箭头等符号来表达解决问题的步骤及进行的顺序；</p>
+<p>流程图是算法的一种表示方式。</p>
+<p>标准作业流程是企业界常用的一种作业方法，其目的在使每一项作业流程均能清楚呈现，任何人只要看 到流程图，便能一目了然，有助于相关作业人员对整体工作流程的掌握。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4>
+<ul>
+<li>所有流程一目了然，工作人员能掌握全局。</li>
+<li>更换人手时，按图索骥，容易上手。</li>
+<li>所有流程在绘制时，很容易发现疏失之处，可适时予以调整更正，使各项作业更为 严谨。</li>
+</ul>
+<h4 id="基本符号"><a href="#基本符号" class="headerlink" title="基本符号"></a>基本符号</h4>
+<p><img src="/assets/Software-Engineering/image-20241028111115247.png" alt="image-20241028111115247"></p>
+<p><img src="/assets/Software-Engineering/image-20241028111128225.png" alt="image-20241028111128225"></p>
+<h4 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h4>
+<ul>
+<li>顺序结构：处理程序顺序进行</li>
+<li>选择结构：包括0二元选择，多重选择，流程依据某些条件，依条件是否成立，分别进行不同处理程序。</li>
+<li>循环结构
+<ul>
+<li>while-do结构，依据条件是否成立，决定执行的情况。当条件 成立时，不断重复执行处理程序，直到停止执行的条 件成立后，即离开重复执行，至下一个流程。</li>
+<li>do-while结构，：重复执行处理程序，直到条件变成假（false）为止。</li>
+</ul>
+</li>
+</ul>
+<h4 id="绘制原则"><a href="#绘制原则" class="headerlink" title="绘制原则"></a>绘制原则</h4>
+<ul>
+<li>各项步骤有选择或决策结果，如“可/否”、“通过/不通过”或其他相对文字时，请检查校正流程是否 有遗漏，以避免悬而未决的状况。</li>
+<li>流程图符号绘制排列顺序，为由上而下，由左而右。</li>
+<li>处理程序可用阿拉伯数字，从1开始，依处理程序排列顺序编号，并以文字依处理程序功能命名。</li>
+<li>相同流程图符号宜大小一致。</li>
+<li>路径符号宜避免互相交叉。</li>
+<li>同一路径符号的指示箭头应只有一个。</li>
+<li>开始符号在流程图中只能出现一次，但结束符号则不限。若流程图能一目了然，则开始符号和结束符号 可省略。</li>
+<li>选择结构与重复结构的选择或决策条件，文字叙述应简明清晰，路径加注“是”、“否”或其它相对性 文字指示说明。</li>
+<li>流程图中若有参考到其他已定义流程，可使用已定义处理程序符号，不必重复绘制。</li>
+<li>流程图若一页绘制不下，可以使用分级分页绘制方式，并在处理程序编号上表示其级别</li>
+</ul>
+<h3 id="盒图（N-S图）"><a href="#盒图（N-S图）" class="headerlink" title="盒图（N-S图）"></a>盒图（N-S图）</h3>
+<p>五种基本控制结构有五种图形构件表示：</p>
+<p><img src="/assets/Software-Engineering/image-20241028111737767.png" alt="image-20241028111737767"></p>
+<h3 id="决策表"><a href="#决策表" class="headerlink" title="决策表"></a>决策表</h3>
+<ul>
+<li>判定表用于表示程序的静态逻辑</li>
+<li>在判定表中的条件部分给出所有的两分支判断的列表，动作部分给出相应的处理</li>
+<li>要求将程序流程图中的多分支判断都改成两分支判断</li>
+</ul>
+<h3 id="PDL-伪代码"><a href="#PDL-伪代码" class="headerlink" title="PDL(伪代码)"></a>PDL(伪代码)</h3>
+<p>PDL是一种用于描述功能模块的算法设计和加工细节的语言，称为程序设计语言。它是一种伪码。</p>
+<p>伪码的语法规则分为“外语法”和“内语法”。</p>
+<ul>
+<li>PDL具有严格的关键字外语法，用于定义控制结构和数据结构</li>
+<li>同时它的表示实际 操作和条件的内语法又是灵活自由的，可使用自然语言的词汇。</li>
+</ul>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

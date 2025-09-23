@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    系统设计概述
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">系统设计概述</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E8%BF%87%E7%A8%8B%E5%92%8C%E8%B4%A8%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">设计过程和质量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%BD%E7%9A%84%E8%AE%BE%E8%AE%A1%E7%89%B9%E7%82%B9"><span class="toc-number">2.1.</span> <span class="toc-text">好的设计特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%AF%BC%E5%8E%9F%E5%88%99"><span class="toc-number">2.2.</span> <span class="toc-text">设计指导原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7"><span class="toc-number">2.3.</span> <span class="toc-text">设计质量属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.4.</span> <span class="toc-text">设计模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1"><span class="toc-number">2.4.1.</span> <span class="toc-text">抽象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">2.4.2.</span> <span class="toc-text">体系结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.4.3.</span> <span class="toc-text">设计模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-number">2.4.4.</span> <span class="toc-text">模块化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E9%9A%90%E8%97%8F"><span class="toc-number">2.4.5.</span> <span class="toc-text">信息隐藏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%8B%AC%E7%AB%8B"><span class="toc-number">2.4.6.</span> <span class="toc-text">功能独立</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B2%BE%E5%8C%96"><span class="toc-number">2.4.7.</span> <span class="toc-text">精化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E6%9E%84"><span class="toc-number">2.4.8.</span> <span class="toc-text">重构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%8A%80%E6%9C%AF"><span class="toc-number">3.</span> <span class="toc-text">设计技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.1.</span> <span class="toc-text">数据设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.2.</span> <span class="toc-text">概念数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.3.</span> <span class="toc-text">物理数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.4.</span> <span class="toc-text">体系结构设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A3%8E%E6%A0%BC%E5%92%8C%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.5.</span> <span class="toc-text">风格和模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.6.</span> <span class="toc-text">界面设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.7.</span> <span class="toc-text">部署设计</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">系统设计概述</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 5日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">Software-Engineering</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2>
+<p>软件设计：软件系统或组件的架构，构件，接口和其他特性的定义过程以及过程的结果</p>
+<ul>
+<li>软件工程生命周期的一个活动</li>
+<li>进行软件编码的基础</li>
+<li>需求分析被转化成软件的内部结构</li>
+<li>是连接用户需求和软件技术的桥梁</li>
+</ul>
+<p>设计工程的活动包括以下：</p>
+<ul>
+<li>顶层设计（架构设计）：描述软件的顶层架构和组织，划分不同的组件</li>
+<li>详细设计：描述各个组件以便编码实现</li>
+</ul>
+<p>软件设计主要为分解设计（将软甲映射为各个组件），可以包括系列模式设计</p>
+<h2 id="设计过程和质量"><a href="#设计过程和质量" class="headerlink" title="设计过程和质量"></a>设计过程和质量</h2>
+<h3 id="好的设计特点"><a href="#好的设计特点" class="headerlink" title="好的设计特点"></a>好的设计特点</h3>
+<ul>
+<li>设计必须实现在分析模型中包含的所有明确要求，必须满足客户所期望的所有隐含要求；</li>
+<li>设计必须对编码人员、测试人员及后续的维护人员是可读可理解的；</li>
+<li>设计应提供该软件的完整视图，从实现的角度解决数据、功能及行为等各领域方面的问题</li>
+</ul>
+<h3 id="设计指导原则"><a href="#设计指导原则" class="headerlink" title="设计指导原则"></a>设计指导原则</h3>
+<ul>
+<li>设计应该是一种架构</li>
+<li>设计应该是模块化的</li>
+<li>设计应该包含数据、体系结构、接口和组件各个方面
+<ul>
+<li>应该设计出系统所用的数据结构</li>
+<li>应该设计出展现独立功能特性的各组件</li>
+<li>应该设计出各组件与外部环境连接的各接口</li>
+</ul>
+</li>
+<li>设计由软件需求分析过程中获得信息驱动，采用可重复使用的方法导出</li>
+<li>设计应该采用正确清楚的表示法</li>
+</ul>
+<h3 id="设计质量属性"><a href="#设计质量属性" class="headerlink" title="设计质量属性"></a>设计质量属性</h3>
+<ul>
+<li>功能性</li>
+<li>易用性</li>
+<li>可靠性</li>
+<li>性能</li>
+<li>可支持性：扩展性，适应性，可维护性</li>
+</ul>
+<h3 id="设计模型"><a href="#设计模型" class="headerlink" title="设计模型"></a>设计模型</h3>
+<p>模型输入：软件需求的<strong>数据模型，功能模型和行为模型</strong>
+分类：<strong>数据设计，架构设计，接口设计，组件设计</strong>
+分析模型到设计模型的转化</p>
+<h4 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h4>
+<p>含义：忽略具体的信息，将不同事物看作相同事物的过程
+抽象机制：参数化，规范化
+规范化抽象：</p>
+<ul>
+<li>数据抽象：描述数据对象的冠名数据集合</li>
+<li>过程抽象：具有明确和有限功能的指令序列</li>
+</ul>
+<h4 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h4>
+<p>定义：软件整体结构和这种结构为系统提供概念上完整性的方式，可以通过以下模型表达</p>
+<ul>
+<li>结构模型</li>
+<li>框架模型</li>
+<li>动态模型</li>
+<li>过程模型</li>
+<li>功能模型</li>
+</ul>
+<h4 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h4>
+<p>在给定上下文环境中一类共同问题的共同解决方案
+微观结构：</p>
+<ul>
+<li>实体模式</li>
+<li>结构模式</li>
+<li>行为模式
+例如抽象工厂：提供一个创建一系列相关或仙湖依赖对象的接口，而无需制定他们具体的类</li>
+</ul>
+<h4 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h4>
+<p>含义：软件被划分命名和功能相对对的多个组件，通过这些组件的集成来满足问题的需求
+软件模块性：程序可悲之能管理的单一属性
+模块化的理论依据：基于人类解决问题的观测数据
+模块化的设计标准：</p>
+<ul>
+<li>分解性：可分解为子问题</li>
+<li>组合性：组装成可重用的组件</li>
+<li>可理解性：可作为独立单元理解</li>
+<li>连续性：需求小变化只影响单个模块</li>
+<li>保护：模块内异常只影响自身
+模块化和软件成本存在最小代价区间</li>
+</ul>
+<h4 id="信息隐藏"><a href="#信息隐藏" class="headerlink" title="信息隐藏"></a>信息隐藏</h4>
+<p>原则：模块应该具有彼此相互隐藏的特性，模块定义和设计时应当保证模块内信息不可以被不需要这些信息的模块访问
+特点：抽象有助于定义构成软件的过程实体，信息隐藏原则定义和隐藏了模块内的过程细节和模块内的本地数据结构；</p>
+<h4 id="功能独立"><a href="#功能独立" class="headerlink" title="功能独立"></a>功能独立</h4>
+<p>含义：每个模块只负责特定的子功能，并且从程序结构的其他部分看，该模块具有简单的接口
+好处：易于开发和维护
+标准：模块独立性强=高内聚低耦合</p>
+<ul>
+<li>内聚性：模块的功能相对强度</li>
+<li>耦合性：模块之间的依赖程度</li>
+</ul>
+<h4 id="精化"><a href="#精化" class="headerlink" title="精化"></a>精化</h4>
+<p>含义：逐步求精的过程
+与抽象的关系：抽象使设计使设计师确定过程和数据，精化有主语设计者在设计过程中揭示底层细节</p>
+<h4 id="重构"><a href="#重构" class="headerlink" title="重构"></a>重构</h4>
+<p>含义：不改变组件功能和行为条件下，简化组件设计的一种重组技术
+方法：检查现有设计的冗余情况，未使用的设计元素，无效的算法，较差的构件方式或不恰当的数据结构，或者任何其他可优化设计的问题</p>
+<h2 id="设计技术"><a href="#设计技术" class="headerlink" title="设计技术"></a>设计技术</h2>
+<h3 id="数据设计"><a href="#数据设计" class="headerlink" title="数据设计"></a>数据设计</h3>
+<p>含义：数据设计构建高层抽象的数据模型和信息模型<br>
+概念：</p>
+<ul>
+<li>数据建模：数据字典，ER图，类图</li>
+<li>数据结构：计算机存储和组织数据的方式</li>
+<li>数据库：按照数据结构来组织，存储和管理数据的仓库</li>
+<li>数据仓库</li>
+</ul>
+<p>数据设计原则：</p>
+<ul>
+<li>应用于功能和行为系统分析的原则也应适用于数据设计</li>
+<li>所有的数据结构及其对应的操作都应该确定</li>
+<li>建立数据字典并在数据定义和程序设计中应用</li>
+<li>低层次的数据设计应该推迟到设计的后期过程</li>
+<li>数据结构的表示应该只对直接使用数据结构中数据的模块可见</li>
+<li>开发有用的数据结构及其对应操作的程序库</li>
+<li>软件设计和编程语言应该支持抽象数据类型的定义与实现</li>
+</ul>
+<h3 id="概念数据模型"><a href="#概念数据模型" class="headerlink" title="概念数据模型"></a>概念数据模型</h3>
+<p>ER模型，描述实体，联系和属性；</p>
+<h3 id="物理数据模型"><a href="#物理数据模型" class="headerlink" title="物理数据模型"></a>物理数据模型</h3>
+<p>类图</p>
+<h3 id="体系结构设计"><a href="#体系结构设计" class="headerlink" title="体系结构设计"></a>体系结构设计</h3>
+<p>含义</p>
+<ul>
+<li>系统需要执行的函数功能组件集（如数据库、计算模块）</li>
+<li>组件之间通信、协同和合作的连接器</li>
+<li>组件集成构成系统的约束</li>
+<li>设计人员通过分析系统组成部分的已知特性，理解其整体特性的语义模型分析</li>
+</ul>
+<h3 id="风格和模式"><a href="#风格和模式" class="headerlink" title="风格和模式"></a>风格和模式</h3>
+<p>数据中心架构</p>
+<p><img src="/assets/Software-Engineering/image-20241027200002767.png" alt="image-20241027200002767"></p>
+<p>数据流系统架构</p>
+<p><img src="/assets/Software-Engineering/image-20241027200021667.png" alt="image-20241027200021667"></p>
+<p>调用和返回架构</p>
+<p><img src="/assets/Software-Engineering/image-20241027200035841.png" alt="image-20241027200035841"></p>
+<p>面向对象架构</p>
+<p><img src="/assets/Software-Engineering/image-20241027200050632.png" alt="image-20241027200050632"></p>
+<p>层次架构</p>
+<p><img src="/assets/Software-Engineering/image-20241027200111985.png" alt="image-20241027200111985"></p>
+<h3 id="界面设计"><a href="#界面设计" class="headerlink" title="界面设计"></a>界面设计</h3>
+<p>原则</p>
+<ul>
+<li>允许用户操作控制</li>
+<li>减少用户记忆负担</li>
+<li>保持界面一致</li>
+</ul>
+<h3 id="部署设计"><a href="#部署设计" class="headerlink" title="部署设计"></a>部署设计</h3>
+<p>含义</p>
+<ul>
+<li>以部署环境创建开始，在整个生命周期阶段中处于逻辑设计和技术需求阶段</li>
+<li>部署环境包含整个解决方案的逻辑架构和服务质量（QoS）需求</li>
+<li>部署架构设计是一个反复迭代的过程，通常需要多次查看QoS要求和多次检查先前的设计，需要考虑了服务质量QoS需求的相互关系，平衡取舍相关问题成本以实现最佳解决方案，最终满足项目的业务目标
+输出</li>
+<li>部署架构</li>
+<li>实施规范</li>
+<li>实施计划：迁移计划，安装计划，用户管理计划，测试计划，滚动淘汰计划，灾难恢复计划，操作计划（运行书），培训计划
+部署设计方法：</li>
+<li>一般方法：估计处理器需求，估计安全传输的处理器需求，可用性和可拓展性的备份服务</li>
+<li>设计分析：识别瓶颈，优化资源，管理风险</li>
+</ul>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

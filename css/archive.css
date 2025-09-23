@@ -1,0 +1,46 @@
+/* archive.css */
+
+.archive {
+  max-width: var(--list-max-width, 800px); /* 使用主题变量或默认值 */
+  margin: 0 auto; /* 居中显示 */
+  padding: 0 20px; /* 左右留一些内边距 */
+}
+
+/* 年份标题样式 */
+h2 {
+  font-size: 2em; /* 更大的字体大小，突出年份 */
+  color: var(--color-h2, #3a3a3a); /* 使用主题定义的标题颜色 */
+  margin-top: 2em; /* 年份上方留白 */
+  margin-bottom: 1em; /* 年份下方留白 */
+  font-weight: bold; /* 加粗年份 */
+}
+
+/* 每篇文章条目样式 */
+.timenode {
+  margin-bottom: 10px; /* 每条文章之间留白 */
+  /* 如果需要，可以在这里添加背景色、边框或阴影以区分条目 */
+}
+
+/* 文章链接样式 */
+.timenode a.meta {
+  display: flex; /* 使用 Flexbox 实现时间与标题的对齐 */
+  align-items: baseline; /* 沿基线对齐内容 */
+  text-decoration: none; /* 默认无下划线 */
+  color: var(--color-text, #444); /* 使用主题定义的文本颜色 */
+  transition: color 0.3s ease; /* 鼠标悬停时的颜色过渡效果 */
+}
+
+/* 文章链接悬停效果 */
+.timenode a.meta:hover {
+  text-decoration: underline; /* 鼠标悬停时显示下划线 */
+  color: var(--color-list-hl, #30ad91); /* 鼠标悬停时使用高亮颜色 */
+}
+
+/* 时间显示样式 */
+.timenode time {
+  font-size: 0.9em; /* 日期字体稍小 */
+  color: var(--color-meta, #888); /* 日期使用较浅的颜色 */
+  margin-right: 15px; /* 日期和标题之间的距离 */
+  min-width: 60px; /* 确保日期有足够的宽度，以便对齐 */
+  text-align: right; /* 日期靠右对齐，营造时间线效果 */
+}

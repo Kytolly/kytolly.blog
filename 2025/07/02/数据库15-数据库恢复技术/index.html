@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    数据库恢复技术
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">数据库恢复技术</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D"><span class="toc-number">1.</span> <span class="toc-text">故障恢复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97"><span class="toc-number">2.</span> <span class="toc-text">日志</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">日志概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E5%BD%A2%E5%BC%8F"><span class="toc-number">2.2.</span> <span class="toc-text">记录形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E8%A6%81%E6%B1%82"><span class="toc-number">2.3.</span> <span class="toc-text">日志要求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E5%83%8F%E5%90%8E%E5%86%99"><span class="toc-number">3.</span> <span class="toc-text">后像后写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E5%83%8F%E5%89%8D%E5%86%99"><span class="toc-number">4.</span> <span class="toc-text">后像前写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E5%83%8F%E5%89%8D%E5%90%8E%E5%86%99"><span class="toc-number">5.</span> <span class="toc-text">后像前后写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E5%B9%82%E6%93%8D%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">等幂操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E7%82%B9"><span class="toc-number">7.</span> <span class="toc-text">检查点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%BD%AC%E5%82%A8"><span class="toc-number">8.</span> <span class="toc-text">数据转储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D%E7%AD%96%E7%95%A5"><span class="toc-number">9.</span> <span class="toc-text">恢复策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%85%E9%9A%9C%E5%88%86%E7%B1%BB"><span class="toc-number">9.1.</span> <span class="toc-text">故障分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D"><span class="toc-number">9.2.</span> <span class="toc-text">事务故障恢复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D"><span class="toc-number">9.3.</span> <span class="toc-text">系统故障恢复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8B%E8%B4%A8%E6%95%85%E9%9A%9C%E6%81%A2%E5%A4%8D"><span class="toc-number">9.4.</span> <span class="toc-text">介质故障恢复</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">数据库恢复技术</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 2日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">Database</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="故障恢复"><a href="#故障恢复" class="headerlink" title="故障恢复"></a>故障恢复</h2>
+<p>如何应对系统故障：</p>
+<ul>
+<li>提高系统的可靠性</li>
+<li>在系统故障发生后，把数据库恢复到一致状态
+恢复的关键问题是如何建立冗余数据，以及利用冗余数据实施数据库恢复
+恢复技术：</li>
+<li>记录日志文件</li>
+<li>数据转储</li>
+</ul>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2>
+<h3 id="日志概念"><a href="#日志概念" class="headerlink" title="日志概念"></a>日志概念</h3>
+<p>日志是用来记录事务对数据库的更新操作的文件，是日志记录的序列</p>
+<ul>
+<li>事务标识符：执行写操作的唯一标识符</li>
+<li>数据项标识符：事务操作对象的唯一标识符</li>
+<li>前像（BI）：更新前数据的旧值；</li>
+<li>后像（AI）：更新后数据的新值；</li>
+</ul>
+<h3 id="记录形式"><a href="#记录形式" class="headerlink" title="记录形式"></a>记录形式</h3>
+<ul>
+<li><code>&lt;T START&gt;</code>:事务T开始</li>
+<li><code>&lt;T COMMIT&gt;</code>：事务T提交</li>
+<li><code>&lt;T ABORT&gt;</code>：事务T中止</li>
+<li><code>&lt;T,X,V1,V2&gt;</code>：事务T对数据项X写，前像为V1，后像为V2</li>
+</ul>
+<h3 id="日志要求"><a href="#日志要求" class="headerlink" title="日志要求"></a>日志要求</h3>
+<ul>
+<li>每次事务执行写操作，必须在数据库修改前建立此次修改前的日志记录</li>
+<li>日志必须存储在稳定的存储器上</li>
+<li>稳定存储器中的日志记录顺序必须与写入缓冲区的日志记录顺序完全一样
+一般来说，日志的记录遵循日志先写规则：在贮存中的数据块输出到数据库之前，所有可数据块中数据有关的日志记录必须已经输出到稳定存储器上
+写日志的方式：</li>
+<li>后像后写</li>
+<li>后像前写</li>
+<li>后像前后写</li>
+</ul>
+<h2 id="后像后写"><a href="#后像后写" class="headerlink" title="后像后写"></a>后像后写</h2>
+<p>恢复数据库的步骤</p>
+<ul>
+<li>从后向前扫描数据库，将提交的事务放入队列<code>redolist</code>中</li>
+<li>从前往后扫描日志，对遇到的每一个<code>&lt;T,X,V1&gt;</code>记录
+<ul>
+<li>若不是队列中的事务，则无事发生</li>
+<li>若是队列中的事务，将数据项写为<code>V1</code></li>
+</ul>
+</li>
+<li>对每个未完成的事务，在日志写入一个<code>&lt;T,ABORT&gt;</code>的记录并刷新日志</li>
+</ul>
+<h2 id="后像前写"><a href="#后像前写" class="headerlink" title="后像前写"></a>后像前写</h2>
+<p>事务恢复过程：Undo，将事务T更新的所有数据项的值设为旧值；
+简化日志记录内容：</p>
+<ul>
+<li>每一条日志记录内容为<code>&lt;T,X,V1&gt;</code></li>
+<li>需要省去新值字段；</li>
+<li>事务T对数据项X执行写操作，写前的旧值为V1
+恢复管理器执行：</li>
+<li>对日志从后往前扫描，将<code>&lt;T,COMMIT&gt;</code>记录的事务放入redo-list队列</li>
+<li>重新对日志文件从后往前扫描</li>
+<li>对每一个<code>&lt;T,X,V1&gt;</code>记录，若T在redo-list队列中，则恢复管理器忽略它；若不在，则将这个数据项改为旧值<code>V1</code></li>
+</ul>
+<h2 id="后像前后写"><a href="#后像前后写" class="headerlink" title="后像前后写"></a>后像前后写</h2>
+<p>后像在事务提交前后写入数据库，提交的时机应该和设置的缓存大小有关;
+理论上事务应该按照<strong>非窃取强制写</strong>的方式刷新数据库，以保证原子性和一致性；
+但是后像前后写可能存在4种组合方式刷新数据库；</p>
+<ul>
+<li>被修改的数据项写入磁盘的时机既可能在提交前，也可能在提交后；</li>
+<li>日志更新记录表示：<code>&lt;T,X,V1,V2&gt;</code></li>
+<li>有些数据库实现直接构建redo-log和undo-log，而不是维护redo-list和undo-list</li>
+<li>窃取方式写日志一定包含undo操作，非强制方式写日志一定包含redo操作
+执行规则：日志先写，被更新数据项写入磁盘，更新记录<code>&lt;T,X,V1,V2&gt;</code>必须已经写到稳定存储器上
+恢复管理器步骤：</li>
+<li>对日志文件从前往后扫描，将有<code>&lt;T,COMMIT&gt;</code>记录和没有<code>&lt;T,COMMIT&gt;</code>记录的事务分别放入两个队列：redo-list，undo-list</li>
+<li>从前往后扫描日志，执行redo-list</li>
+<li>从后往前扫描日志，执行undo-list</li>
+</ul>
+<h2 id="等幂操作"><a href="#等幂操作" class="headerlink" title="等幂操作"></a>等幂操作</h2>
+<p>恢复机制应该是等幂的，也就是恢复过程中再次发生崩溃，恢复机制仍然可以重新恢复，前一次恢复过程是否更新为旧值或新值无关紧要；</p>
+<ul>
+<li>多次执行操作与执行一次操作的效果完全相同</li>
+<li>无论redo和undo，恢复的步骤都是等幂的；
+注意这时，redo-log内容属于逻辑日志，undo-log内容应该属于物理日志；</li>
+</ul>
+<h2 id="检查点"><a href="#检查点" class="headerlink" title="检查点"></a>检查点</h2>
+<p>提交一致性检查点：</p>
+<ul>
+<li>新的事务不能开始，直到检查点完成</li>
+<li>现有事务继续执行直到中止或提交，将相关数据以及日志写入稳定存储器；</li>
+<li>将checkpoint写入稳定存储器</li>
+</ul>
+<p>高速缓存一致性检查点：</p>
+<ul>
+<li>新的事务不能开始到检查点完成</li>
+<li>已存在的事务不允许执行新的更新操作</li>
+<li>将当前日志和数据写入磁盘</li>
+<li>将<code>&lt;checkpoint，T-list&gt;</code>写入稳定存储器</li>
+</ul>
+<h2 id="数据转储"><a href="#数据转储" class="headerlink" title="数据转储"></a>数据转储</h2>
+<p>数据转储是数据库恢复中采用的技术</p>
+<ul>
+<li>定期将整个数据库复制到其他介质保存起来</li>
+<li>备用的数据文本称为后备副本
+静态转储</li>
+<li>在系统中无运行事务时进行转储</li>
+<li>转储开始时数据库处于一致性状态</li>
+<li>转储期间不允许对数据库任何存取和修改</li>
+<li>优点：实现简单</li>
+<li>缺点：降低了数据库的可用性，转储必须等待事务结束，新的事务必须等待转储结束
+动态转储</li>
+<li>转储过程和事务并发进行，允许对数据库进行存取和修改</li>
+<li>优点：无需等待正在运行的事务结束，不会影响新事物的运行</li>
+<li>缺点：不能保证副本的数据正确有效</li>
+<li>利用带台转储得到的副本进行恢复，需要建立转储期间的日志活动</li>
+<li>后备副本+日志文件才能将数据库恢复到某一时刻的正确状态
+完全转储: 每次转储全部数据库
+增量转储: 只转储上次转储后更新过的数据</li>
+<li>从恢复角度看，使用完全转储得到的后备副本进行恢复往往更方便</li>
+<li>但如果数据库很大，事务处理又十分频繁，则增量转储方式更实用更有效</li>
+</ul>
+<h2 id="恢复策略"><a href="#恢复策略" class="headerlink" title="恢复策略"></a>恢复策略</h2>
+<h3 id="故障分类"><a href="#故障分类" class="headerlink" title="故障分类"></a>故障分类</h3>
+<p>事务故障</p>
+<ul>
+<li>逻辑错误：事务由于内部条件（如非法输入、溢出等）无法继续正常执行</li>
+<li>系统错误：系统进入一种不良状态（如死锁），事务无法继续正常执行</li>
+<li>事务故障使得事务无法达到预期的终点，数据库可能处于不一致的状态。恢复机制强行回滚该事务，撤销该事务对数据库做的任何修改
+系统故障</li>
+<li>包括硬件故障、数据库软件或操作系统的漏洞造成的系统停止运转。它导致系统易失性存储器中的内容丢失，事务处理停止，但非易失性存储器中的内容不会受到破坏
+介质故障</li>
+<li>在数据传送操作过程中由于磁头损坏或故障造成磁盘块上的内容丢失</li>
+<li>需使用其他非易失性存储器上的数据库后备副本进行故障的恢复</li>
+</ul>
+<h3 id="事务故障恢复"><a href="#事务故障恢复" class="headerlink" title="事务故障恢复"></a>事务故障恢复</h3>
+<p>恢复技术：利用日志文件</p>
+<ul>
+<li>后像后写：发生故障时数据库中的数据并没有发生变化，所有数据项的修改只是在日志文件中有记录。恢复管理器忽略这些未完成的事务</li>
+<li>后像前写：发生故障时，系统可能已将部分或全部数据项的修改写入磁盘，使用日志文件撤销（UNDO）此事务对数据库的修改。</li>
+<li>后像前后写：发生故障时系统仍可能已将部分数据项的修改写入磁盘。使用日志文件撤销（UNDO）此事务对数据库的修改
+一般通过日志文件，需要维护redo-list和undo-list
+当系统崩溃重新启动时，它构造两个队列：undo-list存放需要撤销的事务标识符，redo-list存放需要重做得事务标识符</li>
+<li>这两个队列刚开始时都是空的</li>
+<li>队列构造步骤如下
+<ul>
+<li>系统反向扫描日志，直到发现第一个<checkpoint>记</checkpoint></li>
+<li>对每一个&lt;Ti，COMMIT&gt;记录，将Ti加入redo-list</li>
+<li>对每一个&lt;Ti，START&gt;记录，如果Ti不属于redo-list，则将Ti加入undo-list</li>
+</ul>
+</li>
+</ul>
+<h3 id="系统故障恢复"><a href="#系统故障恢复" class="headerlink" title="系统故障恢复"></a>系统故障恢复</h3>
+<ul>
+<li>利用日志文件：</li>
+<li>后像后写</li>
+<li>后像前写</li>
+<li>后像前后写</li>
+</ul>
+<h3 id="介质故障恢复"><a href="#介质故障恢复" class="headerlink" title="介质故障恢复"></a>介质故障恢复</h3>
+<ul>
+<li>装入最近的完全转储后备副本：若数据库副本是动态转储的，还需要同时装入转储开始时刻的日志文件副本，利用恢复系统故障的方法将数据库恢复到某个一致性状态</li>
+<li>如果有后续的增量转储，按照从前往后的顺序，根据增量转储来修改数据库</li>
+<li>装入转储结束后的日志文件副本，重做已完成的事务
+<ul>
+<li>首先反向扫描日志文件，找出故障发生时已经提交的事务，将事务标识符写入redo-list</li>
+<li>然后正向扫描日志文件，对redo-list中的所有事务进行redo操作</li>
+</ul>
+</li>
+</ul>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

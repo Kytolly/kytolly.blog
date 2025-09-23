@@ -1,0 +1,195 @@
+/*
+  Shiroi Code Block Styling - FINAL
+  - A clean, headered code block with CSS Variables for theming.
+  - Language display and copy button
+  - Only two separator lines: one under the header, one between line numbers and code.
+  - Fix for rounded corners and persistent borders.
+*/
+
+/* 
+  Define all themeable properties as CSS variables with light theme defaults.
+  Dark theme (or any other theme) will override these variables.
+*/
+figure.highlight {
+  --code-bg: var(--code-block-light-bg); /* Overall background of the container */
+  --header-bg: var(--code-block-light-header-bg); /* Header background */
+  --table-bg: var(--code-block-light-table-bg); /* Code area background */
+  --gutter-bg: var(--code-block-light-gutter-bg); /* Line number background, same as header */
+  --border-color: var(--code-block-light-border-color); /* All separator lines */
+  --lang-name-color: var(--code-block-light-lang-name-color); /* Language name text color */
+
+  border-radius: 8px;
+  margin: 10px 0;
+  overflow: hidden;
+  background-color: var(--code-bg);
+}
+
+/* Add a class to the figure when in dark mode to switch themes */
+figure.highlight.theme-dark {
+  --code-bg: var(--code-block-dark-bg); /* Use dark mode background from root */
+  --header-bg: var(--code-block-dark-header-bg); /* Use dark mode background from root */
+  --table-bg: var(--code-block-dark-table-bg); /* Use dark mode background from root */
+  --gutter-bg: var(--code-block-dark-gutter-bg); /* Use dark mode background from root */
+  --border-color: var(--code-block-dark-border-color); /* Use dark mode border from root */
+  --lang-name-color: var(--code-block-dark-lang-name-color); /* Use dark mode extra font color from root */
+}
+
+/* Main container: no border/shadow, just a rounded shape with a background */
+/* The background-color is now set in the root `figure.highlight` rule */
+
+/* Header for language name and copy button */
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3em 0.7em;
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border-color); /* Horizontal separator */
+}
+
+.code-lang-name {
+  font-size: 0.9em;
+  color: var(--lang-name-color);
+  text-transform: capitalize;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Copy button styling - no colors to theme here, but keeping it for context */
+.copy-btn-container .copy-btn {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  opacity: 0.6;
+}
+
+.copy-btn-container .copy-btn:hover {
+  opacity: 1;
+}
+
+.copy-btn-container .copy-btn img,
+.code-block-actions .theme-toggle-btn img {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+/* --- OVERRIDES FOR CONFLICTING GLOBAL STYLES --- */
+
+/* This is the container for the code proper */
+figure.highlight table.hljs {
+  background-color: var(--table-bg);
+  width: 100%;
+  margin: 0;
+  border-spacing: 0;
+  border-radius: 0 0 8px 8px;
+}
+
+/* Nuke all borders on table cells from other stylesheets with high specificity */
+.post-content figure.highlight table.hljs td {
+  border: none !important;
+  padding: 0 !important; /* Reset padding before applying it below */
+}
+
+/* Apply padding and the vertical separator ONLY where intended */
+.post-content figure.highlight table.hljs .gutter {
+  background-color: var(--gutter-bg);
+  padding: 0.5em !important;
+  border-right: 1px solid var(--border-color) !important; /* The one true vertical line */
+}
+
+.post-content figure.highlight table.hljs .code {
+  padding: 0.5em !important;
+  background-color: var(--table-bg); /* Add background color for code area */
+}
+
+/* Also color the gutter text */
+.post-content figure.highlight table.hljs .gutter .line {
+  color: var(--lang-name-color); /* Use the same color as the lang name for now */
+  opacity: 0.5;
+}
+
+/* Previous styles being replaced */
+/*
+pre {
+  position: relative;
+}
+
+.copy-btn-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+.copy-btn-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+*/
+
+figure.highlight .code, figure.highlight .gutter {
+    padding: 0.5em !important;
+}
+
+figure.highlight .gutter {
+    padding-right: 0.7em !important;
+}
+
+figure.highlight .code {
+    padding-left: 0.7em !important;
+} 
+
+.hljs, figure.highlight {
+  margin: 10px 0;
+}
+
+.hljs .code, .gutter, .post-content pre {
+  padding: 0.5em !important;
+}
+
+.gutter {
+  padding-right: 0.7em !important;
+}
+
+.hljs .code {
+  padding-left: 0.7em !important;
+}
+
+.code-block-header {
+  padding: 0.3em 0.7em;
+}
+
+.hljs table td,
+.hljs table th,
+.hljs table tr,
+.hljs > table,
+.highlight,
+.highlight table,
+.post-content pre,
+.post-content code {
+  border: none !important;
+}
+
+/* 只保留行号和代码之间的分隔线 */
+.hljs-ln-line.hljs-ln-numbers,
+.gutter {
+  border-right: 1px solid var(--color-border-code) !important;
+}
+
+.hljs-ln-line.hljs-ln-numbers {
+text-align: center;
+padding-right: 10px;
+border-right: 1px solid #dddddd;
+margin-right: 12px;
+}
+
+.hljs .code {
+width: 100%;
+}
+
+.post-content figure.highlight table.hljs .code pre {
+  color: var(--lang-name-color) !important;
+  background-color: transparent !important;
+}

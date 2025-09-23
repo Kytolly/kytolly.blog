@@ -1,0 +1,119 @@
+body {
+  font-family: "Times New Roman", "Noto Serif SC", serif;
+  font-size: 16px;
+  line-height: 1.75;
+  letter-spacing: 0.6px;
+  color: var(--font-color-secondary);
+}
+
+.main {
+  width: 100%;
+  padding: 72px 0 24px;
+  overflow-x: hidden;
+  overflow-y: visible;
+  min-height: calc(100vh - 96px);
+}
+
+p {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul {
+  padding-inline-start: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 100vw; /* 确保占据整个视口宽度 */
+  scroll-behavior: smooth;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img,
+picture {
+  width: auto;
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: var(--color-scrollbar-thumb);
+}
+
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: var(--font-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Times New Roman", "Noto Serif SC", serif;
+  font-weight: bold;
+}
+
+code {
+  font-family: "Ubuntu Mono", monospace;
+}
+
+.post-content ul {
+  padding-inline-start: 0;
+}
+
+body::before {
+  z-index: -1;
+  position: fixed;
+  /* 其它样式 */
+}
+
+body.dark-mode .site-container {
+  background: rgba(26, 26, 26, 0.7); /* Dark semi-transparent background for site-container in dark mode */
+}

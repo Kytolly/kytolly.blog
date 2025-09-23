@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    Kytolly&#39;s Blog
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'true'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <div class="post-list">
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B10-%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4%E6%8A%80%E6%9C%AF/">软件维护技术</a>
+        <div class="post-item-summary">
+        概念
+定义：由于软件产品出现问题 或需要改进，而对代码及相关文档进行 修改，其目的是对现有软件产品进行修 改的同时保持其完整性。
+必要性
+
+改正错误；
+改善设计
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B10-%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4%E6%8A%80%E6%9C%AF/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B11-%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/">软件管理技术</a>
+        <div class="post-item-summary">
+        概念
+定义
+计划、协调、度量、监控、控制及报告等管理方法在软件开 发和维护中的具体应用，以保证整个过程是系统的、有原则 的、可量化的
+四要素4P
+
+
+人员Peo
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B11-%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B2-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">需求分析</a>
+        <div class="post-item-summary">
+        概述
+定义
+
+确认系统必须具备的功能、性能、系统要求的运行环境，预测发展的前景；
+以一种清晰，简洁，一致性且无二义性的方式，对待开发系统中各个有意义的方面的陈述
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B2-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B3-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">面向过程的需求分析</a>
+        <div class="post-item-summary">
+        结构化分析方法
+
+面对数据流进行需求分析的方法；
+适合于数据处理类型的需求分析；
+建立模型：
+
+功能模型：数据流图（DFD）
+数据模型（数据对象描述）：数据字典
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B3-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B4-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">面向对象的需求分析</a>
+        <div class="post-item-summary">
+        统一建模语言UML
+概念
+
+
+系统及其边界
+
+
+目的：识别什么在系统内，什么在系统外，进而识别出系统的职责；
+
+
+典型的系统边界：硬件设备，组织，部门
+
+
+方框
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B4-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B5-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%A6%82%E8%BF%B0/">系统设计概述</a>
+        <div class="post-item-summary">
+        概述
+软件设计：软件系统或组件的架构，构件，接口和其他特性的定义过程以及过程的结果
+
+软件工程生命周期的一个活动
+进行软件编码的基础
+需求分析被转化成软件的内部
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B5-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%A6%82%E8%BF%B0/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B6-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">面向对象的系统设计</a>
+        <div class="post-item-summary">
+        面向对象设计活动
+包括系统架构设计，用例设计，类设计，数据库设计，用户界面设计；
+架构设计
+架构设计的目的是要勾画出系统的总体结构，这项工作由经验丰富的架构设计
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B6-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B7-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">面向过程的系统设计</a>
+        <div class="post-item-summary">
+        总体设计
+
+首先研究、分析和审查数据流图。从软件的需求规格说明中弄清数 据流加工的过程，对于发现的问题及时解决。
+然后根据数据流图决定问题的类型。数据处理问题典
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B7-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B8-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/">软件测试概论</a>
+        <div class="post-item-summary">
+        软件质量保证与测试相关概念
+软件质量
+定义：明确表示是否包含功能和性能需求，明确记载开发标准和所有专业开发软件的期望的隐性特点
+关键点
+
+软件测试时软件质量测量
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B8-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%A6%82%E8%AE%BA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B9-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF/">软件测试技术</a>
+        <div class="post-item-summary">
+        分类
+
+白盒测试：考虑系统或组件的内部机制的测试形式（如分支测试、路径测试、语句测试等）
+黑盒测试：忽略系统或组件的内部机制，仅关注于那些响应所选择的输入及相应
+        <a class="read-more" href="/2025/07/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B9-%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.05</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Software-Engineering/">Software-Engineering</a>
+            
+        </div>
+        </div>
+    </section>
+    
+</div>
+
+
+<div class="paginator">
+  <a class="extend prev" rel="prev" href="/page/3/">&lt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">&gt;</a>
+</div>
+
+
+
+<link rel="stylesheet" href="/css/paginator.css">
+
+
+<link rel="stylesheet" href="/css/list.css">
+
+
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

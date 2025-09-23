@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    Kytolly&#39;s Blog
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'true'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <div class="post-list">
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E6%A6%82%E8%BF%B0/">信息检索概述</a>
+        <div class="post-item-summary">
+        什么是信息检索
+
+给定用户需求返回满足该需求信息的一门学科。通常涉及信息的获取、存储、组织和访问。
+从大规模非结构化数据（通常是文本）的集合（通常保存在计算机上
+        <a class="read-more" href="/2025/07/02/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E6%A6%82%E8%BF%B0/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Information-Retrieval/">Information-Retrieval</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/A-web-service-recommendation-algorithm-based-on-BaisSVD/">A web service recommendation algorithm  based on BaisSVD</a>
+        <div class="post-item-summary">
+        Source
+Da Sun ,Tong Nie  Beijing Engineering Research Center for IoT Software an
+        <a class="read-more" href="/2025/07/02/A-web-service-recommendation-algorithm-based-on-BaisSVD/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/papers/">papers</a>
+            
+            <a class="tag-item" href="/tag/Information-Retrieval/">Information-Retrieval</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Link/">Link</a>
+        <div class="post-item-summary">
+        数据链路层
+链路层要解决的问题是单段链路的数据传输，物理层解决的是数字信号与电气信号之间的相互转换。
+在这一层中，我们把所有接入数据链路层的实体看作结点，包括主
+        <a class="read-more" href="/2025/07/02/Link/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Computer-Network/">Computer-Network</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Network/">Network</a>
+        <div class="post-item-summary">
+        Network
+设计
+路由器的工作在分组从发送方主机传送到接收方主机 的过程的中间：
+
+发送方将数据段封装成分组
+接收方将分组解封装后将数据段递交给传输层
+网络
+        <a class="read-more" href="/2025/07/02/Network/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Computer-Network/">Computer-Network</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Application/">Application</a>
+        <div class="post-item-summary">
+        网络应用
+协议特点
+每个应用层协议都是为了解决某一类应用问题，而问题的解决又往往是通过位于不同主机中的多个应用进程之间的通信和协同工作来完成的。应用层的具体内容
+        <a class="read-more" href="/2025/07/02/Application/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Computer-Network/">Computer-Network</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Internet/">Internet</a>
+        <div class="post-item-summary">
+        Internet
+描述
+计算机网络是两台以上具有独立操作系统的计算机通过介质连接成互相共享的软硬件资源的集合体；以下是其成分的描述：
+
+主机(hosts)/端系
+        <a class="read-more" href="/2025/07/02/Internet/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Computer-Network/">Computer-Network</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Ensemble-Learning/">Ensemble Learning</a>
+        <div class="post-item-summary">
+        idea
+集成学习 (ensemble learning) 通过构建并结合多个学习器来完成学习任务。
+下图展示了集成学习的一般结构：
+
+先产生一组个体学习器 (
+        <a class="read-more" href="/2025/07/02/Ensemble-Learning/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/SVM/">SVM</a>
+        <div class="post-item-summary">
+        支持向量机
+Idea
+支持向量机(Support Vector Machine)是Vapnik等于1995年首先提出的，它在解决小样本、非线性及高维模式识别中表
+        <a class="read-more" href="/2025/07/02/SVM/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Recurrent-Neural-Network/">Recurrent Neural Network</a>
+        <div class="post-item-summary">
+        RNN介绍
+时序任务
+对于一些任务需要能够更好的处理序列的信息，这些任务的特征是前面的输入和后面的输入是有关系的。比如，当理解一句话意思时，孤立的 理解这句话的
+        <a class="read-more" href="/2025/07/02/Recurrent-Neural-Network/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Perceptron/">Perceptron</a>
+        <div class="post-item-summary">
+        Perceptron
+线性可分
+对于二分类问题，给定一个数据集
+
+其中，。
+如果存在一个超平面：能够将数据集中的正例和负例完全分开，即对于所有的正例有，对于所有
+        <a class="read-more" href="/2025/07/02/Perceptron/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+</div>
+
+
+<div class="paginator">
+  <a class="extend prev" rel="prev" href="/page/6/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">&gt;</a>
+</div>
+
+
+
+<link rel="stylesheet" href="/css/paginator.css">
+
+
+<link rel="stylesheet" href="/css/list.css">
+
+
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

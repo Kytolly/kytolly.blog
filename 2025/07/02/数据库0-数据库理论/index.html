@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    数据库理论
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">数据库理论</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">数据库是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A6%82%E5%BF%B5"><span class="toc-number">2.</span> <span class="toc-text">数据概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE"><span class="toc-number">2.1.</span> <span class="toc-text">数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF"><span class="toc-number">2.2.</span> <span class="toc-text">信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86"><span class="toc-number">2.3.</span> <span class="toc-text">知识</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E5%BF%B5"><span class="toc-number">3.</span> <span class="toc-text">数据库概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93DB"><span class="toc-number">3.1.</span> <span class="toc-text">数据库DB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9FDBMS"><span class="toc-number">3.2.</span> <span class="toc-text">数据库管理系统DBMS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">3.2.1.</span> <span class="toc-text">功能</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.3.</span> <span class="toc-text">数据库系统</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">数据库理论</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 2日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">Database</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="数据库是什么"><a href="#数据库是什么" class="headerlink" title="数据库是什么"></a>数据库是什么</h2>
+<p>数据库：长期存储在计算机内，有组织，可共享的海量数据集合</p>
+<p>数据库相关理论及相关问题：</p>
+<ul>
+<li>数据模型，规范化理论：如何组织这些数据?</li>
+<li>数据定义和操作语言；如何存取和操作数据？</li>
+<li>数据安全：哪些人可以操作这些数据？</li>
+<li>并发控制：多人如何操作统一数据？</li>
+<li>数据恢复：出现故障怎么办？</li>
+<li>数据挖掘：如何分析数据和发现数据价值？</li>
+</ul>
+<p>数据库相关人员职责：</p>
+<ol>
+<li>数据库开发者</li>
+<li>数据库设计者</li>
+<li>数据库管理员</li>
+<li>数据库实现者</li>
+</ol>
+<h2 id="数据概念"><a href="#数据概念" class="headerlink" title="数据概念"></a>数据概念</h2>
+<h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3>
+<p>数据是一种符号序列，它的内容是事物特性的反映，能被计算机识别，存储；</p>
+<p>数据的类型：</p>
+<ul>
+<li>数字，字母，文字</li>
+<li>图形， 图像，声音…</li>
+</ul>
+<h3 id="信息"><a href="#信息" class="headerlink" title="信息"></a>信息</h3>
+<p>信息是经过加工处理的数据，是数据的具体含义；</p>
+<p>数据和信息的联系：</p>
+<ol>
+<li>数据是信息的载体，数据是信息的外延；</li>
+<li>信息是数据的具体含义，信息是数据的内含；</li>
+<li>信息是抽象的，不随数据形式而变化；</li>
+<li>信息对应的数据表现形式具有可选择性；</li>
+</ol>
+<h3 id="知识"><a href="#知识" class="headerlink" title="知识"></a>知识</h3>
+<p>知识是有用的信息；</p>
+<p>知识获取的过程既是从大量、已知信息出发、根据事物之间的固有联系和规律，提出有价值、有意义的信息</p>
+<h2 id="数据库概念"><a href="#数据库概念" class="headerlink" title="数据库概念"></a>数据库概念</h2>
+<h3 id="数据库DB"><a href="#数据库DB" class="headerlink" title="数据库DB"></a>数据库DB</h3>
+<p>数据库是长期储存在计算机内、有组织的、可共享的大量数据集合。</p>
+<ul>
+<li>按一定的数据模型组织，描述和存储；</li>
+<li>可为各种用户共享；</li>
+<li>冗余度小；</li>
+<li>数据独立性高；</li>
+<li>易拓展；</li>
+</ul>
+<h3 id="数据库管理系统DBMS"><a href="#数据库管理系统DBMS" class="headerlink" title="数据库管理系统DBMS"></a>数据库管理系统DBMS</h3>
+<p>定义：一个能让用户定义，创建和维护数据库以及控制对数据库访问的软件系统；</p>
+<h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4>
+<ol>
+<li>
+<p><strong>数据库定义DDL</strong>：对各级数据库模式进行精确定义（create, alter, drop），包括创建模式，数据库，表，视图；</p>
+</li>
+<li>
+<p><strong>数据操纵DML</strong>：对数据库中的数据进行处理(select, insert, update, delete)，包括增加、删除、修改、查询；</p>
+</li>
+<li>
+<p><strong>数据库运行控制DCL</strong>：数据库恢复，数据库并发控制，数据完整性控制，数据安全性控制(grant, revoke)</p>
+</li>
+<li>
+<p><strong>数据库的维护功能</strong>：</p>
+<ul>
+<li>初始数据的载入；</li>
+<li>数据库的转储；</li>
+<li>数据库性质监视，分析功能；</li>
+</ul>
+</li>
+<li>
+<p><strong>数据字典DD</strong>：存放数据库的三级模式的描述</p>
+</li>
+</ol>
+<h3 id="数据库系统"><a href="#数据库系统" class="headerlink" title="数据库系统"></a>数据库系统</h3>
+<p>定义：引入数据库后的计算机系统；</p>
+<ul>
+<li>硬件</li>
+<li>软件（数据库，数据库管理系统和相关软件）</li>
+<li>用户（数据库管理员，数据库开发者， 最终用户）</li>
+</ul>
+<p>一般认为DBS包含DB，DBMS，但是DB和DBMS没有包含关系；</p>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

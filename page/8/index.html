@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    Kytolly&#39;s Blog
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'true'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <div class="post-list">
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/PCA/">PCA</a>
+        <div class="post-item-summary">
+        维度灾难
+在一维的时候，数据点是非常稠密的，而随着维数的增加（如2维， 3维），整个数据点的空间就形成非常庞大的空间（由 3 个，变 成9个，再变成27个），相
+        <a class="read-more" href="/2025/07/02/PCA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/Naive-Bayes/">Naive Bayes</a>
+        <div class="post-item-summary">
+        Naive Bayes 分类器
+贝叶斯分类算法是统计学的一种分类方法，它是一类利用概率统计知识进行分类的算法。在许多场合，朴素贝叶斯(Naïve Bayes，N
+        <a class="read-more" href="/2025/07/02/Naive-Bayes/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/LDA/">LDA</a>
+        <div class="post-item-summary">
+        LDA技术
+Idea
+对于一类二分类问题，还可以采取线性判别分析(Liner Discriminant Analysis);
+给定训练样例集，将样本投影到一条直
+        <a class="read-more" href="/2025/07/02/LDA/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/KNN/">KNN</a>
+        <div class="post-item-summary">
+        KNN学习
+idea
+作为最简单的监督学习算法，可概括为"近朱者赤近墨者黑"。
+作为典型的消极学习(lazy learning)，KNN在训练阶段仅仅是把样本保
+        <a class="read-more" href="/2025/07/02/KNN/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/07/02/KD-Tree/">KD-Tree</a>
+        <div class="post-item-summary">
+        数据结构
+K-Dimensional Tree (KD-Tree) 是一种用于组织 k 维空间中的点的数据结构，主要用于快速进行范围搜索和最近邻搜索。它可以看作
+        <a class="read-more" href="/2025/07/02/KD-Tree/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.07.02</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+            <a class="tag-item" href="/tag/Data%20Structure/">Data Structure</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/22/markdown-%E5%86%99%E4%BD%9C%E8%A7%84%E8%8C%83/">Markdown 写作规范</a>
+        <div class="post-item-summary">
+        这是一个一级标题
+本主题按照本人使用的 Typora 编辑器风格定制，旨在打造一款轻量级的TeX样式。
+本主题改编自 Typo。
+这是一个二级标题
+如果你使用本
+        <a class="read-more" href="/2025/06/22/markdown-%E5%86%99%E4%BD%9C%E8%A7%84%E8%8C%83/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.22</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Musings/">Musings</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/21/Convolution-Neural-Network/">Convolution Neural Network</a>
+        <div class="post-item-summary">
+        Introduction
+卷积神经网络是受生物学上感受野(receptive Field)的机制而提出的
+
+在视觉神经系统中，一个神经元的感受野是指视网膜上的特
+        <a class="read-more" href="/2025/06/21/Convolution-Neural-Network/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.21</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/papers/">papers</a>
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/21/Cluster/">Cluster</a>
+        <div class="post-item-summary">
+        Introduction
+如果我们相信聚集在一起，有较高相似性的簇一定有有趣的知识的话，那么聚类分析就是获得数据内部结构，发现簇的意义的方法。
+在讨论聚类算法时
+        <a class="read-more" href="/2025/06/21/Cluster/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.21</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/papers/">papers</a>
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/21/Autoencoder/">Autoencoder</a>
+        <div class="post-item-summary">
+        Introduction
+架构
+CNN的训练样本是带有标签的。在很多实际应用中， 训练样本是没有标签的。应用误差反向传播算法来训练网络会遇到一些困难。
+自编码器
+        <a class="read-more" href="/2025/06/21/Autoencoder/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.21</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+    <section class="post-item">
+        <a class="post-item-title" href="/2025/06/21/Artificial-Neural-Network/">Artificial Neural Network</a>
+        <div class="post-item-summary">
+        Idea
+人工神经网络（ANN，Artificial Neural Networks）是在人类对大脑神经网络认识理解的基础上，人工构造的能够实现某种功能的神经网
+        <a class="read-more" href="/2025/06/21/Artificial-Neural-Network/"> ... </a>
+        </div>
+        <div class="post-item-extra">
+        <div class="date">2025.06.21</div>
+        <div class="tags">
+            
+            <a class="tag-item" href="/tag/Machine-Learning/">Machine-Learning</a>
+            
+            <a class="tag-item" href="/tag/Coursework/">Coursework</a>
+            
+        </div>
+        </div>
+    </section>
+    
+</div>
+
+
+<div class="paginator">
+  <a class="extend prev" rel="prev" href="/page/7/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">&gt;</a>
+</div>
+
+
+
+<link rel="stylesheet" href="/css/paginator.css">
+
+
+<link rel="stylesheet" href="/css/list.css">
+
+
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

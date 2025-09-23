@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    数据模式
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">数据模式</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F-Schema"><span class="toc-number">1.</span> <span class="toc-text">模式(Schema)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B-Instance"><span class="toc-number">2.</span> <span class="toc-text">实例(Instance)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%BA%A7%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">三级模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.0.1.</span> <span class="toc-text">模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%96%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.0.2.</span> <span class="toc-text">外模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.0.3.</span> <span class="toc-text">内模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E5%BC%8F%E6%98%A0%E5%B0%84"><span class="toc-number">3.1.</span> <span class="toc-text">模式&#x2F;模式映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F-%E5%86%85%E6%A8%A1%E5%BC%8F%E6%98%A0%E5%B0%84"><span class="toc-number">3.2.</span> <span class="toc-text">模式&#x2F;内模式映射</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">数据模式</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 2日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">Database</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="模式-Schema"><a href="#模式-Schema" class="headerlink" title="模式(Schema)"></a>模式(Schema)</h2>
+<ul>
+<li>数据库逻辑结构和特征的描述</li>
+<li>反映的是数据结构及其联系</li>
+<li>模式是相对稳定的</li>
+</ul>
+<h2 id="实例-Instance"><a href="#实例-Instance" class="headerlink" title="实例(Instance)"></a>实例(Instance)</h2>
+<ul>
+<li>模式的一个具体值</li>
+<li>反应数据库的某一时刻的状态</li>
+<li>实例随数据的更新而变动</li>
+<li>同一模式可以有很多实例</li>
+</ul>
+<h2 id="三级模式"><a href="#三级模式" class="headerlink" title="三级模式"></a>三级模式</h2>
+<h4 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h4>
+<ul>
+<li>
+<p>数据库中全体数据的逻辑结构和特征的描述,所有用户的公共数据视图，综合了所有用户的需求</p>
+</li>
+<li>
+<p>数据在数据库内部的表示方式</p>
+<ul>
+<li>记录的存储方式（顺序，b树，hash）</li>
+<li>索引的组织方式</li>
+<li>数据是否压缩存储</li>
+<li>数据是否加密</li>
+<li>数据存储记录结构的规定</li>
+</ul>
+</li>
+<li>
+<p>地位：<strong>一个数据库只有一个模式，是数据库系统模式结构的中间层</strong></p>
+<ul>
+<li>与数据的物理存储细节与硬件环境无关</li>
+<li>与具体的应用程序，开发工具和高级语言无关</li>
+</ul>
+</li>
+<li>
+<p>定义：数据库逻辑结构；</p>
+<ul>
+<li>数据项的名字，类型，取值范围；</li>
+<li>表结构的定义</li>
+<li>数据的联系，数据有关的安全性，完整性要求</li>
+</ul>
+</li>
+<li>
+<p>DBMS提供数据定义语言DDL来描述逻辑模式</p>
+</li>
+</ul>
+<h4 id="外模式"><a href="#外模式" class="headerlink" title="外模式"></a>外模式</h4>
+<ul>
+<li>
+<p>数据库用户使用的局部数据的逻辑结构和特征的描述</p>
+<ul>
+<li><strong>模式的子集</strong>，与某一应用的数据的逻辑表示</li>
+<li><strong>不同用户的外模式可以不同</strong></li>
+<li>sql定义的视图</li>
+</ul>
+</li>
+<li>
+<p>地位：<strong>介于模式和应用之间</strong></p>
+</li>
+<li>
+<p>模式与外模式：一对多，一个数据库可以有多个外模式，对模式中同一数据，在外模式中结构，类型，长度都可以不同</p>
+</li>
+</ul>
+<h4 id="内模式"><a href="#内模式" class="headerlink" title="内模式"></a>内模式</h4>
+<ul>
+<li>是数据物理结构和存储方式的描述
+<ul>
+<li><strong>一个数据库只有一个内模式</strong></li>
+<li>是数据在数据库内部的表示方式</li>
+</ul>
+</li>
+<li>举例：存储方式，索引的组织方式，是否压缩存储，是否加密，数据存储记录结构的规定</li>
+</ul>
+<h3 id="模式-模式映射"><a href="#模式-模式映射" class="headerlink" title="模式/模式映射"></a>模式/模式映射</h3>
+<ul>
+<li>定义外模式与模式之间的对应关系</li>
+<li>每个外模式对应一个外模式/模式映射</li>
+<li>保证数据的逻辑独立性，外部模式不受概念模式的变化影响；</li>
+</ul>
+<h3 id="模式-内模式映射"><a href="#模式-内模式映射" class="headerlink" title="模式/内模式映射"></a>模式/内模式映射</h3>
+<ul>
+<li>模式/内模式映射定义了数据全局逻辑结构与存储之间的对应关系</li>
+<li>数据库中模式/内模式映射是唯一的</li>
+<li>保证了数据的物理独立性</li>
+</ul>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>

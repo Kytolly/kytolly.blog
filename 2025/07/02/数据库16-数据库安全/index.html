@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+  <!-- 标签页 -->
+  <!-- 标签页 -->
+<title>
+    数据库安全
+</title>
+
+
+<link rel="shortcut icon" href="/icon.svg">
+
+
+  <body>  
+    <!-- 配置引用 -->
+    <script>
+  window.THEME_CONFIG = {
+    image: {
+      enable: 'true',
+      center: 'true',
+      caption: 'false'
+    },
+    code_block: {
+      copy_button: "icon/copy.svg",
+      theme_toggle: {
+        enable: 'true',
+        to_light_button: "icon/light.svg",
+        to_dark_button: "icon/dark.svg",
+        light_theme: "/css/vscode-modern-light.css",
+        dark_theme: "/css/vscode-modern-dark.css"
+      },
+      mac_enhancer: {
+        enable: 'true',
+        init_folded_status: 'true'
+      }
+    },
+    giscus: {
+      repo: "Kytolly/MyGiscus",
+      repo_id: "R_kgDOK_0_0A",
+      category: "Announcements",
+      category_id: "DIC_kwDOK_0_0A",
+      mapping: "pathname",
+      strict: "0",
+      reactions_enabled: "1",
+      emit_metadata: "0",
+      input_position: "top",
+      lang: "zh-CN",
+      loading: "lazy"
+    },
+    heading_numbering: 'true',
+    three_line_table: 'true',
+    background: {
+      enable: 'true',
+      folder: 'img/',
+      opacity: '0.1',
+      position: 'center',
+      size: 'cover',
+      repeat: 'no-repeat',
+      image: {
+        mode: 'random',
+        name: 'background.jpg',
+        count: '113'
+      }
+    },
+  };
+</script>
+<script>
+  console.log(window.THEME_CONFIG);
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    
+    <!-- 字体 -->
+    <!-- 字体 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- 代码块 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+      
+        <link rel="stylesheet" href="/css/vscode-modern-light.css">
+        <link rel="stylesheet" href="/css/vscode-modern-dark.css">
+        <!-- DEBUG: url_for light path: /css/vscode-modern-light.css -->
+        <!-- DEBUG: url_for dark path: /css/vscode-modern-dark.css -->
+      
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <!-- 数学公式 -->
+    
+<link rel="stylesheet" href="/css/mathjax.css">
+
+    
+<script src="/js/mathjax.js"></script>
+
+    
+    <!-- 标题编号 -->
+    
+      
+<link rel="stylesheet" href="/css/heading-numbering.css">
+
+      
+<script src="/js/heading-numbering.js"></script>
+
+    
+    
+    <!-- 三线表样式 -->
+    
+      
+<link rel="stylesheet" href="/css/three-line-table.css">
+
+    
+  
+    <!-- 图片样式 -->
+    
+      
+<link rel="stylesheet" href="/css/image-handler.css">
+
+      
+<script src="/js/image-handler.js"></script>
+
+    
+    
+  
+    
+<link rel="stylesheet" href="/css/root.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+    <!-- 代码块基础样式 -->
+    
+<link rel="stylesheet" href="/css/code-block-base.css">
+
+  
+    <!-- Codeblock Theme Toggler CSS -->
+    
+    
+<link rel="stylesheet" href="/css/codeblock-theme-toggle.css">
+
+    
+  
+    <!-- Codeblock Mac Enhancer CSS -->
+    
+    
+<link rel="stylesheet" href="/css/code-block-mac-enhancer.css">
+
+    
+  
+    <!-- TOC 样式 -->
+    <link rel="stylesheet" href="/css/toc.css">
+    
+  <!-- hexo injector head_end start -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+</head>
+
+
+    <div class="site-container">
+      <!-- 导航栏 -->
+      <!--(头部 top bar) Header 样式 -->
+
+<link rel="stylesheet" href="/css/header.css">
+
+
+<header class="header">
+  <section class="header-container">
+    <a class="header-logo" href="/">Kytolly&#39;s Blog</a>
+    <div class="header-right-section">
+      <ul class="header-nav">
+        
+        <li>
+          <a href="/">
+            <img src="/icon/index.svg" alt="index icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            index
+          </a>
+        </li>
+        
+        <li>
+          <a href="/archive">
+            <img src="/icon/archive.svg" alt="archive icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            archive
+          </a>
+        </li>
+        
+        <li>
+          <a href="/tag">
+            <img src="/icon/tag.svg" alt="tag icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            tag
+          </a>
+        </li>
+        
+        <li>
+          <a href="/about">
+            <img src="/icon/about.svg" alt="about icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+            about
+          </a>
+        </li>
+        
+      </ul>
+      
+      
+      <div class="header-search-container search-trigger">
+        <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+        <input type="text" id="header-search-input" placeholder="searching..." readonly>
+      </div>
+      
+    </div>
+  </section>
+</header>
+
+
+<script src="/js/search.js"></script>
+
+
+      <!-- 路由 根据页面类型决定渲染内容 -->
+      <main class="main">
+  
+    <article class="post-container">
+  <!-- 可选：左侧跟随目录 -->
+  
+  <aside id="toc-container" class="toc-container toc-left toc-expanded">
+    <div id="toc-title" class="toc-title">数据库安全</div>
+    <div id="toc-content" class="toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E4%B8%BB%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">自主访问控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5-1"><span class="toc-number">2.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%83%E9%99%90"><span class="toc-number">2.2.</span> <span class="toc-text">权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%88%E6%9D%83"><span class="toc-number">2.3.</span> <span class="toc-text">授权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%88%E6%9D%83%E6%96%B9%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text">授权方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RBAC%E6%96%B9%E6%B3%95%EF%BC%9A%E5%9F%BA%E4%BA%8E%E8%A7%92%E8%89%B2%E7%9A%84%E6%8E%88%E6%9D%83"><span class="toc-number">2.4.1.</span> <span class="toc-text">RBAC方法：基于角色的授权</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-number">3.</span> <span class="toc-text">强制访问控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A1%E8%AE%A1"><span class="toc-number">4.</span> <span class="toc-text">审计</span></a></li></ol>
+    </div>
+  </aside>
+ 
+
+
+<script src="/js/toc.js"></script>
+
+
+  <!-- 可选：右侧 AI 摘要 -->
+  
+
+  <div class="post-main-wrapper">
+    <!-- 文章 -->
+    <div class="post-title">数据库安全</div>
+  <div class="post-meta">
+    <div class="date">2025 七月 2日</div>
+    <div class="tags">
+      
+        
+        <div class="tag-item">Coursework</div>
+        
+        <div class="tag-item">Database</div>
+        
+      
+    </div>
+  </div>
+
+<main class="post-content"><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2>
+<p>数据共享必然带来数据安全问题，我们认为只允许有合法使用权限的用户允许访问他存取的数据；</p>
+<p>数据库系统的安全保护措施是否有效是数据库系统主要的指标，数据库的安全性和计算机系统的安全是紧密联系、互相支持的；</p>
+<p>数据库可能的破坏方式</p>
+<ul>
+<li>数据库被无意破坏
+<ul>
+<li>并发存取引起的数据异常</li>
+<li>数据分布存储的不一致问题</li>
+<li>逻辑错误造成更新事务未遵守数据一致原则</li>
+<li>事务处理中系统崩溃</li>
+</ul>
+</li>
+<li>数据库被恶意破坏
+<ul>
+<li>未经授权的读取，修改和破坏数据</li>
+</ul>
+</li>
+</ul>
+<p>对策：</p>
+<ul>
+<li>针对无意破坏：完整性约束控制，并发控制，数据库恢复</li>
+<li>针对恶意破坏：数据库访问控制，身份鉴定，安全审计，数据加密</li>
+</ul>
+<p>数据库安全性：保护数据库，防止因为用户非法使用造成数据的泄露，破坏或更改；</p>
+<p>数据的保密：用户合法访问到机密数据后能否保证不泄密，需要指定法律等规则保证；</p>
+<p>计算机系统安全性：</p>
+<ul>
+<li>保护系统中的硬件，软件和数据，防止因为偶然或恶意的原因使得系统被破坏，数据更改或泄露；</li>
+<li>需要建立立体防御：进不来、看不见、看不懂、改不掉、跑不了</li>
+<li>可能包括三类安全性问题：技术安全，管理安全和政策法律</li>
+</ul>
+<p>数据库系统的安全框架：</p>
+<ul>
+<li>网络系统层次
+<ul>
+<li>物理层面上避免入侵者进行物理破坏；</li>
+<li>网络层面上采用防火墙、入侵检测技术等手段阻止外部入侵。</li>
+</ul>
+</li>
+<li>操作系统层次
+<ul>
+<li>操作系统安全策略、安全管理策略和数据安全</li>
+</ul>
+</li>
+<li>数据库系统层次
+<ul>
+<li>用户标识和鉴别、存取控制、数据分级、视图机制、审计、数据加密</li>
+</ul>
+</li>
+</ul>
+<h2 id="自主访问控制"><a href="#自主访问控制" class="headerlink" title="自主访问控制"></a>自主访问控制</h2>
+<h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3>
+<p>主体(Subject): 提出访问资源具体请求，是某一操作动作的发起者, 可能是某一用户，也可以是用户启动的进程、服务和设备等</p>
+<p>客体(Object): 被访问资源的实体，所有可以被操作的信息、资源、对象都可以是客体, 可以是信息、文件、记录等集合体，也可以是网络上硬件设施</p>
+<p>控制策略(Attribution):主体对客体的相关访问规则集合，即属性集合, 访问策略体现了一种<strong>授权行为</strong>，也是客体对主体某些操作行为的默认</p>
+<p>自主访问控制的特点：</p>
+<ul>
+<li>控制方式是自主的
+<ul>
+<li>由客体的属主对自己的客体进行管理</li>
+<li>由属主自己决定是否将自己的客体访问权或部分访问权授予其他主体</li>
+<li>在自主访问控制下，用户可以按自己的意愿，有选择地与其他用户共享他的文件</li>
+</ul>
+</li>
+<li>可以在主体之间相互<strong>转让权限</strong>的访问控制
+<ul>
+<li>对用户访问数据库中各种资源（包括表、视图、程序等）的权利（包括创建、查询 、更新、执行等）的控制</li>
+<li>一个用户建立了一个数据对象就自动具有了对这个数据对象的所有权利</li>
+<li>同一用户对于不同的数据对象有不同的存取权限，不同的用户对同一对象也有不同的权限，用户还可将其拥有的存取权限转授给其他用户</li>
+</ul>
+</li>
+<li>C2级，灵活</li>
+</ul>
+<h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3>
+<ul>
+<li>访问数据权限
+<ul>
+<li><code>SELECT</code>:允许读取数据，不能修改数据</li>
+<li><code>INSERT</code>：允许插入新数据，不能修改已有数据</li>
+<li><code>UPDATE</code>：允许修改数据，不能删除数据</li>
+<li><code>DELETE</code>：允许删除数据</li>
+</ul>
+</li>
+<li>修改模式权限
+<ul>
+<li><code>INDEX</code>：允许建立/删除索引</li>
+<li><code>CREATE</code>：允许建立表</li>
+<li><code>ALTER</code>：允许对表属性增加删除</li>
+<li><code>DROP</code>：允许删除表</li>
+</ul>
+</li>
+<li>其他
+<ul>
+<li><code>CONNECT</code>: 允许连接数据库</li>
+<li><code>REFERENCE</code>:允许根据表的完整性约束中引用一个参照关系</li>
+<li><code>USAGE</code>: 授权用户使用指定域</li>
+<li><code>TRIGGER</code>：授权用户定义表中触发器</li>
+<li><code>EXECUTE</code>：授权用户执行函数/过程</li>
+<li><code>UNDER</code>：授权用户建立类的子类</li>
+</ul>
+</li>
+</ul>
+<h3 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h3>
+<p>赋予用户一定权利，已操作数据对象</p>
+<ul>
+<li>对象创建者自动拥有其所有权限</li>
+<li>授权可由DBA授予，也可以由对象创建者授予</li>
+</ul>
+<p>语法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> &#123;<span class="keyword">all</span> privileges<span class="operator">|</span>privilege&#123;. privilege….&#125;&#125;</span><br><span class="line"> <span class="keyword">ON</span> [<span class="keyword">TABLE</span>] tablename<span class="operator">|</span>viewname</span><br><span class="line"> <span class="keyword">TO</span> [PUBLIC<span class="operator">|</span>user_name&#123;,user_name…&#125;]</span><br><span class="line"> [<span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION]</span><br></pre></td></tr></table></figure>
+<p>授权的粒度：用于指定可以操作的数据对象的范围</p>
+<ul>
+<li>关系数据库中的数据对象粒度：数据库/表/属性列/行</li>
+<li>它是衡量授权机制是否灵活的一个重要指标</li>
+<li>授权定义中数据对象的粒度越细，即可以定义的数据对象的范围越小，授权子系统就越灵活 ，但系统定义与检查权限的开销会相应增大</li>
+<li>能否提供与数据值有关的授权反映了授权子系统精巧程度</li>
+</ul>
+<p>视图授权</p>
+<ul>
+<li>对视图也应可以授权</li>
+<li>要授予其他用户与访问视图相关的权利，<strong>授权者必须拥有该视图</strong>（而且在视图所引用基本表或视图上有必要的权限）或已经通过WITH GRANT  OPTION被授予了这些权限</li>
+<li>若要在一个视图上授予插入、删除或更新权限，视图必须是<strong>可更新的</strong></li>
+<li>用户要建立视图，首先必须要有对所引用基本表或视图的SELECT权利</li>
+</ul>
+<p>收回权限</p>
+<p>从一个用户那里收回权限可能导致其他用户也失去该权限。这一行为称为<strong>级联回收</strong> CASCADE。在大多数数据库系统中，级联回收是默认行为。</p>
+<p>语法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> [<span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION <span class="keyword">FOR</span>]&#123;<span class="keyword">ALL</span> PRIVILEGES<span class="operator">|</span>privilege&#123;. Privilege….&#125;&#125;</span><br><span class="line"> <span class="keyword">ON</span> [<span class="keyword">TABLE</span>] tablename<span class="operator">|</span>viewname</span><br><span class="line"> <span class="keyword">FROM</span> [PUBLIC<span class="operator">|</span>user_name&#123;,user_name…&#125;]</span><br><span class="line"> [RESTRICT<span class="operator">|</span>CASCADE]</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span> <span class="keyword">ON</span> RecipeDetail <span class="keyword">TO</span> LiXia；</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span> <span class="keyword">ON</span> RecipeMaster <span class="keyword">TO</span> LiXia <span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION；</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">UPDATE</span>（Mprice） <span class="keyword">ON</span> Medicine <span class="keyword">TO</span> WangHao；</span><br><span class="line"><span class="keyword">GRANT</span> REFERENCE（Mno）<span class="keyword">ON</span> Medicine <span class="keyword">TO</span> ZhangYang；</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">INSERT</span>，<span class="keyword">DELETE</span> <span class="keyword">ON</span> RecipeDetail <span class="keyword">TO</span> MengFan <span class="keyword">WITH</span> <span class="keyword">GRANT</span> </span><br><span class="line">OPTION；</span><br><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">SELECT</span> <span class="keyword">ON</span> RecipeDetail <span class="keyword">FROM</span> LiXia；</span><br><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">UPDATE</span>（Mprice）<span class="keyword">ON</span> Medicine <span class="keyword">FROM</span> WangHao；</span><br><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">GRANT</span> OPTION <span class="keyword">FOR</span> <span class="keyword">SELECT</span> <span class="keyword">ON</span> RecipeMaster <span class="keyword">FROM</span> LiXia；</span><br><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">SELECT</span> <span class="keyword">ON</span> RecipeMaster <span class="keyword">FROM</span> LiXia RESTRICT；</span><br></pre></td></tr></table></figure>
+<p>授权图</p>
+<p>用授权图来表示授权在用户之间的传递，图中的结点表示用户，如果用户<svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.781ex" height="1.52ex" role="img" focusable="false" viewBox="0 -661 345 672" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-1-TEX-I-1D456"></use></g></g></g></svg>将权限传递给了<svg style="vertical-align: -0.462ex;" xmlns="http://www.w3.org/2000/svg" width="0.932ex" height="1.957ex" role="img" focusable="false" viewBox="0 -661 412 865" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-2-TEX-I-1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D457" xlink:href="#MJX-2-TEX-I-1D457"></use></g></g></g></svg>，则在图中增加一条 边<svg style="vertical-align: -0.462ex;" xmlns="http://www.w3.org/2000/svg" width="5.232ex" height="1.957ex" role="img" focusable="false" viewBox="0 -661 2312.6 865" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-3-TEX-I-1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path><path id="MJX-3-TEX-N-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path><path id="MJX-3-TEX-I-1D457" d="M297 596Q297 627 318 644T361 661Q378 661 389 651T403 623Q403 595 384 576T340 557Q322 557 310 567T297 596ZM288 376Q288 405 262 405Q240 405 220 393T185 362T161 325T144 293L137 279Q135 278 121 278H107Q101 284 101 286T105 299Q126 348 164 391T252 441Q253 441 260 441T272 442Q296 441 316 432Q341 418 354 401T367 348V332L318 133Q267 -67 264 -75Q246 -125 194 -164T75 -204Q25 -204 7 -183T-12 -137Q-12 -110 7 -91T53 -71Q70 -71 82 -81T95 -112Q95 -148 63 -167Q69 -168 77 -168Q111 -168 139 -140T182 -74L193 -32Q204 11 219 72T251 197T278 308T289 365Q289 372 288 376Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D456" xlink:href="#MJX-3-TEX-I-1D456"></use></g><g data-mml-node="mo" transform="translate(622.8,0)"><use data-c="2192" xlink:href="#MJX-3-TEX-N-2192"></use></g><g data-mml-node="mi" transform="translate(1900.6,0)"><use data-c="1D457" xlink:href="#MJX-3-TEX-I-1D457"></use></g></g></g></svg>。图的根是DBA 或对象创建者</p>
+<p>用户具有授权当且仅当存在从授权图的根到代表该用户的结点的路径;</p>
+<p>上述示例的授权图和收回权限图如下：</p>
+<p><img src="/assets/Database/image-20241205170621932.png" alt="image-20241205170621932"></p>
+<h3 id="授权方法"><a href="#授权方法" class="headerlink" title="授权方法"></a>授权方法</h3>
+<h4 id="RBAC方法：基于角色的授权"><a href="#RBAC方法：基于角色的授权" class="headerlink" title="RBAC方法：基于角色的授权"></a>RBAC方法：基于角色的授权</h4>
+<p>根据管理中相对稳定的职权和责任来划分角色</p>
+<ul>
+<li>将访问许可权分配给一定的角色</li>
+<li>用户通过饰演不同的角色获得访问许可权。</li>
+</ul>
+<p>角色可以看作是一组操作的集合，不同的角色具有不同的操作集。</p>
+<p>角色是访问控制中访问主体和受控对象之间的一座桥梁（<strong>授权模板</strong>）；</p>
+<p>角色与用户关系：<strong>一个用户可经授权而拥有多个角色，一个角色可有多个用户组成</strong> ；</p>
+<p>角色与许可关系：每个角色拥有多种许可，每个许可也可以授权给多个不同的角色，每个操作可施加与多个客体，每个客体可接受多个操作；</p>
+<p>例如</p>
+<ul>
+<li>
+<p>创建角色<code>CREATE ROLE Admin</code>;</p>
+</li>
+<li>
+<p>角色授权<code>GRANT SELECT ON RecipeMaster TO Admin</code>;</p>
+</li>
+<li>
+<p>角色授权给用户或其他角色：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GRANT Admin TO LiXia;</span><br><span class="line"> CREATE ROLE Manager;</span><br><span class="line"> GRANT Admin to Manager;</span><br><span class="line"> GRANT Manager TO WangHao;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="强制访问控制"><a href="#强制访问控制" class="headerlink" title="强制访问控制"></a>强制访问控制</h2>
+<p>MAC的特征：</p>
+<ul>
+<li>对所有主体（系统中的活动实体，如用户）及其所控制的客体（如进程、文件、基 表、视图等）实施强制访问控制</li>
+<li>B1级，严格</li>
+<li>每一个数据对象被标以一定的密级，每一个用户也被授予某一个级别的许可证，对 于任意一个对象，只有具有合法许可证的用户才可以存取</li>
+</ul>
+<p>敏感度标记（Label）</p>
+<ul>
+<li>对于主体和客体，DBMS为它们每个实例（值）指派一个敏感度标记</li>
+<li>敏感度标记级别：绝密，机密，可信，公开</li>
+<li>主体的敏感度标记称为<strong>许可证级别</strong>，客体的敏感度标记称为<strong>密级</strong></li>
+<li>MAC机制就是通过<strong>对比主体的Label和客体的Label</strong>，最终确定主体是否能够存取客体</li>
+</ul>
+<p>强制存取控制规则</p>
+<ul>
+<li>仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体</li>
+<li>仅当主体的许可证级别小于或等于客体ee的密级时，该主体才能写相应的客体</li>
+</ul>
+<p>DAC与MAC共同构成DBMS的安全机制</p>
+<ul>
+<li>先进行DAC检查，通过DAC检查的数据对象再由系统进行MAC检查</li>
+<li>只有通过MAC检查的数据对象方可存取。</li>
+</ul>
+<h2 id="审计"><a href="#审计" class="headerlink" title="审计"></a>审计</h2>
+<p>审计是一种事后追责手段，体现在以下操作：</p>
+<ul>
+<li>启用一个专用的审计日志（Audit Log），将用户对数据库的所有操作记录在上面</li>
+<li>DBA可以利用审计日志中的追踪信息，找出非法存取数据的人</li>
+<li>C2以上安全级别的DBMS必须具有审计功能，体现“跑不了”</li>
+</ul>
+<p>审计负荷：</p>
+<ul>
+<li>审计很费时间和空间</li>
+<li>DBA可以根据应用对安全性的要求，灵活地打开或关闭审计功能 ，执行<code>SET AUDIT ON/OFF</code></li>
+</ul>
+</main>
+
+
+<script src="/js/theme.js"></script>
+
+
+<script src="/js/code-block-header.js"></script>
+
+
+<script src="/js/code-block-copy.js"></script>
+
+
+<script src="/js/code-block-theme-toggle.js"></script>
+
+
+<script src="/js/code-block.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/article.css">
+
+    
+    <!-- giscus评论区 -->
+    
+  <div id="giscus_thread"></div>
+
+  </div>
+</article>
+  
+</main>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+  
+  <span>Copyright © Kytolly(shiroi)</span>
+  
+  <div class="theme-switch-wrapper">
+    <div class="theme-switch">
+      <div class="theme-switch-item light-mode active">
+        <img src="/icon/light.svg" class="icon">
+      </div>
+      <div class="theme-switch-item dark-mode">
+        <img src="/icon/dark.svg" class="icon">
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<link rel="stylesheet" href="/css/footer.css">
+
+
+<script src="/js/theme-switcher.js"></script>
+
+
+<script src="/js/giscus.js"></script>
+
+
+      
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <img src="/icon/search.svg" alt="Search Icon" class="search-icon" style="width:1.2em;height:1.2em;vertical-align:middle;">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <img src="/icon/search.svg" alt="Search Icon" style="width:5em;height:5em;">
+        </div>
+        <ul id="search-results"></ul>
+      </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+    </div>
+    
+<script src="/js/background.js"></script>
+
+  </body>
+
+</html>
