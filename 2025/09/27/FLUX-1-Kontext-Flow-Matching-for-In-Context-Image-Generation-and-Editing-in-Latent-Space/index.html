@@ -382,30 +382,38 @@
 <blockquote>
 <p>Cref 可以在新颖的设置中一致地生成特定的字符或对象，而Sref则允许从参考图像转移风格，同时保持语义控制。</p>
 </blockquote>
-<p>我们比较了不同的 API ，发现我们的模型提供了最快的延迟，在速度差异方面比相关模型表现高出一个数量级。在我们的人工评估中，我们发现 FLUX.1 Kontext [max]和[pro] 是本地和文本编辑类别以及一般 Cref 的最佳解决方案。我们还计算Cref的量化分数，为了评估输入和输出图像之间面部特征的变化，我们使用AuraFace 6来提取前后的面部嵌入，并编辑和比较两者。与我们的人类评估一致，FLOX.1 Kontext 优于所有其他模型。对于全局编辑和 Sref 来说，FLOX.1 Kontext分别仅次于gtt-Image-1和Gen-4 Reference。  总体而言，FLOX.1 Kontext提供了最先进的角色一致性和编辑功能，同时在速度上比GPT-Image-1等竞争模型要好一个数量级。</p>
-<p>![跨模型1024 x 1024生成的中位数推断延迟[秒]（越低越好）。FLOX.1 Kontext在文本到图像和图像到图像任务方面都实现了有竞争力的速度。](/assets/FLUX1-Kontext/FLUX.1 Kontext evaluation.png)</p>
-<p>![KontextBench上的图像到图像评估。我们显示了六个上下文图像生成任务的评估结果。FLOX.1 Kontext [pro]在所有任务中始终名列前茅，在文本编辑和字符保留方面取得了最高分。](/assets/FLUX1-Kontext/Image-to-image evaluation on KontextBench.png)</p>
+<p>我们比较了不同的 API ，发现我们的模型提供了最快的延迟，在速度差异方面比相关模型表现高出一个数量级。在我们的人工评估中，我们发现 FLUX.1 Kontext [max]和[pro] 是本地和文本编辑类别以及一般 Cref 的最佳解决方案。我们还计算Cref的量化分数，为了评估输入和输出图像之间面部特征的变化，我们使用AuraFace 6来提取前后的面部嵌入，并编辑和比较两者。与我们的人类评估一致，FLOX.1 Kontext 优于所有其他模型。对于全局编辑和 Sref 来说，FLOX.1 Kontext分别仅次于gtt-Image-1和Gen-4 Reference。  总体而言，FLOX.1 Kontext提供了最先进的角色一致性和编辑功能，同时在速度上比GPT-Image-1等竞争模型要好一个数量级。
+<em>跨模型1024 x 1024生成的中位数推断延迟 秒 越低越好 FLOX.1 Kontext 在文本到图像和图像到图像任务方面都实现了有竞争力的速度</em>
+<img src="/assets/FLUX1-Kontext/FLUX.1-Kontext-evaluation.png" alt="">
+<em>KontextBench上的图像到图像评估 我们显示了六个上下文图像生成任务的评估结果。FLOX.1 Kontext pro 在所有任务中始终名列前茅 在文本编辑和字符保留方面取得了最高分</em>
+<img src="/assets/FLUX1-Kontext/Image-to-image-evaluation-on-KontextBench.png" alt=""></p>
 <p><strong>Text-to-Image Results</strong></p>
 <p>当前的 T2I 基准主要关注一般偏好，通常会提出“which image do you prefer?”等问题。我们观察到，这种广泛的评估标准通常倾向于典型的“人工智能美学”，即过度饱和的色彩、过度关注中心主题、明显的散景效应以及向同质风格的趋同。我们将这种现象称为 bakeyness。</p>
 <p>为了解决这一局限性，我们将T2 I评估分解为五个不同的维度：提示跟随、美观（“which image do you find more aesthetically pleasing”）、现实主义（“which image looks more real”）、印刷准确性和推理速度。我们评估了从学术基准（DrawBench，Participants）和真实用户查询中编译的1000个不同的测试提示。在下文中，我们将此基准称为 Internal-T2 I-Bench。此外，我们通过对GenAI工作台的额外评估来补充该基准。</p>
 <p>在T2 I中，FLUX.1 Kontext在各个评估类别中表现出均衡的性能。尽管竞争模型在某些领域表现出色，但这往往以牺牲其他类别为代价。例如，Recraft提供了很强的美观质量，但及时的粘附性有限，而GPT-Image-1则显示出相反的整体性能模式。</p>
-<p>FLUX.1 Kontext 与其前身 FLUX1.1 [pro] 相比，始终如一地提高了各个类别的性能。我们还观察到从FLUX.1 Kontext [pro]到FLUX.1 Kontext [max]的渐进收益。</p>
-<p>![Text-to-image evaluation on Internal-t2i-bench 我们报告多个质量维度的评估结果。FLOX.1 Kontext模型展示了美学、提示跟随、印刷和现实主义基准方面的竞争性能。](/assets/FLUX1-Kontext/Text-to-image evaluation on Internal-t2i-bench.png)</p>
+<p>FLUX.1 Kontext 与其前身 FLUX1.1 [pro] 相比，始终如一地提高了各个类别的性能。我们还观察到从FLUX.1 Kontext [pro]到FLUX.1 Kontext [max]的渐进收益。
+<em>Text-to-image evaluation on Internal-t2i-bench 我们报告多个质量维度的评估结果。FLOX.1 Kontext模型展示了美学、提示跟随、印刷和现实主义基准方面的竞争性能。</em>
+<img src="/assets/FLUX1-Kontext/Text-to-image-evaluation-on-Internal-t2i-bench.png" alt=""></p>
 <p>我们在下图中突出显示了样本。</p>
 <p><img src="/assets/FLUX1-Kontext/t2icherries.jpg" alt="t2icherries"></p>
 <p><strong>Iterative Workflows</strong></p>
 <p>在多次编辑中保持角色和对象一致性对于品牌敏感和讲故事的应用程序至关重要。当前最先进的方法存在明显的视觉漂移：每次编辑，角色都会失去身份，对象都会失去定义性特征。在图12中，我们展示了由 FLUX.1 Kontext、Gen-4 和 GPT-Image-High 产生的编辑序列之间的字符身份漂移。我们还计算了输入和通过连续编辑生成的图像之间 AuraFace 嵌入的 cos 相似性，强调了FLUX.1 Kontext相对于竞争方法的较慢漂移。一致性至关重要：营销需要稳定的品牌特征，媒体制作需要资产连续性，电子商务必须保留产品细节。下图显示了由FLUX.1启用的应用Kontext的可靠的一致性。</p>
-<p>![迭代的产品风格编辑。从参考碗（a）开始，我们的模型首先在桌面工作室环境中生成一个与鲜花相匹配的花瓶（b），然后将花瓶的基本色更改为黑色，同时保留花卉图案、灯光和构图（c）。](/assets/FLUX1-Kontext/Iterative, product-style editing.png)</p>
-<p>![连续的面部表情编辑。从轮廓参考（a）开始，我们的模特首先将对象重新定位为相机（b），然后将她的表情改变为自发的笑声（c），同时保留背景、服装和灯光](/assets/FLUX1-Kontext/Sequential, facial-expression editing.png)</p>
+<p><em>迭代的产品风格编辑 从参考碗（a）开始，我们的模型首先在桌面工作室环境中生成一个与鲜花相匹配的花瓶（b），然后将花瓶的基本色更改为黑色，同时保留花卉图案、灯光和构图（c）</em>
+<img src="/assets/FLUX1-Kontext/Iterative-product-style-editing.png" alt="">
+<em>连续的面部表情编辑 从轮廓参考（a）开始，我们的模特首先将对象重新定位为相机（b），然后将她的表情改变为自发的笑声（c），同时保留背景、服装和灯光</em>
+<img src="/assets/FLUX1-Kontext/Sequential-facial-expression-editing.png" alt=""></p>
 <p><strong>Specialized Applications</strong></p>
-<p>FLUX.1 Kontext支持标准代以外的多个应用程序。风格引用（Sref）首先由Midjourney 普及，通常通过IP Adapters 实现，它可以从参考图像传输风格，同时保持语义控制。此外，该模型支持通过视觉线索进行直观编辑，响应红色椭圆等几何标记来指导有针对性的修改。它还提供复杂的文本编辑功能，包括徽标细化、拼写纠正和风格调整，同时保留周围环境。我们在图5中演示了风格参考，在图13中演示了基于视觉线索的编辑。</p>
-<p>![风格参考。给定输入图像，模型提取其艺术风格并应用它来生成多样化的新场景，同时保留原始的风格特征。](/assets/FLUX1-Kontext/Style Reference.png)</p>
-<p>![FLOX.1 Kontext能够利用边界框等视觉线索并在保持风格的同时编辑文本。](/assets/FLUX1-Kontext/iFLUX.1 Kontext is able to leverage visual cues.png)</p>
+<p>FLUX.1 Kontext支持标准代以外的多个应用程序。风格引用（Sref）首先由Midjourney 普及，通常通过IP Adapters 实现，它可以从参考图像传输风格，同时保持语义控制。此外，该模型支持通过视觉线索进行直观编辑，响应红色椭圆等几何标记来指导有针对性的修改。它还提供复杂的文本编辑功能，包括徽标细化、拼写纠正和风格调整，同时保留周围环境。我们在图5中演示了风格参考，在图13中演示了基于视觉线索的编辑。
+<em>风格参考 给定输入图像，模型提取其艺术风格并应用它来生成多样化的新场景，同时保留原始的风格特征。</em>
+<img src="/assets/FLUX1-Kontext/Style-Reference.png" alt="">
+<em>FLOX.1 Kontext能够利用边界框等视觉线索并在保持风格的同时编辑文本</em>
+<img src="/assets/FLUX1-Kontext/iFLUX.1-Kontext-is-able-to-leverage-visual-cues.png" alt=""></p>
 <h2 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h2>
 <p>我们介绍了 FLUX.1 Kontext，这是一个流匹配模型，它将上下文图像生成和编辑结合在一个框架中。通过简单的序列拼接和训练配方，FLUX.1 Kontext实现了最先进的性能，同时解决了多轮编辑期间的字符漂移、推理速度慢和输出质量低等关键限制。我们的贡献包括处理多个处理任务的统一架构，跨迭代的卓越字符一致性，交互速度和KontextBench：具有1026个imagemprompt对的真实世界基准。我们的广泛评估表明，FLUX.1 Kontext可与专有系统相媲美，同时支持快速，多回合的创意工作流程。</p>
 <p><strong>局限性</strong></p>
-<p>FLUX.1 Kontext在其当前的实现中表现出一些局限性。过多的多圈编辑可能会引入视觉伪影，从而降低图像质量。该模型有时无法准确遵循说明，忽略了特定的提示要求。此外，蒸馏过程可能会引入影响输出保真度的视觉伪影。</p>
-<p>![编辑失败案例。顶行：身份退化的一个例子：虽然中心图像显示了良好的编辑，但保留正确的角色身份（使用稍微修改的提示）会导致严重的身份损失。中间行：场景修改而不是物体移动：模型添加牛奶泡沫而不是重新定位马克杯。底行：经过六次迭代编辑后，样本可能会表现出可见的伪影。](/assets/FLUX1-Kontext/Editing failure cases.png)</p>
+<p>FLUX.1 Kontext在其当前的实现中表现出一些局限性。过多的多圈编辑可能会引入视觉伪影，从而降低图像质量。该模型有时无法准确遵循说明，忽略了特定的提示要求。此外，蒸馏过程可能会引入影响输出保真度的视觉伪影。<br>
+<em>编辑失败案例 顶行：身份退化的一个例子：虽然中心图像显示了良好的编辑，但保留正确的角色身份（使用稍微修改的提示）会导致严重的身份损失。中间行：场景修改而不是物体移动：模型添加牛奶泡沫而不是重新定位马克杯。底行：经过六次迭代编辑后，样本可能会表现出可见的伪影。</em>
+<img src="/assets/FLUX1-Kontext/Editing-failure-cases.png" alt=""></p>
 <p><strong>未来的工作</strong></p>
 <p>应重点关注扩展到多个图像输入、进一步扩展并减少推理延迟以解锁实时应用程序。我们方法的一个自然扩展是在视频领域进行编辑。最重要的是，减少多回合编辑期间的降级将实现无限流动的内容创建。FLUX.1 Kontext和KontextBench的发布为推动统一的图像生成和编辑提供了坚实的基础和全面的评估框架。</p>
 </main>
