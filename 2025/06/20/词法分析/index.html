@@ -306,7 +306,7 @@
 <p>在编译过程中，词法分析可以仅仅执行一次；</p>
 <p><img src="/assets/Compilers/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1%E7%9A%84%E6%B5%81%E7%A8%8B.png" alt="词法分析执行一次的流程 "></p>
 <p>也可以执行多次；</p>
-<p><img src="/assets/Compilers/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%A4%9A%E6%AC%A1%E6%89%A7%E8%A1%8C%E7%9A%84%E6%B5%81%E7%A8%8B.png" alt="image-20250515135304806"></p>
+<p><img src="/assets/Compilers/%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%A4%9A%E6%AC%A1%E6%89%A7%E8%A1%8C%E7%9A%84%E6%B5%81%E7%A8%8B.png" alt="词法分析多次执行的流程"></p>
 <h3 id="数据结构🧱"><a href="#数据结构🧱" class="headerlink" title="数据结构🧱"></a>数据结构🧱</h3>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">enum kind &#123;IF, LPAREN, ID, INTLIT, …&#125;;</span><br><span class="line">struct token &#123;</span><br><span class="line">	enum kind k;</span><br><span class="line">	char* lexme;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在多数程序语言设计中，单词种类一般有如下种类：</p>
@@ -362,7 +362,7 @@
 </ul>
 <p><img src="/assets/Compilers/%E5%8C%BA%E5%88%86%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C%E6%A0%87%E8%AF%86%E7%AC%A6%E7%9A%84%E7%AE%97%E6%B3%95.png" alt="区分关键字和标识符的算法"></p>
 <h3 id="扫描算法"><a href="#扫描算法" class="headerlink" title="扫描算法"></a>扫描算法</h3>
-<p><img src="/assets/Compilers/%E6%89%AB%E6%8F%8F%E7%AE%97%E6%B3%95.png" alt="image-20250518094254398"></p>
+<p><img src="/assets/Compilers/%E6%89%AB%E6%8F%8F%E7%AE%97%E6%B3%95.png" alt="扫描算法"></p>
 <h3 id="基于状态转换的框架"><a href="#基于状态转换的框架" class="headerlink" title="基于状态转换的框架"></a>基于状态转换的框架</h3>
 <ol>
 <li>
@@ -416,7 +416,7 @@
 <ul>
 <li>被编译程序只调用一次</li>
 <li>增加一个大循环（文件是否结束）</li>
-<li><code>return</code>改为 向文件写入二元式 ；</li>
+<li><code>return</code>改为 向文件写入二元式；</li>
 <li>该文件保存所有的二元式，语法分析程序通过该文件获取单词；</li>
 </ul>
 <h3 id="词法错误"><a href="#词法错误" class="headerlink" title="词法错误"></a>词法错误</h3>
