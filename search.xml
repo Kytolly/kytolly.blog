@@ -153,6 +153,257 @@ CONCLUSION AND FUTURE WORK
       </tags>
   </entry>
   <entry>
+    <title>Artificial Neural Network</title>
+    <url>/2025/06/21/Artificial-Neural-Network/</url>
+    <content><![CDATA[Idea
+人工神经网络（ANN，Artificial Neural Networks）是在人类对大脑神经网络认识理解的基础上，人工构造的能够实现某种功能的神经网络。它是理论化的人脑神经网络的数学模型，是基于模仿大脑神经网络结构和功能而建立起来的一种信息处理系统。
+
+并行分布式的处理结构
+具有局部内存，可以完成局部操作
+每个处理单元有一个单一的输出连接；
+
+神经网络结构和工作机理基本上是以人脑的组织结构和活动规律为背景的，它反映了脑的某些基本特征，但并不是要对人脑部分的真正实现，可以说它是某种抽象、简化或模仿。
+如果将大量功能简单的形式神经元通过一定的拓扑结构组织起来，构成群体并行分布式处理的计算结构，那么这种结构就是人工神经网络，在不引起混淆的情况下，统称为神经网络。
+ANN有三大要素如下：
+
+神经元的激活规则：主要是指神经元输入到输出之间的映射关系，一般为非线性函数
+网络的拓扑结构：不同神经元之间的连接关系
+学习算法：通过训练数据来学习神经网络的参数
+
+激活函数
+性质要求
+
+连续并可导（允许少数点上不可导）的非线性函数。
+可导的激活函数 可以直接利用数值优化的方法来学习网络参数。
+激活函数及其导函数要尽可能的简单，有利于提高网络计算效率。
+激活函数的导函数的值域要在一个合适的区间内，不能太大也不能太小，否则会影响训练的效率和稳定性。
+
+Logistic函数系
+
+它有一个良好的性质：
+它具有挤压的功能，输出可以看作某种概率分布；
+
+有一个线性近似函数
+
+可降低计算开销
+Tanh函数系
+
+特点是零中心化，可以提升收敛速度
+
+也存在如下线性近似
+
+
+ReLU函数系
+
+性质如下：
+
+ReLU：是目前最常用的激活函数，具有单侧抑制、宽兴奋边界的生物学合理性，可缓解梯度消失问题，但有可能导致神经元的死亡
+带泄露的ReLU：在时也保持一个很小的梯度，避免 永远不能被激活的情况，为超参
+指数线性单元ELU:近似零中心化,为超参
+Softplus可以看成ReLU的平滑版本，其导数刚好为Logistic函数 也有单侧抑制、宽兴奋边界的特性，但不具有稀疏性
+
+多层感知机
+两层感知机构造
+要解决复杂问题，单层神经网络是不够用的，因此引入隐层和多层前反馈神经网络：其中输入层神经元接收外界输入，隐层与输出层神经元对信号进行加工，最终结果由输出层神经元输出；
+采用多层感知机可以解决异或问题;输入仍为
+
+隐藏层：包含两个神经元
+输出层包含一个神经元
+隐藏层采用线性整流激活函数ReLU
+
+
+取
+
+
+可以看到，学习的隐藏空间时一个非线性的空间变换
+
+万能近似定理
+万能近似定理（universal approximation theorem）表述如下：一个两层人工神经网络如果具有足够多的隐藏单元，它可以以任意的精度来近似任何一个函数（即可以表示任意的复杂输入-输出关系）。
+神经网络可以作为一个万能函数来使用，可以用来进行复杂的特征转换，或逼近一个复杂的条件分布。
+根据万能近似定理，对于具有线性输出层和至少一个使用"挤压"性质的激活函数的隐藏层组成的前馈神经网络，只要其隐藏层神经元的数量足够，它可以以任意的精度来近似任何从一个定义在实数空间中的有界闭集函数。因此神经网络经常被当作一个万能函数使用，进行复杂的特征转换，或者逼近一个复杂的条件分布；
+前馈神经网络如何学习分类器？
+
+若为Logistic回归，那么Logistic回归分类器可以看成神经网络的最后一层；
+如果使用softmax回归分类器，相当于网络最后一层设置  个神经元，其输出经过softmax函数进行归一化后可以作为每个类的后验概率，\hat{\mathbf{y}}=\mathrm{softmax}(\mathbf{z}^{(L)})
+采用交叉熵损失函数，对于样本(x, y)，其损失函数为
+
+
+神经网络能够通过训练，改变其内部表示，使输入-输出变换朝好的方向发展。训练实质是用同一个训练集的样本反复作用于网络，网络按照一定的训练规则（学习规则或学习算法），自动调节神经元之间的连接强度或拓扑结构，当网络的实际输出满足期望的要求，或者趋于稳定，这认为训练圆满结束。神经网络的学习成果蕴含在权值和阈值当中；
+但是有如下潜在问题：
+
+
+单隐层网络可以近似任何函数，但其规模可能巨大，在最坏的情况下，需要指数级的隐藏单元才能近似某个函数；
+
+
+随着深度的增加，网络的表示能力呈指数增加，一个具有个输入、深度为、每个隐藏层具有个单元的深度整流网络可以描述线性区域的数量为
+
+
+
+有研究注意到，更深层的网络具有更好的泛化能力，参数数量的增加未必一定会带来模型效果的提升；
+更深的模型往往表现更好，不仅仅是因为模型更大。 想要学得的函数应该由许多更简单的函数复合在一起而得到
+多层感知机
+在多层感知机(Multi-layer Perceptron, MLP)中，更常见的名字是前馈神经网络(Feedforward Neural Network, FNN)
+
+输入层神经元接收外界输入，隐层与输出层神经元对信号进行
+加工，最终结果由输出层神经元输出；
+各神经元分别属于不同的层，层内无连接
+相邻两层之间的神经元全部两两连接
+整个网络中无反馈，信号从输入层向输出层单向传播，可用一个有向无环图表示
+
+
+FNN一般采取交叉熵损失函数,对样本
+
+其中， 为标签的one-hot编码表示；
+考察结构化风险函数
+
+正则化项
+
+前馈神经网络信息向前（单向）传递，层内节点之间并不连接，适合于处理静态数据分析，如回归、分类等任务；
+对于全连接前馈神经网络来说，有不少缺点：
+
+容易过拟合；
+训练比较慢，可解释性差;
+权重矩阵参数非常多，不满足局部不变性特征；
+
+
+局部不变性特征：自然图像中的物体都具有局部不变性特征，比如尺度缩放、平 移、旋转等操作不影响其语义信息。而全连接前馈网络很难提取这些局部不变性 特征，一般需要进行数据增强来提高性能。
+
+其他网络结构
+记忆网络/反馈网络
+神经元不但可以接收其他神经元的信息，也可以接收自己的历史信息神经元具有记忆功能，在不同的时刻具有不同的状态，信息传播可以是单向或者双向传递，可用一个有向循环图或无向图来表示记忆网络包括循环神经网络、Hopfield网络、玻尔兹曼机、受限玻尔兹曼机等
+
+图网络
+图网络是定义在图结构数据上的神经网络,图中的每个节点都是由一个或者一组神经元构成节点之间的连接可以是有向的，也可以是无向的,每个节点可以接收来自相邻节点或者自身的信息,图网络是前馈网络和记忆网络的方法，包含许多
+不同的实现方式，如图卷积网络、图注意力网络、消息传递网络等
+
+残差连接
+残差连接 (residual connection)是指,增加跳跃连接从第层与第层甚至更高层之间建立连接 ，使得梯度更容易从输出层流向更接近输入的层，利于模型优化
+
+除残差连接外，还可以改变层与层之间的连接方式
+
+前一层的每个单元仅与后一层的一个小单元子集相连
+可以极大地减少参数的数量
+具体的连接方式高度依赖于具体的问题
+
+
+梯度计算
+误差反向传播算法
+BP(误差反向传播)算法是指，一个BP网络（BP算法训练的多层前反馈神经网络）
+会连续不断地在相对于误差函数斜率下降的方向上计算网络权值和偏差的变化而逐渐逼近目标的。
+每一次权值和偏差的变化都与网络误差的影响成正比，并以反向传播的方式传递到每一层的。
+具体来说，设置学习率,将阈值看作固定输入-1的 dummy node；将对权重和阈值的学习统一看成权重的调整，前向计算迭代过程为：
+
+学习率控制着算法每一轮迭代中的更新步长，若太大则容易振荡，太小则收敛速度又会过慢.
+
+
+各神经元分别属于不同的层，层内无连接
+
+
+相邻两层之间的神经元全部两两连接
+
+
+整个网络中无反馈，信号从输入层向输出层单向传播，可用一个有向无环图表示
+
+
+对于训练样例,ANN的预测结果为
+
+BP算法的目标是最小化均方误差：
+
+BP算法的策略是基于梯度下降的，也即，以目标的负梯度方向对参数进行调整：
+
+数学上：
+
+得到BP算法的迭代方程：
+
+如果取损失函数为结构化风险函数：
+
+那么梯度下降策略可表示为：
+
+算法流程：
+
+将输入样本提供给输入层神经元
+逐层将信号前传至隐层、输出层，产生输出层的结果
+计算输出层误差
+将误差反向传播至隐藏层神经元行调整
+根据隐层神经元对连接权重和阈值进
+上述过程循环进行，直至达到某些停止条件为止
+
+
+自动梯度计算
+自动微分将符号微分法应用于最基本的算子，比如常数、幂函数、指数函数、对 数函数、三角函数等，将其代入数值，保留中间结果，最后再应用于整个函数；
+现代深度学习框架(Pytorch, Tensorflow etc)多采用计算图(computer graph)的方式进行自动梯度计算
+
+将复合函数分解为一系列基本操作，并以图的形式连接起来
+是数学运算的图结构表示，每个非叶子节点代表一个基本操作，每个叶子节点代表一个输入变量或常量
+
+
+通常分为静态计算图和动态计算图，在当前深度学习框架中，Theano和Tensorflow采用的是静态计算图，而DyNet、Chainer和PyTorch采用的是动态计图。Tensorflow 2.0 也开始支持动态计算图。
+
+静态计算图在编译时构建计算图，构建好后在程序运行时不能改变，在构建时可以进行优化、并行能力强，灵活性较差
+动态计算图 在程序运行时动态构建计算图，不容易优化，当不同输入所使用的网络结构不一样时，难以并行计算，灵活性比较高
+
+]]></content>
+      <tags>
+        <tag>Machine-Learning</tag>
+        <tag>Coursework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Autoencoder</title>
+    <url>/2025/06/21/Autoencoder/</url>
+    <content><![CDATA[Introduction
+架构
+CNN的训练样本是带有标签的。在很多实际应用中， 训练样本是没有标签的。应用误差反向传播算法来训练网络会遇到一些困难。
+自编码器(autoencoder)采用让输入和输出相等的idea， 隐含层用于记录数据特征，这是典型的表示学习(representation learning)/特征学习(feature learning)办法,由Hinton等人提出；
+
+autoencder是一种尽可能重构输入信号的神经网络，必须捕捉可以代表输入数据的最重要的内在因素
+
+给定输入和输出相同的一个神经网络
+训练网络获得隐藏层的权重，每一层就是一种表示/特征(representation);
+
+训练
+具体来说，在第一次编解码训练中/网络表达中
+
+
+为input序列增加一个encoder，得到输入的一个representaion,记作
+
+
+继续增加一个decoder，输出最终的使用信号重构的方式评估这个representaion的质量
+
+
+目标是最小化输入输出的差异,训练隐含层的权重矩阵；
+
+
+
+
+Autoencoder的训练过程是逐层静态进行的，通过对encoder的stack，不断将前一层输出的code作为后一层输入的信号；
+
+在完成Autoencoder 的学习任务之后，在实际应用中，在解码阶段学习得到的权重将不进行考虑。因此，编码阶段获得的网络系统其实质是一种特征学习。层级越高，结构特征越大越明显。
+
+对于分类任务，可以事先用Autoencoder 对数据进行学习。然后以学习得 到的权值作为始初权重，采用带有标签的数据对网络进行再次学习，即fine tuning技术。
+为了实现分类任务，需要在编码阶段的最后一层加上一个分类器，比如一个 多层感知器（MLP）
+
+扩展
+在早期Hinton的工作中，采用RBM 来 预训练网络，同时采用对称的网络结构，即解码器中的权重矩阵与编码器中的权重矩 阵呈转置关系。一个原因是当时训练数据少，且计算能力有限；
+正则编码器(regularized AE): 可以使得提取的特征符合某种性质，应用惩罚大权重的L2正则化
+
+稀疏自编码器(Spare AE)基于高维稀疏表示的假设，提取稀疏的特征表示，采用神经元平均激活度为度量
+
+采用如下的稀疏约束限制神经元平均激活度在一个很小的度
+
+去噪自编码器(denoising AE)基于对噪声化的原始数据根据编码和解码，能还原真正原始数据的鲁棒特征，通过提取鲁棒的特征表示，完成去噪工作；
+它假定污染是如下过程
+
+采用如下的编解码过程
+
+总的来说，这些自编码器的工作，它们的目的都是数据将为，都具有编码器和解码器的结构，具有窄的bottleneck，通过对输入信号的重建，将输入降维成一种表征；因此，autoencoder不是一种生成模型。
+]]></content>
+      <tags>
+        <tag>Machine-Learning</tag>
+        <tag>Coursework</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Application</title>
     <url>/2025/07/02/Application/</url>
     <content><![CDATA[网络应用
@@ -960,259 +1211,8 @@ data, client_address = server_socket.recvfrom(1024)server_socket.sendto(b&quot;H
 
 ]]></content>
       <tags>
+        <tag>Coursework</tag>
         <tag>Computer-Network</tag>
-        <tag>Coursework</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Artificial Neural Network</title>
-    <url>/2025/06/21/Artificial-Neural-Network/</url>
-    <content><![CDATA[Idea
-人工神经网络（ANN，Artificial Neural Networks）是在人类对大脑神经网络认识理解的基础上，人工构造的能够实现某种功能的神经网络。它是理论化的人脑神经网络的数学模型，是基于模仿大脑神经网络结构和功能而建立起来的一种信息处理系统。
-
-并行分布式的处理结构
-具有局部内存，可以完成局部操作
-每个处理单元有一个单一的输出连接；
-
-神经网络结构和工作机理基本上是以人脑的组织结构和活动规律为背景的，它反映了脑的某些基本特征，但并不是要对人脑部分的真正实现，可以说它是某种抽象、简化或模仿。
-如果将大量功能简单的形式神经元通过一定的拓扑结构组织起来，构成群体并行分布式处理的计算结构，那么这种结构就是人工神经网络，在不引起混淆的情况下，统称为神经网络。
-ANN有三大要素如下：
-
-神经元的激活规则：主要是指神经元输入到输出之间的映射关系，一般为非线性函数
-网络的拓扑结构：不同神经元之间的连接关系
-学习算法：通过训练数据来学习神经网络的参数
-
-激活函数
-性质要求
-
-连续并可导（允许少数点上不可导）的非线性函数。
-可导的激活函数 可以直接利用数值优化的方法来学习网络参数。
-激活函数及其导函数要尽可能的简单，有利于提高网络计算效率。
-激活函数的导函数的值域要在一个合适的区间内，不能太大也不能太小，否则会影响训练的效率和稳定性。
-
-Logistic函数系
-
-它有一个良好的性质：
-它具有挤压的功能，输出可以看作某种概率分布；
-
-有一个线性近似函数
-
-可降低计算开销
-Tanh函数系
-
-特点是零中心化，可以提升收敛速度
-
-也存在如下线性近似
-
-
-ReLU函数系
-
-性质如下：
-
-ReLU：是目前最常用的激活函数，具有单侧抑制、宽兴奋边界的生物学合理性，可缓解梯度消失问题，但有可能导致神经元的死亡
-带泄露的ReLU：在时也保持一个很小的梯度，避免 永远不能被激活的情况，为超参
-指数线性单元ELU:近似零中心化,为超参
-Softplus可以看成ReLU的平滑版本，其导数刚好为Logistic函数 也有单侧抑制、宽兴奋边界的特性，但不具有稀疏性
-
-多层感知机
-两层感知机构造
-要解决复杂问题，单层神经网络是不够用的，因此引入隐层和多层前反馈神经网络：其中输入层神经元接收外界输入，隐层与输出层神经元对信号进行加工，最终结果由输出层神经元输出；
-采用多层感知机可以解决异或问题;输入仍为
-
-隐藏层：包含两个神经元
-输出层包含一个神经元
-隐藏层采用线性整流激活函数ReLU
-
-
-取
-
-
-可以看到，学习的隐藏空间时一个非线性的空间变换
-
-万能近似定理
-万能近似定理（universal approximation theorem）表述如下：一个两层人工神经网络如果具有足够多的隐藏单元，它可以以任意的精度来近似任何一个函数（即可以表示任意的复杂输入-输出关系）。
-神经网络可以作为一个万能函数来使用，可以用来进行复杂的特征转换，或逼近一个复杂的条件分布。
-根据万能近似定理，对于具有线性输出层和至少一个使用"挤压"性质的激活函数的隐藏层组成的前馈神经网络，只要其隐藏层神经元的数量足够，它可以以任意的精度来近似任何从一个定义在实数空间中的有界闭集函数。因此神经网络经常被当作一个万能函数使用，进行复杂的特征转换，或者逼近一个复杂的条件分布；
-前馈神经网络如何学习分类器？
-
-若为Logistic回归，那么Logistic回归分类器可以看成神经网络的最后一层；
-如果使用softmax回归分类器，相当于网络最后一层设置  个神经元，其输出经过softmax函数进行归一化后可以作为每个类的后验概率，\hat{\mathbf{y}}=\mathrm{softmax}(\mathbf{z}^{(L)})
-采用交叉熵损失函数，对于样本(x, y)，其损失函数为
-
-
-神经网络能够通过训练，改变其内部表示，使输入-输出变换朝好的方向发展。训练实质是用同一个训练集的样本反复作用于网络，网络按照一定的训练规则（学习规则或学习算法），自动调节神经元之间的连接强度或拓扑结构，当网络的实际输出满足期望的要求，或者趋于稳定，这认为训练圆满结束。神经网络的学习成果蕴含在权值和阈值当中；
-但是有如下潜在问题：
-
-
-单隐层网络可以近似任何函数，但其规模可能巨大，在最坏的情况下，需要指数级的隐藏单元才能近似某个函数；
-
-
-随着深度的增加，网络的表示能力呈指数增加，一个具有个输入、深度为、每个隐藏层具有个单元的深度整流网络可以描述线性区域的数量为
-
-
-
-有研究注意到，更深层的网络具有更好的泛化能力，参数数量的增加未必一定会带来模型效果的提升；
-更深的模型往往表现更好，不仅仅是因为模型更大。 想要学得的函数应该由许多更简单的函数复合在一起而得到
-多层感知机
-在多层感知机(Multi-layer Perceptron, MLP)中，更常见的名字是前馈神经网络(Feedforward Neural Network, FNN)
-
-输入层神经元接收外界输入，隐层与输出层神经元对信号进行
-加工，最终结果由输出层神经元输出；
-各神经元分别属于不同的层，层内无连接
-相邻两层之间的神经元全部两两连接
-整个网络中无反馈，信号从输入层向输出层单向传播，可用一个有向无环图表示
-
-
-FNN一般采取交叉熵损失函数,对样本
-
-其中， 为标签的one-hot编码表示；
-考察结构化风险函数
-
-正则化项
-
-前馈神经网络信息向前（单向）传递，层内节点之间并不连接，适合于处理静态数据分析，如回归、分类等任务；
-对于全连接前馈神经网络来说，有不少缺点：
-
-容易过拟合；
-训练比较慢，可解释性差;
-权重矩阵参数非常多，不满足局部不变性特征；
-
-
-局部不变性特征：自然图像中的物体都具有局部不变性特征，比如尺度缩放、平 移、旋转等操作不影响其语义信息。而全连接前馈网络很难提取这些局部不变性 特征，一般需要进行数据增强来提高性能。
-
-其他网络结构
-记忆网络/反馈网络
-神经元不但可以接收其他神经元的信息，也可以接收自己的历史信息神经元具有记忆功能，在不同的时刻具有不同的状态，信息传播可以是单向或者双向传递，可用一个有向循环图或无向图来表示记忆网络包括循环神经网络、Hopfield网络、玻尔兹曼机、受限玻尔兹曼机等
-
-图网络
-图网络是定义在图结构数据上的神经网络,图中的每个节点都是由一个或者一组神经元构成节点之间的连接可以是有向的，也可以是无向的,每个节点可以接收来自相邻节点或者自身的信息,图网络是前馈网络和记忆网络的方法，包含许多
-不同的实现方式，如图卷积网络、图注意力网络、消息传递网络等
-
-残差连接
-残差连接 (residual connection)是指,增加跳跃连接从第层与第层甚至更高层之间建立连接 ，使得梯度更容易从输出层流向更接近输入的层，利于模型优化
-
-除残差连接外，还可以改变层与层之间的连接方式
-
-前一层的每个单元仅与后一层的一个小单元子集相连
-可以极大地减少参数的数量
-具体的连接方式高度依赖于具体的问题
-
-
-梯度计算
-误差反向传播算法
-BP(误差反向传播)算法是指，一个BP网络（BP算法训练的多层前反馈神经网络）
-会连续不断地在相对于误差函数斜率下降的方向上计算网络权值和偏差的变化而逐渐逼近目标的。
-每一次权值和偏差的变化都与网络误差的影响成正比，并以反向传播的方式传递到每一层的。
-具体来说，设置学习率,将阈值看作固定输入-1的 dummy node；将对权重和阈值的学习统一看成权重的调整，前向计算迭代过程为：
-
-学习率控制着算法每一轮迭代中的更新步长，若太大则容易振荡，太小则收敛速度又会过慢.
-
-
-各神经元分别属于不同的层，层内无连接
-
-
-相邻两层之间的神经元全部两两连接
-
-
-整个网络中无反馈，信号从输入层向输出层单向传播，可用一个有向无环图表示
-
-
-对于训练样例,ANN的预测结果为
-
-BP算法的目标是最小化均方误差：
-
-BP算法的策略是基于梯度下降的，也即，以目标的负梯度方向对参数进行调整：
-
-数学上：
-
-得到BP算法的迭代方程：
-
-如果取损失函数为结构化风险函数：
-
-那么梯度下降策略可表示为：
-
-算法流程：
-
-将输入样本提供给输入层神经元
-逐层将信号前传至隐层、输出层，产生输出层的结果
-计算输出层误差
-将误差反向传播至隐藏层神经元行调整
-根据隐层神经元对连接权重和阈值进
-上述过程循环进行，直至达到某些停止条件为止
-
-
-自动梯度计算
-自动微分将符号微分法应用于最基本的算子，比如常数、幂函数、指数函数、对 数函数、三角函数等，将其代入数值，保留中间结果，最后再应用于整个函数；
-现代深度学习框架(Pytorch, Tensorflow etc)多采用计算图(computer graph)的方式进行自动梯度计算
-
-将复合函数分解为一系列基本操作，并以图的形式连接起来
-是数学运算的图结构表示，每个非叶子节点代表一个基本操作，每个叶子节点代表一个输入变量或常量
-
-
-通常分为静态计算图和动态计算图，在当前深度学习框架中，Theano和Tensorflow采用的是静态计算图，而DyNet、Chainer和PyTorch采用的是动态计图。Tensorflow 2.0 也开始支持动态计算图。
-
-静态计算图在编译时构建计算图，构建好后在程序运行时不能改变，在构建时可以进行优化、并行能力强，灵活性较差
-动态计算图 在程序运行时动态构建计算图，不容易优化，当不同输入所使用的网络结构不一样时，难以并行计算，灵活性比较高
-
-]]></content>
-      <tags>
-        <tag>Coursework</tag>
-        <tag>Machine-Learning</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Autoencoder</title>
-    <url>/2025/06/21/Autoencoder/</url>
-    <content><![CDATA[Introduction
-架构
-CNN的训练样本是带有标签的。在很多实际应用中， 训练样本是没有标签的。应用误差反向传播算法来训练网络会遇到一些困难。
-自编码器(autoencoder)采用让输入和输出相等的idea， 隐含层用于记录数据特征，这是典型的表示学习(representation learning)/特征学习(feature learning)办法,由Hinton等人提出；
-
-autoencder是一种尽可能重构输入信号的神经网络，必须捕捉可以代表输入数据的最重要的内在因素
-
-给定输入和输出相同的一个神经网络
-训练网络获得隐藏层的权重，每一层就是一种表示/特征(representation);
-
-训练
-具体来说，在第一次编解码训练中/网络表达中
-
-
-为input序列增加一个encoder，得到输入的一个representaion,记作
-
-
-继续增加一个decoder，输出最终的使用信号重构的方式评估这个representaion的质量
-
-
-目标是最小化输入输出的差异,训练隐含层的权重矩阵；
-
-
-
-
-Autoencoder的训练过程是逐层静态进行的，通过对encoder的stack，不断将前一层输出的code作为后一层输入的信号；
-
-在完成Autoencoder 的学习任务之后，在实际应用中，在解码阶段学习得到的权重将不进行考虑。因此，编码阶段获得的网络系统其实质是一种特征学习。层级越高，结构特征越大越明显。
-
-对于分类任务，可以事先用Autoencoder 对数据进行学习。然后以学习得 到的权值作为始初权重，采用带有标签的数据对网络进行再次学习，即fine tuning技术。
-为了实现分类任务，需要在编码阶段的最后一层加上一个分类器，比如一个 多层感知器（MLP）
-
-扩展
-在早期Hinton的工作中，采用RBM 来 预训练网络，同时采用对称的网络结构，即解码器中的权重矩阵与编码器中的权重矩 阵呈转置关系。一个原因是当时训练数据少，且计算能力有限；
-正则编码器(regularized AE): 可以使得提取的特征符合某种性质，应用惩罚大权重的L2正则化
-
-稀疏自编码器(Spare AE)基于高维稀疏表示的假设，提取稀疏的特征表示，采用神经元平均激活度为度量
-
-采用如下的稀疏约束限制神经元平均激活度在一个很小的度
-
-去噪自编码器(denoising AE)基于对噪声化的原始数据根据编码和解码，能还原真正原始数据的鲁棒特征，通过提取鲁棒的特征表示，完成去噪工作；
-它假定污染是如下过程
-
-采用如下的编解码过程
-
-总的来说，这些自编码器的工作，它们的目的都是数据将为，都具有编码器和解码器的结构，具有窄的bottleneck，通过对输入信号的重建，将输入降维成一种表征；因此，autoencoder不是一种生成模型。
-]]></content>
-      <tags>
-        <tag>Coursework</tag>
-        <tag>Machine-Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -2282,8 +2282,8 @@ GBDT的预测结果为
 
 ]]></content>
       <tags>
-        <tag>Coursework</tag>
         <tag>Machine-Learning</tag>
+        <tag>Coursework</tag>
       </tags>
   </entry>
   <entry>
@@ -2746,6 +2746,132 @@ proof:由推论;
       </tags>
   </entry>
   <entry>
+    <title>IN-CONTEXT LORA FOR DIFFUSION TRANSFORMERS</title>
+    <url>/2025/10/06/IN-CONTEXT-LORA-FOR-DIFFUSION-TRANSFORMERS/</url>
+    <content><![CDATA[Abstract
+最近的研究探索了使用 diffusion transformers（DiT）通过简单地在图像之间 concatenating attention tokens 来生成 task-agnostic 图像。然而，尽管有大量的计算资源，生成的图像的保真度仍然不理想。在这项研究中，我们通过假设 text-to-image 的 DiT 固有地拥有 in-context generation 的能力，只需最低限度的调整即可激活它们，从而重新评估和简化了这个框架。通过不同的任务实验，我们定性地证明了现有的 text-to-image DiT可以在无需任何调整的情况下有效地执行上下文生成。基于这一见解，我们提出了一个非常简单的pipeline 来利用 DiT 的上下文能力：
+
+连接图像而不是 tokens;
+执行多个图像的 joint captioning;
+使用小数据集应用特定于任务的LoRA调整（例如，20 ~ 100个样本），而不是对大型数据集进行全参数调优。
+
+我们将我们的模型命名为 In-Context LoRA（IC-LoRA）。这种方法不需要修改原始 DiT 模型，只需要更改训练数据。值得注意的是，我们的 pipeline 可以生成更好地遵守提示的高保真图像集。虽然在调优数据方面是特定于任务的，但我们的框架在架构和管道方面仍然保持 task-agnostic，这为社区提供了强大的工具，并为进一步研究产品级任务不可知生成系统提供了有价值的见解。我们在 GitHub上发布我们的代码、数据和模型。
+Introduction
+文本到图像模型的出现显着推进了视觉内容生成领域，使能够从文本描述创建高保真图像。现在，许多方法都提供了对各种图像属性的增强控制，允许在生成期间进行更细的调整。尽管取得了这些进展，适应文本到图像的模型，以广泛的生成任务，特别是那些需要连贯的图像集与复杂的内在关系，仍然是一个开放的挑战。在这项工作中，我们介绍了一个 task-agnostic 的框架，旨在适应文本到图像模型，以不同的生成任务，旨在提供一个通用的解决方案，多功能和可控的图像生成。
+
+传统方法（任务特定）：要做图像分类，就训练一个分类网络（如ResNet）。要做目标检测，就训练一个检测网络（如Faster R-CNN）。要做语义分割，就训练一个分割网络（如U-Net）;每个模型都是“各自为政”，从零开始或在特定数据集上微调，学到的特征只擅长自己的任务。
+任务无关的方法：先使用一种通用的、自监督的预训练方法（如MAE, SimCLR, DINO）在一个巨大的、无标签的图像库（如ImageNet）上训练一个模型。这个模型学习到的图像特征就是“任务无关”的。它不知道也不关心你将来要用它来分类、检测还是分割。它只是学会了如何很好地“理解”图像的内容和结构。当需要解决具体任务时，只需在这个通用的“任务无关”模型后面添加一个非常简单的任务特定头（比如一个分类层），然后用少量数据进行微调，甚至不微调（线性探测），就能取得非常好的效果。
+任务无关的框架是一个系统或模型架构，它被设计成能够不经过核心结构修改，直接处理多种不同的视觉任务。这个框架的核心是一个共享的、任务无关的骨干网络，它负责从图像中提取通用的特征。然后，通过附加不同的、轻量级的“任务头”或使用不同的提示指令，来引导这个骨干网络解决不同的问题。
+
+最近的工作，例如 Group Diffusion Transformers（GDT）框架，探索了将视觉生成任务重新定义为群体生成问题。在这种情况下，具有任意 intrinsic relationships 的一组图像在单个去噪扩散过程中同时生成，可选地以另一组图像为条件。GDT 的核心思想是将图像中的注意力标记连接起来，包括条件标记和要生成的标记，同时确保每个图像的标记只关注其相应的文本标记。这种方法允许模型以与任务无关的零触发方式适应多个任务，而无需任何微调或梯度更新。
+然而，尽管 GDT 具有创新的架构，但其generation fidelity 相对较低，与原始预训练的文本到图像模型相比，通常表现不佳。这一限制促使人们重新审视将文本到图像模型适应复杂生成任务时所采用的基本假设和方法。
+在这项工作中，我们做出了一个关键假设：text-to-image 模型固有地拥有in-context generation capabilities 。为了验证这一点，我们直接将现有的 text-to-image 模型应用于各种需要生成具有不同关系的图像集的任务。如图3所示；
+FLUX文本到图像生成示例。使用 FLUX.1-dev 跨六个任务生成文本到图像的示例，突出显示了具有不同关系属性的多面板图像的创建。主要观察结果包括：（1）原始的文本到图像模型已经可以生成在身份、风格、照明和字体方面具有连贯一致性的多面板输出，尽管仍然存在一些小的缺陷。(2)FLUX.1-dev在解释描述多个面板的组合提示方面表现出强大的能力。
+
+以 FLUX.1-dev 模型为例，我们观察到该模型已经可以执行不同的任务，尽管存在一些缺陷。它保持一致的属性，例如对象身份、风格、照明条件和调色板，同时修改姿势、3D方向和布局等其他方面。此外，该模型还展示了在单个合并提示内解释和遵循多个图像描述的能力。
+这些令人惊讶的发现让我们得到了几个关键见解：
+
+固有上下文学习：文本到图像模型已经具备上下文生成能力。通过适当触发和增强这种能力，我们可以利用它来执行复杂的生成任务。
+无需架构修改的模型可重用性：由于 text-to-image 模型可以解释合并的captions，因此我们可以重用它们在上下文中生成，而无需对其架构进行任何更改。这涉及简单地更改输入数据，而不是修改模型本身。
+最少数据和计算的效率：无需大型数据集或延长训练时间即可实现高质量的结果。小型、高质量的数据集加上最少的计算资源可能就足够了。
+
+基于这些见解，我们设计了一个极其简单但有效的 pipeline，用于使 text-to-image 模型适应不同的任务。我们的方法在以下方面与 GDT 形成鲜明对比：
+
+图像拼接：我们将一组图像拼接成单个大图像，而不是拼接注意力标记。该方法大致相当于 diffusion transformers（DiT）中的 token concatenation，忽略了 Variational Autoencoder（VAE）组件引入的差异。
+prompts 拼接：我们将每个图像的 prompts 合并为一个长prompt，使模型能够同时处理和生成多个图像。这与 GDT 方法不同，在GDT方法中，每个图像的 tokens 都与其文本 tokens 交叉。
+使用小数据集进行最小微调：我们没有对数十万个样本进行大规模训练，而是使用一小组仅 个图像集来微调模型的 Low-Rank Adaptation（LoRA）。这种方法显着减少了所需的计算资源，并在很大程度上保留了原始文本到图像模型的知识和上下文能力。
+
+生成的模型非常简单，不需要修改原始的 text-to-image 模型。调整仅通过根据特定任务需求调整一小组调整数据来实现。为了支持image-conditional generation，我们采用了一种简单的技术：在连接的大图像中 mask 一个或多个图像，并 prompt 模型使用剩余图像修补它们。为此，我们直接利用SDEDit。
+尽管它的简单性，我们发现，我们的方法可以适应各种各样的高质量的任务。虽然我们的方法需要特定于任务的调优数据，但整体框架和 pipeline 仍然与任务无关，允许在不修改原始模型架构的情况下适应各种任务。这种最低数据要求和广泛适用性的结合为生成社区，设计师和艺术家提供了强大的工具。我们承认，开发一个完全统一的发电系统仍然是一个开放的挑战，并将其作为未来的工作。为了便于进一步研究，我们在项目页面2发布了我们的数据、模型和训练配置。
+Related Work
+Task-Specific Image Generation
+Text-to-image 模型在从复杂的文本提示生成高保真图像方面取得了显着的成功。然而，它们通常缺乏对生成图像的特定属性的细粒度可控性。为了解决这一限制，人们提出了许多工作来增强对布局等方面的控制和照明条件。有些方法甚至支持同时生成多个图像，类似于我们的方法。
+尽管取得了这些进步，但这些模型通常采用特定于任务的架构和 pipelines，限制了它们的灵活性和通用性。每个架构都是针对单个任务量身定制的，并且为一项任务开发的功能不容易组合或扩展到任意新任务。这与自然语言处理的最近进展形成鲜明对比，其中模型被设计为在单个体系结构中执行多个任务，并且可以概括超出它们显式训练的任务。
+Task-Agnostic Image Generation
+为了克服任务特定模型的限制，最近的研究旨在创建任务不可知的框架，该框架支持单个架构内的多个可控图像生成任务。例如，Emu Edit 集成了广泛的图像编辑功能，而Emu 2，TransFusion ，和 OmniGen 在一个统一的模型中执行不同的任务，从 procedural drawing 到 subject-driven generation。Emu 3通过在一个框架下支持文本、图像和视频生成进一步扩展了这一功能。这些工作代表了统一或任务不可知的一代的实质性进展。
+与这些模型相反，我们提出现有的 text-to-image 架构已经具备内在的上下文能力。这消除了开发新架构的需要，并以最少的额外数据和计算资源实现高质量生成。我们的方法不仅提高了效率，而且还在各种任务中提供卓越的发电质量。
+Method
+Problem Formulation
+遵循 Group Diffusion Transformers 的方法[Huang等人，2024]，我们将大多数图像生成任务定义为产生一组 图像，条件是另一组图像和个文本提示。该形式化涵盖广泛的学术任务，例如图像翻译、风格转移、姿势转移和主题驱动生成，以及图画书创作、字体设计和转移、故事板生成等实际应用。条件图像和生成的图像之间的相关性通过每个图像提示隐式地维护。
+我们的方法通过对整个图像集使用一个consolidated prompt 来稍微修改这个框架。此 prompt 通常从图像集的总体描述开始，然后是每个图像的单独提示。这种统一的 prompt 设计与现有的 text-to-image 模型更兼容，并允许整体描述自然地传达任务的意图，就像客户如何向艺术家传达设计要求一样。
+Group Diffusion Transformers
+我们从基本框架开始，Group Diffusion Transformers（GDT）。在GDT中，通过在每个 Transformer self-attention block 中的图像之间连接 attention tokens，在单个扩散过程中同时生成一组图像。这种方法使每个图像都能够“看到”集中的所有其他图像并与其交互。Text conditioning 是通过让每个图像注意其相应的 text embeddings 来引入的，使其能够访问其他图像的内容和相关的 text guidance。  GDT在数十万个图像集上训练，使其能够以零镜头方式在任务中进行概括。
+In-Context LoRA
+虽然 GDT 展示了零镜头任务适应性，但其生成质量不足，与text-to-image models模型的 baseline  相比，通常表现不佳。我们提出了一些改进措施来改进这个框架。
+我们的出发点是假设基础的 text-to-image 模型固有地拥有一些针对不同任务的上下文生成能力，即使质量有所不同。下图中的结果支持了这一点，其中模型有效地生成跨不同任务的多个图像（有时有条件）。
+FLUX文本到图像生成示例。使用 FLUX.1-dev 跨六个任务生成文本到图像的示例，突出显示了具有不同关系属性的多面板图像的创建。主要观察结果包括：（1）原始的文本到图像模型已经可以生成在身份、风格、照明和字体方面具有连贯一致性的多面板输出，尽管仍然存在一些小的缺陷。(2) FLUX.1-dev在解释描述多个面板的组合提示方面表现出强大的能力，详情请在附录A中。
+
+基于这一见解，不需要对大型数据集进行广泛的训练;我们可以通过精心策划的高质量图像集激活模型的上下文能力。
+另一个观察结果是，text-to-image 模型可以从包含多个面板描述的单个 prompt 生成连贯的 multi-panel 图像。
+(a) Portrait Photography. This four-panel image captures a young boy’s adventure in the woods, expressing curiosity and wonder. [TOP-LEFT] He crouches beside a stream, peering intently at a group of frogs jumping along the rocks, his face full of excitement; [TOP-RIGHT] he climbs a low tree branch, arms stretched wide as he balances, a big grin on his face; [BOTTOM-LEFT] a close-up shows him kneeling in the dirt, inspecting a bright yellow mushroom with fascination; [BOTTOM-RIGHT] the boy runs through a clearing, his arms spread out like airplane wings, lost in the thrill of discovery.  (b) Product Design. The image showcases a modern and multifunctional baby walker designed for play and growth, featuring its versatility and attention to detail; [TOP-LEFT] the first panel highlights the walker’s sleek form with several interactive toys on the tray, focusing on its overall structure and functionality, [TOP-RIGHT] the second panel provides a side view emphasizing the built-in lighting around the play tray, illustrating both style and safety features, [BOTTOM-LEFT] the third panel displays a rear view of the walker showcasing the comfortable seat and adjustable design elements, underlining comfort and adaptability, [BOTTOM-RIGHT] while the final panel offers a close-up of the activity center with various colorful toys, capturing its playful appeal and engagement potential.  (c) Font Design. The four-panel image emphasizes the versatility of a minimalist sans-serif font across various elegant settings: [TOP-LEFT] displays the word “Essence” in muted beige, featured on a luxury perfume bottle with a marble backdrop; [TOP-RIGHT] shows the phrase “Pure Serenity” in soft white, set against an image of serene, rippling water; [BOTTOM-LEFT] showcases “Breathe Deep” in pale blue, printed on a calming lavender candle, evoking a spa-like atmosphere; [BOTTOM-RIGHT] features “Elegance Defined” in charcoal gray, embossed on a sleek hardcover notebook, emphasizing sophistication and style.  (d) Sandstorm Visual Effect. The two-panel image showcases a biker speeding through a desert landscape before and after a sandstorm effect, capturing a powerful transformation; [TOP] the first panel presents a biker riding along a dirt path, with the vast desert and blue sky stretching out behind them, conveying a sense of freedom and adventure, while [BOTTOM] the second panel introduces a violent sandstorm, with grains of sand swirling around the biker and partially obscuring the landscape, transforming the scene into a chaotic and thrilling visual spectacle.  (e) Visual Identity Design. This two-panel image captures the essence of a visual identity design and its adaptable application, showcasing both the original concept and its practical derivative use; [LEFT] the left panel presents a bright and engaging graphic featuring a stylized gray koala character triumphantly holding a large wedge of cheese on a vibrant yellow background, using bold black outlines to emphasize the simplicity and playfulness of the design, while [RIGHT] the right panel illustrates the design’s extension to everyday objects, where the same koala and cheese motif has been skillfully adapted onto a circular coaster with a softer yellow tone, accompanied by a matching mug bearing smaller graphics of the koala and cheese, both items resting elegantly on a minimalist white table, highlighting the versatility and cohesive appeal of the visual identity across different mediums. (f) Portrait Illustration. This two-panel image showcases a transformation from a photographic portrait to a playful illustration; [LEFT] the first panel displays a man in a navy suit, white shirt, and brown shoes, sitting on a wooden bench in an urban park, his hand resting casually on his lap; [RIGHT] the illustration panel transforms him into a cartoon-like character, with smooth lines and exaggerated features, including oversized shoes and a vibrant blue suit, set against a minimalist park backdrop, giving the scene a lively and humorous feel.
+因此，我们可以通过使用统一的图像提示来简化架构，而不是要求每个图像专门关注其各自的文本标记。这使我们能够重复使用原始的 text-to-image架构，而无需进行任何结构上的修改。
+我们最终的框架设计通过在训练期间将一组图像直接连接成一个大图像，同时生成一组图像，同时将它们的 captions 合并成一个合并的 prompt，并为每个面板提供总体描述和明确的指导。生成图像集后，我们将大图像拆分为各个面板。此外，由于 text-to-image 模型已经展示了上下文能力，因此我们不会对整个模型进行微调。相反，我们对一小群高质量数据应用Low-Rank Adaptation（LoRA）来触发和增强这些功能。
+
+Low-Rank Adaptation(LoRA, 大模型的低秩自适应) 是一种用于高效微调大型预训练模型（如GPT、扩散模型、BERT等）的技术。
+
+传统微调：好比为了给一件西装换个款式，你把整件衣服拆了，重新裁剪缝合所有布料。这需要很高的手艺（计算资源）和很长时间，而且容易把原来的好布料（预训练中获得的知识）弄坏。
+LoRA微调：好比在这件西装的关键部位（比如肩部、腰部）用别针固定上几块小小的、新的布料。这些小块布料专门用于调整款式，非常轻便，而且随时可以取下，恢复西装原样。
+
+LoRA基于以下假设：模型在适应新任务时，其权重变化具有“低秩”特性。这意味着不需要一个完整的、高维度的矩阵来表示所有的变化，而是可以用两个更小、更薄、可训练的矩阵的乘积作为旁路近似这个变化。在微调过程中，只更新A和B这两个小矩阵的参数，原始权重保持不变。矩阵A和B的秩非常小，这使得它们包含的参数数量极少
+
+矩阵负责将输入数据降维;
+矩阵负责将降维后的数据再升维回原始维度;
+原始模型微调为;
+
+
+为了支持对额外图像集的条件处理，我们使用 SDEDit（一种免训练方法）来基于 unmasked set 来修补一组图像，所有图像都连接在单个大图像中。
+
+Stochastic Differential Editing(SDEdit, 随机微分编辑) 是一种Diffusion Model-based、train-free的图像生成与编辑方法。可以理解为一种模糊重绘技术：先给输入图像添加噪声，使其变模糊，然后利用 Diffusion Model，在降噪过程中重新绘制出一张既符合你输入的结构、又逼真自然的新图像。
+
+Experiments
+Implementation Details
+我们在 FLUX.1-dev  text-to-image 模型上构建我们的方法，并专门针对我们的任务训练 In-Context LoRA。我们选择一系列实用的任务，包括storyboard generation、font design、portrait photography、visual identity design、home decoration、visual effects、portrait illustration和 PowerPoint template design等。对于每个任务，我们从互联网上收集 20 到 100 个高质量图像集。每一组都连接成一张合成图像，并使用 Multi-modal Large Language Models (MLLMs) 生成这些图像的字幕，首先是总体摘要，然后是每个图像的详细描述。训练在单个A100 GPU上进行，执行 5000 个步骤，批量大小为4，LoRA秩为 16。为了进行推断，我们采用了 20 个抽样步骤，指导标度为3.5，与 FLUX.1-dev 的蒸馏指导标度相匹配。对于图像条件生成，SDEDdit应用于旨在生成的 mask images，从而能够基于周围图像进行修补。
+Results
+我们提供定性结果，证明我们的模型在各种任务中的通用性和质量。鉴于任务的多样性，我们推迟对未来的工作采用统一的，定量的 benchmark 和评估。
+Reference-Free Image-Set Generation
+在此设置中，图像集仅根据文本提示生成，无需额外的图像输入。我们的方法在一系列图像集生成任务中实现了高质量的结果。
+Reference-Based Image-Set Generation
+在此设置中，使用 text prompt 和输入图像集 具有至少一个参考图像 生成图像集。SDEDdit用于 mask 某些图像，从而启用基于其余图像的修复。图像条件生成的结果如图13所示，常见的失败案例如图14所示。
+图像条件生成。在多个任务中使用In-上下文LoRA以及免训练SDEDit的图像条件生成示例。在某些情况下，例如沙尘暴视觉效果的应用案例，输入和输出图像之间可能会出现不一致，包括汽车驾驶员身份和着装的变化。解决这些不一致之处留给未来的工作。
+
+图像条件生成的失败案例。使用带SDEDit的In-Context LoRA的肖像身份传输失败的示例。我们观察到 In-Context LoRA 的 SDEDdit 往往不稳定，通常无法保留身份。这可能源于 SDEDdit对输入到输出映射的单向依赖性与 In-Context LoRA 训练的双向性质之间的差异。解决这个问题留给未来的工作。
+
+尽管在多个任务中有效，但与文本条件生成相比，图像之间的视觉一致性有时较低。这种差异可能是由于SDEDit在掩蔽和未掩蔽图像之间的单向依赖性造成的，而纯文本生成允许图像之间的双向依赖性，从而实现条件和输出的相互调整。这表明了改进的潜力，例如结合可训练的修复方法，我们将其留给未来的探索。
+Reproducing
+克隆 ai-toolkit 仓库和 In-Context-LoRA 仓库;
+git clone https://github.com/ostris/ai-toolkit.git /opt/liblibai-models/user-workspace2/model_zoogit clone https://github.com/ali-vilab/In-Context-LoRA.git /opt/liblibai-models/user-workspace2/model_zoo
+创建虚拟环境
+conda create -n aitk_xqy python=3.11conda activate aitk_xqypip3 install --no-cache-dir torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu126pip3 install -r requirements.txt
+在命令行下登陆 Huggingface;
+huggingface-cli login
+移动配置文件
+scp /opt/liblibai-models/user-workspace2/model_zoo/In-Context-LoRA/config/movie-shots.yml /opt/liblibai-models/user-workspace2/model_zoo/ai-toolkit/config/
+执行训练
+cd /opt/liblibai-models/user-workspace2/model_zoo/ai-toolkitpython run.py config/movie-shots.yml
+可以看到加载了配置文件进行训练;
+或者使用 UI 进行训练的配置，注意
+
+
+在本地访问http://localhost:8675,在服务器上执行如下命令（这个命令是可以中断的，无需保持 UI 运行即可运行作业，它只需要启动/停止/监控作业。）
+cd uinpm run build_and_start
+
+
+修改配置文件，指定 FLUX 模型为本地已经下载好的模型，而不是从 Huggingface 拉取；
+model:        name_or_path: &quot;/opt/liblibai-models/user-workspace2/model_zoo/FLUX.1-dev&quot;        is_flux: true        quantize: true
+
+
+(opt) 开始训练前，在 Huggingface 上获取 Access Tokens；
+
+
+训练的 UI 界面如下：
+
+]]></content>
+      <tags>
+        <tag>papers</tag>
+        <tag>Computer-Vision</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Internet</title>
     <url>/2025/07/02/Internet/</url>
     <content><![CDATA[Internet
@@ -3137,8 +3263,8 @@ Performance
 
 ]]></content>
       <tags>
-        <tag>Computer-Network</tag>
         <tag>Coursework</tag>
+        <tag>Computer-Network</tag>
       </tags>
   </entry>
   <entry>
@@ -3298,8 +3424,8 @@ K值设定：K值选择过小：得到的近邻数过少，会降低分类精度
 
 ]]></content>
       <tags>
-        <tag>Coursework</tag>
         <tag>Machine-Learning</tag>
+        <tag>Coursework</tag>
       </tags>
   </entry>
   <entry>
@@ -3357,8 +3483,8 @@ LDA的目标是找到一个投影矩阵 ，将样本从原始  维空间投影�
 最优的投影矩阵闭式解  由与最大的  个非零特征值  对应的特征向量  组成，即 
 ]]></content>
       <tags>
-        <tag>Coursework</tag>
         <tag>Machine-Learning</tag>
+        <tag>Coursework</tag>
       </tags>
   </entry>
   <entry>
@@ -3489,8 +3615,8 @@ LDA的目标是找到一个投影矩阵 ，将样本从原始  维空间投影�
 
 ]]></content>
       <tags>
-        <tag>Computer-Network</tag>
         <tag>Coursework</tag>
+        <tag>Computer-Network</tag>
       </tags>
   </entry>
   <entry>
@@ -3867,8 +3993,8 @@ v 型结构,给定子结点 X4 的取值, Xl 与 X2 必不独立; 若X4的取值
 
 ]]></content>
       <tags>
-        <tag>Coursework</tag>
         <tag>Machine-Learning</tag>
+        <tag>Coursework</tag>
       </tags>
   </entry>
   <entry>
@@ -3984,6 +4110,77 @@ Algorithm(Ford-Fulkerson)
       <tags>
         <tag>Coursework</tag>
         <tag>Graph-Theory</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PCA</title>
+    <url>/2025/07/02/PCA/</url>
+    <content><![CDATA[维度灾难
+在一维的时候，数据点是非常稠密的，而随着维数的增加（如2维， 3维），整个数据点的空间就形成非常庞大的空间（由 3 个，变 成9个，再变成27个），相应地，数据分布就变得相当稀疏了。
+
+我们需要对原始高维空间转换为一个低维的子空间(subspace)，即降维；数据样本虽然是高维的，但与学习任务密切相关的也许仅是某个低维分布， 即高维空间中的一个低维嵌入(embedding)；
+
+PCA
+主成分分析(Principal Component Analysis, PCA)作为一种典型的降维方法，旨在寻找一个超平面，满足如下性质
+
+最近重构性：样本点到超平面距离足够近
+最大可分性：样本点在这个超平面上的投影尽可能分开
+
+以下证明这两种性质等价；
+假定对维空间的样本进行中心化；
+投影变换的新坐标系为, 这些为标准的正交基,维度为；
+
+新坐标系下，样本点变换为，反过来的坐标变换为;注意到
+
+
+一种解释是最大可分性，我们的目标是投影在超平面上的点方差最大化，即
+
+等价与最大化
+
+另一种解释是最小重构性,期待最小化
+
+计算重构前后的样本点集在低维空间的距离总和，目标使之最小
+
+由Lagrange乘子法知，PCA的解析解为：将协方差矩阵特征值分解后的top d'个特征值对应的特征向量
+
+算法流程对应如下
+
+t-SNE
+idea
+t-SNE是一种降维技术，用于在二维或三维的低维空间中表示高维数据集，从而使其可视化；
+
+为高维样本构建一个概率分布；为低维嵌入中的点定义概率分布；
+分布中相似的样本对应高概率值，不相似的样本对应极小概率值。
+KL散度用来最小化两个分布之间距离；
+
+
+换而言之，t-SNE希望将一个高维数据集将其简化为一个保留了大量原始信息的低维图；
+通过保留局部邻域而不是全局距离来实现这一点。具体来说，t-SNE 关注的是：在高维空间中非常相似（距离很近）的点，在低维空间中也应该映射得很近；在高维空间中不太相似（距离较远）的点，在低维空间中也应该映射得较远。
+
+流程
+首先，计算高维空间中任意两个数据点  和  之间的相似度。常用的方法是计算它们之间的欧几里得距离 。
+将距离转换为条件概率 ，表示  认为  是其邻居的可能性。这个概率通常基于高斯分布（正态分布）来计算：
+
+其中  是以  为中心的高斯分布的方差，即通过用户指定的困惑度(Perplexity)参数来确定。困惑度可以被理解为每个点周围的有效邻居数量。
+为了得到一个对称的联合概率分布 P，t-SNE 使用
+
+(这里的  是数据点总数，分母是为了归一化)。这个  表示  和  在高维空间中是邻居的联合概率。对于相距较远的点， 的值会非常接近于零。
+类似地，在低维嵌入空间中，我们为对应的映射点  和  计算它们之间的相似度 。与高维空间不同，低维空间使用自由度为1的T分布来计算概率。低维空间中的联合概率  定义为：
+
+这里分母是为了归一化，确保所有  的和为 1。
+t-SNE 的目标是调整低维空间中的点  的位置，使得低维概率分布  尽可能地接近高维概率分布 。t-SNE 使用梯度下降等优化方法来迭代调整低维点  的位置，以最小化 KL 散度。损失函数的梯度为：
+
+局限性
+
+计算成本高，不适合用于非常大的数据集。
+结果可能受到参数（如困惑度）选择的影响，不同的参数可能产生稍微不同的可视化结果。
+主要用于可视化，不适合直接用于后续的机器学习任务（因为没有一个明确的映射函数可以用于新数据）。
+运行结果随机性：由于优化过程是非凸的，每次运行可能会产生略有不同的布局。
+
+]]></content>
+      <tags>
+        <tag>Machine-Learning</tag>
+        <tag>Coursework</tag>
       </tags>
   </entry>
   <entry>
@@ -4543,79 +4740,8 @@ RIP
 注意，RIP协议中有一个应用route-d管理RIP转发表，通告是通过UDP报文周期性重复发送的；
 ]]></content>
       <tags>
+        <tag>Coursework</tag>
         <tag>Computer-Network</tag>
-        <tag>Coursework</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PCA</title>
-    <url>/2025/07/02/PCA/</url>
-    <content><![CDATA[维度灾难
-在一维的时候，数据点是非常稠密的，而随着维数的增加（如2维， 3维），整个数据点的空间就形成非常庞大的空间（由 3 个，变 成9个，再变成27个），相应地，数据分布就变得相当稀疏了。
-
-我们需要对原始高维空间转换为一个低维的子空间(subspace)，即降维；数据样本虽然是高维的，但与学习任务密切相关的也许仅是某个低维分布， 即高维空间中的一个低维嵌入(embedding)；
-
-PCA
-主成分分析(Principal Component Analysis, PCA)作为一种典型的降维方法，旨在寻找一个超平面，满足如下性质
-
-最近重构性：样本点到超平面距离足够近
-最大可分性：样本点在这个超平面上的投影尽可能分开
-
-以下证明这两种性质等价；
-假定对维空间的样本进行中心化；
-投影变换的新坐标系为, 这些为标准的正交基,维度为；
-
-新坐标系下，样本点变换为，反过来的坐标变换为;注意到
-
-
-一种解释是最大可分性，我们的目标是投影在超平面上的点方差最大化，即
-
-等价与最大化
-
-另一种解释是最小重构性,期待最小化
-
-计算重构前后的样本点集在低维空间的距离总和，目标使之最小
-
-由Lagrange乘子法知，PCA的解析解为：将协方差矩阵特征值分解后的top d'个特征值对应的特征向量
-
-算法流程对应如下
-
-t-SNE
-idea
-t-SNE是一种降维技术，用于在二维或三维的低维空间中表示高维数据集，从而使其可视化；
-
-为高维样本构建一个概率分布；为低维嵌入中的点定义概率分布；
-分布中相似的样本对应高概率值，不相似的样本对应极小概率值。
-KL散度用来最小化两个分布之间距离；
-
-
-换而言之，t-SNE希望将一个高维数据集将其简化为一个保留了大量原始信息的低维图；
-通过保留局部邻域而不是全局距离来实现这一点。具体来说，t-SNE 关注的是：在高维空间中非常相似（距离很近）的点，在低维空间中也应该映射得很近；在高维空间中不太相似（距离较远）的点，在低维空间中也应该映射得较远。
-
-流程
-首先，计算高维空间中任意两个数据点  和  之间的相似度。常用的方法是计算它们之间的欧几里得距离 。
-将距离转换为条件概率 ，表示  认为  是其邻居的可能性。这个概率通常基于高斯分布（正态分布）来计算：
-
-其中  是以  为中心的高斯分布的方差，即通过用户指定的困惑度(Perplexity)参数来确定。困惑度可以被理解为每个点周围的有效邻居数量。
-为了得到一个对称的联合概率分布 P，t-SNE 使用
-
-(这里的  是数据点总数，分母是为了归一化)。这个  表示  和  在高维空间中是邻居的联合概率。对于相距较远的点， 的值会非常接近于零。
-类似地，在低维嵌入空间中，我们为对应的映射点  和  计算它们之间的相似度 。与高维空间不同，低维空间使用自由度为1的T分布来计算概率。低维空间中的联合概率  定义为：
-
-这里分母是为了归一化，确保所有  的和为 1。
-t-SNE 的目标是调整低维空间中的点  的位置，使得低维概率分布  尽可能地接近高维概率分布 。t-SNE 使用梯度下降等优化方法来迭代调整低维点  的位置，以最小化 KL 散度。损失函数的梯度为：
-
-局限性
-
-计算成本高，不适合用于非常大的数据集。
-结果可能受到参数（如困惑度）选择的影响，不同的参数可能产生稍微不同的可视化结果。
-主要用于可视化，不适合直接用于后续的机器学习任务（因为没有一个明确的映射函数可以用于新数据）。
-运行结果随机性：由于优化过程是非凸的，每次运行可能会产生略有不同的布局。
-
-]]></content>
-      <tags>
-        <tag>Coursework</tag>
-        <tag>Machine-Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -4885,8 +5011,8 @@ Aheuristicapproach:2-edge-exchange: 如果一个可以通过删除两条边并�
 
 ]]></content>
       <tags>
-        <tag>Coursework</tag>
         <tag>Machine-Learning</tag>
+        <tag>Coursework</tag>
       </tags>
   </entry>
   <entry>
@@ -5186,134 +5312,9 @@ RNN 的长处之一是它可以利用先前的信息到当前的任务上，尤�
 在一般的训练中，从时刻开始，梯度已经几乎减少到了。即从此时刻 开始再往之前走，得到的梯度（几乎为零）就不会对最终的梯度值有任何贡献。这就是原始RNN无法处理长距离依赖的原因。
 ]]></content>
       <tags>
-        <tag>Coursework</tag>
         <tag>Machine-Learning</tag>
+        <tag>Coursework</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Taylor多项式实验和Fourier多项式实验</title>
-    <url>/2025/07/05/Taylor%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C%E5%92%8CFourier%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C/</url>
-    <content><![CDATA[Background
-和动画实验一样，这次也是用matlab和python共同实现，完成对Taylor中值定理，Euler公式，Fourier公式的验证；
-这次我们需要的python库：sympy，这个库能让我们像matlab一样完成符号运算;
-Content
-Taylor公式
-先给出Taylor中值定理：
-若在的临域具有直到阶导数，则当在内，可以表示为关于的次多项式与一个余项之和：
-
-在之间
-在matlab中利用taylor函数可以直接求出对应展开阶数的P(x)，taylor函数的接口如下：
-T = taylor(f,var,a)
-f是即将展开的函数；
-var指定要展开的自变量；
-a指定拓展点，也就是说T展开应该是关于(x-a)的多项式；
-T = taylor(___,Name,Value)
-Name和Value是在此之上的选项，例如，可以指定泰勒级数的扩展点、截断顺序或顺序模式扩张。
-'ExpansionPoint',x0,指定拓展点为x0
-order,n指定展开阶数
-下面是对的展开实验代码
-matlab：
-syms xfx = sin(x); x0 = 0; %展开点n=[11 14 17];for i=1:length(n) %展开阶数: n-1阶hx(i) = taylor(fx,x,&#x27;order&#x27;,n(i),&#x27;ExpansionPoint&#x27;,x0)    endxp = linspace(-6,6,400); %创建节点数组y  = subs(fx, x, xp);   %通过subs替换符号计算函数值y1 = subs(hx(1), x, xp); y4 = subs(hx(2), x, xp);y6 = subs(hx(3), x, xp);h=plot(xp,y,&#x27;r&#x27;,xp,y1,&#x27;k&#x27;,xp,y4,&#x27;b&#x27;,xp,y6,&#x27;c&#x27;,&#x27;linewidth&#x27;,2)legend(h,&#x27;source&#x27;,&#x27;n=11&#x27;,&#x27;n=14&#x27;,&#x27;n=17&#x27;)set(gca,&#x27;fontsize&#x27;,16)
-通过matlab拟合出来的图像是这样的：
-
-python：
-这里需要注意的小点是：利用sympy中的series方法得到的talor展开是带的符号式，记得需要用removeO方法去掉，同时将sympy的公式用lambdify转化成numpy的公式才能对linspace计算函数值；
-在sympy中series方法的接口如下：
-expr.series() 方法来对表达式进行级数展开。下面是一些参数：
-x: 展开的变量。
-x0: （可选）展开点，默认为，也就是在  处展开。
-n: （可选）展开式的阶数，就是说要展开到的几次方。
-dir: （可选）展开方向，+ 表示正方向，- 表示负方向（对劳伦展开有用）。
-import numpy as np import sympyimport matplotlib.pyplot as plt x = sympy.Symbol(&#x27;x&#x27;)y = sympy.sin(x)n = [11, 14, 17]val = []cor = [&#x27;r&#x27;, &#x27;k&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]xp = np.linspace(-6, 6, 400)funco = sympy.lambdify(x, y, &#x27;numpy&#x27;)yo = funco(xp)val.append(yo)for i in range(len(n)):    fi = y.series(x, 0, n[i]).removeO()    funci = sympy.lambdify(x, fi, &#x27;numpy&#x27;)    yi = funci(xp)    val.append(yi)fig = plt.figure()ax = fig.add_subplot(1, 1, 1)for i in range(len(val)):    ax.plot(xp, val[i], color = cor[i])plt.show()
-最后拟合出来的效果是这样的：
-
-Euler公式
-有了Taylor展开的基础后，我们顺便验证Euler公式：​,使用numpy中的复数，对中一系列点，计算两边值是否相等即可；
-import numpy as np from numpy import cos,sin,pi,eimport sympy xp = np.linspace(-np.pi, np.pi, 100)lrh = e**(1j*xp)rlh = cos(xp)+1j*sin(xp)if sum(lrh == rlh)==len(xp):    z = sympy.Symbol(&#x27;z&#x27;, real = True)    print(sympy.expand(sympy.E**(sympy.I*z), complex = True))
-展开的结果确实是
-I*sin(z) + cos(z)
-注意Euler公式有一个常见的变形：
-
-Fourier变换相关
-和Fourier变换有许多知识点，比如作者还打算复习之前学过的快速Fourier变换算法，这是一个十分优秀高效的算法，不过在这里只介绍Fourier变换的强大之处，也就是几乎对各种各样的函数的拟合；
-注意之前的Taylor展开对函数的拟合其实并不是那么好，基本只能在展开点附近才有比较好的效果，并且Taylor展开本身对函数要求也很高：要求函数在该点具有足够高阶的导数，我们知道许多函数的性质都不是这么好；
-先来复习一下Frourier变换
-
-
-连续函数的正交：
-若定义在函数满足则称两函数在正交;
-
-如果把函数理解成一系列很密集的散点，那么这些散点构成的向量就满足向量正交的概念，不过在函数取密集的散点向量，不一定是正交的，因为函数描述的是连续的性质，不过我们在工程中经常采用这种近似
-
-
-
-关键的积分关系：
-
-
-
-
-
-
-
-
-​
-
-
-
-是一串两两正交的函数列
-
-
-根据工程实践猜想傅里叶级数公式：
-若周期信号周期为,角频率为,满足Dirichlet条件：
-
-一个周期内只有有限个第一类间断点
-一个周期内只有有限个极值点
-
-则可以展开成下列级数：
-
-根据上述「关键的积分关系」待定系数求得：
-直流分量：
-傅里叶系数：​
-
-
-Fourier级数指数形式：
-
-
-
-
-​	
-​	其中​
-
-
-将周期信号​推广成有限时间的非周期信号,也即时域从周期转化为非周期时，频域从离散的转化为连续的：原始的Fourier变换（FT）
-
-
-
-
-离散时间无限频谱内的Fourier变换（DTFT）
-将连续信号采样，采样时间点间隔为,冲击序列为,取样信号为,其频谱密度为
-
-
-
-离散傅里叶变换（DFT）：
-对于数组,定义由离散傅里叶变换得到,
-
-可待定系数证明由离散傅里叶逆变换得到,
-
-由于暂时没看懂其中的物理意义所以留个坑，貌似这样的式子都是天才一眼看出来的🤣,同时给FFT埋个坑
-
-
-
-经过简单的对Fourier变换的复习之后，我们来看看我们的任务：
-给以为周期的周期函数在区间定义如下,验证傅里叶级数对其近似效果：
-
-先看matlab代码
-T=2*pi;fx=@(x) (mod(x+pi,T)&lt;pi).*(T-mod(x,T)).^2;test=4;xp=linspace(-2*pi,2*pi,1000);N=[2,4,8,16];col=[&#x27;red&#x27;,&#x27;cyan&#x27;,&#x27;blue&#x27;,&#x27;yellow&#x27;];idx=2;yp=fx(xp);plot(xp,yp,&#x27;color&#x27;,&#x27;red&#x27;,&#x27;LineWidth&#x27;,2,&#x27;DisplayName&#x27;,&#x27;OriginSignal&#x27;)hold onyp_test=[];for i=1:test    n=N(i);    [fs,an,bn]=FourierSeries(fx,x,n);    yp_t=subs(fs,x,xp);    yp_t=double(yp_t);    yp_test=[yp_test;[yp_t]];endplot(xp,yp_test(1,:),&#x27;color&#x27;,&#x27;green&#x27;,&#x27;LineWidth&#x27;,2,&#x27;DisplayName&#x27;,&#x27;n=2&#x27;);hold on;plot(xp,yp_test(2,:),&#x27;color&#x27;,&#x27;cyan&#x27;,&#x27;LineWidth&#x27;,2,&#x27;DisplayName&#x27;,&#x27;n=4&#x27;);hold onplot(xp,yp_test(3,:),&#x27;color&#x27;,&#x27;yellow&#x27;,&#x27;LineWidth&#x27;,2,&#x27;DisplayName&#x27;,&#x27;n=8&#x27;);hold on;plot(xp,yp_test(4,:),&#x27;color&#x27;,&#x27;blue&#x27;,&#x27;LineWidth&#x27;,2,&#x27;DisplayName&#x27;,&#x27;n=16&#x27;);hold on;legend(&#x27;show&#x27;,&#x27;location&#x27;, &#x27;northeast&#x27;);hold off function [fs,an,bn]=FourierSeries(fx,x,n,l,r)%fx为周期信号%x为自变量%n为展开阶数%[l,r]为周期区间%an，bn为余弦项系数，正弦项系数%fs为展开表达式if nargin==3    l=-pi;    r=pi;endT=r-l;w=2*pi/T;%fx=subs(fx,x,x+l+T/2);fx=@(x)fx(x+l+T/2);an=integral(fx,-T/2,T/2)/T;bn=[];fs=an;for k=1:n    ak=integral(@(x) fx(x).*cos(k*w*x),-T/2,T/2)*2/T;    bk=integral(@(x) fx(x).*sin(k*w*x),-T/2,T/2)*2/T;    an=[an,ak];    bn=[bn,bk];    fs=fs+ak*cos(k*w*x)+bk*sin(k*w*x);endfs=subs(fs,x,x-l-T/2);end
-最后拟合出来的效果是这样的，可以看到随着展开阶数增大，拟合效果越来越好，但也可以看到吉布斯现象也越来越显著；
-
-用python也可以做到同样的效果，很遗憾python库里也没有直接计算傅里叶级数的函数；
-import numpy as npimport matplotlib.pyplot as pltfrom scipy.integrate import quad# Define the original signal function fxT = 2 * np.pidef fx(x):    return (np.mod(x + np.pi, T) &lt; np.pi) * (T - np.mod(x, T)) ** 2# Fourier series calculationdef fourier_series(fx, x, n, l=-np.pi, r=np.pi):    T = r - l    w = 2 * np.pi / T    fs = 0    an = []  # Cosine coefficients    bn = []  # Sine coefficients    # Calculate a0 coefficient    a0, _ = quad(lambda x: fx(x), -T/2, T/2)    an.append(a0 / T)    fs += an[0] / 2    # Calculate remaining an and bn coefficients    for k in range(1, n + 1):        ak, _ = quad(lambda x: fx(x) * np.cos(k * w * x), -T/2, T/2)        bk, _ = quad(lambda x: fx(x) * np.sin(k * w * x), -T/2, T/2)        an.append(ak * 2 / T)        bn.append(bk * 2 / T)        fs += an[k] * np.cos(k * w * x) + bn[k] * np.sin(k * w * x)    return fs, an, bn# Define the range of x and the number of Fourier series termstest = 4xp = np.linspace(-2*np.pi, 2*np.pi, 1000)N = [2, 4, 8, 16]colors = [&#x27;green&#x27;, &#x27;cyan&#x27;, &#x27;yellow&#x27;, &#x27;blue&#x27;]# Plot the original signalyp = fx(xp)plt.plot(xp, yp, color=&#x27;red&#x27;, linewidth=2, label=&#x27;OriginSignal&#x27;)# Plot the Fourier approximationsfor idx, n in enumerate(N):    fs, _, _ = fourier_series(fx, xp, n)    plt.plot(xp, fs, color=colors[idx], linewidth=2, label=f&#x27;n=&#123;n&#125;&#x27;)# Show the legend and plotplt.legend(loc=&#x27;northeast&#x27;)plt.show()
-]]></content>
   </entry>
   <entry>
     <title>SVM</title>
@@ -5456,9 +5457,134 @@ one-against-all多分类是指，训练时依次把某个类别的样本归为�
 
 ]]></content>
       <tags>
-        <tag>Coursework</tag>
         <tag>Machine-Learning</tag>
+        <tag>Coursework</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Taylor多项式实验和Fourier多项式实验</title>
+    <url>/2025/07/05/Taylor%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C%E5%92%8CFourier%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[Background
+和动画实验一样，这次也是用matlab和python共同实现，完成对Taylor中值定理，Euler公式，Fourier公式的验证；
+这次我们需要的python库：sympy，这个库能让我们像matlab一样完成符号运算;
+Content
+Taylor公式
+先给出Taylor中值定理：
+若在的临域具有直到阶导数，则当在内，可以表示为关于的次多项式与一个余项之和：
+
+在之间
+在matlab中利用taylor函数可以直接求出对应展开阶数的P(x)，taylor函数的接口如下：
+T = taylor(f,var,a)
+f是即将展开的函数；
+var指定要展开的自变量；
+a指定拓展点，也就是说T展开应该是关于(x-a)的多项式；
+T = taylor(___,Name,Value)
+Name和Value是在此之上的选项，例如，可以指定泰勒级数的扩展点、截断顺序或顺序模式扩张。
+'ExpansionPoint',x0,指定拓展点为x0
+order,n指定展开阶数
+下面是对的展开实验代码
+matlab：
+syms xfx = sin(x); x0 = 0; %展开点n=[11 14 17];for i=1:length(n) %展开阶数: n-1阶hx(i) = taylor(fx,x,&#x27;order&#x27;,n(i),&#x27;ExpansionPoint&#x27;,x0)    endxp = linspace(-6,6,400); %创建节点数组y  = subs(fx, x, xp);   %通过subs替换符号计算函数值y1 = subs(hx(1), x, xp); y4 = subs(hx(2), x, xp);y6 = subs(hx(3), x, xp);h=plot(xp,y,&#x27;r&#x27;,xp,y1,&#x27;k&#x27;,xp,y4,&#x27;b&#x27;,xp,y6,&#x27;c&#x27;,&#x27;linewidth&#x27;,2)legend(h,&#x27;source&#x27;,&#x27;n=11&#x27;,&#x27;n=14&#x27;,&#x27;n=17&#x27;)set(gca,&#x27;fontsize&#x27;,16)
+通过matlab拟合出来的图像是这样的：
+
+python：
+这里需要注意的小点是：利用sympy中的series方法得到的talor展开是带的符号式，记得需要用removeO方法去掉，同时将sympy的公式用lambdify转化成numpy的公式才能对linspace计算函数值；
+在sympy中series方法的接口如下：
+expr.series() 方法来对表达式进行级数展开。下面是一些参数：
+x: 展开的变量。
+x0: （可选）展开点，默认为，也就是在  处展开。
+n: （可选）展开式的阶数，就是说要展开到的几次方。
+dir: （可选）展开方向，+ 表示正方向，- 表示负方向（对劳伦展开有用）。
+import numpy as np import sympyimport matplotlib.pyplot as plt x = sympy.Symbol(&#x27;x&#x27;)y = sympy.sin(x)n = [11, 14, 17]val = []cor = [&#x27;r&#x27;, &#x27;k&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]xp = np.linspace(-6, 6, 400)funco = sympy.lambdify(x, y, &#x27;numpy&#x27;)yo = funco(xp)val.append(yo)for i in range(len(n)):    fi = y.series(x, 0, n[i]).removeO()    funci = sympy.lambdify(x, fi, &#x27;numpy&#x27;)    yi = funci(xp)    val.append(yi)fig = plt.figure()ax = fig.add_subplot(1, 1, 1)for i in range(len(val)):    ax.plot(xp, val[i], color = cor[i])plt.show()
+最后拟合出来的效果是这样的：
+
+Euler公式
+有了Taylor展开的基础后，我们顺便验证Euler公式：​,使用numpy中的复数，对中一系列点，计算两边值是否相等即可；
+import numpy as np from numpy import cos,sin,pi,eimport sympy xp = np.linspace(-np.pi, np.pi, 100)lrh = e**(1j*xp)rlh = cos(xp)+1j*sin(xp)if sum(lrh == rlh)==len(xp):    z = sympy.Symbol(&#x27;z&#x27;, real = True)    print(sympy.expand(sympy.E**(sympy.I*z), complex = True))
+展开的结果确实是
+I*sin(z) + cos(z)
+注意Euler公式有一个常见的变形：
+
+Fourier变换相关
+和Fourier变换有许多知识点，比如作者还打算复习之前学过的快速Fourier变换算法，这是一个十分优秀高效的算法，不过在这里只介绍Fourier变换的强大之处，也就是几乎对各种各样的函数的拟合；
+注意之前的Taylor展开对函数的拟合其实并不是那么好，基本只能在展开点附近才有比较好的效果，并且Taylor展开本身对函数要求也很高：要求函数在该点具有足够高阶的导数，我们知道许多函数的性质都不是这么好；
+先来复习一下Frourier变换
+
+
+连续函数的正交：
+若定义在函数满足则称两函数在正交;
+
+如果把函数理解成一系列很密集的散点，那么这些散点构成的向量就满足向量正交的概念，不过在函数取密集的散点向量，不一定是正交的，因为函数描述的是连续的性质，不过我们在工程中经常采用这种近似
+
+
+
+关键的积分关系：
+
+
+
+
+
+
+
+
+​
+
+
+
+是一串两两正交的函数列
+
+
+根据工程实践猜想傅里叶级数公式：
+若周期信号周期为,角频率为,满足Dirichlet条件：
+
+一个周期内只有有限个第一类间断点
+一个周期内只有有限个极值点
+
+则可以展开成下列级数：
+
+根据上述「关键的积分关系」待定系数求得：
+直流分量：
+傅里叶系数：​
+
+
+Fourier级数指数形式：
+
+
+
+
+​	
+​	其中​
+
+
+将周期信号​推广成有限时间的非周期信号,也即时域从周期转化为非周期时，频域从离散的转化为连续的：原始的Fourier变换（FT）
+
+
+
+
+离散时间无限频谱内的Fourier变换（DTFT）
+将连续信号采样，采样时间点间隔为,冲击序列为,取样信号为,其频谱密度为
+
+
+
+离散傅里叶变换（DFT）：
+对于数组,定义由离散傅里叶变换得到,
+
+可待定系数证明由离散傅里叶逆变换得到,
+
+由于暂时没看懂其中的物理意义所以留个坑，貌似这样的式子都是天才一眼看出来的🤣,同时给FFT埋个坑
+
+
+
+经过简单的对Fourier变换的复习之后，我们来看看我们的任务：
+给以为周期的周期函数在区间定义如下,验证傅里叶级数对其近似效果：
+
+先看matlab代码
+T=2*pi;fx=@(x) (mod(x+pi,T)&lt;pi).*(T-mod(x,T)).^2;test=4;xp=linspace(-2*pi,2*pi,1000);N=[2,4,8,16];col=[&#x27;red&#x27;,&#x27;cyan&#x27;,&#x27;blue&#x27;,&#x27;yellow&#x27;];idx=2;yp=fx(xp);plot(xp,yp,&#x27;color&#x27;,&#x27;red&#x27;,&#x27;LineWidth&#x27;,2,&#x27;DisplayName&#x27;,&#x27;OriginSignal&#x27;)hold onyp_test=[];for i=1:test    n=N(i);    [fs,an,bn]=FourierSeries(fx,x,n);    yp_t=subs(fs,x,xp);    yp_t=double(yp_t);    yp_test=[yp_test;[yp_t]];endplot(xp,yp_test(1,:),&#x27;color&#x27;,&#x27;green&#x27;,&#x27;LineWidth&#x27;,2,&#x27;DisplayName&#x27;,&#x27;n=2&#x27;);hold on;plot(xp,yp_test(2,:),&#x27;color&#x27;,&#x27;cyan&#x27;,&#x27;LineWidth&#x27;,2,&#x27;DisplayName&#x27;,&#x27;n=4&#x27;);hold onplot(xp,yp_test(3,:),&#x27;color&#x27;,&#x27;yellow&#x27;,&#x27;LineWidth&#x27;,2,&#x27;DisplayName&#x27;,&#x27;n=8&#x27;);hold on;plot(xp,yp_test(4,:),&#x27;color&#x27;,&#x27;blue&#x27;,&#x27;LineWidth&#x27;,2,&#x27;DisplayName&#x27;,&#x27;n=16&#x27;);hold on;legend(&#x27;show&#x27;,&#x27;location&#x27;, &#x27;northeast&#x27;);hold off function [fs,an,bn]=FourierSeries(fx,x,n,l,r)%fx为周期信号%x为自变量%n为展开阶数%[l,r]为周期区间%an，bn为余弦项系数，正弦项系数%fs为展开表达式if nargin==3    l=-pi;    r=pi;endT=r-l;w=2*pi/T;%fx=subs(fx,x,x+l+T/2);fx=@(x)fx(x+l+T/2);an=integral(fx,-T/2,T/2)/T;bn=[];fs=an;for k=1:n    ak=integral(@(x) fx(x).*cos(k*w*x),-T/2,T/2)*2/T;    bk=integral(@(x) fx(x).*sin(k*w*x),-T/2,T/2)*2/T;    an=[an,ak];    bn=[bn,bk];    fs=fs+ak*cos(k*w*x)+bk*sin(k*w*x);endfs=subs(fs,x,x-l-T/2);end
+最后拟合出来的效果是这样的，可以看到随着展开阶数增大，拟合效果越来越好，但也可以看到吉布斯现象也越来越显著；
+
+用python也可以做到同样的效果，很遗憾python库里也没有直接计算傅里叶级数的函数；
+import numpy as npimport matplotlib.pyplot as pltfrom scipy.integrate import quad# Define the original signal function fxT = 2 * np.pidef fx(x):    return (np.mod(x + np.pi, T) &lt; np.pi) * (T - np.mod(x, T)) ** 2# Fourier series calculationdef fourier_series(fx, x, n, l=-np.pi, r=np.pi):    T = r - l    w = 2 * np.pi / T    fs = 0    an = []  # Cosine coefficients    bn = []  # Sine coefficients    # Calculate a0 coefficient    a0, _ = quad(lambda x: fx(x), -T/2, T/2)    an.append(a0 / T)    fs += an[0] / 2    # Calculate remaining an and bn coefficients    for k in range(1, n + 1):        ak, _ = quad(lambda x: fx(x) * np.cos(k * w * x), -T/2, T/2)        bk, _ = quad(lambda x: fx(x) * np.sin(k * w * x), -T/2, T/2)        an.append(ak * 2 / T)        bn.append(bk * 2 / T)        fs += an[k] * np.cos(k * w * x) + bn[k] * np.sin(k * w * x)    return fs, an, bn# Define the range of x and the number of Fourier series termstest = 4xp = np.linspace(-2*np.pi, 2*np.pi, 1000)N = [2, 4, 8, 16]colors = [&#x27;green&#x27;, &#x27;cyan&#x27;, &#x27;yellow&#x27;, &#x27;blue&#x27;]# Plot the original signalyp = fx(xp)plt.plot(xp, yp, color=&#x27;red&#x27;, linewidth=2, label=&#x27;OriginSignal&#x27;)# Plot the Fourier approximationsfor idx, n in enumerate(N):    fs, _, _ = fourier_series(fx, xp, n)    plt.plot(xp, fs, color=colors[idx], linewidth=2, label=f&#x27;n=&#123;n&#125;&#x27;)# Show the legend and plotplt.legend(loc=&#x27;northeast&#x27;)plt.show()
+]]></content>
   </entry>
   <entry>
     <title>Transformer</title>
@@ -7618,394 +7744,6 @@ OS设计正确性高，易于理解和维护；
       </tags>
   </entry>
   <entry>
-    <title>进程</title>
-    <url>/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-%E8%BF%9B%E7%A8%8B/</url>
-    <content><![CDATA[什么是进程
-程序的顺序执行与并发执行
-顺序执行：若干程序和程序段必须严格按照某种先后顺序执行
-
-顺序性：操作严格按照程序规定的顺序执行；
-封闭性：程序运行时占用全机资源；
-可再现性：只要程序的执行环境和初始资源的条件相同，结果就相同；
-
-并发执行：多个时间在同一个时间间隔内发生；
-
-应用级并发：事务处理系统，数据库管理系统
-系统级并发：操作系统；
-间断性：由于资源的共享和相互合作，程序体现执行-暂停-执行的现象
-失去封闭性：程序在并发执行时，是多个程序共享系统的资源，资源的状态有多个程序来改变；
-不可再现性：程序在并发执行时，由于失去了封闭性，多次重复可以得到不同的结果；
-
-
-进程
-引入进程的目的：为了 控制 多道程序能够 正确的并发 执行
-定义：(程序代码program code + 数据集set of data + 进程控制块PCB，process control block)
-
-一个正在执行的程序；
-一个正在计算机上执行的程序实例；
-一个能够被调度到处理器上执行的实体；
-由一串指令的执行、当前状态和一组正在使用的系统资源表征的活动单元；
-
-进程的物理存在：进程映像
-
-Process Image=PCB+program+data+stack；
-进程映像取决于文件格式；
-
-系统中同时存在的诸进程相互独立，也相互关联，这取决于设计模式；
-可以说，并发基于进程；
-进程控制块
-进程执行的任意时刻可以由 进程控制块 表征，组成如下：
-
-标识符
-状态
-优先级
-程序计数器
-内存指针
-I/O状态信息
-记账信息......
-
-注意，PCB常驻内存，PCB是进程存在的唯一标志；
-进程的特征
-
-动态性：最基本特征，是计算机的执行的程序实例，存在生命周期；
-并发性：多个进程实体存在于内存中也能在一段时间内同时运行，可以说进程的设计就是为了操作系统的并发；
-独立性：进程实体是独立运行的基本单位，也是系统独立获得资源和调度的基本单位，各个进程的地址空间相互独立除非进程间相互通信；
-异步性：各个进程按照独立的，不可预知的速度向前推进；
-
-注意：进程和程序之间不存在一一对应的关系；
-进程带来的挑战
-
-空间开销：为进程建立数据结构PCB
-时间开销：管理和协调，跟踪，填写和更新相关的数据结构，切换进程，保护现场
-控制复杂性：协调多个进程对资源的竞争和共享，预防解决多个进程因为资源竞争问题带来的故障
-
-进程状态模型
-由于进程具有动态性，执行间断性和多种状态的特征，需要建立进程状态的自动机描述；
-进程轨迹trace ：进程执行的指令序列，描述单个进程的行为；
-调度器dispatcher：调度多个进程的执行；
-以下是 轮转（round-robin） 的例子：通过指定一个时间片，处理器决定是否切换进程;
-
-
-两状态模型
-进程处于两种状态之一：
-
-运行态：进程队列的头部进程被系统调度执行；
-非运行态：进程创建后，以非运行态进入进程队列中；
-
-进程队列：存放指向特定进程的指针；
-
-三状态模型
-进程处于三种基本状态之一：
-
-就绪ready：
-
-进程已经获得除开CPU外的所有必要资源后，只需获得CPU立即执行进程
-
-
-执行running：
-
-进程获得CPU，程序正在执行；
-
-
-阻塞waiting：
-
-正在执行的进程因为其他事件的等待无法继续执行；
-进程放弃处理机而处于暂停状态；
-
-
-
-对于一些嵌入式的操作系统，三状态模型足以描述：
-
-注意：
-
-状态转换并非都可逆
-一个进程在任何一个指定的时刻必须而且只能处于一
-种状态
-时间片完也不是执行-就绪的唯一原因，可能是高优先级抢占控制权
-在单处理机系统中，只有一个进程处于执行状态
-
-五状态自动机
-进程新增两个状态后真正称为自动机模型：
-
-新建New：
-
-进程刚刚创建，OS完成了进程创建的必要工作(构造了进程标识符，创建了进程管理的表格)
-OS未将进程加入可执行进程组，进程自身未进入主存，进程尚未被同意执行，进程的程序也没有分配空间而保存在辅存；
-进程创建原因：新的批处理作业，交互登陆，提供服务，现有进程派生
-
-
-终止Exit
-
-进程不再具有执行资格；
-表格和其他信息暂时保留，OS从可执行进程组释放；
-原因：正常完成，超时，无可用内存，各种错误...
-
-
-
-
-注意：
-
-加载/接纳：OS做好接纳进程的准备后，将一个进程从新建态转换成就绪态；
-就绪-退出，阻塞-退出：某些系统中，父进程可以在任何时候终止一个子进程，这样的转换可能存在；
-
-排队模型实现：维护就绪队列和阻塞队列
-
-进入OS的每个进程放在就绪队列中，OS选择进程运行时在就绪队列中选择一个；
-运行的程序被移除处理器后，要么终止，要么进入就绪队列或阻塞队列
-某事件发生导致阻塞队列中的相应进程进入就绪队列中；
-
-具体实现：
-多阻塞队列可以避免对很长的队列进行扫描；
-
-七状态自动机
-交换技术swapping和挂起suspend
-进程竞争内存资源：内存紧张，或者所有进程因为某事件等待，但是无就绪进程，处理机实际空闲
-解决方案：扩充内存，swapping
-
-将内存中处于阻塞、就绪、甚至是执行状态的进程swapping-out进外存(磁盘)
-不再参与CPU的竞争，我们把这种静止状态称为挂起状态；
-在磁盘中维护一个挂起队列，建立虚存；
-当存在已具备运行条件的进程或进程所需要的数据和程序，Swapping-in到内存。
-
-进程挂起的原因：
-
-进程全部阻塞，处理机空闲
-交换，如系统负荷过重，内存空间紧张
-操作系统的需要，操作系统可能需要挂起后台进程或一些服务进程，或某些可能导致系统故障的进程。
-终端用户的请求,如调试
-父进程请求
-
-被挂起进程的特征
-
-不能立即执行
-挂起条件独立于阻塞条件
-使之挂起的进程：自身、OS、父进程
-激活挂起进程的进程：实施挂起操作的进程
-
-当被挂起的进程返回内存时，OS不一定执行的准备，进一步划分：
-
-就绪挂起：进程在外存，只要调入内存并获得CPU即可执行
-阻塞挂起：进程在外存，并等待某事件
-
-
-注意：
-
-加载：新建进程后，进程要么加入就绪队列，要么进入就绪挂起队列，视当时的资源而定；
-
-创建进程的just-in-time原理：尽可能推迟创建进程以减小系统的开销；
-
-
-运行-就绪挂起：一般来说，运行进程的分配时间到期后就会转换成就绪态，但是某个具有高优先级的进程位于阻塞/挂起队列不被阻塞时，OS会抢占这个进程
-
-进程描述
-进程的执行必须由操作系统分配资源，操作系统是资源的管理者：采用表格记载资源的信息，进而实现资源的管理，维护和更新；
-
-内存表
-I/O表
-文件表
-进程表
-
-
-进程控制块
-包括信息主要有三类：
-
-进程标识信息；唯一标识一个进程
-
-内部标识符：操作系统为每个进程赋予的一个唯一整数，便于系统控制
-父进程标识符
-用户标识符
-
-
-处理机状态信息：主要是上下文，由处理器的各种寄存器中的内容组成的
-
-通用寄存器
-控制和状态寄存器
-栈指针
-
-
-进程控制信息：与进程调度和进程切换有关的信息
-
-进程状态
-进程优先级
-时间记账
-阻塞原因
-链接指针
-进程间通信
-程序和数据地址
-资源所有权和使用情况
-
-
-
-进程的组织方式
-索引
-系统为所有进程的状态建立几张索引表；
-
-链接
-
-
-单一队列：所有PCB块连接成一个队列
-
-
-
-多级队列：相同状态的PCB块连接成一个队列
-
-
-
-内核
-内核是操作系统的核心，是包含重要系统功能的部分，常住内存以提高操作系统的系统功能；
-不同操作系统对内核的设计(功能范围的设定)不同；
-
-
-资源管理
-
-
-进程管理：进程的创建和终止，调度，分配，切换，同步和进程间通信，管理PCB
-
-
-存储管理：为进程分配地址空间，交换，页和段管理
-
-
-I/O管理：缓冲区管理，为进程分配I/O通道
-
-
-
-
-支撑功能
-
-中断：操作系统的一切重要活动最终依赖于中断
-时钟
-记账
-
-
-
-执行模式
-
-大多数处理器至少支持两种模式：内核模式，用户模式
-某些指令只能在特权模式运行，部分内存只能在特权模式下访问
-采用两种模式可以保护操作系统和重要的系统操作表不受程序干扰
-查看运行模式：程序状态字寄存器PSWR下指示执行模式的位
-
-模式切换：
-
-原因：系统调用或中断，中断发生时，将程序计数器设置为中断程序处理的开始地址，切换成内核模式使得中断程序可以执行某些特权指令
-中断不一定引发进程切换，也不一定造成模式切换，模式切换和进程切换无决定关系
-
-进程控制
-进程控制包括以下事件：
-
-进程的穿件与撤销
-进程的阻塞和唤醒
-挂起和激活
-进程切换
-
-实现方式：原语Primitive
-
-原语用于完成一定功能的过程，定义了原子操作
-其执行过程不允许被中断；
-
-create原语：创建进程
-
-为新进程分配唯一一个进程标识符
-为进程分配空间
-初始化进程控制块（标识信息，处理机状态信息，调度信息）
-建立连接，插入就绪（就绪/挂起）队列
-建立扩充其他相关的数据结构
-
-后面两步是方便操作系统管理进程的必要步骤；
-进程终止原语
-
-根据标识符找到其PCB，读出进程的状态
-对于执行状态的进程，终止它，调度下一个进程就绪进程的执行
-若进程存在子进程，不同的操作系统有不同的处理方式，挂在其他结点或者终止它
-将进程的全部资源归还（父进程或者OS）
-被终止进程的PCB从队列中移除，等待其他程序搜集信息
-
-进程阻塞
-
-对于执行状态的进程发生阻塞时，使用Block（）原语将自己阻塞
-将PCB的状态由执行到阻塞将PCB加入阻塞队列
-将处理剂分配给下一个就绪进程并切换
-
-进程唤醒
-
-被阻塞进程期待的事件出现时，有关进程调用唤醒原语wakeup（），等待该事件的进程唤醒
-唤醒进程原语执行：将被阻塞进程从队列移出，将PCB中现行状态由阻塞改为就绪，插入到就绪队列中
-
-进程挂起
-出现引起进程挂起的事件时，系统将利用挂起原语suspend（）将指定挂起；
-
-检查被挂起的状态
-插入相应队列
-
-进程激活
-
-发生激活进程的事件时，将在外存上处于挂起的进程换入内存
-
-利用激活原语active（）将指定进程从外存调入内存：检查进程状态，插入相应队列
-
-
-
-进程切换
-进程切换：调度另一个就绪进程占用处理器
-进程上下文：进程执行的现场
-发生原因：
-
-时钟中断
-IO中断
-内存失效
-陷阱
-系统调用
-
-步骤：
-
-保存处理器上下文，包括程序计数器和其他寄存器
-更新运行进程的PCB
-将PCB移动到相应队列
-选择另一个进程执行
-更新另一个PCB
-恢复被选择的上下文
-
-线程
-线程是进程的一个实体，是独立调度和分派的基本单位；
-进程是系统进行资源分配和调度的独立单位；
-线程是进程的一个实体，是对调度和分配的基本单位；
-
-进程是系统中拥有资源的单位，比如进程映像的地址空间，全局变量，打开文件，IO设备
-线程，拥有少量的私有资源（线程控制块，栈…）
-同一进程哪的线程共享全部资源
-同一进程的线程切换不会引发进程切换
-不同进程中线程切换将引起进程切换
-同一进程的多个线程也存在并发，提高系统资源的使用和系统吞吐量
-线程间通信比进程间通信快很多
-线程的系统开销小于进程，同一进程的多个线程同步和通信更容易
-
-状态
-
-就绪状态
-执行状态
-阻塞状态
-
-一般不具有挂起状态，一个进程可以创建和撤销多个线程,同一个进程的多个线程可以并发执行
-基本操作
-
-派生spawn：
-阻塞block
-解除阻塞ubblock
-结束finish
-
-分类
-
-用户级线程
-内核级线程
-混合线程
-
-]]></content>
-      <tags>
-        <tag>Coursework</tag>
-        <tag>System</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>搜索引擎</title>
     <url>/2025/07/02/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</url>
     <content><![CDATA[技术架构
@@ -8760,6 +8498,394 @@ SpamRank算法是一种符合异常发现模型的反作弊方法。计算思路
       <tags>
         <tag>Information-Retrieval</tag>
         <tag>Coursework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程</title>
+    <url>/2025/07/05/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F1-%E8%BF%9B%E7%A8%8B/</url>
+    <content><![CDATA[什么是进程
+程序的顺序执行与并发执行
+顺序执行：若干程序和程序段必须严格按照某种先后顺序执行
+
+顺序性：操作严格按照程序规定的顺序执行；
+封闭性：程序运行时占用全机资源；
+可再现性：只要程序的执行环境和初始资源的条件相同，结果就相同；
+
+并发执行：多个时间在同一个时间间隔内发生；
+
+应用级并发：事务处理系统，数据库管理系统
+系统级并发：操作系统；
+间断性：由于资源的共享和相互合作，程序体现执行-暂停-执行的现象
+失去封闭性：程序在并发执行时，是多个程序共享系统的资源，资源的状态有多个程序来改变；
+不可再现性：程序在并发执行时，由于失去了封闭性，多次重复可以得到不同的结果；
+
+
+进程
+引入进程的目的：为了 控制 多道程序能够 正确的并发 执行
+定义：(程序代码program code + 数据集set of data + 进程控制块PCB，process control block)
+
+一个正在执行的程序；
+一个正在计算机上执行的程序实例；
+一个能够被调度到处理器上执行的实体；
+由一串指令的执行、当前状态和一组正在使用的系统资源表征的活动单元；
+
+进程的物理存在：进程映像
+
+Process Image=PCB+program+data+stack；
+进程映像取决于文件格式；
+
+系统中同时存在的诸进程相互独立，也相互关联，这取决于设计模式；
+可以说，并发基于进程；
+进程控制块
+进程执行的任意时刻可以由 进程控制块 表征，组成如下：
+
+标识符
+状态
+优先级
+程序计数器
+内存指针
+I/O状态信息
+记账信息......
+
+注意，PCB常驻内存，PCB是进程存在的唯一标志；
+进程的特征
+
+动态性：最基本特征，是计算机的执行的程序实例，存在生命周期；
+并发性：多个进程实体存在于内存中也能在一段时间内同时运行，可以说进程的设计就是为了操作系统的并发；
+独立性：进程实体是独立运行的基本单位，也是系统独立获得资源和调度的基本单位，各个进程的地址空间相互独立除非进程间相互通信；
+异步性：各个进程按照独立的，不可预知的速度向前推进；
+
+注意：进程和程序之间不存在一一对应的关系；
+进程带来的挑战
+
+空间开销：为进程建立数据结构PCB
+时间开销：管理和协调，跟踪，填写和更新相关的数据结构，切换进程，保护现场
+控制复杂性：协调多个进程对资源的竞争和共享，预防解决多个进程因为资源竞争问题带来的故障
+
+进程状态模型
+由于进程具有动态性，执行间断性和多种状态的特征，需要建立进程状态的自动机描述；
+进程轨迹trace ：进程执行的指令序列，描述单个进程的行为；
+调度器dispatcher：调度多个进程的执行；
+以下是 轮转（round-robin） 的例子：通过指定一个时间片，处理器决定是否切换进程;
+
+
+两状态模型
+进程处于两种状态之一：
+
+运行态：进程队列的头部进程被系统调度执行；
+非运行态：进程创建后，以非运行态进入进程队列中；
+
+进程队列：存放指向特定进程的指针；
+
+三状态模型
+进程处于三种基本状态之一：
+
+就绪ready：
+
+进程已经获得除开CPU外的所有必要资源后，只需获得CPU立即执行进程
+
+
+执行running：
+
+进程获得CPU，程序正在执行；
+
+
+阻塞waiting：
+
+正在执行的进程因为其他事件的等待无法继续执行；
+进程放弃处理机而处于暂停状态；
+
+
+
+对于一些嵌入式的操作系统，三状态模型足以描述：
+
+注意：
+
+状态转换并非都可逆
+一个进程在任何一个指定的时刻必须而且只能处于一
+种状态
+时间片完也不是执行-就绪的唯一原因，可能是高优先级抢占控制权
+在单处理机系统中，只有一个进程处于执行状态
+
+五状态自动机
+进程新增两个状态后真正称为自动机模型：
+
+新建New：
+
+进程刚刚创建，OS完成了进程创建的必要工作(构造了进程标识符，创建了进程管理的表格)
+OS未将进程加入可执行进程组，进程自身未进入主存，进程尚未被同意执行，进程的程序也没有分配空间而保存在辅存；
+进程创建原因：新的批处理作业，交互登陆，提供服务，现有进程派生
+
+
+终止Exit
+
+进程不再具有执行资格；
+表格和其他信息暂时保留，OS从可执行进程组释放；
+原因：正常完成，超时，无可用内存，各种错误...
+
+
+
+
+注意：
+
+加载/接纳：OS做好接纳进程的准备后，将一个进程从新建态转换成就绪态；
+就绪-退出，阻塞-退出：某些系统中，父进程可以在任何时候终止一个子进程，这样的转换可能存在；
+
+排队模型实现：维护就绪队列和阻塞队列
+
+进入OS的每个进程放在就绪队列中，OS选择进程运行时在就绪队列中选择一个；
+运行的程序被移除处理器后，要么终止，要么进入就绪队列或阻塞队列
+某事件发生导致阻塞队列中的相应进程进入就绪队列中；
+
+具体实现：
+多阻塞队列可以避免对很长的队列进行扫描；
+
+七状态自动机
+交换技术swapping和挂起suspend
+进程竞争内存资源：内存紧张，或者所有进程因为某事件等待，但是无就绪进程，处理机实际空闲
+解决方案：扩充内存，swapping
+
+将内存中处于阻塞、就绪、甚至是执行状态的进程swapping-out进外存(磁盘)
+不再参与CPU的竞争，我们把这种静止状态称为挂起状态；
+在磁盘中维护一个挂起队列，建立虚存；
+当存在已具备运行条件的进程或进程所需要的数据和程序，Swapping-in到内存。
+
+进程挂起的原因：
+
+进程全部阻塞，处理机空闲
+交换，如系统负荷过重，内存空间紧张
+操作系统的需要，操作系统可能需要挂起后台进程或一些服务进程，或某些可能导致系统故障的进程。
+终端用户的请求,如调试
+父进程请求
+
+被挂起进程的特征
+
+不能立即执行
+挂起条件独立于阻塞条件
+使之挂起的进程：自身、OS、父进程
+激活挂起进程的进程：实施挂起操作的进程
+
+当被挂起的进程返回内存时，OS不一定执行的准备，进一步划分：
+
+就绪挂起：进程在外存，只要调入内存并获得CPU即可执行
+阻塞挂起：进程在外存，并等待某事件
+
+
+注意：
+
+加载：新建进程后，进程要么加入就绪队列，要么进入就绪挂起队列，视当时的资源而定；
+
+创建进程的just-in-time原理：尽可能推迟创建进程以减小系统的开销；
+
+
+运行-就绪挂起：一般来说，运行进程的分配时间到期后就会转换成就绪态，但是某个具有高优先级的进程位于阻塞/挂起队列不被阻塞时，OS会抢占这个进程
+
+进程描述
+进程的执行必须由操作系统分配资源，操作系统是资源的管理者：采用表格记载资源的信息，进而实现资源的管理，维护和更新；
+
+内存表
+I/O表
+文件表
+进程表
+
+
+进程控制块
+包括信息主要有三类：
+
+进程标识信息；唯一标识一个进程
+
+内部标识符：操作系统为每个进程赋予的一个唯一整数，便于系统控制
+父进程标识符
+用户标识符
+
+
+处理机状态信息：主要是上下文，由处理器的各种寄存器中的内容组成的
+
+通用寄存器
+控制和状态寄存器
+栈指针
+
+
+进程控制信息：与进程调度和进程切换有关的信息
+
+进程状态
+进程优先级
+时间记账
+阻塞原因
+链接指针
+进程间通信
+程序和数据地址
+资源所有权和使用情况
+
+
+
+进程的组织方式
+索引
+系统为所有进程的状态建立几张索引表；
+
+链接
+
+
+单一队列：所有PCB块连接成一个队列
+
+
+
+多级队列：相同状态的PCB块连接成一个队列
+
+
+
+内核
+内核是操作系统的核心，是包含重要系统功能的部分，常住内存以提高操作系统的系统功能；
+不同操作系统对内核的设计(功能范围的设定)不同；
+
+
+资源管理
+
+
+进程管理：进程的创建和终止，调度，分配，切换，同步和进程间通信，管理PCB
+
+
+存储管理：为进程分配地址空间，交换，页和段管理
+
+
+I/O管理：缓冲区管理，为进程分配I/O通道
+
+
+
+
+支撑功能
+
+中断：操作系统的一切重要活动最终依赖于中断
+时钟
+记账
+
+
+
+执行模式
+
+大多数处理器至少支持两种模式：内核模式，用户模式
+某些指令只能在特权模式运行，部分内存只能在特权模式下访问
+采用两种模式可以保护操作系统和重要的系统操作表不受程序干扰
+查看运行模式：程序状态字寄存器PSWR下指示执行模式的位
+
+模式切换：
+
+原因：系统调用或中断，中断发生时，将程序计数器设置为中断程序处理的开始地址，切换成内核模式使得中断程序可以执行某些特权指令
+中断不一定引发进程切换，也不一定造成模式切换，模式切换和进程切换无决定关系
+
+进程控制
+进程控制包括以下事件：
+
+进程的穿件与撤销
+进程的阻塞和唤醒
+挂起和激活
+进程切换
+
+实现方式：原语Primitive
+
+原语用于完成一定功能的过程，定义了原子操作
+其执行过程不允许被中断；
+
+create原语：创建进程
+
+为新进程分配唯一一个进程标识符
+为进程分配空间
+初始化进程控制块（标识信息，处理机状态信息，调度信息）
+建立连接，插入就绪（就绪/挂起）队列
+建立扩充其他相关的数据结构
+
+后面两步是方便操作系统管理进程的必要步骤；
+进程终止原语
+
+根据标识符找到其PCB，读出进程的状态
+对于执行状态的进程，终止它，调度下一个进程就绪进程的执行
+若进程存在子进程，不同的操作系统有不同的处理方式，挂在其他结点或者终止它
+将进程的全部资源归还（父进程或者OS）
+被终止进程的PCB从队列中移除，等待其他程序搜集信息
+
+进程阻塞
+
+对于执行状态的进程发生阻塞时，使用Block（）原语将自己阻塞
+将PCB的状态由执行到阻塞将PCB加入阻塞队列
+将处理剂分配给下一个就绪进程并切换
+
+进程唤醒
+
+被阻塞进程期待的事件出现时，有关进程调用唤醒原语wakeup（），等待该事件的进程唤醒
+唤醒进程原语执行：将被阻塞进程从队列移出，将PCB中现行状态由阻塞改为就绪，插入到就绪队列中
+
+进程挂起
+出现引起进程挂起的事件时，系统将利用挂起原语suspend（）将指定挂起；
+
+检查被挂起的状态
+插入相应队列
+
+进程激活
+
+发生激活进程的事件时，将在外存上处于挂起的进程换入内存
+
+利用激活原语active（）将指定进程从外存调入内存：检查进程状态，插入相应队列
+
+
+
+进程切换
+进程切换：调度另一个就绪进程占用处理器
+进程上下文：进程执行的现场
+发生原因：
+
+时钟中断
+IO中断
+内存失效
+陷阱
+系统调用
+
+步骤：
+
+保存处理器上下文，包括程序计数器和其他寄存器
+更新运行进程的PCB
+将PCB移动到相应队列
+选择另一个进程执行
+更新另一个PCB
+恢复被选择的上下文
+
+线程
+线程是进程的一个实体，是独立调度和分派的基本单位；
+进程是系统进行资源分配和调度的独立单位；
+线程是进程的一个实体，是对调度和分配的基本单位；
+
+进程是系统中拥有资源的单位，比如进程映像的地址空间，全局变量，打开文件，IO设备
+线程，拥有少量的私有资源（线程控制块，栈…）
+同一进程哪的线程共享全部资源
+同一进程的线程切换不会引发进程切换
+不同进程中线程切换将引起进程切换
+同一进程的多个线程也存在并发，提高系统资源的使用和系统吞吐量
+线程间通信比进程间通信快很多
+线程的系统开销小于进程，同一进程的多个线程同步和通信更容易
+
+状态
+
+就绪状态
+执行状态
+阻塞状态
+
+一般不具有挂起状态，一个进程可以创建和撤销多个线程,同一个进程的多个线程可以并发执行
+基本操作
+
+派生spawn：
+阻塞block
+解除阻塞ubblock
+结束finish
+
+分类
+
+用户级线程
+内核级线程
+混合线程
+
+]]></content>
+      <tags>
+        <tag>Coursework</tag>
+        <tag>System</tag>
       </tags>
   </entry>
   <entry>
@@ -11033,69 +11159,6 @@ SQL语言不支持复杂的数据分析
       </tags>
   </entry>
   <entry>
-    <title>断言与参照完整性</title>
-    <url>/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9311-%E6%96%AD%E8%A8%80%E4%B8%8E%E5%8F%82%E7%85%A7%E5%AE%8C%E6%95%B4%E6%80%A7/</url>
-    <content><![CDATA[完整性约束
-控制机制
-完整性约束是加在数据库模式上的一个具体条件，规定什么样的数据能够存储到数据库中；
-定义机制：
-
-约束条件：数据模型的组成部分，约束数据库的寓意
-DBMS提供定义数据库完整性约束条件，并作为模式的一部分存入数据库
-
-检查机制：
-
-检查用户发出的操作是否违背了完整性约束条件
-
-违约反应：
-
-发现用户的操作请求使数据违背了完整性约束条件，则采取一定的动作保证数据完整性；
-
-分类
-
-主键约束PRIMARY KEY ：一个关系仅一个，属性非空
-唯一约束UNIQUE：一个关系可声明多个，可为空，允许多个空值，不能定义在被主键约束的属性上
-非空约束NOT NULL
-自定义约束CHECK
-参照完整性约束FOREIGN KEY
-断言ASSERTION
-
-还可以根据位置分类为列级，行级和表级约束；以下是一些表建立的约束的例子
-CREATE TABLE Diagnosis&#123;DGno VARCHAR(10) PRIMARY KEY,Pno VARCHAR(10) NOT NULL,Dno VARCHAR(10) NOT NULL,Symptom VARCHAR(100),Diagnosis VARCHAR(100),DGtime DATETIME,Rfee DECIMAL(18,2) NOT NULL&#125;;CREATE TABLE Doctor&#123;Dno VARCHAR(10),Dname VARCHAR(50) NOT NULL,Dsex VARCHAR(2) CHECK( Dsex IN (‘男’, ‘女’)),Dage INT CHECK( Dage &gt; 0 AND Dage &lt;60),Ddeptno VARCHAR(10),Dlevel VARCHAR(50),Dsalary DECIMAL(18,2),PRIMARY KEY(Dno),&#125;;CREATE TABLE RecipeDetail&#123;Rno VARCHAR(10),Mno VARCHAR(10) NOT NULL,Mamount DECIMAL(18,0),PRIMARY KEY(Rno,Mno),CHECK (Mno IN (SELECT Mno FROM Medicine))//这是参照完整性约束，允许出现其他关系的子查询&#125;;
-以下是断言的格式和一个例子
-CREATE ASSERTION fk_DiagnosisCHECK ( NOT EXISTS( SELECT * FROM Diagnosis WHERE Dno NOT IN(SELECT DnoFROM Doctor))); CREATE ASSERTION &lt;断言名&gt; CHECK&lt;谓词&gt;Create assertion salarycheck check(Not exists(Select * from Doctor xWhere Dsalary &gt;= some ( select Dsalary from Doctor y Where x.Deptno=y.Deptno and y.Dno =(Select Manager from Dept Where x.Deptno =Dept.Deptno)));
-参照完整性
-概念
-给定关系R，S，若存在R.A参照S.B
-
-R是参照表，S为被参照表
-A取值要么为空，要么来自于S.B
-A为外码
-B是S的主码
-若两张表的属性有参照完整性约束，在创建R表声明
-
-REDERENCES S(B)FOREIGN KEY(A) REFERENCES S(B)
-可见对R和S的删除，更新，插入都有可能触发完整性违约；
-
-DELETE FROM S
-UPDETE S.B
-UPDETE R.A
-INSERT TO R
-
-策略
-
-受限策略RESTRICTED:系统的默认方式，出现违约时，系统拒绝执行
-置空策略SET-NULL：根据环境的语义，外码可能为空
-级联策略CASCADE：不用拒绝用户操作请求的处理方式
-定义方式ON (DELETE|UPDATE) (SET NULL|CASCADE)
-
-]]></content>
-      <tags>
-        <tag>Coursework</tag>
-        <tag>Database</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>视图与索引</title>
     <url>/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9310-%E8%A7%86%E5%9B%BE%E4%B8%8E%E7%B4%A2%E5%BC%95/</url>
     <content><![CDATA[视图
@@ -11213,6 +11276,69 @@ CREATE [UNIQUE][CLUSTERED / NONCLUSTERED] INDEX &lt;索引名&gt; ON &lt;表名&
 如果要保证装入数据的唯一性，在装入数据前建立唯一性索引
 
 
+
+]]></content>
+      <tags>
+        <tag>Coursework</tag>
+        <tag>Database</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>断言与参照完整性</title>
+    <url>/2025/07/02/%E6%95%B0%E6%8D%AE%E5%BA%9311-%E6%96%AD%E8%A8%80%E4%B8%8E%E5%8F%82%E7%85%A7%E5%AE%8C%E6%95%B4%E6%80%A7/</url>
+    <content><![CDATA[完整性约束
+控制机制
+完整性约束是加在数据库模式上的一个具体条件，规定什么样的数据能够存储到数据库中；
+定义机制：
+
+约束条件：数据模型的组成部分，约束数据库的寓意
+DBMS提供定义数据库完整性约束条件，并作为模式的一部分存入数据库
+
+检查机制：
+
+检查用户发出的操作是否违背了完整性约束条件
+
+违约反应：
+
+发现用户的操作请求使数据违背了完整性约束条件，则采取一定的动作保证数据完整性；
+
+分类
+
+主键约束PRIMARY KEY ：一个关系仅一个，属性非空
+唯一约束UNIQUE：一个关系可声明多个，可为空，允许多个空值，不能定义在被主键约束的属性上
+非空约束NOT NULL
+自定义约束CHECK
+参照完整性约束FOREIGN KEY
+断言ASSERTION
+
+还可以根据位置分类为列级，行级和表级约束；以下是一些表建立的约束的例子
+CREATE TABLE Diagnosis&#123;DGno VARCHAR(10) PRIMARY KEY,Pno VARCHAR(10) NOT NULL,Dno VARCHAR(10) NOT NULL,Symptom VARCHAR(100),Diagnosis VARCHAR(100),DGtime DATETIME,Rfee DECIMAL(18,2) NOT NULL&#125;;CREATE TABLE Doctor&#123;Dno VARCHAR(10),Dname VARCHAR(50) NOT NULL,Dsex VARCHAR(2) CHECK( Dsex IN (‘男’, ‘女’)),Dage INT CHECK( Dage &gt; 0 AND Dage &lt;60),Ddeptno VARCHAR(10),Dlevel VARCHAR(50),Dsalary DECIMAL(18,2),PRIMARY KEY(Dno),&#125;;CREATE TABLE RecipeDetail&#123;Rno VARCHAR(10),Mno VARCHAR(10) NOT NULL,Mamount DECIMAL(18,0),PRIMARY KEY(Rno,Mno),CHECK (Mno IN (SELECT Mno FROM Medicine))//这是参照完整性约束，允许出现其他关系的子查询&#125;;
+以下是断言的格式和一个例子
+CREATE ASSERTION fk_DiagnosisCHECK ( NOT EXISTS( SELECT * FROM Diagnosis WHERE Dno NOT IN(SELECT DnoFROM Doctor))); CREATE ASSERTION &lt;断言名&gt; CHECK&lt;谓词&gt;Create assertion salarycheck check(Not exists(Select * from Doctor xWhere Dsalary &gt;= some ( select Dsalary from Doctor y Where x.Deptno=y.Deptno and y.Dno =(Select Manager from Dept Where x.Deptno =Dept.Deptno)));
+参照完整性
+概念
+给定关系R，S，若存在R.A参照S.B
+
+R是参照表，S为被参照表
+A取值要么为空，要么来自于S.B
+A为外码
+B是S的主码
+若两张表的属性有参照完整性约束，在创建R表声明
+
+REDERENCES S(B)FOREIGN KEY(A) REFERENCES S(B)
+可见对R和S的删除，更新，插入都有可能触发完整性违约；
+
+DELETE FROM S
+UPDETE S.B
+UPDETE R.A
+INSERT TO R
+
+策略
+
+受限策略RESTRICTED:系统的默认方式，出现违约时，系统拒绝执行
+置空策略SET-NULL：根据环境的语义，外码可能为空
+级联策略CASCADE：不用拒绝用户操作请求的处理方式
+定义方式ON (DELETE|UPDATE) (SET NULL|CASCADE)
 
 ]]></content>
       <tags>
@@ -13302,128 +13428,6 @@ Remark
 ]]></content>
   </entry>
   <entry>
-    <title>程序设计语言</title>
-    <url>/2025/06/20/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/</url>
-    <content><![CDATA[语言处理器 ⚙️
-概述
-通常来说，一个编译器(compiler) 👨‍💻➡️💻 将程序设计语言翻译成被计算机执行的形式；
-
-阅读宿主语言(host language)，通过宿主机器(host machine)，翻译成等价的目标语言。
-需要将翻译过程的错误抛出 ⚠️。
-如果目标语言是机器可执行的语言程序，执行目标程序，可以处理用户的输入得到输出。
-
-解释器(interpreter) 🗣️ 逐行执行：
-
-没有显式的翻译步骤，直接解释执行源程序。
-利用用户的输入，执行源程序中的操作，得到输出。
-
-比较来看，编译器编译后运行获得输出相对较快 🚀，但是解释器错误诊断和调试通常更好 👍。
-若编译程序生成宿主机执行的机器代码，称为自驻留的编译程序；若编译程序是用源语言编写的，则为自编译的编译程序；若编译程序生成的不是宿主机执行的机器代码，称为交叉编译；
-这里详细介绍交叉编译：
-在一个Host平台上生成另一个Target平台可执行代码的编译过程，常用于嵌入式开发、跨平台应用构建等场景，通常出于以下考虑：
-
-资源限制：目标设备（如物联网设备）无法运行完整编译器
-效率需求：在高性能Host平台编译可加速构建过程
-跨平台支持：为Windows/MacOS/Linux生成多平台二进制文件
-
-在C和C++的实践中，通常使用CMake等工具链实现交叉编译，而在一些语言(比如Golang)的编译器天然支持交叉编译选项；
-结构
-一个预处理器(preprocessor) 🧩：
-
-
-负责将独立文件中的源程序多个模块组合在一起；
-
-
-根据编译选项，选择条件编译；
-
-
-删除注释，合并空白符；
-
-大部分语言允许此法单元之间出现任意数量的空白，注释也当空白处理；
-
-
-
-将宏 (macro) 的缩写转化成源语言语句。
-
-比如C语言中遇到 #include &lt;iostream&gt; 负责将 iostream 库中的内容组合到目标程序；
-遇到 #define PI 3.14159，则会将文件中的 PI 替换成 3.14159。
-
-
-
-汇编器(assembler) 🛠️：
-
-处理编译器产生的汇编语言程序。
-生成可重定位的机器代码 (object code)。
-大型程序一般多个文件分部分编译，这些可重定位的机器代码和库文件需要连接到一起。
-
-链接器(linker) 🔗：
-
-一个文件的代码可能引用另一个文件定义的符号 (如函数或变量)。
-链接器解决这些外部内存地址的问题，将多个目标文件和库文件合并成一个可执行文件。
-
-加载器(loader) 🚀：
-
-将可执行文件从磁盘加载到内存中准备执行。
-
-
-流程
-编译器将源程序映射为语义等价的目标程序，由两部分构成：
-
-前端/分析(analysis):将源程序分解，加上先验的语法结构
-
-创建源程序的中间表示；
-创建符号表(symbol table);
-报语法错误；
-
-
-后端/综合(synthesis): 输入中间表示和符号表，输出期待的目标程序；
-
-
-具体分工如下：
-
-词法分析 (Lexical Analysis) 🧐: 读入源程序字符流，将其组织成有意义的词素 (lexeme) 序列，然后为每个词素生成并输出一个记号 (token) 流。例如，将 count = count + 5; 转换为 id(count), assign_op, id(count), add_op, number(5), semicolon。
-语法分析 (Syntax Analysis) 🌳: 根据词法分析器产生的记号流，使用语言的语法规则 (grammar) 来构造程序的层次结构，通常表示为一棵语法树 (syntax tree) 或分析树 (parse tree)。这一步检查程序的结构是否正确。(参考 [[第2章-语法分析#语法树|语法树]])
-语义分析 (Semantic Analysis) 🤔: 使用语法树和符号表中的信息来检查源程序是否与其语言定义的语义一致。主要任务包括类型检查 (type checking)，确保操作符和操作数类型兼容，以及其他静态检查（如变量声明、函数参数匹配等）。同时收集类型信息供后续阶段使用。
-中间代码生成 (Intermediate Code Generation) ⚙️: 在将源程序翻译成目标代码之前，许多编译器会先生成一个明确的、机器无关的中间表示 (Intermediate Representation, IR)。常见形式有三地址码 (three-address code)，它易于生成和优化。
-代码优化 (Code Optimization) ✨: (可选阶段) 尝试改进中间代码，以产生性能更好（运行更快、占用内存更少、能耗更低等）的目标代码。优化可以在不同层面进行，如局部优化、全局优化、循环优化等。
-代码生成 (Code Generation) 💻: 将（优化后的）中间代码映射到目标机器的指令集。此阶段涉及指令选择 (instruction selection)、寄存器分配 (register allocation) 和指令调度 (instruction scheduling)。最终为每个变量选择内存地址或寄存器。
-
-符号表
-符号表(symbol table)是供编译器用于保存有关源程序构造的各种信息的数据结构；
-声明周期
-符号表在分析阶段逐步收集，用于生成目标代码；
-
-每项包含一个与标识符有关的信息，如词素，类型，存储位置；
-需要支持同一个标识符的多重声明；
-每个带有声明的程序块都有自己的符号表，因此需要对每个作用域建立单独的符号表；
-
-
-数据结构
-一个典型的符号表链如下:
-
-一个典型的符号表Env的实现
-
-C语言编译器示例 🔬
-现在我们拥有一个main.c文件，内容如下：
-#define MYMAX 20int add(int a, int b)&#123;    return a + 2 * b + MYMAX;&#125;;int main() &#123;    int c = 0;    c = add(1, 2);    return 0;&#125;
-预处理
-执行命令gcc -E -o hello.i hello.c,得到文件hello.i，内容如下，这样我们完成了文件通过了预处理器，完成了预处理的步骤，这一步不处理语法错误，执行预处理指令,可以看到MYMAX替换成20了；
-# 0 &quot;main.c&quot;# 0 &quot;&lt;built-in&gt;&quot;# 0 &quot;&lt;command-line&gt;&quot;# 1 &quot;/usr/include/stdc-predef.h&quot; 1 3 4# 0 &quot;&lt;command-line&gt;&quot; 2# 1 &quot;main.c&quot;int add(int a, int b)&#123;    return a + 2 * b + 20;&#125;;int main() &#123;    int c = 0;    c = add(1, 2);    return 0;&#125;
-编译
-执行命令gcc -S -o main.s main.i，得到文件main.s，内容如下，这样的汇编语言程序结果和硬件架构相关；
-	.file	&quot;main.c&quot;	.text	.globl	add	.type	add, @functionadd:.LFB0:	.cfi_startproc	endbr64	pushq	%rbp	.cfi_def_cfa_offset 16	.cfi_offset 6, -16	movq	%rsp, %rbp	.cfi_def_cfa_register 6	movl	%edi, -4(%rbp)	movl	%esi, -8(%rbp)	movl	-8(%rbp), %eax	leal	(%rax,%rax), %edx	movl	-4(%rbp), %eax	addl	%edx, %eax	addl	$20, %eax	popq	%rbp	.cfi_def_cfa 7, 8	ret	.cfi_endproc.LFE0:	.size	add, .-add	.globl	main	.type	main, @functionmain:.LFB1:	.cfi_startproc	endbr64	pushq	%rbp	.cfi_def_cfa_offset 16	.cfi_offset 6, -16	movq	%rsp, %rbp	.cfi_def_cfa_register 6	subq	$16, %rsp	movl	$0, -4(%rbp)	movl	$2, %esi	movl	$1, %edi	call	add	movl	%eax, -4(%rbp)	movl	$0, %eax	leave	.cfi_def_cfa 7, 8	ret	.cfi_endproc.LFE1:	.size	main, .-main	.ident	&quot;GCC: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0&quot;	.section	.note.GNU-stack,&quot;&quot;,@progbits	.section	.note.gnu.property,&quot;a&quot;	.align 8	.long	1f - 0f	.long	4f - 1f	.long	50:	.string	&quot;GNU&quot;1:	.align 8	.long	0xc0000002	.long	3f - 2f2:	.long	0x33:	.align 84:
-汇编
-执行命令gcc -c -o main.o main.s，得到main.o文件，编辑器已经不可查看了,而且系统也不能执行该文件，内容为机器码；
-不可执行的原因是还未进行重定位操作，数据的地址没有确定；
-链接
-执行命令gcc -o main main.o，得到最终的可执行文件main;
-]]></content>
-      <tags>
-        <tag>Coursework</tag>
-        <tag>Compilers</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>测度论预备知识</title>
     <url>/2025/07/05/%E6%B5%8B%E5%BA%A6%E8%AE%BA%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[σ 代数，可测空间，随机事件
@@ -13932,6 +13936,128 @@ proof:注意到
       <tags>
         <tag>Coursework</tag>
         <tag>Random Process</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>程序设计语言</title>
+    <url>/2025/06/20/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80/</url>
+    <content><![CDATA[语言处理器 ⚙️
+概述
+通常来说，一个编译器(compiler) 👨‍💻➡️💻 将程序设计语言翻译成被计算机执行的形式；
+
+阅读宿主语言(host language)，通过宿主机器(host machine)，翻译成等价的目标语言。
+需要将翻译过程的错误抛出 ⚠️。
+如果目标语言是机器可执行的语言程序，执行目标程序，可以处理用户的输入得到输出。
+
+解释器(interpreter) 🗣️ 逐行执行：
+
+没有显式的翻译步骤，直接解释执行源程序。
+利用用户的输入，执行源程序中的操作，得到输出。
+
+比较来看，编译器编译后运行获得输出相对较快 🚀，但是解释器错误诊断和调试通常更好 👍。
+若编译程序生成宿主机执行的机器代码，称为自驻留的编译程序；若编译程序是用源语言编写的，则为自编译的编译程序；若编译程序生成的不是宿主机执行的机器代码，称为交叉编译；
+这里详细介绍交叉编译：
+在一个Host平台上生成另一个Target平台可执行代码的编译过程，常用于嵌入式开发、跨平台应用构建等场景，通常出于以下考虑：
+
+资源限制：目标设备（如物联网设备）无法运行完整编译器
+效率需求：在高性能Host平台编译可加速构建过程
+跨平台支持：为Windows/MacOS/Linux生成多平台二进制文件
+
+在C和C++的实践中，通常使用CMake等工具链实现交叉编译，而在一些语言(比如Golang)的编译器天然支持交叉编译选项；
+结构
+一个预处理器(preprocessor) 🧩：
+
+
+负责将独立文件中的源程序多个模块组合在一起；
+
+
+根据编译选项，选择条件编译；
+
+
+删除注释，合并空白符；
+
+大部分语言允许此法单元之间出现任意数量的空白，注释也当空白处理；
+
+
+
+将宏 (macro) 的缩写转化成源语言语句。
+
+比如C语言中遇到 #include &lt;iostream&gt; 负责将 iostream 库中的内容组合到目标程序；
+遇到 #define PI 3.14159，则会将文件中的 PI 替换成 3.14159。
+
+
+
+汇编器(assembler) 🛠️：
+
+处理编译器产生的汇编语言程序。
+生成可重定位的机器代码 (object code)。
+大型程序一般多个文件分部分编译，这些可重定位的机器代码和库文件需要连接到一起。
+
+链接器(linker) 🔗：
+
+一个文件的代码可能引用另一个文件定义的符号 (如函数或变量)。
+链接器解决这些外部内存地址的问题，将多个目标文件和库文件合并成一个可执行文件。
+
+加载器(loader) 🚀：
+
+将可执行文件从磁盘加载到内存中准备执行。
+
+
+流程
+编译器将源程序映射为语义等价的目标程序，由两部分构成：
+
+前端/分析(analysis):将源程序分解，加上先验的语法结构
+
+创建源程序的中间表示；
+创建符号表(symbol table);
+报语法错误；
+
+
+后端/综合(synthesis): 输入中间表示和符号表，输出期待的目标程序；
+
+
+具体分工如下：
+
+词法分析 (Lexical Analysis) 🧐: 读入源程序字符流，将其组织成有意义的词素 (lexeme) 序列，然后为每个词素生成并输出一个记号 (token) 流。例如，将 count = count + 5; 转换为 id(count), assign_op, id(count), add_op, number(5), semicolon。
+语法分析 (Syntax Analysis) 🌳: 根据词法分析器产生的记号流，使用语言的语法规则 (grammar) 来构造程序的层次结构，通常表示为一棵语法树 (syntax tree) 或分析树 (parse tree)。这一步检查程序的结构是否正确。(参考 [[第2章-语法分析#语法树|语法树]])
+语义分析 (Semantic Analysis) 🤔: 使用语法树和符号表中的信息来检查源程序是否与其语言定义的语义一致。主要任务包括类型检查 (type checking)，确保操作符和操作数类型兼容，以及其他静态检查（如变量声明、函数参数匹配等）。同时收集类型信息供后续阶段使用。
+中间代码生成 (Intermediate Code Generation) ⚙️: 在将源程序翻译成目标代码之前，许多编译器会先生成一个明确的、机器无关的中间表示 (Intermediate Representation, IR)。常见形式有三地址码 (three-address code)，它易于生成和优化。
+代码优化 (Code Optimization) ✨: (可选阶段) 尝试改进中间代码，以产生性能更好（运行更快、占用内存更少、能耗更低等）的目标代码。优化可以在不同层面进行，如局部优化、全局优化、循环优化等。
+代码生成 (Code Generation) 💻: 将（优化后的）中间代码映射到目标机器的指令集。此阶段涉及指令选择 (instruction selection)、寄存器分配 (register allocation) 和指令调度 (instruction scheduling)。最终为每个变量选择内存地址或寄存器。
+
+符号表
+符号表(symbol table)是供编译器用于保存有关源程序构造的各种信息的数据结构；
+声明周期
+符号表在分析阶段逐步收集，用于生成目标代码；
+
+每项包含一个与标识符有关的信息，如词素，类型，存储位置；
+需要支持同一个标识符的多重声明；
+每个带有声明的程序块都有自己的符号表，因此需要对每个作用域建立单独的符号表；
+
+
+数据结构
+一个典型的符号表链如下:
+
+一个典型的符号表Env的实现
+
+C语言编译器示例 🔬
+现在我们拥有一个main.c文件，内容如下：
+#define MYMAX 20int add(int a, int b)&#123;    return a + 2 * b + MYMAX;&#125;;int main() &#123;    int c = 0;    c = add(1, 2);    return 0;&#125;
+预处理
+执行命令gcc -E -o hello.i hello.c,得到文件hello.i，内容如下，这样我们完成了文件通过了预处理器，完成了预处理的步骤，这一步不处理语法错误，执行预处理指令,可以看到MYMAX替换成20了；
+# 0 &quot;main.c&quot;# 0 &quot;&lt;built-in&gt;&quot;# 0 &quot;&lt;command-line&gt;&quot;# 1 &quot;/usr/include/stdc-predef.h&quot; 1 3 4# 0 &quot;&lt;command-line&gt;&quot; 2# 1 &quot;main.c&quot;int add(int a, int b)&#123;    return a + 2 * b + 20;&#125;;int main() &#123;    int c = 0;    c = add(1, 2);    return 0;&#125;
+编译
+执行命令gcc -S -o main.s main.i，得到文件main.s，内容如下，这样的汇编语言程序结果和硬件架构相关；
+	.file	&quot;main.c&quot;	.text	.globl	add	.type	add, @functionadd:.LFB0:	.cfi_startproc	endbr64	pushq	%rbp	.cfi_def_cfa_offset 16	.cfi_offset 6, -16	movq	%rsp, %rbp	.cfi_def_cfa_register 6	movl	%edi, -4(%rbp)	movl	%esi, -8(%rbp)	movl	-8(%rbp), %eax	leal	(%rax,%rax), %edx	movl	-4(%rbp), %eax	addl	%edx, %eax	addl	$20, %eax	popq	%rbp	.cfi_def_cfa 7, 8	ret	.cfi_endproc.LFE0:	.size	add, .-add	.globl	main	.type	main, @functionmain:.LFB1:	.cfi_startproc	endbr64	pushq	%rbp	.cfi_def_cfa_offset 16	.cfi_offset 6, -16	movq	%rsp, %rbp	.cfi_def_cfa_register 6	subq	$16, %rsp	movl	$0, -4(%rbp)	movl	$2, %esi	movl	$1, %edi	call	add	movl	%eax, -4(%rbp)	movl	$0, %eax	leave	.cfi_def_cfa 7, 8	ret	.cfi_endproc.LFE1:	.size	main, .-main	.ident	&quot;GCC: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0&quot;	.section	.note.GNU-stack,&quot;&quot;,@progbits	.section	.note.gnu.property,&quot;a&quot;	.align 8	.long	1f - 0f	.long	4f - 1f	.long	50:	.string	&quot;GNU&quot;1:	.align 8	.long	0xc0000002	.long	3f - 2f2:	.long	0x33:	.align 84:
+汇编
+执行命令gcc -c -o main.o main.s，得到main.o文件，编辑器已经不可查看了,而且系统也不能执行该文件，内容为机器码；
+不可执行的原因是还未进行重定位操作，数据的地址没有确定；
+链接
+执行命令gcc -o main main.o，得到最终的可执行文件main;
+]]></content>
+      <tags>
+        <tag>Coursework</tag>
+        <tag>Compilers</tag>
       </tags>
   </entry>
   <entry>
