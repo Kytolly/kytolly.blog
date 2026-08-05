@@ -6,8 +6,7 @@
     <content><![CDATA[论文信息卡片
 
 作者：Zeqing Wang、Danze Chen、Zhaohu Xing、Zizhao Tong、Yinhan Zhang、Xingyi Yang、Yeying Jin
-年份 / 状态：2026，arXiv 预印本 v1
-资源：arXiv:2605.15256 · 项目页 · 代码
+资源：arXiv:2605.15256 | 项目页 | 代码  | 模型 | 数据集
 
 一句话结论
 ReactiveGWM 把“玩家的逐帧按钮控制”和“NPC 的高层战术意图”拆成两条条件通路，并将承载 NPC 策略的 cross-attention 模块跨游戏移植，从而在两个《街头霸王》环境中显著提高 NPC 策略遵循率，同时大体保留玩家控制与画面质量。
@@ -15,29 +14,29 @@ ReactiveGWM 把“玩家的逐帧按钮控制”和“NPC 的高层战术意图�
 
 问题：现有游戏世界模型通常只以玩家动作作为控制信号，把 NPC 吸收到背景动力学中，因此难以显式控制 NPC 的自主反应与战术意图。
 为什么重要：只会响应玩家输入并渲染后续画面的模型更接近“被动视频渲染器”，还不足以充当包含竞争、协作与多主体反应的游戏模拟器。
-既有缺口：玩家动作是细粒度、逐帧的，而 NPC 的 Offense / Control / Defense 是高层、长时间尺度的；若二者被写进同一描述性 prompt，角色职责和因果来源容易纠缠。（PDF pp. 2-3，§1、§3.1）
+既有缺口：玩家动作是细粒度、逐帧的，而 NPC 的 Offense / Control / Defense 是高层、长时间尺度的；若二者被写进同一描述性 prompt，角色职责和因果来源容易纠缠。
 
 论文主张
-论文认为，把玩家控制与 NPC 行为显式解耦，可同时获得精细玩家可控性、策略对齐的 NPC 行为，以及跨游戏的零样本策略迁移。（PDF p. 2，§1）
+论文认为，把玩家控制与 NPC 行为显式解耦，可同时获得精细玩家可控性、策略对齐的 NPC 行为，以及跨游戏的零样本策略迁移。
 解读
 这篇工作的真正切入点不是生成更清晰的格斗画面，而是重新设计控制接口：用不同网络通路承载不同时间尺度、不同角色归属的干预信号。它把“NPC autonomy”操作化为三类可识别策略，而非开放式智能体规划。
 
 
-Source visual - Figure 1：ReactiveGWM: Steering NPC in Reactive Game World Models，PDF p. 1。作用：直观展示在同一格斗环境中，NPC 可表现 Offense、Defense、Control 三种不同的高层策略。截图：从原 PDF 裁剪，保留三组序列、策略说明与原图注。
+Source visual - Figure 1：ReactiveGWM: Steering NPC in Reactive Game World Models，PDF p. 1。作用：直观展示在同一格斗环境中，NPC 可表现 Offense、Defense、Control 三种不同的高层策略。
 
 领域位置
 
 研究分支：可控视频生成 → 视频世界模型 → 游戏世界模型 → 多主体反应与 NPC 自主性。
 方法路线：以 Wan2.2-TI2V-5B 为视频扩散骨干；离散玩家动作通过轻量加性偏置注入 DiT；NPC 策略文本通过 cross-attention 注入。
-最近的对照路线：GameNGen、DIAMOND、Matrix-Game 2.0/3.0、LingBot-World、GameFactory、Oasis 等主要围绕玩家动作驱动、长时生成或开放域交互展开；本文强调它们通常没有显式 NPC 战术通道。（PDF p. 3，§2.2）
+最近的对照路线：GameNGen、DIAMOND、Matrix-Game 2.0/3.0、LingBot-World、GameFactory、Oasis 等主要围绕玩家动作驱动、长时生成或开放域交互展开；本文强调它们通常没有显式 NPC 战术通道。
 声称的差异化：不是把所有交互写进玩家中心 prompt，而是构造 NPC 专用 prompt，并尝试把 NPC 策略模块作为可插拔部件跨游戏迁移。
 
 核心思想
 模型把未来视频写为：
 
-其中  是初始帧， 是玩家按钮序列， 只描述 NPC 的主动行为、被动行为与策略类别，而不复述整段场景。（PDF p. 3，Eq. 2；PDF p. 4，Eq. 3）
+其中  是初始帧， 是玩家按钮序列， 只描述 NPC 的主动行为、被动行为与策略类别，而不复述整段场景。
 论文主张
-玩家动作和 NPC 策略由两条独立条件通路注入，使模型无需把玩家与 NPC 的动态绑定在一个自然语言描述里。（PDF pp. 3-5，§3.1-§3.4）
+玩家动作和 NPC 策略由两条独立条件通路注入，使模型无需把玩家与 NPC 的动态绑定在一个自然语言描述里。
 解读
 “解耦”主要是接口与模块归属上的解耦，并不等同于因果独立：最终视频 latent、self-attention 和 FFN 仍联合建模双方互动，且源游戏训练阶段是全参数微调。
 方法
@@ -45,46 +44,46 @@ Source visual - Figure 1：ReactiveGWM: Steering NPC in Reactive Game World Mode
 
 输入：初始游戏帧 ；玩家逐帧 10 键二值动作序列；NPC 结构化策略 prompt。
 输出：同时体现玩家动作结果与 NPC 策略反应的未来 5 秒游戏视频。
-训练样本单位：5 秒、20 FPS，即 100 帧；每个游戏约 10,000 个训练三元组。（PDF p. 4，§3.2；PDF pp. 14-15，Appendix A）
+训练样本单位：5 秒、20 FPS，即 100 帧；每个游戏约 10,000 个训练三元组。
 
 数据构造与策略标注
 
-
-Source visual - Figure 2：ReactiveGWM: Steering NPC in Reactive Game World Models，PDF p. 4。作用：解释视频、玩家动作与 NPC prompt 三元组如何生成，以及 NPC prompt 与 vanilla prompt 的差别。截图：从原 PDF 裁剪，保留完整流程、类别、prompt 对照与原图注。
-
-
 使用 stable-retro 在 SF2 和 SF3 中录制 Player-vs-NPC 回合；随机智能体从 13 个离散行为中采样，回合结束后切成 5 秒窗口。
-每帧动作保存为按钮二值向量；方向键在 10 帧决策块内持续按住，攻击与 UP 只在块首产生 edge press。（PDF p. 14，Appendix A.1-A.2）
+每帧动作保存为按钮二值向量；方向键在 10 帧决策块内持续按住，攻击与 UP 只在块首产生 edge press。
 Gemini 先回答 12 个封闭式事实问题并标注 NPC 主动 / 被动动作，明确禁止直接输出策略。
 确定性规则再把事实映射到互斥的 Offense、Control、Defense 类别；不满足规则的片段被丢弃。
-最终 prompt 由 Active(...)、Passive(...)、Strategy(category, description) 组成；策略释义从类别模板池按视频路径 MD5 确定性抽取，以增加表述变化并保持可复现。（PDF pp. 14-15，Appendix A.3-A.4）
+最终 prompt 由 Active(...)、Passive(...)、Strategy(category, description) 组成；策略释义从类别模板池按视频路径 MD5 确定性抽取，以增加表述变化并保持可复现。
+
+
+
+Source visual - Figure 2：ReactiveGWM: Steering NPC in Reactive Game World Models，PDF p. 4。作用：解释视频、玩家动作与 NPC prompt 三元组如何生成，以及 NPC prompt 与 vanilla prompt 的差别。
 
 玩家动作通路
 原始按钮序列先按 VAE 的时间压缩率对齐到 latent 帧率。每个时间 bin、每个按钮取最大值：
 
 随后，每个 DiT block 使用独立的无偏置线性层  将动作投影到通道维，并在空间 patch 上广播，作为 self-attention 前的残差偏置：
 
-这种设计让动作条件保持低成本，并避免为逐帧按钮引入较重的 adapter 或额外 cross-attention。（PDF pp. 4-5，§3.3，Eq. 4）
+这种设计让动作条件保持低成本，并避免为逐帧按钮引入较重的 adapter 或额外 cross-attention。
 NPC 策略通路与跨游戏迁移
 
-
-Source visual - Figure 4：ReactiveGWM: Steering NPC in Reactive Game World Models，PDF p. 5。作用：显示源游戏全参数训练、目标游戏 vanilla backbone 复用，以及仅迁移 cross-attention 的模块组合方式。截图：从原 PDF 裁剪，保留模块箭头、训练 / 推理标识与原图注。
-
-
 ReactiveGWM_base：在源游戏的策略标注数据上联合优化 Action Module、Self-Attention、Cross-Attention 和 FFN；cross-attention 将 NPC 文本策略对齐到视觉时空 latent。
-ReactiveGWM_transfer：目标游戏已有一个用普通描述 prompt 训练的 vanilla 世界模型。迁移时保留目标模型的 Action Module、Self-Attention、FFN，只替换为源游戏 ReactiveGWM 的 cross-attention；无需目标游戏策略标注，也不再训练。（PDF p. 5，§3.4）
-机制分析：作者测得 transfer 模型中 cross-attention 输出的相对能量约为 0.71%，与 vanilla 的 0.70% 接近；但 transfer 与 vanilla 的 cross-attention 输出方向平均余弦相似度降至 0.55。论文据此解释：该通路能量低，较少扰动画面主体，却通过跨 30 个 block、30 个扩散步累积的新方向信号改变 NPC 轨迹。（PDF p. 9，§4.4，Eq. 5）
+ReactiveGWM_transfer：目标游戏已有一个用普通描述 prompt 训练的 vanilla 世界模型。迁移时保留目标模型的 Action Module、Self-Attention、FFN，只替换为源游戏 ReactiveGWM 的 cross-attention；无需目标游戏策略标注，也不再训练。
+机制分析：作者测得 transfer 模型中 cross-attention 输出的相对能量约为 0.71%，与 vanilla 的 0.70% 接近；但 transfer 与 vanilla 的 cross-attention 输出方向平均余弦相似度降至 0.55。论文据此解释：该通路能量低，较少扰动画面主体，却通过跨 30 个 block、30 个扩散步累积的新方向信号改变 NPC 轨迹。
+
+
+
+Source visual - Figure 4：ReactiveGWM: Steering NPC in Reactive Game World Models，PDF p. 5。作用：显示源游戏全参数训练、目标游戏 vanilla backbone 复用，以及仅迁移 cross-attention 的模块组合方式。
 
 训练目标的记录边界
-论文明确说明源模型进行全参数 fine-tuning、骨干为 Wan2.2-TI2V-5B，但正文没有给出一个可独立复现的完整损失函数、优化器与全部超参数表。因此不能仅凭 PDF 重建训练配方；需结合公开代码与配置文件。（PDF pp. 5-6，§3.4、§4.1）
+论文明确说明源模型进行全参数 fine-tuning、骨干为 Wan2.2-TI2V-5B，但正文没有给出一个可独立复现的完整损失函数、优化器与全部超参数表。因此不能仅凭 PDF 重建训练配方；需结合公开代码与配置文件。
 数据与评估
 
 环境：Street Fighter II: Champion Edition（SF2）与 Street Fighter Alpha 3（SF3）。
 训练数据：每个游戏约 10k 个策略标注片段，另为每个游戏构造同规模 vanilla 数据训练对照模型；分辨率分别为 480×608 与 480×832。
-玩家动作遵循：10 个初始帧 × 10 个单键动作，共 100 次 rollout，每次生成 41 帧。Move-Acc 用 SAM2.1 + Grounding DINO 的角色轨迹阈值判断；Att-Acc 用自建 ClipAttackNet 进行 6 类攻击识别。（PDF p. 6，§4.1；PDF pp. 15-16，Appendix B.1）
-NPC 策略遵循：固定 99 个片段，每类 33 个，生成 101 帧；Gemini 与 Qwen3-VL-8B 分别做三分类裁判。（PDF p. 6，§4.1；PDF pp. 16-18，Appendix B.2）
-视觉质量：对同一批 99 个片段的前 100 个对齐帧计算 SSIM（越高越好）与 LPIPS-AlexNet（越低越好）。（PDF p. 6，§4.1；PDF p. 18，Appendix B.3）
-基线：Matrix-Game-3.0、LingBot-World-Base、Vanilla。前两者并非为 SF2 / SF3 设计，且动作注入接口不同，因此只作为 NPC 策略和画质的宽泛参照，不应据表作公平的端到端排名。（PDF p. 6，§4.1；PDF p. 18，Appendix C）
+玩家动作遵循：10 个初始帧 × 10 个单键动作，共 100 次 rollout，每次生成 41 帧。Move-Acc 用 SAM2.1 + Grounding DINO 的角色轨迹阈值判断；Att-Acc 用自建 ClipAttackNet 进行 6 类攻击识别。
+NPC 策略遵循：固定 99 个片段，每类 33 个，生成 101 帧；Gemini 与 Qwen3-VL-8B 分别做三分类裁判。
+视觉质量：对同一批 99 个片段的前 100 个对齐帧计算 SSIM（越高越好）与 LPIPS-AlexNet（越低越好）。
+基线：Matrix-Game-3.0、LingBot-World-Base、Vanilla。前两者并非为 SF2 / SF3 设计，且动作注入接口不同，因此只作为 NPC 策略和画质的宽泛参照，不应据表作公平的端到端排名。
 
 
 
@@ -211,18 +210,18 @@ Figure 7 展示 Punch+Throw、Jumping Attack+Standing Punch 等
 
 
 用户研究
-19 名熟悉 2D 格斗游戏的参与者完成两个游戏的问卷。动作一致性 1-5 分均值在 4.32-4.60；论文称任意两模型差异都在一个 SEM 内。NPC 策略识别的总体准确率为：SF2 中 Vanilla 43.9%、Base 86.0%、Transfer 84.2%；SF3 中分别为 17.5%、77.2%、61.4%。（PDF pp. 18-20，Appendix D）
+19 名熟悉 2D 格斗游戏的参与者完成两个游戏的问卷。动作一致性 1-5 分均值在 4.32-4.60；论文称任意两模型差异都在一个 SEM 内。NPC 策略识别的总体准确率为：SF2 中 Vanilla 43.9%、Base 86.0%、Transfer 84.2%；SF3 中分别为 17.5%、77.2%、61.4%。
 
 
-Source visual - Figure 11：ReactiveGWM: Steering NPC in Reactive Game World Models，PDF p. 20。作用：用人类判断补充 VLM 裁判结果，并暴露 SF3 Transfer 在 Control 类仅 16% 的薄弱点。截图：从原 PDF 裁剪，保留两个游戏、三类策略、总体准确率、柱值、图例与原图注。
+Source visual - Figure 11：ReactiveGWM: Steering NPC in Reactive Game World Models，PDF p. 20。作用：用人类判断补充 VLM 裁判结果，并暴露 SF3 Transfer 在 Control 类仅 16% 的薄弱点。
 
 解读
-人类结果支持“策略控制是可感知的”，但也揭示迁移并非均匀成功：SF3 的 Transfer 在 Control 上仅 16%，却在 Offense 上达到 100%。作者将其归因于 Control 更依赖具体游戏的远程攻击、动画、时序与空间效果；这恰好限制了“game-agnostic 交互逻辑”的强表述。（PDF p. 20，Appendix D.2）
-假设、限制与有效性威胁
+人类结果支持“策略控制是可感知的”，但也揭示迁移并非均匀成功：SF3 的 Transfer 在 Control 上仅 16%，却在 Offense 上达到 100%。作者将其归因于 Control 更依赖具体游戏的远程攻击、动画、时序与空间效果；这恰好限制了“game-agnostic 交互逻辑”的强表述。
+假设与限制
 论文报告的限制
 
 只在 2D 格斗游戏中评估；仍需扩展到 2D FPS、多智能体策略游戏等类别，才能检验表示的通用性。
-扩散骨干推理延迟高，尚不能提供真正实时、可玩的交互体验；作者提出自回归视频生成与模型蒸馏作为未来方向。（PDF p. 21，Appendix E）
+扩散骨干推理延迟高，尚不能提供真正实时、可玩的交互体验；作者提出自回归视频生成与模型蒸馏作为未来方向。
 
 额外解读
 
@@ -242,6 +241,12 @@ Source visual - Figure 11：ReactiveGWM: Steering NPC in Reactive Game World Mod
 评估模式：把可控性拆成低层动作遵循、高层意图遵循和视觉质量三个维度，并用自动裁判与人类判断交叉验证。
 不应盲目迁移：不要把三类格斗策略直接视为一般 NPC 智能；也不要只靠全画面 SSIM / LPIPS 评价一个世界模型是否“理解物理”。
 
+复现记录
+
+骨干与依赖：Wan2.2-TI2V-5B；UMT5 tokenizer；stable-retro；推理代码还依赖公开 checkpoint。仓库包含双向训练，以及 Causal Forcing 的 ar_tf → cd → dmd 三阶段流程。
+缺失或需从代码补齐：完整优化器、学习率、训练步数、硬件成本、随机种子聚合方式、所有数据清洗阈值与用户研究问卷细节未在正文形成一份自足配置。
+主要风险：游戏 ROM 与模拟器配置的可获得性；VLM API / 版本漂移；5B 视频模型训练与 101 帧扩散推理成本；Grounding DINO / SAM2.1 追踪误差；自建攻击分类器 checkpoint 与训练数据一致性。
+
 开放问题
 
 如果目标游戏没有与源游戏同构的动作 / 战术语义，cross-attention 迁移还能否工作？需要怎样的策略 ontology 对齐？
@@ -251,16 +256,6 @@ Source visual - Figure 11：ReactiveGWM: Steering NPC in Reactive Game World Mod
 SF3 Control 迁移失败主要来自技能语义、视觉表现、动作时序还是训练数据分布？需要模块级消融与错误案例分解。
 在实时性约束下，蒸馏或自回归改造会不会损害策略遵循与反应延迟？
 
-复现记录
-
-公开资源：项目页、GitHub、模型、数据集。
-骨干与依赖：Wan2.2-TI2V-5B；UMT5 tokenizer；stable-retro；推理代码还依赖公开 checkpoint。仓库包含双向训练，以及 Causal Forcing 的 ar_tf → cd → dmd 三阶段流程。
-数据 / 环境要求：SF2、SF3 模拟环境；视频、逐帧按钮表与策略 prompt；论文数据构造还依赖 Gemini 事实标注。
-缺失或需从代码补齐：完整优化器、学习率、训练步数、硬件成本、随机种子聚合方式、所有数据清洗阈值与用户研究问卷细节未在正文形成一份自足配置。
-主要风险：游戏 ROM 与模拟器配置的可获得性；VLM API / 版本漂移；5B 视频模型训练与 101 帧扩散推理成本；Grounding DINO / SAM2.1 追踪误差；自建攻击分类器 checkpoint 与训练数据一致性。
-
-用户笔记
-当前没有额外的用户自述判断；本节预留给后续人工批注。上文中标为“解读”或“额外解读”的内容均为笔记整理者的分析，不代表论文作者原话。
 ]]></content>
       <tags>
         <tag>papers</tag>
