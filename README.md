@@ -1,5 +1,5 @@
 # kytolly.blog
-Here is Kytolly's blog, recording his notes(main) or other eaasys during his undergraduate.
+Here is Kytolly's blog, recording his notes(main) or other eaasys during his undergraduate and postgraduate program.
 > theme: [Shiroi](https://github.com/Kytolly/shiroi), adapted by [hexo-theme-typo](https://github.com/rankangkang/hexo-theme-typo).
 
 ## 文章图片
