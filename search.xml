@@ -3,13 +3,13 @@
   <entry>
     <title>ReactiveGWM：在反应式游戏世界模型中操控 NPC</title>
     <url>/2026/08/05/ReactiveGWM%EF%BC%9A%E5%9C%A8%E5%8F%8D%E5%BA%94%E5%BC%8F%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E4%B8%AD%E6%93%8D%E6%8E%A7%20NPC/</url>
-    <content><![CDATA[论文信息卡片
+    <content><![CDATA[一句话结论
+ReactiveGWM 把“玩家的逐帧按钮控制”和“NPC 的高层战术意图”拆成两条条件通路，并将承载 NPC 策略的 cross-attention 模块跨游戏移植，从而在两个《街头霸王》环境中显著提高 NPC 策略遵循率，同时大体保留玩家控制与画面质量。
+论文信息卡片
 
 作者：Zeqing Wang、Danze Chen、Zhaohu Xing、Zizhao Tong、Yinhan Zhang、Xingyi Yang、Yeying Jin
 资源：arXiv:2605.15256 | 项目页 | 代码  | 模型 | 数据集
 
-一句话结论
-ReactiveGWM 把“玩家的逐帧按钮控制”和“NPC 的高层战术意图”拆成两条条件通路，并将承载 NPC 策略的 cross-attention 模块跨游戏移植，从而在两个《街头霸王》环境中显著提高 NPC 策略遵循率，同时大体保留玩家控制与画面质量。
 研究问题
 
 问题：现有游戏世界模型通常只以玩家动作作为控制信号，把 NPC 吸收到背景动力学中，因此难以显式控制 NPC 的自主反应与战术意图。
