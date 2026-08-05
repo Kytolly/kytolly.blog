@@ -264,4 +264,327 @@ SF3 Control 迁移失败主要来自技能语义、视觉表现、动作时序�
         <tag>Computer-Vision</tag>
       </tags>
   </entry>
+  <entry>
+    <title>StatePlay：面向机制一致生成的状态感知游戏世界模型.md</title>
+    <url>/2026/08/05/StatePlay%EF%BC%9A%E9%9D%A2%E5%90%91%E6%9C%BA%E5%88%B6%E4%B8%80%E8%87%B4%E7%94%9F%E6%88%90%E7%9A%84%E7%8A%B6%E6%80%81%E6%84%9F%E7%9F%A5%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B-md/</url>
+    <content><![CDATA[StatePlay：面向机制一致生成的状态感知游戏世界模型
+一句话结论
+StatePlay 在视频扩散世界模型旁增加显式状态分支，用双向 joint attention 让生命值、技能槽和计时器的预测参与帧生成；在单一《Street Fighter 3》环境中，它相对最强无状态微调基线将两位视觉裁判的机制正确率都提高了 18.6 个百分点，但尚未证明跨游戏、长时程或完整可玩引擎层面的通用机制推理。
+论文信息卡片
+
+作者：Zijun Lin、Zeqing Wang、Cheston Tan、Bihan Wen、Yeying Jin
+年份 / 状态：2026，arXiv 预印本 v1
+资源：arXiv:2607.26754 | 项目页 | [代码](Jimntu/StatePlay: StatePlay: State-Aware Game World Models for Mechanics-Consistent Generation) | [数据集](onepiece1999/StatePlay-Dataset · Datasets at Hugging Face) | [模型](onepiece1999/StatePlay · Hugging Face)
+
+研究问题
+
+问题：游戏世界模型可以生成视觉逼真、响应玩家动作的视频，却可能违反由内部状态决定的规则，例如生命值归零后仍继续攻击、技能槽未满却释放必杀技，或回合结束后不显示正确结果。
+为什么重要：游戏不只是像素动态。生命值、技能资源和计时器决定动作是否合法、伤害如何结算、技能何时触发以及游戏何时终止；如果这些规则不能保持，生成结果更像视频演示，而非可用于交互或规划的模拟器。
+既有缺口：大多数游戏世界模型只用帧和动作监督，要求模型从像素中隐式恢复状态与规则；已有显式状态数据工作尚未系统回答“状态预测是否以及如何提高生成帧的机制一致性”。
+
+论文主张
+论文主张，显式联合预测内部状态和视觉内容，并让两种模态双向交换信息，可以使生成 rollout 更符合状态依赖的游戏机制，同时保持视觉质量与动作可控性。
+解读
+这项工作的核心贡献不是单独做一个 HUD 数值回归器，而是把“状态”放进生成过程内部，使状态 token 能改变视觉 token，视觉变化也能反向帮助状态预测。它将世界模型的目标从“动作条件下的下一帧合理”推进到“状态转移与可见事件彼此一致”。
+领域位置
+
+研究分支：视频世界模型 → 游戏世界模型 → 显式状态建模 → 机制一致生成。
+方法路线：以 Wan2.2-TI2V-5B 为视觉扩散分支，新增 0.76B 状态分支；两分支保留各自专家表示，通过双向 joint attention 耦合。
+最近相关工作：WildWorld 和 From Pixels to States 提供带显式状态的动作条件视频数据，但 StatePlay 进一步研究状态预测怎样反馈到视频生成；ReactiveGWM、Matrix-Game 3.0、LingBot-World 等则主要关注玩家 / NPC 控制、实时性或长时视频，而非显式规则状态。
+声称的差异化：状态分支使用适合低维、规则约束变量的回归目标，视觉分支继续使用 flow matching；两者通过 MoT 风格结构交互，而不是强制共享同一 latent backbone。
+
+核心思想
+
+
+Source visual - Figure 2：StatePlay: State-Aware Game World Models for Mechanics-Consistent Generation，PDF p. 2。作用：展示普通攻击、必杀技和游戏结束三类事件中，计时器、双方生命值、双方技能槽与可见帧之间的规则对应关系。截图：从原 PDF 裁剪，保留全部状态变化、帧序列、绿色标记与原图注。
+
+论文主张
+显式状态给视觉生成提供了一个更直接的机制条件：普通攻击应降低对手生命并增长技能槽；必杀技必须在技能槽达到阈值时触发，并在使用后清零；角色生命归零后应进入正确的胜负终局。
+解读
+论文把“机制”操作化为一组可观测、可判定的状态事件，而不是学习任意游戏规则。这种定义非常适合验证方法，但其结论范围主要覆盖生命、技能资源、计时和胜负结算，不能自动外推到碰撞、库存、任务逻辑、多人博弈或开放世界因果链。
+方法
+输入与输出
+
+训练输入 / 监督：5 秒游戏视频、11 维玩家动作、NPC 行为文本、同步的 5 个内部状态序列。
+五个状态变量：计时器、玩家生命值、NPC 生命值、玩家技能槽、NPC 技能槽。
+推理条件：初始视频帧、第一帧状态、动作序列和 NPC 文本描述；其余未来状态从噪声初始化后预测。
+输出：未来视频 rollout 及其内部状态轨迹。
+
+状态感知数据集
+论文使用 stable-retro 在 SF3 中收集 Player-vs-NPC 回合。动作空间包含 4 个移动动作、6 个普通攻击和 1 个必杀技；每回合运行到 KO，再切为 5 秒、20 FPS 的片段。
+训练集共 10,000 个片段，并按机制事件重平衡：
+
+
+
+类别
+数量
+可见条件
+状态条件
+
+
+
+
+Result Win
+1,000
+末帧出现 “You Win”
+玩家 HP &gt; 0，NPC HP = 0
+
+
+Result Lose
+1,000
+末帧出现 “You Lose”
+玩家 HP = 0，NPC HP &gt; 0
+
+
+Macro Success
+1,000
+必杀技成功执行
+有 macro 输入，玩家技能槽达到阈值
+
+
+Macro Fail
+1,000
+未执行必杀技
+有 macro 输入，玩家技能槽低于阈值
+
+
+Normal
+6,000
+无终局或必杀事件
+无额外状态条件
+
+
+
+此表是对 PDF p. 10 Table 4 的完整文字转录，列顺序未调整，数量和条件未重算。四类状态关键事件占 40%，普通对局占 60%。事件标签同时依赖 Gemini-3.1-Pro 的视觉识别与模拟器状态；NPC 另被标注为 Offense / Control / Defense 三类策略描述。
+MoT 双分支架构
+
+
+Source visual - Figure 3：StatePlay: State-Aware Game World Models for Mechanics-Consistent Generation，PDF p. 4。作用：解释状态分支、视觉分支、动作注入、文本条件、双向 joint attention 和两类损失的完整信息流。截图：从原 PDF 裁剪，保留张量形状、模块、监督目标、箭头与原图注。
+
+状态与视觉分别加噪
+状态序列和 VAE 视频 latent 使用独立高斯噪声沿线性路径扰动：
+
+
+其中 ， 是状态变量数； 是视觉 token。推理时只提供首帧状态，其余状态由噪声生成。
+玩家动作同时进入两条分支
+动作序列  经 action encoder 投影到通道维后，在状态分支按时间步相加，在视觉分支进行空间广播，使同一玩家动作同时影响状态转移和画面变化。
+双向 joint attention
+状态与视觉先分别经过 self-attention / 文本 cross-attention，再进行双向交互：
+
+
+视觉 token 以状态 token 为 key/value，从内部状态获取机制条件；状态 token 反向关注视觉 token，从角色动作和画面变化获取预测线索。之后两类 token 进入各自 FFN，保留模态专用表示。
+目标函数
+视觉分支沿用 Wan 系世界模型的 flow-matching 速度场目标：
+
+状态分支不使用 flow matching，而是直接对干净状态序列做 Smooth L1 回归：
+
+总损失为：
+
+实验中两项权重都设为 1。论文的设计动机是：视频是高维连续信号，适合学习去噪速度场；游戏状态低维、规则约束强、轨迹结构明确，直接回归更简单。
+训练配置
+
+骨干：Wan2.2-TI2V-5B、Wan2.2 VAE、UMT5-XXL。
+参数量：视觉分支约 5B，状态分支约 0.76B；总计 5.759B。
+训练：40,000 steps，batch size 4，学习率 ，分辨率 480×832。
+结构参数：、、、、、。
+
+数据与评估
+
+测试集：额外 100 个生成样本，均衡覆盖不同机制类别。
+视觉质量：与游戏引擎参考视频比较 SSIM（越高越好）和 LPIPS（越低越好）。
+动作控制：Move-Acc 使用 SAM2.1 + Grounding DINO 的角色位移阈值；Att-Acc 使用基于 ResNet-18 + 4 层 dilated TCN 的 6 类 ClipAttackNet，训练约 5k 片段，阈值 0.7。
+状态对齐：对五个状态变量计算相对目标轨迹的平均归一化预测距离，并报告 ；因此 0.947 对应平均距离约 0.053。
+机制保真度：Gemini-3.1-Pro 直接看完整视频，GPT-5.5 因视频输入限制看 24 个均匀采样帧；二者依据固定规则、参考图和目标标签判断 Normal、Macro Success、Macro Fail、Result Win、Result Lose。报告三次运行的均值±标准差。
+
+比较设置的边界
+
+Zero-shot：基线使用原始公开架构与权重，但动作空间、状态表示和领域不一致，因此只比较画质和机制保真度。
+State-aware fine-tuning：Matrix-Game 3.0、HY-World 1.5、ReactiveGWM 与 StatePlay 在同一状态感知数据上微调；前三者不显式预测状态，因此没有 State Alignment。LingBot 系列因超过 24B、显存需求过高而未做该组微调。
+
+主结果
+
+
+Source visual - Table 1：StatePlay: State-Aware Game World Models for Mechanics-Consistent Generation，PDF p. 6。作用：支持 StatePlay 在状态预测、机制保真度与画质上的主要实验结论，同时显示动作控制并非全部最优。
+
+下表只转录更可比的 state-aware fine-tuning 结果；省略 zero-shot 部分，没有重算或归一化数值。
+
+
+
+方法
+SSIM ↑
+LPIPS ↓
+Move-Acc ↑
+Att-Acc ↑
+State Align. ↑
+Gemini mechanics ↑
+GPT mechanics ↑
+
+
+
+
+Matrix-Game 3.0
+0.240
+0.478
+40.0
+6.67
+—
+48.7±1.7
+58.3±0.9
+
+
+HY-World 1.5
+0.352
+0.521
+40.0
+11.7
+—
+41.7±0.5
+38.3±0.5
+
+
+ReactiveGWM
+0.376
+0.439
+95.0
+100.0
+—
+63.7±2.1
+59.7±0.9
+
+
+StatePlay
+0.378
+0.424
+92.5
+95.0
+0.947
+82.3±0.5
+78.3±0.5
+
+
+
+论文主张
+StatePlay 在两位视觉裁判下都比最强 fine-tuned 无状态基线 ReactiveGWM 高 18.6 个百分点：Gemini 为 82.3 vs. 63.7，GPT 为 78.3 vs. 59.7；同时 SSIM 略高、LPIPS 更低，并取得 0.947 状态对齐。
+解读
+“保持动作可控性”应理解为仍然很高，而非不受影响：StatePlay 的 Move-Acc / Att-Acc 为 92.5 / 95.0，低于 ReactiveGWM 的 95.0 / 100.0。论文最强证据是机制保真度提升且画质未明显牺牲，不是所有维度全面超越。
+消融结果
+
+
+Source visual - Table 2：StatePlay: State-Aware Game World Models for Mechanics-Consistent Generation，PDF p. 6。作用：区分 MoT vs. Shared coupling 和 Regression vs. Flow Matching 两个设计选择的贡献。
+
+
+固定 Regression 时，MoT 相比 Shared 将 Gemini 机制保真度从 64.7 提到 82.3，即提高 17.6 个百分点；GPT 从 67.7 提到 78.3。
+固定 MoT 时，Regression 相比 Flow Matching 将状态对齐从 0.845 提到 0.947，并将 Gemini 机制保真度从 60.7 提到 82.3，即提高 21.6 个百分点。
+Regression 并非在动作控制上总是最优：Shared+Regression 的 97.5 / 100.0 高于 MoT+Regression 的 92.5 / 95.0；MoT 的主要收益集中在机制保真度与画质。
+附录的状态输入消融显示，从“把首帧干净状态广播到所有时间步”改为“未来状态噪声初始化”，State Alignment 从 0.938 升至 0.947，Gemini / GPT 机制分数从 78.3 / 76.0 升至 82.3 / 78.3。（PDF p. 12，Table 5、Appendix E）
+
+定性证据
+
+
+Source visual - Figure 4：StatePlay: State-Aware Game World Models for Mechanics-Consistent Generation，PDF p. 7。作用：展示必杀技、玩家胜利和玩家失败三类规则事件中，无状态基线的红框违例与 StatePlay 的绿框一致结果。截图：从原 PDF 裁剪，保留全部序列、方法标签、颜色标记与原图注。
+
+
+Super Art：技能槽已满时，StatePlay 执行必杀技并把技能槽清零；ReactiveGWM 未触发必杀，还出现角色视觉纠缠。
+Result Win：NPC HP 归零后，ReactiveGWM 仍让 NPC 站立攻击；StatePlay 生成 “You Win”。
+Result Lose：玩家 HP 归零后，ReactiveGWM 错误表现为玩家获胜；StatePlay 生成正确 “You Lose”。（PDF p. 7，§4.5、Figure 4）
+
+解读
+这些例子很好地说明了“像素上顺畅”与“规则上有效”并不等价。不过 Figure 4 只有三个精选案例，不能单独支持总体成功率；更可靠的证据仍是 100 个样本、两位裁判、三次运行的定量评估。
+主要发现汇总
+
+
+
+发现
+证据
+实际覆盖范围
+置信与注意事项
+
+
+
+
+显式状态预测能提高可见机制正确率
+两位裁判均相对 ReactiveGWM +18.6 个百分点（Table 1）
+SF3、5 类机制事件、100 个样本
+两个裁判结论一致；但都依赖作者定义的可见规则分类
+
+
+状态预测较准确
+State Alignment 0.947，即平均归一化距离约 0.053（Table 1）
+计时器、双方 HP、双方技能槽
+聚合指标没有显示各状态变量、长时间位置的误差分布
+
+
+MoT 分支专门化有利于机制建模
+Shared+Regression → MoT+Regression：Gemini 64.7→82.3（Table 2）
+同一骨干、数据和训练设置
+总参数与计算分配仍可能参与收益，非纯结构因果隔离
+
+
+状态直接回归优于 flow matching
+MoT+FM → MoT+Regression：State 0.845→0.947，Gemini 60.7→82.3（Table 2）
+低维、规则约束的 SF3 状态
+不能直接推广到高维、随机或多模态状态变量
+
+
+状态条件改善画面规则但不保证 HUD 完美
+Appendix C 报告生命条、技能槽仍偶发像素不一致
+状态轨迹与可见 UI 的耦合
+内部状态正确和屏幕像素正确仍是两个不同问题
+
+
+
+假设、限制与有效性威胁
+论文报告的限制
+
+由于公开的同步 state-frame-action 数据有限，只在 Street Fighter 3 上做初始验证；跨游戏类型的通用性需要更大、更多样的显式状态数据集。
+即使内部状态预测准确，生命条和技能槽等像素级指示器仍会偶尔不一致。
+多个机制同时发生时，例如必杀技与回合终止重叠，视觉质量可能下降。
+
+额外解读
+
+依赖可访问的特权状态：训练数据从模拟器内存直接读取状态；现实游戏、闭源环境或纯视频语料通常无法获得同样精确的监督。
+推理仍需首帧状态：模型不是完全从像素恢复隐藏状态，而是在已知初始状态后生成未来轨迹；初始状态错误如何传播尚未评估。
+规则集合封闭：Mechanics Fidelity 只判五类可见事件，尚不包含碰撞框、伤害数值精确性、连招合法性、计时终止、AI 决策、库存或多主体规则。
+裁判与数据流程共享模型偏置：Gemini-3.1-Pro 参与数据事件 / NPC 标注，也担任机制评估裁判；GPT-5.5 提供独立模型佐证，但只看到 24 个采样帧，可能遗漏短暂事件。
+规模较小：定量测试为 100 个样本；均值±标准差来自三次裁判运行，而不是多个独立训练种子。
+参数量并非完全匹配：StatePlay 为 5.759B，ReactiveGWM 为 5.001B；改进不能完全排除额外状态分支容量的贡献。
+Zero-shot 比较较弱：模型领域、动作接口、参数量不同；真正有解释力的是同数据微调组和内部消融。
+“可玩”尚未直接验证：论文评估短视频 rollout，没有报告推理延迟、闭环多步交互、玩家研究、长期状态漂移或策略规划效果。
+
+可复用思想
+
+状态作为生成条件而非旁路日志：不仅预测状态，还让状态 token 通过 attention 直接约束视觉生成。
+按模态选择目标函数：高维视觉采用 flow matching，低维规则状态采用 Smooth L1；不要机械地让所有输出共享生成目标。
+专家分支 + 受控交换：视觉和状态保持专门表示，只在 joint attention 中双向沟通，可用于机器人、驾驶、模拟器等“连续观测 + 结构状态”任务。
+机制关键样本重平衡：主动提高终局和技能阈值事件的比例，避免常规画面淹没稀有但决定规则正确性的片段。
+双重验证：同时检查状态轨迹误差和可见机制事件；单独优化状态回归不保证最终画面把状态正确渲染出来。
+不应盲目迁移：规则变量的含义、边界和转移结构依赖游戏；不能把 HP / skill / timer 的结果直接视为一般符号世界模型能力。
+
+复现记录
+
+基础模型：Wan2.2-TI2V-5B、Wan2.2 VAE、UMT5-XXL。
+数据环境：SF3 + stable-retro，需要从模拟器内存同步读取五个状态变量；还需 Gemini-3.1-Pro 完成事件和 NPC 策略标注。
+训练配置：10k × 5 秒片段，20 FPS；40k steps；batch 4；learning rate ；480×832；两项损失权重均为 1。
+评估依赖：SAM2.1、Grounding DINO、ClipAttackNet、Gemini-3.1-Pro、GPT-5.5，以及游戏引擎参考视频 / 状态标签。
+尚缺细节：硬件与训练时间、随机种子、优化器和调度器、状态归一化公式、状态 encoder / decoder 具体层数、joint attention 头数、Mechanics Fidelity 样本级结果、数据划分去重方式。
+主要复现风险：游戏 ROM / 内存地址版本差异、VLM 版本和 API 漂移、闭源视觉裁判不可重复、必杀技阈值与输入宏实现、5.759B 模型显存成本。
+
+开放问题
+
+没有模拟器内存或 API 时，能否从视频、OCR、对象交互和弱监督中发现可验证的潜在状态？
+如何把 StatePlay 的显式机制状态与 ReactiveGWM 的 NPC 高层策略结合，使 NPC 意图长期受资源、生命和规则约束？
+如果初始状态缺失或带噪，模型能否从首段视觉校正状态，而不是把错误一路传播？
+跨游戏迁移时，状态变量名称、取值范围和规则图不同，应使用统一 ontology、程序规则、语言描述还是可学习 schema？
+Joint attention 的收益有多少来自结构本身，有多少来自额外 0.76B 参数？需要参数匹配、单向 attention、无状态→视觉通路等消融。
+机制一致性是否能改善规划、策略学习或长时 closed-loop 可玩性，而不仅是 5 秒视频分类正确率？
+如何同时保证内部状态、HUD 像素、角色动作和游戏结算四者严格一致，并对规则违例给出可定位解释？
+
+]]></content>
+      <tags>
+        <tag>papers</tag>
+        <tag>World-Model</tag>
+        <tag>Game-AI</tag>
+        <tag>Computer-Vision</tag>
+      </tags>
+  </entry>
 </search>
