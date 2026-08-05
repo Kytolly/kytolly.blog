@@ -18,7 +18,7 @@
     image: {
       enable: 'true',
       center: 'true',
-      caption: 'true'
+      caption: 'false'
     },
     code_block: {
       copy_button: "icon/copy.svg",
@@ -351,7 +351,7 @@
 <li>一个进程通过调用管程的一个过程进入管程，设计一个入口，进入管程之前先进入管程的待进入队列中；</li>
 <li>只能有一个进程在管程中执行，其他调用管程的进程将被阻塞；</li>
 </ul>
-<p><img src="assets/image-20241026152806438.png" alt="image-20241026152806438"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241026152806438.png" alt="image-20241026152806438"></p>
 <p>管程通过<strong>条件变量</strong>支持同步,其原子操作和普通的信号量不同；</p>
 <ul>
 <li><code>cwait(c)</code>: 调用进程的执行 在条件c阻塞，管程可以被另一个进程使用；</li>
@@ -372,7 +372,7 @@
 <li>利用互斥信号量<code>mutex</code>实现对缓冲池的互斥使用</li>
 <li>利用信号量<code>empty full</code>表示缓冲池中空区和满区的数量；</li>
 </ul>
-<p><img src="assets/image-20241026162308732.png" alt="image-20241026162308732"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241026162308732.png" alt="image-20241026162308732"></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> n;</span><br><span class="line">Semaphore <span class="title function_">mutex</span><span class="params">(<span class="number">1</span>)</span>;</span><br><span class="line">Semaphore <span class="title function_">full</span><span class="params">(<span class="number">0</span>)</span>, <span class="title function_">empty</span><span class="params">(n)</span>;</span><br><span class="line">Item Buffer[n];</span><br><span class="line"><span class="type">int</span> in=<span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> out=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">append</span><span class="params">(Item v)</span>&#123;</span><br><span class="line">	Buffer[in] = v;</span><br><span class="line">    in = (in+<span class="number">1</span>)%n;</span><br><span class="line">&#125;</span><br><span class="line">Item <span class="title function_">take</span><span class="params">()</span>&#123;</span><br><span class="line">    v = Buffer[out];</span><br><span class="line">    out = (out+<span class="number">1</span>)%n;</span><br><span class="line">    <span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Producer</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">        v = produce();</span><br><span class="line">        </span><br><span class="line">        P(empty);</span><br><span class="line">        P(mutex);</span><br><span class="line">        append(v);</span><br><span class="line">        V(mutex);</span><br><span class="line">        V(empty);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Consumer</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        P(full);</span><br><span class="line">        P(mutex);</span><br><span class="line">        v = take();</span><br><span class="line">        V(mutex);</span><br><span class="line">        V(full);</span><br><span class="line">        </span><br><span class="line">        comsume(v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>对于一系列P操作和V操作，也可以用AND信号量实现，不过注意，对P操作的顺序不能颠倒，否则将可能导致死锁；</p>
 <h2 id="Reader-Writer-Problem"><a href="#Reader-Writer-Problem" class="headerlink" title="Reader-Writer Problem"></a>Reader-Writer Problem</h2>

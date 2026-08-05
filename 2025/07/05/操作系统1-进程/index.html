@@ -18,7 +18,7 @@
     image: {
       enable: 'true',
       center: 'true',
-      caption: 'true'
+      caption: 'false'
     },
     code_block: {
       copy_button: "icon/copy.svg",
@@ -277,7 +277,7 @@
 <li>失去封闭性：程序在并发执行时，是多个程序共享系统的资源，资源的状态有多个程序来改变；</li>
 <li>不可再现性：程序在并发执行时，由于失去了封闭性，多次重复可以得到不同的结果；</li>
 </ul>
-<p><img src="assets/image-20240927150453849.png" alt="image-20240927150453849"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20240927150453849.png" alt="image-20240927150453849"></p>
 <h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3>
 <p>引入进程的目的：为了 <strong>控制</strong> 多道程序能够 <strong>正确的并发</strong> 执行</p>
 <p>定义：(程序代码program code + 数据集set of data + 进程控制块PCB，process control block)</p>
@@ -325,8 +325,8 @@
 <p>进程轨迹trace ：进程执行的指令序列，描述单个进程的行为；</p>
 <p>调度器dispatcher：调度多个进程的执行；</p>
 <p>以下是 <strong>轮转</strong>（round-robin） 的例子：通过指定一个时间片，处理器决定是否切换进程;</p>
-<p><img src="assets/image-20240927152122797.png" alt="image-20240927152122797"></p>
-<p><img src="assets/image-20240927152140953.png" alt="image-20240927152140953"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20240927152122797.png" alt="image-20240927152122797"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20240927152140953.png" alt="image-20240927152140953"></p>
 <h4 id="两状态模型"><a href="#两状态模型" class="headerlink" title="两状态模型"></a>两状态模型</h4>
 <p>进程处于两种状态之一：</p>
 <ol>
@@ -334,7 +334,7 @@
 <li>非运行态：进程创建后，以非运行态进入进程队列中；</li>
 </ol>
 <p>进程队列：存放指向特定进程的指针；</p>
-<p><img src="assets/image-20240927152317809.png" alt="image-20240927152317809"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20240927152317809.png" alt="image-20240927152317809"></p>
 <h4 id="三状态模型"><a href="#三状态模型" class="headerlink" title="三状态模型"></a>三状态模型</h4>
 <p>进程处于三种基本状态之一：</p>
 <ol>
@@ -356,7 +356,7 @@
 </li>
 </ol>
 <p>对于一些嵌入式的操作系统，三状态模型足以描述：</p>
-<p><img src="assets/image-20240927153655741.png" alt="image-20240927153655741"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20240927153655741.png" alt="image-20240927153655741"></p>
 <p>注意：</p>
 <ul>
 <li>状态转换并非都可逆</li>
@@ -383,7 +383,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="assets/image-20240927155128295.png" alt="image-20240927155128295"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20240927155128295.png" alt="image-20240927155128295"></p>
 <p>注意：</p>
 <ul>
 <li>加载/接纳：OS做好接纳进程的准备后，将一个进程从新建态转换成就绪态；</li>
@@ -397,7 +397,7 @@
 </ul>
 <p>具体实现：</p>
 <p>多阻塞队列可以避免对很长的队列进行扫描；</p>
-<p><img src="assets/image-20240927160858477.png" alt="image-20240927160858477"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20240927160858477.png" alt="image-20240927160858477"></p>
 <h4 id="七状态自动机"><a href="#七状态自动机" class="headerlink" title="七状态自动机"></a>七状态自动机</h4>
 <h5 id="交换技术swapping和挂起suspend"><a href="#交换技术swapping和挂起suspend" class="headerlink" title="交换技术swapping和挂起suspend"></a>交换技术swapping和挂起suspend</h5>
 <p>进程竞争内存资源：内存紧张，或者所有进程因为某事件等待，但是无就绪进程，处理机实际空闲</p>
@@ -428,7 +428,7 @@
 <li>就绪挂起：进程在外存，只要调入内存并获得CPU即可执行</li>
 <li>阻塞挂起：进程在外存，并等待某事件</li>
 </ul>
-<p><img src="assets/image-20240927162304899.png" alt="image-20240927162304899"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20240927162304899.png" alt="image-20240927162304899"></p>
 <p>注意：</p>
 <ul>
 <li>加载：新建进程后，进程要么加入就绪队列，要么进入就绪挂起队列，视当时的资源而定；
@@ -446,7 +446,7 @@
 <li>文件表</li>
 <li>进程表</li>
 </ul>
-<p><img src="assets/image-20240927163242526.png" alt="image-20240927163242526"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20240927163242526.png" alt="image-20240927163242526"></p>
 <h4 id="进程控制块-1"><a href="#进程控制块-1" class="headerlink" title="进程控制块"></a>进程控制块</h4>
 <p>包括信息主要有三类：</p>
 <ul>
@@ -480,16 +480,16 @@
 <h4 id="进程的组织方式"><a href="#进程的组织方式" class="headerlink" title="进程的组织方式"></a>进程的组织方式</h4>
 <h5 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h5>
 <p>系统为所有进程的状态建立几张索引表；</p>
-<p><img src="assets/image-20240927164502164.png" alt="image-20240927164502164"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20240927164502164.png" alt="image-20240927164502164"></p>
 <h5 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h5>
 <ul>
 <li>
 <p>单一队列：所有PCB块连接成一个队列</p>
-<p><img src="assets/image-20240927164522935.png" alt="image-20240927164522935"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20240927164522935.png" alt="image-20240927164522935"></p>
 </li>
 <li>
 <p>多级队列：相同状态的PCB块连接成一个队列</p>
-<p><img src="assets/image-20240927164547710.png" alt="image-20240927164547710"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20240927164547710.png" alt="image-20240927164547710"></p>
 </li>
 </ul>
 <h3 id="内核"><a href="#内核" class="headerlink" title="内核"></a>内核</h3>

@@ -18,7 +18,7 @@
     image: {
       enable: 'true',
       center: 'true',
-      caption: 'true'
+      caption: 'false'
     },
     code_block: {
       copy_button: "icon/copy.svg",
@@ -290,7 +290,7 @@
 <strong>内存地址</strong>：内存中每个存储单元都有一个编号，称作内存地址
 <strong>物理空间</strong>：所有内存地址构成的集合称为内存空间/物理空间,可进行一维线性地编号
 <strong>地址映射</strong>Mapping：将逻辑地址转换为运行时由机器寻址的物理地址
-<img src="assets/498f9f12a3a9b94d372446ebe7591dbd.png" alt="498f9f12a3a9b94d372446ebe7591dbd"></p>
+<img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/498f9f12a3a9b94d372446ebe7591dbd.png" alt="498f9f12a3a9b94d372446ebe7591dbd"></p>
 <h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3>
 <p>源程序经过编译后得到一组目标模块，再利用链接程序将这组目标模块链接形成装入模块</p>
 <ul>
@@ -529,7 +529,7 @@
 <h4 id="分页式存储管理"><a href="#分页式存储管理" class="headerlink" title="分页式存储管理"></a>分页式存储管理</h4>
 <p>存储管理系统负责用户空间，物理空间的划分编号；
 以下是程序空间到物理空间的映射，程序的每一个页分散到物理空间的页；而从每一页看地址都是连续的；
-<img src="assets/image-20241029195523122.png" alt="image-20241029195523122">
+<img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241029195523122.png" alt="image-20241029195523122">
 <strong>逻辑地址结构转换物理地址</strong>
 假设对于32位的机器，页面大小为<svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="7.477ex" height="2.072ex" role="img" focusable="false" viewBox="0 -833.9 3304.7 915.9" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-8-TEX-I-1D43F" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 217 683Q271 680 344 680Q485 680 506 683H518Q524 677 524 674T522 656Q517 641 513 637H475Q406 636 394 628Q387 624 380 600T313 336Q297 271 279 198T252 88L243 52Q243 48 252 48T311 46H328Q360 46 379 47T428 54T478 72T522 106T564 161Q580 191 594 228T611 270Q616 273 628 273H641Q647 264 647 262T627 203T583 83T557 9Q555 4 553 3T537 0T494 -1Q483 -1 418 -1T294 0H116Q32 0 32 10Q32 17 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path><path id="MJX-8-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path id="MJX-8-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-8-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D43F" xlink:href="#MJX-8-TEX-I-1D43F"></use></g><g data-mml-node="mo" transform="translate(958.8,0)"><use data-c="3D" xlink:href="#MJX-8-TEX-N-3D"></use></g><g data-mml-node="msup" transform="translate(2014.6,0)"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-8-TEX-N-32"></use></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-8-TEX-N-31"></use><use data-c="32" xlink:href="#MJX-8-TEX-N-32" transform="translate(500,0)"></use></g></g></g></g></g></svg>，给定逻辑地址空间的地址为<svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="1.697ex" height="1.62ex" role="img" focusable="false" viewBox="0 -716 750 716" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-9-TEX-I-1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D434" xlink:href="#MJX-9-TEX-I-1D434"></use></g></g></g></svg></p>
 <ul>
@@ -579,7 +579,7 @@
 <li>检查段号和段内偏移量越界：非法产生越界错误</li>
 <li>检查访问控制字段：确定是否合法</li>
 </ul>
-<p><img src="assets/image-20241029195650804.png" alt="image-20241029195650804"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241029195650804.png" alt="image-20241029195650804"></p>
 <p>优点：</p>
 <ul>
 <li>便于模块化设计</li>
@@ -636,7 +636,7 @@
 <li>检查段号，段表访问控制字段，页号是否越界</li>
 <li>页内偏移量送入物理地址的低端</li>
 </ul>
-<p><img src="assets/image-20241029195722276.png" alt="image-20241029195722276"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241029195722276.png" alt="image-20241029195722276"></p>
 <p>优点</p>
 <ul>
 <li>离散存储</li>
@@ -753,8 +753,8 @@
 <li>带快表的基本分页地址：</li>
 <li>缺页中断处理</li>
 <li>页面换出
-<img src="assets/image-20241107111808996.png" alt="image-20241107111808996"><br>
-<img src="assets/image-20241107111829317.png" alt="image-20241107111829317"></li>
+<img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241107111808996.png" alt="image-20241107111808996"><br>
+<img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241107111829317.png" alt="image-20241107111829317"></li>
 </ul>
 <h4 id="置换策略"><a href="#置换策略" class="headerlink" title="置换策略"></a>置换策略</h4>
 <h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5>
@@ -811,7 +811,7 @@
 <li>将所需页读入（新）空闲页框，改变页表</li>
 <li>重启用户进程</li>
 </ul>
-<p><img src="assets/image-20241107111933204.png" alt="image-20241107111933204"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241107111933204.png" alt="image-20241107111933204"></p>
 <h3 id="置换算法"><a href="#置换算法" class="headerlink" title="置换算法"></a>置换算法</h3>
 <p>概念：选择换出页面的算法
 评价标准：页面交换的频率
@@ -827,7 +827,7 @@
 <p>例子
 发生缺页中断次数：9
 页面置换次数：6
-<img src="assets/image-20241107111957416.png" alt="image-20241107111957416"></p>
+<img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241107111957416.png" alt="image-20241107111957416"></p>
 <h4 id="先进先出算法FIFO"><a href="#先进先出算法FIFO" class="headerlink" title="先进先出算法FIFO"></a>先进先出算法FIFO</h4>
 <p>基本思想：换出最早调入内存的页面
 实现：采取链表结构
@@ -840,7 +840,7 @@
 <p>例子
 发生缺页中断次数：14
 页面置换的次数：11
-<img src="assets/image-20241107112012243.png" alt="image-20241107112012243"></p>
+<img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241107112012243.png" alt="image-20241107112012243"></p>
 <h4 id="最近最久未使用算法LRU"><a href="#最近最久未使用算法LRU" class="headerlink" title="最近最久未使用算法LRU"></a>最近最久未使用算法LRU</h4>
 <p>基本思想：时间局部性原理
 算法：选择最近一段时间最长时间没有被访问过的页面淘汰
@@ -853,7 +853,7 @@
 <p>例子：
 发生缺页中断的次数：12
 页面置换的次数：9</p>
-<p><img src="assets/image-20241107112101674.png" alt="image-20241107112101674"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241107112101674.png" alt="image-20241107112101674"></p>
 <h4 id="时钟置换算法CLOCK-Not-Recently-Used"><a href="#时钟置换算法CLOCK-Not-Recently-Used" class="headerlink" title="时钟置换算法CLOCK Not Recently Used"></a>时钟置换算法CLOCK Not Recently Used</h4>
 <p>基本思想：对LRU算法的近似，换出最近未访问的页面的NRU算法；
 实现：</p>
@@ -868,7 +868,7 @@
 <li>性能和置换间的间隔密切相关，过大过小可调整随机选择换出页面</li>
 <li>未考虑页面修改情况</li>
 </ul>
-<p><img src="assets/image-20241107111259611.png" alt="image-20241107111259611"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241107111259611.png" alt="image-20241107111259611"></p>
 <p>对页面修改进行改进：页面分类</p>
 <ol>
 <li>最近未被访问，未被修改：最佳淘汰页</li>
@@ -915,7 +915,7 @@
 <li>不同时刻，进程的工作集大小可能不同，系统根据缺页率动态调整进程的分配页框数</li>
 </ul>
 <p>缺页率和物理块数关系</p>
-<p><img src="assets/image-20241107113845398.png" alt="image-20241107113845398"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241107113845398.png" alt="image-20241107113845398"></p>
 <h3 id="抖动-颠簸thrashing"><a href="#抖动-颠簸thrashing" class="headerlink" title="抖动/颠簸thrashing"></a>抖动/颠簸thrashing</h3>
 <p>抖动是虚拟存储的典型问题</p>
 <ul>
@@ -928,7 +928,7 @@
 <li>CPU利用率低，调度程序增加并发，导致内存不足，缺页，I/O忙碌，CPU空闲</li>
 <li>多道程序并发度高，每个进程分配的页框数数目少</li>
 </ul>
-<p><img src="assets/image-20241107113904932.png" alt="image-20241107113904932"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241107113904932.png" alt="image-20241107113904932"></p>
 <p>抖动的预防</p>
 <ul>
 <li>采取局部置换策略：某进程发生缺页时，仅在自己内存空间范围内置换页面，创建新进程不会几张其他进程的内存空间</li>
@@ -981,7 +981,7 @@
 <h4 id="缺段中断"><a href="#缺段中断" class="headerlink" title="缺段中断"></a>缺段中断</h4>
 <p>每当所要访问的段不在内存时，便产生缺段中断，请求OS 将所缺之段调入内存。</p>
 <p>段中断不会发生一条指令被分割在两个段的情况；</p>
-<p><img src="assets/image-20241107105501061.png" alt="image-20241107105501061"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241107105501061.png" alt="image-20241107105501061"></p>
 <h4 id="地址转换"><a href="#地址转换" class="headerlink" title="地址转换"></a>地址转换</h4>
 <p>访问一个段地址<code>[s][w]</code>时，检查三种条件是否发生错误：</p>
 <ul>
@@ -989,7 +989,7 @@
 <li>存取方式位不符合：触发中断保护</li>
 <li>检查段s是否在主存：缺段中断处理</li>
 </ul>
-<p><img src="assets/image-20241107105956335.png" alt="image-20241107105956335"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241107105956335.png" alt="image-20241107105956335"></p>
 <h4 id="动态链接-链接中断"><a href="#动态链接-链接中断" class="headerlink" title="动态链接&amp;链接中断"></a>动态链接&amp;链接中断</h4>
 <p>动态链接实现：请求分段存储管理</p>
 <p>程序运行时，只讲主程序段装配好，调入内存，其他段在运行时装配完成；</p>
@@ -1024,7 +1024,7 @@
 <li>段内页号越界检查</li>
 </ul>
 <p>其中环保护中，内环可访问外环数据，外环请求内环服务；</p>
-<p><img src="assets/image-20241107111028443.png" alt="image-20241107111028443"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241107111028443.png" alt="image-20241107111028443"></p>
 </main>
 
 

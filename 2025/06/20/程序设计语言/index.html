@@ -322,7 +322,7 @@
 <ul>
 <li>将可执行文件从磁盘加载到内存中准备执行。</li>
 </ul>
-<p><img src="/assets/Compilers/%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%B3%BB%E7%BB%9F.png" alt="语言处理系统"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Compilers/%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%B3%BB%E7%BB%9F.png" alt="语言处理系统"></p>
 <h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3>
 <p>编译器将源程序映射为<strong>语义等价</strong>的目标程序，由两部分构成：</p>
 <ul>
@@ -335,7 +335,7 @@
 </li>
 <li>后端/综合(synthesis): 输入中间表示和符号表，输出期待的目标程序；</li>
 </ul>
-<p><img src="/assets/Compilers/%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E6%AD%A5%E9%AA%A4(phase).png" alt="编译器的步骤(phase)"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Compilers/%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E6%AD%A5%E9%AA%A4(phase).png" alt="编译器的步骤(phase)"></p>
 <p>具体分工如下：</p>
 <ol>
 <li><strong>词法分析 (Lexical Analysis)</strong> 🧐: 读入源程序字符流，将其组织成有意义的<strong>词素 (lexeme)</strong> 序列，然后为每个词素生成并输出一个<strong>记号 (token)</strong> 流。例如，将 <code>count = count + 5;</code> 转换为 <code>id(count)</code>, <code>assign_op</code>, <code>id(count)</code>, <code>add_op</code>, <code>number(5)</code>, <code>semicolon</code>。</li>
@@ -354,12 +354,12 @@
 <li>需要支持同一个标识符的多重声明；</li>
 <li>每个带有声明的程序块都有自己的符号表，因此需要对每个作用域建立单独的符号表；</li>
 </ul>
-<p><img src="/assets/Compilers/%E7%AC%A6%E5%8F%B7%E8%A1%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="符号表生命周期"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Compilers/%E7%AC%A6%E5%8F%B7%E8%A1%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="符号表生命周期"></p>
 <h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4>
 <p>一个典型的符号表链如下:</p>
-<p><img src="/assets/Compilers/%E7%AC%A6%E5%8F%B7%E8%A1%A8%E9%93%BE.png" alt="符号表链"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Compilers/%E7%AC%A6%E5%8F%B7%E8%A1%A8%E9%93%BE.png" alt="符号表链"></p>
 <p>一个典型的符号表<code>Env</code>的实现</p>
-<p><img src="/assets/Compilers/%E7%AC%A6%E5%8F%B7%E8%A1%A8%E7%9A%84Java%E5%AE%9E%E7%8E%B0.png" alt="符号表的Java实现"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Compilers/%E7%AC%A6%E5%8F%B7%E8%A1%A8%E7%9A%84Java%E5%AE%9E%E7%8E%B0.png" alt="符号表的Java实现"></p>
 <h2 id="C语言编译器示例-🔬"><a href="#C语言编译器示例-🔬" class="headerlink" title="C语言编译器示例 🔬"></a>C语言编译器示例 🔬</h2>
 <p>现在我们拥有一个<code>main.c</code>文件，内容如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MYMAX 20</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + <span class="number">2</span> * b + MYMAX;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> c = <span class="number">0</span>;</span><br><span class="line">    c = add(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

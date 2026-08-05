@@ -18,7 +18,7 @@
     image: {
       enable: 'true',
       center: 'true',
-      caption: 'true'
+      caption: 'false'
     },
     code_block: {
       copy_button: "icon/copy.svg",
@@ -271,7 +271,7 @@
 <strong>Cache系统</strong>：搜索引擎的缓存系统存储了不同的查询意图对应的搜索结果，如果能够在缓存系统中找到满足用户需求的信息，则可以直接将搜索结果返回给用户。</p>
 <p><strong>网页排序</strong>：根据用户的查询实时实时计算哪些网页满足用户信息需求，并排序输出作为搜索结果。网页排序最重要的两个参考因素：内容相似性因素、网页重要性因素。
 <strong>反作弊</strong>：作弊将网页的搜索排名提高到与其网页质量不相称的位置，这会严重影响用户的搜索体验。自动发现作弊网页并对其处罚，是搜索引擎非常重要的一部分。</p>
-<p><img src="assets/Information-Retrieval/image-20241024095937602.png" alt="image-20241024095937602"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241024095937602.png" alt="image-20241024095937602"></p>
 <h2 id="网络爬虫"><a href="#网络爬虫" class="headerlink" title="网络爬虫"></a>网络爬虫</h2>
 <p>网络爬虫是通过网页的链接地址来寻找网页，从网站某一个页面开始，读取网页的内容，找到在网页中的其他链接地址，然后通过这些链接地址寻找下一个网页，如此循环下去，直到把这个网站所有网页抓取完为止。</p>
 <ul>
@@ -285,7 +285,7 @@
 <li>从种子列表出发，不断爬行发现新的URL</li>
 <li>根据某种抓取策略爬行发现新的URL，如此重复</li>
 </ul>
-<p><img src="assets/Information-Retrieval/image-20241024124807770.png" alt="image-20241024124807770"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241024124807770.png" alt="image-20241024124807770"></p>
 <p>类型：</p>
 <ul>
 <li>批量性爬虫：有明确的抓取范围和目标，当爬虫达到这个抓取目标之后，即停止抓取过程。</li>
@@ -295,10 +295,10 @@
 <h3 id="抓取策略"><a href="#抓取策略" class="headerlink" title="抓取策略"></a>抓取策略</h3>
 <h4 id="深度优先"><a href="#深度优先" class="headerlink" title="深度优先"></a>深度优先</h4>
 <p>依据深度优先的原则，先下载当前网页所链接的URL，追加到待抓取URL队列末尾。</p>
-<p><img src="assets/Information-Retrieval/image-20241024125629617.png" alt="image-20241024125629617"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241024125629617.png" alt="image-20241024125629617"></p>
 <h4 id="宽度优先"><a href="#宽度优先" class="headerlink" title="宽度优先"></a>宽度优先</h4>
 <p>将新下载的网页包含的链接直接追加到待抓取URL队列末尾。</p>
-<p><img src="assets/Information-Retrieval/image-20241024125543558.png" alt="image-20241024125543558"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241024125543558.png" alt="image-20241024125543558"></p>
 <h4 id="Partial-PageRank"><a href="#Partial-PageRank" class="headerlink" title="Partial PageRank"></a>Partial PageRank</h4>
 <ul>
 <li>对于已经下载的网页，加上待抓取URL队列中的URL一起，形成网页集合</li>
@@ -306,7 +306,7 @@
 <li>形成的序列就是爬虫接下来应该依次抓取的URL列表。</li>
 <li>一个性能折衷方案是每新下载<svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.011ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 889 683" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-I-1D43E" d="M285 628Q285 635 228 637Q205 637 198 638T191 647Q191 649 193 661Q199 681 203 682Q205 683 214 683H219Q260 681 355 681Q389 681 418 681T463 682T483 682Q500 682 500 674Q500 669 497 660Q496 658 496 654T495 648T493 644T490 641T486 639T479 638T470 637T456 637Q416 636 405 634T387 623L306 305Q307 305 490 449T678 597Q692 611 692 620Q692 635 667 637Q651 637 651 648Q651 650 654 662T659 677Q662 682 676 682Q680 682 711 681T791 680Q814 680 839 681T869 682Q889 682 889 672Q889 650 881 642Q878 637 862 637Q787 632 726 586Q710 576 656 534T556 455L509 418L518 396Q527 374 546 329T581 244Q656 67 661 61Q663 59 666 57Q680 47 717 46H738Q744 38 744 37T741 19Q737 6 731 0H720Q680 3 625 3Q503 3 488 0H478Q472 6 472 9T474 27Q478 40 480 43T491 46H494Q544 46 544 71Q544 75 517 141T485 216L427 354L359 301L291 248L268 155Q245 63 245 58Q245 51 253 49T303 46H334Q340 37 340 35Q340 19 333 5Q328 0 317 0Q314 0 280 1T180 2Q118 2 85 2T49 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D43E" xlink:href="#MJX-1-TEX-I-1D43E"></use></g></g></g></svg>个网页时，将所有网页重新计算非完全PageRank，对产生的新网页赋临时Pagerank值，若值比较大则优先下载；</li>
 </ul>
-<p><img src="assets/Information-Retrieval/image-20241024130947837.png" alt="image-20241024130947837"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241024130947837.png" alt="image-20241024130947837"></p>
 <h4 id="OPIC策略-Online-Page-Importance-Computation"><a href="#OPIC策略-Online-Page-Importance-Computation" class="headerlink" title="OPIC策略(Online Page Importance Computation)"></a>OPIC策略(Online Page Importance Computation)</h4>
 <p>每个互联网页面都给予相同的现金，每当下载了某个页面P之后，P将自己拥有的现金平均分配给P所包含的链接页面，把自己的现金清空。</p>
 <p>对于待抓取的URL队列中的网页，则根据手头拥有的现金金额进行排序，优先下载现金最充裕的网页。</p>
@@ -329,7 +329,7 @@
 <p>具有相似属性的网页，其更新周期也是类似的，只需计算某个类别的更新周期；</p>
 <p>对同一类别的网页进行采样，以被采样的网页更新周期作为其他网页的更新周期；</p>
 <p>无需保留网页的历史信息。对于新网页也只需要找到其聚类就能进行更新；</p>
-<p><img src="assets/Information-Retrieval/image-20241024154324297.png" alt="image-20241024154324297"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241024154324297.png" alt="image-20241024154324297"></p>
 <p>与网页更新周期相关的属性有两大类：</p>
 <ul>
 <li>静态：页面内容，链接深度，PageRank；</li>
@@ -338,20 +338,20 @@
 <h4 id="分布式爬虫"><a href="#分布式爬虫" class="headerlink" title="分布式爬虫"></a>分布式爬虫</h4>
 <p>分布式技术将抓取任务分布到不同的节点以提高抓取的性能和可拓展性；</p>
 <p>层级划分：分布式数据中心，分布式抓取服务器。分布式爬虫程序；</p>
-<p><img src="assets/Information-Retrieval/image-20241024154851690.png" alt="image-20241024154851690"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241024154851690.png" alt="image-20241024154851690"></p>
 <h5 id="主从式分布爬虫"><a href="#主从式分布爬虫" class="headerlink" title="主从式分布爬虫"></a>主从式分布爬虫</h5>
 <p>不同服务器承担不同的角色分工。</p>
 <ul>
 <li>URL服务器维护待抓取URL队列，获得待抓取网页的URL，分配给不同的抓取服务器，分配使得各抓取服务器负载均衡。</li>
 <li><strong>抓取服务器之间没有通信联系，每个抓取服务器只和URL服务器进行消息传递</strong>。</li>
 </ul>
-<p><img src="assets/Information-Retrieval/image-20241024155029328.png" alt="image-20241024155029328"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241024155029328.png" alt="image-20241024155029328"></p>
 <p>URL服务器承担很多管理任务，同时，待抓取队列数量巨大，因此，URL服务器容易成为整个系统的瓶颈。</p>
 <h5 id="对等式分布爬虫"><a href="#对等式分布爬虫" class="headerlink" title="对等式分布爬虫"></a>对等式分布爬虫</h5>
 <p>在对等式分布爬虫体系中，服务器之间不存在分工差异，每台服务器承担相同的功能，各自负担一部分URL的抓取工作。
 该架构中没有URL服务器，则需要服务器自己判断某个URL是否需要自己抓取，或者将读取到的URL传递给其他服务器。</p>
 <p>许多对等式分布爬虫通过哈希取模的方法进行任务的分工；</p>
-<p><img src="assets/Information-Retrieval/image-20241024155152282.png" alt="image-20241024155152282"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241024155152282.png" alt="image-20241024155152282"></p>
 <h5 id="暗网抓取"><a href="#暗网抓取" class="headerlink" title="暗网抓取"></a>暗网抓取</h5>
 <p>暗网：目前搜索引擎按常规方式很难抓取到的互联网页面</p>
 <p>典型的暗网是垂直领域的网站，通常是网站提供组合查询界面，用户输入查询才能获取数据的页面；</p>
@@ -423,12 +423,12 @@
 </tr>
 </tbody>
 </table>
-<p><img src="assets/Information-Retrieval/image-20241101191223428.png" alt="image-20241101191223428"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241101191223428.png" alt="image-20241101191223428"></p>
 <h3 id="单词词典"><a href="#单词词典" class="headerlink" title="单词词典"></a>单词词典</h3>
 <p>单词词典：用来维护文档集合中出现过的所有单词相关信息，记载某个单词对应的倒排列表在倒排文件中的位置信息；</p>
 <h4 id="哈希-链表"><a href="#哈希-链表" class="headerlink" title="哈希+链表"></a>哈希+链表</h4>
 <p>主体部分是哈希表，每个哈希表项保存一个指针，指针指向冲突链表，在冲突链表里，相同哈希值的单词形成链表结构。</p>
-<p><img src="assets/Information-Retrieval/image-20241101213037966.png" alt="image-20241101213037966"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241101213037966.png" alt="image-20241101213037966"></p>
 <p>冲突链表：两个不同单词获得相同的哈希值，这在哈希方法里称为一次冲突，可将相同哈希值的单词存储在链表里，以供后续查找。</p>
 <p>建立词典：</p>
 <ol>
@@ -444,7 +444,7 @@
 </ol>
 <h4 id="树形词典结构"><a href="#树形词典结构" class="headerlink" title="树形词典结构"></a>树形词典结构</h4>
 <p>利用B树可以进行高效的查找，前提是字典项具有顺序；</p>
-<p><img src="assets/Information-Retrieval/image-20241101213640405.png" alt="image-20241101213640405"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241101213640405.png" alt="image-20241101213640405"></p>
 <h3 id="倒排列表"><a href="#倒排列表" class="headerlink" title="倒排列表"></a>倒排列表</h3>
 <p>一个倒排索引项描述一个单词和文档相关的信息,形成列表结构，也就是倒排列表；</p>
 <ul>
@@ -452,7 +452,7 @@
 <li>单词在在这个文档出现的次数<code>TF</code></li>
 <li>单词在文档出现的位置...</li>
 </ul>
-<p><img src="assets/Information-Retrieval/image-20241101213949002.png" alt="image-20241101213949002"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241101213949002.png" alt="image-20241101213949002"></p>
 <p>在实际实现中，并不存储实际的文档编号，二十存储文档编号差值(D-Gap)</p>
 <ul>
 <li>相邻两个倒排索引项文档编号的插值</li>
@@ -475,7 +475,7 @@
 <li>第二遍文档遍历：建立每个单词的倒排列表信息；</li>
 </ol>
 <p>一个空间上的优化是：始终在内存中分配固定大小的空间，用来存放词典信息和索引的中间结果，当分配的空间消耗完时，把<strong>中间结果写进磁盘</strong>，清空内存里中间结果所占空间，以用做下一轮存放索引中间结果的存储区。</p>
-<p><img src="assets/Information-Retrieval/image-20241101214840607.png" alt="image-20241101214840607"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241101214840607.png" alt="image-20241101214840607"></p>
 <h4 id="排序法"><a href="#排序法" class="headerlink" title="排序法"></a>排序法</h4>
 <p>排序法是指对中间结果在内存中排序；</p>
 <p>基本步骤：</p>
@@ -492,7 +492,7 @@
 </li>
 <li>然后将排好序的三元组写入临时文件中，空出内存来进行后续文档的处理。</li>
 </ol>
-<p><img src="assets/Information-Retrieval/image-20241101214958372.png" alt="image-20241101214958372"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241101214958372.png" alt="image-20241101214958372"></p>
 <p>注意，在建立索引的过程中，词典一直存储在内存中，每次清空内存只是将中间结果写入磁盘；</p>
 <p>最终的文档处理完毕后，需要对中间结果进行合并，由于每个中间结果都是有序的</p>
 <ol>
@@ -500,7 +500,7 @@
 <li>将不同缓冲区中包含的同一个单词ID的三元组进行合并。</li>
 <li>如果某个单词ID的所有三元组全部合并完成，说明这个单词的倒排列表已经构建完成，则将其写入最终索引中，同时将各个缓冲区中对应这个单词ID的三元组内容清空，这样缓冲区就可以继续从中间结果文件中读入后续的三元组来进行下一个单词的三元组合并。</li>
 </ol>
-<p><img src="assets/Information-Retrieval/image-20241101215323481.png" alt="image-20241101215323481"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241101215323481.png" alt="image-20241101215323481"></p>
 <h4 id="归并法"><a href="#归并法" class="headerlink" title="归并法"></a>归并法</h4>
 <p>分两个阶段进行</p>
 <ul>
@@ -522,7 +522,7 @@
 <li>当文档被删除时，则将其加入删除文档队列。</li>
 <li>当文档被更改时，则将原始文档放入已删除队列，解析更改后的文档内容，并将其加入临时索引中。</li>
 </ol>
-<p><img src="assets/Information-Retrieval/image-20241101220610962.png" alt="image-20241101220610962"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241101220610962.png" alt="image-20241101220610962"></p>
 <p>对于查询请求，如何形成准确的搜索结果？</p>
 <ul>
 <li>同时从倒排索引和临时索引中读取对应的倒排列表；</li>
@@ -533,7 +533,7 @@
 <h4 id="完全重建策略"><a href="#完全重建策略" class="headerlink" title="完全重建策略"></a>完全重建策略</h4>
 <p>当新增文档达到一定数量，将新增文档和原先的老文档进行合并，然后利用建立静态索引的方式，对所有文档重新建立索引。</p>
 <p>新索引建立完成后，老的索引被遗弃释放，之后对用户查询的相应完全由新的索引来负责。</p>
-<p><img src="assets/Information-Retrieval/image-20241130222013904.png" alt="image-20241130222013904"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241130222013904.png" alt="image-20241130222013904"></p>
 <p>由于重建索引需要较长的时间，在进行索引重建过程中，内存中仍然需要维护老的索引来应对用户的查询请求。只有当新索引建立完成后，才能释放旧的索引，将用户查询请求切换到新索引上。</p>
 <h4 id="再合并策略Re-Merge"><a href="#再合并策略Re-Merge" class="headerlink" title="再合并策略Re-Merge"></a>再合并策略Re-Merge</h4>
 <p>当新增文档进入搜索系统时，搜索系统在内存维护临时倒排索引来记录信息，当新增文档达到一定数量，或者指定大小的内存被消耗完，则把临时索引和老文档的倒排索引进行合并，以生成新的索引。</p>
@@ -549,9 +549,9 @@
 </ul>
 </li>
 </ol>
-<p><img src="assets/Information-Retrieval/image-20241130222140811.png" alt="image-20241130222140811"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241130222140811.png" alt="image-20241130222140811"></p>
 <p>由于在磁盘的老索引(倒排文档对应的倒排列表，保存为文件)是顺序的，增量索引在遍历词典的时候也按照字典顺序由低到高排列，可以只对倒排文件进行<strong>一遍扫描，顺序读取</strong>，减少了IO开销(文件操作中比较耗时的磁盘寻道时间)，提高合并效率。</p>
-<p><img src="assets/Information-Retrieval/image-20241130222529794.png" alt="image-20241130222529794"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241130222529794.png" alt="image-20241130222529794"></p>
 <p>这个再合并策略类似于归并排序；</p>
 <ul>
 <li>优点：老的倒排索引是<strong>顺序结构</strong>，遍历时可以顺序读取文件内容，减少磁盘寻道时间，高效更新。</li>
@@ -559,7 +559,7 @@
 </ul>
 <h4 id="原地更新策略In-Place"><a href="#原地更新策略In-Place" class="headerlink" title="原地更新策略In-Place"></a>原地更新策略In-Place</h4>
 <p>在索引合并时，并不生成新的索引文件，而是直接在老的索引文件里进行追加操作，将增量索引里单词的倒排列表项追加到老索引相应位置的末尾。即只更新增量索引里出现的单词相关信息，其他单词相关信息不做变动。</p>
-<p><img src="assets/Information-Retrieval/image-20241130223129076.png" alt="image-20241130223129076"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241130223129076.png" alt="image-20241130223129076"></p>
 <p>策略步骤如下：</p>
 <ol>
 <li>老索引中每个单词的倒排列表末尾都预留出空余磁盘空间，以作为信息追加的存储区域。</li>
@@ -597,7 +597,7 @@
 </li>
 <li>根据文档得分进行大小排序，输出得分<code>Top K</code>作为搜索结果输出，即可完成一次用户查询的响应。</li>
 </ol>
-<p><img src="assets/Information-Retrieval/image-20241130225903546.png" alt="image-20241130225903546"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241130225903546.png" alt="image-20241130225903546"></p>
 <h4 id="一次一单词-Term-at-a-Time"><a href="#一次一单词-Term-at-a-Time" class="headerlink" title="一次一单词(Term at a Time)"></a>一次一单词(Term at a Time)</h4>
 <p>将某个单词对应的倒排列表中的每个文档ID，都计算一个部分相似性得分，在计算完毕某个单词倒排列表中包含的所有文档之后，接着计算下一个单词的倒排列表中包含的文档。若发现某个文档ID已经有了得分，则在原先得分上进行累加。</p>
 <p>步骤</p>
@@ -611,7 +611,7 @@
 </li>
 <li>根据文档得分进行大小排序，输出得分<code>Top K</code>作为搜索结果输出，即可完成一次用户查询的响应。</li>
 </ol>
-<p><img src="assets/Information-Retrieval/image-20241130230628789.png" alt="image-20241130230628789"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241130230628789.png" alt="image-20241130230628789"></p>
 <h4 id="跳跃指针-Skip-Pointer"><a href="#跳跃指针-Skip-Pointer" class="headerlink" title="跳跃指针(Skip Pointer)"></a>跳跃指针(Skip Pointer)</h4>
 <p>对于某些搜索引擎，认为文档必须包含所有的查询词，才认为文档是相关的；</p>
 <p>文档ID是以<strong>文档编号差值（D-Gap）形式</strong>存储，且这个差值是以<strong>压缩</strong>后的方式编码的；</p>
@@ -650,7 +650,7 @@
 <li>将单词连续存储在某个内存区域，原来存储单词内容的部分由指向这个存储区对应单词起始位置的指针代替；</li>
 <li>单词结尾可以采用下一个单词的指针所指向位置判断。</li>
 </ul>
-<p><img src="assets/Information-Retrieval/image-20241130235350065.png" alt="image-20241130235350065"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241130235350065.png" alt="image-20241130235350065"></p>
 <p>进一步的优化技术：</p>
 <ul>
 <li>将连续词典分块，动态调整分块大小，以获取最优压缩效果；</li>
@@ -680,7 +680,7 @@
 </ol>
 <p>解压过程</p>
 <p>一次性将常规存储区的数据进行解压，根据异常链表头、依次顺序读出异常大数的位置，结合尾部存储的异常大数恢复原始数值序列。</p>
-<p><img src="assets/Information-Retrieval/image-20241202134030030.png" alt="image-20241202134030030"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241202134030030.png" alt="image-20241202134030030"></p>
 </li>
 </ul>
 <h2 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h2>
@@ -907,7 +907,7 @@
 </table>
 <h2 id="网页去重"><a href="#网页去重" class="headerlink" title="网页去重"></a>网页去重</h2>
 <p>搜索引擎是在网络爬虫阶段进行近似重复检测（网页去重）的。</p>
-<p><img src="assets/Information-Retrieval/image-20241202184015876.png" alt="image-20241202184015876"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241202184015876.png" alt="image-20241202184015876"></p>
 <h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3>
 <ul>
 <li>特征提取：对于给定文档，首先需要进行特征抽取，从文档中抽取出一系列能够表征文档主体内容的特征集合。</li>
@@ -937,7 +937,7 @@
 <li>对于某个特定的哈希函数F，对每个shingle都计算出一个对应的哈希数值，取最小的那个哈希值作为代表；</li>
 <li>m个哈希函数便获得了m个哈希值，如此便将文档的特征集合转换为了固定大小m。</li>
 </ol>
-<p><img src="assets/Information-Retrieval/image-20241202185543679.png" alt="image-20241202185543679"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241202185543679.png" alt="image-20241202185543679"></p>
 <p>在SuperShingle Trick中，取<svg style="vertical-align: -0.186ex;" xmlns="http://www.w3.org/2000/svg" width="7.266ex" height="1.717ex" role="img" focusable="false" viewBox="0 -677 3211.6 759" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-51-TEX-I-1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path><path id="MJX-51-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path id="MJX-51-TEX-N-38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z"></path><path id="MJX-51-TEX-N-34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="1D45A" xlink:href="#MJX-51-TEX-I-1D45A"></use></g><g data-mml-node="mo" transform="translate(1155.8,0)"><use data-c="3D" xlink:href="#MJX-51-TEX-N-3D"></use></g><g data-mml-node="mn" transform="translate(2211.6,0)"><use data-c="38" xlink:href="#MJX-51-TEX-N-38"></use><use data-c="34" xlink:href="#MJX-51-TEX-N-34" transform="translate(500,0)"></use></g></g></g></svg>​,对84个数值进一步压缩，以14个连续数值作为一块，即分为6块，在采用另一个哈希函数对每一块的14个数值进行哈希计算，进一步将文档转换为6个哈希值；若任意两个文档有两个以上的哈希值是相同的，即可认为是近似重复文档；</p>
 <h3 id="SimHash算法"><a href="#SimHash算法" class="headerlink" title="SimHash算法"></a>SimHash算法</h3>
 <p>实践表明，SimHash是目前最优秀的去重算法之一,属于局部敏感哈希算法(Locality-Sensitive Hashing)的一种；</p>
@@ -951,7 +951,7 @@
 <li>若二进制的某个比特位是数值1，则实数向量中对应位置改写为w；反之，若实数向量位对应大于0，则二进制向量的比特位为1；
 若二进制的某个比特位是数值0，则实数向量中对应位置改写为-w，即权值的负数；反之，若实数向量位对应小于等于0，则二进制向量的比特位为0；</li>
 </ul>
-<p><img src="assets/Information-Retrieval/image-20241202191525395.png" alt="image-20241202191525395"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241202191525395.png" alt="image-20241202191525395"></p>
 <p>在实践中一般文档转换为64比特的二进制数值，内容相似性通过海明距离的大小衡量；</p>
 <p>对于64位二进制数来说，判断两个文档是否近似重复的标准是：海明距离是否小于等于3，若两个文档的二进制数值小于等于3位不同，则判定为近似重复文档。</p>
 <p>对于动态出现新网页，找出其近似重复的内容，可采用以下分组算法，将索引网页根据文档指纹进行分组，新网页只在部分分组内进行匹配，以减少新文档和索引网页的比较次数。</p>
@@ -962,7 +962,7 @@
 <li>在索引网页的分组中，找到对应A块16位和Q1完全相同的分组，然后与分组内的网页一一匹配，查找哪些网页是近似重复的。对Q2、Q3、Q4作同样处理。</li>
 </ol>
 <p>将新网页与分组内的索引网页一一匹配：若两者二进制数值的海明距离小于等于3，则判定为近似重复文档。</p>
-<p><img src="assets/Information-Retrieval/image-20241202193637979.png" alt="image-20241202193637979"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241202193637979.png" alt="image-20241202193637979"></p>
 <h2 id="网页反作弊"><a href="#网页反作弊" class="headerlink" title="网页反作弊"></a>网页反作弊</h2>
 <h3 id="作弊方法"><a href="#作弊方法" class="headerlink" title="作弊方法"></a>作弊方法</h3>
 <h4 id="内容作弊"><a href="#内容作弊" class="headerlink" title="内容作弊"></a>内容作弊</h4>
@@ -983,11 +983,11 @@ Web2.0作弊方式：博客作弊、点评作弊、标签作弊、SNS作弊、�
 <p>在海量的网页数据中，通过一定的技术手段或者人工半人工手段，从中筛选出部分完全值得信任的页面，也就是<strong>一定不会作弊的页面</strong>（可理解为<strong>白名单</strong>）；</p>
 <p>算法以这些白名单内的页面作为出发点，赋予白名单内的页面节点较高的信任度分值，其他页面是否作弊，根据其和白名单内节点的链接关系来确定。</p>
 <p>白名单内节点通过链接关系将信任度分值向外扩散传播，如果某个节点最后得到的信任度分值高于一定阈值，则认为没有问题，而低于这一阈值的网页则被认为是作弊网页。</p>
-<p><img src="assets/Information-Retrieval/image-20241202194049282.png" alt="image-20241202194049282"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241202194049282.png" alt="image-20241202194049282"></p>
 <h4 id="不信任传播模型"><a href="#不信任传播模型" class="headerlink" title="不信任传播模型"></a>不信任传播模型</h4>
 <p>从技术框架上来讲，不信任传播模型和信任传播模型是相似的，两者区别在于：初始的页面子集不是值得信任的页面节点，而是确认存在作弊行为的页面集合，即不值得信任的页面集合（可理解为<strong>黑名单</strong>）。</p>
 <p>赋予黑名单内节点不信任分值，通过链接关系将这种不信任关系传播出去，如果最后页面节点的不信任分值大于设定的阈值，则会被认为是作弊网页。</p>
-<p><img src="assets/Information-Retrieval/image-20241202194110085.png" alt="image-20241202194110085"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241202194110085.png" alt="image-20241202194110085"></p>
 <h4 id="异常发现模型"><a href="#异常发现模型" class="headerlink" title="异常发现模型"></a>异常发现模型</h4>
 <p>异常发现模型基本假设：作弊网页必然存在有异于正常网页的特征，这种特征有可能是内容方面的，也有可能是链接关系方面的。</p>
 <p>该模型具有两种子模型：一种是直接从作弊网页包含的独特特征来构建算法；另一种是将不正常的网页视为作弊网页。</p>

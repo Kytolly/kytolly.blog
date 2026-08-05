@@ -18,7 +18,7 @@
     image: {
       enable: 'true',
       center: 'true',
-      caption: 'true'
+      caption: 'false'
     },
     code_block: {
       copy_button: "icon/copy.svg",
@@ -361,7 +361,7 @@
 <li>用于支持随机访问的文件索引：提供了快速接近目标 记录的查找能力</li>
 <li>溢出文件：类似于顺序文件中使用的日志文件，但溢 出文件中的记录可根据它前面记录的指针进行定位</li>
 </ul>
-<p><img src="assets/image-20241208215304798.png" alt="image-20241208215304798"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241208215304798.png" alt="image-20241208215304798"></p>
 <p>检索文件：</p>
 <ol>
 <li>利用用户(程序)所提供的关键字以及某种查找 算法去检索索引表</li>
@@ -382,7 +382,7 @@
 <li>增、删记录时，对索引表作相应的修改</li>
 </ul>
 <p>note:有时删除文件可能只是删除了其索引,这也是利用某些软件可以找回删除文件的原因；</p>
-<p><img src="assets/image-20241208222417285.png" alt="image-20241208222417285"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241208222417285.png" alt="image-20241208222417285"></p>
 <h4 id="直接或散列文件"><a href="#直接或散列文件" class="headerlink" title="直接或散列文件"></a>直接或散列文件</h4>
 <p>而对于直接文件，则可根据给定的记录键值，直接获 得指定记录的物理地址。换言之，记录键值本身就决 定了记录的物理地址。</p>
 <p>这是目前应用最为广泛的一种直接文件，它利用Hash  函数(或称散列函数)，可将记录键值转换为相应记录的 地址。</p>
@@ -500,7 +500,7 @@
 <li>簇一般由2n个盘块组成，与扇区的数量、磁盘容量的大小 直接有关</li>
 <li>对所允许的磁盘容量存在着严重的限制，虽然可以用继续增加簇的大小来提高所允许的最大磁 盘容量，但随着支持的硬盘容量的增加，相应的簇内 碎片也将随之成倍地增加。</li>
 </ul>
-<p><img src="assets/image-20241209140316205.png" alt="image-20241209140316205"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241209140316205.png" alt="image-20241209140316205"></p>
 <p>FAT16： FAT 表的宽度增至16 位，最大表项数将增至<svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-1-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-1-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-1-TEX-N-36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-1-TEX-N-32"></use></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-1-TEX-N-31"></use><use data-c="36" xlink:href="#MJX-1-TEX-N-36" transform="translate(500,0)"></use></g></g></g></g></g></svg>个 ，此时便能将一个磁盘分区分为<svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-2-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-2-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-2-TEX-N-36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-2-TEX-N-32"></use></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-2-TEX-N-31"></use><use data-c="36" xlink:href="#MJX-2-TEX-N-36" transform="translate(500,0)"></use></g></g></g></g></g></svg>个 簇。可以管理的最大分区空间为(1&lt;&lt;16 )×64 ×512B =  2048 MB</p>
 <ul>
 <li>当磁盘容量迅速增加时，如果再继续使用FAT16， 由此所形成的簇内碎片所造成的浪费也越大。(簇越 大，一般磁盘的碎片就越多</li>
@@ -518,7 +518,7 @@
 <li>格式化程序并没有把DATA区的数据清除，只是重写了 FAT表而已，至于分区硬盘，也只是修改了MBR和 DBR，绝大部分的DATA区的数据并没有被改变;</li>
 <li>因而 进行上述操作后，数据仍然可以得到恢复</li>
 </ul>
-<p><img src="assets/image-20241209150412186.png" alt="image-20241209150412186"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241209150412186.png" alt="image-20241209150412186"></p>
 <h2 id="NTFS文件系统"><a href="#NTFS文件系统" class="headerlink" title="NTFS文件系统"></a>NTFS文件系统</h2>
 <ul>
 <li>使用了64 位磁盘地址;</li>
@@ -533,7 +533,7 @@
 <li>启动扇区文件<code>$BOOT</code>位于磁盘头部，<code>$BOOT</code>中包含 MFT的位置数据。</li>
 <li>主文件表索引的第一个文件为<code>$MFT</code>。主文件的每一个 表项表示一个文件索引，每个文件索引由一系列的属 性组成。</li>
 </ul>
-<p><img src="assets/image-20241209151442406.png" alt="image-20241209151442406"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241209151442406.png" alt="image-20241209151442406"></p>
 <p>NTFS元文件: MFT的前16个元数据文件非常重要，为了防止数据的丢失， NTFS系统在该卷文件存储部分的正中央对它们进行了备份。</p>
 <ul>
 <li>MFT中的第1个记录就是MFT自身;</li>
@@ -550,7 +550,7 @@
 <li>第12个记录是扩展元数据目录<code>$Extended metadata directory</code>。</li>
 <li>第13个记录是重解析点文件<code>$Extend\$Reparse</code></li>
 </ul>
-<p><img src="assets/image-20241209151929072.png" alt="image-20241209151929072"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241209151929072.png" alt="image-20241209151929072"></p>
 <h2 id="Linux文件系统"><a href="#Linux文件系统" class="headerlink" title="Linux文件系统"></a>Linux文件系统</h2>
 <p>Linux是一个unix类操作系统,用EXT2文件系统结构,以下是查找文件的过程</p>
 <ol>
@@ -568,14 +568,14 @@
 <li>索引节点表：记录了本块组中索引节点集合；</li>
 <li>数据块：用于存放文件数据；</li>
 </ul>
-<p><img src="assets/image-20241209152202486.png" alt="image-20241209152202486"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241209152202486.png" alt="image-20241209152202486"></p>
 <p>EXT2的目录</p>
 <ul>
 <li>一个文件对应有一个目录项；</li>
 <li>目录项包含该文件对应的索引节点号、文件名、名字 长度等信息；</li>
 <li>目录是一些特殊的文件，称为目录文件，其中包含了 该目录下所有文件的目录项集合。</li>
 </ul>
-<p><img src="assets/image-20241209152534513.png" alt="image-20241209152534513"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241209152534513.png" alt="image-20241209152534513"></p>
 <p>EXT2的索引节点</p>
 <ul>
 <li>Mode：用户拥有的权限<code>r,w,e</code></li>
@@ -584,7 +584,7 @@
 <li>Timestamps：索引节点建立的时间和索引节点最后修 改的时间</li>
 <li>Data blocks：描述文件的数据块</li>
 </ul>
-<p><img src="assets/image-20241209152648940.png" alt="image-20241209152648940"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241209152648940.png" alt="image-20241209152648940"></p>
 <p>文件控制块</p>
 <ul>
 <li>当打开一个EXT2文件时，把要打开文件的管理控制信 息从辅存的目录项和索引节点中读到内存，形成FCB， 并将该FCB的地址以一个文件描述符（FD）的形式返 回给用户进程;</li>
@@ -598,7 +598,7 @@
 <li>空闲的缓冲区链表</li>
 <li>非空闲的缓冲区：由指针数组构成的散列表， 散列表中hash值由设备的标识符和数据块的块号产生 的，表中的指针指向具有相同hash值的缓冲区。</li>
 </ol>
-<p><img src="assets/image-20241209153612426.png" alt="image-20241209153612426"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241209153612426.png" alt="image-20241209153612426"></p>
 <p>缓冲区的状态类型：clean,locked,dirty,shared, unshared</p>
 <p>bdflush守护进程: 使用bdflush内核守护进程来完成缓存管理,在系统启动时作为一个系 统的线程运行，在大部分时间中，此守护进程都处 于睡眠状态，等待系统中被改动的数据块缓冲区的 数量增大到一定的值，bdflush守护进程将被唤醒,任务是当缓存中被改动的缓 冲区数量太多时，提供一个管理功能</p>
 </li>
@@ -608,7 +608,7 @@
 </li>
 <li>
 <p>目录缓存：为了加速对常用目录的存取， VFS维护一个两层LRU目录 缓存链表。 目录缓存包括一个散列表， 表的hash值由设备号和目录 名来计算，每个表项指向具 有相同hash值的目录缓存链 表的指针。当读取一个目录时，目录的 详细信息将添加到目录缓存 中</p>
-<p><img src="assets/image-20241209153555479.png" alt="image-20241209153555479"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Operate-System/image-20241209153555479.png" alt="image-20241209153555479"></p>
 </li>
 </ul>
 </main>

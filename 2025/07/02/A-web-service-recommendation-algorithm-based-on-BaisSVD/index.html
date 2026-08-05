@@ -396,7 +396,7 @@
 <p>在本文中，作者比较了UPCC、IPCC、UPICC和FunkDID作为最终的比较算法，以验证该算法的效果。</p>
 <p>UPCC、IPCC和UIPCC是基于用户、基于项目的混合协作过滤算法。FunkSVD是一种没有偏差的矩阵分解算法。  在经验中，我们主要验证在相同稀疏数据下，BiasDID算法是否能够与传统协同过滤算法相比提高预测准确率。</p>
 <p>Fig.1显示了使用5%、15%和25%训练矩阵密度在不同响应时间和吞吐量预测方法下的MAE和RSSE结果。</p>
-<p><img src="assets/Information-Retrieval/image-20241116140224325.png" alt="Fig.1.Results Of Experiments"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Information-Retrieval/image-20241116140224325.png" alt="Fig.1.Results Of Experiments"></p>
 <p>总而言之，依靠平均值预测效果最差，而基于传统的协同过滤方法，包括UPCC、IPCC和UPICC，预测效果优于平均值预测，但仍然不理想。</p>
 <p>关键是，在数据稀疏的情况下，<strong>基于矩阵分解的方法明显优于传统的协同过滤</strong>。随着密度的增加，所有方法的性能都有所提高，这表明<strong>更高质量的信息可以提高预测准确率</strong>，而且Bias奇异值在预测准确率方面更具优势。</p>
 <h2 id="CONCLUSION-AND-FUTURE-WORK"><a href="#CONCLUSION-AND-FUTURE-WORK" class="headerlink" title="CONCLUSION AND FUTURE WORK"></a>CONCLUSION AND FUTURE WORK</h2>

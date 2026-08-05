@@ -18,7 +18,7 @@
     image: {
       enable: 'true',
       center: 'true',
-      caption: 'true'
+      caption: 'false'
     },
     code_block: {
       copy_button: "icon/copy.svg",
@@ -439,22 +439,22 @@
 <p>例如查询所有医生的信息：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Doctor;</span><br></pre></td></tr></table></figure>
 <p>结果如下：</p>
-<p><img src="assets/Database/image-20241027123444923.png" alt="image-20241027123444923"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Database/image-20241027123444923.png" alt="image-20241027123444923"></p>
 <h3 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h3>
 <p>SQL语句：<code>SELECT &lt;字段列表&gt; FROM &lt;表名&gt; WHERE &lt;查询条件&gt;</code></p>
 <p>条件之间的连接可以使用以下的连接运算符：</p>
-<p><img src="assets/Database/image-20241027123645997.png" alt="image-20241027123645997"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Database/image-20241027123645997.png" alt="image-20241027123645997"></p>
 <p>例如：查询年龄小于或等于40岁的男医生信息</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span>  <span class="keyword">FROM</span>  Doctor  <span class="keyword">WHERE</span> Dsex<span class="operator">=</span><span class="string">&#x27;男&#x27;</span> <span class="keyword">AND</span> Dage<span class="operator">&lt;=</span><span class="number">40</span> ;</span><br></pre></td></tr></table></figure>
 <p>结果如下：</p>
-<p><img src="assets/Database/image-20241027123844916.png" alt="image-20241027123844916"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Database/image-20241027123844916.png" alt="image-20241027123844916"></p>
 <h3 id="列的别名"><a href="#列的别名" class="headerlink" title="列的别名"></a>列的别名</h3>
 <p>改变查询显示列的标题，用关键字<code>AS</code>,跟在<code>SELECT</code>的属性后面；</p>
 <p>SQL语句：<code>SELECT &lt;字段1&gt; AS &lt;别名1&gt;,..., &lt;字段吗&gt; AS &lt;别名m&gt; FROM &lt;表名&gt;</code></p>
 <p>例：查询医生姓名和职称并重命名</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Dname <span class="keyword">AS</span> 医生姓名, Dlevel 专业职称 <span class="keyword">FROM</span> Doctor;</span><br></pre></td></tr></table></figure>
 <p>结果如下：</p>
-<p><img src="assets/Database/image-20241027124146262.png" alt="image-20241027124146262"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Database/image-20241027124146262.png" alt="image-20241027124146262"></p>
 <h3 id="查询表达式"><a href="#查询表达式" class="headerlink" title="查询表达式"></a>查询表达式</h3>
 <p>查询条件可以用表达式表示</p>
 <p>例：在药品信息表中，查询药品单价提高15%后超过30元的药品信息</p>

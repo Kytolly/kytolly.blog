@@ -269,7 +269,7 @@
 <li>接收方将分组解封装后将数据段递交给传输层</li>
 <li>网络层协议存在于每台主机和路由器上，路由器检查所有经过它的IP分组的分组头</li>
 </ol>
-<p><img src="assets/Computer-Network/%E7%BD%91%E7%BB%9C%E5%B1%82%E8%BF%90%E8%A1%8C%E4%B8%80%E4%B8%AA%E7%BC%A9%E7%9F%AD%E7%9A%84%E5%8D%8F%E8%AE%AE%E6%A0%88.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/%E7%BD%91%E7%BB%9C%E5%B1%82%E8%BF%90%E8%A1%8C%E4%B8%80%E4%B8%AA%E7%BC%A9%E7%9F%AD%E7%9A%84%E5%8D%8F%E8%AE%AE%E6%A0%88.png" alt=""></p>
 <h3 id="分层"><a href="#分层" class="headerlink" title="分层"></a>分层</h3>
 <p><strong>网络层</strong>(network layer)通常被划分为两层：<strong>数据平面</strong>(data plane)和<strong>控制平面</strong>(control plane);这也是网络层的功能；</p>
 <ul>
@@ -277,12 +277,12 @@
 <li><strong>路由选择</strong>(routing)：控制平面主要和网络范围相关，协调本地路由器的转发操作，通常需要设计选路算法，以确定分组从源端到目的端的路径范围处理过程；</li>
 </ul>
 <p>路由器会维护一个<strong>转发表</strong>(forwarding table)，检查分组首部，索引转发表，找到对应的输出链路接口；</p>
-<p><img src="assets/Computer-Network/%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95%E5%92%8C%E8%BD%AC%E5%8F%91%E8%A1%A8.png" alt="image-20250611133649016"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95%E5%92%8C%E8%BD%AC%E5%8F%91%E8%A1%A8.png" alt="image-20250611133649016"></p>
 <h3 id="SDN"><a href="#SDN" class="headerlink" title="SDN"></a>SDN</h3>
 <p><strong>软件定义网络</strong>(software-defined networking, SDN)将控制平面的功能作为单独的服务；</p>
 <p>传统的路由器通过人工操作的<strong>静态配置</strong>的办法，这样不需要任何路由选择协议，但是不是自动化的，对于网络拓扑结构的改变响应更慢；</p>
 <p>控制平面的功能往往位于一台远程的控制器中，可能由ISP管理，路由器通过交换包含转发表等信息的报文与控制器通信，这样的网络是软件定义的；</p>
-<p><img src="assets/Computer-Network/SDN%E7%BD%91%E7%BB%9C%E5%AE%9A%E4%B9%89.png" alt="image-20250611141236270"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/SDN%E7%BD%91%E7%BB%9C%E5%AE%9A%E4%B9%89.png" alt="image-20250611141236270"></p>
 <h3 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h3>
 <p><strong>网络服务模型</strong>(network service model)定义了分组在发送和接收主机间的端到端传输特性，如确保交付，确保时延上界，有序分组，最小带宽，安全加密；</p>
 <p>这样网络层的服务称作<strong>尽力而为服务</strong>(best-effort service)，网络层尽力完成这些服务特性，但是不给予任何保证；</p>
@@ -446,10 +446,10 @@
 </tbody>
 </table>
 <p>路由器由转发表来维护连接状态信息；</p>
-<p><img src="assets/Computer-Network/%E8%BD%AC%E5%8F%91%E8%A1%A8.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/%E8%BD%AC%E5%8F%91%E8%A1%A8.png" alt=""></p>
 <h3 id="信令协议"><a href="#信令协议" class="headerlink" title="信令协议"></a>信令协议</h3>
 <p>信令协议用来建立，维护和拆除虚电路，在ATM，<strong>帧中继</strong>(frame-relay),X.25等中有应用；</p>
-<p><img src="assets/Computer-Network/%E4%BF%A1%E4%BB%A4%E5%8D%8F%E8%AE%AE.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/%E4%BF%A1%E4%BB%A4%E5%8D%8F%E8%AE%AE.png" alt=""></p>
 <h3 id="数据报网络"><a href="#数据报网络" class="headerlink" title="数据报网络"></a>数据报网络</h3>
 <p>数据报网络不同于虚电路网络，在网络层没有呼叫建立；</p>
 <ul>
@@ -457,7 +457,7 @@
 <li>分组使用目的主机地址转发，同一源-目的主机对间的分组可能走不同的路径；</li>
 </ul>
 <p>转发表维护如下：</p>
-<p><img src="assets/Computer-Network/%E6%95%B0%E6%8D%AE%E6%8A%A5%E7%BD%91%E7%BB%9C%E7%9A%84%E8%BD%AC%E5%8F%91%E8%A1%A8.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/%E6%95%B0%E6%8D%AE%E6%8A%A5%E7%BD%91%E7%BB%9C%E7%9A%84%E8%BD%AC%E5%8F%91%E8%A1%A8.png" alt=""></p>
 <h3 id="路由器原理"><a href="#路由器原理" class="headerlink" title="路由器原理"></a>路由器原理</h3>
 <p>回忆路由器的基本功能：路由选择和转发；在数据平面上设计的结构如下图，主要在硬件上实现转发功能；</p>
 <ul>
@@ -465,19 +465,19 @@
 <li><strong>输出端口</strong>(output port)：将输入端口连接到输出端口的内部网络；</li>
 <li><strong>交换结构</strong>(switching fabric)：存储交换结构存储的分组</li>
 </ul>
-<p><img src="assets/Computer-Network/%E9%80%9A%E7%94%A8%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/%E9%80%9A%E7%94%A8%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png" alt=""></p>
 <p>位于控制层面的路由选择处理器负责执行路由选择算法；</p>
 <p>输入端口的内部执行分散式转发：根据分组中的目的地址, 在输入端口的缓存中查找转发表得出适当的输出端口；</p>
-<p><img src="assets/Computer-Network/%E8%BE%93%E5%85%A5%E7%AB%AF%E5%8F%A3.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/%E8%BE%93%E5%85%A5%E7%AB%AF%E5%8F%A3.png" alt=""></p>
 <p>交换结构可能具有如下类型的三种结构；</p>
 <ul>
 <li>基于内存交换：较传统的方式为CPU控制交换完成，分布被拷贝到系统内存，速度受到内存带宽限制，因为分组需要经过两次总线；</li>
 <li>基于总线交换：分组从输入端口缓存经过一根共享总线到达输出端口缓存，交换速率受总线带宽限制，但是对于接入和企业路由器来说速度足够了 ；</li>
 <li>基于互联网格交换：克服总线带宽限制，一个纵横式交换机就是一个由<code>2n</code>条总线组成的互联网络,<code>n</code>个输入端口与<code>n</code>个输出端口连接，比较高级的设计为IP数据报分割成固定长度信元, 通过互连网络来交换信元.</li>
 </ul>
-<p><img src="assets/Computer-Network/%E4%BA%A4%E6%8D%A2%E7%BB%93%E6%9E%84.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/%E4%BA%A4%E6%8D%A2%E7%BB%93%E6%9E%84.png" alt=""></p>
 <p>输出端口在网络层执行的是缓存分组，当分组从交换结构到达的速率快于输出链路速率时,需要缓存；而调度的原则都是在等待传输的排队分组中进行选择；</p>
-<p><img src="assets/Computer-Network/%E8%BE%93%E5%87%BA%E7%AB%AF%E5%8F%A3.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/%E8%BE%93%E5%87%BA%E7%AB%AF%E5%8F%A3.png" alt=""></p>
 <h3 id="queuing"><a href="#queuing" class="headerlink" title="queuing"></a>queuing</h3>
 <p>输入端口排队：当交换速度比所有输入端口的综合速度慢；</p>
 <p>输出端口排队：当分组从交换结构到达的速率快于输出链路速率时,需要缓存；</p>
@@ -489,11 +489,11 @@
 <blockquote>
 <p>这里就是上面红色分组排队导致下面绿色分组等待；</p>
 </blockquote>
-<p><img src="assets/Computer-Network/HOL%E7%8E%B0%E8%B1%A1.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/HOL%E7%8E%B0%E8%B1%A1.png" alt=""></p>
 <p>当没有足够的缓存输入分组时，需要采取丢包的策略，有时需要向发送方告知拥塞（拥塞告知比特）对分组标记；这些策略统称为<strong>主动队列管理</strong>(active queue management, AQM)；包括RED，PIE，CoDel等；</p>
 <p>当我们考虑缓存大小的问题时，我们需要trade-off，因为大缓存可以缓解丢包问题，但是可能加剧时延问题，即<strong>缓存膨胀</strong>(bufferbloat)；</p>
 <p>还有一些排队规则问题，可以类比OS，比如FIFO，优先权，循环和加权公平下的保持工作排队，加权公平排队(WFQ)等等；以确保网络的中立性；</p>
-<p><img src="assets/Computer-Network/%E5%8A%A0%E6%9D%83%E5%85%AC%E5%B9%B3%E6%8E%92%E9%98%9F.png" alt="image-20250611233952309"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/%E5%8A%A0%E6%9D%83%E5%85%AC%E5%B9%B3%E6%8E%92%E9%98%9F.png" alt="image-20250611233952309"></p>
 <h3 id="网际协议"><a href="#网际协议" class="headerlink" title="网际协议"></a>网际协议</h3>
 <h4 id="数据报格式"><a href="#数据报格式" class="headerlink" title="数据报格式"></a>数据报格式</h4>
 <p>IPv4数据报格式的关键字段如下：</p>
@@ -519,7 +519,7 @@
 <li>目的IP地址：32比特。接收方的IPv4地址。</li>
 <li>选项：0-320比特，可变长度，并用0填充至32比特的倍数。不常用，包含如源路由、记录路由等信息。包含选项的数据包可能会被某些路由器视为危险并阻止。</li>
 </ul>
-<p><img src="assets/Computer-Network/IPv4%E6%95%B0%E6%8D%AE%E6%8A%A5.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/IPv4%E6%95%B0%E6%8D%AE%E6%8A%A5.png" alt=""></p>
 <h4 id="IPv4-IPv6"><a href="#IPv4-IPv6" class="headerlink" title="IPv4 &amp; IPv6"></a>IPv4 &amp; IPv6</h4>
 <p>每台主机和路由器都能发送数据报，因此IP要求每台主机和路由器接口都应该有一个IP地址；</p>
 <p>接口是主机/路由器与物理链路之间的边界；从技术上来说，一个IP地址和一个接口相关联，在全球互联网中，IP应该是唯一的；</p>
@@ -531,7 +531,7 @@
 <li>子网被分配一个<strong>掩码</strong>(mask)，指示IP左侧多少比特定义了子网的址；任何连到该子网的主机必须具有相同的掩码；因此子网代表这个网络的最高公共前缀；</li>
 <li>一个最佳实践是一个组织内部的IP地址共享前缀，因为这可以减少路由器中转发表的长度；</li>
 </ul>
-<p><img src="assets/Computer-Network/%E6%8E%A5%E5%8F%A3%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/%E6%8E%A5%E5%8F%A3%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91.png" alt=""></p>
 <p>两种推荐方法使得 IPv4 和 IPv6 路由器的网络工作</p>
 <p>双栈的设计是，一些路由器具有双重栈 (v6, v4) 能够在两种格式中转换双栈节点具有三种工作模式：</p>
 <ul>
@@ -540,7 +540,7 @@
 <li>双栈模式，同时打开IPv6和IPv4协议。</li>
 </ul>
 <p>隧道的设计是分组在穿过IPv4路由器时，IPv6分组作为 IPv4分组的负载</p>
-<p><img src="assets/Computer-Network/IPv4%E5%92%8CIPv6%E7%9A%84%E9%9A%A7%E9%81%93.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/IPv4%E5%92%8CIPv6%E7%9A%84%E9%9A%A7%E9%81%93.png" alt=""></p>
 <h4 id="CIDR"><a href="#CIDR" class="headerlink" title="CIDR"></a>CIDR</h4>
 <p><strong>无类别域际路由选择</strong>(Classless InterDomain Routing, CIDR) 是IP地址分配和路由选择的一种方法，这是一种分类编制的技术，旨在更有效地利用IP地址并减缓IPv4地址耗尽的速度，同时降低路由表的增长速度。</p>
 <ul>
@@ -609,7 +609,7 @@
 <li>NAT设备维护一个<strong>转换表</strong>（NAT table），记录私有地址与公共地址之间的映射关系。</li>
 <li>当外部网络的数据包返回时，NAT设备根据转换表将目的公共IP地址和端口号转换回内部私有IP地址和原始端口号，然后转发给相应的内部主机。</li>
 </ul>
-<p><img src="assets/Computer-Network/NAT%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/NAT%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2.png" alt=""></p>
 <p>RFC 1918中规定了以下私有IP地址范围，这些地址在公共互联网上是不可路由的：</p>
 <ul>
 <li><code>10.0.0.0</code> 到 <code>10.255.255.255</code> (A类私有网络)</li>
@@ -694,7 +694,7 @@
 <li><strong>更新</strong>：当路由器 <code>x</code> 收到来自邻居 <code>v</code> 的距离矢量时，它使用Bellman-Ford方程更新自己到每个目的地的距离估计。如果通过邻居 <code>v</code> 到某个目的地的路径开销更小，则更新该目的地的距离和下一跳。</li>
 <li><strong>收敛</strong>：这个过程持续进行，直到网络中的所有路由表都收敛，即所有路由器都找到了到所有目的地的最短路径，并且不再有距离矢量更新发生。</li>
 </ol>
-<p><img src="assets/Computer-Network/DV%E7%AE%97%E6%B3%95%E8%BF%AD%E4%BB%A3.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/DV%E7%AE%97%E6%B3%95%E8%BF%AD%E4%BB%A3.png" alt=""></p>
 <p>当链路的开销变化，结点探测到后，将更新路由信息，重新计算距离向量，若其DV发生变化，则通知邻居；</p>
 <ul>
 <li>好消息传得快，但是坏消息传得慢，存在计数无穷大问题：当某个目的地变得不可达时，路由器之间可能互相"学习"到错误的、逐渐增大的距离，直到达到最大跳数（无穷大），这个过程非常缓慢，且期间会形成路由环路。</li>
@@ -742,7 +742,7 @@
 <li>不同的AS下可以运行不同的路由选择协议</li>
 <li>每个AS应该选出一个网关路由器，运行域间路由协议，和其他网关路由器交互；</li>
 </ul>
-<p><img src="assets/Computer-Network/AS%E4%BA%92%E8%81%94.png" alt=""></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/Computer-Network/AS%E4%BA%92%E8%81%94.png" alt=""></p>
 <h2 id="OSPF协议"><a href="#OSPF协议" class="headerlink" title="OSPF协议"></a>OSPF协议</h2>
 <p><strong>开放最短路优先</strong>(Open Shortest Path First, OSPF)是在AS内部实现的LS协议</p>
 <ul>
