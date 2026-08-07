@@ -7,7 +7,9 @@
 ReactiveGWM 把“玩家的逐帧按钮控制”和“NPC 的高层战术意图”拆成两条条件通路，并将承载 NPC 策略的 cross-attention 模块跨游戏移植，从而在两个《街头霸王》环境中显著提高 NPC 策略遵循率，同时大体保留玩家控制与画面质量。
 论文信息卡片
 
+题目：ReactiveGWM: Steering NPC in Reactive Game World Models
 作者：Zeqing Wang、Danze Chen、Zhaohu Xing、Zizhao Tong、Yinhan Zhang、Xingyi Yang、Yeying Jin
+年份 / 状态：2026，arXiv 预印本 v1
 资源：arXiv:2605.15256 | 项目页 | 代码  | 模型 | 数据集
 
 研究问题
@@ -265,6 +267,244 @@ SF3 Control 迁移失败主要来自技能语义、视觉表现、动作时序�
       </tags>
   </entry>
   <entry>
+    <title>IOI：解耦交互式世界模型中的运动学与物理</title>
+    <url>/2026/08/07/IOI%EF%BC%9A%E8%A7%A3%E8%80%A6%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%BF%90%E5%8A%A8%E5%AD%A6%E4%B8%8E%E7%89%A9%E7%90%86/</url>
+    <content><![CDATA[IOI：解耦交互式世界模型中的运动学与物理
+一句话结论
+IOI 不再让视频生成器从低维动作中同时“猜”机器人几何与环境变化，而是用 URDF 和解析运动学确定机器人轨迹，再把三视图正交投影作为显式条件注入冻结的视频扩散骨干，让可学习容量更集中于接触、物体运动等不确定场景动力学。
+论文信息卡片
+
+题目：IOI: Decoupling Kinematics and Physics for Interactive World Models
+作者：Chengyu Bai, Peidong Jia, Tiecheng Guo, Yu-Kai Wang, Rui Ma, Fangyuan Zhao, Chun-Kai Fan, Xiaobao Wei, Jintao Chen, Hao Wang, Ying Li, Xiaozhu Ju, Jian Tang, Shanghang Zhang
+年份 / 状态：2026，arXiv:2606.23296v1 [cs.RO]
+资源：arXiv:2606.23296
+
+研究问题
+
+问题：动作条件视频世界模型容易出现两类累积错误：机器人动作偏离控制指令，以及物体形变、穿透、消失等状态不合理现象。
+为什么重要：若生成轨迹不能严格跟随动作或保持物理状态，世界模型就难以作为策略学习的数据源或策略评估的替代环境。
+既有路线的缺口：IRASim、Ctrl-World 等方法把低维动作嵌入与视觉特征端到端融合，使网络同时承担确定性的机器人几何建模和随机的环境动力学建模；BridgeV2W 虽引入 URDF 渲染条件，但依赖相机外参，部署时容易受视角与标定误差影响。
+IOI 的切入点：把“由动作和机器人结构决定的运动”视为可解析部分，把“接触结果与场景演化”留给生成模型学习。
+
+领域位置
+
+研究分支：具身智能、机器人操作、动作条件视频生成、交互式世界模型。
+方法路线：解析运动学先验 + 多视图几何条件 + 冻结视频 DiT 的轻量条件注入。
+最接近的工作：IRASim、Ctrl-World（隐式动作条件）；BridgeV2W（URDF 条件但依赖相机外参）；ControlNet/VACE（结构条件注入范式）。
+论文声称的差异：无需目标相机外参；显式地将确定性机器人运动从随机场景动力学中分离；只训练新增条件分支而冻结 DiT 主干。
+
+核心思想
+Paper claim
+给定观测历史、未来动作序列和机器人 URDF，运动学链可确定机器人未来姿态，因此不必由生成器从数据中隐式学习。三组同步正交投影提供不依赖观测相机位姿的几何条件；MKAI 将这些条件与观测上下文对齐并分层注入视频生成器。
+解读
+IOI 的关键不是加入了更多动作特征，而是改变了条件的表示层级：把关节/末端动作先提升为显式的时空几何轨迹，再让生成模型学习“在这条确定轨迹下环境会如何变化”。这是一种结构化的归纳偏置和容量分工，并不等于模型获得了完整物理定律。
+
+
+Source visual - Figure 2: IOI: Decoupling Kinematics and Physics for Interactive World Models, PDF p. 4. Role: 展示动作、URDF、三视图正交投影、MKAI 与视频生成器之间的完整信息流。
+
+方法
+输入与输出
+
+
+输入：历史观测帧 、未来  步动作 、机器人 URDF 模型 。动作可为关节空间增量，也可为笛卡尔末端位姿。
+
+
+输出：未来视频 。
+
+
+建模目标：
+
+
+
+解析运动学先验
+URDF 记为 ，包含连杆、关节及关节轴/限位/父子变换等参数。
+
+
+动作统一到关节轨迹：关节增量动作通过  积分；末端位姿动作以先前关节状态为初值求逆运动学 。
+
+
+前向运动学恢复三维结构：对每个时刻计算各连杆位姿 ，并将变换作用于连杆规范网格，组合成完整机器人几何 。
+
+
+三视图正交渲染：用前、侧、顶三个规范投影  渲染：
+
+将时间维堆叠后得到三组同步控制序列 。
+
+
+Paper claim：正交投影消除了透视缩放和相机外参需求，三视图分别补充横向、深度和俯视平面运动信息，形成视角不变的条件表示。
+Interpretation：这里的“视角不变”是指条件不随目标观测相机的外参直接变化，并不意味着三张二维渲染在数学上可无损重建任意三维表面或接触细节；遮挡、外观和被抓物体信息仍可能丢失。
+MKAI：多视图运动学聚合与注入
+MKAI 由三部分构成：
+
+
+Kinematic Fusion Embedder：冻结 VAE 将各视图编码为 ，加入可学习时间嵌入 ，再由共享的两层 MLP 融合三视图：
+
+
+
+Alignment Embedder：沿用 VACE Context Embedder 的 3D 卷积 patchification 设计，将  投影为与视频 DiT 在时空分辨率和隐藏维度上对齐的运动学 token：。
+
+
+Kinematic Blocks：每个块包含 LayerNorm、自注意力、与观测 token 的交叉注意力、FFN 和输出投影。第  个块产生 ，再通过门控投影注入对应 DiT 层：
+
+ 零初始化，使新增条件分支从“不扰动预训练模型”开始学习。训练时仅更新 Fusion Embedder、Alignment Embedder 和 Kinematic Blocks，DiT 主干保持冻结。****
+
+
+
+
+Source visual - Figure 3: IOI: Decoupling Kinematics and Physics for Interactive World Models, PDF p. 6. Role: 解释三视图运动学条件如何被编码为 token，并通过 Kinematic Blocks 分层注入冻结的 DiT。
+
+运动学引导的视频扩散
+IOI 使用基于 flow matching 的预训练潜空间视频生成模型（实现基于 WAN 2.1）。历史帧潜变量  固定为上下文，只对未来帧潜变量  加噪和去噪：
+
+目标速度场为 。网络在历史潜变量和聚合运动学条件下预测速度，并最小化：
+
+Interpretation：损失函数本身仍是标准生成目标；IOI 的增量主要来自条件构造与注入机制，而不是新的动力学监督或显式接触方程。
+数据与评估
+训练设置
+
+基础模型：WAN 2.1；先在通用视频数据上预训练，再针对 RoboTwin 2.0 或真实数据微调。
+数据量：每个任务 100 条训练 trial，保留 10 条未见 trial 评估。
+优化：100,000 步，global batch size 32，AdamW；2,000 步线性 warm-up，峰值学习率 ，随后 cosine decay。
+增强：空间裁剪与光度扰动。
+
+对照与指标
+
+基线：IRASim、Ctrl-World。BridgeV2W 与 Kinema4D 因实现未公开而未纳入。
+视频指标：PSNR、SSIM、LPIPS、FVD。论文把 FVD 解释为时空连贯性与运动漂移的综合信号，但它不是直接的物理正确性测量。
+策略指标：任务成功率（SR）。
+
+三个仿真实验
+
+实验 1 - 运动学与物理一致性：RoboTwin 2.0 的 50 个操作任务，使用专家成功轨迹，评估未见动作下的视频合成。
+实验 2 - 零样本组合 OOD：40 个任务训练，保留 10 个任务只在推理时使用；这些 OOD 任务由训练任务已覆盖的子技能重新组合。
+实验 3 - 策略评估：在 5 个任务上对  VLA 策略分别生成 50 条动作序列，并在 IOI 与 GT 模拟器中评估；三名独立评估者按相同完成标准双盲判定生成 rollout 的成功与失败。
+
+主要结果
+常规仿真质量
+Paper claim：IOI 的 Overall FVD 为 41.23、SSIM 为 0.8637、LPIPS 为 0.0695，均优于 Ctrl-World（64.90 / 0.8192 / 0.0867）和 IRASim（126.20 / 0.8198 / 0.0803）；FVD 相对 Ctrl-World 降低 36.47%，相对 IRASim 降低 67.30%。IRASim 的 PSNR 26.81 略高于 IOI 的 25.73。
+Interpretation：结果支持显式几何条件改善时序一致性与结构保真度，但 PSNR 未领先说明方法并非所有像素级指标都占优；FVD/LPIPS 的改善也不能单独证明真实接触物理已被正确建模。
+
+
+Source visual - Table 1: IOI: Decoupling Kinematics and Physics for Interactive World Models, PDF p. 8. Role: 支撑 IOI 在常规 RoboTwin 任务上的总体视频质量主张，并显示不同指标间的权衡。
+
+视觉失效模式
+
+
+Source visual - Figure 4: IOI: Decoupling Kinematics and Physics for Interactive World Models, PDF p. 9. Role: 展示 IRASim 的机械臂消失/形变与 Ctrl-World 的物体幻觉、空间边界错误，并与 IOI 和 GT 对照。
+
+Paper claim：在 AgileX 双臂将罐子放入塑料箱的序列中，IRASim 出现机械臂消失和严重形变，Ctrl-World 出现对象幻觉及末端与罐体边界错误，而 IOI 更接近 GT。
+Interpretation：该图说明“显式几何条件可能抑制形态漂移”，但它只是一个精选案例，不能估计失效频率。
+OOD 组合泛化
+Paper claim：在 10 个组合 OOD 任务上，IOI 的 PSNR/SSIM/LPIPS/FVD 为 24.08/0.8127/0.1309/69.16，四项均优于 IRASim 与 Ctrl-World；FVD 相对 Ctrl-World 降低 12.23%，相对 IRASim 降低 58.39%。
+Interpretation：这是“已见子技能的新组合”泛化，而非跨机器人、跨仿真器或包含全新物理机制的开放世界 OOD。论文证明的是组合式任务留出协议下的生成质量提升。
+作为策略评估器
+Paper claim：五个任务的平均成功率为 GT 44.0%、IOI 45.6%，平均差 +1.6 个百分点；各任务差值在 0 到 +4 个百分点之间，Pearson 相关系数为 0.9992。
+Interpretation：数值高度一致，但相关系数仅来自 5 个任务且任务成功率跨度很大；缺少置信区间、重复实验方差和评估者一致性统计，因此更适合视为有力的初步证据，而非“可普遍替代物理模拟器”的定论。
+
+
+Source visual - Table 4: IOI: Decoupling Kinematics and Physics for Interactive World Models, PDF p. 11. Role: 支撑 IOI 作为策略评估替代环境时与 GT 模拟器结果接近的主张。
+
+消融与无外参代价
+
+动作条件机制消融：Add、Concat、Cross-attention、AdaLN 的 FVD 依次为 87.31、67.89、62.56、56.47；URDF + MKAI 为 41.23，相对最佳隐式基线 AdaLN 降低 26.97%。
+相机外参上界：使用真实内外参的 IOI-Explicit Oracle 得到 FVD 37.15，免外参 IOI-MKAI 为 41.23；PSNR/SSIM 也略低于 Oracle，但 LPIPS 几乎相当（0.0628 vs. 0.0631）。
+
+Interpretation：Table 5 支持“显式几何表示优于仅改变低维动作注入算子”；Table 6 则量化了免标定的便利性所付出的精度代价。不过，论文没有给出单视图/双视图、无时间嵌入、无对齐模块或不同 Kinematic Block 数量等细粒度消融，尚不能判断 MKAI 各子组件的独立贡献。
+真实机器人证据
+Paper claim：在 Franka Emika 的三明治抓取放置任务上，IOI 能保持机械臂结构并生成手物接触；论文还声称对未见动作轨迹有涌现泛化，且用 IOI 合成数据训练的策略可达到遥操作示范训练的水平。
+证据缺口：正文只给出 Fig. 5 的定性序列，并称定量指标与进一步分析在 Appendix；但所提供的 16 页 v1 PDF 没有 Appendix，也没有出现相应的策略训练数值。因此，无法用本 PDF 独立核验“合成数据训练策略匹配遥操作”的强结论。
+发现-证据-边界汇总
+
+
+
+发现
+实际测试范围
+置信度 / 保留意见
+
+
+
+
+显式 URDF + MKAI 改善常规仿真视频质量
+RoboTwin 2.0，50 个任务，两个公开基线
+中高；视频指标和精选案例不等于完整物理验证
+
+
+组合 OOD 优于基线
+40 训练任务的子技能重组为 10 测试任务
+中；泛化边界仍在同一基准与已见子技能内
+
+
+IOI 可近似评估策略成功率
+中；样本任务少，无误差条和评估者一致性统计
+
+
+
+显式条件优于四种隐式注入方式
+中高；缺少模块级消融
+
+
+
+不用外参只带来有限性能下降
+中；真实标定误差下未做系统曲线比较
+
+
+
+真实机器人上可生成合理视频并支持策略训练
+一个 Franka 任务的定性图
+低至中；被引用的定量附录缺失
+
+
+
+假设、局限与有效性威胁
+论文明确承认
+
+只接受关节级或末端执行器级动作，难以直接覆盖更高层语义策略（PDF p. 13，Conclusion）。
+正交投影不包含末端执行器和被抓物体的外观细节，可能限制接触密集交互建模（PDF p. 13）。
+
+隐含假设
+
+URDF、初始关节状态和动作到关节状态的转换足够准确；IK 解连续且与真实控制器执行一致。
+机器人结构的解析确定性足以从复杂场景动力学中分离；控制滞后、柔顺性、关节间隙和形变等未显式纳入。
+固定的三视图投影能提供目标相机所需的几何线索，且学习到的隐式对齐能跨相机和场景保持稳定。
+
+额外有效性威胁（Interpretation）
+
+基线覆盖有限：主实验仅比较 IRASim 与 Ctrl-World；两个更相关的显式结构方法因代码不可用被排除。
+指标代理性：PSNR、SSIM、LPIPS、FVD 衡量视觉相似或分布距离，并不直接测量接触力、约束违反、物体守恒或动作误差。
+OOD 定义较窄：测试任务是已训练子技能的组合，不能外推到新机器人、新相机、新物体动力学或全新动作原语。
+策略评估样本小：5 个任务足以做概念验证，但不足以稳定估计跨任务校准与排序能力。
+真实世界证据不完整：声称存在的附录定量结果未包含在源文件中。
+稿件编辑问题：Figure 1 图注明显误写为无关的 “UniEdit-I”；Table 2 标为 “Appendix” 却出现在正文。这些不改变方法，但提示 v1 尚未充分校订。
+
+可迁移的研究想法
+
+结构化条件先于特征融合：先把低维控制转成可解释、可验证的空间轨迹，再送入生成模型；这可迁移到人体骨架、车辆动力学、相机轨迹或可变形体粗模拟。
+解析模块与生成模块分工：把确定性强、规则明确的子过程交给解析求解器，把不可枚举的随机交互交给学习器。
+规范视图绕开部署标定：若目标视角难标定，可先构造与目标相机无关的规范表示，再学习条件到观测空间的对齐。
+零初始化条件门控：新增条件分支从零影响开始训练，有助于保留预训练生成骨干能力。
+评估世界模型的三层结构：低层生成/运动保真度、中层 OOD 组合泛化、高层策略结果校准，比只报告视频指标更接近实际用途。
+不应盲目迁移：对柔性机器人、强动力学效应、视触觉任务或需要力/扭矩预测的场景，仅靠 URDF 几何条件可能远远不够。
+
+复现笔记
+
+代码 / 项目页：未给出。
+关键依赖：机器人 URDF 与网格、关节或末端动作序列、IK/FK 求解器、三视图正交渲染器、WAN 2.1 视频骨干、VAE、VACE 风格 Alignment Embedder、RoboTwin 2.0 数据。
+论文给出的训练要点：100,000 步、global batch size 32、AdamW、2,000 步 warm-up、峰值学习率 、cosine decay、空间裁剪与光度扰动。
+缺失实现细节：三视图相机规范坐标与尺度、渲染材质/背景、IK 求解器与失败处理、动作频率与视频帧率、历史/未来帧长度、分辨率、Kinematic Block 数量及插入层、损失与采样细节、硬件与训练成本。
+预期风险：没有代码时，规范投影和时空 token 对齐的细节最可能造成复现偏差；真实世界结果还受标定、控制延迟、URDF 偏差与数据采集分布影响。
+
+开放问题
+
+若加入动力学参数、接触图、力/扭矩或对象状态，能否在不牺牲可扩展性的前提下进一步减少物理幻觉？
+三视图各自贡献多少？单视图、双视图、随机规范视图和可学习视图选择之间如何权衡？
+MKAI 在真实相机外参变化、相机移动、严重遮挡下的对齐误差如何增长？
+世界模型成功率是否在更多任务、不同策略和不同成功率分布上保持校准，而不仅是高相关？
+生成 rollout 的不确定性是否可用于拒绝评估或给出成功率置信区间？
+如何扩展到高层语言动作、技能 token 或长时域层级策略，同时保留解析运动学约束？
+
+]]></content>
+  </entry>
+  <entry>
     <title>StatePlay：面向机制一致生成的状态感知游戏世界模型</title>
     <url>/2026/08/05/StatePlay%EF%BC%9A%E9%9D%A2%E5%90%91%E6%9C%BA%E5%88%B6%E4%B8%80%E8%87%B4%E7%94%9F%E6%88%90%E7%9A%84%E7%8A%B6%E6%80%81%E6%84%9F%E7%9F%A5%E6%B8%B8%E6%88%8F%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[StatePlay：面向机制一致生成的状态感知游戏世界模型
@@ -272,6 +512,7 @@ SF3 Control 迁移失败主要来自技能语义、视觉表现、动作时序�
 StatePlay 在视频扩散世界模型旁增加显式状态分支，用双向 joint attention 让生命值、技能槽和计时器的预测参与帧生成；在单一《Street Fighter 3》环境中，它相对最强无状态微调基线将两位视觉裁判的机制正确率都提高了 18.6 个百分点，但尚未证明跨游戏、长时程或完整可玩引擎层面的通用机制推理。
 论文信息卡片
 
+题目：StatePlay: State-Aware Game World Models for Mechanics-Consistent Generation
 作者：Zijun Lin、Zeqing Wang、Cheston Tan、Bihan Wen、Yeying Jin
 年份 / 状态：2026，arXiv 预印本 v1
 资源：arXiv:2607.26754 | 项目页 | 代码 | 数据集 | 模型
