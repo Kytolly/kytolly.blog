@@ -284,7 +284,7 @@
 <p>给定观测历史、未来动作序列和机器人 URDF，运动学链可确定机器人未来姿态，因此不必由生成器从数据中隐式学习。三组同步正交投影提供不依赖观测相机位姿的几何条件；MKAI 将这些条件与观测上下文对齐并分层注入视频生成器。</p>
 <h3 id="解读"><a href="#解读" class="headerlink" title="解读"></a>解读</h3>
 <p>IOI 的关键不是加入了更多动作特征，而是改变了条件的<strong>表示层级</strong>：把关节/末端动作先提升为显式的时空几何轨迹，再让生成模型学习“在这条确定轨迹下环境会如何变化”。这是一种结构化的归纳偏置和容量分工，并不等于模型获得了完整物理定律。</p>
-<p><img src="assets/fig-02-pipeline-overview.png" alt="IOI 总体流程，从 URDF 运动学到三视图条件与视频生成"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/IOI%EF%BC%9A%E8%A7%A3%E8%80%A6%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%BF%90%E5%8A%A8%E5%AD%A6%E4%B8%8E%E7%89%A9%E7%90%86/fig-02-pipeline-overview.png" alt="IOI 总体流程，从 URDF 运动学到三视图条件与视频生成"></p>
 <blockquote>
 <p><strong>Source visual - Figure 2</strong>: <em>IOI: Decoupling Kinematics and Physics for Interactive World Models</em>, PDF p. 4. Role: 展示动作、URDF、三视图正交投影、MKAI 与视频生成器之间的完整信息流。</p>
 </blockquote>
@@ -335,7 +335,7 @@
 <p><svg style="vertical-align: -0.667ex;" xmlns="http://www.w3.org/2000/svg" width="3.087ex" height="2.213ex" role="img" focusable="false" viewBox="0 -683 1364.3 978" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-23-TEX-I-1D44A" d="M436 683Q450 683 486 682T553 680Q604 680 638 681T677 682Q695 682 695 674Q695 670 692 659Q687 641 683 639T661 637Q636 636 621 632T600 624T597 615Q597 603 613 377T629 138L631 141Q633 144 637 151T649 170T666 200T690 241T720 295T759 362Q863 546 877 572T892 604Q892 619 873 628T831 637Q817 637 817 647Q817 650 819 660Q823 676 825 679T839 682Q842 682 856 682T895 682T949 681Q1015 681 1034 683Q1048 683 1048 672Q1048 666 1045 655T1038 640T1028 637Q1006 637 988 631T958 617T939 600T927 584L923 578L754 282Q586 -14 585 -15Q579 -22 561 -22Q546 -22 542 -17Q539 -14 523 229T506 480L494 462Q472 425 366 239Q222 -13 220 -15T215 -19Q210 -22 197 -22Q178 -22 176 -15Q176 -12 154 304T131 622Q129 631 121 633T82 637H58Q51 644 51 648Q52 671 64 683H76Q118 680 176 680Q301 680 313 683H323Q329 677 329 674T327 656Q322 641 318 637H297Q236 634 232 620Q262 160 266 136L501 550L499 587Q496 629 489 632Q483 636 447 637Q428 637 422 639T416 648Q416 650 418 660Q419 664 420 669T421 676T424 680T428 682T436 683Z"></path><path id="MJX-23-TEX-I-1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><use data-c="1D44A" xlink:href="#MJX-23-TEX-I-1D44A"></use></g><g data-mml-node="mi" transform="translate(977,-150) scale(0.707)"><use data-c="1D454" xlink:href="#MJX-23-TEX-I-1D454"></use></g></g></g></g></svg> 零初始化，使新增条件分支从“不扰动预训练模型”开始学习。训练时仅更新 Fusion Embedder、Alignment Embedder 和 Kinematic Blocks，DiT 主干保持冻结。****</p>
 </li>
 </ol>
-<p><img src="assets/fig-03-mkai-overview.png" alt="MKAI 的融合、对齐和分层注入结构"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/IOI%EF%BC%9A%E8%A7%A3%E8%80%A6%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%BF%90%E5%8A%A8%E5%AD%A6%E4%B8%8E%E7%89%A9%E7%90%86/fig-03-mkai-overview.png" alt="MKAI 的融合、对齐和分层注入结构"></p>
 <blockquote>
 <p><strong>Source visual - Figure 3</strong>: <em>IOI: Decoupling Kinematics and Physics for Interactive World Models</em>, PDF p. 6. Role: 解释三视图运动学条件如何被编码为 token，并通过 Kinematic Blocks 分层注入冻结的 DiT。</p>
 </blockquote>
@@ -369,12 +369,12 @@
 <h3 id="常规仿真质量"><a href="#常规仿真质量" class="headerlink" title="常规仿真质量"></a>常规仿真质量</h3>
 <p><strong>Paper claim</strong>：IOI 的 Overall FVD 为 41.23、SSIM 为 0.8637、LPIPS 为 0.0695，均优于 Ctrl-World（64.90 / 0.8192 / 0.0867）和 IRASim（126.20 / 0.8198 / 0.0803）；FVD 相对 Ctrl-World 降低 36.47%，相对 IRASim 降低 67.30%。IRASim 的 PSNR 26.81 略高于 IOI 的 25.73。</p>
 <p><strong>Interpretation</strong>：结果支持显式几何条件改善时序一致性与结构保真度，但 PSNR 未领先说明方法并非所有像素级指标都占优；FVD/LPIPS 的改善也不能单独证明真实接触物理已被正确建模。</p>
-<p><img src="assets/table-01-main-simulation-results.png" alt="RoboTwin 2.0 上运动学保真度与物理一致性的主结果"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/IOI%EF%BC%9A%E8%A7%A3%E8%80%A6%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%BF%90%E5%8A%A8%E5%AD%A6%E4%B8%8E%E7%89%A9%E7%90%86/table-01-main-simulation-results.png" alt="RoboTwin 2.0 上运动学保真度与物理一致性的主结果"></p>
 <blockquote>
 <p><strong>Source visual - Table 1</strong>: <em>IOI: Decoupling Kinematics and Physics for Interactive World Models</em>, PDF p. 8. Role: 支撑 IOI 在常规 RoboTwin 任务上的总体视频质量主张，并显示不同指标间的权衡。</p>
 </blockquote>
 <h3 id="视觉失效模式"><a href="#视觉失效模式" class="headerlink" title="视觉失效模式"></a>视觉失效模式</h3>
-<p><img src="assets/fig-04-qualitative-comparison.png" alt="双臂放罐任务中 IOI 与基线的时序定性对比"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/IOI%EF%BC%9A%E8%A7%A3%E8%80%A6%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%BF%90%E5%8A%A8%E5%AD%A6%E4%B8%8E%E7%89%A9%E7%90%86/fig-04-qualitative-comparison.png" alt="双臂放罐任务中 IOI 与基线的时序定性对比"></p>
 <blockquote>
 <p><strong>Source visual - Figure 4</strong>: <em>IOI: Decoupling Kinematics and Physics for Interactive World Models</em>, PDF p. 9. Role: 展示 IRASim 的机械臂消失/形变与 Ctrl-World 的物体幻觉、空间边界错误，并与 IOI 和 GT 对照。</p>
 </blockquote>
@@ -386,7 +386,7 @@
 <h3 id="作为策略评估器"><a href="#作为策略评估器" class="headerlink" title="作为策略评估器"></a>作为策略评估器</h3>
 <p><strong>Paper claim</strong>：五个任务的平均成功率为 GT 44.0%、IOI 45.6%，平均差 +1.6 个百分点；各任务差值在 0 到 +4 个百分点之间，Pearson 相关系数为 0.9992。</p>
 <p><strong>Interpretation</strong>：数值高度一致，但相关系数仅来自 5 个任务且任务成功率跨度很大；缺少置信区间、重复实验方差和评估者一致性统计，因此更适合视为有力的初步证据，而非“可普遍替代物理模拟器”的定论。</p>
-<p><img src="assets/table-04-policy-evaluation.png" alt="GT 模拟器与 IOI 对 pi0 策略成功率的比较"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/IOI%EF%BC%9A%E8%A7%A3%E8%80%A6%E4%BA%A4%E4%BA%92%E5%BC%8F%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%BF%90%E5%8A%A8%E5%AD%A6%E4%B8%8E%E7%89%A9%E7%90%86/table-04-policy-evaluation.png" alt="GT 模拟器与 IOI 对 pi0 策略成功率的比较"></p>
 <blockquote>
 <p><strong>Source visual - Table 4</strong>: <em>IOI: Decoupling Kinematics and Physics for Interactive World Models</em>, PDF p. 11. Role: 支撑 IOI 作为策略评估替代环境时与 GT 模拟器结果接近的主张。</p>
 </blockquote>
