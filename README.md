@@ -19,7 +19,7 @@ Markdown 使用站点根路径，保持本地预览和仓库副本可用：
 
 配置好未提交到 Git 的 `.env` 后，执行 `npm run assets:sync` 将所有已发布文章的独立资源增量同步到腾讯云 COS；使用 `node tools/sync-cos-assets.js --post Transformer` 可只同步一篇文章。同步不会删除 COS 中已有对象。
 
-执行 `deploy.bat` 时会自动运行 `npm run assets:publish`：先把资源上传到 COS，上传全部成功后再直接改写 `source/_posts` 中的 Markdown 图片地址，然后才会生成和部署网站。改写会保留 `source/assets/<文章名>/` 中的本地资源副本。
+执行 `deploy.bat` 时会自动运行 `npm run assets:publish`：资源目录与文章文件名完全对应的文章会上传资源并直接改写 `source/_posts` 中的 Markdown 图片地址；目录不匹配的文章会被跳过并在日志中提示，不会猜测目录或覆写链接。改写会保留 `source/assets/<文章名>/` 中的本地资源副本。
 
 推送到 `main` 后，GitHub Actions 会先上传资源；只有上传成功，才会把文章中的本地图片地址改写为腾讯云完整链接，并以带有 `[cos-sync]` 标记的提交写回仓库。该标记用于阻止自动提交再次触发相同同步任务。
 

@@ -255,9 +255,9 @@
         
         <div class="tag-item">papers</div>
         
-        <div class="tag-item">Video Generation</div>
-        
         <div class="tag-item">Computer Vision</div>
+        
+        <div class="tag-item">Video Generation</div>
         
         <div class="tag-item">Physics Simulation</div>
         
@@ -338,7 +338,7 @@
 <li>以参考视频和模拟视频的逐帧图像误差反向传播，先拟合初始速度，再拟合空间变化的杨氏模量。</li>
 <li>学习完成后丢开参考视频，对对象施加新的力或初速度，使用已估计材料场进行交互式动力学合成。</li>
 </ol>
-<p><img src="assets/fig-03-method-overview.png" alt="PhysDreamer 从视频生成参考运动并通过可微 MPM 反推材料场的总体流程"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/PhysDreamer%EF%BC%9A%E5%80%9F%E5%8A%A9%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E5%85%88%E9%AA%8C%E5%AE%9E%E7%8E%B0%E5%8F%AF%E4%BA%A4%E4%BA%92%E7%9A%84-3D-%E7%89%A9%E4%BD%93%E5%8A%A8%E5%8A%9B%E5%AD%A6/fig-03-method-overview.png" alt="PhysDreamer 从视频生成参考运动并通过可微 MPM 反推材料场的总体流程"></p>
 <h3 id="两阶段优化"><a href="#两阶段优化" class="headerlink" title="两阶段优化"></a>两阶段优化</h3>
 <ul>
 <li><strong>阶段 1：速度拟合</strong>。随机初始化并冻结每个 Gaussian 的杨氏模量，只用参考视频前 3 帧优化初始速度场。</li>
@@ -384,7 +384,7 @@
 <li>附录另报告 FVD 与 FID。FVD 使用 16 帧窗口、2 帧步长，每个场景 272 个片段；输入缩放并中心裁剪到 <svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="9.553ex" height="1.557ex" role="img" focusable="false" viewBox="0 -666 4222.4 688" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="MJX-29-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-29-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-29-TEX-N-38" d="M70 417T70 494T124 618T248 666Q319 666 374 624T429 515Q429 485 418 459T392 417T361 389T335 371T324 363L338 354Q352 344 366 334T382 323Q457 264 457 174Q457 95 399 37T249 -22Q159 -22 101 29T43 155Q43 263 172 335L154 348Q133 361 127 368Q70 417 70 494ZM286 386L292 390Q298 394 301 396T311 403T323 413T334 425T345 438T355 454T364 471T369 491T371 513Q371 556 342 586T275 624Q268 625 242 625Q201 625 165 599T128 534Q128 511 141 492T167 463T217 431Q224 426 228 424L286 386ZM250 21Q308 21 350 55T392 137Q392 154 387 169T375 194T353 216T330 234T301 253T274 270Q260 279 244 289T218 306L210 311Q204 311 181 294T133 239T107 157Q107 98 150 60T250 21Z"></path><path id="MJX-29-TEX-N-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><use data-c="31" xlink:href="#MJX-29-TEX-N-31"></use><use data-c="32" xlink:href="#MJX-29-TEX-N-32" transform="translate(500,0)"></use><use data-c="38" xlink:href="#MJX-29-TEX-N-38" transform="translate(1000,0)"></use></g><g data-mml-node="mo" transform="translate(1722.2,0)"><use data-c="D7" xlink:href="#MJX-29-TEX-N-D7"></use></g><g data-mml-node="mn" transform="translate(2722.4,0)"><use data-c="31" xlink:href="#MJX-29-TEX-N-31"></use><use data-c="32" xlink:href="#MJX-29-TEX-N-32" transform="translate(500,0)"></use><use data-c="38" xlink:href="#MJX-29-TEX-N-38" transform="translate(1000,0)"></use></g></g></g></svg>。</li>
 </ul>
 <h2 id="主要结果"><a href="#主要结果" class="headerlink" title="主要结果"></a>主要结果</h2>
-<p><img src="assets/table-01-human-study-results.png" alt="PhysDreamer 相对真实视频及两种基线的 2AFC 用户偏好率"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/PhysDreamer%EF%BC%9A%E5%80%9F%E5%8A%A9%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E5%85%88%E9%AA%8C%E5%AE%9E%E7%8E%B0%E5%8F%AF%E4%BA%A4%E4%BA%92%E7%9A%84-3D-%E7%89%A9%E4%BD%93%E5%8A%A8%E5%8A%9B%E5%AD%A6/table-01-human-study-results.png" alt="PhysDreamer 相对真实视频及两种基线的 2AFC 用户偏好率"></p>
 <table>
 <thead>
 <tr>
@@ -427,11 +427,11 @@
 </tr>
 </tbody>
 </table>
-<p><img src="assets/fig-05-material-and-interaction-results.png" alt="图 5：估计的材料场以及在外力作用下合成的 3D 动态"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/PhysDreamer%EF%BC%9A%E5%80%9F%E5%8A%A9%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E5%85%88%E9%AA%8C%E5%AE%9E%E7%8E%B0%E5%8F%AF%E4%BA%A4%E4%BA%92%E7%9A%84-3D-%E7%89%A9%E4%BD%93%E5%8A%A8%E5%8A%9B%E5%AD%A6/fig-05-material-and-interaction-results.png" alt="图 5：估计的材料场以及在外力作用下合成的 3D 动态"></p>
 <p>图 5 左侧以亮度表示每个例子内部相对更高的杨氏模量，右侧展示施加外力后的多个时刻。它证明方法能产生空间变化材料场并用于新交互，但没有材料真值，因此不能从该图判断估计值是否物理准确。</p>
-<p><img src="assets/fig-06-space-time-comparison.png" alt="图 6：真实视频、PhysDreamer、PhysGaussian 与 DreamGaussian4D 的时空切片比较"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/PhysDreamer%EF%BC%9A%E5%80%9F%E5%8A%A9%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E5%85%88%E9%AA%8C%E5%AE%9E%E7%8E%B0%E5%8F%AF%E4%BA%A4%E4%BA%92%E7%9A%84-3D-%E7%89%A9%E4%BD%93%E5%8A%A8%E5%8A%9B%E5%AD%A6/fig-06-space-time-comparison.png" alt="图 6：真实视频、PhysDreamer、PhysGaussian 与 DreamGaussian4D 的时空切片比较"></p>
 <p><strong>解读</strong>：时空切片把振动幅度与频率显式化。PhysGaussian 常出现幅度过大、周期过慢的运动；DreamGaussian4D 更像固定小幅周期运动；PhysDreamer 的切片更接近真实视频并呈现衰减。不过海芋等薄结构仍表现出偏慢、偏平滑的运动，这既可能提高主观偏好，也可能掩盖真实动力学误差。</p>
-<p><img src="assets/fig-07-multiview-ablation.png" alt="图 7：自遮挡海芋场景中单视角与双视角参考视频监督的比较"></p>
+<p><img src="https://mytechblog-1318202921.cos.ap-chengdu.myqcloud.com/assets/PhysDreamer%EF%BC%9A%E5%80%9F%E5%8A%A9%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E5%85%88%E9%AA%8C%E5%AE%9E%E7%8E%B0%E5%8F%AF%E4%BA%A4%E4%BA%92%E7%9A%84-3D-%E7%89%A9%E4%BD%93%E5%8A%A8%E5%8A%9B%E5%AD%A6/fig-07-multiview-ablation.png" alt="图 7：自遮挡海芋场景中单视角与双视角参考视频监督的比较"></p>
 <h2 id="假设、限制与有效性威胁"><a href="#假设、限制与有效性威胁" class="headerlink" title="假设、限制与有效性威胁"></a>假设、限制与有效性威胁</h2>
 <h3 id="论文明确报告的限制"><a href="#论文明确报告的限制" class="headerlink" title="论文明确报告的限制"></a>论文明确报告的限制</h3>
 <ul>
